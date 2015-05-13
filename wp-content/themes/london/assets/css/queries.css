@@ -1,0 +1,248 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Table of contents]
+
+1. Retina logo
+2. Add clearfix in the grid system
+3. Styles for devices(>=1200px)
+4. Styles for devices(>=992px and <=1199px)
+5. Styles for devices(<=1199px)
+6. Styles for devices(<=991px )
+7. Styles for devices(>=768px and <= 991px)
+8. Styles for devices(<=767px )
+9. Styles for devices(>=768px and <= 991px)
+10. Styles for devices(<=480px )
+11. Styles for devices(<=320px )
+*/
+
+/* 1. Retina logo */
+@media only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 144dpi) {
+   .site-branding .site-logo.retina-logo-wrapper .retina-logo{ display: block; }
+   .site-branding .site-logo.retina-logo-wrapper .default-logo { display: none; }
+}
+
+/* 3. Styles for devices(>=1200px) */
+@media (min-width: 1200px) {
+    *{}
+}
+
+/* 4. Styles for devices(>=992px and <=1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    *{}
+}
+
+/* 5. Styles for devices(<=1199px) */
+@media (max-width: 1199px) {
+    *{}
+    .woocommerce ul.products.lists .product-image-container,
+    .woocommerce ul.products.lists .product-meta-wrapper,
+    .woocommerce ul.products.lists .product-item-tools{
+        width: 33%;
+    }
+}
+
+/* 6. Styles for devices(<=991px ) */
+@media (max-width: 991px) {
+    *{}
+    #header.is-sticky,
+    .header-container.header-absolute{
+        position: static!important;
+    }
+    #main-nav,
+    .header-content-left,
+    .header-content-right{
+        display: none;
+    }
+    #woocommerce-nav-mobile-wrapper,
+    #mobile-nav-holder,
+    #header-wrap .display-table,
+    #mobile-content-all,
+    #header-content-mobile{
+        display: block;
+    }
+    #header-wrap .site-branding{
+        display: block;
+        padding: 15px 0;
+        width: auto;
+        position: relative;
+        text-align: center;
+    }
+    #header-wrap .site-branding .site-logo{
+        margin: 0 auto;
+    }
+    .header-layout1 .site-branding .site-logo.logo-circle{
+        display: inline-block;
+    }
+    .header-layout2 #header-inner,
+    .header-layout3 #header-inner,
+    #mobile-content-all{
+        padding: 0 75px 0 0;
+        width: 100%;
+        margin: 10px 0;
+        position: relative;
+    }
+    .header-layout2 .header-content-bottom .searchform, 
+    .header-layout3 .header-content-bottom .searchform{
+        width: 100%;
+        margin: 0;
+    }
+    #mobile-content-all .searchform input[type="text"],
+    .header-layout2 .header-content-bottom .searchform input[type="text"], 
+    .header-layout3 .header-content-bottom .searchform input[type="text"]{
+        width: 100%;
+        height: 32px;
+    }
+    .header-content-top{
+        margin: 0;
+    }
+    
+    
+    
+    
+    #footer-bottom .display-table{
+        display: block;
+    }
+    #footer-bottom .display-table .display-td{
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+    }
+    #footer-bottom .display-table .display-td:last-child{
+        margin-bottom: 0;
+    }
+    
+    #main,
+    .sidebar{
+        margin-bottom: 20px;
+    }
+    .term-description{
+        padding-right: 0;
+    }
+}
+/* 7. Styles for devices(>=768px and <= 991px) */
+/* 8. Styles for devices(<=767px ) */
+@media (max-width: 767px) {
+    *{}
+    .themedev-product-popup h1.product_title{
+        margin-top:10px;
+    } 
+    .woocommerce ul.products li.first{
+        clear: none;
+    }
+    .woocommerce ul.products li.first-tablet{
+        clear: both;
+    }
+
+    .page-bg-cover .cover-img {
+        height: 200px;
+    }
+
+}
+/* 10. Styles for devices(<=480px ) */
+@media (max-width: 480px) {
+    *{}
+    .page-bg-cover .cover-img {
+        height: 150px;
+    }
+    .woocommerce ul.products li.product{
+        width: 100%;
+    }
+    .woocommerce-page .quantity .input-text,
+    .woocommerce .summary .quantity .input-text{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .woocommerce ul.products.lists .product-image-container, 
+    .woocommerce ul.products.lists .product-meta-wrapper, 
+    .woocommerce ul.products.lists .product-item-tools{
+        width: 100%;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    .woocommerce ul.products.lists .product-item-tools span.price{
+        margin-top: 0;
+    }
+    .woocommerce ul.products.lists .product-item-tools .button{
+        margin-left: 5px;
+    }
+    .woocommerce-breadcrumb .page-return{
+        display: none;
+    }
+    body .wpb_content_element .wpb_tabs_nav li{
+        float: none;
+        margin: 0 0 3px;
+    }
+    .page-title{
+        float: none;
+        margin: 0 0 15px;
+    }
+    .woocommerce .product-detail-content{
+        padding: 10px;
+    }
+    .woocommerce .woocommerce-tabs ul.tabs li{
+        float: none;
+        margin: 0 0 3px;
+    }
+    .woocommerce #review_form #respond p.stars{
+        display: none;
+    }
+    .woocommerce #review_form #respond select{
+        display: block!important;
+    }
+    .woocommerce .single_variation_wrap .variations_button, 
+    .woocommerce .cart-product-buttons{
+        margin: 0 0 10px;
+        width: 100%;
+    }
+    .content_sortPagiBar{
+        text-align: center;
+    }
+    .woocommerce-pagination,
+    .woocommerce-result-count,
+    .woocommerce-ordering{
+        float: none;
+        margin: 0 0 10px;
+    }
+    .woocommerce-result-count{
+        float: none;
+        margin: 0;
+    }
+    
+    .woocommerce table.shop_table .product-quantity,
+    .woocommerce table.shop_table td.product-quantity{
+        display: none;
+    }
+    .woocommerce table.shop_table td.product-thumbnail img{
+        max-width:55px;
+    }
+    .woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2,
+    .woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1{
+        width:100%;
+    }
+    .themedev-product-popup.woocommerce .entry-summary{
+        padding:0;
+    }
+    .carousel-heading-top .owl-buttons{
+        display: none;
+    }
+    .carousel-wrapper-top .block-heading{
+        padding-right: 0;
+    }
+}
+/* 11. Styles for devices(<=320px ) */
+@media (max-width: 320px) {
+    *{}
+    .content-404 form{max-width: 320px;}
+    .woocommerce table.shop_table td.actions .checkout-button, 
+    .woocommerce table.shop_table td.actions input[name="update_cart"]{
+        width:100%;
+        text-align: center;
+        margin:0;
+    }
+    .woocommerce table.shop_table td.actions .checkout-button{ 
+        margin:0 0 10px; 
+    }
+}
