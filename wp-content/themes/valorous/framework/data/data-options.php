@@ -63,9 +63,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                 //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
                 'allow_sub_menu'       => false,
                 // Show the sections below the admin menu item or not
-                'menu_title'           => __( 'London', THEME_LANG ),
+                'menu_title'           => $theme->get( 'Name' ),
                 
-                'page_title'           => __( 'London Theme Options - ', THEME_LANG ),
+                'page_title'           => $theme->get( 'Name' ).__( ' Theme Options - ', THEME_LANG ),
                 // You will need to generate a Google API key to use this feature.
                 // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
                 // You will need to generate a Google API key to use this feature.

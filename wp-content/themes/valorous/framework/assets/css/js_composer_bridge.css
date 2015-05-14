@@ -1,14 +1,18 @@
 .kt_margin_bottom{
     margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 
 .wpb_el_type_kt_heading.vc_shortcode-param{
     background-color: #e6e6e6;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     padding: 15px;
     text-transform: uppercase;
+}
+.wpb_el_type_kt_heading.vc_shortcode-param .wpb_element_label{
+    margin-bottom: 0;
 }
 .vc_edit-form-tab .wpb_el_type_kt_heading.vc_shortcode-param:first-child{
     margin-top: 0;
@@ -19,4 +23,43 @@
 }
 .vc_shortcode-param .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
     height: auto!important;
+    min-height: 25px;
+}
+
+
+
+
+.wpb_el_type_kt_radio input.kt_radio_select_input{
+    display: none;
+}
+.wpb_el_type_kt_radio label{
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    max-width: 100%;
+}
+.wpb_el_type_kt_radio .radio-wrapper-group label i,
+.wpb_el_type_kt_radio .radio-wrapper label i{
+    border: 3px solid #ddd;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+}
+.wpb_el_type_kt_radio .radio-wrapper-group label i:first-child{
+    border-right: none;
+}
+.wpb_el_type_kt_radio img{
+    border: 4px solid #e6e6e6;
+    max-width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+.wpb_el_type_kt_radio input[type=radio]:checked + img,
+.wpb_el_type_kt_radio .radio-wrapper-group input[type=radio]:checked + span i,
+.wpb_el_type_kt_radio .radio-wrapper input[type=radio]:checked + i{
+    border-color: #093459;
 }

@@ -8,6 +8,10 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
             'title' => '',
+            'border_heading' => '',
+            'css_animation' => '',
+            'el_class' => '',
+
             'source' => 'all',
             'categories' => '',
             'posts' => '',
@@ -16,21 +20,34 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             'meta_key' => '',
             'order' => 'DESC',
             'max_items' => 10,
-            "excerpt_length" => 10,
-            'autoplay' => '', 
-            'navigation' => '',
+            "excerpt_length" => 50,
+
+            'autoheight' => 'false',
+            'autoplay' => 'false',
+            'autoplayspeed' => 5000,
             'slidespeed' => 200,
-            'theme' => 'style-navigation-center',
             'desktop' => 4,
             'tablet' => 2,
             'mobile' => 1,
-            'css_animation' => '',
-            'el_class' => '',
-            'border_heading' => '',
+
+            'navigation' => 'true',
+            'navigation_always_on' => 'false',
+            'navigation_position' => '',
+            'navigation_style' => '',
+            'navigation_border_width' => '1',
+            'navigation_border_color' => '',
+            'navigation_background' => '',
+            'navigation_color' => '',
+            'navigation_icon' => 'fa fa-angle-left|fa fa-angle-right',
+
+            'pagination' => 'true',
+            'pagination_color' => '',
+            'pagination_icon' => 'fa fa-circle-o',
+
             'css' => '',
         ), $atts ) );
         
-        $this->excerpt_length = 10;
+        $this->excerpt_length = $excerpt_length;
         
         $args = array(
                     'order' => $order,
@@ -69,60 +86,76 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
         $the_query = new WP_Query( $args );
         
         $elementClass = array(
-        	'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'recent-posts-carousel-wrapper ', $this->settings['base'], $atts ),
+        	'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-carousel-wrapper ', $this->settings['base'], $atts ),
         	'extra' => $this->getExtraClass( $el_class ),
         	'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
         );
-        
-        if($theme == 'style-navigation-top'){
-            $elementClass['carousel'] = 'carousel-wrapper-top';
-            $title = ($title) ? $title : "&nbsp;";
-        }
-        
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
         $output = '';
         $output .= '<div class="'.esc_attr( $elementClass ).'">';
             
             if($title){
-                $heading_class = "block-heading";
-                if($border_heading){
-                    $heading_class .= " block-heading-underline";
-                }
-                $output .= '<div class="'.$heading_class.'">';
+                $output .= '<div class="block-heading">';
                     $output .= '<h3>'.$title.'</h3>';
                 $output .= '</div>';
             }
-            
-            
-            
-            
-            
+
             
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) :
-                
+
+                /*
+                'autoheight' => 'false',
+                'autoplay' => 'false',
+                'autoplayspeed' => 5000,
+                'slidespeed' => 200,
+                'desktop' => 4,
+                'tablet' => 2,
+                'mobile' => 1,
+
+                'navigation' => 'true',
+                'navigation_always_on' => 'false',
+                'navigation_position' => '',
+                'navigation_style' => '',
+                'navigation_border_width' => '1',
+                'navigation_border_color' => '',
+                'navigation_background' => '',
+                'navigation_color' => '',
+                'navigation_icon' => 'fa fa-angle-left|fa fa-angle-right',
+
+                'pagination' => 'true',
+                'pagination_color' => '',
+                'pagination_icon' => 'fa fa-circle-o',
+                */
+
+                $owl_carousel_class = array('owl-carousel-wrapper');
+                if($navigation_always_on == 'true'){
+                    $owl_carousel_class[] = 'visiable-navigation';
+                }
+
+                $autoplay = ($autoplay) ? $autoplayspeed : $autoplay;
+
                 $data_carousel = array(
-                                    "autoheight" => "false",
+                                    "autoheight" => $autoheight,
                                     "autoplay" => $autoplay,
                                     "navigation" => $navigation,
                                     "slidespeed" => $slidespeed,
-                                    "pagination" => "false",
-                                    "theme" => $theme,
+                                    "pagination" => 'true',
                                     "itemscustom" => '[[992,'.$desktop.'], [768, '.$tablet.'], [480, '.$mobile.']]'
                                 );
                 
-                $output .= '<div class="owl-carousel-wrapper">';
+                $output .= '<div class="'.esc_attr(implode(' ', $owl_carousel_class)).'">';
                 $output .= '<div class="owl-carousel kt-owl-carousel" '.render_data_carousel($data_carousel).'>';
-                //add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 20 );                
+                add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
                 while ( $query->have_posts() ) : $query->the_post();
                     $output .= '<div class="recent-posts-item">';
                         $output .= '<a href="'.get_permalink().'" class="entry-thumbnail">';
                             $output .= get_the_post_thumbnail( get_the_ID(), 'recent_posts', array('class'=>"first-img product-img"));
                         $output .= '</a>';
                         
-                        $output .= '<h5 class="entry-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>';
+                        $output .= '<h4 class="entry-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
                         
                         $output .= '<p class="post-content-blog">'.get_the_excerpt().'</p>';
                         $output .= sprintf(
@@ -134,7 +167,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                         
                     $output .= '</div><!-- .recent-posts-item -->';
                 endwhile; wp_reset_postdata();
-                //remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 20 );                
+                remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
                 $output .= '</div>';
                 $output .= '</div>';
                 
@@ -162,62 +195,12 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
-			'type' => 'checkbox',
+			'type' => 'kt_switch',
 			'heading' => __( 'Border in heading', THEME_LANG ),
 			'param_name' => 'border_heading',
-			'value' => array( __( 'Yes, please', 'js_composer' ) => 'true' ),
+			'value' => 'true',
+            "description" => __("Enable border in heading", THEME_LANG)
 		),
-        array(
-            "type" => "dropdown",
-        	"heading" => __("Data source", THEME_LANG),
-        	"param_name" => "source",
-        	"value" => array(
-                __('All', THEME_LANG) => '',
-                __('Specific Categories', THEME_LANG) => 'categories',
-                __('Specific Posts', THEME_LANG) => 'posts',
-                __('Specific Authors', THEME_LANG) => 'authors'
-        	),
-            "admin_label" => true,
-            'std' => 'all',
-        	"description" => __("Select content type for your testimonials.", THEME_LANG)
-        ),
-        array(
-			"type" => "kt_taxonomy",
-            'taxonomy' => 'category',
-			'heading' => __( 'Categories', 'js_composer' ),
-			'param_name' => 'categories',
-            'placeholder' => __( 'Select your categories', 'js_composer' ),
-            "dependency" => array("element" => "source","value" => array('categories')),
-            'multiple' => true,
-		),
-        array(
-			"type" => "kt_posts",
-            'post_type' => 'post',
-			'heading' => __( 'Specific Posts', 'js_composer' ),
-			'param_name' => 'posts',
-            'size' => '5',
-            'placeholder' => __( 'Select your posts', 'js_composer' ),
-            "dependency" => array("element" => "source","value" => array('posts')),
-            'multiple' => true,
-		),
-        array(
-			"type" => "kt_authors",
-            'post_type' => 'post',
-			'heading' => __( 'Specific Authors', 'js_composer' ),
-			'param_name' => 'authors',
-            'size' => '5',
-            'placeholder' => __( 'Select your authors', 'js_composer' ),
-            "dependency" => array("element" => "source","value" => array('authors')),
-            'multiple' => true,
-		),
-        array(
-    		'type' => 'textfield',
-    		'heading' => __( 'Total items', 'js_composer' ),
-    		'param_name' => 'max_items',
-    		'value' => 10, // default value
-    		'param_holder_class' => 'vc_not-for-custom',
-    		'description' => __( 'Set max limit for items in grid or enter -1 to display all (limited to 1000).', 'js_composer' )
-    	),
         array(
         	'type' => 'dropdown',
         	'heading' => __( 'CSS Animation', 'js_composer' ),
@@ -240,6 +223,69 @@ vc_map( array(
             "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
         ),
         // Data settings
+        array(
+            "type" => "dropdown",
+            "heading" => __("Data source", THEME_LANG),
+            "param_name" => "source",
+            "value" => array(
+                __('All', THEME_LANG) => '',
+                __('Specific Categories', THEME_LANG) => 'categories',
+                __('Specific Posts', THEME_LANG) => 'posts',
+                __('Specific Authors', THEME_LANG) => 'authors'
+            ),
+            "admin_label" => true,
+            'std' => 'all',
+            "description" => __("Select content type for your posts.", THEME_LANG),
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_taxonomy",
+            'taxonomy' => 'category',
+            'heading' => __( 'Categories', THEME_LANG ),
+            'param_name' => 'categories',
+            'placeholder' => __( 'Select your categories', THEME_LANG ),
+            "dependency" => array("element" => "source","value" => array('categories')),
+            'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_posts",
+            'args' => array('post_type' => 'post', 'posts_per_page' => -1),
+            'heading' => __( 'Specific Posts', 'js_composer' ),
+            'param_name' => 'posts',
+            'size' => '5',
+            'placeholder' => __( 'Select your posts', 'js_composer' ),
+            "dependency" => array("element" => "source","value" => array('posts')),
+            'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_authors",
+            'post_type' => 'post',
+            'heading' => __( 'Specific Authors', 'js_composer' ),
+            'param_name' => 'authors',
+            'size' => '5',
+            'placeholder' => __( 'Select your authors', 'js_composer' ),
+            "dependency" => array("element" => "source","value" => array('authors')),
+            'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => __( 'Total items', 'js_composer' ),
+            'param_name' => 'max_items',
+            'value' => 10, // default value
+            'param_holder_class' => 'vc_not-for-custom',
+            'description' => __( 'Set max limit for items in grid or enter -1 to display all (limited to 1000).', 'js_composer' ),
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => __( 'Excerpt length', 'js_composer' ),
+            'value' => 50,
+            'param_name' => 'excerpt_length',
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
         array(
     		'type' => 'dropdown',
     		'heading' => __( 'Order by', 'js_composer' ),
@@ -290,84 +336,223 @@ vc_map( array(
     	),
         // Carousel
         array(
-			'type' => 'checkbox',
-			'heading' => __( 'AutoPlay', THEME_LANG ),
-			'param_name' => 'autoplay',
-			'value' => array( __( 'Yes, please', 'js_composer' ) => 'true' ),
+            'type' => 'kt_switch',
+            'heading' => __( 'autoHeight', THEME_LANG ),
+            'param_name' => 'autoheight',
+            'value' => 'false',
+            "description" => __("Enable auto height.", THEME_LANG),
             'group' => __( 'Carousel settings', THEME_LANG )
-		),
-        array(
-			'type' => 'checkbox',
-            'heading' => __( 'Navigation', THEME_LANG ),
-			'param_name' => 'navigation',
-			'value' => array( __( "Don't use Navigation", 'js_composer' ) => 'false' ),
-            'description' => __( "Don't display 'next' and 'prev' buttons.", THEME_LANG ),
-            'group' => __( 'Carousel settings', THEME_LANG )
-		),
-        array(
-    		'type' => 'dropdown',
-    		'heading' => __( 'Theme',THEME_LANG ),
-    		'param_name' => 'theme',
-    		'value' => array(
-    			__( 'Navigation Top', THEME_LANG ) => 'style-navigation-top',
-    			__( 'Navigation Center', THEME_LANG ) => 'style-navigation-center',
-                __( 'Navigation Bottom', THEME_LANG ) => 'style-navigation-bottom',
-    		),
-            'std' => 'style-navigation-center',
-            'description' => __( 'Please your theme for carousel', THEME_LANG ),
-            'group' => __( 'Carousel settings', THEME_LANG )
-    	),
-        array(
-			"type" => "kt_number",
-			"heading" => __("Slide Speed", THEME_LANG),
-			"param_name" => "slidespeed",
-			"value" => "200",
-            "suffix" => __("milliseconds", THEME_LANG),
-			"description" => __('Slide speed in milliseconds', THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
-	  	),
-        array(
-          "type" => "kt_heading",
-          "heading" => __("Items to Show?", THEME_LANG),
-          "param_name" => "items_show",
-          'group' => __( 'Carousel settings', THEME_LANG )
         ),
         array(
-			"type" => "kt_number",
-			"class" => "",
-			"edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
-			"heading" => __("On Desktop", THEME_LANG),
-			"param_name" => "desktop",
-			"value" => "4",
-			"min" => "1",
-			"max" => "25",
-			"step" => "1",
+            'type' => 'kt_switch',
+            'heading' => __( 'AutoPlay', THEME_LANG ),
+            'param_name' => 'autoplay',
+            'value' => 'false',
+            "description" => __("Enable auto play.", THEME_LANG),
             'group' => __( 'Carousel settings', THEME_LANG )
-	  	),
-		array(
-			"type" => "kt_number",
-			"class" => "",
-			"edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
-			"heading" => __("On Tablet", THEME_LANG),
-			"param_name" => "tablet",
-			"value" => "2",
-			"min" => "1",
-			"max" => "25",
-			"step" => "1",
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("AutoPlay Speed", THEME_LANG),
+            "param_name" => "autoplayspeed",
+            "value" => "5000",
+            "suffix" => __("milliseconds", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "autoplay","value" => array('true')),
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Slide Speed", THEME_LANG),
+            "param_name" => "slidespeed",
+            "value" => "200",
+            "suffix" => __("milliseconds", THEME_LANG),
             'group' => __( 'Carousel settings', THEME_LANG )
-	  	),
-		array(
-			"type" => "kt_number",
-			"class" => "",
-			"edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
-			"heading" => __("On Mobile", THEME_LANG),
-			"param_name" => "mobile",
-			"value" => "1",
-			"min" => "1",
-			"max" => "25",
-			"step" => "1",
+        ),
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Items to Show?", THEME_LANG),
+            "param_name" => "items_show",
             'group' => __( 'Carousel settings', THEME_LANG )
-	  	),
+        ),
+        array(
+            "type" => "kt_number",
+            "class" => "",
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
+            "heading" => __("On Desktop", THEME_LANG),
+            "param_name" => "desktop",
+            "value" => "4",
+            "min" => "1",
+            "max" => "25",
+            "step" => "1",
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_number",
+            "class" => "",
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
+            "heading" => __("On Tablet", THEME_LANG),
+            "param_name" => "tablet",
+            "value" => "2",
+            "min" => "1",
+            "max" => "25",
+            "step" => "1",
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_number",
+            "class" => "",
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
+            "heading" => __("On Mobile", THEME_LANG),
+            "param_name" => "mobile",
+            "value" => "1",
+            "min" => "1",
+            "max" => "25",
+            "step" => "1",
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Navigation settings", THEME_LANG),
+            "param_name" => "navigation_settings",
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Navigation', THEME_LANG ),
+            'param_name' => 'navigation',
+            'value' => 'true',
+            "description" => __("Show navigation in carousel", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Always Show Navigation', THEME_LANG ),
+            'param_name' => 'navigation_always_on',
+            'value' => 'false',
+            "description" => __("Always show the navigation.", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Navigation position', THEME_LANG ),
+            'param_name' => 'navigation_position',
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            'value' => array(
+                __( 'Default - Bottom', THEME_LANG) => '',
+                __( 'Top', THEME_LANG) => 'top',
+                __( 'Center', THEME_LANG) => 'center',
+            ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Navigation style', 'js_composer' ),
+            'param_name' => 'navigation_style',
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            'value' => array(
+                __( 'Default', THEME_LANG ) => '',
+                __( 'Circle Background', THEME_LANG ) => 'circle',
+                __( 'Square Background', THEME_LANG ) => 'square',
+                __( 'Round Background', THEME_LANG ) => 'round',
+                __( 'Circle Border', THEME_LANG ) => 'circle_border',
+                __( 'Square Border', THEME_LANG ) => 'square_border',
+                __( 'Round Border', THEME_LANG ) => 'round_border',
+            ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Navigation Background', THEME_LANG ),
+            'param_name' => 'navigation_background',
+            'description' => __( 'Select background for navigation.', THEME_LANG ),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "navigation_style","value" => array('circle', 'square', 'round')),
+        ),
+        array(
+            'type' => 'kt_number',
+            'heading' => __( 'Border width', THEME_LANG ),
+            'param_name' => 'navigation_border_width',
+            "value" => "1",
+            "min" => "1",
+            "max" => "10",
+            "suffix" => __("px", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "navigation_style","value" => array('circle_border', 'square_border', 'round_border')),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Border color', THEME_LANG ),
+            'param_name' => 'navigation_border_color',
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "navigation_style","value" => array('circle_border', 'square_border', 'round_border')),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Navigation color', THEME_LANG ),
+            'param_name' => 'navigation_color',
+            'description' => __( 'Select color for navigation.', 'js_composer' ),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+        ),
+        array(
+            'type' => 'kt_radio',
+            'heading' => __( 'Navigation Icon', 'js_composer' ),
+            'param_name' => 'navigation_icon',
+            'class_input' => "radio-wrapper-group",
+            'value' => array(
+                'fa fa-angle-left|fa fa-angle-right' => '<span><i class="fa fa-angle-left"></i><i class="fa fa-angle-right"></i></span>',
+                'fa fa-chevron-left|fa fa-chevron-right' => '<span><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-right"></i></span>',
+                'fa fa-angle-double-left|fa fa-angle-double-right' => '<span><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i></span>',
+                'fa fa-arrow-left|fa fa-arrow-right' => '<span><i class="fa fa-arrow-left"></i><i class="fa fa-arrow-right"></i></span>',
+                'fa fa-chevron-circle-left|fa fa-chevron-circle-right' => '<span><i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i></span>',
+                'fa fa-arrow-circle-o-left|fa fa-arrow-circle-o-right' => '<span><i class="fa fa-arrow-circle-o-left"></i><i class="fa fa-arrow-circle-o-right"></i></span>',
+            ),
+            'description' => __( 'Select your style for navigation.', THEME_LANG ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Pagination settings", THEME_LANG),
+            "param_name" => "pagination_settings",
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Pagination', THEME_LANG ),
+            'param_name' => 'pagination',
+            'value' => 'true',
+            "description" => __("Show pagination in carousel", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Pagination color', 'js_composer' ),
+            'param_name' => 'pagination_color',
+            'description' => __( 'Select color for pagination.', 'js_composer' ),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            "dependency" => array("element" => "pagination","value" => array('true')),
+        ),
+        array(
+            'type' => 'kt_radio',
+            'heading' => __( 'Pagination Icon', 'js_composer' ),
+            'param_name' => 'pagination_icon',
+            'class_input' => "radio-wrapper",
+            'value' => array(
+                'fa fa-circle-o' => '<i class="fa fa-circle-o"></i>',
+                'fa fa-circle' => '<i class="fa fa-circle"></i>',
+                'fa fa-circle-thin' => '<i class="fa fa-circle-thin"></i>',
+                'fa fa-dot-circle-o' => '<i class="fa fa-dot-circle-o"></i>',
+                'fa fa-square-o' => '<i class="fa fa-square-o"></i>',
+                'fa fa-square' => '<i class="fa fa-square"></i>',
+                'fa fa-stop' => '<i class="fa fa-stop"></i>',
+            ),
+            'description' => __( 'Select your style for pagination.', THEME_LANG ),
+            "dependency" => array("element" => "pagination","value" => array('true')),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
         array(
 			'type' => 'css_editor',
 			'heading' => __( 'Css', 'js_composer' ),

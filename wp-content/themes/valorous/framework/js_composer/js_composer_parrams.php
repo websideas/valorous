@@ -38,15 +38,16 @@ vc_add_shortcode_param('kt_number' , 'vc_ktnumber_settings_field');
 
 
 /**
- * Image select field.
+ * Radio select field.
  *
  */
-function vc_kt_image_select_settings_field($settings, $value) {
+function vc_kt_radio_settings_field($settings, $value) {
 	$dependency = '';
     $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 	$type = isset($settings['type']) ? $settings['type'] : '';
     $class = isset($settings['class']) ? $settings['class'] : '';
-    
+    $class_input = isset($settings['class_input']) ? $settings['class_input'] : '';
+
     $output = "";
     $uniqid = uniqid();
     $radios = array();
@@ -54,13 +55,13 @@ function vc_kt_image_select_settings_field($settings, $value) {
     if(!count($settings['value'])) return;
     foreach( $settings['value'] as $k => $v ) {
         $checked = ($value == $k) ? ' checked="checked"' : '';
-        $radios[] = "<label><input type='radio' name='{$param_name}_radio_{$uniqid}' class='kt_image_select_radio' value='{$k}' {$dependency} {$checked} /> <img src='{$v}' alt=''/></label>";
+        $radios[] = "<label><input type='radio' name='{$param_name}_radio_{$uniqid}' class='kt_radio_select_input' value='{$k}' {$checked} /> {$v}</label>";
     }
     $output .= '<input type="hidden" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' />';
     
-    return $output.implode(' ', $radios);
+    return $output."<div class='".$class_input."'>".implode(' ', $radios)."</div>";
 }
-vc_add_shortcode_param('kt_image_select', 'vc_kt_image_select_settings_field', FW_JS.'kt_image_select.js');
+vc_add_shortcode_param('kt_radio', 'vc_kt_radio_settings_field', FW_JS.'kt_radio.js');
 
 
 /**
@@ -72,19 +73,18 @@ function kt_switch_settings_field($settings, $value) {
     $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 	$type = isset($settings['type']) ? $settings['type'] : '';
     $class = isset($settings['class']) ? $settings['class'] : '';
-    
+    $uniqeID    = uniqid();
+    if(!$value){
+        if(isset($settings['value'])){
+            $value = $settings['value'];
+        }
+    }
     $output = "";
+    $checked = ($value == 'true') ? 'checked="checked"': '';
+    $output .= '<input type="checkbox" name="' . $param_name . '" class="wpb_vc_param_value cmn-toggle cmn-toggle-round-flat ' . $param_name . ' ' . $type . ' ' . $class . ' " '.$checked.' id="cmn-toggle-'.$uniqeID.'" value="'.esc_attr($value).'" '.$dependency.'>';
+    $output .= '<label for="cmn-toggle-'.$uniqeID.'"></label>';
     
-    print_r($settings);
-    
-    $output .= '<input type="checkbox" class="cmn-toggle cmn-toggle-round-flat" id="cmn-toggle-2">';
-    $output .= '<label for="cmn-toggle-2"></label>';
-    
-    $output .= '';
-    
-    $output .= '<input type="hidden" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' />';
-    
-    return $value.$output;
+    return $output;
 }
 vc_add_shortcode_param('kt_switch', 'kt_switch_settings_field', FW_JS.'kt_switch.js');
 
@@ -103,10 +103,11 @@ function vc_kt_taxonomy_settings_field($settings, $value) {
 	}
     $output = '';
 	if ( !empty($settings['taxonomy']) ) {
-		
+
+        $placeholder = '';
         $terms_fields = array();
         if($settings['placeholder']){
-            $terms_fields[] = "<option value=''>".$settings['placeholder']."</option>";
+            $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
         }
         
         $terms = get_terms( $settings['taxonomy'] , array('hide_empty' => false));
@@ -117,22 +118,18 @@ function vc_kt_taxonomy_settings_field($settings, $value) {
 			}
 		}
 
-        $size = (!empty($settings['size'])) ? 'size="'.$settings['size'].'"' : '';
+        $size = (!empty($settings['size'])) ? 'size="'.esc_attr($settings['size']).'"' : '';
         $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
-        
-        $uniqeID    = uniqid();
-        
-        $output = '<select id="kt_taxonomy-'.$uniqeID.'" '.$multiple.' '.$size.' name="'.$settings['param_name'].'" class="wpb_vc_param_value wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
+
+        $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
                     .implode( $terms_fields )
                 .'</select>';
-                
-        $output .= '<script type="text/javascript">jQuery("#kt_taxonomy-' . $uniqeID . '").chosen();</script>';
 
 	}
     
     return $output;
 }
-vc_add_shortcode_param('kt_taxonomy', 'vc_kt_taxonomy_settings_field', FW_LIBS.'chosen/chosen.jquery.min.js');
+vc_add_shortcode_param('kt_taxonomy', 'vc_kt_taxonomy_settings_field', FW_JS.'kt_select.js');
 
 /**
  * Posts field.
@@ -146,35 +143,33 @@ function vc_kt_posts_settings_field($settings, $value) {
 	if ( !is_array($value_arr) ) {
 		$value_arr = array_map( 'trim', explode(',', $value_arr) );
 	}
-
-    $terms_fields = array();
+    $posts_fields = array();
+    $placeholder = '';
     if($settings['placeholder']){
-        $terms_fields[] = "<option value=''>".$settings['placeholder']."</option>";
+        $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
     }
     
-    if ( !empty($settings['post_type']) ) {
+    if ( !empty($settings['args']) ) {
         
-        $query = new WP_Query( array('post_type' => $settings['post_type']) );
+        $query = new WP_Query( $settings['args']);
         if ( $query->have_posts() ) {
         	while ( $query->have_posts() ) { $query->the_post();
                 $selected = (in_array( get_the_ID(), $value_arr )) ? ' selected="selected"' : '';
-                $terms_fields[] = "<option value='".get_the_ID()."' {$selected}>".get_the_title()."</option>";
+                $posts_fields[] = "<option value='".get_the_ID()."' {$selected}>".get_the_title()."</option>";
         	}
         }
         wp_reset_postdata();
 
         $size = (!empty($settings['size'])) ? 'size="'.$settings['size'].'"' : '';
         $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
-        $uniqeID    = uniqid();
-        
-        $output .= '<select id="kt_posts-'.$uniqeID.'" '.$multiple.' '.$size.' name="'.$settings['param_name'].'" class="wpb_vc_param_value wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
-                    .implode( $terms_fields )
+
+        $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
+                    .implode( $posts_fields )
                 .'</select>';
-        $output .= '<script type="text/javascript">jQuery("#kt_posts-' . $uniqeID . '").chosen();</script>';
     }
     return $output;
 }
-vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_LIBS.'chosen/chosen.jquery.min.js');
+vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_JS.'kt_select.js');
 
 
 
@@ -193,10 +188,12 @@ function vc_kt_authors_settings_field($settings, $value) {
 	}
 
     $terms_fields = array();
+    $placeholder = '';
     if($settings['placeholder']){
-        $terms_fields[] = "<option value=''>".$settings['placeholder']."</option>";
+        $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
     }
-    
+
+    $args = array();
     $authors = get_users( $args );
     foreach( $authors as $author ) {
         $selected = (in_array( $author->ID, $value_arr )) ? ' selected="selected"' : '';
@@ -205,18 +202,12 @@ function vc_kt_authors_settings_field($settings, $value) {
 
     $size = (!empty($settings['size'])) ? 'size="'.$settings['size'].'"' : '';
     $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
-    $uniqeID    = uniqid();
-    
-    $output .= '<select id="kt_authors-'.$uniqeID.'" multiple="multiple" '.$size.' name="'.$settings['param_name'].'" class="wpb_vc_param_value wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
+
+    $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
                 .implode( $terms_fields )
             .'</select>';
-    
-    $output .= '<script type="text/javascript">jQuery("#kt_authors-' . $uniqeID . '").chosen();</script>';
-            
+
     return $output;
 
 }
-vc_add_shortcode_param('kt_authors', 'vc_kt_authors_settings_field', FW_LIBS.'chosen/chosen.jquery.min.js');
-
-
-
+vc_add_shortcode_param('kt_authors', 'vc_kt_authors_settings_field', FW_JS.'kt_select.js');

@@ -51,10 +51,10 @@ require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
 require_once ( FW_DIR . 'widgets.php' );
 
 /**
- * Get functions add new sidebars in wp-admin
+ * Get all functions for frontend
  *
  */
-//require_once ( FW_DIR . 'sidebars.php' );
+require_once ( FW_DIR . 'frontend.php' );
 
 /**
  * Get functions for framework

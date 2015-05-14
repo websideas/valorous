@@ -6,8 +6,8 @@ if ( !defined('ABSPATH')) exit;
 // Script version, used to add version for scripts and styles
 define( 'THEME_VER', '1.0' );
 
-define( 'THEME_OPTIONS', 'london_option' );
-define( 'THEME_LANG', 'london');
+define( 'THEME_OPTIONS', 'valorous_option' );
+define( 'THEME_LANG', 'valorous');
 
 define( 'THEME_DIR', trailingslashit(get_template_directory()));
 define( 'THEME_URL', trailingslashit(get_template_directory_uri()));
@@ -34,16 +34,4 @@ if ( class_exists( 'KT_Meta_Box' ) ) {
 if ( class_exists( 'KT_SHORTCODES' ) ) {
 	require_once (THEME_FW_DATA . 'data-shortcodes.php');
 }
-
-/**
- * Include helpers functions.
- *
- */
-require_once ( THEME_INC . 'helpers.php' );
-
-/**
- * Include core functions.
- *
- */
-require_once ( THEME_INC . 'functions-core.php' );
 
