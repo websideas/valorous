@@ -26,7 +26,8 @@ $this->enqueueScripts();
 	     data-vc-<?php echo $this->pagable_type ?>-settings="<?php echo esc_attr( json_encode( $this->grid_settings ) ) ?>"
 	     data-vc-request="<?php echo esc_attr( admin_url( 'admin-ajax.php', 'relative' ) ) ?>"
 	     data-vc-post-id="<?php echo esc_attr( get_the_ID() ) ?>">
-	</div><!-- vc_grid end -->
+	</div>
+	<!-- vc_grid end -->
 </div>
 
 

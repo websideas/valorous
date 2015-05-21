@@ -44,7 +44,7 @@ class Vc_Edit_Form_Fields implements Vc_Render {
 	public function __construct( $tag, $atts ) {
 		$this->tag = $tag;
 		$this->atts = apply_filters( 'vc_edit_form_fields_attributes_' . $this->tag, $atts );
-		$this->setSettings( WPBMap::getShortCode( $this->tag ) );
+		$this->setSettings( WPBMap::getUserShortCode( $this->tag ) );
 	}
 
 	/**

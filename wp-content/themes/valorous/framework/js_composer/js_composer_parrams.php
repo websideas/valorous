@@ -54,8 +54,8 @@ function vc_kt_radio_settings_field($settings, $value) {
     
     if(!count($settings['value'])) return;
     foreach( $settings['value'] as $k => $v ) {
-        $checked = ($value == $k) ? ' checked="checked"' : '';
-        $radios[] = "<label><input type='radio' name='{$param_name}_radio_{$uniqid}' class='kt_radio_select_input' value='{$k}' {$checked} /> {$v}</label>";
+        $checked = ($value == $v) ? ' checked="checked"' : '';
+        $radios[] = "<label><input type='radio' name='{$param_name}_radio_{$uniqid}' class='kt_radio_select_input' value='{$v}' {$checked} /> {$k}</label>";
     }
     $output .= '<input type="hidden" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' />';
     
@@ -181,7 +181,7 @@ vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_JS.'kt_selec
 function vc_kt_authors_settings_field($settings, $value) {
 	$dependency = '';
     $output = '';
-    
+
 	$value_arr = $value;
 	if ( !is_array($value_arr) ) {
 		$value_arr = array_map( 'trim', explode(',', $value_arr) );
@@ -211,3 +211,54 @@ function vc_kt_authors_settings_field($settings, $value) {
 
 }
 vc_add_shortcode_param('kt_authors', 'vc_kt_authors_settings_field', FW_JS.'kt_select.js');
+
+
+/**
+ * Authors field.
+ *
+ */
+function vc_kt_socials_settings_field($settings, $value) {
+    $dependency = '';
+    $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
+    $type = isset($settings['type']) ? $settings['type'] : '';
+    $class = isset($settings['class']) ? $settings['class'] : '';
+
+    $socials = array(
+        'facebook' => 'fa fa-facebook',
+        'twitter' => 'fa fa-twitter',
+        'pinterest' => 'fa fa-pinterest-p',
+        'dribbble' => 'fa fa-dribbble',
+        'vimeo' => 'fa fa-vimeo-square',
+        'tumblr' => 'fa fa-tumblr',
+        'skype' => 'fa fa-skype',
+        'linkedin' => 'fa fa-linkedin',
+        'googleplus' => 'fa fa-google-plus',
+        'youtube' => 'fa fa-youtube-play',
+        'instagram' => 'fa fa-instagram'
+    );
+    $arr_val = ($value) ? explode(',', $value) : array();
+
+    $output = '';
+    $output .= '<div class="kt-socials-options">';
+        $output .= '<ul class="kt-socials-lists clearfix">';
+        foreach($socials as $key => $social){
+            $class = (in_array($key, $arr_val)) ? 'selected' : '';
+            $output .= sprintf('<li data-type="%s" class="%s"><i class="%s"></i><span></span></li>', $key, $class, $social);
+        }
+        $output .= "</ul><!-- .kt-socials-lists -->";
+        $output .= '<ul class="kt-socials-profiles clearfix">';
+
+        if(count($arr_val)){
+            foreach($arr_val as $item){
+                $output .= sprintf('<li data-type="%s"><i class="%s"></i><span></span></li>', $item,  $socials[$item]);
+            }
+        }
+        $output .= "</ul><!-- .kt-socials-profiles -->";
+        $output .= '<input type="hidden" class="wpb_vc_param_value kt-socials-value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' />';
+
+    $output .= '</div><!-- .kt-socials-options -->';
+
+    return $output;
+
+}
+vc_add_shortcode_param('kt_socials', 'vc_kt_socials_settings_field', FW_JS.'kt_socials.js');

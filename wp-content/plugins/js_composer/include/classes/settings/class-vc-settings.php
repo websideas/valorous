@@ -148,7 +148,7 @@ class Vc_Settings {
 			}
 		}
 		// TODO: may allow to disable automapper
-		if ( !is_network_admin() && ! vc_automapper_is_disabled() ) {
+		if ( ! is_network_admin() && ! vc_automapper_is_disabled() ) {
 			$this->tabs['vc-automapper'] = vc_automapper()->title();
 		}
 	}

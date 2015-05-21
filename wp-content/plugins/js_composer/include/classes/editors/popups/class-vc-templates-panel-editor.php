@@ -146,17 +146,23 @@ Class Vc_Templates_Panel_Editor implements Vc_Render {
 	 */
 	public function renderTemplateWindowMyTemplates( $template_name, $template_data ) {
 		ob_start();
-		?>
-		<div class="vc_template-wrapper vc_input-group"
-		     data-template_id="<?php echo esc_attr( $template_data['unique_id'] ); ?>">
-			<a data-template-handler="true" class="vc_template-display-title vc_form-control"
-			   href="javascript:;"><?php echo esc_html( $template_name ); ?></a>
-			<span class="vc_input-group-btn vc_template-icon vc_template-delete-icon"
-			      title="<?php esc_attr_e( 'Delete template', 'js_composer' ); ?>"
-			      data-template_id="<?php echo esc_attr( $template_data['unique_id'] ); ?>"><i
-					class="vc_icon"></i></span>
-		</div>
-		<?php
+		echo '<div class="vc_template-wrapper vc_input-group" ' .
+		     'data-template_id="';
+		echo esc_attr( $template_data['unique_id'] );
+		echo '">' .
+		     '<a data-template-handler="true" class="vc_template-display-title vc_form-control"' .
+		     ' href="javascript:;">';
+		echo esc_html( $template_name );
+		echo '</a>' .
+		     '<span class="vc_input-group-btn vc_template-icon vc_template-delete-icon"' .
+		     ' title="';
+		esc_attr_e( 'Delete template', 'js_composer' );
+		echo '"' .
+		     'data-template_id="';
+		echo esc_attr( $template_data['unique_id'] );
+		echo '"><i' .
+		     ' class="vc_icon"></i></span></div>';
+
 		return ob_get_clean();
 	}
 
@@ -170,15 +176,18 @@ Class Vc_Templates_Panel_Editor implements Vc_Render {
 	 */
 	public function renderTemplateWindowDefaultTemplates( $template_name, $template_data ) {
 		ob_start();
-		?>
-		<div class="vc_template-wrapper" data-template_id="<?php echo esc_attr( $template_data['unique_id'] ); ?>">
-			<a data-template-handler="true" class="vc_template-display-content vc_form-control" href="javascript:;">
-				<div
-					class="vc_templates-image" <?php if ( isset( $template_data['image'] ) && strlen( trim( $template_data['image'] ) ) > 0 ): ?> style="background-image:url('<?php echo esc_attr( trim( $template_data['image'] ) ); ?>');"<?php endif; ?>>
-				</div>
-				<span><?php echo esc_html( $template_name ); ?></span></a>
-		</div>
-		<?php
+		echo '<div class="vc_template-wrapper" data-template_id="';
+		echo esc_attr( $template_data['unique_id'] );
+		echo '">';
+		echo '<a data-template-handler="true" class="vc_template-display-content vc_form-control" href="javascript:;">' .
+		     '<div class="vc_templates-image" '; ?><?php if ( isset( $template_data['image'] ) && strlen( trim( $template_data['image'] ) ) > 0 ):
+			echo ' style="background-image:url(';
+			echo esc_attr( trim( $template_data['image'] ) );
+			echo ');"';
+		endif;
+		echo '></div><span>';
+		echo esc_html( $template_name );
+		echo '</span></a></div>';
 
 		return ob_get_clean();
 	}
@@ -191,24 +200,25 @@ Class Vc_Templates_Panel_Editor implements Vc_Render {
 		add_filter( 'vc_frontend_template_the_content', array( &$this, 'frontendDoTemplatesShortcodes' ) );
 		$template_id = vc_post_param( 'template_unique_id' );
 		$template_type = vc_post_param( 'template_type' );
-		if ( $template_id == "" ) {
+		add_action( 'wp_print_scripts', array( &$this, 'addFrontendTemplatesShortcodesCustomCss' ) );
+
+		if ( '' === $template_id ) {
 			die( 'Error: Vc_Templates_Panel_Editor::renderFrontendTemplate:1' );
 		}
-		if ( $template_type == 'my_templates' ) {
+		if ( 'my_templates' === $template_type ) {
 			$saved_templates = get_option( $this->option_name );
 			vc_frontend_editor()->setTemplateContent( $saved_templates[ $template_id ]['template'] );
 			vc_frontend_editor()->enqueueRequired();
-			add_action( 'wp_print_scripts', array( &$this, 'addFrontendTemplatesShortcodesCustomCss' ) );
 			vc_include_template( 'editors/frontend_template.tpl.php', array(
 				'editor' => vc_frontend_editor()
 			) );
 			die();
-		} else if ( $template_type == 'default_templates' ) {
+		} else if ( 'default_templates' === $template_type ) {
 			$this->renderFrontendDefaultTemplate();
 		} else {
 			echo apply_filters( 'vc_templates_render_frontend_template', $template_id, $template_type );
-			die();
 		}
+		die(); // no needs to do anything more. optimization.
 	}
 
 	/**

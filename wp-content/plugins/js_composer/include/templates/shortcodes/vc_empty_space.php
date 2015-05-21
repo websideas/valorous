@@ -1,6 +1,6 @@
 <?php
 extract( shortcode_atts( array(
-	'height' => WPBMap::getParam( 'vc_empty_space', 'height' ),
+	'height' => '32px',
 	'el_class' => ''
 ), $atts ) );
 $class = "vc_empty_space ";

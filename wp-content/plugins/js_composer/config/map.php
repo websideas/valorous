@@ -3598,32 +3598,20 @@ if ( is_array( $post_types ) && ! empty( $post_types ) ) {
 $post_types_list[] = array( 'custom', __( 'Custom query', 'js_composer' ) );
 $post_types_list[] = array( 'ids', __( 'List of IDs', 'js_composer' ) );
 
-$vc_taxonomies_types = get_taxonomies( array( 'public' => true ), 'objects' );
-$vc_taxonomies = get_terms( array_keys( $vc_taxonomies_types ), array( 'hide_empty' => false ) );
-$taxonomies_list = array();
-if ( is_array( $vc_taxonomies ) && ! empty( $vc_taxonomies ) ) {
-	foreach ( $vc_taxonomies as $t ) {
-		if ( is_object( $t ) ) {
-			$taxonomies_list[] = array(
-				'label' => $t->name,
-				'value' => $t->term_id,
-				'group_id' => $t->taxonomy,
-				'group' =>
-					isset( $vc_taxonomies_types[ $t->taxonomy ], $vc_taxonomies_types[ $t->taxonomy ]->labels, $vc_taxonomies_types[ $t->taxonomy ]->labels->name )
-						? $vc_taxonomies_types[ $t->taxonomy ]->labels->name
-						: __( 'Taxonomies', 'js_composer' )
-			);
-		}
-	}
-}
+// $taxonomies_list = array();
 $taxonomies_for_filter = array();
-if ( is_array( $vc_taxonomies_types ) && ! empty( $vc_taxonomies_types ) ) {
-	foreach ( $vc_taxonomies_types as $t => $data ) {
-		if ( $t !== 'post_format' && is_object( $data ) ) {
-			$taxonomies_for_filter[ $data->labels->name ] = $t;
+
+if ( 'vc_edit_form' === vc_post_param( 'action' ) ) {
+	$vc_taxonomies_types = vc_taxonomies_types();
+	if ( is_array( $vc_taxonomies_types ) && ! empty( $vc_taxonomies_types ) ) {
+		foreach ( $vc_taxonomies_types as $t => $data ) {
+			if ( $t !== 'post_format' && is_object( $data ) ) {
+				$taxonomies_for_filter[ $data->labels->name ] = $t;
+			}
 		}
 	}
 }
+
 /*
 $grid_cols_list = array();
 for( $i=2; $i<=12; $i++ ) {
@@ -3694,7 +3682,7 @@ $grid_params = array(
 			// delay for search. default 500
 			'auto_focus' => true,
 			// auto focus input, default true
-			'values' => $taxonomies_list,
+			// 'values' => $taxonomies_list,
 		),
 		'param_holder_class' => 'vc_not-for-custom',
 		'description' => __( 'Enter categories, tags or custom taxonomies.', 'js_composer' ),
@@ -3899,7 +3887,7 @@ $grid_params = array(
 			// delay for search. default 500
 			'auto_focus' => true,
 			// auto focus input, default true
-			'values' => $taxonomies_list,
+			// 'values' => $taxonomies_list,
 		),
 		'description' => __( 'Enter categories, tags won\'t be shown in the filters list', 'js_composer' ),
 		'dependency' => array(
@@ -4774,6 +4762,65 @@ add_filter( 'vc_autocomplete_vc_masonry_grid_include_callback',
 	'vc_include_field_search', 10, 1 ); // Get suggestion(find). Must return an array
 add_filter( 'vc_autocomplete_vc_masonry_grid_include_render',
 	'vc_include_field_render', 10, 1 ); // Render exact product. Must return an array (label,value)
+
+
+// Narrow data taxonomies
+add_filter( 'vc_autocomplete_vc_basic_grid_taxonomies_callback',
+	'vc_autocomplete_taxonomies_field_search', 10, 1 );
+add_filter( 'vc_autocomplete_vc_basic_grid_taxonomies_render',
+	'vc_autocomplete_taxonomies_field_render', 10, 1 );
+
+add_filter( 'vc_autocomplete_vc_masonry_grid_taxonomies_callback',
+	'vc_autocomplete_taxonomies_field_search', 10, 1 );
+add_filter( 'vc_autocomplete_vc_masonry_grid_taxonomies_render',
+	'vc_autocomplete_taxonomies_field_render', 10, 1 );
+/**
+ * @since 4.5.2
+ *
+ * @param $term
+ *
+ * @return array|bool
+ */
+function vc_autocomplete_taxonomies_field_render( $term ) {
+	$vc_taxonomies_types = vc_taxonomies_types();
+	$terms = get_terms( array_keys( $vc_taxonomies_types ), array(
+		'include' => array( $term['value'] ),
+		'hide_empty' => false,
+	) );
+	$data = false;
+	if ( is_array( $terms ) && 1 === count( $terms ) ) {
+		$term = $terms[0];
+		$data = vc_get_term_object( $term );
+	}
+
+	return $data;
+}
+
+/**
+ * @since 4.5.2
+ *
+ * @param $search_string
+ *
+ * @return array|bool
+ */
+function vc_autocomplete_taxonomies_field_search( $search_string ) {
+	$data = array();
+	$vc_taxonomies_types = vc_taxonomies_types();
+	$vc_taxonomies = get_terms( array_keys( $vc_taxonomies_types ), array(
+		'hide_empty' => false,
+		'search' => $search_string
+	) );
+	if ( is_array( $vc_taxonomies ) && ! empty( $vc_taxonomies ) ) {
+		foreach ( $vc_taxonomies as $t ) {
+			if ( is_object( $t ) ) {
+				$data[] = vc_get_term_object( $t );
+			}
+		}
+	}
+
+	return $data;
+}
+
 /**
  * @param $search
  * @param $wp_query

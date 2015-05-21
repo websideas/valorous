@@ -226,6 +226,11 @@ if ( class_exists( 'Vc_Manager', false ) ) {
 }
 
 
+/**
+ * Include js_composer update param
+ *
+ */
+require_once ( FW_DIR . 'js_composer/js_composer_update.php' );
 
 /**
  * support for woocommerce helpers

@@ -51,13 +51,26 @@ vc_add_param("vc_row_inner", array(
     ),
 ));
 
-
+vc_add_param("vc_icon", array(
+    'type' => 'colorpicker',
+    'heading' => __( 'Custom Icon Background', 'js_composer' ),
+    'param_name' => 'custom_background',
+    'description' => __( 'Select Background icon color.', 'js_composer' ),
+    'dependency' => array(
+        'element' => 'background_color',
+        'value' => 'custom',
+    ),
+));
 
 $composer_addons = array(
+    'alert.php',
+    'list.php',
+    'counter.php',
     'categories_products.php',
     'contact_info.php',
     'clients_carousel.php',
     'blog_posts_carousel.php',
+    'testimonial_carousel.php',
     'sales_countdown.php',
     'designer_collection_carousel.php',
     'category_products_tab.php',
@@ -67,7 +80,9 @@ $composer_addons = array(
     'widget_products_carousel.php',
     'widget_testimonials.php',
     'vc_gitem_post_metadata.php',
-    'designer_products.php'
+    'skill.php',
+    'socials.php',
+    'designer_products.php',
 );
 
 foreach ( $composer_addons as $addon ) {

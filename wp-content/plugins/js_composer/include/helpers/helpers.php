@@ -1186,3 +1186,36 @@ function vc_message_warning( $message ) {
 	</div><p>' . $message . '</p>
 </div>';
 }
+
+global $vc_taxonomies_types;
+function vc_taxonomies_types() {
+	global $vc_taxonomies_types;
+	if ( is_null( $vc_taxonomies_types ) ) {
+		$vc_taxonomies_types = get_taxonomies( array( 'public' => true ), 'objects' );
+	}
+
+	return $vc_taxonomies_types;
+}
+
+/**
+ * Since
+ *
+ * @since 4.5.3
+ *
+ * @param $term
+ *
+ * @return array
+ */
+function vc_get_term_object( $term ) {
+	$vc_taxonomies_types = vc_taxonomies_types();
+
+	return array(
+		'label' => $term->name,
+		'value' => $term->term_id,
+		'group_id' => $term->taxonomy,
+		'group' =>
+			isset( $vc_taxonomies_types[ $term->taxonomy ], $vc_taxonomies_types[ $term->taxonomy ]->labels, $vc_taxonomies_types[ $term->taxonomy ]->labels->name )
+				? $vc_taxonomies_types[ $term->taxonomy ]->labels->name
+				: __( 'Taxonomies', 'js_composer' )
+	);
+}

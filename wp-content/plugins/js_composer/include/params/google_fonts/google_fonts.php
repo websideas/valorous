@@ -55,8 +55,8 @@ class Vc_Google_Fonts {
 	 * vc_filter: vc_google_fonts_get_fonts_filter
 	 * @since 4.3
 	 * @return array List of available fonts as array of objects. {"font_family":"Abril
-	 *     Fatface","font_styles":"regular","font_types":"400 regular:400:normal"}
-	 */
+     *     Fatface","font_styles":"regular","font_types":"400 regular:400:normal"}
+     */
 	public function _vc_google_fonts_get_fonts() {
 		return apply_filters( 'vc_google_fonts_get_fonts_filter', json_decode( $this->fonts_list ) );
 	}

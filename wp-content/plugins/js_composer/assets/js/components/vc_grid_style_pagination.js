@@ -125,9 +125,9 @@ var vcGridStylePagination = null;
 	 */
 	vcGridStylePagination.prototype.initCarousel = function () {
 		// If owlCarousel
-		if ( $.fn.owlCarousel ) {
+		if ( $.fn.vcOwlCarousel ) {
 			var that = this;
-			this.$content.on( 'initialized.owl.carousel', function ( event ) {
+			this.$content.on( 'initialized.owl.vccarousel', function ( event ) {
 				if ( that.settings.paging_design.indexOf( 'pagination' ) > - 1 ) {
 					var $carousel = event.relatedTarget;
 					var items = $carousel.items().length;
@@ -164,7 +164,7 @@ var vcGridStylePagination = null;
 					} );
 					window.vc_prettyPhoto();
 				}
-			} ).owlCarousel( {
+			} ).vcOwlCarousel( {
 				items: 1,
 				loop: this.settings.loop,
 				margin: 10,

@@ -165,16 +165,8 @@ class WPBMap {
 			trigger_error( sprintf( __( "Wrong base for shortcode:%s. Base required", "js_composer" ), $tag ) );
 		} else {
 			self::$sc[ $tag ] = $attributes;
-			self::$sc[ $tag ]['params'] = Array();
-			if ( ! empty( $attributes['params'] ) ) {
-				foreach ( $attributes['params'] as $attribute ) {
-					$attribute = apply_filters( 'vc_mapper_attribute', $attribute, $tag );
-					$attribute = apply_filters( 'vc_mapper_attribute_' . $attribute['type'], $attribute, $tag );
-					self::$sc[ $tag ]['params'][] = $attribute;
-				}
-				$sort = new Vc_Sort( self::$sc[ $tag ]['params'] );
-				self::$sc[ $tag ]['params'] = $sort->sortByKey();
-			}
+			// self::$sc[ $tag ]['params'] = Array();
+
 			visual_composer()->addShortCode( self::$sc[ $tag ] );
 
 			return true;
@@ -233,6 +225,7 @@ class WPBMap {
 							}
 						}
 					}
+
 					self::$user_sc[ $name ] = $values;
 					self::$user_sorted_sc[] = $values;
 				}
@@ -292,6 +285,38 @@ class WPBMap {
 	 */
 	public static function getShortCode( $tag ) {
 		return isset( self::$sc[ $tag ] ) && is_array( self::$sc[ $tag ] ) ? self::$sc[ $tag ] : null;
+	}
+
+	/**
+	 * Get mapped shortcode settings by tag.
+	 *
+	 * @since 4.5.2
+	 * @static
+	 *
+	 * @param $tag - shortcode tag.
+	 *
+	 * @return array|null
+	 */
+	public static function getUserShortCode( $tag ) {
+		self::generateUserData();
+		if ( isset( self::$user_sc[ $tag ] ) && is_array( self::$user_sc[ $tag ] ) ) {
+			$shortcode = self::$user_sc[ $tag ];
+			if ( ! empty( $shortcode['params'] ) ) {
+				$params = $shortcode['params'];
+				$shortcode['params'] = array();
+				foreach ( $params as $attribute ) {
+					$attribute = apply_filters( 'vc_mapper_attribute', $attribute, $tag );
+					$attribute = apply_filters( 'vc_mapper_attribute_' . $attribute['type'], $attribute, $tag );
+					$shortcode['params'][] = $attribute;
+				}
+				$sort = new Vc_Sort( $shortcode['params'] );
+				$shortcode['params'] = $sort->sortByKey();
+			}
+
+			return $shortcode;
+		}
+
+		return null;
 	}
 
 	/**
@@ -412,8 +437,10 @@ class WPBMap {
 			if ( $replaced === false ) {
 				self::$sc[ $name ]['params'][] = $attribute;
 			}
+			/*
 			$sort = new Vc_Sort( self::$sc[ $name ]['params'] );
 			self::$sc[ $name ]['params'] = $sort->sortByKey();
+			*/
 			visual_composer()->addShortCode( self::$sc[ $name ] );
 
 			return true;

@@ -7,6 +7,13 @@
 Class Vc_Vendor_YoastSeo implements Vc_Vendor_Interface {
 
 	/**
+	 * Created to improve yoast multiply calling wpseo_pre_analysis_post_content filter.
+	 * @since 4.5.3
+	 * @var string - parsed post content
+	 */
+	protected $parsedContent;
+
+	/**
 	 * Add filter for yoast.
 	 * @since 4.4
 	 */
@@ -18,8 +25,8 @@ Class Vc_Vendor_YoastSeo implements Vc_Vendor_Interface {
 				&$this,
 				'filterResults'
 			) );
-			add_action( 'vc_frontend_editor_render_template', array( &$this, 'addSubmitBox' ) );
-		} // removed due to woocommerce fatal error :do_shortcode in is_admin() mode =  fatal error
+			//add_action( 'vc_frontend_editor_render_template', array( &$this, 'addSubmitBox' ) );
+		}
 	}
 
 	/**
@@ -31,14 +38,19 @@ Class Vc_Vendor_YoastSeo implements Vc_Vendor_Interface {
 	 * @return string
 	 */
 	public function filterResults( $content ) {
-		/**
-		 * @since 4.4.3
-		 * vc_filter: vc_vendor_yoastseo_filter_results
-		 */
-		do_action( 'vc_vendor_yoastseo_filter_results' );
-		$content = do_shortcode( shortcode_unautop( $content ) );
+		if ( empty( $this->parsedContent ) ) {
+			global $post, $wp_the_query;
+			$wp_the_query->post = $post; // since 4.5.3 to avoid the_post replaces
+			/**
+			 * @since 4.4.3
+			 * vc_filter: vc_vendor_yoastseo_filter_results
+			 */
+			do_action( 'vc_vendor_yoastseo_filter_results' );
+			$this->parsedContent = do_shortcode( shortcode_unautop( $content ) );
+			wp_reset_query();
+		}
 
-		return $content;
+		return $this->parsedContent;
 	}
 
 	public function addSubmitBox() {

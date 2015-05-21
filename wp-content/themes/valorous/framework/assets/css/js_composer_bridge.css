@@ -63,3 +63,28 @@
 .wpb_el_type_kt_radio .radio-wrapper input[type=radio]:checked + i{
     border-color: #093459;
 }
+
+
+
+.wpb_list_item h4.wpb_element_title{
+    display: none;
+}
+.wpb_content_element.wpb_list_item > .wpb_element_wrapper{
+    border: 1px solid #ddd;
+    margin: 4px;
+    min-height: auto;
+    padding: 5px;
+}
+.wpb_content_element.wpb_list_item p{
+    margin: 0;
+}
+
+.vc_font_container_form_field-font_style-container label{
+    margin-right: 5px;
+}
+.vc_font_container_form_field-font_style-container span{
+    text-transform: capitalize;
+}
+.vc_font_container_form_field-font_style-container br{
+    display: none;
+}

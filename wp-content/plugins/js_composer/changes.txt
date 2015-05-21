@@ -1,3 +1,13 @@
+18.05.2015 - ver 4.5.2
+   - Performance: Removed call to get taxonomies from vc_map and now it is called via ajax only when it is needed
+   - Fixed: slug changing when Yoast SEO plugin activated
+   - Fixed: Unwanted gap in Grid when full width row is used
+   - Fixed: Design Options now are loaded from templates too
+   - Fixed: Custom inline styles from WYSIWYG editor now can be saved in templates
+   - Fixed: All product categories now are accessible in VC
+   - Fixed: Path for loading "imagesloaded.pkgd.min.js"
+   - Resolved: Conflict with Owl Carousel
+
 30.04.2015 - ver 4.5.1
    - Improvements with stretch row logic
    - Grid pagination isn't hiding "add to column" control in Fronend editor

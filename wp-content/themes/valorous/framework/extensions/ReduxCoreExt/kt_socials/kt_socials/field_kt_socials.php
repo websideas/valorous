@@ -91,33 +91,5 @@ if ( !class_exists( 'ReduxFramework_kt_socials' ) ) {
             echo '</div>';
 
         }
-
-        /**
-         * Enqueue Function.
-         *
-         * @since       1.0.0
-         * @access      public
-         * @return      void
-         */
-        public function enqueue() {
-
-            $min = Redux_Functions::isMin();
-
-            wp_enqueue_script(
-                'redux-field-kt-socials-js',
-                $this->extension_url . 'field_kt_socials' . $min . '.js',
-                array( 'jquery', 'jquery-ui-sortable' ),
-                time(),
-                true
-            );
-
-            wp_enqueue_style(
-                'redux-field-kt-socials-css',
-                $this->extension_url . 'field_kt_socials.css',
-                time(),
-                true
-            );
-
-        }
     }
 }

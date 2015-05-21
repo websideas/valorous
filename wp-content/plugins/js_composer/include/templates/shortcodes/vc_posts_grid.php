@@ -140,15 +140,18 @@ $this->setLinktarget( $grid_link_target );
 			<div class="teaser_grid_container">
 				<?php if ( $filter === 'yes' && ! empty( $this->filter_categories ) ):
 					$categories_array = $this->getFilterCategories();
+					echo '<ul class="categories_filter vc_col-sm-12 vc_clearfix">'
+					     . '<li class="active"><a href="#" data-filter="*">';
+					_e( 'All', 'js_composer' );
+					echo '</a></li>';
+					foreach ( $this->getFilterCategories() as $cat ):
+						echo '<li><a href="#"'
+						     . ' data-filter=".grid-cat-<?php echo $cat->term_id ?>">'
+						     . esc_attr( $cat->name )
+						     . '</a></li>';
+					endforeach;
+					echo '</ul>';
 					?>
-					<ul class="categories_filter vc_col-sm-12 vc_clearfix">
-						<li class="active"><a href="#" data-filter="*"><?php _e( 'All', 'js_composer' ) ?></a></li>
-						<?php foreach ( $this->getFilterCategories() as $cat ): ?>
-							<li><a href="#"
-							       data-filter=".grid-cat-<?php echo $cat->term_id ?>"><?php echo esc_attr( $cat->name ) ?></a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
 					<div class="vc_clearfix"></div>
 				<?php endif; ?>
 				<ul class="wpb_thumbnails wpb_thumbnails-fluid vc_clearfix"
@@ -162,25 +165,29 @@ $this->setLinktarget( $grid_link_target );
 					wp_enqueue_script( 'isotope' );
 					?>
 					<?php if ( count( $posts ) > 0 ): ?>
-						<?php foreach ( $posts as $post ): ?>
-							<?php
+						<?php foreach ( $posts as $post ):
 							$blocks_to_build = $post->custom_user_teaser === true ? $post->custom_teaser_blocks : $teaser_blocks;
 							$block_style = isset( $post->bgcolor ) ? ' style="background-color: ' . $post->bgcolor . '"' : '';
-							?>
-							<li
-								class="isotope-item <?php echo apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $li_span_class, 'vc_teaser_grid_li', $atts ) . $post->categories_css ?>"<?php echo $block_style ?>>
-								<div class="isotope-inner">
-									<?php foreach ( $blocks_to_build as $block_data ): ?>
-										<?php include $this->getBlockTemplate() ?>
-									<?php endforeach; ?>
-								</div>
-							</li> <?php echo $this->endBlockComment( 'single teaser' ); ?>
+							echo '<li'
+							     . ' class="isotope-item '
+							     . esc_attr( apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $li_span_class, 'vc_teaser_grid_li', $atts ) )
+							     . ' '
+							     . $post->categories_css
+							     . '"'
+							     . $block_style
+							     . '>';
+							echo '<div class="isotope-inner">';
+							foreach ( $blocks_to_build as $block_data ):
+								include $this->getBlockTemplate();
+							endforeach;
+							echo '</div></li>';
+							echo $this->endBlockComment( 'single teaser' ); ?>
 						<?php endforeach; ?>
 					<?php else: ?>
-						<li class="<?php echo $this->spanClass( 1 ); ?>"><?php _e( "Nothing found.", "js_composer" ) ?></li>
+						<li class="<?php echo $this->spanClass( 1 ); ?>"><?php _e( 'Nothing found.', 'js_composer' ) ?></li>
 					<?php endif; ?>
 				</ul>
 			</div>
 		</div> <?php echo $this->endBlockComment( '.wpb_wrapper' ) ?>
 		<div class="clear"></div>
-	</div> <?php echo $this->endBlockComment( '.wpb_teaser_grid' ) ?>
+	</div> <?php echo $this->endBlockComment( '.wpb_teaser_grid' );

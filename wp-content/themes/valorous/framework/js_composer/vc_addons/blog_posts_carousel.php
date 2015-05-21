@@ -6,7 +6,7 @@ if ( !defined('ABSPATH')) exit;
 class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
     var $excerpt_length;
     protected function content($atts, $content = null) {
-        extract( shortcode_atts( array(
+        $atts = shortcode_atts( array(
             'title' => '',
             'border_heading' => '',
             'css_animation' => '',
@@ -22,8 +22,11 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             'max_items' => 10,
             "excerpt_length" => 50,
 
-            'autoheight' => 'false',
+            'margin' => 10,
+            'loop' => 'false',
+            'autoheight' => 'true',
             'autoplay' => 'false',
+            'mousedrag' => 'true',
             'autoplayspeed' => 5000,
             'slidespeed' => 200,
             'desktop' => 4,
@@ -32,7 +35,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
 
             'navigation' => 'true',
             'navigation_always_on' => 'false',
-            'navigation_position' => '',
+            'navigation_position' => 'center_outside',
             'navigation_style' => '',
             'navigation_border_width' => '1',
             'navigation_border_color' => '',
@@ -42,11 +45,13 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
 
             'pagination' => 'true',
             'pagination_color' => '',
-            'pagination_icon' => 'fa fa-circle-o',
+            'pagination_icon' => 'circle-o',
 
             'css' => '',
-        ), $atts ) );
-        
+        ), $atts );
+
+        extract($atts);
+
         $this->excerpt_length = $excerpt_length;
         
         $args = array(
@@ -91,9 +96,11 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
         	'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
         );
+
+
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output = '';
+        $output  = '';
         $output .= '<div class="'.esc_attr( $elementClass ).'">';
             
             if($title){
@@ -106,75 +113,38 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) :
 
-                /*
-                'autoheight' => 'false',
-                'autoplay' => 'false',
-                'autoplayspeed' => 5000,
-                'slidespeed' => 200,
-                'desktop' => 4,
-                'tablet' => 2,
-                'mobile' => 1,
+                $carousel_ouput = kt_render_carousel(apply_filters( 'kt_render_args', $atts));
+                $blog_carousel_html = '';
 
-                'navigation' => 'true',
-                'navigation_always_on' => 'false',
-                'navigation_position' => '',
-                'navigation_style' => '',
-                'navigation_border_width' => '1',
-                'navigation_border_color' => '',
-                'navigation_background' => '',
-                'navigation_color' => '',
-                'navigation_icon' => 'fa fa-angle-left|fa fa-angle-right',
-
-                'pagination' => 'true',
-                'pagination_color' => '',
-                'pagination_icon' => 'fa fa-circle-o',
-                */
-
-                $owl_carousel_class = array('owl-carousel-wrapper');
-                if($navigation_always_on == 'true'){
-                    $owl_carousel_class[] = 'visiable-navigation';
-                }
-
-                $autoplay = ($autoplay) ? $autoplayspeed : $autoplay;
-
-                $data_carousel = array(
-                                    "autoheight" => $autoheight,
-                                    "autoplay" => $autoplay,
-                                    "navigation" => $navigation,
-                                    "slidespeed" => $slidespeed,
-                                    "pagination" => 'true',
-                                    "itemscustom" => '[[992,'.$desktop.'], [768, '.$tablet.'], [480, '.$mobile.']]'
-                                );
-                
-                $output .= '<div class="'.esc_attr(implode(' ', $owl_carousel_class)).'">';
-                $output .= '<div class="owl-carousel kt-owl-carousel" '.render_data_carousel($data_carousel).'>';
                 add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
                 while ( $query->have_posts() ) : $query->the_post();
-                    $output .= '<div class="recent-posts-item">';
-                        $output .= '<a href="'.get_permalink().'" class="entry-thumbnail">';
-                            $output .= get_the_post_thumbnail( get_the_ID(), 'recent_posts', array('class'=>"first-img product-img"));
-                        $output .= '</a>';
-                        
-                        $output .= '<h4 class="entry-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
-                        
-                        $output .= '<p class="post-content-blog">'.get_the_excerpt().'</p>';
-                        $output .= sprintf(
+                    $blog_carousel_html .= '<div class="recent-posts-item">';
+                    $blog_carousel_html .= '<a href="'.get_permalink().'" class="entry-thumbnail">';
+                    $blog_carousel_html .= get_the_post_thumbnail( get_the_ID(), 'recent_posts', array('class'=>"first-img product-img img-responsive"));
+                    $blog_carousel_html .= '</a>';
+
+                    $blog_carousel_html .= '<h4 class="entry-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
+
+                    $blog_carousel_html .= '<p class="post-content-blog">'.get_the_excerpt().'</p>';
+                    $blog_carousel_html .= sprintf(
                                         "<p><a href='%s' class='%s'>%s</a></p>",
                                         get_permalink(),
                                         'btn btn-default',
                                         __('Read More', THEME_LANG)
                                     );
-                        
-                    $output .= '</div><!-- .recent-posts-item -->';
+
+                    $blog_carousel_html .= '</div><!-- .recent-posts-item -->';
                 endwhile; wp_reset_postdata();
                 remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-                $output .= '</div>';
-                $output .= '</div>';
+
+                $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
+
                 
                 
             endif;
         $output .= '</div>';
-        
+
+
     	return $output;
     }
     function custom_excerpt_length( $length ) {
@@ -336,11 +306,40 @@ vc_map( array(
     	),
         // Carousel
         array(
+            "type" => "kt_number",
+            "heading" => __("Margin", THEME_LANG),
+            "param_name" => "margin",
+            "value" => "10",
+            "suffix" => __("px", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            'description' => __( 'margin-right on item.', THEME_LANG ),
+        ),
+
+        array(
             'type' => 'kt_switch',
-            'heading' => __( 'autoHeight', THEME_LANG ),
-            'param_name' => 'autoheight',
+            'heading' => __( 'Loop', THEME_LANG ),
+            'param_name' => 'loop',
             'value' => 'false',
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
+            "description" => __("Enable loop.", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Auto Height', THEME_LANG ),
+            'param_name' => 'autoheight',
+            'value' => 'true',
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
             "description" => __("Enable auto height.", THEME_LANG),
+            'group' => __( 'Carousel settings', THEME_LANG )
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Mouse Drag', THEME_LANG ),
+            'param_name' => 'mousedrag',
+            'value' => 'true',
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
+            "description" => __("Mouse drag enabled.", THEME_LANG),
             'group' => __( 'Carousel settings', THEME_LANG )
         ),
         array(
@@ -409,8 +408,7 @@ vc_map( array(
             "max" => "25",
             "step" => "1",
             'group' => __( 'Carousel settings', THEME_LANG )
-        ),
-        array(
+        ),array(
             "type" => "kt_heading",
             "heading" => __("Navigation settings", THEME_LANG),
             "param_name" => "navigation_settings",
@@ -425,25 +423,26 @@ vc_map( array(
             'group' => __( 'Carousel settings', THEME_LANG )
         ),
         array(
+            'type' => 'dropdown',
+            'heading' => __( 'Navigation position', THEME_LANG ),
+            'param_name' => 'navigation_position',
+            'group' => __( 'Carousel settings', THEME_LANG ),
+            'value' => array(
+                __( 'Center outside', THEME_LANG) => 'center_outside',
+                __( 'Center inside', THEME_LANG) => 'center',
+                __( 'Top Right', THEME_LANG) => 'top_right',
+                __( 'Bottom', THEME_LANG) => 'bottom',
+            ),
+            "dependency" => array("element" => "navigation","value" => array('true')),
+        ),
+        array(
             'type' => 'kt_switch',
             'heading' => __( 'Always Show Navigation', THEME_LANG ),
             'param_name' => 'navigation_always_on',
             'value' => 'false',
             "description" => __("Always show the navigation.", THEME_LANG),
             'group' => __( 'Carousel settings', THEME_LANG ),
-            "dependency" => array("element" => "navigation","value" => array('true')),
-        ),
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Navigation position', THEME_LANG ),
-            'param_name' => 'navigation_position',
-            'group' => __( 'Carousel settings', THEME_LANG ),
-            'value' => array(
-                __( 'Default - Bottom', THEME_LANG) => '',
-                __( 'Top', THEME_LANG) => 'top',
-                __( 'Center', THEME_LANG) => 'center',
-            ),
-            "dependency" => array("element" => "navigation","value" => array('true')),
+            "dependency" => array("element" => "navigation_position","value" => array('center', 'center_outside', 'top_right')),
         ),
         array(
             'type' => 'dropdown',
@@ -451,7 +450,7 @@ vc_map( array(
             'param_name' => 'navigation_style',
             'group' => __( 'Carousel settings', THEME_LANG ),
             'value' => array(
-                __( 'Default', THEME_LANG ) => '',
+                __( 'Normal', THEME_LANG ) => '',
                 __( 'Circle Background', THEME_LANG ) => 'circle',
                 __( 'Square Background', THEME_LANG ) => 'square',
                 __( 'Round Background', THEME_LANG ) => 'round',
@@ -459,6 +458,7 @@ vc_map( array(
                 __( 'Square Border', THEME_LANG ) => 'square_border',
                 __( 'Round Border', THEME_LANG ) => 'round_border',
             ),
+            'std' => 'circle_border',
             "dependency" => array("element" => "navigation","value" => array('true')),
         ),
         array(
@@ -501,12 +501,12 @@ vc_map( array(
             'param_name' => 'navigation_icon',
             'class_input' => "radio-wrapper-group",
             'value' => array(
-                'fa fa-angle-left|fa fa-angle-right' => '<span><i class="fa fa-angle-left"></i><i class="fa fa-angle-right"></i></span>',
-                'fa fa-chevron-left|fa fa-chevron-right' => '<span><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-right"></i></span>',
-                'fa fa-angle-double-left|fa fa-angle-double-right' => '<span><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i></span>',
-                'fa fa-arrow-left|fa fa-arrow-right' => '<span><i class="fa fa-arrow-left"></i><i class="fa fa-arrow-right"></i></span>',
-                'fa fa-chevron-circle-left|fa fa-chevron-circle-right' => '<span><i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i></span>',
-                'fa fa-arrow-circle-o-left|fa fa-arrow-circle-o-right' => '<span><i class="fa fa-arrow-circle-o-left"></i><i class="fa fa-arrow-circle-o-right"></i></span>',
+                '<span><i class="fa fa-angle-left"></i><i class="fa fa-angle-right"></i></span>' => 'fa fa-angle-left|fa fa-angle-right',
+                '<span><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-right"></i></span>' => 'fa fa-chevron-left|fa fa-chevron-right',
+                '<span><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i></span>' => 'fa fa-angle-double-left|fa fa-angle-double-right',
+                '<span><i class="fa fa-arrow-left"></i><i class="fa fa-arrow-right"></i></span>' => 'fa fa-arrow-left|fa fa-arrow-right',
+                '<span><i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i></span>' =>'fa fa-chevron-circle-left|fa fa-chevron-circle-right',
+                '<span><i class="fa fa-arrow-circle-o-left"></i><i class="fa fa-arrow-circle-o-right"></i></span>' => 'fa fa-arrow-circle-o-left|fa fa-arrow-circle-o-right',
             ),
             'description' => __( 'Select your style for navigation.', THEME_LANG ),
             "dependency" => array("element" => "navigation","value" => array('true')),
@@ -541,13 +541,13 @@ vc_map( array(
             'param_name' => 'pagination_icon',
             'class_input' => "radio-wrapper",
             'value' => array(
-                'fa fa-circle-o' => '<i class="fa fa-circle-o"></i>',
-                'fa fa-circle' => '<i class="fa fa-circle"></i>',
-                'fa fa-circle-thin' => '<i class="fa fa-circle-thin"></i>',
-                'fa fa-dot-circle-o' => '<i class="fa fa-dot-circle-o"></i>',
-                'fa fa-square-o' => '<i class="fa fa-square-o"></i>',
-                'fa fa-square' => '<i class="fa fa-square"></i>',
-                'fa fa-stop' => '<i class="fa fa-stop"></i>',
+                '<i class="fa fa-circle-o"></i>' => 'circle-o',
+                '<i class="fa fa-circle"></i>' => 'circle',
+                '<i class="fa fa-circle-thin"></i>' => 'circle-thin',
+                '<i class="fa fa-dot-circle-o"></i>' => 'dot-circle-o',
+                '<i class="fa fa-square-o"></i>' => 'square-o',
+                '<i class="fa fa-square"></i>' => 'square',
+                '<i class="fa fa-stop"></i>' => 'stop',
             ),
             'description' => __( 'Select your style for pagination.', THEME_LANG ),
             "dependency" => array("element" => "pagination","value" => array('true')),
@@ -562,3 +562,4 @@ vc_map( array(
 		),
     ),
 ));
+

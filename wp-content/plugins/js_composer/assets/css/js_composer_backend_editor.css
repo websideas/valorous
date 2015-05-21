@@ -6274,7 +6274,6 @@ select.btn-danger {
 .vc_controls {
   font-family: "Open Sans", Helvetica, sans-serif;
   height: 0;
-  z-index: 1004;
   display: block;
   opacity: 0;
   filter: alpha(opacity=0);
@@ -6295,7 +6294,7 @@ select.btn-danger {
 .vc_controls > .vc_controls-tl {
   top: 0;
   left: 0;
-  z-index: 1005;
+  z-index: 1002;
 }
 .vc_controls > .vc_controls-tc {
   top: 0;
@@ -6304,19 +6303,19 @@ select.btn-danger {
   -ms-transform: translate(-50%, 0);
   -o-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  z-index: 1005;
+  z-index: 1002;
 }
 .vc_controls > .vc_controls-tr {
   top: 0;
   right: 0;
   direction: rtl;
-  z-index: 1005;
+  z-index: 1002;
 }
 .vc_controls > .vc_controls-bl {
   bottom: 0;
   left: 0;
   height: auto;
-  z-index: 1005;
+  z-index: 1002;
 }
 .vc_controls > .vc_controls-bc {
   bottom: 0;
@@ -6330,10 +6329,10 @@ select.btn-danger {
   bottom: 0;
   right: 0;
   direction: rtl;
-  z-index: 1005;
+  z-index: 1002;
 }
 .vc_controls > .vc_controls-cc {
-  z-index: 1004;
+  z-index: 1002;
   top: 50%;
   left: 50%;
   background-color: #afd23e;

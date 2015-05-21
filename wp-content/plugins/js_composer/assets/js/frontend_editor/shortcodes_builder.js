@@ -109,8 +109,8 @@
 			//vc.frame_window.vc_js(); // causes bug #1499 with tour element, added in https://github.com/mmihey/js_composer/commit/1b0efa1460c7336da60530cfa330b9d62e71fa7b
 		},
 		buildFromTemplate: function ( html, data ) {
-			var template_shortcodes_has_id;
-			template_shortcodes_has_id = false;
+			var templateShortcodesHasId;
+			templateShortcodesHasId = false;
 			_.each( $( html ), function ( block ) {
 				var $block = $( block );
 				if ( $block.is( '[data-type=files]' ) ) {
@@ -125,15 +125,11 @@
 				$block = vc.$page.find( '[data-model-id=' + shortcode.id + ']' );
 				params = _.isObject( shortcode.attrs ) ? shortcode.attrs : {};
 
-				if ( ! template_shortcodes_has_id ) {
+				if ( ! templateShortcodesHasId ) {
 					id_param = vc.shortcodeHasIdParam( shortcode.tag );
 					if ( id_param && ! _.isUndefined( params ) && ! _.isUndefined( params[ id_param.param_name ] ) && params[ id_param.param_name ].length > 0 ) {
-						template_shortcodes_has_id = true;
+						templateShortcodesHasId = true;
 					}
-				}
-
-				if ( params.content ) {
-					params.content = $( '<div/>' ).html( params.content ).text();
 				}
 
 				model = vc.shortcodes.create( {
@@ -157,7 +153,7 @@
 			vc.frame.render();
 			this.is_build_complete = true;
 
-			return template_shortcodes_has_id;
+			return templateShortcodesHasId;
 		},
 		_renderBlockCallback: function ( block ) {
 			var $this = $( block ), $html, model;

@@ -577,7 +577,7 @@
 			}
 			this.model = model;
 			vc.active_panel = this;
-			this.$el.removeClass('vc_panel-opacity');
+			this.$el.removeClass( 'vc_panel-opacity' );
 			this.clicked = false;
 			this.$el.css( 'height', 'auto' );
 			var tag = this.model.get( 'shortcode' ),
@@ -1004,8 +1004,9 @@
 						try {
 							data = JSON.parse( element.innerHTML )
 						} catch ( e ) {
+							window.console && window.console.error && window.console.error( e,
+								'catching template data error' );
 						}
-						;
 					}
 					if ( element.id === "vc_template-html" ) {
 						template = element.innerHTML;
@@ -1048,8 +1049,9 @@
 						try {
 							data = JSON.parse( element.innerHTML )
 						} catch ( e ) {
+							window.console && window.console.error && window.console.error( e,
+								'catching template data error' );
 						}
-						;
 					}
 					if ( element.id === "vc_template-html" ) {
 						template = element.innerHTML;

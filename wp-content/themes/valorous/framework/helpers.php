@@ -509,6 +509,78 @@ function get_gallerys_post($meta, $size = 'screen', $post_id = null) {
 	return (count($media_image)) ? $media_image : false;
 }
 
+/**
+ * Render Carousel
+ *
+ * @param $data array, All option for carousel
+ * @param $class string, Default class for carousel
+ *
+ * @return void
+ */
+
+function kt_render_carousel($data, $class = ''){
+
+    extract( $data );
+
+    $output = $custom_css = '';
+    $uniqid = 'owl-carousel-'.uniqid();
+
+    $owl_carousel_class = array('owl-carousel-wrapper', 'carousel-navigation-'.$navigation_position, 'carousel-pagination-'.$pagination_icon, $class);
+    if($navigation_always_on == 'false' && $navigation_position != 'bottom'){
+        $owl_carousel_class[] = 'visiable-navigation';
+    }
+    if($navigation_style){
+        $owl_carousel_class[] = 'carousel-navigation-'.$navigation_style;
+    }
+    if($pagination == 'true'){
+        $owl_carousel_class[] = 'carousel-pagination-dots';
+    }
+
+    if($pagination == "true" && $pagination_color){
+        $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-dots .owl-dot span{color:'.$pagination_color.';}';
+    }
+    if($navigation == "true"){
+        if($navigation_color){
+            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{color:'.$navigation_color.';}';
+        }
+        if(($navigation_style == 'circle' || $navigation_style == 'square' || $navigation_style == 'round') && $navigation_background){
+            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{background:'.$navigation_background.';}';
+        }elseif(($navigation_style == 'circle_border' || $navigation_style == 'square_border' || $navigation_style == 'round_border') && $navigation_border_width){
+            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{border:'.$navigation_border_width.'px solid;}';
+            if($navigation_border_color){
+                $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{border-color:'.$navigation_border_color.';}';
+            }
+        }
+    }
+
+    $autoplay = ($autoplay == 'true') ? $autoplayspeed : $autoplay;
+
+    $data_carousel = array(
+        'mousedrag' => $mousedrag,
+        "autoheight" => $autoheight,
+        "autoplay" => $autoplay,
+        'navigation_icon' => $navigation_icon,
+        "margin" => $margin,
+        "nav" => $navigation,
+        "slidespeed" => $slidespeed,
+        'desktop' => $desktop,
+        'tablet' => $tablet,
+        'mobile' => $mobile,
+        "dots" => $pagination,
+        "loop" => $loop,
+    );
+    $output .= '<div class="'.esc_attr(implode(' ', $owl_carousel_class)).'">';
+    $output .= '<div id="'.esc_attr($uniqid).'" class="owl-carousel kt-owl-carousel" '.render_data_carousel($data_carousel).'>%carousel_html%</div>';
+    $output .= '</div>';
+
+    if($custom_css){
+        $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+    }
+
+    return $output.$custom_css;
+}
+
+
 
 /**
  * Render data option for carousel
@@ -519,7 +591,7 @@ function get_gallerys_post($meta, $size = 'screen', $post_id = null) {
 function render_data_carousel($data){
     $output = "";
     foreach($data as $key => $val){
-        if($val){
+        if($val != ''){
             $output .= ' data-'.$key.'="'.esc_attr($val).'"';
         }
     }

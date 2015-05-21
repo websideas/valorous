@@ -1187,7 +1187,7 @@ if ( ! class_exists( 'WPBakeryShortCodeFishBones' ) ) {
 			$this->addAction( 'admin_print_scripts-post.php', 'enqueueAssets' );
 			$this->addAction( 'admin_print_scripts-post-new.php', 'enqueueAssets' );
 			if ( ! shortcode_exists( $this->shortcode ) ) {
-				$this->addShortCode( $this->shortcode, Array( &$this, 'render' ) );
+				add_shortcode( $this->shortcode, Array( &$this, 'render' ) );
 			}
 		}
 
