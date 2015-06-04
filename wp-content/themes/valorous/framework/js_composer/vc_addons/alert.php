@@ -4,7 +4,7 @@
 if ( !defined('ABSPATH')) exit;
 
 
-class WPBakeryShortCode_Alert extends WPBakeryShortCode {
+class WPBakeryShortCode_KT_Alert extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
 
         extract(shortcode_atts(array(
@@ -35,10 +35,6 @@ class WPBakeryShortCode_Alert extends WPBakeryShortCode {
 
         $output .= $content;
 
-
-
-
-
         $output .= '</div><!-- .alert -->';
 
         return $output;
@@ -50,7 +46,7 @@ class WPBakeryShortCode_Alert extends WPBakeryShortCode {
 // Add your Visual Composer logic here
 vc_map( array(
     "name" => __( "Alert", THEME_LANG),
-    "base" => "alert",
+    "base" => "kt_alert",
     "category" => __('by Theme', THEME_LANG ),
     "description" => __( "Alert", THEME_LANG),
     "wrapper_class" => "clearfix",

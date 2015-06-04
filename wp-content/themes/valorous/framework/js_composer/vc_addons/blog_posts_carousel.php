@@ -9,8 +9,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
         $atts = shortcode_atts( array(
             'title' => '',
             'border_heading' => '',
-            'css_animation' => '',
-            'el_class' => '',
 
             'source' => 'all',
             'categories' => '',
@@ -48,6 +46,8 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             'pagination_icon' => 'circle-o',
 
             'css' => '',
+            'css_animation' => '',
+            'el_class' => '',
         ), $atts );
 
         extract($atts);
@@ -68,7 +68,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             if($categories){
                 $categories_arr = array_filter(explode( ',', $categories));
                 if(count($categories_arr)){
-                    $args['category__in'] = $authors_arr;
+                    $args['category__in'] = $categories;
                 }
             }
         }elseif($source == 'posts'){
@@ -86,10 +86,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                 }
             }
         }
-        
-        // The Query
-        $the_query = new WP_Query( $args );
-        
+
         $elementClass = array(
         	'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-carousel-wrapper ', $this->settings['base'], $atts ),
         	'extra' => $this->getExtraClass( $el_class ),
@@ -553,6 +550,8 @@ vc_map( array(
             "dependency" => array("element" => "pagination","value" => array('true')),
             'group' => __( 'Carousel settings', THEME_LANG )
         ),
+
+
         array(
 			'type' => 'css_editor',
 			'heading' => __( 'Css', 'js_composer' ),

@@ -13,7 +13,123 @@ add_filter( 'rwmb_meta_boxes', 'kite_register_meta_boxes' );
 function kite_register_meta_boxes( $meta_boxes )
 {
     $prefix = '_kt_';
-    
+
+
+    /**
+     * For Post Audio
+     *
+     */
+
+    $meta_boxes[] = array(
+        'title'  => __('Audio Settings',THEME_LANG),
+        'pages'  => array( 'post' ),
+        'show'   => array(
+            'post_format' => array( 'Audio'),
+        ),
+
+        'fields' => array(
+            array(
+                'name' => __('Audio Type', THEME_LANG),
+                'id' => $prefix . 'audio_type',
+                'type'     => 'select',
+                'options'  => array(
+                    '' => __('Upload', THEME_LANG),
+                    'Soundcloud' => __('Soundcloud', THEME_LANG),
+                ),
+            ),
+            array(
+                'name'             => __( 'Upload MP3 File', THEME_LANG ),
+                'id'               => "{$prefix}audio_mp3",
+                'type'             => 'file_advanced',
+                'max_file_uploads' => 1,
+                'mime_type'        => 'audio', // Leave blank for all file types
+            ),
+            array(
+                'name' => __( 'Soundcloud', THEME_LANG ),
+                'desc' => __( 'Paste embed iframe or Wordpress shortcode.', THEME_LANG ),
+                'id'   => "{$prefix}audio_soundcloud",
+                'type' => 'textarea',
+                'cols' => 20,
+                'rows' => 3,
+            ),
+        ),
+    );
+
+    /**
+     * For Video
+     *
+     */
+
+    $meta_boxes[] = array(
+        'title'  => __('Video Settings',THEME_LANG),
+        'pages'  => array( 'post' ),
+        'show'   => array(
+            'post_format' => array( 'Video'),
+        ),
+
+        'fields' => array(
+            array(
+                'name' => __('Video Type', THEME_LANG),
+                'id' => $prefix . 'video_type',
+                'type'     => 'select',
+                'options'  => array(
+                    'default' => __('Select Option', THEME_LANG),
+                    'upload' => __('Upload', THEME_LANG),
+                    'vimeo' => __('Vimeo', THEME_LANG),
+                    'youtube' => __('Youtube', THEME_LANG),
+                    'dailymotion' => __('Daily Motion', THEME_LANG)
+                ),
+            ),
+            array(
+                'name'             => __( 'Upload MP3 File', THEME_LANG ),
+                'id'               => "{$prefix}audio_mp3",
+                'type'             => 'file_advanced',
+                'max_file_uploads' => 1,
+                'mime_type'        => 'audio', // Leave blank for all file types
+            ),
+            array(
+                'name' => __( 'Video Id', THEME_LANG ),
+                'id' => $prefix . 'video_id',
+                'desc' => __( "Please fill this option with the required ID.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+
+        ),
+
+
+    );
+
+    /**
+     * For Post Audio
+     *
+     */
+
+    $meta_boxes[] = array(
+        'title'  => __('Gallery Settings',THEME_LANG),
+        'pages'  => array( 'post' ),
+        'show'   => array(
+            'post_format' => array( 'Gallery'),
+        ),
+
+        'fields' => array(
+            array(
+                'name' => __('Gallery Type', THEME_LANG),
+                'id' => $prefix . 'gallery_type',
+                'type'     => 'select',
+                'options'  => array(
+                    'default' => __('Default', THEME_LANG),
+                    'override' => __('Revolution Slider', THEME_LANG),
+                    'below' => __('Layer Slider', THEME_LANG)
+                ),
+            ),
+
+        ),
+    );
+
+
+
+
+
     /**
      * For Layout option
      * 
@@ -189,89 +305,10 @@ function kite_register_meta_boxes( $meta_boxes )
         )
     );
 
-
-    /**
-     * For Products Designer
-     *
-     */
-
-    $meta_boxes[] = array(
-        'id' => 'designer_meta_boxes',
-        'title' => 'Designer Info',
-        'pages' => array( 'designer' ),
-        'context' => 'normal',
-        'priority' => 'default',
-        'fields' => array(
-
-            array(
-                'name' => __('Position', THEME_LANG),
-                'id' => $prefix . 'description',
-                'desc' => "",
-                'type'  => 'text',
-            ),
-
-            array(
-                'name' => __('Info', THEME_LANG),
-                'id' => $prefix . 'info',
-                'desc' => "",
-                'type'  => 'wysiwyg',
-            ),
-
-        )
-    );
     
-    
-    /**
-     * For Products Designer
-     * 
-     */
-    
-    $meta_boxes[] = array(
-        'id' => 'designer_meta_boxes',
-        'title' => 'Designer',
-        'pages' => array( 'collection' ),
-        'context' => 'normal',
-        'priority' => 'default',
-        'fields' => array(
-            array(
-                'name' => __('Designer', THEME_LANG),
-                'id' => $prefix . 'designer',
-                'type' => 'post',
-                'query_args' => array('post_type' => 'designer', 'posts_per_page' => '-1'),
-                'post_type' => 'designer',
-                'multiple' => false,
-                'size' => 5,
-                'placeholder' => ('Select your products'),
-                'desc' => __('Please Select Designer for this product', THEME_LANG),
-                'field_type' => 'select_advanced'
-            ),
 
-        )
-    );
 
-    $meta_boxes[] = array(
-        'id' => 'designer_meta_boxes',
-        'title' => 'Collection',
-        'pages' => array( 'product'),
-        'context' => 'normal',
-        'priority' => 'default',
-        'fields' => array(
-            array(
-                'name' => __('Collection', THEME_LANG),
-                'id' => $prefix . 'collection',
-                'type' => 'post',
-                'query_args' => array('post_type' => 'collection', 'posts_per_page' => '-1'),
-                'post_type' => 'collection',
-                'multiple' => false,
-                'size' => 5,
-                'placeholder' => ('Select your products'),
-                'desc' => __('Please Select Collection for this product', THEME_LANG),
-                'field_type' => 'select_advanced'
-            ),
 
-        )
-    );
-    
     /**
      * For Testimonial
      * 

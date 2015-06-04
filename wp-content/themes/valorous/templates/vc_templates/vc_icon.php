@@ -19,12 +19,19 @@ $defaults = array(
     'align' => 'center',
     'el_class' => '',
     'link' => '',
-    'css_animation' => ''
+    'css_animation' => '',
+
+
+    'color_hover' => '',
+    'background_color_hover' => '',
+    'hover_div' => ''
 );
 
 if(isset($atts['addon'])){
     $defaults['icon_fontawesome'] = '';
 }
+
+$uniqid = 'vc_icon_element_'.uniqid();
 
 
 /** @var array $atts - shortcode attributes */
@@ -33,7 +40,6 @@ extract( $atts );
 
 
 if(
-
     ($type == 'fontawesome' && !$icon_fontawesome) ||
     ($type == 'openiconic' && !$icon_openiconic) ||
     ($type == 'typicons' && !$icon_typicons) ||
@@ -51,18 +57,60 @@ $css_class .= $this->getCSSAnimation( $css_animation );
 vc_icon_element_fonts_enqueue( $type );
 
 
-$uniqid = 'vc_icon_element_'.uniqid();
+
 $styles = array();
 $custom_css = $styles_html = '';
 
-if($background_color == 'custom' && $custom_background && $background_style){
-    $styles[] = "background-color: ".$custom_background;
-}
 if($background_style == 'hexagonal'){
-    $custom_css .= '#'.$uniqid.'.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-xl.vc_icon_element-have-style-inner.vc_icon_element-style-hexagonal:before{border-bottom-color: '.$custom_background.';}';
-    $custom_css .= '#'.$uniqid.'.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-xl.vc_icon_element-have-style-inner.vc_icon_element-style-hexagonal:after{border-top-color: '.$custom_background.';}';
-
+    $custom_css .= '#'.$uniqid.'.vc_icon_element .vc_icon_element-inner:before{border-bottom-color: '.$custom_background.';}';
+    $custom_css .= '#'.$uniqid.'.vc_icon_element .vc_icon_element-inner:after{border-top-color: '.$custom_background.';}';
+    if($background_color_hover){
+        if($hover_div){
+            $custom_css .= '#'.$uniqid.':hover .vc_icon_element .vc_icon_element-inner:before{border-bottom-color: '.$background_color_hover.';}';
+            $custom_css .= '#'.$uniqid.':hover .vc_icon_element .vc_icon_element-inner:after{border-top-color: '.$background_color_hover.';}';
+        }else{
+            $custom_css .= '#'.$uniqid.' .vc_icon_element .vc_icon_element-inner:hover:before{border-bottom-color: '.$background_color_hover.';}';
+            $custom_css .= '#'.$uniqid.' .vc_icon_element .vc_icon_element-inner:hover:after{border-top-color: '.$background_color_hover.';}';
+        }
+    }
 }
+
+if($color_hover){
+    if($hover_div) {
+        $custom_css .= '#' . $uniqid . ':hover .vc_icon_element .vc_icon_element-inner .vc_icon_element-icon{color:' . $color_hover . '!important;}';
+    }else{
+        $custom_css .= '#' . $uniqid . '.vc_icon_element .vc_icon_element-inner:hover .vc_icon_element-icon{color:' . $color_hover . '!important;}';
+    }
+}
+
+
+if ( strlen( $background_style ) > 0 ) {
+    if ( strpos( $background_style, 'outline' ) !== false ) {
+        if($background_color == 'custom' && $custom_background) {
+            $styles[] = "border-color: " . $custom_background;
+        }
+        if($background_color_hover){
+            if($hover_div){
+                $custom_css .= '#'.$uniqid.':hover .vc_icon_element .vc_icon_element-inner{border-color:'.$background_color_hover.'!important;}';
+            }else{
+                $custom_css .= '#'.$uniqid.'.vc_icon_element .vc_icon_element-inner:hover{border-color:'.$background_color_hover.'!important;}';
+            }
+        }
+    }else{
+        if($background_color == 'custom' && $custom_background) {
+            $styles[] = "background: ".$custom_background;
+        }
+        if($background_color_hover){
+            if($hover_div) {
+                $custom_css .= '#' . $uniqid . ':hover .vc_icon_element .vc_icon_element-inner{background:' . $background_color_hover . '!important;}';
+            }else{
+                $custom_css .= '#' . $uniqid . '.vc_icon_element .vc_icon_element-inner:hover{background:' . $background_color_hover . '!important;}';
+            }
+        }
+    }
+}
+
+
 
 
 $url = vc_build_link( $link );
@@ -74,17 +122,16 @@ if ( strlen( $background_style ) > 0 ) {
     } else {
         $background_style .= ' vc_icon_element-background';
     }
+}else{
+    $background_style .= 'normal';
 }
+
 $iconClass = isset( ${"icon_" . $type} ) ? esc_attr( ${"icon_" . $type} ) : 'fa fa-adjust';
 
 
 if(count($styles)){
     $styles_html = 'style="'.implode(';', $styles).'"';
 }
-
-
-
-
 
 if($custom_css){
     $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
@@ -102,5 +149,4 @@ if($custom_css){
         ?></div>
 </div>
 <?php echo $custom_css; ?>
-
 <?php echo $this->endBlockComment( '.vc_icon_element' ); ?>

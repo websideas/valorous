@@ -1,0 +1,150 @@
+http://www.jqueryscript.net/time-clock/Simple-Animated-Number-Counter-Plugin-with-jQuery-Countimator.html
+
+
+
+        
+    section separator and Icon
+        http://demo.tardigradestudio.com/themes/element/index.html
+
+For info box
+    http://tympanus.net/Development/IconHoverEffects/#set-3
+    https://www.brainstormforce.com/demos/ultimate/info-box/
+    http://demo.woorockets.com/themes/one/html/sc-services.html
+    http://tympanus.net/Development/CreativeLinkEffects/
+    
+    
+    Icon Location
+    Icon Size
+    Circle container
+    
+
+For Service
+    http://tympanus.net/Development/IconHoverEffects/#set-3
+
+For buttons
+    http://tympanus.net/Development/CreativeButtons/
+    http://demo.woorockets.com/themes/one/html/sc-button.html
+    
+    
+creative - sáng t?o   
+classic - C? di?n
+modern - hi?n d?i
+simple - don gi?n
+
+
+simple-style
+default-style
+mini-style
+square
+circle
+horizontal
+boxed
+boxed-icon-2
+horizontal boxed
+
+For Block Quote:
+    http://demo.woorockets.com/themes/one/html/sc-quote.html
+
+For Chart
+    http://zozothemes.com/html/mist/light/charts.html
+    http://zozothemes.com/html/mist/light/pie-skills.html
+
+For Process bars
+    http://www.minddust.com/project/bootstrap-progressbar/demo/bootstrap-3-3-0/#h-default
+    http://demo.woorockets.com/themes/one/html/sc-progress.html
+    
+
+For Message 
+    http://themes.semicolonweb.com/html/canvas/style-boxes.php
+    http://demo.woorockets.com/themes/one/html/sc-messsage-box.html
+    http://artbees.net/themes/jupiter/shortcodes/notifications/
+    http://pexetothemes.com/demos/story_wp/message-boxes/
+
+
+For social 
+    http://demo.woorockets.com/themes/one/html/sc-social-icon.html
+	http://themes.semicolonweb.com/html/canvas/social-icons.php
+	http://themes.semicolonweb.com/html/canvas/blog-grid.php
+    http://tympanus.net/Development/IconHoverEffects/
+    
+For Dividers
+	http://themes.semicolonweb.com/html/canvas/dividers.php
+	http://artbees.net/themes/jupiter/shortcodes/dividers/
+	http://demo.woorockets.com/themes/one/html/sc-divider.html
+
+For Heading
+	http://demo.woorockets.com/themes/one/html/sc-heading.html
+	
+For fancy list
+	http://demo.woorockets.com/themes/one/html/sc-style-list.html
+	
+For Promo boxes
+	http://themes.semicolonweb.com/html/canvas/promo-boxes.php
+    http://vossendesign.com/vossentheme/shortcodes.html
+    
+For Heading
+	http://themes.semicolonweb.com/html/canvas/headings-dropcaps.php
+	
+For Image frames
+	http://artbees.net/themes/jupiter/shortcodes/image-frames/
+	
+For Media embeds
+	http://themes.semicolonweb.com/html/canvas/media-embeds.php	
+	
+For Gallery
+	http://artbees.net/themes/jupiter/shortcodes/image-gallery/
+	http://artbees.net/themes/jupiter/shortcodes/image-gallery-masonry/
+	http://themes.semicolonweb.com/html/canvas/thumbnails-slider.php
+	http://the7.dream-demo.com/shortcodes/3-shortcodes/photos/
+	http://tympanus.net/Development/ThumbnailGridAnimations/index8.html
+    
+		Grid - http://isotope.metafizzy.co/
+		Masonry - http://isotope.metafizzy.co/
+		Justified grid - http://ed-lea.github.io/jquery-collagePlus/
+	
+For Carousel	
+	Revolution - http://revolution.themepunch.com/
+	royalSlider - http://dimsemenov.com/plugins/royal-slider/
+	Flexslider - http://flexslider.woothemes.com/
+	CarouFredSel - http://docs.dev7studios.com/jquery-plugins/caroufredsel
+	Owl Carousel - http://www.owlcarousel.owlgraphic.com/
+		Add on for 
+            http://jschr.github.io/textillate/ Example: http://unbranded.co/arc/index02.html
+            http://tympanus.net/codrops/2012/04/17/rotating-words-with-css-animations/
+            http://www.jqueryscript.net/rotator/jQuery-Text-Rotator-Plugin-with-CSS3-Animations-Words-Rotator.html
+		
+For Testimonials
+	http://artbees.net/themes/jupiter/shortcodes/testimonials/
+	http://the7.dream-demo.com/shortcodes/5-shortcodes/testimonials-shortcode/
+		Masonry
+		Slider
+		
+For Accordion and toggle ( Use jquery ui )
+	http://the7.dream-demo.com/shortcodes/1-shortcodes/accordion-and-toggle/
+	
+For Tab ( Use jquery ui )
+	http://artbees.net/themes/jupiter/shortcodes/tabs/
+	http://the7.dream-demo.com/shortcodes/5-shortcodes/tabs-top/
+	http://the7.dream-demo.com/shortcodes/5-shortcodes/tabs-side/
+	
+For form
+	http://artbees.net/themes/jupiter/shortcodes/contact-form/
+	
+	
+For clients (Logos)
+	http://demo.woorockets.com/themes/one/html/sc-customer-logo.html
+	http://artbees.net/themes/jupiter/shortcodes/clients/
+	http://the7.dream-demo.com/shortcodes/3-shortcodes/logos/
+	http://themes.semicolonweb.com/html/canvas/clients.php
+	
+For FAQ
+	http://artbees.net/themes/jupiter/shortcodes/faq/
+	
+For team
+	http://the7.dream-demo.com/shortcodes/5-shortcodes/team-shortcode/
+	
+    
+    
+    
+    
+    http://tympanus.net/Development/StackEffects/

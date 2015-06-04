@@ -420,18 +420,24 @@ function kt_sidebar(){
         'sidebar_area' => $sidebar_area        
     );
     
-    if(is_page() || is_singular('post')){
-        $sidebar_post = rwmb_meta('_kt_sidebar');
+    if(is_page() || is_singular('post') || is_home()){
+        $page_id = get_the_ID();
+        if(is_home()){
+            $page_id = get_option( 'page_for_posts' );
+        }
+
+        $sidebar_post = rwmb_meta('_kt_sidebar', array(), $page_id);
+
         if($sidebar_post != 'default' && $sidebar_post){
             $layout_sidebar['sidebar'] = $sidebar_post;
             if($sidebar_post == 'left'){
-                $sidebar_left_post = rwmb_meta('_kt_left_sidebar');
+                $sidebar_left_post = rwmb_meta('_kt_left_sidebar', array(), $page_id);
                 if($sidebar_left_post  == 'default'){
                     $sidebar_left_post = $sidebar_left;
                 }
                 $layout_sidebar['sidebar_area'] = $sidebar_left_post;
             }elseif($sidebar_post == 'right'){
-                $sidebar_right_post = rwmb_meta('_kt_right_sidebar');
+                $sidebar_right_post = rwmb_meta('_kt_right_sidebar', array(), $page_id);
                 if($sidebar_right_post  == 'default'){
                     $sidebar_right_post = $sidebar_right;
                 }
@@ -440,6 +446,8 @@ function kt_sidebar(){
         }
         
     }
+
+
 
     return $layout_sidebar;
 }

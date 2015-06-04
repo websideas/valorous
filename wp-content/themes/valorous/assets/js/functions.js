@@ -130,10 +130,9 @@
         $('.kt-counter-wrapper').waypoint(function () {
             jQuery(this).find('.couter').countTo();
         }, { offset:'85%', triggerOnce:true });
-        
+
     }
 
-    
     /* ---------------------------------------------
      Main Menu
     --------------------------------------------- */
@@ -255,7 +254,10 @@
                 themeClass: 'owl-kttheme'
 
             };
-            objCarousel.owlCarousel(options);
+            $(objCarousel).waitForImages(function() {
+                objCarousel.owlCarousel(options);
+            });
+
             
         });
     }

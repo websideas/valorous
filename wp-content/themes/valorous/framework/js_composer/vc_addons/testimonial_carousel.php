@@ -3,16 +3,20 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
+
+class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom_heading {
     var $excerpt_length;
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
             'border_heading' => '',
             'layout' => 1,
-            'content_align' => '',
-            'css_animation' => '',
-            'el_class' => '',
+
+            'font_type' => '',
+            'font_container' => '',
+            'google_fonts' => '',
+            'letter_spacing' => '0',
 
             'source' => 'all',
             'categories' => '',
@@ -49,6 +53,9 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
             'pagination_color' => '',
             'pagination_icon' => 'circle-o',
 
+
+            'css_animation' => '',
+            'el_class' => '',
             'css' => '',
         ), $atts);
 
@@ -65,11 +72,13 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
             $args['meta_key'] = $meta_key;
         }
+
+
         if($source == 'categories'){
             if($categories){
                 $categories_arr = array_filter(explode( ',', $categories));
                 if(count($categories_arr)){
-                    $args['category__in'] = $authors_arr;
+                    $args['category__in'] = $categories_arr;
                 }
             }
         }elseif($source == 'posts'){
@@ -95,7 +104,8 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'testimonial-carousel-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'layout' => 'testimonial-carousel-layout-'.$layout
         );
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
@@ -109,6 +119,35 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
             $output .= '</div>';
         }
 
+        $styles = array();
+        $style_title = '';
+
+        extract( $this->getAttributes( $atts ) );
+        unset($font_container_data['values']['text_align']);
+
+
+        if($font_type != 'google'){
+            $google_fonts_data = array();
+        }
+        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
+
+        $settings = get_option( 'wpb_js_google_fonts_subsets' );
+        $subsets = '';
+        if ( is_array( $settings ) && ! empty( $settings ) ) {
+            $subsets = '&subset=' . implode( ',', $settings );
+        }
+        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
+            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
+        }
+        if($letter_spacing){
+            $styles[] = 'letter-spacing: '.$letter_spacing.'px;';
+        }
+        if ( ! empty( $styles ) ) {
+            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+        }
+
+
+
 
         $query = new WP_Query( $args );
         if ( $query->have_posts() ) :
@@ -121,7 +160,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
             while ( $query->have_posts() ) : $query->the_post();
                 $testimonial_html .= '<div class="testimonial-item testimonial-layout-'.esc_attr($layout).'">';
                     $testimonial_content = '<div class="testimonial-content">'.get_the_content().'</div>';
-                    $testimonial_author = '<div class="testimonial-author">'.get_the_title().'</div>';
+                    $testimonial_author = '<div class="testimonial-author" '.$style_title.'>'.get_the_title().'</div>';
                     $testimonial_author .= '<div class="testimonial-info">Testimonial item info</div>';
                     $testimonial_img = (has_post_thumbnail()) ? '<div class="testimonial-img">'.get_the_post_thumbnail( get_the_ID(), 'small', array('class'=>"img-responsive")).'</div>' : '';
 
@@ -130,7 +169,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode {
                     }elseif($layout == '3'){
                         $testimonial_html .= sprintf('<div class="testimonial-left display-cell">%s</div><div class="testimonial-right display-td"><div class="testimonial-author-infos">%s</div>%s</div>',$testimonial_img , $testimonial_author, $testimonial_content);
                     }else{
-                        $testimonial_html .= sprintf('%s <div class="testimonial-author-infos">%s %s</div>', $testimonial_content, $testimonial_img, $testimonial_author);
+                        $testimonial_html .= sprintf('%s <div class="testimonial-author-infos">%s %s</div>', $testimonial_content, $testimonial_img, $testimonial_author );
                     }
 
                 $testimonial_html .= '</div><!-- .testimonial-posts-item -->';
@@ -170,16 +209,17 @@ vc_map( array(
             'value' => 'true',
             "description" => __("Enable border in heading", THEME_LANG)
         ),
+
         array(
             'type' => 'dropdown',
-            'heading' => __( 'Layout', 'js_composer' ),
+            'heading' => __( 'Layout', THEME_LANG ),
             'param_name' => 'layout',
             'value' => array(
-                __( 'Layout 1', THEME_LANG ) => '1',
-                __( 'Layout 2', THEME_LANG ) => '2',
-                __( 'Layout 3', THEME_LANG ) => '3',
-                __( 'Layout 4', THEME_LANG ) => '4',
+                __( 'Content + Avatar + Title aligned center', THEME_LANG ) => '1',
+                __( 'Content in Boxed And Avatar + Title center', THEME_LANG ) => '2',
+                __( 'Avatar beside Title and Content aligned with Title', THEME_LANG ) => '3',
             ),
+            'description' => __( 'Select your layout.', THEME_LANG ),
         ),
         array(
             'type' => 'dropdown',
@@ -315,7 +355,7 @@ vc_map( array(
             'value' => 'false',
             "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
             "description" => __("Enable loop.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'kt_switch',
@@ -324,7 +364,7 @@ vc_map( array(
             'value' => 'true',
             "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
             "description" => __("Enable auto height.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'kt_switch',
@@ -333,7 +373,7 @@ vc_map( array(
             'value' => 'true',
             "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
             "description" => __("Mouse drag enabled.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'kt_switch',
@@ -341,7 +381,7 @@ vc_map( array(
             'param_name' => 'autoplay',
             'value' => 'false',
             "description" => __("Enable auto play.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             "type" => "kt_number",
@@ -349,7 +389,7 @@ vc_map( array(
             "param_name" => "autoplayspeed",
             "value" => "5000",
             "suffix" => __("milliseconds", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "autoplay","value" => array('true')),
         ),
         array(
@@ -358,13 +398,13 @@ vc_map( array(
             "param_name" => "slidespeed",
             "value" => "200",
             "suffix" => __("milliseconds", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             "type" => "kt_heading",
             "heading" => __("Navigation settings", THEME_LANG),
             "param_name" => "navigation_settings",
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'kt_switch',
@@ -372,13 +412,13 @@ vc_map( array(
             'param_name' => 'navigation',
             'value' => 'true',
             "description" => __("Show navigation in carousel", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Navigation position', THEME_LANG ),
             'param_name' => 'navigation_position',
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             'value' => array(
                 __( 'Center outside', THEME_LANG) => 'center_outside',
                 __( 'Center inside', THEME_LANG) => 'center',
@@ -393,14 +433,14 @@ vc_map( array(
             'param_name' => 'navigation_always_on',
             'value' => 'false',
             "description" => __("Always show the navigation.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "navigation_position","value" => array('center', 'center_outside', 'top_right')),
         ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Navigation style', 'js_composer' ),
             'param_name' => 'navigation_style',
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             'value' => array(
                 __( 'Normal', THEME_LANG ) => '',
                 __( 'Circle Background', THEME_LANG ) => 'circle',
@@ -418,7 +458,7 @@ vc_map( array(
             'heading' => __( 'Navigation Background', THEME_LANG ),
             'param_name' => 'navigation_background',
             'description' => __( 'Select background for navigation.', THEME_LANG ),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "navigation_style","value" => array('circle', 'square', 'round')),
         ),
         array(
@@ -429,14 +469,14 @@ vc_map( array(
             "min" => "1",
             "max" => "10",
             "suffix" => __("px", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "navigation_style","value" => array('circle_border', 'square_border', 'round_border')),
         ),
         array(
             'type' => 'colorpicker',
             'heading' => __( 'Border color', THEME_LANG ),
             'param_name' => 'navigation_border_color',
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "navigation_style","value" => array('circle_border', 'square_border', 'round_border')),
         ),
         array(
@@ -444,7 +484,7 @@ vc_map( array(
             'heading' => __( 'Navigation color', THEME_LANG ),
             'param_name' => 'navigation_color',
             'description' => __( 'Select color for navigation.', 'js_composer' ),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "navigation","value" => array('true')),
         ),
         array(
@@ -462,14 +502,14 @@ vc_map( array(
             ),
             'description' => __( 'Select your style for navigation.', THEME_LANG ),
             "dependency" => array("element" => "navigation","value" => array('true')),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
 
         array(
             "type" => "kt_heading",
             "heading" => __("Pagination settings", THEME_LANG),
             "param_name" => "pagination_settings",
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'kt_switch',
@@ -477,14 +517,14 @@ vc_map( array(
             'param_name' => 'pagination',
             'value' => 'true',
             "description" => __("Show pagination in carousel", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
         array(
             'type' => 'colorpicker',
             'heading' => __( 'Pagination color', 'js_composer' ),
             'param_name' => 'pagination_color',
             'description' => __( 'Select color for pagination.', 'js_composer' ),
-            'group' => __( 'Carousel settings', THEME_LANG ),
+            'group' => __( 'Carousel', THEME_LANG ),
             "dependency" => array("element" => "pagination","value" => array('true')),
         ),
         array(
@@ -503,8 +543,66 @@ vc_map( array(
             ),
             'description' => __( 'Select your style for pagination.', THEME_LANG ),
             "dependency" => array("element" => "pagination","value" => array('true')),
-            'group' => __( 'Carousel settings', THEME_LANG )
+            'group' => __( 'Carousel', THEME_LANG )
         ),
+
+        //Typography settings
+        array(
+            'type' => 'font_container',
+            'param_name' => 'font_container',
+            'value' => '',
+            'settings' => array(
+                'fields' => array(
+                    //'tag' => 'h2', // default value h2
+                    'font_size',
+                    'line_height',
+                    'color',
+                    'tag_description' => __( 'Select element tag.', 'js_composer' ),
+                    'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
+                    'font_size_description' => __( 'Enter font size.', 'js_composer' ),
+                    'line_height_description' => __( 'Enter line height.', 'js_composer' ),
+                    'color_description' => __( 'Select heading color.', 'js_composer' ),
+                ),
+            ),
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Letter spacing", THEME_LANG),
+            "param_name" => "letter_spacing",
+            "value" => 0,
+            "min" => 0,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
+            'group' => __( 'Typography', THEME_LANG ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Font type', 'js_composer' ),
+            'param_name' => 'font_type',
+            'value' => array(
+                __( 'Normal', 'js_composer' ) => '',
+                __( 'Google font', 'js_composer' ) => 'google',
+            ),
+            'group' => __( 'Typography', 'js_composer' ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts',
+            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'settings' => array(
+                'fields' => array(
+                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
+                )
+            ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'description' => __( '', 'js_composer' ),
+        ),
+
         array(
             'type' => 'css_editor',
             'heading' => __( 'Css', 'js_composer' ),

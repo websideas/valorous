@@ -8,9 +8,7 @@
         <?php if( has_post_thumbnail() ){
             ?>
             <div class="entry-thumb">
-                <?php
-                the_post_thumbnail('blog-post');
-                ?>
+                <?php the_post_thumbnail('blog-post'); ?>
             </div>
         <?php
         } ?>

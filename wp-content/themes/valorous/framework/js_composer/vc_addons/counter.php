@@ -36,6 +36,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'background_style' => '',
             'background_color' => '',
+            'custom_background' => '',
             'size' => 'md',
             'align' => 'center',
             'link' => '',
@@ -95,7 +96,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         }
 
 
-        $to = floatval($to);
+
         $decimals = explode('.', $to);
         $decimals_html = '';
         if(count($decimals) > 1){
@@ -106,10 +107,11 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
 
         $counter_content = '<div class="counter-content" '.$style_title.'>'.$suffix.'<span class="couter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</div>';
         $counter_text = '<div class="counter-text" '.$style_value.'>'.$title.'</div>';
+        $counter_icon = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'"  custom_background ="'.$custom_background.'" size="'.$size.'" align="center"]');
 
         $output = '';
 
-        $output .= do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$type.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'" align="center"]');
+        $output .= $counter_icon;
         $output .= $counter_content;
         $output .= $counter_text;
 
@@ -149,21 +151,19 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
-            "type" => "kt_number",
+            "type" => "textfield",
             "heading" => __("Counter from", "js_composer"),
             "param_name" => "from",
             "value" => 0,
-            "min" => 1,
             "description" => __( "The number to start counting from. <br/>Enter number for counter without any special character. You may enter a decimal number. Eg 10.17", THEME_LANG ),
         ),
 
         array(
-            "type" => "kt_number",
+            "type" => "textfield",
             "heading" => __("Counter to", "js_composer"),
             "param_name" => "to",
             "admin_label" => true,
             "value" => 100,
-            "min" => 1,
             "description" => __( "The number to stop counting at. <br/>Enter number for counter without any special character. You may enter a decimal number. Eg 10.17", THEME_LANG ),
         ),
         array(
@@ -192,9 +192,11 @@ vc_map( array(
             "param_name" => "el_class",
             "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
         ),
+
+
+
+
         //Icon settings
-
-
         array(
             'type' => 'dropdown',
             'heading' => __( 'Icon library', 'js_composer' ),
@@ -214,12 +216,10 @@ vc_map( array(
             'type' => 'iconpicker',
             'heading' => __( 'Icon', 'js_composer' ),
             'param_name' => 'icon_fontawesome',
-            'value' => '', // default value to backend editor admin_label
+            'value' => '',
             'settings' => array(
                 'emptyIcon' => true,
-                // default true, display an "EMPTY" icon?
                 'iconsPerPage' => 4000,
-                // default 100, how many icons per/page to display, we use (big number) to display all icons in single page
             ),
             'dependency' => array(
                 'element' => 'type',
@@ -232,11 +232,11 @@ vc_map( array(
             'type' => 'iconpicker',
             'heading' => __( 'Icon', 'js_composer' ),
             'param_name' => 'icon_openiconic',
-            'value' => '', // default value to backend editor admin_label
+            'value' => '',
             'settings' => array(
-                'emptyIcon' => true, // default true, display an "EMPTY" icon?
+                'emptyIcon' => true,
                 'type' => 'openiconic',
-                'iconsPerPage' => 4000, // default 100, how many icons per/page to display
+                'iconsPerPage' => 4000,
             ),
             'dependency' => array(
                 'element' => 'type',
@@ -268,7 +268,7 @@ vc_map( array(
             'param_name' => 'icon_entypo',
             'value' => 'entypo-icon entypo-icon-note', // default value to backend editor admin_label
             'settings' => array(
-                'emptyIcon' => false, // default true, display an "EMPTY" icon?
+                'emptyIcon' => true, // default true, display an "EMPTY" icon?
                 'type' => 'entypo',
                 'iconsPerPage' => 4000, // default 100, how many icons per/page to display
             ),
@@ -284,7 +284,7 @@ vc_map( array(
             'param_name' => 'icon_linecons',
             'value' => 'vc_li vc_li-heart', // default value to backend editor admin_label
             'settings' => array(
-                'emptyIcon' => false, // default true, display an "EMPTY" icon?
+                'emptyIcon' => true, // default true, display an "EMPTY" icon?
                 'type' => 'linecons',
                 'iconsPerPage' => 4000, // default 100, how many icons per/page to display
             ),
@@ -327,6 +327,9 @@ vc_map( array(
                 __( 'Outline Circle', 'js_composer' ) => 'rounded-outline',
                 __( 'Outline Square', 'js_composer' ) => 'boxed-outline',
                 __( 'Outline Rounded', 'js_composer' ) => 'rounded-less-outline',
+                __( 'Hexagonal', 'js_composer' ) => 'hexagonal',
+                __( 'Diamond Square', 'js_composer' ) => 'diamond_square',
+
             ),
             'description' => __( 'Select background shape and style for icon.', 'js_composer' ),
             'group' => __( 'Icon', THEME_LANG )
@@ -335,13 +338,24 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Background Color', 'js_composer' ),
             'param_name' => 'background_color',
-            'value' => getVcShared( 'colors' ),
+            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'std' => 'grey',
             'description' => __( 'Background Color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'dependency' => array(
                 'element' => 'background_style',
                 'not_empty' => true,
+            ),
+            'group' => __( 'Icon', THEME_LANG )
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom Icon Background', 'js_composer' ),
+            'param_name' => 'custom_background',
+            'description' => __( 'Select Background icon color.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'background_color',
+                'value' => 'custom',
             ),
             'group' => __( 'Icon', THEME_LANG )
         ),
@@ -354,18 +368,12 @@ vc_map( array(
             'description' => __( 'Icon size.', 'js_composer' ),
             'group' => __( 'Icon', THEME_LANG )
         ),
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Icon alignment', 'js_composer' ),
-            'param_name' => 'align',
-            'value' => array(
-                __( 'Left', 'js_composer' ) => 'left',
-                __( 'Right', 'js_composer' ) => 'right',
-                __( 'Center', 'js_composer' ) => 'center',
-            ),
-            'description' => __( 'Select icon alignment.', 'js_composer' ),
-            'group' => __( 'Icon', THEME_LANG )
-        ),
+
+
+
+
+
+
 
 
         //Typography settings
@@ -390,11 +398,8 @@ vc_map( array(
                     'font_size_description' => __( 'Enter font size.', 'js_composer' ),
                     'line_height_description' => __( 'Enter line height.', 'js_composer' ),
                     'color_description' => __( 'Select heading color.', 'js_composer' ),
-                    //'font_style_description' => __('Put your description here','js_composer'),
-                    //'font_family_description' => __('Put your description here','js_composer'),
                 ),
             ),
-            // 'description' => __( '', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(
@@ -412,17 +417,8 @@ vc_map( array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts_title',
             'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
-            // default
-            //'font_family:'.rawurlencode('Abril Fatface:400').'|font_style:'.rawurlencode('400 regular:400:normal')
-            // this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
             'settings' => array(
-                //'no_font_style' // Method 1: To disable font style
-                //'no_font_style'=>true // Method 2: To disable font style
                 'fields' => array(
-                    //'font_family' => 'Abril Fatface:regular',
-                    //'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
-                    //'font_style' => '400 regular:400:normal',
-                    // Default font style. Name:weight:style, example: "800 bold regular:800:normal"
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
                     'font_style_description' => __( 'Select font styling.', 'js_composer' )
                 )
@@ -443,21 +439,15 @@ vc_map( array(
             'value' => '',
             'settings' => array(
                 'fields' => array(
-                    //'tag' => 'h2', // default value h2
                     'font_size',
                     'line_height',
                     'color',
-                    //'font_style_italic'
-                    //'font_style_bold'
-                    //'font_family'
 
                     'tag_description' => __( 'Select element tag.', 'js_composer' ),
                     'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
                     'font_size_description' => __( 'Enter font size.', 'js_composer' ),
                     'line_height_description' => __( 'Enter line height.', 'js_composer' ),
                     'color_description' => __( 'Select heading color.', 'js_composer' ),
-                    //'font_style_description' => __('Put your description here','js_composer'),
-                    //'font_family_description' => __('Put your description here','js_composer'),
                 ),
             ),
             'description' => __( '', 'js_composer' ),
@@ -478,17 +468,8 @@ vc_map( array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts_value',
             'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
-            // default
-            //'font_family:'.rawurlencode('Abril Fatface:400').'|font_style:'.rawurlencode('400 regular:400:normal')
-            // this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
             'settings' => array(
-                //'no_font_style' // Method 1: To disable font style
-                //'no_font_style'=>true // Method 2: To disable font style
                 'fields' => array(
-                    //'font_family' => 'Abril Fatface:regular',
-                    //'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
-                    //'font_style' => '400 regular:400:normal',
-                    // Default font style. Name:weight:style, example: "800 bold regular:800:normal"
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
                     'font_style_description' => __( 'Select font styling.', 'js_composer' )
                 )
@@ -498,7 +479,7 @@ vc_map( array(
             'description' => __( '', 'js_composer' ),
         ),
 
-        /** ----------- Design options ------------------- */
+        //Design options
         array(
             'type' => 'css_editor',
             'heading' => __( 'Css', 'js_composer' ),

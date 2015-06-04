@@ -43,7 +43,6 @@ require_once ( FW_DIR . 'ajax.php' );
 require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
 
 
-
 /**
  * Include Widgets register and define all sidebars.
  *
@@ -110,9 +109,18 @@ if ( class_exists( 'RW_Meta_Box' ) ) {
     
     // Add fields to metabox
     require_once (FW_EXT_CUSTOM_DIR . 'meta-box-custom.php');
-    
-    // Make sure there's no errors when the plugin is deactivated or during upgrade
-	require_once (FW_DATA . 'data-meta-box.php');
+
+    // Add plugin meta-box-show-hide
+    require_once (FW_EXT_DIR . 'meta-box-show-hide/meta-box-show-hide.php');
+
+    // Add plugin meta-box-show-hide
+    require_once (FW_EXT_DIR . 'meta-box-tabs/meta-box-tabs.php');
+
+
+    if (is_admin() ) {
+        // Make sure there's no errors when the plugin is deactivated or during upgrade
+        require_once(FW_DATA . 'data-meta-box.php');
+    }
     
 }
 
@@ -170,14 +178,7 @@ if (is_admin() ) {
      * 
 	 */ 
  	require_once (FW_DATA . 'data-plugins.php');
-    
-    /**
-	 * Include meta-box.
-     * 
-	 */ 
-    require_once (FW_DATA . 'data-meta-box.php');
-    
-    
+
     /**
      * Get Navigation nav
      *

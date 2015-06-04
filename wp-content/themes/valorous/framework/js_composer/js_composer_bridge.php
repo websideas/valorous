@@ -51,38 +51,63 @@ vc_add_param("vc_row_inner", array(
     ),
 ));
 
-vc_add_param("vc_icon", array(
-    'type' => 'colorpicker',
-    'heading' => __( 'Custom Icon Background', 'js_composer' ),
-    'param_name' => 'custom_background',
-    'description' => __( 'Select Background icon color.', 'js_composer' ),
-    'dependency' => array(
-        'element' => 'background_color',
-        'value' => 'custom',
+vc_add_params("vc_icon", array(
+    array(
+        'type' => 'colorpicker',
+        'heading' => __( 'Custom Icon Background', 'js_composer' ),
+        'param_name' => 'custom_background',
+        'description' => __( 'Select Background icon color.', 'js_composer' ),
+        'dependency' => array(
+            'element' => 'background_color',
+            'value' => 'custom',
+        ),
     ),
+    array(
+        'type' => 'colorpicker',
+        'heading' => __( 'Icon color on Hover', 'js_composer' ),
+        'param_name' => 'color_hover',
+        'description' => __( 'Select icon color on hover.', 'js_composer' ),
+        'group' => __( 'Hover', 'js_composer' ),
+    ),
+    array(
+        'type' => 'colorpicker',
+        'heading' => __( 'Background on Hover', 'js_composer' ),
+        'param_name' => 'background_color_hover',
+        'description' => __( 'Select Background icon color on hover.', 'js_composer' ),
+        'group' => __( 'Hover', 'js_composer' ),
+        'dependency' => array(
+            'element' => 'background_style',
+            'not_empty' => true,
+        ),
+    ),
+
 ));
 
 $composer_addons = array(
     'alert.php',
     'list.php',
+    'icon_box.php',
     'counter.php',
-    'categories_products.php',
+    'heading.php',
+    'callout.php',
+    'divider.php',
+    //'categories_products.php',
     'contact_info.php',
     'clients_carousel.php',
     'blog_posts_carousel.php',
     'testimonial_carousel.php',
-    'sales_countdown.php',
-    'designer_collection_carousel.php',
-    'category_products_tab.php',
-    'categories_top_sellers.php',
+    //'sales_countdown.php',
+    //'designer_collection_carousel.php',
+    //'category_products_tab.php',
+    //'categories_top_sellers.php',
     'blog_posts.php',
     'button.php',
-    'widget_products_carousel.php',
-    'widget_testimonials.php',
+    //'widget_products_carousel.php',
+    //'widget_testimonials.php',
     'vc_gitem_post_metadata.php',
     'skill.php',
     'socials.php',
-    'designer_products.php',
+    //'designer_products.php',
 );
 
 foreach ( $composer_addons as $addon ) {

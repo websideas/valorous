@@ -31,7 +31,11 @@ function vc_ktnumber_settings_field($settings, $value){
 	$max = isset($settings['max']) ? $settings['max'] : '';
 	$suffix = isset($settings['suffix']) ? $settings['suffix'] : '';
 	$class = isset($settings['class']) ? $settings['class'] : '';
-	$output = '<input type="number" min="'.esc_attr($min).'" max="'.esc_attr($max).'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' style="max-width:100px; margin-right: 10px;" />'.$suffix;
+    $style = '';
+    if($suffix){
+        $style = 'style="max-width:100px; margin-right: 10px;"';
+    }
+	$output = '<input type="number" min="'.esc_attr($min).'" max="'.esc_attr($max).'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.' '.$style.' />'.$suffix;
 	return $output;
 }
 vc_add_shortcode_param('kt_number' , 'vc_ktnumber_settings_field');
