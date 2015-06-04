@@ -32,9 +32,10 @@
 16. Popup
 17. Main content
     17.1. Main common styles
-    17.2. Blog Posts
-    17.3. Single Posts - Entry post
-    17.4. Comments
+    17.2. Media element
+    17.3. Blog Posts
+    17.4. Single Posts - Entry post
+    17.5. Comments
 18. Page Content
     18.1. 404 Page
 
@@ -3814,8 +3815,186 @@ body.layout-boxed #page {
     z-index:99;
     background: #fff;
 }
+
 /*
- * 17.2. Blog Posts
+ * 17.2. Media element
+ */
+.mejs-container {
+    width: 100% !important;
+    background: #a1b2bc;
+}
+.mejs-poster{
+    max-width: 100%;
+}
+.mejs-controls a.mejs-horizontal-volume-slider,
+.mejs-container .mejs-controls > div{
+    display: table-cell!important;
+    vertical-align: middle;
+    float:none;
+    height: 40px;
+}
+.mejs-container .mejs-controls {
+    display: table;
+    width: 100%;
+    background: #a1b2bc;
+    height: auto;
+    table-layout: fixed;
+    padding: 0 15px;
+}
+.mejs-controls .mejs-time {
+    width: 30px;
+}
+.mejs-controls .mejs-time span {
+    color: #fff;
+}
+.mejs-controls .mejs-time-rail {
+    width: 100% !important;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+    top: 50%;
+    margin-top: -5px;
+    background: #fff;
+    border-radius:0;
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+    background: #d8e5ee;
+}
+.mejs-controls .mejs-time-rail .mejs-time-current {
+    background: #2d3e50;
+}
+.mejs-controls .mejs-time-rail .mejs-time-float {
+    display: none !important;
+}
+.mejs-controls .mejs-button button {
+    position: static;
+    outline: none;
+}
+.mejs-controls .mejs-horizontal-volume-slider {
+    width: 50px;
+    position: relative;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
+    margin-top: -5px;
+    top: 50%;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total {
+    background: #fff;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current{
+    border-radius:0;
+    height:10px;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
+    background: #01ffcd;
+}
+.mejs-controls .mejs-time-rail span,
+.mejs-controls .mejs-time-rail a{
+    border-radius:0;
+}
+.mejs-container .mejs-controls .mejs-time{
+    padding-top: 0;
+    width: 30px;
+}
+.mejs-overlay-button,
+.mejs-overlay-loading,
+.mejs-overlay-loading span,
+.mejs-controls .mejs-button button{
+    background: none;
+}
+
+.mejs-overlay-loading span:after,
+.mejs-overlay-button:after,
+.mejs-controls .mejs-fullscreen-button button:after,
+.mejs-controls .mejs-playpause-button button,
+.mejs-controls .mejs-volume-button button:after{
+    background: none;
+    color: #fff;
+    font-family: 'ElegantIcons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+.mejs-controls .mejs-playpause-button button {
+    font-size: 30px;
+    height: 30px;
+    line-height: 24px;
+    margin-left: -5px;
+    margin-right: 0;
+    text-align: center;
+    width: 30px;
+}
+.mejs-controls .mejs-play button:before {
+    content: "\45";
+}
+.mejs-controls .mejs-pause button:before {
+    content: "\60";
+}
+.mejs-controls .mejs-volume-button.mejs-mute button:after{
+    content: "\e069";
+}
+.mejs-controls .mejs-volume-button.mejs-unmute button:after{
+    content: "\e067";
+}
+.mejs-controls .mejs-fullscreen-button button:after{
+    content: "\30";
+}
+.mejs-controls .mejs-unfullscreen button:after{
+    content: "\2f";
+}
+.mejs-overlay-button:after{
+    display: block;
+    font-size: 75px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.mejs-overlay-loading span:after{
+    -webkit-animation: kite-loading 1s infinite steps(8);
+    animation: kite-loading 1s infinite steps(8);
+    content: "\e02d";
+    display: block;
+    font-size: 60px;
+    line-height: 80px;
+    text-align: center;
+}
+.mejs-overlay-button:after{
+    content: "\49";
+}
+.post-media-audio .mejs-container,
+.post-media-audio .mejs-controls a.mejs-horizontal-volume-slider,
+.post-media-audio .mejs-container .mejs-controls > div{
+    height: 90px!important;
+}
+@-webkit-keyframes kite-loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes kite-loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+/*
+ * 17.3. Blog Posts
  */
 .blog-posts .post-item {
     position: relative;
@@ -3910,6 +4089,10 @@ body.layout-boxed #page {
     margin-left: 20px; margin-right: 20px;
 }
 
+
+
+
+
 .list-blog-posts .navigation , .entry-content .page-links{ text-align: right; width: 100%; }
 .list-blog-posts .navigation .nav-links span, .list-blog-posts .navigation .nav-links  a ,
 .entry-content .page-links a, .entry-content .page-links span
@@ -3919,7 +4102,7 @@ body.layout-boxed #page {
 .entry-content > .vc_row:last-child {  margin-bottom: 0px; }
 
 /*
- * 17.3. Single Posts - Entry post
+ * 17.4. Single Posts - Entry post
  */
 .entry-content:after{ clear: both; content: " "; display: block; }
 .single .entry-meta-data { margin-bottom: 20px; }
@@ -3951,7 +4134,7 @@ body.layout-boxed #page {
     min-height: 120px;
 }
 /*
- * 17.4. Comments
+ * 17.5. Comments
  */
 .comment-list, .comment-list ol, .comment-list ul {
     padding: 0px; margin: 0px;

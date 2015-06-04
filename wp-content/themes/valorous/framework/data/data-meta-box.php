@@ -33,8 +33,9 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id' => $prefix . 'audio_type',
                 'type'     => 'select',
                 'options'  => array(
-                    '' => __('Upload', THEME_LANG),
-                    'Soundcloud' => __('Soundcloud', THEME_LANG),
+                    '' => __('Select Option', THEME_LANG),
+                    'upload' => __('Upload', THEME_LANG),
+                    'soundcloud' => __('Soundcloud', THEME_LANG),
                 ),
             ),
             array(
@@ -73,7 +74,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id' => $prefix . 'video_type',
                 'type'     => 'select',
                 'options'  => array(
-                    'default' => __('Select Option', THEME_LANG),
+                    '' => __('Select Option', THEME_LANG),
                     //'upload' => __('Upload', THEME_LANG),
                     'youtube' => __('Youtube', THEME_LANG),
                     'vimeo' => __('Vimeo', THEME_LANG),

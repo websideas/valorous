@@ -18,7 +18,6 @@ function wbc_change_demo_directory_path( $demo_directory_path ) {
 }
 add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
 
-
 /**
  * Add breadcrumb
  * 

@@ -96,7 +96,7 @@ if ( ! function_exists( 'kt_meta_title' ) ) {
  */
 function london_scripts() {
 
-    wp_enqueue_style( 'london-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'london-style', get_stylesheet_uri(), array('mediaelement') );
     wp_enqueue_style( 'bootstrap-css', THEME_LIBS . 'bootstrap/css/bootstrap.min.css', array());
     wp_enqueue_style( 'font-awesome', THEME_FONTS . 'font-awesome/css/font-awesome.min.css', array());
     wp_enqueue_style( 'font_kites', THEME_FONTS . 'font_kites/stylesheet.css', array());
@@ -170,7 +170,7 @@ function kt_excerpt_more( $more ) {
 add_filter('excerpt_more', 'kt_excerpt_more');
 
 function kt_excerpt_length( $length ) {
-    return 20;
+    return 40;
 }
 add_filter( 'excerpt_length', 'kt_excerpt_length', 999 );
 
@@ -216,24 +216,23 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '') {
+    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '', $post_id = null) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
         $format = get_post_format();
+        ?>
 
-        if ( is_singular() ) :
-            ?>
-
-            <div class="entry-thumb">
-                <?php the_post_thumbnail($size); ?>
-            </div><!-- .entry-thumb -->
-
-        <?php else : ?>
             <?php if(has_post_thumbnail() && $format == ''){ ?>
-                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
-                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                </a>
+                <?php if ( is_singular() ){ ?>
+                    <div class="entry-thumb">
+                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                    </div><!-- .entry-thumb -->
+                <?php }else{ ?>
+                    <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
+                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                    </a>
+                <?php } ?>
             <?php }elseif($format == 'gallery'){
                 $type = rwmb_meta('_kt_gallery_type');
                 if($type == 'rev' && class_exists( 'RevSlider' )){
@@ -251,7 +250,9 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 }elseif($type == ''){
                     echo '<div class="entry-thumb">';
                     $images = get_galleries_post('_kt_gallery_images');
-                    print_r($images);
+                    foreach($images as $image){
+                        echo '<img src="'.$image['url'].'" alt="" />';
+                    }
                     echo '</div><!-- .entry-thumb -->';
                 }
             }elseif($format == 'video'){
@@ -274,11 +275,28 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                         echo kt_video_dailymotion($video_id);
                         echo '</div></div><!-- .entry-thumb -->';
                     }
-
                 }
-            } ?>
-
-        <?php endif; // End is_singular()
+            }elseif($format == 'audio'){
+                $type = rwmb_meta('_kt_audio_type');
+                if($type == 'upload'){
+                    if($audios = rwmb_meta('_kt_audio_mp3', 'type=file')){
+                        foreach($audios as $audio) {
+                            echo '<div class="entry-thumb">';
+                            printf(
+                                '<div class="post-media-audio"><audio src="%s" type="audio/mp3" controls="controls"></div>',
+                                $audio['url']
+                            );
+                            echo '</div><!-- .entry-thumb -->';
+                        }
+                    }
+                }elseif($type == 'soundcloud'){
+                    if($soundcloud = rwmb_meta('_kt_audio_soundcloud')){
+                        echo '<div class="entry-thumb">';
+                        echo do_shortcode($soundcloud);
+                        echo '</div><!-- .entry-thumb -->';
+                    }
+                }
+            }
     }
 endif;
 
