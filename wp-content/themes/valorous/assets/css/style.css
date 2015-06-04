@@ -3628,6 +3628,112 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 
+/* KT TEAM */
+.team-item{
+    text-align: center;
+}
+.team-item h4.entry-title{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 0;
+    margin-top: 22px;
+    text-transform: uppercase;
+}
+.team-item .team-regency{
+    display: block;
+    font-size: 11px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.team-item.layout-1 .team-content{
+    margin-top:18px;
+}
+
+.team-item.layout-1 figure{
+    position: relative;
+    overflow: hidden;
+    height: 233px;
+    margin: 0 auto;
+    width: 233px;
+    border-radius:50%;
+}
+.team-item.layout-1 .team-hover{
+    background: rgba(0, 0, 0, 0.6);
+    display: table;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transition: top 0.3s ease-out 0s;
+    -webkit-transition: top 0.3s ease-out 0s;
+    -moz-transition: top 0.3s ease-out 0s;
+    -o-transition: top 0.3s ease-out 0s;
+    width: 100%;
+    border-radius:50%;
+}
+.team-item.layout-1:hover .team-hover{
+    top:0;
+}
+.team-item.layout-1 .team-hover ul{
+    padding:0;
+    margin:0;
+    list-style: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+.team-item .team-hover ul li{
+    display: inline-block;
+    margin:0 5px;
+}
+.team-item.layout-1 .team-hover ul li a{
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0 10px 10px;
+}
+
+.team-item.layout-2 figure{
+    max-width: 100%;
+    position: relative;
+}
+.team-item.layout-2 .team-hover{
+    background: #fff;
+    bottom: 10px;
+    font-size: 14px;
+    font-weight: 100;
+    left: 10px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    overflow: hidden;
+    padding: 40px 15px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: opacity 0.5s ease-in-out 0s;
+    -webkit-transition: opacity 0.5s ease-in-out 0s;
+    -moz-transition: opacity 0.5s ease-in-out 0s;
+    -o-transition: opacity 0.5s ease-in-out 0s;
+}
+.team-item.layout-2 .team-hover ul{
+    margin-left: 0;
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+.team-item.layout-2 .team-hover ul li{
+    margin: 0 12px 10px;
+}
+.team-item.layout-2 .team-hover ul li a{
+    color: #2f2f2f;
+    font-size: 22px;
+}
+.team-item.layout-2:hover .team-hover{
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
 /* ==============================
    16. Popup
    ============================== */

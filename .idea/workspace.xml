@@ -34,8 +34,8 @@
             <state vertical-scroll-proportion="-76.208336" vertical-offset="2056" max-vertical-offset="5415">
               <caret line="259" column="26" selection-start-line="259" selection-start-column="26" selection-end-line="259" selection-end-column="26" />
               <folding>
-                <marker date="1433411731000" expanded="true" signature="8100:8171" placeholder="..." />
-                <marker date="1433411731000" expanded="true" signature="8373:8420" placeholder="..." />
+                <marker date="1433424364000" expanded="true" signature="8100:8171" placeholder="..." />
+                <marker date="1433424364000" expanded="true" signature="8373:8420" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file leaf-file-name="data-meta-box.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24238876" vertical-offset="888" max-vertical-offset="6345">
-              <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.96487117" vertical-offset="5506" max-vertical-offset="6870">
+              <caret line="425" column="6" selection-start-line="425" selection-start-column="6" selection-end-line="425" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -110,8 +110,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="56337" max-vertical-offset="66150">
-              <caret line="3800" column="24" selection-start-line="3800" selection-start-column="24" selection-end-line="3800" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="57942" max-vertical-offset="67740">
+              <caret line="3907" column="1" selection-start-line="3907" selection-start-column="1" selection-end-line="3907" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -406,48 +406,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="extensions-custom" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meta-box-custom.php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpFileNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extensions-custom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meta-box-custom.php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RWMB_Layerslider_Field" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -968,8 +926,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="56337" max-vertical-offset="66150">
-          <caret line="3800" column="24" selection-start-line="3800" selection-start-column="24" selection-end-line="3800" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="57942" max-vertical-offset="67740">
+          <caret line="3907" column="1" selection-start-line="3907" selection-start-column="1" selection-end-line="3907" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1041,16 +999,16 @@
         <state vertical-scroll-proportion="-76.208336" vertical-offset="2056" max-vertical-offset="5415">
           <caret line="259" column="26" selection-start-line="259" selection-start-column="26" selection-end-line="259" selection-end-column="26" />
           <folding>
-            <marker date="1433411731000" expanded="true" signature="8100:8171" placeholder="..." />
-            <marker date="1433411731000" expanded="true" signature="8373:8420" placeholder="..." />
+            <marker date="1433424364000" expanded="true" signature="8100:8171" placeholder="..." />
+            <marker date="1433424364000" expanded="true" signature="8373:8420" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24238876" vertical-offset="888" max-vertical-offset="6345">
-          <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.96487117" vertical-offset="5506" max-vertical-offset="6870">
+          <caret line="425" column="6" selection-start-line="425" selection-start-column="6" selection-end-line="425" selection-end-column="6" />
           <folding />
         </state>
       </provider>
