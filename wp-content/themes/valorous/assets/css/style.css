@@ -3713,19 +3713,59 @@ body.layout-boxed #page {
  */
 .blog-posts .post-item {
     position: relative;
+    margin-bottom: 30px;
 }
+
 .blog-posts .post-item .post-info {
-    margin-left: 80px;
-    border: 1px solid #CCCCCC;
-    border-bottom-width: 0px;
-    padding: 10px;
-    min-height: 100px; display: block;
+
+}
+.blog-posts .post-item .entry-main-content{
+    padding-left: 80px;
+    min-height: 100px;
+    position: relative;
 }
 .blog-posts .post-item:last-child .post-info,
-.blog-posts .post-item.post-item-last .post-info
-{
+.blog-posts .post-item.post-item-last .post-info{
     border-bottom-width: 1px;
 }
+
+
+.blog-posts .post-item.format-quote .post-info,
+.blog-posts .post-item.format-link .post-info{
+    background: #f18c59 none repeat scroll 0 0;
+    color: #ffffff;
+    line-height: 30px;
+    padding: 40px 25px;
+    position: relative;
+}
+.blog-posts .post-item.format-quote .post-info:after,
+.blog-posts .post-item.format-link .post-info:after{
+    content: '\f0c1';
+    bottom: -3px;
+    font-family: FontAwesome;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    right: -2px;
+}
+.blog-posts .post-item.format-quote .post-info:after{
+    content: '\f10e';
+    bottom: 15px;
+    right: 10px;
+}
+
+
+.blog-posts .post-item.format-quote .post_quote_content{
+    font-size: 25px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+
+
+
+
 .blog-posts .post-item.search-item .post-info {
     margin-left: 0px; min-height: auto;
 }
@@ -3757,6 +3797,7 @@ body.layout-boxed #page {
 }
 .entry-more { font-style: italic; }
 .entry-thumb {
+    display: block;
     margin-bottom: 15px;
 }
 .entry-ci {

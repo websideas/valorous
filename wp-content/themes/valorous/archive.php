@@ -44,7 +44,7 @@ get_header(); ?>
                         while( have_posts() ){
                             the_post();
                             // Include the page content template.
-                            get_template_part( 'templates/loop' );
+                            get_template_part( 'templates/blog/content', get_post_format() );
                         }
                         ?>
                         </div>

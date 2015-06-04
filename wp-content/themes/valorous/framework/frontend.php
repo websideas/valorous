@@ -32,7 +32,7 @@ function theme_setup() {
     /**
 	 * Enable support for Post Formats
 	 */
-	add_theme_support( 'post-formats', array('gallery', 'image', 'link', 'quote', 'video', 'audio') );
+	add_theme_support( 'post-formats', array('gallery', 'link', 'quote', 'video', 'audio') );
 
     /*
     * Let WordPress manage the document title.
@@ -204,6 +204,84 @@ if ( ! function_exists( 'kt_comment_nav' ) ) :
         endif;
     }
 endif;
+
+
+
+
+if ( ! function_exists( 'kt_post_thumbnail' ) ) :
+    /**
+     * Display an optional post thumbnail.
+     *
+     * Wraps the post thumbnail in an anchor element on index views, or a div
+     * element when on single views.
+     *
+     */
+    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '') {
+        if ( post_password_required() || is_attachment()) {
+            return;
+        }
+        $format = get_post_format();
+
+        if ( is_singular() ) :
+            ?>
+
+            <div class="entry-thumb">
+                <?php the_post_thumbnail($size); ?>
+            </div><!-- .entry-thumb -->
+
+        <?php else : ?>
+            <?php if(has_post_thumbnail() && $format == ''){ ?>
+                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
+                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                </a>
+            <?php }elseif($format == 'gallery'){
+                $type = rwmb_meta('_kt_gallery_type');
+                if($type == 'rev' && class_exists( 'RevSlider' )){
+                    if ($rev = rwmb_meta('_kt_gallery_rev_slider')) {
+                        echo '<div class="entry-thumb">';
+                        putRevSlider($rev);
+                        echo '</div><!-- .entry-thumb -->';
+                    }
+                }elseif($type == 'layer' && is_plugin_active( 'LayerSlider/layerslider.php' ) ) {
+                    if($layerslider = rwmb_meta('_kt_gallery_layerslider')){
+                        echo '<div class="entry-thumb">';
+                        echo do_shortcode('[layerslider id="'.rwmb_meta('_kt_gallery_layerslider').'"]');
+                        echo '</div><!-- .entry-thumb -->';
+                    }
+                }elseif($type == ''){
+                    echo '<div class="entry-thumb">';
+                    $images = get_galleries_post('_kt_gallery_images');
+                    print_r($images);
+                    echo '</div><!-- .entry-thumb -->';
+                }
+            }elseif($format == 'video'){
+                $type = rwmb_meta('_kt_video_type');
+                if($type == 'youtube'){
+                    if($video_id = rwmb_meta('_kt_video_id')){
+                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
+                        echo kt_video_youtube($video_id);
+                        echo '</div></div><!-- .entry-thumb -->';
+                    }
+                }elseif($type == 'vimeo'){
+                    if($video_id = rwmb_meta('_kt_video_id')){
+                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
+                        echo kt_video_vimeo($video_id);
+                        echo '</div></div><!-- .entry-thumb -->';
+                    }
+                }elseif($type == 'dailymotion'){
+                    if($video_id = rwmb_meta('_kt_video_id')){
+                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
+                        echo kt_video_dailymotion($video_id);
+                        echo '</div></div><!-- .entry-thumb -->';
+                    }
+
+                }
+            } ?>
+
+        <?php endif; // End is_singular()
+    }
+endif;
+
 
 
 /**

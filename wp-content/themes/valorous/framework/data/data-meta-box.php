@@ -74,19 +74,35 @@ function kite_register_meta_boxes( $meta_boxes )
                 'type'     => 'select',
                 'options'  => array(
                     'default' => __('Select Option', THEME_LANG),
-                    'upload' => __('Upload', THEME_LANG),
-                    'vimeo' => __('Vimeo', THEME_LANG),
+                    //'upload' => __('Upload', THEME_LANG),
                     'youtube' => __('Youtube', THEME_LANG),
+                    'vimeo' => __('Vimeo', THEME_LANG),
                     'dailymotion' => __('Daily Motion', THEME_LANG)
                 ),
             ),
+            /*
+			array(
+                'name'             => __( 'Video Preview Image', 'your-prefix' ),
+                'id'               => "{$prefix}video_image",
+                'type'             => 'image_advanced',
+                'max_file_uploads' => 1,
+            ),
+
             array(
-                'name'             => __( 'Upload MP3 File', THEME_LANG ),
-                'id'               => "{$prefix}audio_mp3",
+                'name'             => __( 'Video WebM Upload', THEME_LANG ),
+                'id'               => "{$prefix}video_webm",
                 'type'             => 'file_advanced',
                 'max_file_uploads' => 1,
-                'mime_type'        => 'audio', // Leave blank for all file types
+                'mime_type'        => 'video', // Leave blank for all file types
             ),
+            array(
+                'name'             => __( 'Video MP4 Upload', THEME_LANG ),
+                'id'               => "{$prefix}video_mp4",
+                'type'             => 'file_advanced',
+                'max_file_uploads' => 1,
+                'mime_type'        => 'video', // Leave blank for all file types
+            ),
+            */
             array(
                 'name' => __( 'Video Id', THEME_LANG ),
                 'id' => $prefix . 'video_id',
@@ -95,12 +111,10 @@ function kite_register_meta_boxes( $meta_boxes )
             ),
 
         ),
-
-
     );
 
     /**
-     * For Post Audio
+     * For Gallery
      *
      */
 
@@ -117,18 +131,86 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id' => $prefix . 'gallery_type',
                 'type'     => 'select',
                 'options'  => array(
-                    'default' => __('Default', THEME_LANG),
-                    'override' => __('Revolution Slider', THEME_LANG),
-                    'below' => __('Layer Slider', THEME_LANG)
+                    '' => __('Default', THEME_LANG),
+                    'rev' => __('Revolution Slider', THEME_LANG),
+                    'layer' => __('Layer Slider', THEME_LANG)
                 ),
+            ),
+
+            array(
+                'name' => __('Select Revolution Slider', THEME_LANG),
+                'id' => $prefix . 'gallery_rev_slider',
+                'default' => true,
+                'type' => 'revSlider'
+            ),
+            array(
+                'name' => __('Select Layer Slider', THEME_LANG),
+                'id' => $prefix . 'gallery_layerslider',
+                'default' => true,
+                'type' => 'layerslider'
+            ),
+            array(
+                'name' => __( 'Gallery images', 'your-prefix' ),
+                'id'  => "{$prefix}gallery_images",
+                'type' => 'image_advanced',
+                'desc' => __( "You can drag and drop for change order image", THEME_LANG ),
+            ),
+        ),
+    );
+
+
+    /**
+     * For Link
+     *
+     */
+
+    $meta_boxes[] = array(
+        'title'  => __('Link Settings',THEME_LANG),
+        'pages'  => array( 'post' ),
+        'show'   => array(
+            'post_format' => array( 'Link'),
+        ),
+
+        'fields' => array(
+            array(
+                'name' => __( 'External URL', THEME_LANG ),
+                'id' => $prefix . 'external_url',
+                'desc' => __( "Input your link in here", THEME_LANG ),
+                'type'  => 'text',
             ),
 
         ),
     );
 
+    /**
+     * For Quote
+     *
+     */
 
+    $meta_boxes[] = array(
+        'title'  => __('Quote Settings',THEME_LANG),
+        'pages'  => array( 'post' ),
+        'show'   => array(
+            'post_format' => array( 'Quote'),
+        ),
+        'fields' => array(
+            array(
+                'name' => __( 'Quote Content', THEME_LANG ),
+                'desc' => __( 'Please type the text for your quote here.', THEME_LANG ),
+                'id'   => "{$prefix}quote_content",
+                'type' => 'textarea',
+                'cols' => 20,
+                'rows' => 3,
+            ),
+            array(
+                'name' => __( 'Author', THEME_LANG ),
+                'id' => $prefix . 'quote_author',
+                'desc' => __( "Please type the text for author quote here.", THEME_LANG ),
+                'type'  => 'text',
+            ),
 
-
+        ),
+    );
 
     /**
      * For Layout option

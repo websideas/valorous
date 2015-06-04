@@ -74,25 +74,25 @@ add_filter( 'sanitize_boolean', 'sanitize_boolean', 15 );
 
 /**
  * Convert hexdec color string to rgb(a) string
- * 
+ *
  * @param $color string
  * @param $opacity boolean
  * @return void
  */
- 
+
 function kt_hex2rgba($color, $opacity = false) {
- 
+
 	$default = 'rgb(0,0,0)';
- 
+
 	//Return default if no color provided
 	if(empty($color))
-          return $default; 
- 
-	//Sanitize $color if "#" is provided 
+          return $default;
+
+	//Sanitize $color if "#" is provided
         if ($color[0] == '#' ) {
         	$color = substr( $color, 1 );
         }
- 
+
         //Check if color has 6 or 3 characters and get values
         if (strlen($color) == 6) {
                 $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
@@ -101,10 +101,10 @@ function kt_hex2rgba($color, $opacity = false) {
         } else {
                 return $default;
         }
- 
+
         //Convert hexadec to rgb
         $rgb =  array_map('hexdec', $hex);
- 
+
         //Check if opacity is set(rgba or rgb)
         if($opacity){
         	if(abs($opacity) > 1)
@@ -113,19 +113,19 @@ function kt_hex2rgba($color, $opacity = false) {
         } else {
         	$output = 'rgb('.implode(",",$rgb).')';
         }
- 
+
         //Return rgb(a) color string
         return $output;
 }
 
 /**
  * Convert hexdec color string to darken or lighten
- * 
+ *
  * http://lab.clearpixel.com.au/2008/06/darken-or-lighten-colours-dynamically-using-php/
- * 
+ *
  * $brightness = 0.5; // 50% brighter
  * $brightness = -0.5; // 50% darker
- * 
+ *
  */
 
 function kt_colour_brightness($hex, $percent) {
@@ -137,7 +137,7 @@ function kt_colour_brightness($hex, $percent) {
 	}
 	/// HEX TO RGB
 	$rgb = array(hexdec(substr($hex,0,2)), hexdec(substr($hex,2,2)), hexdec(substr($hex,4,2)));
-	//// CALCULATE 
+	//// CALCULATE
 	for ($i=0; $i<3; $i++) {
 		// See if brighter or darker
 		if ($percent > 0) {
@@ -509,12 +509,51 @@ function get_link_image_post($meta, $post_id = null, $size = 'screen') {
  * @param array $post_id Optional. ID of article.
  * @return array
  */
-function get_gallerys_post($meta, $size = 'screen', $post_id = null) {
+function get_galleries_post($meta, $size = 'screen', $post_id = null) {
 	global $post;
 	if(!$post_id) $post_id = $post->ID;
 	
 	$media_image = rwmb_meta($meta, 'type=image&size='.$size, $post_id);
 	return (count($media_image)) ? $media_image : false;
+}
+
+
+/**
+ * Function to show youtube
+ *
+ * @return array
+ */
+function kt_video_youtube($video_id, $width = 640, $height = 480, $iframe = 1){
+    if($iframe){
+        return '<iframe itemprop="video" src="//www.youtube.com/embed/'. $video_id .'?wmode=transparent" width="'. $width .'" height="'. $height .'" ></iframe>';
+    }else{
+        return '//www.youtube.com/embed/'. $video_id;
+    }
+}
+/**
+ * Function to show vimeo
+ *
+ * @return array
+ */
+function kt_video_vimeo($video_id, $width = 640, $height = 480, $iframe = 1){
+    if($iframe){
+        return '<iframe itemprop="video" src="//player.vimeo.com/video/'. $video_id .'?title=0&amp;byline=0&amp;portrait=0?wmode=transparent" width="'. $width .'" height="'. $height .'"></iframe>';
+    }else{
+        return '//player.vimeo.com/video/'. $video_id;
+    }
+
+}
+/**
+ * Function to show youtube
+ *
+ * @return array
+ */
+function kt_video_dailymotion($video_id, $width = 640, $height = 480, $iframe = 1){
+    if($iframe){
+        return '<iframe itemprop="video" src="//www.dailymotion.com/embed/video/'.$video_id.'" width="'. $width .'" height="'. $height .'" ></iframe>';
+    }else{
+        return '//www.dailymotion.com/embed/video/'. $video_id;
+    }
 }
 
 /**
