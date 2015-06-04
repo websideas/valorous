@@ -126,7 +126,41 @@ function kite_register_meta_boxes( $meta_boxes )
         ),
     );
 
+    /**
+     * For Team
+     *
+     */
 
+    $meta_boxes[] = array(
+        'title'  => __('Team Settings',THEME_LANG),
+        'pages'  => array( 'kt_team' ),
+        'fields' => array(
+            array(
+                'name' => __( 'Regency', THEME_LANG ),
+                'id' => $prefix . 'team_regency',
+                'desc' => __( "Regency.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            array(
+                'name' => __( 'Twitter', THEME_LANG ),
+                'id' => $prefix . 'team_twitter',
+                'desc' => __( "Link Twitter.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            array(
+                'name' => __( 'Facebook', THEME_LANG ),
+                'id' => $prefix . 'team_facebook',
+                'desc' => __( "Link Facebook.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            array(
+                'name' => __( 'Google+', THEME_LANG ),
+                'id' => $prefix . 'team_googleplus',
+                'desc' => __( "Link Google+.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+        ),
+    );
 
 
 

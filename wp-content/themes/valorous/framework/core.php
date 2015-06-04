@@ -80,13 +80,18 @@ require_once ( FW_DIR . 'scripts.php' );
  */
 require_once ( FW_DIR . 'breadcrumbs.php' );
 
-
+/**
+ * include Posttype
+ *
+ */
+require_once ( FW_DIR .'posttype.php' );
 
 /**
  * get custom walker for wp_nav_menu
  *
  */
 require_once ( FW_EXT_DIR .'nav/nav_custom_walker.php' );
+
 
 /**
  * include Shortcode
@@ -98,7 +103,6 @@ require_once ( FW_EXT_DIR .'shortcodes/shortcodes.php' );
  * Include the meta-box plugin.
  *
  */
-
 
 define( 'RWMB_URL', trailingslashit( FW_EXT_URL . 'meta-box' ) );
 define( 'RWMB_DIR', trailingslashit( FW_EXT_DIR . 'meta-box' ) );
