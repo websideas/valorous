@@ -21,7 +21,7 @@
     <![endif]-->
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class( ); ?>>
+<body <?php body_class( ); ?>>1234567
     <?php $position = kt_get_header(); ?>
     <?php
 	/**
