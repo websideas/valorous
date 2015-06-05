@@ -146,7 +146,7 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
                     $team_html .= '<div class="team-item layout-'.$team_layout.'">';
                         if( $team_layout == 1 ){
                             $team_html .= sprintf(
-                                '<figure>%s<div class="team-hover">%s</div></figure>%s %s %s',
+                                '<figure>%s<div class="team-hover"><div class="hover-inner">%s</div></div></figure>%s %s %s',
                                 $team_image,
                                 $team_social,
                                 $team_title,
@@ -155,9 +155,8 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
                             );
                         }elseif( $team_layout == 2 ){
                             $team_html .= sprintf(
-                                '<figure>%s<div class="team-hover">%s %s</div></figure>%s %s',
+                                '<figure>%s<div class="team-hover">%s</div></figure><div class="member-info">%s %s</div>',
                                 $team_image,
-                                $team_content,
                                 $team_social,
                                 $team_title,
                                 $team_regency

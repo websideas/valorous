@@ -108,6 +108,14 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
                 $icon_box_content,
                 $icon_box_linkmore
             );
+        }elseif($icon_box_layout == 7 || $icon_box_layout == 9){
+            $output .= sprintf(
+                '<div class="icon-box-left clearfix">%s %s</div>%s %s',
+                $icon_box_title,
+                $icon_box_icon,
+                $icon_box_content,
+                $icon_box_linkmore
+            );
         }elseif($icon_box_layout == 3){
             $output .= sprintf(
                 '%s<div class="icon-box-right">%s %s %s</div>',
@@ -116,6 +124,14 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
                 $icon_box_content,
                 $icon_box_linkmore
             );
+        }elseif($icon_box_layout == 8){
+            $output .= sprintf(
+                '<div class="icon-box-right">%s %s %s</div>%s',
+                $icon_box_title,
+                $icon_box_content,
+                $icon_box_linkmore,
+                $icon_box_icon
+            );
         }else{
             $output .= $icon_box_icon;
             $output .= $icon_box_title;
@@ -123,7 +139,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             $output .= $icon_box_linkmore;
         }
 
-        if($icon_box_layout == '4' || $icon_box_layout == '5' || $icon_box_layout == '6'){
+        if($icon_box_layout == '4' || $icon_box_layout == '5' || $icon_box_layout == '6' || $icon_box_layout == '9'){
             $output = '<div class="icon-box-inner" style="background:'.$icon_box_bg.';">'.$output.'</div>';
         }
 
@@ -190,10 +206,13 @@ vc_map( array(
             'value' => array(
                 __( 'Icon on Top of Title', THEME_LANG ) => '1',
                 __( 'Icon beside Title', THEME_LANG ) => '2',
+                __( 'Icon beside Title - Icon Right', THEME_LANG ) => '7',
                 __( 'Icon beside Title and Content aligned with Title', THEME_LANG ) => '3',
+                __( 'Icon beside Title and Content aligned with Title - Icon Right', THEME_LANG ) => '8',
                 __( 'Icon Boxed - Icon on Top of Boxed', THEME_LANG ) => '4',
                 __( 'Icon Boxed - Icon on Top of Title', THEME_LANG ) => '5',
-                __( 'Icon Boxed - Icon beside Title and Content aligned with Title', THEME_LANG ) => '6'
+                __( 'Icon Boxed - Icon beside Title and Content aligned with Title', THEME_LANG ) => '6',
+                __( 'Icon Boxed - Icon beside Title and Content aligned with Title - Icon Right', THEME_LANG ) => '9'
             ),
             'description' => __( 'Select your layout.', THEME_LANG ),
         ),
