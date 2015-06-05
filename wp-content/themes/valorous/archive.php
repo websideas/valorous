@@ -34,7 +34,7 @@ get_header(); ?>
                             <?php
                         }else{
                             the_archive_title( '<h1 class="page-title">', '</h1>' );
-                            the_archive_description( '<div class="term-description"><p>', '</p></div>' );
+                            the_archive_description( '<div class="term-description">', '</div>' );
                         }
 
                         ?>
@@ -44,7 +44,7 @@ get_header(); ?>
                         while( have_posts() ){
                             the_post();
                             // Include the page content template.
-                            get_template_part( 'templates/blog/content', get_post_format() );
+                            get_template_part( 'templates/blog/recentpost/content', get_post_format() );
                         }
                         ?>
                         </div>

@@ -67,10 +67,10 @@ function kt_is_active_plugin(   $plugin ){
  * @param $input string
  * @return boolean
  */
-function sanitize_boolean( $input = '' ) {
+function kt_sanitize_boolean( $input = '' ) {
 	return in_array($input, array('1', 'true', 'y', 'on'));
 }
-add_filter( 'sanitize_boolean', 'sanitize_boolean', 15 );
+add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
 
 /**
  * Convert hexdec color string to rgb(a) string
@@ -566,6 +566,33 @@ function kt_video_dailymotion($video_id, $width = 640, $height = 480, $iframe = 
  */
 
 function kt_render_carousel($data, $class = ''){
+    $data = shortcode_atts( array(
+        'margin' => 10,
+        'loop' => 'false',
+        'autoheight' => 'true',
+        'autoplay' => 'false',
+        'mousedrag' => 'true',
+        'autoplayspeed' => 5000,
+        'slidespeed' => 200,
+        'desktop' => 4,
+        'tablet' => 2,
+        'mobile' => 1,
+
+        'navigation' => 'true',
+        'navigation_always_on' => 'false',
+        'navigation_position' => 'center_outside',
+        'navigation_style' => '',
+        'navigation_border_width' => '1',
+        'navigation_border_color' => '',
+        'navigation_background' => '',
+        'navigation_color' => '',
+        'navigation_icon' => 'fa fa-angle-left|fa fa-angle-right',
+
+        'pagination' => 'true',
+        'pagination_color' => '',
+        'pagination_icon' => 'circle-o',
+    ), $data );
+
 
     extract( $data );
 

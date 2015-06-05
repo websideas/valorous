@@ -32,7 +32,7 @@ function theme_setup() {
     /**
 	 * Enable support for Post Formats
 	 */
-	add_theme_support( 'post-formats', array('gallery', 'link', 'quote', 'video', 'audio') );
+	add_theme_support( 'post-formats', array('gallery', 'link', 'image', 'quote', 'video', 'audio') );
 
     /*
     * Let WordPress manage the document title.
@@ -205,7 +205,32 @@ if ( ! function_exists( 'kt_comment_nav' ) ) :
     }
 endif;
 
+if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
+    /**
+     * Display an optional post thumbnail.
+     *
+     * Wraps the post thumbnail in an anchor element on index views, or a div
+     * element when on single views.
+     *
+     */
+    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $post_id = null) {
+        if ( post_password_required() || is_attachment()) {
+            return;
+        }
 
+        if(has_post_thumbnail()){ ?>
+            <?php if ( is_singular() ){ ?>
+                <div class="entry-thumb">
+                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                </div><!-- .entry-thumb -->
+            <?php }else{ ?>
+                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
+                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                </a>
+            <?php } ?>
+        <?php }
+    }
+endif;
 
 
 if ( ! function_exists( 'kt_post_thumbnail' ) ) :
@@ -223,7 +248,7 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
         $format = get_post_format();
         ?>
 
-            <?php if(has_post_thumbnail() && $format == ''){ ?>
+            <?php if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
                 <?php if ( is_singular() ){ ?>
                     <div class="entry-thumb">
                         <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
@@ -250,9 +275,14 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 }elseif($type == ''){
                     echo '<div class="entry-thumb">';
                     $images = get_galleries_post('_kt_gallery_images');
+                    $galleries_html = '';
                     foreach($images as $image){
-                        echo '<img src="'.$image['url'].'" alt="" />';
+                        $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
                     }
+                    $atts = array('desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_position' => 'center', 'margin' => 0);
+                    $carousel_ouput = kt_render_carousel($atts);
+                    echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
+
                     echo '</div><!-- .entry-thumb -->';
                 }
             }elseif($format == 'video'){
@@ -302,6 +332,9 @@ endif;
 
 
 
+
+
+
 /**
  *
  * Custom call back function for default post type
@@ -347,27 +380,184 @@ function kt_comments($comment, $args, $depth) {
 
 
 if ( ! function_exists( 'kt_paging_nav' ) ) :
-/**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @since Twenty Fourteen 1.0
- *
- * @global WP_Query   $wp_query   WordPress Query object.
- * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
- */
-function kt_paging_nav() {
-	global $wp_query, $wp_rewrite;
-    
-    // Don't print empty markup if there's only one page.
-	if ( $wp_query->max_num_pages < 2 ) {
-		return;
-	}
-    
-    echo get_the_posts_pagination( array(
-        'prev_text'          => __( 'Previous', THEME_LANG ),
-        'next_text'          => __( 'Next', THEME_LANG ),
-        'before_page_number' => '',
-    ) );
-    
+    /**
+     * Display navigation to next/previous set of posts when applicable.
+     */
+    function kt_paging_nav($post_id = null) {
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+        // Don't print empty markup if there's nowhere to navigate.
+        $previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
+        $next     = get_adjacent_post( false, '', false );
+
+        if ( ! $next && ! $previous ) return;
+
+        ?>
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            <div class="nav-links">
+                <?php
+                previous_post_link('<div class="nav-previous"><span class="meta-nav">'.__('Previous:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Previous post link', THEME_LANG ), TRUE);
+                next_post_link('<div class="nav-next"><span class="meta-nav">'.__('Next:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Next post link', THEME_LANG ), TRUE);
+                ?>
+            </div><!-- .nav-links -->
+        </nav><!-- .navigation -->
+    <?php
 }
 endif;
+
+
+
+if ( ! function_exists( 'kt_entry_meta_author' ) ) :
+    /**
+     * Prints HTML with meta information for author.
+     *
+     */
+    function kt_entry_meta_author() {
+        if ( 'post' == get_post_type() ) {
+            printf( '<span class="author vcard">%4$s <span class="screen-reader-text">%1$s </span><a class="url fn n" href="%2$s">%3$s</a></span>',
+                _x( 'Author', 'Used before post author name.', THEME_LANG ),
+                esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+                get_the_author(),
+                __('Posed by:', THEME_LANG )
+            );
+        }
+    }
+endif;
+
+if ( ! function_exists( 'kt_entry_meta_categories' ) ) :
+    /**
+     * Prints HTML with meta information for categories.
+     *
+     */
+    function kt_entry_meta_categories() {
+        if ( 'post' == get_post_type() ) {
+            $categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', THEME_LANG ) );
+            if ( $categories_list ) {
+                printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    _x( 'Categories', 'Used before category names.', THEME_LANG ),
+                    $categories_list
+                );
+            }
+        }
+    }
+endif;
+
+if ( ! function_exists( 'kt_entry_meta_tags' ) ) :
+    /**
+     * Prints HTML with meta information for tags.
+     *
+     */
+    function kt_entry_meta_tags() {
+        if ( 'post' == get_post_type() ) {
+            $tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'twentyfifteen' ) );
+            if ( $tags_list ) {
+                printf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    _x( 'Tags', 'Used before tag names.', 'twentyfifteen' ),
+                    $tags_list
+                );
+            }
+        }
+    }
+endif;
+
+
+
+if ( ! function_exists( 'kt_entry_meta_comments' ) ) :
+    /**
+     * Prints HTML with meta information for comments.
+     *
+     */
+    function kt_entry_meta_comments() {
+        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+            echo '<span class="comments-link">';
+            comments_popup_link( __( 'Leave a comment', THEME_LANG ), __( '1 Comment', THEME_LANG ), __( '% Comments', THEME_LANG ) );
+            echo '</span>';
+        }
+    }
+endif;
+
+if ( ! function_exists( 'kt_entry_meta_time' ) ) :
+    /**
+     * Prints HTML with meta information for time.
+     *
+     */
+    function kt_entry_meta_time($format = 'd F Y') {
+        if ( in_array( get_post_type(), array( 'post', 'attachment' ) ) ) {
+            $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+
+            if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+                $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+            }
+
+            $time_show = ($format == 'time') ? human_time_diff( get_the_time('U'), current_time('timestamp') ) . __(' ago', THEME_LANG) : get_the_date($format);
+
+            $time_string = sprintf( $time_string,
+                esc_attr( get_the_date( 'c' ) ),
+                $time_show,
+                esc_attr( get_the_modified_date( 'c' ) ),
+                get_the_modified_date()
+            );
+
+            printf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span><a href="%2$s" rel="bookmark">%3$s</a></span>',
+                _x( 'Posted on', 'Used before publish date.', THEME_LANG ),
+                esc_url( get_permalink() ),
+                $time_string
+            );
+        }
+    }
+endif;
+
+
+
+/* ---------------------------------------------------------------------------
+ * Entry author [entry_author]
+ * --------------------------------------------------------------------------- */
+if ( ! function_exists( 'kt_author_box' ) ) :
+    /**
+     * Prints HTML with information for author box.
+     *
+     */
+    function kt_author_box() {
+        ?>
+        <div class="entry-author clearfix">
+            <?php echo get_avatar( get_the_author_meta('ID'),'avatar' ); ?>
+            <div class="entry-author-desc">
+                <h4>
+                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+                        <?php echo get_the_author_meta('display_name'); ?>
+                    </a>
+                </h4>
+
+                <?php $description = get_the_author_meta('description'); ?>
+                <?php if($description){ ?><p class="author-description"><?php echo $description; ?></p><?php } ?>
+
+                <?php $url = get_the_author_meta('url'); ?>
+                <?php if($url){ ?>
+                    <p class="author-url">
+                        <span class="author-label"><?php _e( 'Website:', THEME_LANG ) ?> </span>
+                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a></p>
+                <?php } ?>
+
+                <?php $googleplus = get_the_author_meta('googleplus'); ?>
+                <?php $twitter = get_the_author_meta('twitter'); ?>
+                <?php $facebook = get_the_author_meta('facebook'); ?>
+
+                <p class="author-social">
+                    <span class="author-label"><?php _e( 'Social Links:', THEME_LANG ) ?> </span>
+                    <a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><i class="fa fa-envelope"></i></a>
+                    <?php if($facebook){ ?>
+                        <a href="<?php echo $facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <?php } ?>
+                    <?php if($twitter){ ?>
+                        <a href="<?php echo $twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <?php } ?>
+                    <?php if($googleplus){ ?>
+                        <a href="<?php echo $googleplus; ?>" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    <?php } ?>
+                </p>
+            </div>
+        </div>
+    <?php }
+endif;
+
+

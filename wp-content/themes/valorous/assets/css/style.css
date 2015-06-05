@@ -3190,13 +3190,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 
 
-
-
-
-
-
-
-
 /* Icon box */
 .kt-icon-box-wrapper{
     margin-bottom: 15px;
@@ -4203,6 +4196,51 @@ body.layout-boxed #page {
 /*
  * 17.3. Blog Posts
  */
+.posted-on time{
+    display: none;
+}
+.posted-on .entry-date.published{
+    display: inline;
+}
+.blog-posts .entry-title {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 0px;
+}
+.entry-header{
+    position: relative;
+    overflow: hidden;
+}
+.entry-meta-data {
+    font-style: italic;
+    margin-bottom: 5px;
+    color: #858785;
+}
+.entry-meta-data > span:after {
+    content: "/";
+    margin-right: 4px; margin-left: 6px;
+}
+.entry-meta-data > span:last-child:after {
+    content:'';
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.entry-more {
+    font-style: italic;
+}
+.entry-thumb {
+    display: block;
+    margin-bottom: 15px;
+}
+.entry-thumb .owl-kttheme .owl-dots{
+    position: absolute;
+    bottom: 15px;
+    margin: 0;
+}
+
+
+
+
 .blog-posts .post-item {
     position: relative;
     margin-bottom: 30px;
@@ -4259,42 +4297,39 @@ body.layout-boxed #page {
 
 
 .blog-posts .post-item.search-item .post-info {
-    margin-left: 0px; min-height: auto;
+    margin-left: 0px;
+    min-height: auto;
 }
 
 
+
+
+
+
+
+.blog-posts .post-item-recentpost .entry-date-time,
 .blog-posts .post-item .entry-date-time {
     color: #ffffff;
     width: 70px; display: block;
     text-align: center;
     padding: 10px 0px;
-    position: absolute; top: 0px; left: 0px; background: #333333; text-transform: uppercase;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #333333;
+    text-transform: uppercase;
 }
+.blog-posts .post-item-recentpost .entry-date-time .d,
 .blog-posts .post-item .entry-date-time .d{
     font-size: 30px;
     font-weight: bold;
     line-height: 34px;
 }
-.blog-posts .post-item .entry-date-time .y { margin-top: 3px; }
-.blog-posts .entry-title {
-    font-size: 18px; line-height: 1.5; margin-bottom: 0px;
+.blog-posts .post-item-recentpost .entry-date-time .y,
+.blog-posts .post-item .entry-date-time .y{
+    margin-top: 3px;
 }
-.entry-meta-data { font-style: italic;  margin-bottom: 5px; color: #858785; }
-.entry-meta-data > span:after {
-    content: "/";
-    margin-right: 4px; margin-left: 6px;
-}
-.entry-meta-data > span:last-child:after {
-    content:''; margin-left: 0px; margin-right: 0px;
-}
-.entry-more { font-style: italic; }
-.entry-thumb {
-    display: block;
-    margin-bottom: 15px;
-}
-.entry-ci {
-    margin-left: 20px; margin-right: 20px;
-}
+
 
 
 

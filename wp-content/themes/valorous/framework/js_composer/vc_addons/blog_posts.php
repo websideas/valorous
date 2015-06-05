@@ -7,13 +7,19 @@ if ( !defined('ABSPATH')) exit;
 class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
     var $excerpt_length;
 
-    function custom_excerpt_length( $length ) {
+    function custom_excerpt_length( ) {
         return $this->excerpt_length;
     }
 
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
+            'image_size' => '',
+            'readmore' => 'true',
+            'blog_pagination' => '',
+            'blog_type' => '',
+            'blog_layout' => 1,
+            'blog_columns' => 3,
 
             'source' => 'all',
             'categories' => '',
@@ -25,6 +31,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'max_items' => 10,
             "excerpt_length" => 50,
 
+            "show_author" => 'true',
+            "show_category" => 'true',
+            'show_comment' => 'true',
+            "show_date" => 'true',
+            "date_format" => 'd F Y',
+
             'css' => '',
             'css_animation' => '',
             'el_class' => '',
@@ -32,7 +44,9 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         ), $atts );
         extract($atts);
 
-        global $wp_query, $post, $paged;
+        $blog_pagination = apply_filters('sanitize_boolean', $blog_pagination);
+
+        global $wp_query, $paged;
 
 
         $output = '';
@@ -83,18 +97,31 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             echo "<div class='blog-posts'>";
             do_action('before_blog_posts_loop');
 
+            global $blog_atts;
+            $blog_atts = array(
+                'image_size' => $image_size,
+                'readmore' => apply_filters('sanitize_boolean', $readmore),
+                "show_author" => apply_filters('sanitize_boolean', $show_author),
+                "show_category" => apply_filters('sanitize_boolean', $show_category),
+                "show_comment" => apply_filters('sanitize_boolean', $show_comment),
+                "show_date" => apply_filters('sanitize_boolean', $show_date),
+                "date_format" => $date_format
+            );
+
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
+
+
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
-                get_template_part( 'templates/blog/loop' );
+                get_template_part( 'templates/blog/content', get_post_format() );
             endwhile;
             remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-
-            echo get_the_posts_pagination( array(
-                'prev_text'          => __( 'Previous', THEME_LANG ),
-                'next_text'          => __( 'Next', THEME_LANG ),
-                'before_page_number' => '',
-            ) );
-
+            if($blog_pagination){
+                echo get_the_posts_pagination( array(
+                    'prev_text'          => __( 'Previous', THEME_LANG ),
+                    'next_text'          => __( 'Next', THEME_LANG ),
+                    'before_page_number' => '',
+                ) );
+            }
             wp_reset_postdata();
 
             echo "</div>";
@@ -130,13 +157,87 @@ vc_map( array(
             "param_name" => "title",
             "admin_label" => true,
         ),
+
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Layout setting", THEME_LANG),
+            "param_name" => "layout_settings",
+        ),
+        // Layout setting
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Type', 'js_composer' ),
+            'param_name' => 'blog_type',
+            'value' => array(
+                __( 'Classic', 'js_composer' ) => 'classic',
+                __( 'Grid', 'js_composer' ) => 'grid',
+                __( 'Masonry', 'js_composer' ) => 'masonry',
+                //__( 'Timeline', 'js_composer' ) => 'timeline',
+            ),
+            'description' => '',
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Columns', THEME_LANG ),
+            'param_name' => 'blog_columns',
+            'value' => array(
+                __( '1 column', 'js_composer' ) => '1',
+                __( '2 columns', 'js_composer' ) => '2',
+                __( '3 columns', 'js_composer' ) => '3',
+                __( '4 columns', 'js_composer' ) => '4',
+                __( '6 columns', 'js_composer' ) => '5',
+            ),
+            'std' => '3',
+            'description' => __( 'Select columns.', THEME_LANG ),
+            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Layout', THEME_LANG ),
+            'param_name' => 'blog_layout',
+            'value' => array(
+                __( 'Layout 1', 'js_composer' ) => '1',
+                __( 'Layout 2', 'js_composer' ) => '2',
+                __( 'Layout 3', 'js_composer' ) => '3',
+            ),
+            'description' => __( 'Select columns.', THEME_LANG ),
+            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+        ),
+
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Extra setting", THEME_LANG),
+            "param_name" => "extra_settings",
+        ),
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size"
+        ),
+        /*
+        array(
+            "type" => "textfield",
+            "heading" => __( "Image size custom", THEME_LANG ),
+            "param_name" => "img_size_custom",
+            'description' => __('Default: 300x200 (Width x Height)', THEME_LANG),
+            "dependency" => array("element" => "image_size","value" => array('custom')),
+        ),
+        */
         array(
             'type' => 'kt_switch',
-            'heading' => __( 'Border in heading', THEME_LANG ),
-            'param_name' => 'border_heading',
+            'heading' => __( 'Show read more button', THEME_LANG ),
+            'param_name' => 'readmore',
             'value' => 'true',
-            "description" => __("Enable border in heading", THEME_LANG)
+            "description" => __("Show or hide the read more.", THEME_LANG),
         ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show pagination', THEME_LANG ),
+            'param_name' => 'blog_pagination',
+            'value' => 'true',
+            "description" => __("Show or hide the pagination.", THEME_LANG),
+        ),
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'CSS Animation', 'js_composer' ),
@@ -270,6 +371,67 @@ vc_map( array(
             'description' => __( 'Select sorting order.', 'js_composer' ),
             "admin_label" => true,
         ),
+
+
+
+
+
+
+
+
+        // Meta setting
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Author', THEME_LANG ),
+            'param_name' => 'show_author',
+            'value' => 'true',
+            "description" => __("Show or hide the post author.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Category', THEME_LANG ),
+            'param_name' => 'show_category',
+            'value' => 'true',
+            "description" => __("Show or hide the post category.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Comment', THEME_LANG ),
+            'param_name' => 'show_comment',
+            'value' => 'true',
+            "description" => __("Show or hide the post comment.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Date', THEME_LANG ),
+            'param_name' => 'show_date',
+            'value' => 'true',
+            "description" => __("Show or hide the post date.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Date format', 'js_composer' ),
+            'param_name' => 'date_format',
+            'value' => array(
+                __( '05 December 2014', 'js_composer' ) => 'd F Y',
+                __( 'December 13th 2014', 'js_composer' ) => 'F jS Y',
+                __( '13th December 2014', 'js_composer' ) => 'jS F Y',
+                __( '05 Dec 2014', 'js_composer' ) => 'd M Y',
+                __( 'Dec 05 2014', 'js_composer' ) => 'M d Y',
+                __( 'Time ago', 'js_composer' ) => 'time',
+            ),
+            'description' => __( 'Select order type. If "Meta value" or "Meta value Number" is chosen then meta key is required.', 'js_composer' ),
+            'group' => __( 'Meta', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'show_date',
+                'value' => array( 'true'),
+            ),
+        ),
+
 
         array(
             'type' => 'css_editor',

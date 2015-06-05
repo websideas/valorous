@@ -14,7 +14,7 @@ function ktheading_settings_field( $settings, $value ) {
 	$type = isset($settings['type']) ? $settings['type'] : '';
 	$class = isset($settings['class']) ? $settings['class'] : '';
     
-    return '<input type="hidden" class="wpb_vc_param_value ' . $settings['param_name'] . ' ' . $settings['type'] . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.'/>';
+    return '<input type="hidden" class="wpb_vc_param_value ' . $settings['param_name'] . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.esc_attr($value).'" '.$dependency.'/>';
 }
 vc_add_shortcode_param( 'kt_heading', 'ktheading_settings_field' );
 
@@ -184,7 +184,6 @@ vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_JS.'kt_selec
  */
 function vc_kt_authors_settings_field($settings, $value) {
 	$dependency = '';
-    $output = '';
 
 	$value_arr = $value;
 	if ( !is_array($value_arr) ) {
@@ -266,3 +265,44 @@ function vc_kt_socials_settings_field($settings, $value) {
 
 }
 vc_add_shortcode_param('kt_socials', 'vc_kt_socials_settings_field', FW_JS.'kt_socials.js');
+
+
+
+
+/**
+ * Image sizes.
+ *
+ */
+function vc_kt_image_sizes_settings_field($settings, $value){
+    $dependency = '';
+    $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
+    $type = isset($settings['type']) ? $settings['type'] : '';
+    $class = isset($settings['class']) ? $settings['class'] : '';
+    $custom = isset($settings['custom']) ? $settings['custom'] : false;
+
+    $posts_fields = array();
+    $sizes = kt_get_image_sizes();
+    $sizes['full'] = array();
+    if($custom){
+        $sizes['custom'] = array();
+    }
+
+    foreach($sizes as $key => $size){
+        $selected = ($value == $key) ? ' selected="selected"' : '';
+
+        $option_text = array();
+        $option_text[] = ucfirst($key);
+        if(isset($size['width'])){
+            $option_text[] = '('.$size['width'].' x '.$size['height'].')';
+        }
+        if(isset($size['crop']) && $size['crop']){
+            $option_text[] = __('Crop', THEME_LANG);
+        }
+        $posts_fields[] = "<option value='{$key}' {$selected}>".implode(' - ', $option_text)."</option>";
+    }
+    $output = '<select class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" '.$dependency.'>'
+        .implode( $posts_fields )
+        .'</select>';
+    return $output;
+}
+vc_add_shortcode_param('kt_image_sizes', 'vc_kt_image_sizes_settings_field');

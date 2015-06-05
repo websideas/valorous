@@ -1,13 +1,13 @@
-<article <?php post_class('post-item'); ?>>
-    <?php kt_post_thumbnail('blog-post', 'img-responsive'); ?>
-
-    <div class="entry-main-content">
-
+<article <?php post_class('post-item-recentpost'); ?>>
+    <div class="entry-header">
+        <?php kt_post_thumbnail_image('recent_posts', 'img-responsive'); ?>
         <div class="entry-date-time">
             <div class="m"> <?php the_time( 'M' ); ?></div>
             <div class="d"> <?php the_time( 'd' ); ?></div>
             <div class="y"> <?php the_time( 'Y' ); ?></div>
         </div>
+    </div>
+    <div class="entry-main-content">
         <div class="post-info">
             <div class="entry-ci">
                 <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
