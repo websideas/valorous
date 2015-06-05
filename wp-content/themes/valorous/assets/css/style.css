@@ -3665,7 +3665,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 
-/*===== KT TEAM ======*/
+/*===== Team ======*/
 .team-item{
     text-align: center;
 }
@@ -3797,6 +3797,149 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 .team-item.layout-2:hover{
     border-color:#1abc9c;
+}
+/*========= Timeline =========*/
+/*Vertical*/
+.kt-timeline-wrapper ul{
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: relative;
+}
+.kt-timeline-wrapper ul.kt-timeline-vertical:after{
+    content: "";
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 1px;
+    border-right:1px dashed #cfcfcf;
+}
+.kt-timeline-wrapper ul li.item-vertical{
+    display: inline-block;
+    margin: 35px 0;
+    position: relative;
+    width: 100%;
+}
+.kt-timeline-wrapper ul li.item-vertical:first-child:after,
+.kt-timeline-wrapper ul li.item-vertical:last-child:after{
+    background: #cfcfcf;
+    border-radius: 50%;
+    content: "";
+    height: 8px;
+    position: absolute;
+    width: 8px;
+    left:50%;
+    margin-left:-4px;
+}
+.kt-timeline-wrapper ul li.item-vertical:first-child:after{
+    top:-35px;
+}
+.kt-timeline-wrapper ul li.item-vertical:last-child:after{
+    bottom:-45px;
+}
+.kt-timeline-wrapper ul li.item-vertical .icon-timeline{
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    z-index:10;
+    margin:0;
+    line-height: 1;
+} 
+.kt-timeline-wrapper ul li.item-vertical .icon-timeline .vc_icon_element-inner{
+    line-height: 122px!important;
+}
+.kt-timeline-wrapper ul li.item-vertical .timeline-info{
+    margin-left: 0;
+    padding-right: 30px;
+    text-align: right;
+    width: 45%;
+}
+.kt-timeline-wrapper ul li.item-vertical:nth-child(2n) .timeline-info{
+    float: right;
+    padding-left: 30px;
+    text-align: left;
+}
+/*Horizontal*/
+.kt-timeline-wrapper ul.column-4 li.item-horizontal,
+.kt-timeline-wrapper ul li.item-horizontal{
+    float: left;
+    text-align: center;
+    width: 25%;
+    position: relative;
+    margin:0 0 20px;
+}
+.kt-timeline-wrapper ul.column-3 li.item-horizontal{
+    width:33.33%;
+}
+.kt-timeline-wrapper ul.column-4 li.item-horizontal:nth-child(4n+1),
+.kt-timeline-wrapper ul.column-2 li.item-horizontal:nth-child(2n+1),
+.kt-timeline-wrapper ul.column-3 li.item-horizontal:nth-child(3n+1){
+    clear:left;
+}
+.kt-timeline-wrapper ul.column-2 li.item-horizontal{
+    width:50%;
+}
+.kt-timeline-wrapper ul li.item-horizontal:first-child .icon-timeline:before,
+.kt-timeline-wrapper ul li.item-horizontal:last-child .icon-timeline:before{
+    content: "";
+    display: block;
+    height: 12px;
+    position: absolute;
+    top: 50%;
+    margin-top:-6px;
+    width: 12px;
+    z-index: 10;
+    border:3px solid #cfcfcf;
+    border-radius:50%;
+    background: #fff;
+}
+.kt-timeline-wrapper ul li.item-horizontal:first-child .icon-timeline:before{
+    left:0;
+}
+.kt-timeline-wrapper ul li.item-horizontal:last-child .icon-timeline:before{
+    right:0;
+}
+.kt-timeline-wrapper ul li.item-horizontal .timeline-info{
+    padding:0 10px;
+    margin-top:20px;
+}
+.kt-timeline-wrapper ul li.item-horizontal .icon-timeline{
+    margin:0;
+    position: relative;
+}
+.kt-timeline-wrapper ul li.item-horizontal .icon-timeline:after{
+    width:100%;
+    height:1px;
+    content:"";
+    position: absolute;
+    top:50%;
+    left:0;
+    border-bottom:1px dashed #cfcfcf;
+    z-index:-1;
+}
+.kt-timeline-wrapper ul li.item-horizontal .divider-icon{
+    background: #ebebeb;
+    height: 55px;
+    margin: 0 auto;
+    position: relative;
+    width: 1px;
+}
+.kt-timeline-wrapper ul li.item-horizontal .divider-icon:after{
+    background: #ebebeb;
+    border-radius: 3px;
+    bottom: 0;
+    content: "";
+    display: inline-block;
+    height: 5px;
+    left: -2px;
+    position: absolute;
+    width: 5px;
 }
 
 /* ==============================

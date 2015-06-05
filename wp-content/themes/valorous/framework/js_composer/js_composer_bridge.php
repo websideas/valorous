@@ -108,7 +108,8 @@ $composer_addons = array(
     'skill.php',
     'socials.php',
     //'designer_products.php',
-    'team.php'
+    'team.php',
+    'timeline.php'
 );
 
 foreach ( $composer_addons as $addon ) {

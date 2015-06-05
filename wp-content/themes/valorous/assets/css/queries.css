@@ -138,7 +138,15 @@ only screen and (min-resolution: 144dpi) {
     .page-bg-cover .cover-img {
         height: 200px;
     }
-
+    
+    .kt-timeline-wrapper ul li.item-horizontal{
+        float:none;
+        width:100%;
+    }
+    .kt-timeline-wrapper ul li.item-horizontal .icon-timeline:after,
+    .kt-timeline-wrapper ul li.item-horizontal .icon-timeline:before{
+        display: none!important;
+    }
 }
 /* 10. Styles for devices(<=480px ) */
 @media (max-width: 480px) {
@@ -230,6 +238,35 @@ only screen and (min-resolution: 144dpi) {
     }
     .carousel-wrapper-top .block-heading{
         padding-right: 0;
+    }
+    
+    .kt-timeline-wrapper ul li.item-vertical{
+        display: table;
+    }
+    .kt-timeline-wrapper ul li.item-vertical .icon-timeline{
+        left:0;
+        padding-right:15px;
+        transform: none;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -o-transform: none;
+    }
+    .kt-timeline-wrapper ul.kt-timeline-vertical:after,
+    .kt-timeline-wrapper ul li.item-vertical:after{
+        display: none;
+    }
+    .kt-timeline-wrapper ul li.item-vertical .timeline-info,
+    .kt-timeline-wrapper ul li.item-vertical:nth-child(2n) .timeline-info{
+        width:100%;
+        float:none;
+        text-align: left;
+        padding:0;
+    }
+    .kt-timeline-wrapper ul li.item-vertical .icon-timeline,
+    .kt-timeline-wrapper ul li.item-vertical .timeline-info{
+        display: table-cell;
+        vertical-align: middle;
+        position: static;
     }
 }
 /* 11. Styles for devices(<=320px ) */
