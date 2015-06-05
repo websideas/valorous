@@ -146,10 +146,9 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
 
 // Add your Visual Composer logic here
 vc_map( array(
-    "name" => __( "Blog Posts", THEME_LANG),
+    "name" => __( "Recent Posts", THEME_LANG),
     "base" => "recentposts",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Display blog posts", THEME_LANG),
     "params" => array(
         array(
             "type" => "textfield",

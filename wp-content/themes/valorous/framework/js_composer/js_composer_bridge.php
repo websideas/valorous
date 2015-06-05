@@ -95,6 +95,7 @@ $composer_addons = array(
     'contact_info.php',
     'clients_carousel.php',
     'blog_posts_carousel.php',
+    'recentpost.php',
     'testimonial_carousel.php',
     //'sales_countdown.php',
     //'designer_collection_carousel.php',
