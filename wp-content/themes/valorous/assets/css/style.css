@@ -3935,6 +3935,36 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     width: 5px;
 }
 
+/*========= Dropcap ===========*/
+.kt_dropcap{
+    display: block;
+    float: left;
+    font-size: 40px;
+    margin-right: 10px;
+    margin-top: 5px;
+    text-align: center;
+}
+.kt_dropcap.dropcap-lg{
+    height: 70px;
+    line-height: 70px;
+    width: 70px;
+}
+.kt_dropcap.dropcap-md{
+    height: 60px;
+    line-height: 60px;
+    width: 60px;
+}
+.kt_dropcap.dropcap-sm{
+    height: 50px;
+    line-height: 50px;
+    width: 50px;
+}
+.kt_dropcap.dropcap-xs{
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+}
+
 /* ==============================
    16. Popup
    ============================== */

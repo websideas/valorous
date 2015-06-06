@@ -110,7 +110,8 @@ $composer_addons = array(
     'socials.php',
     //'designer_products.php',
     'team.php',
-    'timeline.php'
+    'timeline.php',
+    'dropcap.php'
 );
 
 foreach ( $composer_addons as $addon ) {
