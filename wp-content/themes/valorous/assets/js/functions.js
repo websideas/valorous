@@ -29,7 +29,7 @@
         init_backtotop();
         init_MainMenu();
         init_MobileMenu();
-        
+        init_timeline_animation();
 
 
     });
@@ -259,6 +259,48 @@
             });
 
             
+        });
+    }
+    
+    
+    /* ---------------------------------------------
+     Timeline Animation
+     --------------------------------------------- */
+    function init_timeline_animation(){
+
+        $('.kt-timeline-wrapper > ul').each(function(){
+            var window_width = $(window).width(),
+                $timeline_wrap = $(this),
+                $class_animate = $timeline_wrap.attr('data-animation'),
+                $timeline_item = $timeline_wrap.find('li.kt-timeline-item'),
+                $count = 0;
+            $timeline_item.each(function(i){
+                var $timeline = $(this);
+                
+                var animation_delay = $count * 200;
+                $count++;
+                if (window_width > 991) {
+					$timeline.css({
+						"-webkit-animation-delay": animation_delay + "ms",
+						"-moz-animation-delay": animation_delay + "ms",
+						"-ms-animation-delay": animation_delay + "ms",
+						"-o-animation-delay": animation_delay + "ms",
+						"animation-delay": animation_delay + "ms"
+					});
+                    
+                    $timeline.css({'opacity':'0'});
+                    $timeline.waypoint(function() {
+						$timeline.addClass("animated").addClass($class_animate);
+                        $timeline.css({'opacity':'1'});
+					}, {
+						triggerOnce: true,
+						offset: "90%"
+					});
+                    
+				}else{
+                    $timeline.addClass("no-effect");
+                }
+            });
         });
     }
     

@@ -41,6 +41,18 @@ vc_map( array(
         ),
         array(
             'type' => 'dropdown',
+            'heading' => __( 'Animation', 'js_composer' ),
+            'param_name' => 'kt_animation',
+            'value' => array(
+                __( 'None', 'js_composer' ) => 'none',
+                __( 'FadeInUp', 'js_composer' ) => 'fadeInUp',
+                __( 'BounceInLeft', 'js_composer' ) => 'bounceInLeft',
+
+            ),
+            'description' => __( 'Animation.', 'js_composer' ),
+        ),
+        array(
+            'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
             'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
@@ -273,6 +285,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         extract( shortcode_atts( array(
             'timeline_tyle' => '',
             'timeline_column' => '',
+            'kt_animation' => '',
             'color' => '',
             'color_hover' => '',
             'custom_color' => '',
@@ -288,10 +301,13 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         $data_type = $timeline_tyle;
         $data_icon = 'color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'"';
         
+        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
+        
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-timeline-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'none_animation' => $none_animation
         );
         
         if(isset( $timeline_column ) || $timeline_column != ''){
@@ -300,7 +316,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div class="'.esc_attr( $elementClass ).'"><ul class="kt-timeline-'.$timeline_tyle.' '.$column.'">' . do_shortcode($content) . '</ul></div>';
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.'">' . do_shortcode($content) . '</ul></div>';
 
     }
 }

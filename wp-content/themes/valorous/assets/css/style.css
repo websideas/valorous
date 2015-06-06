@@ -3807,6 +3807,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     top: 0;
     width: 1px;
     border-right:1px dashed #cfcfcf;
+    z-index:-1;
 }
 .kt-timeline-wrapper ul li.item-vertical{
     display: inline-block;

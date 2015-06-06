@@ -139,6 +139,9 @@ only screen and (min-resolution: 144dpi) {
         height: 200px;
     }
     
+    .kt-timeline-wrapper ul.column-4 li.item-horizontal,
+    .kt-timeline-wrapper ul.column-3 li.item-horizontal,
+    .kt-timeline-wrapper ul.column-2 li.item-horizontal,
     .kt-timeline-wrapper ul li.item-horizontal{
         float:none;
         width:100%;
