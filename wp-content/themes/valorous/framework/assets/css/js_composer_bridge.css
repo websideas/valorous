@@ -11,6 +11,17 @@
     padding: 15px;
     text-transform: uppercase;
 }
+.wpb_el_type_kt_heading.kt_sub_heading{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-bottom: 1px solid #ddd;
+    clear: both;
+    float: none;
+    margin: 0 15px -5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    width: auto;
+}
 .wpb_el_type_kt_heading.vc_shortcode-param .wpb_element_label{
     margin-bottom: 0;
 }
@@ -25,6 +36,8 @@
     height: auto!important;
     min-height: 25px;
 }
+
+
 
 
 

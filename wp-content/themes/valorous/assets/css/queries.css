@@ -19,33 +19,39 @@
 only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5),
 only screen and (min-resolution: 144dpi) {
-   .site-branding .site-logo.retina-logo-wrapper .retina-logo{ display: block; }
-   .site-branding .site-logo.retina-logo-wrapper .default-logo { display: none; }
+    .site-branding .site-logo.retina-logo-wrapper .retina-logo{ display: block; }
+    .site-branding .site-logo.retina-logo-wrapper .default-logo { display: none; }
 }
 
-/* 3. Styles for devices(>=1200px) */
+/* 2. Styles for devices(>=1200px) */
 @media (min-width: 1200px) {
-    *{}
+    .col-clearfix-lg {
+        clear: both;
+    }
 }
-
-/* 4. Styles for devices(>=992px and <=1199px) */
+/* 3. Styles for devices(>=992px and <=1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
-    *{}
+    .col-clearfix-md {
+        clear: both;
+    }
 }
-
-/* 5. Styles for devices(<=1199px) */
+/* 4. Styles for devices(<=1199px) */
 @media (max-width: 1199px) {
-    *{}
     .woocommerce ul.products.lists .product-image-container,
     .woocommerce ul.products.lists .product-meta-wrapper,
     .woocommerce ul.products.lists .product-item-tools{
         width: 33%;
     }
 }
-
+/* 5. Styles for devices(>=992px) */
+@media (min-width: 992px) {
+    .col-clearfix-md {
+        clear: both;
+    }
+}
 /* 6. Styles for devices(<=991px ) */
 @media (max-width: 991px) {
-    *{}
+
     #header.is-sticky,
     .header-container.header-absolute{
         position: static!important;
@@ -78,18 +84,29 @@ only screen and (min-resolution: 144dpi) {
     .header-layout2 #header-inner,
     .header-layout3 #header-inner,
     #mobile-content-all{
-        padding: 0 75px 0 0;
+        padding: 0 37px 0 0;
         width: 100%;
         margin: 10px 0;
         position: relative;
     }
-    .header-layout2 .header-content-bottom .searchform, 
+    .header-layout2 #header-inner.tool-mobile-2,
+    .header-layout3 #header-inner.tool-mobile-2,
+    #mobile-content-all.tool-mobile-2{
+        padding-right: 75px;
+    }
+    .header-layout2 #header-inner.tool-mobile-3,
+    .header-layout3 #header-inner.tool-mobile-3,
+    #mobile-content-all.tool-mobile-3{
+        padding-right: 112px;
+    }
+
+    .header-layout2 .header-content-bottom .searchform,
     .header-layout3 .header-content-bottom .searchform{
         width: 100%;
         margin: 0;
     }
     #mobile-content-all .searchform input[type="text"],
-    .header-layout2 .header-content-bottom .searchform input[type="text"], 
+    .header-layout2 .header-content-bottom .searchform input[type="text"],
     .header-layout3 .header-content-bottom .searchform input[type="text"]{
         width: 100%;
         height: 32px;
@@ -97,10 +114,10 @@ only screen and (min-resolution: 144dpi) {
     .header-content-top{
         margin: 0;
     }
-    
-    
-    
-    
+
+
+
+
     #footer-bottom .display-table{
         display: block;
     }
@@ -112,7 +129,7 @@ only screen and (min-resolution: 144dpi) {
     #footer-bottom .display-table .display-td:last-child{
         margin-bottom: 0;
     }
-    
+
     #main,
     .sidebar{
         margin-bottom: 20px;
@@ -122,12 +139,20 @@ only screen and (min-resolution: 144dpi) {
     }
 }
 /* 7. Styles for devices(>=768px and <= 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-clearfix-sm {
+        clear: both;
+    }
+}
+
 /* 8. Styles for devices(<=767px ) */
 @media (max-width: 767px) {
-    *{}
+    .col-clearfix-xs {
+        clear: both;
+    }
     .themedev-product-popup h1.product_title{
         margin-top:10px;
-    } 
+    }
     .woocommerce ul.products li.first{
         clear: none;
     }
@@ -138,7 +163,6 @@ only screen and (min-resolution: 144dpi) {
     .page-bg-cover .cover-img {
         height: 200px;
     }
-    
     .kt-timeline-wrapper ul.column-4 li.item-horizontal,
     .kt-timeline-wrapper ul.column-3 li.item-horizontal,
     .kt-timeline-wrapper ul.column-2 li.item-horizontal,
@@ -153,7 +177,86 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 10. Styles for devices(<=480px ) */
 @media (max-width: 480px) {
-    *{}
+    .block-heading-tabs-content{
+        display: none;
+    }
+    .heading-nav-bar,
+    .block-heading-tabs-content.active{
+        display: block;
+    }
+    .block-heading-tabs-wapper{
+        padding-bottom: 0;
+        border: none;
+    }
+    .block-heading-tabs-wapper h3{
+        float: none;
+        padding-bottom: 15px;
+        position: relative;
+    }
+    .block-heading-tabs-wapper.block-heading-underline h3{
+        border-bottom: 1px solid #cccccc;
+    }
+    .block-heading-tabs{
+        border: 1px solid #ccc;
+        clear: both;
+        display: block;
+        float: none;
+        margin: 0;
+        padding: 5px 10px;
+        text-align: left;
+        margin: -20px 0 25px;
+    }
+    .block-heading-tabs-wapper.block-heading-underline .block-heading-tabs{
+        border-top: 0;
+        margin-bottom: 0;
+    }
+    .block-heading-tabs li{
+        border-bottom: 1px solid #ccc;
+        display: block;
+        padding: 0;
+    }
+    .block-heading-tabs li:last-child{
+        border-bottom: none;
+    }
+    .block-heading-tabs li a{
+        display: block;
+        padding: 7px;
+    }
+    .categories-top-sellers-wrapper .block-heading-tabs-wapper h3{
+        margin-right: 0;
+    }
+    .categories-top-sellers-wrapper .block-heading-tabs-wapper .block-heading-tabs{
+        float: none;
+        border: none;
+        padding: 0;
+        margin: -20px 0 25px;
+    }
+    .categories-top-sellers-wrapper .block-heading-tabs-wapper .block-heading-tabs li{
+        padding: 0;
+        border: none;
+    }
+    .categories-top-sellers-wrapper .block-heading-tabs-wapper .block-heading-tabs li a{
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+    .mailchimp-form .input-group{
+        display: block;
+    }
+    .mailchimp-form .input-group .form-control,
+    .mailchimp-form .input-group-addon,
+    .mailchimp-form .input-group-btn{
+        display: block;
+        float: none;
+        margin-bottom: 10px;
+        width: 100%;
+        float: none;
+    }
+    .mailchimp-form .input-group-btn button{
+        width: 100%;
+    }
+
     .page-bg-cover .cover-img {
         height: 150px;
     }
@@ -166,8 +269,8 @@ only screen and (min-resolution: 144dpi) {
         -moz-appearance: none;
         appearance: none;
     }
-    .woocommerce ul.products.lists .product-image-container, 
-    .woocommerce ul.products.lists .product-meta-wrapper, 
+    .woocommerce ul.products.lists .product-image-container,
+    .woocommerce ul.products.lists .product-meta-wrapper,
     .woocommerce ul.products.lists .product-item-tools{
         width: 100%;
         padding: 0;
@@ -203,7 +306,7 @@ only screen and (min-resolution: 144dpi) {
     .woocommerce #review_form #respond select{
         display: block!important;
     }
-    .woocommerce .single_variation_wrap .variations_button, 
+    .woocommerce .single_variation_wrap .variations_button,
     .woocommerce .cart-product-buttons{
         margin: 0 0 10px;
         width: 100%;
@@ -221,7 +324,7 @@ only screen and (min-resolution: 144dpi) {
         float: none;
         margin: 0;
     }
-    
+
     .woocommerce table.shop_table .product-quantity,
     .woocommerce table.shop_table td.product-quantity{
         display: none;
@@ -242,47 +345,17 @@ only screen and (min-resolution: 144dpi) {
     .carousel-wrapper-top .block-heading{
         padding-right: 0;
     }
-    
-    .kt-timeline-wrapper ul li.item-vertical{
-        display: table;
-    }
-    .kt-timeline-wrapper ul li.item-vertical .icon-timeline{
-        left:0;
-        padding-right:15px;
-        transform: none;
-        -webkit-transform: none;
-        -moz-transform: none;
-        -o-transform: none;
-    }
-    .kt-timeline-wrapper ul.kt-timeline-vertical:after,
-    .kt-timeline-wrapper ul li.item-vertical:after{
-        display: none;
-    }
-    .kt-timeline-wrapper ul li.item-vertical .timeline-info,
-    .kt-timeline-wrapper ul li.item-vertical:nth-child(2n) .timeline-info{
-        width:100%;
-        float:none;
-        text-align: left;
-        padding:0;
-    }
-    .kt-timeline-wrapper ul li.item-vertical .icon-timeline,
-    .kt-timeline-wrapper ul li.item-vertical .timeline-info{
-        display: table-cell;
-        vertical-align: middle;
-        position: static;
-    }
 }
 /* 11. Styles for devices(<=320px ) */
 @media (max-width: 320px) {
-    *{}
     .content-404 form{max-width: 320px;}
-    .woocommerce table.shop_table td.actions .checkout-button, 
+    .woocommerce table.shop_table td.actions .checkout-button,
     .woocommerce table.shop_table td.actions input[name="update_cart"]{
         width:100%;
         text-align: center;
         margin:0;
     }
-    .woocommerce table.shop_table td.actions .checkout-button{ 
-        margin:0 0 10px; 
+    .woocommerce table.shop_table td.actions .checkout-button{
+        margin:0 0 10px;
     }
 }

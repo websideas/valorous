@@ -30,6 +30,7 @@
         init_MainMenu();
         init_MobileMenu();
         init_timeline_animation();
+        init_masonry();
 
 
     });
@@ -62,6 +63,21 @@
             });
         });
     });
+
+    /* ---------------------------------------------
+     Masonry
+     --------------------------------------------- */
+
+    function init_masonry(){
+        (function($){
+
+            $(".blog-posts-masonry .row").waitForImages(function(){
+                $(this).masonry();
+            });
+
+        })(jQuery);
+    }
+
 
     /* ---------------------------------------------
      KT custom css

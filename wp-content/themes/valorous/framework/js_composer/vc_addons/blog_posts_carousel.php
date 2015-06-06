@@ -405,7 +405,8 @@ vc_map( array(
             "max" => "25",
             "step" => "1",
             'group' => __( 'Carousel settings', THEME_LANG )
-        ),array(
+        ),
+        array(
             "type" => "kt_heading",
             "heading" => __("Navigation settings", THEME_LANG),
             "param_name" => "navigation_settings",

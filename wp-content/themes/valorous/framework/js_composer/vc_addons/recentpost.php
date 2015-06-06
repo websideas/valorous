@@ -15,11 +15,12 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
         $atts = shortcode_atts( array(
             'title' => '',
             'image_size' => '',
+            'show_thumb' => 'true',
             'readmore' => 'true',
-            'blog_pagination' => '',
-            'blog_type' => '',
+            'blog_type' => 'classic',
             'blog_layout' => 1,
             'blog_columns' => 3,
+            'blog_columns_tablet' => 2,
 
             'source' => 'all',
             'categories' => '',
@@ -44,7 +45,12 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
         ), $atts );
         extract($atts);
 
-        $blog_pagination = apply_filters('sanitize_boolean', $blog_pagination);
+        $elementClass = array(
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts ),
+            'extra' => $this->getExtraClass( $el_class ),
+            'css_animation' => $this->getCSSAnimation( $css_animation ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
+        );
 
         global $wp_query, $paged;
 
@@ -94,7 +100,7 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
         ob_start();
         $wp_query = new WP_Query( $args );
         if ( $wp_query->have_posts() ) :
-            echo "<div class='blog-posts'>";
+            echo "<div class='blog-posts blog-posts-".$blog_type."'>";
             do_action('before_blog_posts_loop');
 
             global $blog_atts;
@@ -102,6 +108,7 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
                 'image_size' => $image_size,
                 'readmore' => apply_filters('sanitize_boolean', $readmore),
                 "show_author" => apply_filters('sanitize_boolean', $show_author),
+                "show_thumb" => apply_filters('sanitize_boolean', $show_thumb),
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
@@ -110,18 +117,44 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
 
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
+            echo "<div class='blog-posts-content clearfix'>";
 
-            while ( $wp_query->have_posts() ) : $wp_query->the_post();
-                get_template_part( 'templates/blog/recentpost/content', get_post_format() );
-            endwhile;
-            remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-            if($blog_pagination){
-                echo get_the_posts_pagination( array(
-                    'prev_text'          => __( 'Previous', THEME_LANG ),
-                    'next_text'          => __( 'Next', THEME_LANG ),
-                    'before_page_number' => '',
-                ) );
+            if($blog_type == 'grid' || $blog_type == 'masonry'){
+                $elementClass[] = 'blog-posts-columns-'.$blog_columns;
+                echo "<div class='row'>";
+                $bootstrapColumn = round( 12 / $blog_columns );
+                $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
+
+
+                $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
             }
+            $i = 1;
+            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                    $classes_extra = '';
+                    if($blog_type == 'grid'){
+                        if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
+                            $classes_extra .= ' col-clearfix-md col-clearfix-lg';
+
+                        if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
+                            $classes_extra .= ' col-clearfix-sm';
+                    }
+                    echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
+                }
+                get_template_part( 'templates/blog/recentpost/content', get_post_format() );
+                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                    echo "</div><!-- .article-post-item -->";
+                }
+                $i++;
+            endwhile;
+
+            if($blog_type == 'grid' || $blog_type == 'masonry'){
+                echo "</div><!-- .row -->";
+            }
+
+
+            echo "</div>";
+            remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
             wp_reset_postdata();
 
             echo "</div>";
@@ -132,12 +165,7 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
 
         $output .= ob_get_clean();
 
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
-        );
+
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
         return '<div class="'.esc_attr( $elementClass ).'">'.$output.'</div>';
@@ -176,20 +204,58 @@ vc_map( array(
             'description' => '',
         ),
         array(
+            "type" => "kt_heading",
+            "heading" => __("Columns to Show?", THEME_LANG),
+            "edit_field_class" => "kt_sub_heading  vc_column",
+            "param_name" => "items_show",
+            'dependency' => array(
+                    'element' => 'blog_type',
+                    'value' => array( 'grid', 'masonry' )
+                ),
+        ),
+
+
+        array(
             'type' => 'dropdown',
-            'heading' => __( 'Columns', THEME_LANG ),
+            'heading' => __( 'on Desktop', THEME_LANG ),
             'param_name' => 'blog_columns',
             'value' => array(
                 __( '1 column', 'js_composer' ) => '1',
                 __( '2 columns', 'js_composer' ) => '2',
                 __( '3 columns', 'js_composer' ) => '3',
                 __( '4 columns', 'js_composer' ) => '4',
-                __( '6 columns', 'js_composer' ) => '5',
+                __( '6 columns', 'js_composer' ) => '6',
             ),
             'std' => '3',
-            'description' => __( 'Select columns.', THEME_LANG ),
-            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+            "edit_field_class" => "vc_col-sm-6 vc_column",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
         ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'on Tablet', THEME_LANG ),
+            'param_name' => 'blog_columns_tablet',
+            'value' => array(
+                __( '1 column', 'js_composer' ) => '1',
+                __( '2 columns', 'js_composer' ) => '2',
+                __( '3 columns', 'js_composer' ) => '3',
+                __( '4 columns', 'js_composer' ) => '4',
+                __( '6 columns', 'js_composer' ) => '6',
+            ),
+            'std' => '2',
+            "edit_field_class" => "vc_col-sm-6 vc_column",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
+        ),
+
+
+
+
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'Layout', THEME_LANG ),
@@ -209,9 +275,20 @@ vc_map( array(
             "param_name" => "extra_settings",
         ),
         array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show thumbail image', THEME_LANG ),
+            'param_name' => 'show_thumb',
+            'value' => 'true',
+            "description" => __("Show or hide the thumbnail image.", THEME_LANG),
+        ),
+        array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
-            "param_name" => "image_size"
+            "param_name" => "image_size",
+            'dependency' => array(
+                'element' => 'show_thumb',
+                'value' => array( 'true' )
+            ),
         ),
         /*
         array(
@@ -228,13 +305,6 @@ vc_map( array(
             'param_name' => 'readmore',
             'value' => 'true',
             "description" => __("Show or hide the read more.", THEME_LANG),
-        ),
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Show pagination', THEME_LANG ),
-            'param_name' => 'blog_pagination',
-            'value' => 'true',
-            "description" => __("Show or hide the pagination.", THEME_LANG),
         ),
 
         array(
