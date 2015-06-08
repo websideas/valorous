@@ -112,6 +112,7 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
+                'blog_layout' => $blog_layout,
                 "date_format" => $date_format
             );
 
@@ -121,11 +122,11 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
                 $elementClass[] = 'blog-posts-columns-'.$blog_columns;
+                $elementClass[] = 'blog-posts-layout-'.$blog_layout;
                 echo "<div class='row'>";
+
                 $bootstrapColumn = round( 12 / $blog_columns );
                 $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
-
-
                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
             }
             $i = 1;
@@ -209,9 +210,9 @@ vc_map( array(
             "edit_field_class" => "kt_sub_heading  vc_column",
             "param_name" => "items_show",
             'dependency' => array(
-                    'element' => 'blog_type',
-                    'value' => array( 'grid', 'masonry' )
-                ),
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
         ),
 
 

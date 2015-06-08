@@ -8,6 +8,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
+            'border_heading' => '',
 
             'source' => 'all',
             'categories' => '',

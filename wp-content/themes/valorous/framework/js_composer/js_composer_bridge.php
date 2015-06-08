@@ -20,34 +20,42 @@ vc_add_param( 'vc_single_image', array(
     ),
     'description' => __( "Image effect when hover", THEME_LANG),
     'dependency' => array(
-		'element' => 'style',
-		'is_empty' => true
-	) 
-));
-
-
-vc_add_param("vc_row", array(
-	'type' => 'dropdown',
-	'heading' => __( 'Equal height', THEME_LANG ),
-	'param_name' => 'equal_height',
-	'description' => __( 'Check here if you want column equal height.', THEME_LANG ),
-	'value' => array( 
-        __("None", THEME_LANG) => "",
-        __("Column", THEME_LANG) => "column",
-        __("Content item", THEME_LANG) => "content"
+        'element' => 'parallax',
+        'value' => array( 'content-moving', 'content-moving-fade' ),
     ),
 ));
 
+vc_add_params("vc_row", array(
+    array(
+        'type' => 'dropdown',
+        'heading' => __( 'Equal height', THEME_LANG ),
+        'param_name' => 'equal_height',
+        'description' => __( 'Check here if you want column equal height.', THEME_LANG ),
+        'value' => array(
+            __("None", THEME_LANG) => "",
+            __("Column", THEME_LANG) => "column",
+            __("Content item", THEME_LANG) => "content"
+        )
+    ),
+    array(
+        'type' => 'colorpicker',
+        'heading' => __( 'Color Overlay', 'js_composer' ),
+        'param_name' => 'color_overlay',
+        'description' => __( 'Select your color overlay for image and video ( rgba ).', 'js_composer' ),
+    ),
+));
 
-vc_add_param("vc_row_inner", array(
-	'type' => 'dropdown',
-	'heading' => __( 'Equal height', THEME_LANG ),
-	'param_name' => 'equal_height',
-	'description' => __( 'Check here if you want column equal height.', THEME_LANG ),
-	'value' => array( 
-        __("None", THEME_LANG) => "",
-        __("Column", THEME_LANG) => "column",
-        __("Content item", THEME_LANG) => "content"
+vc_add_params("vc_row_inner", array(
+    array(
+        'type' => 'dropdown',
+        'heading' => __( 'Equal height', THEME_LANG ),
+        'param_name' => 'equal_height',
+        'description' => __( 'Check here if you want column equal height.', THEME_LANG ),
+        'value' => array(
+            __("None", THEME_LANG) => "",
+            __("Column", THEME_LANG) => "column",
+            __("Content item", THEME_LANG) => "content"
+        ),
     ),
 ));
 

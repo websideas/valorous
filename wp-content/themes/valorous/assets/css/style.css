@@ -2020,6 +2020,18 @@ body.footer_fixed .static-footer{
     margin-bottom: 0;
 }
 
+/* Custom Parallax */
+.vc_parallax > * {
+    z-index: 2;
+}
+.parallax-overlay{
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
 /*
  * Single image
  */
@@ -3212,8 +3224,15 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt-icon-box-wrapper .icon-box-linkmore{
     display: inline-block;
     margin-top: 18px;
+    letter-spacing: 1px;
 }
-
+.kt-icon-box-wrapper .icon-box-linkmore:after{
+    content: '\f0da';
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    margin-left: 5px;
+}
 
 .kt-icon-box-wrapper.kt-icon-box-table-right .icon-box-left,
 .kt-icon-box-wrapper.kt-icon-box-table .icon-box-left{

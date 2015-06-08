@@ -11,8 +11,12 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'title' => '',
             'icon_box_layout' => '1',
             'icon_box_bg' => '#f7f7f7',
-            'link_text' => '',
             'link' => '',
+
+            'readmore' => 'false',
+            'readmore_text' => '',
+            'readmore_color' => '',
+            'readmore_color_hover' => '',
 
             'font_type' => '',
             'font_container' => '',
@@ -43,9 +47,10 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'css' => '',
         ), $atts );
         extract($atts);
+        $custom_css = '';
 
         $uniqid = 'kt-icon-box-'.uniqid();
-
+        $readmore = apply_filters('sanitize_boolean', $readmore);
         $style_title = '';
 
         extract( $this->getAttributes( $atts ) );
@@ -81,8 +86,19 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             $a_target = $link['target'];
             $icon_box_link = array('href="'.esc_attr( $a_href ).'"', 'title="'.esc_attr( $a_title ).'"', 'target="'.esc_attr( $a_target ).'"' );
 
-            if($link_text){
-                $icon_box_linkmore = '<a '.implode(' ', $icon_box_link).' class="icon-box-linkmore">'.__('Learn More', THEME_LANG).'</a>';
+            if($readmore_text && $readmore){
+                $styles_readmore = array();
+                $style_readmore = '';
+                if($readmore_color){
+                    $styles_readmore['color'] = 'color: '.esc_attr($readmore_color);
+                }
+                if ( ! empty( $styles_readmore ) ) {
+                    $style_readmore = 'style="' . esc_attr( implode( ';', $styles_readmore ) ) . '"';
+                }
+                $icon_box_linkmore = '<a '.$style_readmore.' '.implode(' ', $icon_box_link).' class="icon-box-linkmore">'.$readmore_text.'</a>';
+                if($readmore_color_hover){
+                    $custom_css .= '#'.$uniqid.' a.icon-box-linkmore:hover{color: '.esc_attr($readmore_color_hover).'!important}';
+                }
             }
             if($title){
                 $style_link = '';
@@ -143,7 +159,9 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         if($icon_box_layout == '4' || $icon_box_layout == '5' || $icon_box_layout == '6' || $icon_box_layout == '9'){
             $output = '<div class="icon-box-inner" style="background:'.$icon_box_bg.';">'.$output.'</div>';
         }
-
+        if($custom_css){
+            $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+        }
 
 
         $elementClass = array(
@@ -160,7 +178,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         }
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div id="'.$uniqid.'" class="'.esc_attr( $elementClass ).'">'.$output.'</div>';
+        return '<div id="'.$uniqid.'" class="'.esc_attr( $elementClass ).'">'.$output.$custom_css.'</div>';
 
     }
 }
@@ -183,21 +201,14 @@ vc_map( array(
         ),
         array(
             'type' => 'vc_link',
-            'heading' => __( 'Read More Link Url', 'js_composer' ),
+            'heading' => __( 'Link Url', 'js_composer' ),
             'param_name' => 'link',
-        ),
-        array(
-            "type" => "textfield",
-            'heading' => __( 'Read More Link Text', 'js_composer' ),
-            'param_name' => 'link_text',
-            'value' => __( 'Learn More', THEME_LANG ),
-            'desc' => __('Insert the text to display as the link', THEME_LANG)
         ),
         array(
             "type" => "textarea_html",
             "heading" => __("Content", THEME_LANG),
             "param_name" => "content",
-            "value" => __("Put your content here", THEME_LANG),
+            "value" => '',
             "description" => __("", THEME_LANG),
             "holder" => "div",
         ),
@@ -502,6 +513,42 @@ vc_map( array(
             'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
             'description' => __( '', 'js_composer' ),
         ),
+
+        //Read more options
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Read more', THEME_LANG ),
+            'param_name' => 'readmore',
+            'value' => 'false',
+            "description" => __("Show or hide read more button.", THEME_LANG),
+            'group' => __( 'Read more', THEME_LANG ),
+        ),
+        array(
+            "type" => "textfield",
+            'heading' => __( 'Read More Text', 'js_composer' ),
+            'param_name' => 'readmore_text',
+            'value' => __( 'Learn More', THEME_LANG ),
+            'desc' => __('Insert the text to display as the link', THEME_LANG),
+            'group' => __( 'Read more', THEME_LANG ),
+            "dependency" => array("element" => "readmore","value" => array('true')),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Read More color', 'js_composer' ),
+            'param_name' => 'readmore_color',
+            'description' => __( 'Select read more color.', 'js_composer' ),
+            'group' => __( 'Read more', THEME_LANG ),
+            "dependency" => array("element" => "readmore","value" => array('true')),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Read More color on Hover', 'js_composer' ),
+            'param_name' => 'readmore_color_hover',
+            'description' => __( 'Select read more color on hover.', 'js_composer' ),
+            "dependency" => array("element" => "readmore","value" => array('true')),
+            'group' => __( 'Read more', THEME_LANG ),
+        ),
+
 
 
         //Design options

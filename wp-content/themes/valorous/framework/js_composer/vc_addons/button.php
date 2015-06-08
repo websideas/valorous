@@ -11,7 +11,7 @@ class WPBakeryShortCode_KT_Button extends WPBakeryShortCode_VC_Custom_heading {
 
         $atts = shortcode_atts( array(
             'link' => '',
-            'title' => '',
+            'title' => __( 'Title', 'js_composer' ),
             'bt_align' => 'center',
             'size' => 'md',
 
@@ -186,7 +186,7 @@ vc_map( array(
             "type" => "textfield",
             'heading' => __( 'Title', 'js_composer' ),
             'param_name' => 'title',
-            'value' => '',
+            'value' => __( 'Title', 'js_composer' ),
             "admin_label" => true,
         ),
         array(

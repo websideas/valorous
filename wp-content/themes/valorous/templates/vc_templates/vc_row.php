@@ -14,6 +14,7 @@ extract( shortcode_atts( array(
 	'parallax_image' => false,
 	'css' => '',
     'equal_height' => '',
+    'color_overlay' => '',
 	'el_id' => '',
 ), $atts ) );
 $parallax_image_id = '';
@@ -71,7 +72,11 @@ if ( $parallax_image ) {
 ?>
 <?php echo $style; ?>><?php
 echo wpb_js_remove_wpautop( $content );
-?></div><?php echo $this->endBlockComment( 'row' );
+?>
+    <?php if($color_overlay && $parallax){ ?>
+    <div class="parallax-overlay" style="background: <?php echo esc_attr($color_overlay); ?>"></div>
+    <?php } ?>
+    </div><?php echo $this->endBlockComment( 'row' );
 if ( ! empty( $full_width ) ) {
 	echo '<div class="vc_row-full-width"></div>';
 }
