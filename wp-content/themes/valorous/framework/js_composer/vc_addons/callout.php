@@ -88,7 +88,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
 
 
 
-        $callout_content = '<h3 class="kt-callout-title" '.$style_title.'>'.$title.'</h3>';
+        $callout_content = '<' . $font_container_data['values']['tag'] . ' class="kt-callout-title" '.$style_title.'>'.$title.'</' . $font_container_data['values']['tag'] . '>';
         if($content){
             $callout_content .= '<div class="kt-callout-content">'.$content.'</div>';
         }
@@ -175,7 +175,7 @@ vc_map( array(
             'value' => '',
             'settings' => array(
                 'fields' => array(
-                    //'tag' => 'h2', // default value h2
+                    'tag' => 'h2', // default value h2
                     'font_size',
                     'line_height',
                     'color',

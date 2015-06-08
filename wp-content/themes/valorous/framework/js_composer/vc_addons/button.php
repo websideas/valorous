@@ -181,12 +181,7 @@ vc_map( array(
     "description" => __( "Custom button", THEME_LANG),
     "wrapper_class" => "clearfix",
     "params" => array(
-        array(
-            'type' => 'vc_link',
-            'heading' => __( 'URL (Link)', 'js_composer' ),
-            'param_name' => 'link',
-            'description' => __( 'Enter button link.', 'js_composer' )
-        ),
+
         array(
             "type" => "textfield",
             'heading' => __( 'Title', 'js_composer' ),
@@ -194,7 +189,12 @@ vc_map( array(
             'value' => '',
             "admin_label" => true,
         ),
-
+        array(
+            'type' => 'vc_link',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
+            'description' => __( 'Enter button link.', 'js_composer' )
+        ),
         array(
             "type" => "colorpicker",
             "heading" => __("Button Title Color", THEME_LANG),

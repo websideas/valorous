@@ -6,8 +6,8 @@ global $blog_atts;
 
     <div class="entry-header">
         <?php
-            //kt_post_thumbnail_image('recent_posts', 'img-responsive');
-            kt_post_thumbnail('blog-post', 'img-responsive');
+            kt_post_thumbnail_image('recent_posts', 'img-responsive');
+            //kt_post_thumbnail('blog-post', 'img-responsive');
         ?>
         <div class="entry-date-time">
             <div class="m"> <?php the_time( 'M' ); ?></div>

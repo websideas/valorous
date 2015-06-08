@@ -86,6 +86,7 @@ if($color_hover){
 
 if ( strlen( $background_style ) > 0 ) {
     if ( strpos( $background_style, 'outline' ) !== false ) {
+
         if($background_color == 'custom' && $custom_background) {
             $styles[] = "border-color: " . $custom_background;
         }

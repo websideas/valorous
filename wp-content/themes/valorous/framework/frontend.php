@@ -168,10 +168,6 @@ function theme_after_footer_top_addscroll(){
 }
 
 
-function kt_excerpt_more( $more ) {
-    return '...';
-}
-add_filter('excerpt_more', 'kt_excerpt_more');
 
 function kt_excerpt_length( $length ) {
     return 40;

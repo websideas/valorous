@@ -38,8 +38,7 @@ get_header(); ?>
                         }
 
                         ?>
-                        <div class="clear"></div>
-                        <div class="blog-posts">
+                        <div class="blog-posts clearfix">
                         <?php
                         while( have_posts() ){
                             the_post();
@@ -48,9 +47,18 @@ get_header(); ?>
                         }
                         ?>
                         </div>
-                        <?php kt_paging_nav(); ?>
+                        <?php
+                            // Previous/next page navigation.
+                            the_posts_pagination( array(
+                                'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
+                                'next_text'          => __( 'Next page', 'twentyfifteen' ),
+                                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
+                            ) );
+                        ?>
                     </div>
                     <?php
+                }else{
+                    get_template_part( 'templates/blog/recentpost/content' , 'none' );
                 }
                 ?>
             </div>

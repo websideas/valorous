@@ -9,6 +9,14 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
             'title' => '',
             'images' => '',
             'img_size' => 'thumbnail',
+            'padding_item' => '',
+            'background_item' => '',
+
+            'border_style' => '',
+            'color_border' => '',
+            'color_border_hover' => '',
+            'border_size' => 1,
+            'border_radius' => 0,
 
             'margin' => 10,
             'loop' => 'false',
@@ -46,6 +54,21 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
         if ( $images == '' ) return;
         $images = explode( ',', $images );
 
+        $styles = array();
+        if($padding_item){
+            $styles['padding'] = 'padding: '.$padding_item;
+        }
+        if($background_item){
+            $styles['background'] = 'background: '.$background_item;
+        }
+        if($border_style){
+            $styles[] = 'border-width:'.$border_size.'px';
+            $styles[] = 'border-color:'.$color_border;
+            $styles[] = 'border-style:'.$border_style;
+        }
+        $styles[] = 'border-radius:'.$border_radius.'px';
+        $style_item = 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+
 
         $client_carousel_html = '';
         foreach ( $images as $attach_id ) {
@@ -57,10 +80,11 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
         		
         	}
             $client_carousel_html .= sprintf(
-                            '<div class="%s">%s</div>',
-                            'clients-carousel-item',
-                            $post_thumbnail['thumbnail']
-                        );
+                '<div class="%s" %s >%s</div>',
+                'clients-carousel-item',
+                $style_item,
+                $post_thumbnail['thumbnail']
+            );
         }
         
         $elementClass = array(
@@ -112,11 +136,85 @@ vc_map( array(
 			'description' => __( 'Select images from media library.', 'js_composer' )
 		),
         array(
-			'type' => 'textfield',
-			'heading' => __( 'Image size', 'js_composer' ),
-			'param_name' => 'img_size',
-			'description' => __( 'Enter image size. Example: thumbnail, medium, large, full or other sizes defined by current theme. Alternatively enter image size in pixels: 200x100 (Width x Height). Leave empty to use "thumbnail" size.', 'js_composer' )
-		),
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "img_size",
+            'description' => __( 'Select size of image', THEME_LANG)
+        ),
+
+
+        array(
+            "type" => "dropdown",
+            "heading" => __("Button Border Style", THEME_LANG),
+            "param_name" => "border_style",
+            "value" => array(
+                __("None", THEME_LANG)=> "",
+                __("Solid", THEME_LANG)=> "solid",
+                __("Dashed", THEME_LANG) => "dashed",
+                __("Dotted", THEME_LANG) => "dotted",
+                __("Double", THEME_LANG) => "double",
+            ),
+            "description" => "",
+        ),
+        array(
+            "type" => "colorpicker",
+            "heading" => __("Border Color", THEME_LANG),
+            "param_name" => "color_border",
+            "value" => "",
+            "description" => "",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Border Width", THEME_LANG),
+            "param_name" => "border_size",
+            "value" => 1,
+            "min" => 1,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Border Radius", THEME_LANG),
+            "param_name" => "border_radius",
+            "value" => 0,
+            "min" => 0,
+            "max" => 500,
+            "suffix" => "px",
+            "description" => "",
+        ),
+
+        array(
+            "type" => "textfield",
+            "heading" => __( "Padding", THEME_LANG ),
+            "param_name" => "padding_item",
+            "description" => __( "In pixels, top right bottom left, ex: 10px 10px 10px 10px", THEME_LANG ),
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Background', 'js_composer' ),
+            'param_name' => 'background_item',
+            'description' => __( 'Select background for item.', 'js_composer' ),
+        ),
+
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'CSS Animation', 'js_composer' ),
+            'param_name' => 'css_animation',
+            'admin_label' => true,
+            'value' => array(
+                __( 'No', 'js_composer' ) => '',
+                __( 'Top to bottom', 'js_composer' ) => 'top-to-bottom',
+                __( 'Bottom to top', 'js_composer' ) => 'bottom-to-top',
+                __( 'Left to right', 'js_composer' ) => 'left-to-right',
+                __( 'Right to left', 'js_composer' ) => 'right-to-left',
+                __( 'Appear from center', 'js_composer' ) => "appear"
+            ),
+            'description' => __( 'Select type of animation if you want this element to be animated when it enters into the browsers viewport. Note: Works only in modern browsers.', 'js_composer' )
+        ),
         array(
             "type" => "textfield",
             "heading" => __( "Extra class name", "js_composer"),

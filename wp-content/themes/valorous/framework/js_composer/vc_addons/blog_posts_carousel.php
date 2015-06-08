@@ -8,7 +8,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'border_heading' => '',
 
             'source' => 'all',
             'categories' => '',
@@ -161,13 +160,6 @@ vc_map( array(
             "param_name" => "title",
             "admin_label" => true,
         ),
-        array(
-			'type' => 'kt_switch',
-			'heading' => __( 'Border in heading', THEME_LANG ),
-			'param_name' => 'border_heading',
-			'value' => 'true',
-            "description" => __("Enable border in heading", THEME_LANG)
-		),
         array(
         	'type' => 'dropdown',
         	'heading' => __( 'CSS Animation', 'js_composer' ),

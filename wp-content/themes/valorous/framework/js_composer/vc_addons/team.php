@@ -8,9 +8,8 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'border_heading' => '',
             'team_layout' => '',
-
+            'image_size' => '',
             'source' => 'all',
             'categories' => '',
             'posts' => '',
@@ -118,7 +117,7 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
                 
                 while ( $query->have_posts() ) : $query->the_post();
                     //Team image
-                    $team_image = get_the_post_thumbnail( get_the_ID(), 'recent_posts', array('class'=>"img-responsive"));
+                    $team_image = get_the_post_thumbnail( get_the_ID(), $image_size, array('class'=>"img-responsive"));
                     
                     //Team title
                     $team_title = '<h4 class="entry-title">'.get_the_title().'</h4>';
@@ -195,12 +194,14 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
-			'type' => 'kt_switch',
-			'heading' => __( 'Border in heading', THEME_LANG ),
-			'param_name' => 'border_heading',
-			'value' => 'true',
-            "description" => __("Enable border in heading", THEME_LANG)
-		),
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size",
+            'dependency' => array(
+                'element' => 'show_thumb',
+                'value' => array( 'true' )
+            ),
+        ),
         //Layout settings
         array(
             'type' => 'dropdown',

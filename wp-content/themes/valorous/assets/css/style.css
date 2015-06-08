@@ -2326,6 +2326,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 .owl-carousel .clients-carousel-item{
     text-align: center;
+    overflow: hidden;
 }
 .owl-carousel .clients-carousel-item img{
     width: auto;
