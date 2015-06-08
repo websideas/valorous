@@ -54,4 +54,44 @@ function register_posttype() {
         'show_admin_column'             => true
     ));
    /* ============================================== END TEAM ==============================================*/
+   /* ============================================== PORTFOLIO =============================================*/
+    $labels = array( 
+        'name' => __( 'Portfolio', THEME_LANG),
+        'singular_name' => __( 'Portfolio', THEME_LANG),
+        'add_new' => __( 'Add New', THEME_LANG),
+        'all_items' => __( 'All Portfolio', THEME_LANG),
+        'add_new_item' => __( 'Add New Portfolio', THEME_LANG),
+        'edit_item' => __( 'Edit Portfolio', THEME_LANG),
+        'new_item' => __( 'New Portfolio', THEME_LANG),
+        'view_item' => __( 'View Portfolio', THEME_LANG),
+        'search_items' => __( 'Search Portfolio', THEME_LANG),
+        'not_found' => __( 'No Portfolio found', THEME_LANG),
+        'not_found_in_trash' => __( 'No Portfolio found in Trash', THEME_LANG),
+        'parent_item_colon' => __( 'Parent Portfolio', THEME_LANG),
+        'menu_name' => __( 'Portfolio', THEME_LANG)
+    );
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => false,
+        'supports' 	=> array('title', 'editor', 'thumbnail'),
+    );
+    register_post_type( 'portfolio', $args );
+    
+    register_taxonomy('portfolio-category',array('portfolio'), array(
+        "label" 						=> __("Categories", THEME_LANG), 
+        "singular_label" 				=> __("Category", THEME_LANG), 
+        'public'                        => false,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => false,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        'rewrite'                       => false,
+        'query_var'                     => true,
+        'show_admin_column'             => true
+    ));
+   /* =========================================== END PORTFOLIO ===========================================*/
 }

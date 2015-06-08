@@ -420,7 +420,7 @@ function kt_sidebar(){
         'sidebar_area' => $sidebar_area        
     );
     
-    if(is_page() || is_singular('post') || is_home()){
+    if(is_page() || is_singular('post') || is_home() || is_singular('portfolio')){
         $page_id = get_the_ID();
         if(is_home()){
             $page_id = get_option( 'page_for_posts' );

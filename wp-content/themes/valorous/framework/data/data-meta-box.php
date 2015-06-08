@@ -449,6 +449,90 @@ function kite_register_meta_boxes( $meta_boxes )
 
         )
     );
+    
+    
+    /**
+     * For Portfolio
+     * 
+     */
+    
+    $meta_boxes[] = array(
+        'id' => 'portfolio_meta_boxes',
+        'title' => 'Portfolio Options',
+        'pages' => array( 'portfolio' ),
+        'context' => 'normal',
+        'priority' => 'default',
+        'fields' => array(
+            array(
+                'name' => __('Layout configuration', THEME_LANG),
+                'id' => $prefix . 'sidebar',
+                'desc' => __("Choose the sidebar configuration for the detail page.", THEME_LANG),
+                'type' => 'select',
+                'options' => array(
+                    'full' => __('Full Width', THEME_LANG),
+                    'left' => __('Left Sidebar', THEME_LANG),
+                    'right' => __('Right Sidebar', THEME_LANG)
+                ),
+                'std' => 'default'
+            ),
+            array(
+                'name' => __('Left sidebar', THEME_LANG),
+                'id' => $prefix . 'left_sidebar',
+                'default' => true,
+                'type' => 'sidebars'
+            ),
+            array(
+                'name' => __('Right sidebar', THEME_LANG),
+                'id' => $prefix . 'right_sidebar',
+                'default' => true,
+                'type' => 'sidebars'
+            ),
+            
+            array(
+                'name' => __('Video Type', THEME_LANG),
+                'id' => $prefix . 'video_type',
+                'type'     => 'select',
+                'options'  => array(
+                    '' => __('Select Option', THEME_LANG),
+                    //'upload' => __('Upload', THEME_LANG),
+                    'youtube' => __('Youtube', THEME_LANG),
+                    'vimeo' => __('Vimeo', THEME_LANG),
+                    'dailymotion' => __('Daily Motion', THEME_LANG)
+                ),
+            ),
+            array(
+                'name' => __( 'Video Id', THEME_LANG ),
+                'id' => $prefix . 'video_id',
+                'desc' => __( "Please fill this option with the required ID.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            
+            array(
+                'name' => __('Select Image', THEME_LANG),
+                'id' => $prefix . 'list_image',
+                'type' => 'image_advanced'
+            ),
+            
+            array(
+                'name' => __( 'Client', THEME_LANG ),
+                'id' => $prefix . 'client',
+                'desc' => __( "Please enter your client.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            array(
+                'name' => __( 'Project Date', THEME_LANG ),
+                'id' => $prefix . 'project_date',
+                'desc' => __( "Please enter your date of project.", THEME_LANG ),
+                'type'  => 'date',
+            ),
+            array(
+                'name' => __( 'Link Project', THEME_LANG ),
+                'id' => $prefix . 'link_project',
+                'desc' => __( "Please enter your link project.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+        )
+    );
 
     return $meta_boxes;
 }

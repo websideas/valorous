@@ -13,21 +13,21 @@ class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
             'font_container' => '',
             'border_radius' => '',
             'custom_background' => '',
-            'font_type_title' => '',
+            'font_type' => '',
             'google_fonts' => '',
 
             'el_class' => '',
             'css' => '',
         ), $atts );
         extract($atts);
-        
+
         $style_title = '';
 
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
 
         $styles = array();
-        if($font_type_title != 'google'){
+        if($font_type != 'google'){
             $google_fonts_data = array();
         }
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
@@ -40,6 +40,8 @@ class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
         if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
             wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
         }
+        
+        
         if($border_radius){
             $styles[] = 'border-radius: '.$border_radius.'px;';
         }
@@ -127,7 +129,7 @@ vc_map( array(
         array(
             'type' => 'dropdown',
             'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type_title',
+            'param_name' => 'font_type',
             'value' => array(
                 __( 'Normal', 'js_composer' ) => '',
                 __( 'Google font', 'js_composer' ) => 'google',
@@ -137,7 +139,7 @@ vc_map( array(
         ),
         array(
             'type' => 'google_fonts',
-            'param_name' => 'google_fonts_title',
+            'param_name' => 'google_fonts',
             'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
@@ -146,7 +148,7 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type_title', 'value' => array( 'google' ) ),
+            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
             'description' => __( '', 'js_composer' ),
         ),
             

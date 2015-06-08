@@ -32,7 +32,8 @@
         init_timeline_animation();
         init_masonry();
 
-
+        
+        
     });
     
     $(window).resize(function(){

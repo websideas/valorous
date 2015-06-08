@@ -2,7 +2,7 @@
 
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
-
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 //Register "container" content element. It will hold all your inner (child) content elements
 vc_map( array(
     "name" => __("Timeline", THEME_LANG),
@@ -147,6 +147,53 @@ vc_map( array(
             "param_name" => "el_class",
             "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer")
         ),
+        
+        //Title Style
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Font type', 'js_composer' ),
+            'param_name' => 'font_type_title',
+            'value' => array(
+                __( 'Normal', 'js_composer' ) => '',
+                __( 'Google font', 'js_composer' ) => 'google',
+            ),
+            'group' => __( 'Typography', 'js_composer' ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts_title',
+            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'settings' => array(
+                'fields' => array(
+                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
+                )
+            ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'dependency' => array( 'element' => 'font_type_title', 'value' => array( 'google' ) ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'font_container',
+            'param_name' => 'font_container',
+            'value' => '',
+            'settings' => array(
+                'fields' => array(
+                    //'tag' => 'h2', // default value h2
+                    'font_size',
+                    //'line_height',
+                    'color',
+                    'tag_description' => __( 'Select element tag.', 'js_composer' ),
+                    'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
+                    'font_size_description' => __( 'Enter font size.', 'js_composer' ),
+                    'line_height_description' => __( 'Enter line height.', 'js_composer' ),
+                    'color_description' => __( 'Select heading color.', 'js_composer' ),
+                ),
+            ),
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        
         array(
             'type' => 'css_editor',
             'heading' => __( 'Css', 'js_composer' ),
@@ -286,6 +333,9 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'timeline_tyle' => '',
             'timeline_column' => '',
             'kt_animation' => '',
+            'font_container' => '',
+            'font_type_title' => '',
+            'google_fonts_title' => '',
             'color' => '',
             'color_hover' => '',
             'custom_color' => '',
@@ -296,8 +346,32 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'el_class' => '',
             'css' => ''
         ), $atts ) );
-        global $data_icon, $data_type;
-        
+        extract($atts);
+        global $data_icon, $data_type, $style_title;
+        /*
+        $style_title = '';
+
+        extract( $this->getAttributes( $atts ) );
+        unset($font_container_data['values']['text_align']);
+
+        $styles = array();
+        if($font_type_title != 'google'){
+            $google_fonts_data = array();
+        }
+        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
+
+        $settings = get_option( 'wpb_js_google_fonts_subsets' );
+        $subsets = '';
+        if ( is_array( $settings ) && ! empty( $settings ) ) {
+            $subsets = '&subset=' . implode( ',', $settings );
+        }
+        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
+            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
+        }
+        if ( ! empty( $styles ) ) {
+            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+        }
+        */
         $data_type = $timeline_tyle;
         $data_icon = 'color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'"';
         
@@ -316,7 +390,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.'">' . do_shortcode($content) . '</ul></div>';
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul></div>';
 
     }
 }
@@ -334,7 +408,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
             'el_class' => '',
         ), $atts ) );
         
-        global $data_icon, $data_type;
+        global $data_icon, $data_type, $style_title;
         
         $uniqid = 'kt-timeline-item-'.uniqid();
         
@@ -344,7 +418,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
             $output .= $icon_box_icon;
             if( $data_type == 'horizontal' ) $output .= '<div class="divider-icon"></div>';
             $output .= '<div class="timeline-info">';
-                if( $title ) $output .= '<h4 class="timeline-title">'.$title.'</h4>';
+                if( $title ) $output .= '<h4 class="timeline-title" '.$style_title.'>'.$title.'</h4>';
                 if( $content ) $output .= do_shortcode($content);
             $output .= '</div>';
         $output .= '</li>';
