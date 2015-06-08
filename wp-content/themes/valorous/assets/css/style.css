@@ -3215,7 +3215,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 
-
+.kt-icon-box-wrapper.kt-icon-box-table-right .icon-box-left,
 .kt-icon-box-wrapper.kt-icon-box-table .icon-box-left{
     margin-bottom: 20px;
 }
@@ -3236,6 +3236,25 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 .kt-icon-box-wrapper.kt-icon-box-table .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square.vc_icon_element-size-xl{
     margin-right: 36px!important;
+}
+
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner{
+    margin-left: 10px!important;
+}
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square{
+    margin-left: 27px!important;
+}
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square.vc_icon_element-size-xs{
+    margin-left: 22px!important;
+}
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square.vc_icon_element-size-sm{
+    margin-left: 24px!important;
+}
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square.vc_icon_element-size-lg{
+    margin-left: 30px!important;
+}
+.kt-icon-box-wrapper.kt-icon-box-table-right .vc_icon_element .vc_icon_element-inner.vc_icon_element-style-diamond_square.vc_icon_element-size-xl{
+    margin-left: 36px!important;
 }
 
 
@@ -3313,16 +3332,11 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 .kt-icon-box-wrapper.icon-box-layout-7 .vc_icon_element-inner{
     float: right;
-    margin-left: 10px !important;
 }
 /* Icon box layout 8,9 */
 .kt-icon-box-wrapper.icon-box-layout-9,
 .kt-icon-box-wrapper.icon-box-layout-8{
     text-align: right;
-}
-.kt-icon-box-wrapper.icon-box-layout-9 .vc_icon_element-inner,
-.kt-icon-box-wrapper.icon-box-layout-8 .vc_icon_element-inner{
-    margin-left:10px!important;
 }
 .kt-icon-box-wrapper.icon-box-layout-9 .icon-box-left{
     display: table;

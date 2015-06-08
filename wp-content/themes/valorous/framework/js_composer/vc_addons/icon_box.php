@@ -153,8 +153,10 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
             'layout' => 'icon-box-layout-'.$icon_box_layout
         );
-        if($icon_box_layout == 2 || $icon_box_layout == 3 || $icon_box_layout == 6 ){
+        if( $icon_box_layout == 2 || $icon_box_layout == 3 || $icon_box_layout == 6 ){
             $elementClass[] = 'kt-icon-box-table';
+        }elseif( $icon_box_layout == 7 || $icon_box_layout == 8 || $icon_box_layout == 9 ){
+            $elementClass[] = 'kt-icon-box-table-right';
         }
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
