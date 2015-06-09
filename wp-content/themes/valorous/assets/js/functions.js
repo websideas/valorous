@@ -36,7 +36,13 @@
         $('.kt_lightbox').each(function(){
             var type = $(this).attr('data-type');
             $(this).find('.vc_icon_element-link').magnificPopup({
-                type: type
+                type: type,
+                mainClass: 'mfp-newspaper',
+                callbacks: {
+                    beforeOpen: function() {
+                       this.st.mainClass = 'mfp-newspaper'
+                    }
+                  },
             });
         });
         

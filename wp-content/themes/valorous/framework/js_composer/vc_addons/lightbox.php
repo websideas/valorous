@@ -44,7 +44,11 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             
             $img_lightbox_id = preg_replace( '/[^\d]/', '', $image_lightbox );
             $img_lightbox = wp_get_attachment_image_src( $img_lightbox_id, 'full' );
-            $link = urlencode($img_lightbox['0']);
+            if( $kt_type == 'icon' ){
+                $link = urlencode($img_lightbox['0']);
+            }elseif( $kt_type == 'image' ){
+                $link = $img_lightbox['0'];
+            }
         }elseif( $type_lightbox == 'lightbox-video' ){
             $type_lightbox = 'iframe';
             $link = $video_link;
@@ -70,7 +74,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         if( $kt_type == 'icon' ){
             $lightbox = $icon_lightbox;
         }elseif( $kt_type == 'image' ){
-            $lightbox = '<a class="vc_icon_element-link" href="'.$link.'">'.$img['thumbnail'].'</a>';
+            $lightbox = '<a data-effect="mfp-newspaper" class="vc_icon_element-link" href="'.$link.'">'.$img['thumbnail'].'</a>';
         }
         
         $elementClass = array(
@@ -361,8 +365,7 @@ vc_map( array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-content' ),
     		),
-            "value" => __("Put your content here", THEME_LANG),
-            "holder" => "div",
+            "value" => __("", THEME_LANG),
             "description" => __("", THEME_LANG),
             'group' => __( 'Lightbox', THEME_LANG )
         ),
