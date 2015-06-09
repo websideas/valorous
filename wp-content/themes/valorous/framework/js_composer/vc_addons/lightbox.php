@@ -74,7 +74,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         if( $kt_type == 'icon' ){
             $lightbox = $icon_lightbox;
         }elseif( $kt_type == 'image' ){
-            $lightbox = '<a data-effect="mfp-newspaper" class="vc_icon_element-link" href="'.$link.'">'.$img['thumbnail'].'</a>';
+            $lightbox = '<a class="vc_icon_element-link" href="'.$link.'">'.$img['thumbnail'].'</a>';
         }
         
         $elementClass = array(
@@ -84,7 +84,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
+        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-effect="mfp-newspaper" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
         
         $style_content = '';
         if( $content_width != '' ){
@@ -92,7 +92,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         }
         
         if( $content != '' && $type_lightbox == 'inline' ){
-            $output .= '<div id="lightbox'.$rand.'" class="mfp-hide kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
+            $output .= '<div id="lightbox'.$rand.'" class="mfp-hide mfp-with-anim kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
         }
 
     	return $output;

@@ -34,15 +34,27 @@
         
         
         $('.kt_lightbox').each(function(){
-            var type = $(this).attr('data-type');
+            var $type = $(this).data('type'),
+                $effect = $(this).data('effect');
+            if(typeof $effect === "undefined"){
+                $effect = 'mfp-zoom-in';
+            }
+
             $(this).find('.vc_icon_element-link').magnificPopup({
-                type: type,
-                mainClass: 'mfp-newspaper',
+                type: $type,
+                mainClass: $effect,
+                midClick: true,
                 callbacks: {
                     beforeOpen: function() {
-                       this.st.mainClass = 'mfp-newspaper'
+                       if($type == 'image'){
+                           this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                           this.st.mainClass = $effect;
+                       }else if($type == 'iframe'){
+                           this.st.iframe.markup = this.st.iframe.markup.replace('mfp-iframe-scaler', 'mfp-iframe-scaler mfp-with-anim');
+                           this.st.mainClass = $effect;
+                       }
                     }
-                  },
+                },
             });
         });
         
@@ -130,8 +142,6 @@
         
         if (typeof jQuery.fn.fitVids !== 'undefined') {
             // Responsive video
-            $(".video, .resp-media, .post-media").fitVids();
-            $(".work-full-media").fitVids();
         }
 
         if( $.fn.mediaelementplayer ) {

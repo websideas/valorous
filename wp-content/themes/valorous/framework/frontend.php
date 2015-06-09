@@ -104,9 +104,10 @@ function london_scripts() {
     wp_enqueue_style( 'animate', THEME_CSS . 'animate.min.css', array());
     wp_enqueue_style( 'mCustomScrollbar', THEME_CSS . 'jquery.mCustomScrollbar.min.css', array());
     wp_enqueue_style( 'magnific-popup', THEME_CSS . 'magnific-popup.css', array());
+    wp_enqueue_style( 'magnific-effect', THEME_CSS . 'magnific-effect.css', array());
     wp_enqueue_style( 'owl-carousel', THEME_LIBS . 'owl-carousel/assets/owl.carousel.css', array());
     wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
-    wp_enqueue_style( 'magnific-effect', THEME_CSS . 'magnific-effect.css', array());
+
     wp_enqueue_style( 'woocommerce-products-filter', THEME_CSS . 'woocommerce-products-filter.css', array());
     
 	// Load our main stylesheet.
