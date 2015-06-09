@@ -3,6 +3,245 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
+
+
+
+
+class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
+    protected function content($atts, $content = null) {
+        extract( shortcode_atts( array(
+            'timeline_tyle' => '',
+            'timeline_column' => '',
+            'kt_animation' => '',
+            'font_container' => '',
+            'font_type' => '',
+            'google_fonts' => '',
+            'color' => '',
+            'color_hover' => '',
+            'custom_color' => '',
+            'background_style' => '',
+            'background_color' => '',
+            'background_color_hover' => '',
+            'size' => 'xl',
+            'el_class' => '',
+            'css' => ''
+        ), $atts ) );
+        extract($atts);
+        global $data_icon, $data_type, $style_title, $font_tag;
+
+
+        $style_title = '';
+
+        extract( $this->getAttributes( $atts ) );
+        unset($font_container_data['values']['text_align']);
+
+        $styles = array();
+        if($font_type != 'google'){
+            $google_fonts_data = array();
+        }
+        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
+
+        $settings = get_option( 'wpb_js_google_fonts_subsets' );
+        $subsets = '';
+        if ( is_array( $settings ) && ! empty( $settings ) ) {
+            $subsets = '&subset=' . implode( ',', $settings );
+        }
+        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
+            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
+        }
+        if ( ! empty( $styles ) ) {
+            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+        }
+        $font_tag = $font_container_data['values']['tag'];
+
+        $data_type = $timeline_tyle;
+        $data_icon = 'color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'"';
+
+        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
+
+        $elementClass = array(
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-timeline-wrapper ', $this->settings['base'], $atts ),
+            'extra' => $this->getExtraClass( $el_class ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'none_animation' => $none_animation
+        );
+
+        if(isset( $timeline_column ) || $timeline_column != ''){
+            $column = 'column-'.$timeline_column;
+        }
+
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul></div>';
+
+    }
+
+    /**
+     * Get param value by providing key
+     *
+     * @param $key
+     *
+     * @since 4.4
+     * @return array|bool
+     */
+    protected function getParamData( $key ) {
+        return WPBMap::getParam( $this->shortcode, $this->getField( $key ) );
+    }
+    /**
+     * Parses shortcode attributes and set defaults based on vc_map function relative to shortcode and fields names
+     *
+     * @param $atts
+     *
+     * @since 4.3
+     * @return array
+     */
+    public function getAttributes( $atts ) {
+        $text = $google_fonts = $font_container = $el_class = $css = '';
+        /**
+         * Get default values from VC_MAP.
+         **/
+        $google_fonts_field = $this->getParamData( 'google_fonts' );
+        $font_container_field = $this->getParamData( 'font_container' );
+        $el_class_field = $this->getParamData( 'el_class' );
+        $css_field = $this->getParamData( 'css' );
+        $text_field = $this->getParamData( 'text' );
+
+        extract( shortcode_atts( array(
+            'text' => $text_field && isset( $text_field['value'] ) ? $text_field['value'] : '',
+            'google_fonts' => $google_fonts_field && isset( $google_fonts_field['value'] ) ? $google_fonts_field['value'] : '',
+            'font_container' => $font_container_field && isset( $font_container_field['value'] ) ? $font_container_field['value'] : '',
+            'el_class' => $el_class_field && isset( $el_class_field['value'] ) ? $el_class_field['value'] : '',
+            'css' => $css_field && isset( $css_field['value'] ) ? $css_field['value'] : ''
+        ), $atts ) );
+        $el_class = $this->getExtraClass( $el_class );
+        $font_container_obj = new Vc_Font_Container();
+        $google_fonts_obj = new Vc_Google_Fonts();
+        $font_container_field_settings = isset( $font_container_field['settings'], $font_container_field['settings']['fields'] ) ? $font_container_field['settings']['fields'] : array();
+        $google_fonts_field_settings = isset( $google_fonts_field['settings'], $google_fonts_field['settings']['fields'] ) ? $google_fonts_field['settings']['fields'] : array();
+        $font_container_data = $font_container_obj->_vc_font_container_parse_attributes( $font_container_field_settings, $font_container );
+        $google_fonts_data = strlen( $google_fonts ) > 0 ? $google_fonts_obj->_vc_google_fonts_parse_attributes( $google_fonts_field_settings, $google_fonts ) : '';
+
+        return array(
+            'text' => $text,
+            'google_fonts' => $google_fonts,
+            'font_container' => $font_container,
+            'el_class' => $el_class,
+            'css' => $css,
+            'font_container_data' => $font_container_data,
+            'google_fonts_data' => $google_fonts_data
+        );
+    }
+
+    /**
+     * Used to get field name in vc_map function for google_fonts, font_container and etc..
+     *
+     * @param $key
+     *
+     * @since 4.4
+     * @return bool
+     */
+    protected function getField( $key ) {
+        return isset( $this->fields[ $key ] ) ? $this->fields[ $key ] : false;
+    }
+
+    /**
+     * Parses google_fonts_data and font_container_data to get needed css styles to markup
+     *
+     * @param $el_class
+     * @param $css
+     * @param $google_fonts_data
+     * @param $font_container_data
+     * @param $atts
+     *
+     * @since 4.3
+     * @return array
+     */
+    public function getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) {
+        $styles = array();
+        if ( ! empty( $font_container_data ) && isset( $font_container_data['values'] ) ) {
+            foreach ( $font_container_data['values'] as $key => $value ) {
+                if ( $key != 'tag' && strlen( $value ) > 0 ) {
+                    if ( preg_match( '/description/', $key ) ) {
+                        continue;
+                    }
+                    if ( $key == 'font_size' || $key == 'line_height' ) {
+                        $value = preg_replace( '/\s+/', '', $value );
+                    }
+                    if ( $key == 'font_size' ) {
+                        $pattern = '/^(\d*(?:\.\d+)?)\s*(px|\%|in|cm|mm|em|rem|ex|pt|pc|vw|vh|vmin|vmax)?$/';
+                        // allowed metrics: http://www.w3schools.com/cssref/css_units.asp
+                        $regexr = preg_match( $pattern, $value, $matches );
+                        $value = isset( $matches[1] ) ? (float) $matches[1] : (float) $value;
+                        $unit = isset( $matches[2] ) ? $matches[2] : 'px';
+                        $value = $value . $unit;
+                    }
+                    if ( strlen( $value ) > 0 ) {
+                        $styles[] = str_replace( '_', '-', $key ) . ': ' . $value;
+                    }
+                }
+            }
+        }
+        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values'], $google_fonts_data['values']['font_family'], $google_fonts_data['values']['font_style'] ) ) {
+            $google_fonts_family = explode( ':', $google_fonts_data['values']['font_family'] );
+            $styles[] = "font-family:" . $google_fonts_family[0];
+            $google_fonts_styles = explode( ':', $google_fonts_data['values']['font_style'] );
+            $styles[] = "font-weight:" . $google_fonts_styles[1];
+            $styles[] = "font-style:" . $google_fonts_styles[2];
+        }
+
+        /**
+         * Filter 'VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG' to change vc_custom_heading class
+         *
+         * @param string - filter_name
+         * @param string - element_class
+         * @param string - shortcode_name
+         * @param array - shortcode_attributes
+         *
+         * @since 4.3
+         */
+        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'vc_custom_heading' . $el_class . vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+
+        return array(
+            'css_class' => $css_class,
+            'styles' => $styles
+        );
+    }
+
+
+}
+
+class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
+    protected function content($atts, $content = null) {
+        extract( shortcode_atts( array(
+            'title' => '',
+            'icon_type' => 'fontawesome',
+            'icon_fontawesome' => 'fa fa-heart',
+            'icon_openiconic' => '',
+            'icon_typicons' => '',
+            'icon_entypo' => '',
+            'icon_linecons' => '',
+            'el_class' => '',
+        ), $atts ) );
+
+        global $data_icon, $data_type, $style_title, $font_tag;
+
+        $uniqid = 'kt-timeline-item-'.uniqid();
+
+        $icon_box_icon = do_shortcode('[vc_icon el_class="icon-timeline" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" type="'.$icon_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" '.$data_icon.']');
+
+        $output = '<li id="'.$uniqid.'" class="kt-timeline-item item-'.$data_type.' '.$el_class.'">';
+        $output .= $icon_box_icon;
+        if( $data_type == 'horizontal' ) $output .= '<div class="divider-icon"></div>';
+        $output .= '<div class="timeline-info">';
+        if( $title ) $output .= '<'.$font_tag.' class="timeline-title" '.$style_title.'>'.$title.'</'.$font_tag.'>';
+        if( $content ) $output .= do_shortcode($content);
+        $output .= '</div>';
+        $output .= '</li>';
+        return $output;
+    }
+}
+
+
 //Register "container" content element. It will hold all your inner (child) content elements
 vc_map( array(
     "name" => __("Timeline", THEME_LANG),
@@ -150,37 +389,12 @@ vc_map( array(
         
         //Title Style
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type_title',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
-        ),
-        array(
-            'type' => 'google_fonts',
-            'param_name' => 'google_fonts_title',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
-            'settings' => array(
-                'fields' => array(
-                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
-                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
-                )
-            ),
-            'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type_title', 'value' => array( 'google' ) ),
-            'description' => __( '', 'js_composer' ),
-        ),
-        array(
             'type' => 'font_container',
             'param_name' => 'font_container',
             'value' => '',
             'settings' => array(
                 'fields' => array(
-                    //'tag' => 'h2', // default value h2
+                    'tag' => 'h2', // default value h2
                     'font_size',
                     //'line_height',
                     'color',
@@ -193,6 +407,32 @@ vc_map( array(
             ),
             'group' => __( 'Typography', THEME_LANG )
         ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Font type', 'js_composer' ),
+            'param_name' => 'font_type',
+            'value' => array(
+                __( 'Normal', 'js_composer' ) => '',
+                __( 'Google font', 'js_composer' ) => 'google',
+            ),
+            'group' => __( 'Typography', 'js_composer' ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts',
+            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'settings' => array(
+                'fields' => array(
+                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
+                )
+            ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'description' => __( '', 'js_composer' ),
+        ),
+
         
         array(
             'type' => 'css_editor',
@@ -226,9 +466,8 @@ vc_map( array(
           "type" => "textarea_html",
           "heading" => __("Content", THEME_LANG),
           "param_name" => "content",
-          "value" => __("Put your content here", THEME_LANG),
+          "value" => '',
           "description" => __("", THEME_LANG),
-          "holder" => "div",
         ),
 
         array(
@@ -326,102 +565,3 @@ vc_map( array(
         )
     )
 ) );
-
-class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
-    protected function content($atts, $content = null) {
-        extract( shortcode_atts( array(
-            'timeline_tyle' => '',
-            'timeline_column' => '',
-            'kt_animation' => '',
-            'font_container' => '',
-            'font_type_title' => '',
-            'google_fonts_title' => '',
-            'color' => '',
-            'color_hover' => '',
-            'custom_color' => '',
-            'background_style' => '',
-            'background_color' => '',
-            'background_color_hover' => '',
-            'size' => 'xl',
-            'el_class' => '',
-            'css' => ''
-        ), $atts ) );
-        extract($atts);
-        global $data_icon, $data_type, $style_title;
-        /*
-        $style_title = '';
-
-        extract( $this->getAttributes( $atts ) );
-        unset($font_container_data['values']['text_align']);
-
-        $styles = array();
-        if($font_type_title != 'google'){
-            $google_fonts_data = array();
-        }
-        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
-
-        $settings = get_option( 'wpb_js_google_fonts_subsets' );
-        $subsets = '';
-        if ( is_array( $settings ) && ! empty( $settings ) ) {
-            $subsets = '&subset=' . implode( ',', $settings );
-        }
-        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
-            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
-        }
-        if ( ! empty( $styles ) ) {
-            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
-        }
-        */
-        $data_type = $timeline_tyle;
-        $data_icon = 'color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'"';
-        
-        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
-        
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-timeline-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'none_animation' => $none_animation
-        );
-        
-        if(isset( $timeline_column ) || $timeline_column != ''){
-            $column = 'column-'.$timeline_column;
-        }
-
-        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul></div>';
-
-    }
-}
-
-class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
-    protected function content($atts, $content = null) {
-        extract( shortcode_atts( array(
-            'title' => '',
-            'icon_type' => 'fontawesome',
-            'icon_fontawesome' => 'fa fa-heart',
-        	'icon_openiconic' => '',
-        	'icon_typicons' => '',
-        	'icon_entypo' => '',
-        	'icon_linecons' => '',
-            'el_class' => '',
-        ), $atts ) );
-        
-        global $data_icon, $data_type, $style_title;
-        
-        $uniqid = 'kt-timeline-item-'.uniqid();
-        
-        $icon_box_icon = do_shortcode('[vc_icon el_class="icon-timeline" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" type="'.$icon_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" '.$data_icon.']');
-        
-        $output = '<li id="'.$uniqid.'" class="kt-timeline-item item-'.$data_type.' '.$el_class.'">';
-            $output .= $icon_box_icon;
-            if( $data_type == 'horizontal' ) $output .= '<div class="divider-icon"></div>';
-            $output .= '<div class="timeline-info">';
-                if( $title ) $output .= '<h4 class="timeline-title" '.$style_title.'>'.$title.'</h4>';
-                if( $content ) $output .= do_shortcode($content);
-            $output .= '</div>';
-        $output .= '</li>';
-        return $output;
-    }
-}

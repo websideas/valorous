@@ -142,7 +142,7 @@ class WPBakeryShortCode_Recentposts extends WPBakeryShortCode {
                     }
                     echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
                 }
-                get_template_part( 'templates/blog/recentpost/content', get_post_format() );
+                get_template_part( 'templates/blog/recentpost/content', $blog_layout );
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     echo "</div><!-- .article-post-item -->";
                 }
