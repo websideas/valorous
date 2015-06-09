@@ -69,7 +69,7 @@ get_header(); ?>
 
     <div class="container">
         <div class="row">
-            <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
+            <div id="main" class="main-class col-md-8<?php if( $sidebar['sidebar'] == 'left' ){ echo ' pull-right'; } ?>">
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                     
                     <div class="entry-content clearfix">
@@ -90,7 +90,7 @@ get_header(); ?>
 
             </div>
             <?php if($sidebar['sidebar'] != 'full'){ ?>
-                <div class="<?php echo apply_filters('kt_sidebar_class', 'sidebar-portfolio', $sidebar['sidebar']); ?>">
+                <div class="sidebar-portfolio col-md-4">
                     <div class="sidebar-inner">
                         <h3><?php the_title(); ?></h3>
                         <div class="entry-content"><?php the_content();?></div>

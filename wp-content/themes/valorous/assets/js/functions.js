@@ -31,8 +31,14 @@
         init_MobileMenu();
         init_timeline_animation();
         init_masonry();
-
         
+        
+        $('.kt_lightbox').each(function(){
+            var type = $(this).attr('data-type');
+            $(this).find('.vc_icon_element-link').magnificPopup({
+                type: type
+            });
+        });
         
     });
     

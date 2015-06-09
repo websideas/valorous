@@ -119,7 +119,8 @@ $composer_addons = array(
     //'designer_products.php',
     'team.php',
     'timeline.php',
-    'dropcap.php'
+    'dropcap.php',
+    'lightbox.php'
 );
 
 foreach ( $composer_addons as $addon ) {

@@ -4033,6 +4033,18 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     width: 40px;
 }
 
+/*========= Lightbox ===========*/
+.kt_lightbox{
+    display: inline-block;
+}
+.kt-content-lightbox{
+    background: #fff;
+    padding: 20px 30px;
+    position: relative;
+    max-width:650px;
+    margin:0 auto;
+}
+
 /* ==============================
    16. Popup
    ============================== */
