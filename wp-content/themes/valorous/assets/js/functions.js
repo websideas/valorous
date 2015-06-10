@@ -58,6 +58,29 @@
             });
         });
         
+        
+        $('.kt_piechart').waypoint(function() {
+        	$(".chart").each(function() {
+            	var size = $(this).attr('data-size');
+            	var fgcolor = $(this).attr('data-fgcolor');
+            	var bgcolor = $(this).attr('data-bgcolor');
+            	var linewidth = $(this).attr('data-linewidth');
+            	var _lineCap = $(this).attr('data-linecap');
+        		$(this).easyPieChart({
+        			easing: 'easeInOutQuad',
+        			barColor: fgcolor,
+        			animate: 2000,
+        			trackColor: bgcolor,
+        			lineWidth: linewidth,
+        			lineCap: _lineCap,
+        			size: size,
+        			scaleColor: false,
+        			onStep: function(from, to, percent) {
+        				$(this.el).find('.percent').text(Math.round(percent)+'%');
+        			}
+        		});
+       		});
+        }, { offset:'95%' }); 
     });
     
     $(window).resize(function(){

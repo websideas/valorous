@@ -120,7 +120,8 @@ $composer_addons = array(
     'team.php',
     'timeline.php',
     'dropcap.php',
-    'lightbox.php'
+    'lightbox.php',
+    'piechart.php'
 );
 
 foreach ( $composer_addons as $addon ) {

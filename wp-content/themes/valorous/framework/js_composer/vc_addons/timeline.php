@@ -13,6 +13,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'timeline_tyle' => '',
             'timeline_column' => '',
             'kt_animation' => '',
+            
             'font_container' => '',
             'font_type' => '',
             'google_fonts' => '',
@@ -23,12 +24,35 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'background_color' => '',
             'background_color_hover' => '',
             'size' => 'xl',
+            
+            'border_width' => '',
+            'border_type' => '',
+            'border_custom_color' => '',
+            
             'el_class' => '',
             'css' => ''
         ), $atts ) );
         extract($atts);
         global $data_icon, $data_type, $style_title, $font_tag;
-
+        
+        $custom_css = '';
+        
+        
+        if( $border_width ){
+            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+                border-left-width: '.$border_width.'px;
+            }';
+        }
+        if( $border_type ){
+            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+                border-left-style: '.$border_type.';
+            }';
+        }
+        if( $border_custom_color ){
+            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+                border-left-color: '.$border_custom_color.';
+            }';
+        }
 
         $style_title = '';
 
@@ -69,11 +93,14 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         if(isset( $timeline_column ) || $timeline_column != ''){
             $column = 'column-'.$timeline_column;
         }
-
+        
+        if($custom_css){
+            $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+        }
+        
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul></div>';
-
+        
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
     }
 
     /**
@@ -433,6 +460,43 @@ vc_map( array(
             'description' => __( '', 'js_composer' ),
         ),
 
+        //border
+        array(
+            "type" => "kt_number",
+            "heading" => __("Border Width", THEME_LANG),
+            "param_name" => "border_width",
+            "value" => 1,
+            "min" => 1,
+            "max" => 5,
+            "suffix" => "px",
+            "description" => "",
+            'group' => __( 'Border', THEME_LANG ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Border Style', 'js_composer' ),
+            'param_name' => 'border_type',
+            'value' => array(
+                __( 'Dashed', 'js_composer' ) => 'dashed',
+                __( 'Solid', 'js_composer' ) => 'solid',
+                __( 'Dotted', 'js_composer' ) => 'dotted',
+                __( 'Double', 'js_composer' ) => 'double',
+                __( 'Groove', 'js_composer' ) => 'groove',
+                __( 'Ridge', 'js_composer' ) => 'ridge',
+                __( 'Inset', 'js_composer' ) => 'inset',
+                __( 'Outset', 'js_composer' ) => 'outset'
+            ),
+            'description' => __( 'Select type border.', 'js_composer' ),
+            'group' => __( 'Border', THEME_LANG )
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom Border Color', 'js_composer' ),
+            'param_name' => 'border_custom_color',
+            'description' => __( 'Select custom border color.', 'js_composer' ),
+            'value' => '#cdcdcf',
+            'group' => __( 'Border', THEME_LANG )
+        ),
         
         array(
             'type' => 'css_editor',
