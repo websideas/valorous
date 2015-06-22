@@ -72,20 +72,14 @@ class WPBakeryShortCode_Piechart extends WPBakeryShortCode_VC_Custom_heading {
         if (!empty($google_fonts_data) && isset($google_fonts_data['values']['font_family'])) {
             wp_enqueue_style('vc_google_fonts_' . vc_build_safe_css_class($google_fonts_data['values']['font_family']), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets);
         }
-        
-        if( $size ){
-            $styles[] = 'line-height:'.$size.'px;';
-        }
 
         if (!empty($styles)) {
             $style_value .= 'style="' . esc_attr(implode(';', $styles)) . '"';
-        }else{
-            $style_value .= 'style="line-height:'.$size.'px;"';
         }
 
         $output = '<div class="kt_piechart">';
             $output .= '<div class="chart" data-percent="'.$percent.'" data-size="'.$size.'" data-linewidth="'.$line_width.'" data-fgcolor="'.$color_line.'" data-bgcolor="'.$bg_line.'" data-linecap="'.$linecap.'">';
-                $output .= '<span class="percent" '.$style_value.'><span class="pie-table"><span class="pie-col">'.$percent.'%</span></span></span>';
+                $output .= '<span class="percent" '.$style_value.'>'.$percent.'%</span>';
             $output .= '</div>';
             $output .= '<h4 class="piechart-title" '.$style_title.'>'.$title.'</h4>';
         $output .= '</div>';

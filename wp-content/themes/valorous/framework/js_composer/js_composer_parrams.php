@@ -306,3 +306,37 @@ function vc_kt_image_sizes_settings_field($settings, $value){
     return $output;
 }
 vc_add_shortcode_param('kt_image_sizes', 'vc_kt_image_sizes_settings_field');
+
+function vc_kt_animate_settings($settings, $value){
+    
+    $dependency = '';
+    $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
+    $type = isset($settings['type']) ? $settings['type'] : '';
+    $class = isset($settings['class']) ? $settings['class'] : '';
+    $custom = isset($settings['custom']) ? $settings['custom'] : false;
+    
+    $string = file_get_contents(FW_URL.'js_composer/animate-config.json');
+    $json_a = json_decode($string,true);
+    
+    $posts_fields = array();
+    $posts_fields[] = "<option value='none'>No Animation</option>";
+    
+    foreach($json_a as $key => $value){
+        $selected = ($value == $key) ? ' selected="selected"' : '';
+        
+        $posts_fields[] = "<optgroup label='".ucwords(str_replace('_',' ',$key))."'>";
+            foreach( $value as $k=>$v ){
+                $posts_fields[] .= "<option value='{$k}' {$selected}>".$k."</option>";
+            }
+        $posts_fields[] .= "</optgroup>";
+    }
+    
+    $output = '<div class="wrap-kt-animate">';
+        $output .= '<div class="animationSandbox"><h1>Animate</h1></div>';
+        $output .= '<select class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" '.$dependency.'>'
+            .implode( $posts_fields )
+            .'</select>';
+    $output .= '</div>';
+    return $output;
+}
+vc_add_shortcode_param('kt_animate', 'vc_kt_animate_settings',  FW_JS.'kt_animate.js');

@@ -86,7 +86,11 @@
         $('.player').each(function(){
             $(this).mb_YTPlayer();
         });
-
+        
+        
+        $( '#menu-one-page-menu' ).onePageNav({
+            currentClass: 'current-menu-item'
+        });
     });
     
     $(window).resize(function(){

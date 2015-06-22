@@ -11,6 +11,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
             'timeline_tyle' => '',
+            'horizontal_style' => '',
             'timeline_column' => '',
             'kt_animation' => '',
             
@@ -34,24 +35,64 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'css' => ''
         ), $atts ) );
         extract($atts);
-        global $data_icon, $data_type, $style_title, $font_tag;
+        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style;
+        
+        $data_horizontal_style = $horizontal_style;
         
         $custom_css = '';
-        
+        $rand = rand();
         
         if( $border_width ){
-            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
                 border-left-width: '.$border_width.'px;
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:first-child .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:last-child .icon-timeline::before{
+                border-width: '.$border_width.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::after{
+                border-bottom-width: '.$border_width.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .divider-icon{
+                border-right-width: '.$border_width.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul.kt-diamond_square li.item-horizontal .icon-timeline::after{
+                border-bottom-width: '.$border_width.';
             }';
         }
         if( $border_type ){
-            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
                 border-left-style: '.$border_type.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:first-child .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:last-child .icon-timeline::before{
+                border-style: '.$border_type.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::after{
+                border-bottom-style: '.$border_type.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .divider-icon{
+                border-right-style: '.$border_type.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul.kt-diamond_square li.item-horizontal .icon-timeline::after{
+                border-bottom-style: '.$border_type.';
             }';
         }
         if( $border_custom_color ){
-            $custom_css .= '.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before, .kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical .icon-timeline::after{
                 border-left-color: '.$border_custom_color.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .icon-timeline .vc_icon_element-inner::after
+                            ,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:first-child .icon-timeline::before,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal:last-child .icon-timeline::before{
+                border-color: '.$border_custom_color.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .divider-icon::after,
+                            #kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical:first-child::after,#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-vertical:last-child::after{
+                background: '.$border_custom_color.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul li.item-horizontal .divider-icon{
+                border-right-color: '.$border_custom_color.';
+            }';
+            $custom_css .= '#kt_timeline_'.$rand.'.kt-timeline-wrapper ul.kt-diamond_square li.item-horizontal .icon-timeline::after{
+                border-bottom-color: '.$border_custom_color.';
             }';
         }
 
@@ -102,7 +143,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
+        return '<div id="kt_timeline_'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
     }
 
     /**
@@ -244,7 +285,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
         extract( shortcode_atts( array(
             'title' => '',
             'icon_type' => 'fontawesome',
-            'icon_fontawesome' => '',
+            'icon_fontawesome' => 'fa fa-heart',
             'icon_openiconic' => '',
             'icon_typicons' => '',
             'icon_entypo' => '',
@@ -252,7 +293,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
             'el_class' => '',
         ), $atts ) );
 
-        global $data_icon, $data_type, $style_title, $font_tag;
+        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style;
 
         $uniqid = 'kt-timeline-item-'.uniqid();
 
@@ -260,7 +301,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
 
         $output = '<li id="'.$uniqid.'" class="kt-timeline-item item-'.$data_type.' '.$el_class.'">';
         $output .= $icon_box_icon;
-        if( $data_type == 'horizontal' ) $output .= '<div class="divider-icon"></div>';
+        if( $data_type == 'horizontal' && $data_horizontal_style == 'style_1' ) $output .= '<div class="divider-icon"></div>';
         $output .= '<div class="timeline-info">';
         if( $title ) $output .= '<'.$font_tag.' class="timeline-title" '.$style_title.'>'.$title.'</'.$font_tag.'>';
         if( $content ) $output .= do_shortcode($content);
@@ -293,6 +334,21 @@ vc_map( array(
         ),
         array(
             'type' => 'dropdown',
+            'heading' => __( 'Horizontal Style', 'js_composer' ),
+            'param_name' => 'horizontal_style',
+            'value' => array(
+                __( 'Style 1', 'js_composer' ) => 'style_1',
+                __( 'Style 2', 'js_composer' ) => 'style_2',
+
+            ),
+            'description' => __( 'Horizontal Style.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'timeline_tyle',
+                'value' => 'horizontal',
+            ),
+        ),
+        array(
+            'type' => 'dropdown',
             'heading' => __( 'Timeline Column', 'js_composer' ),
             'param_name' => 'timeline_column',
             'value' => array(
@@ -308,15 +364,10 @@ vc_map( array(
             ),
         ),
         array(
-            'type' => 'dropdown',
+            'type' => 'kt_animate',
             'heading' => __( 'Animation', 'js_composer' ),
             'param_name' => 'kt_animation',
-            'value' => array(
-                __( 'None', 'js_composer' ) => 'none',
-                __( 'FadeInUp', 'js_composer' ) => 'fadeInUp',
-                __( 'BounceInLeft', 'js_composer' ) => 'bounceInLeft',
-
-            ),
+            'value' => '',
             'description' => __( 'Animation.', 'js_composer' ),
         ),
         array(
@@ -564,7 +615,7 @@ vc_map( array(
     		'type' => 'iconpicker',
     		'heading' => __( 'Icon', 'js_composer' ),
     		'param_name' => 'icon_fontawesome',
-            'value' => '',
+            'value' => 'fa fa-heart',
     		'settings' => array(
     			'emptyIcon' => true, // default true, display an "EMPTY" icon?
     			'iconsPerPage' => 200, // default 100, how many icons per/page to display
