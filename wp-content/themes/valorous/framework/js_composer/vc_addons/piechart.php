@@ -85,7 +85,7 @@ class WPBakeryShortCode_Piechart extends WPBakeryShortCode_VC_Custom_heading {
 
         $output = '<div class="kt_piechart">';
             $output .= '<div class="chart" data-percent="'.$percent.'" data-size="'.$size.'" data-linewidth="'.$line_width.'" data-fgcolor="'.$color_line.'" data-bgcolor="'.$bg_line.'" data-linecap="'.$linecap.'">';
-                $output .= '<span class="percent" '.$style_value.'>'.$percent.'%</span>';
+                $output .= '<span class="percent" '.$style_value.'><span class="pie-table"><span class="pie-col">'.$percent.'%</span></span></span>';
             $output .= '</div>';
             $output .= '<h4 class="piechart-title" '.$style_title.'>'.$title.'</h4>';
         $output .= '</div>';
