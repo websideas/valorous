@@ -96,7 +96,7 @@ if ( ! function_exists( 'kt_meta_title' ) ) {
  */
 function london_scripts() {
 
-    wp_enqueue_style( 'london-style', get_stylesheet_uri(), array('mediaelement') );
+    wp_enqueue_style( 'london-style', get_stylesheet_uri(), array('mediaelement', 'wp-mediaelement') );
     wp_enqueue_style( 'bootstrap-css', THEME_LIBS . 'bootstrap/css/bootstrap.min.css', array());
     wp_enqueue_style( 'font-awesome', THEME_FONTS . 'font-awesome/css/font-awesome.min.css', array());
     wp_enqueue_style( 'font_kites', THEME_FONTS . 'font_kites/stylesheet.css', array());
@@ -107,6 +107,8 @@ function london_scripts() {
     wp_enqueue_style( 'magnific-effect', THEME_CSS . 'magnific-effect.css', array());
     wp_enqueue_style( 'owl-carousel', THEME_LIBS . 'owl-carousel/assets/owl.carousel.css', array());
     wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
+    wp_enqueue_style( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/css/jquery.mb.YTPlayer.min.css', array());
+
 
     wp_enqueue_style( 'woocommerce-products-filter', THEME_CSS . 'woocommerce-products-filter.css', array());
     
@@ -144,6 +146,9 @@ function london_scripts() {
     wp_enqueue_script( 'masonry', THEME_JS . 'masonry.pkgd.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'isotope', THEME_JS . 'isotope.pkgd.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'easy-pie-chart', THEME_JS . 'jquery.easy-pie-chart.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/jquery.mb.YTPlayer.min.js', array( 'jquery' ), null, true );
+
+
 
 
     
@@ -249,6 +254,7 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
             return;
         }
         $format = get_post_format();
+        global $wp_embed;
         ?>
 
             <?php if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
@@ -290,23 +296,22 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 }
             }elseif($format == 'video'){
                 $type = rwmb_meta('_kt_video_type');
-                if($type == 'youtube'){
-                    if($video_id = rwmb_meta('_kt_video_id')){
-                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
-                        echo kt_video_youtube($video_id);
-                        echo '</div></div><!-- .entry-thumb -->';
+                if($type == 'upload'){
+                    $mp4 = kt_get_single_file('_kt_video_file_mp4');
+                    $webm = kt_get_single_file('_kt_video_file_webm');
+                    if($mp4 || $webm){
+                        $video_shortcode = "[video ";
+                        if($mp4) $video_shortcode .= 'mp4="'.$mp4.'" ';
+                        if($webm) $video_shortcode .= 'webm="'.$webm.'" ';
+                        $video_shortcode .= "]";
+                        echo '<div class="entry-thumb">'.do_shortcode($video_shortcode).'</div><!-- .entry-thumb -->';
                     }
-                }elseif($type == 'vimeo'){
-                    if($video_id = rwmb_meta('_kt_video_id')){
-                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
-                        echo kt_video_vimeo($video_id);
-                        echo '</div></div><!-- .entry-thumb -->';
-                    }
-                }elseif($type == 'dailymotion'){
-                    if($video_id = rwmb_meta('_kt_video_id')){
-                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">';
-                        echo kt_video_dailymotion($video_id);
-                        echo '</div></div><!-- .entry-thumb -->';
+
+                }elseif($type == 'external'){
+                    if($video_link = rwmb_meta('_kt_video_link')){
+                        global $wp_embed;
+                        $embed = $wp_embed->run_shortcode( '[embed]' . $video_link . '[/embed]' );
+                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">'.do_shortcode($embed).'</div></div><!-- .entry-thumb -->';
                     }
                 }
             }elseif($format == 'audio'){
@@ -314,12 +319,7 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 if($type == 'upload'){
                     if($audios = rwmb_meta('_kt_audio_mp3', 'type=file')){
                         foreach($audios as $audio) {
-                            echo '<div class="entry-thumb">';
-                            printf(
-                                '<div class="post-media-audio"><audio src="%s" type="audio/mp3" controls="controls"></div>',
-                                $audio['url']
-                            );
-                            echo '</div><!-- .entry-thumb -->';
+                            echo '<div class="entry-thumb">'.do_shortcode('[audio src="'.$audio['url'].'"][/audio]').'</div><!-- .entry-thumb -->';
                         }
                     }
                 }elseif($type == 'soundcloud'){
@@ -335,6 +335,19 @@ endif;
 
 
 
+/**
+ * Filter function, converts fixed width to '100%' width
+ */
+function responsive_wp_video_shortcode( $html, $atts, $video, $post_id, $library ) {
+    //$html = str_replace('width: ' . $atts['width'] . 'px', 'width: 100%', $html);
+
+    print_r($video);
+    $html = str_replace('width="' . $atts['width'] . '"', 'width="100%"', $html);
+    $html = str_replace('height="' . $atts['height'] . '"', 'height="100%"', $html);
+    return $html;
+}
+
+add_filter( 'wp_video_shortcode', 'responsive_wp_video_shortcode', 10, 5 );
 
 
 

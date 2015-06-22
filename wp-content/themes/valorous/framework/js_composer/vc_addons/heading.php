@@ -86,7 +86,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
 
         $output_title = '<' . $font_container_data['values']['tag'] . ' class="kt-heading-title" ' . $style . ' >'.$text.'</' . $font_container_data['values']['tag'] . '>';
         $output_divider = do_shortcode('[kt_divider align="'.$align.'" border_style="'.$border_style.'" color_border="'.$color_border.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" custom_background="'.$custom_background.'"  background_style="'.$background_style.'" background_color="'.$background_color.'" width="'.$width.'" height="'.$height.'" margin_top="'.$divider_margin_top.'" margin_bottom="'.$divider_margin_bottom.'"]');
-        $output_content = '<div class="kt-heading-content">'.$content.'</div>';;
+        $output_content = ($content) ? '<div class="kt-heading-content">'.$content.'</div>' : '';
 
 
         if($layout == '2'){

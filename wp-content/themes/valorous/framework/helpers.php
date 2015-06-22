@@ -519,42 +519,25 @@ function get_galleries_post($meta, $size = 'screen', $post_id = null) {
 
 
 /**
- * Function to show youtube
+ * Get Single file form meta box.
  *
+ * @param string $meta. meta id of article.
+ * @param string|array $size Optional. Image size. Defaults to 'screen'.
+ * @param array $post_id Optional. ID of article.
  * @return array
  */
-function kt_video_youtube($video_id, $width = 640, $height = 480, $iframe = 1){
-    if($iframe){
-        return '<iframe itemprop="video" src="//www.youtube.com/embed/'. $video_id .'?wmode=transparent" width="'. $width .'" height="'. $height .'" ></iframe>';
-    }else{
-        return '//www.youtube.com/embed/'. $video_id;
+function kt_get_single_file($meta, $post_id = null) {
+    global $post;
+    if(!$post_id) $post_id = $post->ID;
+    $medias = rwmb_meta($meta, 'type=file', $post_id);
+    if (count($medias)){
+        foreach($medias as $media){
+            return $media['url'];
+        }
     }
+    return false;
 }
-/**
- * Function to show vimeo
- *
- * @return array
- */
-function kt_video_vimeo($video_id, $width = 640, $height = 480, $iframe = 1){
-    if($iframe){
-        return '<iframe itemprop="video" src="//player.vimeo.com/video/'. $video_id .'?title=0&amp;byline=0&amp;portrait=0?wmode=transparent" width="'. $width .'" height="'. $height .'"></iframe>';
-    }else{
-        return '//player.vimeo.com/video/'. $video_id;
-    }
 
-}
-/**
- * Function to show youtube
- *
- * @return array
- */
-function kt_video_dailymotion($video_id, $width = 640, $height = 480, $iframe = 1){
-    if($iframe){
-        return '<iframe itemprop="video" src="//www.dailymotion.com/embed/video/'.$video_id.'" width="'. $width .'" height="'. $height .'" ></iframe>';
-    }else{
-        return '//www.dailymotion.com/embed/video/'. $video_id;
-    }
-}
 
 /**
  * Render Carousel

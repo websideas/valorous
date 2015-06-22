@@ -2,8 +2,7 @@
 global $blog_atts;
 //var_dump($blog_atts);
 ?>
-<article <?php post_class('post-item-recentpost'); ?>>
-    Layout 3
+<article <?php post_class('post-item-recentpost recentpost-3'); ?>>
     <div class="entry-header">
         <?php
         kt_post_thumbnail_image('recent_posts', 'img-responsive');

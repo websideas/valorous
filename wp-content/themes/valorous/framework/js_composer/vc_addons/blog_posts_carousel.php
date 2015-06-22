@@ -8,7 +8,9 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'border_heading' => '',
+            'image_size' => '',
+            'readmore' => '',
+            'blog_layout' => 1,
 
             'source' => 'all',
             'categories' => '',
@@ -113,9 +115,24 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                 $carousel_ouput = kt_render_carousel(apply_filters( 'kt_render_args', $atts));
                 $blog_carousel_html = '';
 
+                global $blog_atts;
+                $blog_atts = array(
+                    'image_size' => $image_size,
+                    'readmore' => apply_filters('sanitize_boolean', $readmore),
+                    "show_author" => false,
+                    "show_thumb" => false,
+                    "show_category" => false,
+                    "show_comment" => false,
+                    "show_date" => false,
+                    'blog_layout' => $blog_layout,
+                    "date_format" => 'd F Y',
+                );
+
+
                 add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
                 while ( $query->have_posts() ) : $query->the_post();
                     $blog_carousel_html .= '<div class="recent-posts-item">';
+                    /*
                     $blog_carousel_html .= '<a href="'.get_permalink().'" class="entry-thumbnail">';
                     $blog_carousel_html .= get_the_post_thumbnail( get_the_ID(), 'recent_posts', array('class'=>"first-img product-img img-responsive"));
                     $blog_carousel_html .= '</a>';
@@ -129,6 +146,11 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                                         'btn btn-default',
                                         __('Read More', THEME_LANG)
                                     );
+                    */
+                    ob_start();
+                    get_template_part( 'templates/blog/recentpost/content', $blog_layout );
+                    $blog_carousel_html .= ob_get_contents();
+                    ob_end_clean();
 
                     $blog_carousel_html .= '</div><!-- .recent-posts-item -->';
                 endwhile; wp_reset_postdata();
@@ -161,6 +183,42 @@ vc_map( array(
             "param_name" => "title",
             "admin_label" => true,
         ),
+
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size",
+        ),
+        /*
+        array(
+            "type" => "textfield",
+            "heading" => __( "Image size custom", THEME_LANG ),
+            "param_name" => "img_size_custom",
+            'description' => __('Default: 300x200 (Width x Height)', THEME_LANG),
+            "dependency" => array("element" => "image_size","value" => array('custom')),
+        ),
+        */
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show read more button', THEME_LANG ),
+            'param_name' => 'readmore',
+            'value' => 'true',
+            "description" => __("Show or hide the read more.", THEME_LANG),
+        ),
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Layout', THEME_LANG ),
+            'param_name' => 'blog_layout',
+            'value' => array(
+                __( 'Layout 1', 'js_composer' ) => '1',
+                __( 'Layout 2', 'js_composer' ) => '2',
+                __( 'Layout 3', 'js_composer' ) => '3',
+                __( 'Layout 4', 'js_composer' ) => '4',
+            ),
+            'description' => __( 'Select Layout.', THEME_LANG ),
+        ),
+
         array(
         	'type' => 'dropdown',
         	'heading' => __( 'CSS Animation', 'js_composer' ),

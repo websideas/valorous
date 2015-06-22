@@ -80,7 +80,13 @@
         			}
         		});
        		});
-        }, { offset:'95%' }); 
+        }, { offset:'95%' });
+
+
+        $('.player').each(function(){
+            $(this).mb_YTPlayer();
+        });
+
     });
     
     $(window).resize(function(){
@@ -99,17 +105,17 @@
         ***  Equal height
         ===============================**/
         $('.equal_height').each(function(){
-            var $equal = $(this),
-                $equal_select;
-            if($equal.hasClass('equal_height_column')){
-                $equal_select = $equal.children('.wpb_column');
-            }else{
-                $equal_select = $equal.children('.wpb_column').find('.wpb_wrapper > div');
-            }
-            $equal_select.matchHeight({
+            $(this).children('.wpb_column').matchHeight({
                 byRow: true
             });
         });
+
+
+
+
+
+
+
     });
 
     /* ---------------------------------------------
@@ -167,11 +173,6 @@
             // Responsive video
         }
 
-        if( $.fn.mediaelementplayer ) {
-            $('.post-media-video video').mediaelementplayer();
-            // Responsive audio
-            $('.post-media-audio audio').mediaelementplayer();
-        }
 
         // Skill bar
         if (typeof jQuery.fn.waypoint !== 'undefined') {

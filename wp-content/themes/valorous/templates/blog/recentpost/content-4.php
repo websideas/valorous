@@ -2,18 +2,12 @@
 global $blog_atts;
 //var_dump($blog_atts);
 ?>
-<article <?php post_class('post-item-recentpost'); ?>>
-    Layout 4
+<article <?php post_class('post-item-recentpost recentpost-4'); ?>>
     <div class="entry-header">
         <?php
         kt_post_thumbnail_image('recent_posts', 'img-responsive');
         //kt_post_thumbnail('blog-post', 'img-responsive');
         ?>
-        <div class="entry-date-time">
-            <div class="m"> <?php the_time( 'M' ); ?></div>
-            <div class="d"> <?php the_time( 'd' ); ?></div>
-            <div class="y"> <?php the_time( 'Y' ); ?></div>
-        </div>
     </div>
     <div class="entry-main-content">
         <div class="post-info">
@@ -37,16 +31,7 @@ global $blog_atts;
                         ?>
                     </div>
                 <?php } ?>
-                <div class="entry-excerpt">
-                    <?php the_excerpt(); ?>
-                </div>
-                <?php if($blog_atts['readmore']){ ?>
-                    <div class="entry-more">
-                        <a href="<?php the_permalink() ?>"><?php _e('Read more', THEME_LANG ); ?></a>
-                    </div>
-                <?php } ?>
             </div>
-
         </div>
     </div>
 </article>

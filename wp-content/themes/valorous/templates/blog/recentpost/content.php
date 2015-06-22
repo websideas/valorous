@@ -6,14 +6,9 @@ global $blog_atts;
 
     <div class="entry-header">
         <?php
-            kt_post_thumbnail_image('recent_posts', 'img-responsive');
+            kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive');
             //kt_post_thumbnail('blog-post', 'img-responsive');
         ?>
-        <div class="entry-date-time">
-            <div class="m"> <?php the_time( 'M' ); ?></div>
-            <div class="d"> <?php the_time( 'd' ); ?></div>
-            <div class="y"> <?php the_time( 'Y' ); ?></div>
-        </div>
     </div>
     <div class="entry-main-content">
         <div class="post-info">

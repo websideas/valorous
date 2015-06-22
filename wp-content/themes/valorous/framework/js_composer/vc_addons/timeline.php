@@ -15,6 +15,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'kt_animation' => '',
             
             'font_container' => '',
+            'letter_spacing' => '0',
             'font_type' => '',
             'google_fonts' => '',
             'color' => '',
@@ -73,6 +74,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
             wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
         }
+        $styles[] = 'letter-spacing:'.$letter_spacing.'px';
         if ( ! empty( $styles ) ) {
             $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
         }
@@ -242,7 +244,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
         extract( shortcode_atts( array(
             'title' => '',
             'icon_type' => 'fontawesome',
-            'icon_fontawesome' => 'fa fa-heart',
+            'icon_fontawesome' => '',
             'icon_openiconic' => '',
             'icon_typicons' => '',
             'icon_entypo' => '',
@@ -432,6 +434,17 @@ vc_map( array(
                     'color_description' => __( 'Select heading color.', 'js_composer' ),
                 ),
             ),
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Letter spacing", THEME_LANG),
+            "param_name" => "letter_spacing",
+            "value" => 0,
+            "min" => 0,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(

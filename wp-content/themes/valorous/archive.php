@@ -40,19 +40,20 @@ get_header(); ?>
                         ?>
                         <div class="blog-posts clearfix">
                         <?php
+
                         while( have_posts() ){
                             the_post();
                             // Include the page content template.
-                            get_template_part( 'templates/blog/recentpost/content', get_post_format() );
+                            get_template_part( 'templates/blog/content', get_post_format() );
                         }
                         ?>
                         </div>
                         <?php
                             // Previous/next page navigation.
                             the_posts_pagination( array(
-                                'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-                                'next_text'          => __( 'Next page', 'twentyfifteen' ),
-                                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
+                                'prev_text'          => __( 'Previous page', THEME_LANG ),
+                                'next_text'          => __( 'Next page', THEME_LANG ),
+                                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', THEME_LANG ) . ' </span>',
                             ) );
                         ?>
                     </div>

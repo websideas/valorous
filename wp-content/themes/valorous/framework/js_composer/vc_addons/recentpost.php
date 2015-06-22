@@ -185,7 +185,27 @@ vc_map( array(
             "param_name" => "title",
             "admin_label" => true,
         ),
-
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size",
+        ),
+        /*
+        array(
+            "type" => "textfield",
+            "heading" => __( "Image size custom", THEME_LANG ),
+            "param_name" => "img_size_custom",
+            'description' => __('Default: 300x200 (Width x Height)', THEME_LANG),
+            "dependency" => array("element" => "image_size","value" => array('custom')),
+        ),
+        */
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show read more button', THEME_LANG ),
+            'param_name' => 'readmore',
+            'value' => 'true',
+            "description" => __("Show or hide the read more.", THEME_LANG),
+        ),
         array(
             "type" => "kt_heading",
             "heading" => __("Layout setting", THEME_LANG),
@@ -253,10 +273,6 @@ vc_map( array(
             ),
         ),
 
-
-
-
-
         array(
             'type' => 'dropdown',
             'heading' => __( 'Layout', THEME_LANG ),
@@ -265,9 +281,10 @@ vc_map( array(
                 __( 'Layout 1', 'js_composer' ) => '1',
                 __( 'Layout 2', 'js_composer' ) => '2',
                 __( 'Layout 3', 'js_composer' ) => '3',
+                __( 'Layout 4', 'js_composer' ) => '4',
             ),
-            'description' => __( 'Select columns.', THEME_LANG ),
-            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+            'description' => __( 'Select Layout.', THEME_LANG ),
+            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
 
         array(
@@ -275,38 +292,7 @@ vc_map( array(
             "heading" => __("Extra setting", THEME_LANG),
             "param_name" => "extra_settings",
         ),
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Show thumbail image', THEME_LANG ),
-            'param_name' => 'show_thumb',
-            'value' => 'true',
-            "description" => __("Show or hide the thumbnail image.", THEME_LANG),
-        ),
-        array(
-            "type" => "kt_image_sizes",
-            "heading" => __( "Select image sizes", THEME_LANG ),
-            "param_name" => "image_size",
-            'dependency' => array(
-                'element' => 'show_thumb',
-                'value' => array( 'true' )
-            ),
-        ),
-        /*
-        array(
-            "type" => "textfield",
-            "heading" => __( "Image size custom", THEME_LANG ),
-            "param_name" => "img_size_custom",
-            'description' => __('Default: 300x200 (Width x Height)', THEME_LANG),
-            "dependency" => array("element" => "image_size","value" => array('custom')),
-        ),
-        */
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Show read more button', THEME_LANG ),
-            'param_name' => 'readmore',
-            'value' => 'true',
-            "description" => __("Show or hide the read more.", THEME_LANG),
-        ),
+
 
         array(
             'type' => 'dropdown',
