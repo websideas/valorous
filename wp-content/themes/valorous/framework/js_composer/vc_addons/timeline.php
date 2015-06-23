@@ -143,7 +143,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        return '<div id="kt_timeline_'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul data-animation="'.$kt_animation.'" class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
+        return '<div id="kt_timeline_'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="200" data-animation="'.$kt_animation.'" class="animation-effect kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
     }
 
     /**
@@ -299,7 +299,7 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
 
         $icon_box_icon = do_shortcode('[vc_icon el_class="icon-timeline" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" type="'.$icon_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" '.$data_icon.']');
 
-        $output = '<li id="'.$uniqid.'" class="kt-timeline-item item-'.$data_type.' '.$el_class.'">';
+        $output = '<li id="'.$uniqid.'" class="animation-effect-item kt-timeline-item item-'.$data_type.' '.$el_class.'">';
         $output .= $icon_box_icon;
         if( $data_type == 'horizontal' && $data_horizontal_style == 'style_1' ) $output .= '<div class="divider-icon"></div>';
         $output .= '<div class="timeline-info">';

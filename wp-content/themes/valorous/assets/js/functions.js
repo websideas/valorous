@@ -29,9 +29,9 @@
         init_backtotop();
         init_MainMenu();
         init_MobileMenu();
-        init_timeline_animation();
         init_masonry();
         
+        init_timeline_animation();
         
         $('.kt_lightbox').each(function(){
             var $type = $(this).data('type'),
@@ -335,16 +335,17 @@
      --------------------------------------------- */
     function init_timeline_animation(){
 
-        $('.kt-timeline-wrapper > ul').each(function(){
+        $('.animation-effect').each(function(){
             var window_width = $(window).width(),
                 $timeline_wrap = $(this),
                 $class_animate = $timeline_wrap.attr('data-animation'),
-                $timeline_item = $timeline_wrap.find('li.kt-timeline-item'),
+                $timeline_item = $timeline_wrap.find('.animation-effect-item'),
+                $time = $timeline_wrap.attr('data-timeeffect'),
                 $count = 0;
             $timeline_item.each(function(i){
                 var $timeline = $(this);
                 
-                var animation_delay = $count * 200;
+                var animation_delay = $count * $time;
                 $count++;
                 if (window_width > 991) {
 					$timeline.css({

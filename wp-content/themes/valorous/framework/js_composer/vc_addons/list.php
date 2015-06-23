@@ -14,6 +14,13 @@ vc_map( array(
     "params" => array(
         
         array(
+            'type' => 'kt_animate',
+            'heading' => __( 'Animation', 'js_composer' ),
+            'param_name' => 'kt_animation',
+            'value' => '',
+            'description' => __( 'Animation.', 'js_composer' ),
+        ),
+        array(
         	'type' => 'dropdown',
         	'heading' => __( 'Icon library', 'js_composer' ),
         	'value' => array(
@@ -257,6 +264,7 @@ vc_map( array(
 class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
+            'kt_animation' => '',
             'icon_type' => 'fontawesome',
             'icon_fontawesome' => '',
         	'icon_openiconic' => '',
@@ -291,7 +299,7 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div class="'.esc_attr( $elementClass ).'"><ul class="kt-list-fancy">' . do_shortcode($content) . '</ul></div>';
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="10" class="kt-list-fancy animation-effect">' . do_shortcode($content) . '</ul></div>';
 
     }
 }
@@ -325,7 +333,7 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         
         if(!$icon_li) $icon_li = $icon_show;
         
-        return '<li class="kt-list-item '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
+        return '<li class="kt-list-item animation-effect-item '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
         
     }
 }
