@@ -290,7 +290,8 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
             }
         }
 
-
+        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
+        
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
@@ -299,7 +300,7 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="10" class="kt-list-fancy animation-effect">' . do_shortcode($content) . '</ul></div>';
+        return '<div class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="10" data-animation="'.$kt_animation.'" class="kt-list-fancy animation-effect">' . do_shortcode($content) . '</ul></div>';
 
     }
 }
