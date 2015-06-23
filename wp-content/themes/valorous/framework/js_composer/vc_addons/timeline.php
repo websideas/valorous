@@ -11,7 +11,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
             'timeline_tyle' => '',
-            'horizontal_style' => '',
+            'horizontal_style' => 'style_1',
             'timeline_column' => '',
             'kt_animation' => '',
             

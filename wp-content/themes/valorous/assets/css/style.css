@@ -4107,6 +4107,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 /*========= PieChart ===========*/
 .kt_piechart{
     text-align: center;
+    margin-bottom:30px;
 }
 .kt_piechart .chart{
     position: relative;
