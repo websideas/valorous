@@ -2164,44 +2164,321 @@ body.footer_fixed .static-footer{
 .vc_grid-item .entry-meta-data { 
     margin-bottom: 0px; 
 }
-
 /*
- * Tab
+ * Tabs
  */
-body #content .wpb_content_element .wpb_tabs_nav{
-    margin-bottom: 30px;
+.wpb_tabs.style1 .wpb_tabs_nav,
+.wpb_tabs.style2 .wpb_tabs_nav,
+.wpb_tabs.style3 .wpb_tabs_nav,
+.wpb_tabs.style4 .wpb_tabs_nav {
+	height:auto;
+	overflow:auto;
 }
-body .wpb_content_element .wpb_tabs_nav li{
-    margin: 0 10px 0 0;
-    border: 1px solid #cccccc;
+.wpb_tabs.style1 .wpb_tabs_nav li,
+.wpb_tabs.style2 .wpb_tabs_nav li,
+.wpb_tabs.style3 .wpb_tabs_nav li,
+.wpb_tabs.style4 .wpb_tabs_nav li {
+	height:auto;
+	padding:15px 20px;
+	cursor:pointer;
+    margin:0;
 }
-body .wpb_content_element.wpb_tour .wpb_tabs_nav li{
-    margin-bottom: 10px;
+.wpb_tabs.style1 .wpb_tabs_nav li a,
+.wpb_tabs.style2 .wpb_tabs_nav li a,
+.wpb_tabs.style3 .wpb_tabs_nav li a,
+.wpb_tabs.style4 .wpb_tabs_nav li a {
+	padding:0!important;
+	margin:0;
+	pointer-events: none;
 }
-body .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav a,
-body .wpb_content_element .wpb_accordion_header a{
-    color: #666666;
-    font-size: 18px;
-    font-weight: 200;
-    padding: 8px 30px;
+.wpb_tabs .wpb_tabs_nav li a .vc_icon_element-icon{
+    margin-right:6px;
 }
-body .wpb_content_element .wpb_tabs_nav li.ui-tabs-active,
-body .wpb_content_element .wpb_tabs_nav li:hover{
-    background: #333333;
-    border-color: #333333;
+.wpb_tabs.style1 .ui-tabs-panel,
+.wpb_tabs.style2 .ui-tabs-panel,
+.wpb_tabs.style3 .ui-tabs-panel,
+.wpb_tabs.style4 .ui-tabs-panel {
+	margin-top:-1px;
 }
-body .wpb_content_element .wpb_tabs_nav li.ui-tabs-active a,
-body .wpb_content_element .wpb_tabs_nav li:hover a{
-    color: #fdfdfd;
+.wpb_tabs.style1 .wpb_tabs_nav li:hover,
+.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style2 .wpb_tabs_nav li:hover,
+.wpb_tabs.style2 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style3 .wpb_tabs_nav li:hover,
+.wpb_tabs.style3.wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style4 .wpb_tabs_nav li:hover,
+.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active{
+    background: none;
 }
-body .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
-body .wpb_content_element.wpb_tabs .wpb_tour_tabs_wrapper .wpb_tab{
-    background: transparent;
-    padding: 0;
+.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style2 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style3 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active{
+    border-bottom:1px solid #fff!important;
+}
+/*** Type 1 ***/
+
+.wpb_tabs.style1 .wpb_tabs_nav li {
+	padding:10px 20px;
+	border-right:none !important;
+	max-height:41px;
+}
+.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active {
+	padding-top:8px;
+    border-top: 3px solid #1abc9c;
+}
+.wpb_tabs.style1 .wpb_tabs_nav li a {
+	font-size:15px;
+}
+.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active a {
+	font-weight:bold;
+}
+/*** Type 2 ***/
+
+.wpb_tabs.style2 .wpb_tabs_nav li {
+	padding:16px 27px 14px;
+	border-right:none !important;
+	max-height:51px
+}
+.wpb_tabs.style2 .wpb_tabs_nav li.ui-tabs-active {
+	padding-top:13px;
+    box-shadow: 6px 0px 3px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 6px 0 3px rgba(0,0,0,0.05);
+	-webkit-box-shadow: 6px 0 3px rgba(0,0,0,0.05);
+	position:relative;
+    border-top: 4px solid #1abc9c;
+}
+.wpb_tabs.style2 .wpb_tabs_nav li a {
+	font-size:14px;
+}
+/*** Type 3 ***/
+.wpb_tabs.style3 .wpb_tabs_nav li:first-child {
+	margin-left:0 !important;
+}
+.wpb_tabs.style3.dark .wpb_tabs_nav li,
+.wpb_tabs.style3 .wpb_tabs_nav li {
+	padding:10px 15px 9px;
+	margin-top: 5px;
+	margin-left:-1px;
+	max-height:41px;
+    background: #a1b1bc;
+}
+.wpb_tabs.style3 .wpb_tabs_nav li.ui-tabs-active {
+	padding:15px 15px 9px;
+	margin-top:0!important;
+	border-radius: 4px 4px 0 0;
+	max-height:46px;
+    background: none;
+}
+.wpb_tabs.style3 .wpb_tabs_nav li a {
+	font-size:16px;
+    color:#fff;
+}
+.wpb_tabs.style3 .wpb_tabs_nav li.ui-tabs-active a {
+	font-weight:bold;
+    color:#2c3e50;
+}
+/*** Type 4 ***/
+.wpb_tabs.style4 .wpb_tabs_nav li:first-child {
+	margin-left:0 !important;
+}
+.wpb_tabs.style4 .wpb_tabs_nav li {
+	padding:10px 15px 9px;
+	margin-top: 5px;
+	margin-left:-1px;
+	max-height:41px
+}
+.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active {
+	padding:15px 15px 9px;
+	margin-top:0!important;
+	border-radius: 4px 4px 0 0;
+	max-height:46px
+}
+.wpb_tabs.style4 .wpb_tabs_nav li a {
+	font-size:16px;
+}
+.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active a {
+	font-weight:bold;
+}
+/** Dark tab **/
+
+.wpb_tabs.dark.style1 .wpb_tabs_nav li,
+.wpb_tabs.dark.style2 .wpb_tabs_nav li,
+.wpb_tabs.dark.style3 .wpb_tabs_nav li,
+.wpb_tabs.dark.style4 .wpb_tabs_nav li {
+	color:#a1b1bc;
+	background:#222533;
+}
+.wpb_tabs.dark.style1 .ui-tabs-panel,
+.wpb_tabs.dark.style2 .ui-tabs-panel,
+.wpb_tabs.dark.style3 .ui-tabs-panel,
+.wpb_tabs.dark.style4 .ui-tabs-panel {
+	color:#a1b1bc;
+	background:#222533!important;
+}
+.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active,
+.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active {
+	border-bottom:1px solid #222533 !important;
+	background:#222533 !important;
+}
+.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active a:hover,
+.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active a:hover,
+.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active a:hover,
+.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active a:hover {
+	color:#ffffff !important;
+}
+.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active a,
+.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active a,
+.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active a,
+.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active a {
+	color:#ffffff !important;
 }
 
-
-
+.wpb_tabs.style1 .wpb_tabs_nav li, .wpb_tabs.style1 .ui-tabs-panel,
+.wpb_tabs.style2 .wpb_tabs_nav li, .wpb_tabs.style2 .ui-tabs-panel,
+.wpb_tabs.style3 .wpb_tabs_nav li, .wpb_tabs.style3 .ui-tabs-panel,
+.wpb_tabs.style4 .wpb_tabs_nav li, .wpb_tabs.style4 .ui-tabs-panel{
+    border: 1px solid #ecf0f1;
+}
+.wpb_tabs.wpb_content_element.style1 .wpb_accordion_wrapper .wpb_accordion_header, 
+.wpb_tabs.wpb_content_element.style1 .wpb_tour_tabs_wrapper .wpb_tab,
+.wpb_tabs.wpb_content_element.style2 .wpb_accordion_wrapper .wpb_accordion_header, 
+.wpb_tabs.wpb_content_element.style2 .wpb_tour_tabs_wrapper .wpb_tab,
+.wpb_tabs.wpb_content_element.style3 .wpb_accordion_wrapper .wpb_accordion_header, 
+.wpb_tabs.wpb_content_element.style3 .wpb_tour_tabs_wrapper .wpb_tab,
+.wpb_tabs.wpb_content_element.style4 .wpb_accordion_wrapper .wpb_accordion_header, 
+.wpb_tabs.wpb_content_element.style4 .wpb_tour_tabs_wrapper .wpb_tab{
+    background: #fff;
+}
+.wpb_tabs.style1 .wpb_tabs_nav li:last-child,
+.wpb_tabs.style2 .wpb_tabs_nav li:last-child,
+.wpb_tabs.style3 .wpb_tabs_nav li:last-child,
+.wpb_tabs.style4 .wpb_tabs_nav li:last-child {
+    border-right: 1px solid #ecf0f1 !important;
+}
+/*
+ *Tour
+ */
+.wpb_tour_next_prev_nav{
+    display: none;
+}
+.wpb_tour .wpb_tabs_nav li span.vc_icon_element-icon{
+    margin-right: 8px;
+}
+/*===== Style1 =====*/
+.wpb_tour.style1 .wpb_tabs_nav li{
+    margin:0;
+    background: #f9fafb;
+    border:1px solid #eceeef;
+    border-top:none;
+}
+.wpb_tour.style1 .wpb_tabs_nav li:first-child{
+    border-top:1px solid #eceeef;
+}
+.wpb_tour.style1 .wpb_tabs_nav li a{
+    padding:10px 20px;
+    color:#a1b1bc;
+    border-left:4px solid #f9fafb;
+}
+.wpb_tour.style1 .wpb_tabs_nav li.ui-tabs-active{
+    background: #fff;
+    border-left:1px solid #1abc9c;
+    border-right-color: #fff;
+    position: relative;
+}
+.wpb_tour.style1 .wpb_tabs_nav li.ui-tabs-active a{
+    color:#1abc9c;
+    border-left:4px solid #1abc9c;
+}
+.wpb_tour.style1 .wpb_tour_tabs_wrapper .wpb_tab{
+    margin-left: -1px;
+}
+.wpb_tour.style1 .wpb_tour_tabs_wrapper .wpb_tab{
+    padding:25px;
+    color:#a2b0bd;
+    border: 1px solid #eceeef;
+}
+/*=== End Style1 ===*/
+/*===== Style2 =====*/
+.wpb_tour.style2 .wpb_tabs_nav{
+    border-right:1px solid #e3e9ec;
+    position: relative;
+    overflow: hidden;
+}
+.wpb_tour.style2 .wpb_tabs_nav:after{
+    background: rgba(165, 165, 165, 1);
+    border-radius: 50%;
+    box-shadow: 0 0 40px 10px rgba(165, 165, 165, 0.8);
+    -webkit-box-shadow: 0 0 40px 10px rgba(165, 165, 165, 0.8);
+    -moz-box-shadow: 0 0 40px 10px rgba(165, 165, 165, 0.8);
+    -o-box-shadow: 0 0 40px 10px rgba(165, 165, 165, 0.8);
+    content: "";
+    display: block;
+    height: 50%;
+    margin-top: 0;
+    position: absolute;
+    right: -35px;
+    top: 20%;
+    width: 10px;
+}
+.wpb_tour.style2 .wpb_tour_tabs_wrapper .wpb_tab{
+    border-left: 1px solid #e3e9ec;
+    margin-left: -1px;
+    color:#a1b1bc;
+}
+.wpb_tour.style2 .wpb_tabs_nav li{
+    margin:0;
+    border-bottom:1px solid #e3e9ec;
+    background: none;
+}
+.wpb_tour.style2 .wpb_tabs_nav li:last-child{
+    border:none;
+}
+.wpb_tour.style2 .wpb_tabs_nav li a{
+    padding:15px 0;
+    color:#a1b1bc;
+}
+.wpb_tour.style2 .wpb_tabs_nav li.ui-tabs-active a{
+    color:#1abc9c;
+}
+/*=== End Style2 ===*/
+.wpb_tour.tabs_on_right .wpb_tour_tabs_wrapper .wpb_tab,
+.wpb_tour.tabs_on_right .wpb_tabs_nav{
+    float:right;
+}
+.wpb_tour.style1.tabs_on_right .wpb_tour_tabs_wrapper .wpb_tab{
+    margin-left:0;
+    margin-right:-1px;
+}
+.wpb_tour.style2.tabs_on_right .wpb_tour_tabs_wrapper .wpb_tab{
+    border-right: 1px solid #e3e9ec;
+    border-left:none;
+    margin:0 -1px 0 0;
+}
+.wpb_tour.style1.tabs_on_right .wpb_tabs_nav li.ui-tabs-active{
+    border-right: 1px solid #1abc9c;
+    border-left-color:#fff;
+}
+.wpb_tour.style1.tabs_on_right .wpb_tabs_nav li.ui-tabs-active a{
+    border-left:none;
+    border-right:4px solid #1abc9c;
+}
+.wpb_tour.style2.tabs_on_right .wpb_tabs_nav:after{
+    left: -35px;
+    right:auto;
+}
+.wpb_tour.style2.tabs_on_right .wpb_tabs_nav{
+    border-right:none;
+    border-left:1px solid #e3e9ec;
+}
+.wpb_tour.tabs_on_right .wpb_tabs_nav li a{
+    padding-left:20px;
+}
+.wpb_tour.style2.tabs_on_right .wpb_tour_tabs_wrapper .wpb_tab {
+    padding: 0 21.7391px 0 0;
+}
 
 
 /*
@@ -4107,6 +4384,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 /*========= PieChart ===========*/
 .kt_piechart{
     text-align: center;
+    margin-bottom:30px;
 }
 .kt_piechart .chart{
     position: relative;

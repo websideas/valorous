@@ -11,9 +11,11 @@ class WPBakeryShortCode_Piechart extends WPBakeryShortCode_VC_Custom_heading {
             'title' => '',
             'percent' => '',
             'size' => '',
-            'line_width' => '',
+            'line_width' => '5',
             'color_line' => '',
+            'custom_color_line' => '',
             'bg_line' => '',
+            'custom_bg_line' => '',
             'linecap' => '',
             
             'font_type_title' => '',
@@ -76,7 +78,10 @@ class WPBakeryShortCode_Piechart extends WPBakeryShortCode_VC_Custom_heading {
         if (!empty($styles)) {
             $style_value .= 'style="' . esc_attr(implode(';', $styles)) . '"';
         }
-
+        
+        if( $color_line == 'custom' ){ $color_line = $custom_color_line; }
+        if( $bg_line == 'custom' ){ $bg_line = $custom_bg_line; }
+        
         $output = '<div class="kt_piechart">';
             $output .= '<div class="chart" data-percent="'.$percent.'" data-size="'.$size.'" data-linewidth="'.$line_width.'" data-fgcolor="'.$color_line.'" data-bgcolor="'.$bg_line.'" data-linecap="'.$linecap.'">';
                 $output .= '<span class="percent" '.$style_value.'>'.$percent.'%</span>';
@@ -105,38 +110,69 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
-            "type" => "textfield",
-            'heading' => __( 'Percent', 'js_composer' ),
-            'param_name' => 'percent',
-            'value' => __( '75', 'js_composer' ),
+            "type" => "kt_number",
+            "heading" => __("Percent", THEME_LANG),
+            "param_name" => "percent",
+            "value" => 75,
+            "min" => 1,
+            "max" => 100,
+            "suffix" => "%",
+            "description" => "",
         ),
         array(
-            "type" => "textfield",
-            'heading' => __( 'Size', 'js_composer' ),
-            'param_name' => 'size',
-            'value' => __( '145', 'js_composer' ),
+            "type" => "kt_number",
+            "heading" => __("Size", THEME_LANG),
+            "param_name" => "size",
+            "value" => 145,
+            "suffix" => "px",
+            "description" => "",
         ),
         array(
             "type" => "kt_number",
             "heading" => __("Line Width", THEME_LANG),
             "param_name" => "line_width",
-            "value" => 1,
+            "value" => 5,
             "min" => 1,
             "max" => 10,
-            "suffix" => "",
+            "suffix" => "px",
             "description" => "",
         ),
         array(
-            'type' => 'colorpicker',
-            'heading' => __( 'Color line', 'js_composer' ),
+            'type' => 'dropdown',
+            'heading' => __( 'Color Line', 'js_composer' ),
             'param_name' => 'color_line',
-            'description' => __( 'Select Line Pie Chart color.', 'js_composer' ),
-            'value' => '#f18c59'
+            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'description' => __( 'Select icon color.', 'js_composer' ),
+            'std' => 'grey',
+            'param_holder_class' => 'vc_colored-dropdown',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => __( 'Background line', 'js_composer' ),
+            'heading' => __( 'Custom Color line', 'js_composer' ),
+            'param_name' => 'custom_color_line',
+            'description' => __( 'Select Line Pie Chart color.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'color_line',
+                'value' => 'custom',
+            ),
+            'value' => '#f18c59'
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Background Line', 'js_composer' ),
             'param_name' => 'bg_line',
+            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'description' => __( 'Select icon color.', 'js_composer' ),
+            'param_holder_class' => 'vc_colored-dropdown',
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom Background line', 'js_composer' ),
+            'param_name' => 'custom_bg_line',
+            'dependency' => array(
+                'element' => 'bg_line',
+                'value' => 'custom',
+            ),
             'description' => __( 'Select Line Pie Chart background.', 'js_composer' ),
             'value' => '#101010'
         ),
@@ -216,7 +252,7 @@ vc_map( array(
             'settings' => array(
                 'fields' => array(
                     'font_size',
-                    'line_height',
+                    //'line_height',
                     'color',
 
                     'tag_description' => __( 'Select element tag.', 'js_composer' ),
