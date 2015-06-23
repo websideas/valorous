@@ -243,6 +243,148 @@ vc_add_params("vc_icon", array(
 
 ));
 
+vc_add_params("vc_tabs", array(
+    array(
+        "type" => "dropdown",
+        "heading" => __("Tabs Style", THEME_LANG),
+        "param_name" => "tabs_style",
+        "description" => __("Style of Tabs.", THEME_LANG),
+        "admin_label" => true,
+    	"value" => array(
+            __('Normal', THEME_LANG) => '',
+    		__('Style 1', THEME_LANG) => 'style1',
+            __('Style 2', THEME_LANG) => 'style2',
+            __('Style 3', THEME_LANG) => 'style3',
+            __('Style 4', THEME_LANG) => 'style4',
+    	)
+    ),
+    array(
+        "type" => "dropdown",
+        "heading" => __("Tabs color", THEME_LANG),
+        "param_name" => "tabs_color",
+        "description" => __("Color of Tabs.", THEME_LANG),
+        "admin_label" => true,
+    	"value" => array(
+            __('Light', THEME_LANG) => 'light',
+    		__('Dark', THEME_LANG) => 'dark',
+    	)
+    ),
+));
+vc_add_params("vc_tour", array(
+    array(
+        "type" => "dropdown",
+        "heading" => __("Tabs Style", THEME_LANG),
+        "param_name" => "tabs_style",
+        "description" => __("Style of Tabs.", THEME_LANG),
+        "admin_label" => true,
+    	"value" => array(
+            __('Normal', THEME_LANG) => '',
+    		__('Style 1', THEME_LANG) => 'style1',
+            __('Style 2', THEME_LANG) => 'style2'
+    	)
+    ),
+    array(
+        "type" => "dropdown",
+        "heading" => __("Tabs positions", THEME_LANG),
+        "param_name" => "tabs_positions",
+        "description" => __("Color of Tabs.", THEME_LANG),
+        "admin_label" => true,
+    	"value" => array(
+            __('Tabs on the left', THEME_LANG) => 'tabs_on_left',
+    		__('Tabs on the right', THEME_LANG) => 'tabs_on_right',
+    	)
+    ),
+));
+
+vc_add_params("vc_tab", array(
+    array(
+    	'type' => 'dropdown',
+    	'heading' => __( 'Icon library', 'js_composer' ),
+    	'value' => array(
+    		__( 'Font Awesome', 'js_composer' ) => 'fontawesome',
+    		__( 'Open Iconic', 'js_composer' ) => 'openiconic',
+    		__( 'Typicons', 'js_composer' ) => 'typicons',
+    		__( 'Entypo', 'js_composer' ) => 'entypo',
+    		__( 'Linecons', 'js_composer' ) => 'linecons',
+    	),
+    	'param_name' => 'icon_type',
+    	'description' => __( 'Select icon library.', 'js_composer' ),
+    ),
+    array(
+		'type' => 'iconpicker',
+		'heading' => __( 'Icon', 'js_composer' ),
+		'param_name' => 'icon_fontawesome',
+		'settings' => array(
+			'emptyIcon' => true, // default true, display an "EMPTY" icon?
+			'iconsPerPage' => 200, // default 100, how many icons per/page to display
+		),
+		'dependency' => array(
+			'element' => 'icon_type',
+			'value' => 'fontawesome',
+		),
+		'description' => __( 'Select icon from library.', 'js_composer' ),
+	),
+	array(
+		'type' => 'iconpicker',
+		'heading' => __( 'Icon', 'js_composer' ),
+		'param_name' => 'icon_openiconic',
+		'settings' => array(
+			'emptyIcon' => true, // default true, display an "EMPTY" icon?
+			'type' => 'openiconic',
+			'iconsPerPage' => 200, // default 100, how many icons per/page to display
+		),
+		'dependency' => array(
+			'element' => 'icon_type',
+			'value' => 'openiconic',
+		),
+		'description' => __( 'Select icon from library.', 'js_composer' ),
+	),
+	array(
+		'type' => 'iconpicker',
+		'heading' => __( 'Icon', 'js_composer' ),
+		'param_name' => 'icon_typicons',
+		'settings' => array(
+			'emptyIcon' => true, // default true, display an "EMPTY" icon?
+			'type' => 'typicons',
+			'iconsPerPage' => 200, // default 100, how many icons per/page to display
+		),
+		'dependency' => array(
+    		'element' => 'icon_type',
+    		'value' => 'typicons',
+    	),
+		'description' => __( 'Select icon from library.', 'js_composer' ),
+	),
+	array(
+		'type' => 'iconpicker',
+		'heading' => __( 'Icon', 'js_composer' ),
+		'param_name' => 'icon_entypo',
+		'settings' => array(
+			'emptyIcon' => true, // default true, display an "EMPTY" icon?
+			'type' => 'entypo',
+			'iconsPerPage' => 300, // default 100, how many icons per/page to display
+		),
+		'dependency' => array(
+			'element' => 'icon_type',
+			'value' => 'entypo',
+		),
+	),
+	array(
+		'type' => 'iconpicker',
+		'heading' => __( 'Icon', 'js_composer' ),
+		'param_name' => 'icon_linecons',
+		'settings' => array(
+			'emptyIcon' => true, // default true, display an "EMPTY" icon?
+			'type' => 'linecons',
+			'iconsPerPage' => 200, // default 100, how many icons per/page to display
+		),
+		'dependency' => array(
+			'element' => 'icon_type',
+			'value' => 'linecons',
+		),
+		'description' => __( 'Select icon from library.', 'js_composer' ),
+	)
+));
+
 $composer_addons = array(
     'alert.php',
     'list.php',

@@ -31,7 +31,7 @@
         init_MobileMenu();
         init_masonry();
         
-        init_timeline_animation();
+        init_kt_animation();
         
         $('.kt_lightbox').each(function(){
             var $type = $(this).data('type'),
@@ -331,24 +331,24 @@
     
     
     /* ---------------------------------------------
-     Timeline Animation
+     Kt Animation
      --------------------------------------------- */
-    function init_timeline_animation(){
+    function init_kt_animation(){
 
         $('.animation-effect').each(function(){
             var window_width = $(window).width(),
-                $timeline_wrap = $(this),
-                $class_animate = $timeline_wrap.attr('data-animation'),
-                $timeline_item = $timeline_wrap.find('.animation-effect-item'),
-                $time = $timeline_wrap.attr('data-timeeffect'),
+                $animate_wrap = $(this),
+                $class_animate = $animate_wrap.attr('data-animation'),
+                $animate_item = $animate_wrap.find('.animation-effect-item'),
+                $time = $animate_wrap.attr('data-timeeffect'),
                 $count = 0;
-            $timeline_item.each(function(i){
-                var $timeline = $(this);
+            $animate_item.each(function(i){
+                var $animate = $(this);
                 
                 var animation_delay = $count * $time;
                 $count++;
                 if (window_width > 991) {
-					$timeline.css({
+					$animate.css({
 						"-webkit-animation-delay": animation_delay + "ms",
 						"-moz-animation-delay": animation_delay + "ms",
 						"-ms-animation-delay": animation_delay + "ms",
@@ -356,17 +356,17 @@
 						"animation-delay": animation_delay + "ms"
 					});
                     
-                    $timeline.css({'opacity':'0'});
-                    $timeline.waypoint(function() {
-						$timeline.addClass("animated").addClass($class_animate);
-                        $timeline.css({'opacity':'1'});
+                    $animate.css({'opacity':'0'});
+                    $animate.waypoint(function() {
+						$animate.addClass("animated").addClass($class_animate);
+                        $animate.css({'opacity':'1'});
 					}, {
 						triggerOnce: true,
 						offset: "90%"
 					});
                     
 				}else{
-                    $timeline.addClass("no-effect");
+                    $animate.addClass("no-effect");
                 }
             });
         });
