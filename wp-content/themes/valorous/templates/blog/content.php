@@ -1,8 +1,9 @@
 <?php
     global $blog_atts;
+    $classes = array('post-item', $blog_atts['class']);
     //var_dump($blog_atts);
 ?>
-<article <?php post_class('post-item'); ?>>
+<article <?php post_class($classes); ?>>
 
     <?php kt_post_thumbnail('blog-post', 'img-responsive'); ?>
 

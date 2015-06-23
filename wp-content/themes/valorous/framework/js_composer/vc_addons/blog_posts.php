@@ -16,8 +16,8 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'title' => '',
             'image_size' => '',
             'readmore' => 'true',
-            'blog_pagination' => '',
-            'blog_type' => '',
+            'blog_pagination' => 'classic',
+            'blog_type' => 'classic',
             'blog_layout' => 1,
             'blog_columns' => 3,
 
@@ -30,6 +30,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'order' => 'DESC',
             'max_items' => 10,
             "excerpt_length" => 50,
+
+            'page' => false,
+            'loadmore' => false,
+
 
             "show_author" => 'true',
             "show_category" => 'true',
@@ -44,12 +48,14 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         ), $atts );
         extract($atts);
 
-        $blog_pagination = apply_filters('sanitize_boolean', $blog_pagination);
 
         global $wp_query, $paged;
 
+        if($loadmore && $page != 1){
+            $paged = $page;
+        }
 
-        $output = '';
+        $output = $settings = '';
 
         $this->excerpt_length = $excerpt_length;
 
@@ -87,16 +93,22 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             }
         }
 
-
-
-
-
         ob_start();
         $wp_query = new WP_Query( $args );
         if ( $wp_query->have_posts() ) :
-            echo "<div class='blog-posts'>";
-            do_action('before_blog_posts_loop');
 
+            if(!$loadmore){
+                if($blog_pagination == 'loadmore'){
+                    unset($atts['loadmore']);
+                    unset($atts['page']);
+
+                    $settings = esc_attr( json_encode( $atts ) );
+                }
+                echo "<div class='blog-posts' data-settings='".$settings."' data-type='".$blog_type."'>";
+                echo "<div class='blog-posts-content'>";
+
+                do_action('before_blog_posts_loop');
+            }
             global $blog_atts;
             $blog_atts = array(
                 'image_size' => $image_size,
@@ -105,8 +117,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
-                "date_format" => $date_format
+                "date_format" => $date_format,
+                "class" => ''
             );
+            if($loadmore){
+                $blog_atts['class'] = 'loadmore-item';
+            }
 
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
@@ -115,32 +131,42 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 get_template_part( 'templates/blog/content', get_post_format() );
             endwhile;
             remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-            if($blog_pagination){
-                echo get_the_posts_pagination( array(
-                    'prev_text'          => __( 'Previous', THEME_LANG ),
-                    'next_text'          => __( 'Next', THEME_LANG ),
-                    'before_page_number' => '',
-                ) );
+            echo "</div><!-- .blog-posts-content -->";
+
+
+            if(!$loadmore) {
+                if ($blog_pagination == 'classic') {
+                    echo get_the_posts_pagination(array(
+                        'prev_text' => __('Previous', THEME_LANG),
+                        'next_text' => __('Next', THEME_LANG),
+                        'before_page_number' => '',
+                    ));
+                } elseif ($blog_pagination == 'loadmore') {
+                    echo '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button"><span class="fa fa-refresh"></span> ' . __('Load more', THEME_LANG) . '</a></div>';
+                }
             }
             wp_reset_postdata();
-
-            echo "</div>";
-
+            if(!$loadmore) {
+                echo "</div><!-- .blog-posts -->";
+                do_action('after_blog_posts_loop');
+            }
         endif;
 
-        do_action('after_blog_posts_loop');
 
         $output .= ob_get_clean();
+        if(!$loadmore) {
+            $elementClass = array(
+                'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),
+                'extra' => $this->getExtraClass($el_class),
+                'css_animation' => $this->getCSSAnimation($css_animation),
+                'shortcode_custom' => vc_shortcode_custom_css_class($css, ' ')
+            );
+            $elementClass = preg_replace(array('/\s+/', '/^\s|\s$/'), array(' ', ''), implode(' ', $elementClass));
 
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
-        );
-        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-        return '<div class="'.esc_attr( $elementClass ).'">'.$output.'</div>';
+            return '<div class="' . esc_attr($elementClass) . '">' . $output . '</div>';
+        }else{
+            return $output;
+        }
     }
 }
 
@@ -172,7 +198,7 @@ vc_map( array(
                 __( 'Classic', 'js_composer' ) => 'classic',
                 __( 'Grid', 'js_composer' ) => 'grid',
                 __( 'Masonry', 'js_composer' ) => 'masonry',
-                //__( 'Timeline', 'js_composer' ) => 'timeline',
+                __( 'Timeline', 'js_composer' ) => 'timeline',
             ),
             'description' => '',
         ),
@@ -189,7 +215,7 @@ vc_map( array(
             ),
             'std' => '3',
             'description' => __( 'Select columns.', THEME_LANG ),
-            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
         array(
             'type' => 'dropdown',
@@ -201,7 +227,7 @@ vc_map( array(
                 __( 'Layout 3', 'js_composer' ) => '3',
             ),
             'description' => __( 'Select columns.', THEME_LANG ),
-            "dependency" => array("element" => "type","value" => array('grid', 'masonry')),
+            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
 
         array(
@@ -230,14 +256,22 @@ vc_map( array(
             'value' => 'true',
             "description" => __("Show or hide the read more.", THEME_LANG),
         ),
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Show pagination', THEME_LANG ),
-            'param_name' => 'blog_pagination',
-            'value' => 'true',
-            "description" => __("Show or hide the pagination.", THEME_LANG),
-        ),
 
+
+
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Navigation type', 'js_composer' ),
+            'param_name' => 'blog_pagination',
+            'admin_label' => true,
+            'value' => array(
+                __( 'Classic navigation', THEME_LANG ) => 'classic',
+                __( 'Load More button', THEME_LANG ) => 'loadmore',
+                __( 'No', 'js_composer' ) => '',
+            ),
+            'description' => __( 'Select the navigation type', 'js_composer' )
+        ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'CSS Animation', 'js_composer' ),

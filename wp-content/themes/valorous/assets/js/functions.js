@@ -32,6 +32,7 @@
         init_masonry();
         
         init_timeline_animation();
+        init_loadmore();
         
         $('.kt_lightbox').each(function(){
             var $type = $(this).data('type'),
@@ -127,13 +128,59 @@
      --------------------------------------------- */
 
     function init_masonry(){
-        (function($){
+        $(".blog-posts-masonry .row").waitForImages(function(){
+            $(this).masonry();
+        });
+    }
 
-            $(".blog-posts-masonry .row").waitForImages(function(){
-                $(this).masonry();
-            });
 
-        })(jQuery);
+
+    /* ---------------------------------------------
+     Blog loadmore
+     --------------------------------------------- */
+    function init_loadmore(){
+        var ajax_request;
+        $('body').on('click','.blog-posts-loadmore',function(e){
+            e.preventDefault();
+            var $loadmore = $(this),
+                $loading = $loadmore.find('span'),
+                $posts = $loadmore.closest('.blog-posts'),
+                $content = $posts.children('.blog-posts-content'),
+                $type = $posts.data('type');
+
+            var data = {
+                action: 'fronted_loadmore_blog',
+                security : ajax_frontend.security,
+                settings: $posts.data('settings'),
+            };
+
+            $loading.addClass('fa-spin');
+
+            ajax_request = $.post(ajax_frontend.ajaxurl, data, function(response) {
+                $loading.removeClass('fa-spin');
+                $content.append(response.html);
+                if($type == 'masonry'){
+
+                }
+                loadmore_append();
+                $content.find('.post-item').removeClass('loadmore-item');
+
+            }, 'json');
+
+
+
+
+        });
+    }
+
+
+    /* ---------------------------------------------
+     Loadmore append
+     --------------------------------------------- */
+    function loadmore_append(){
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.loadmore-item .wp-audio-shortcode, .loadmore-item .wp-video-shortcode').mediaelementplayer( );
+
     }
 
 
@@ -176,6 +223,8 @@
         if (typeof jQuery.fn.fitVids !== 'undefined') {
             // Responsive video
         }
+
+
 
 
         // Skill bar

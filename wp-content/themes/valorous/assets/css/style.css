@@ -4711,8 +4711,17 @@ body.layout-boxed #page {
 
 
 
+.blog-posts-loadmore{
+    text-align: center;
+}
+.blog-posts-loadmore .blog-loadmore-button{
+    background: red;
+    padding: 10px;
+    color: #FFF;
+}
+.blog-posts-loadmore .blog-loadmore-button span{
 
-
+}
 
 
 

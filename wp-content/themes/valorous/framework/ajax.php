@@ -4,6 +4,22 @@
 if ( !defined('ABSPATH')) exit;
 
 
+function wp_ajax_fronted_loadmore_blog_callback(){
+    check_ajax_referer( 'ajax_frontend', 'security' );
+    $settings = $_POST['settings'];
+
+    $output = array('error' => 1, 'settings' => $settings);
+    extract($output['settings']);
+
+    $output['html'] = do_shortcode('[list_blog_posts loadmore="true" page="1" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" orderby="'.$orderby.'" order="'.$order.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'"]');
+
+    echo json_encode($output);
+    die();
+}
+add_action( 'wp_ajax_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
+add_action( 'wp_ajax_nopriv_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
+
+
 function wp_ajax_fronted_get_wishlist_callback(){
     check_ajax_referer( 'ajax_frontend', 'security' );
     $output = array('count' => 0);
