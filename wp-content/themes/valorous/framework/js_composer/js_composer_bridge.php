@@ -442,7 +442,8 @@ $composer_addons = array(
     'timeline.php',
     'dropcap.php',
     'lightbox.php',
-    'piechart.php'
+    'piechart.php',
+    'coming_soon.php'
 );
 
 foreach ( $composer_addons as $addon ) {

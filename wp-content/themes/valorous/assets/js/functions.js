@@ -93,6 +93,28 @@
         $( '#menu-one-page-menu' ).onePageNav({
             currentClass: 'current-menu-item'
         });
+        
+        $('.coming-soon').each(function(){
+            var day = $(this).data('date'),
+                month = $(this).data('month'),
+                year = $(this).data('year'); 
+            $(this).countdown(year+"/"+month+"/"+day, function(event) {
+                $(this).html(
+                    event.strftime('<div class="wrap">'+
+                                    '<div class="value-time">%D</div>'+
+                                        '<div class="title">Days</div></div>'+
+                                    '<div class="wrap">'+
+                                        '<div class="value-time">%H</div>'+
+                                        '<div class="title">Hours</div></div>'+
+                                    '<div class="wrap">'+
+                                        '<div class="value-time">%M</div>'+
+                                        '<div class="title">Minutes</div></div>'+
+                                    '<div class="wrap">'+
+                                        '<div class="value-time">%S</div>'+
+                                        '<div class="title">Seconds</div></div>')
+                );
+            });
+        });
     });
     
     $(window).resize(function(){

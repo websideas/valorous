@@ -15,8 +15,8 @@ vc_map( array(
         
         array(
             'type' => 'kt_animate',
-            'heading' => __( 'Animation', 'js_composer' ),
-            'param_name' => 'kt_animation',
+            'heading' => __( 'Css Animation', 'js_composer' ),
+            'param_name' => 'css_animation',
             'value' => '',
             'description' => __( 'Animation.', 'js_composer' ),
         ),
@@ -264,7 +264,7 @@ vc_map( array(
 class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
-            'kt_animation' => '',
+            'css_animation' => '',
             'icon_type' => 'fontawesome',
             'icon_fontawesome' => '',
         	'icon_openiconic' => '',
@@ -276,9 +276,9 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
             'css' => ''
         ), $atts ) );
         
-        global $icon_show, $icon_color_show;
+        global $icon_show, $icon_color_show,$data_animate;
         
-        $icon_color_show = '';
+        $data_animate = $cl_animate = $icon_color_show = '';
 
         if($icon_type){
             $icon = 'icon_'.$icon_type;
@@ -289,8 +289,6 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
                 $icon_show = '<span class="vc_icon_element-icon '.esc_attr($icon_value).'" '.$icon_color_show.'></span> ';
             }
         }
-
-        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
         
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-wrapper ', $this->settings['base'], $atts ),
@@ -299,8 +297,13 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
         );
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-        return '<div class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="10" data-animation="'.$kt_animation.'" class="kt-list-fancy animation-effect">' . do_shortcode($content) . '</ul></div>';
+        
+        if($css_animation !=''){
+            $data_animate = 'data-timeeffect="10" data-animation="'.$css_animation.'"';
+            $cl_animate = ' animation-effect';
+        }
+        
+        return '<div class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-list-fancy'.$cl_animate.'">' . do_shortcode($content) . '</ul></div>';
 
     }
 }
@@ -320,7 +323,7 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         ), $atts ) );
         $icon_li = '';
         
-        global $icon_show, $icon_color_show;
+        global $icon_show, $icon_color_show,$data_animate;
         
         if($icon_type && $custom_icon == 'true'){
             $icon = 'icon_'.$icon_type;
@@ -333,8 +336,9 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         }
         
         if(!$icon_li) $icon_li = $icon_show;
+        if( $data_animate ){ $cl_animate = 'animation-effect-item'; }else{ $cl_animate = ''; }
         
-        return '<li class="kt-list-item animation-effect-item '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
+        return '<li class="kt-list-item '.$cl_animate.' '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
         
     }
 }

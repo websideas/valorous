@@ -13,7 +13,6 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'timeline_tyle' => '',
             'horizontal_style' => 'style_1',
             'timeline_column' => '',
-
             
             'font_container' => '',
             'letter_spacing' => '0',
@@ -36,11 +35,11 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
             'css' => ''
         ), $atts ) );
         extract($atts);
-        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style;
+        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style,$data_animate;
         
         $data_horizontal_style = $horizontal_style;
         
-        $custom_css = '';
+        $data_animate = $cl_animate = $custom_css = '';
         $rand = 'kt_timeline_'.rand();
         
         if( $border_width ){
@@ -125,8 +124,6 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         $data_type = $timeline_tyle;
         $data_icon = 'color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" size="'.$size.'"';
 
-        if( $kt_animation == 'none' ){ $none_animation = 'none-animation'; }else{ $none_animation = ''; }
-
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-timeline-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
@@ -140,10 +137,14 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         if($custom_css){
             $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
         }
+        if($css_animation !=''){
+            $data_animate = 'data-timeeffect="200" data-animation="'.$css_animation.'"';
+            $cl_animate = 'animation-effect';
+        }
         
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        return '<div id="'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul data-timeeffect="200" data-animation="'.$kt_animation.'" class="animation-effect kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
+        return '<div id="'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.' '.$cl_animate.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
     }
 
     /**
@@ -293,13 +294,15 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
             'el_class' => '',
         ), $atts ) );
 
-        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style;
-
+        global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style,$data_animate;
+        
+        if( $data_animate ){ $cl_animate = 'animation-effect-item'; }else{ $cl_animate = ''; }
+        
         $uniqid = 'kt-timeline-item-'.uniqid();
 
         $icon_box_icon = do_shortcode('[vc_icon el_class="icon-timeline" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" type="'.$icon_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" '.$data_icon.']');
 
-        $output = '<li id="'.$uniqid.'" class="animation-effect-item kt-timeline-item item-'.$data_type.' '.$el_class.'">';
+        $output = '<li id="'.$uniqid.'" class="kt-timeline-item '.$cl_animate.' item-'.$data_type.' '.$el_class.'">';
         $output .= $icon_box_icon;
         if( $data_type == 'horizontal' && $data_horizontal_style == 'style_1' ) $output .= '<div class="divider-icon"></div>';
         $output .= '<div class="timeline-info">';

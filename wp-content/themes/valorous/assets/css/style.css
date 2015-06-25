@@ -5010,6 +5010,22 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     max-width: 100%;
 }
 
+/*========== COMING SOON ==========*/
+.coming-soon{
+    text-align: center;
+}
+.coming-soon .wrap{
+    display: inline-block;
+    margin:0 50px;
+    min-width:150px;
+}
+.coming-soon .wrap:first-child{
+    margin-left:0;
+}
+.coming-soon .wrap:last-child{
+    margin-right:0;
+}
+
 
 /* ==============================
    16. Popup

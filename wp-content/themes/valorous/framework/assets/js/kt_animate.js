@@ -1,6 +1,6 @@
 (function($){
     $('document').ready(function() {
-        $( 'select.kt_animation' ).change(function(){
+        $( 'select.kt_animate' ).change(function(){
             val = $(this).val();
             $(this).closest('.wrap-kt-animate').find( '.animationSandbox' ).addClass( 'animated '+val );
             
