@@ -385,6 +385,33 @@ vc_add_params("vc_tab", array(
 	)
 ));
 
+
+vc_add_param("vc_accordion", array(
+    "type" => "dropdown",
+    "heading" => __( "Style", THEME_LANG ),
+    "param_name" => "style",
+    "admin_label" => true,
+    "description" => __("Style of Accordion.", THEME_LANG),
+	"value" => array(
+        __('Normal', THEME_LANG) => '',
+		__('Style 1', THEME_LANG) => 'style1',
+        __('Style 2', THEME_LANG) => 'style2',
+        __('Style 3', THEME_LANG) => 'style3',
+        __('Style 4', THEME_LANG) => 'style4',
+        __('Style 5', THEME_LANG) => 'style5',
+        __('Style 6', THEME_LANG) => 'style6',
+        __('Style 7', THEME_LANG) => 'style7',
+        __('Style 8', THEME_LANG) => 'style8',
+        __('Style 9', THEME_LANG) => 'style9',
+        __('Style 10', THEME_LANG) => 'style10',
+        __('Style 11', THEME_LANG) => 'style11',
+        __('Style 12', THEME_LANG) => 'style12',
+        __('Style 13', THEME_LANG) => 'style13',
+        __('Style 14', THEME_LANG) => 'style14',
+        __('Style 15', THEME_LANG) => 'style15',
+        __('Style 16', THEME_LANG) => 'style16'
+	)
+));
 $composer_addons = array(
     'alert.php',
     'list.php',
