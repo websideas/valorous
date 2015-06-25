@@ -379,3 +379,19 @@ function kt_nav_wrap() {
 
   return $wrap;
 }
+
+
+function kt_contactmethods( $contactmethods ) {
+    
+    // Add Twitter, Facebook
+    $contactmethods['facebook'] = __('Facebook', THEME_LANG);
+    $contactmethods['twitter'] = __('Twitter username (without @)', THEME_LANG);
+    $contactmethods['pinterest'] = __('Pinterest username', THEME_LANG);
+    $contactmethods['googleplus'] = __('Google+', THEME_LANG);
+    $contactmethods['instagram'] = __('Instagram username', THEME_LANG);
+    $contactmethods['tumblr'] = __('Tumblr username', THEME_LANG);
+
+
+    return $contactmethods;
+}
+//add_filter( 'user_contactmethods','kt_contactmethods', 10, 1 );

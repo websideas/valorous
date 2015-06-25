@@ -321,10 +321,9 @@ function vc_kt_animate_settings($settings, $value){
     $posts_fields[] = "<option value=''>".__('No Animation', THEME_LANG)."</option>";
     
     foreach($json_a as $jkey => $jvalue){
-        $selected = ($value == $jkey) ? ' selected="selected"' : '';
-        
         $posts_fields[] = "<optgroup label='".ucwords(str_replace('_',' ',$jkey))."'>";
             foreach( $jvalue as $k=>$v ){
+                $selected = ($value == $k) ? ' selected="selected"' : '';
                 $posts_fields[] .= "<option value='{$k}' {$selected}>".$k."</option>";
             }
         $posts_fields[] .= "</optgroup>";

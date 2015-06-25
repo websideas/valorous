@@ -30,6 +30,7 @@
         init_MainMenu();
         init_MobileMenu();
         init_masonry();
+        init_kt_image();
 
         init_kt_animation();
         init_loadmore();
@@ -443,6 +444,22 @@
             });
         });
     }
+
+    /* ---------------------------------------------
+     KT Image animation
+     --------------------------------------------- */
+    function init_kt_image() {
+        // Image
+        $('.kt-image-animation').each(function(){
+            var $this = $(this);
+            $this.css({'opacity':'0'});
+            $this.waypoint(function () {
+                $this.addClass("animated").addClass($this.data('animation'));
+                $this.css({'opacity':'1'});
+            }, { offset:'85%', triggerOnce:true });
+        });
+    }
+
     
 })(jQuery); // End of use strict
 

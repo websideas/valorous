@@ -100,7 +100,6 @@ if ( !class_exists( 'ReduxFramework_kt_socials' ) ) {
          * @since ReduxFramework 1.0.0
          */
         function enqueue() {
-            echo FW_JS.'kt_socials.js';
             wp_enqueue_script(
                 'redux-field-socials-js',
                 FW_JS.'kt_socials.js',

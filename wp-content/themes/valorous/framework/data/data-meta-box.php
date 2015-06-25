@@ -188,13 +188,102 @@ function kite_register_meta_boxes( $meta_boxes )
     );
 
     /**
+     * For Layout option for post
+     *
+     */
+    $meta_boxes[] = array(
+        'id' => 'post_meta_boxes',
+        'title' => 'Post Options',
+        'pages' => array('post'),
+        'context' => 'normal',
+        'priority' => 'high',
+        'fields' => array(
+            array(
+                'name' => __('Show Slider / Video / Audio on the top of the post?', THEME_LANG),
+                'id'   => "{$prefix}post_format",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
+                'name' => __('Meta info', THEME_LANG),
+                'id'   => "{$prefix}meta_info",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
+                'name' => __('Previous & next buttons', THEME_LANG),
+                'id'   => "{$prefix}prev_next",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
+                'name' => __('Author info', THEME_LANG),
+                'id'   => "{$prefix}author_info",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
+                'name' => __('Social sharing', THEME_LANG),
+                'id'   => "{$prefix}social_sharing",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
+                'name' => __('Related articles', THEME_LANG),
+                'id'   => "{$prefix}related_acticles",
+                'type' => 'select_advanced',
+                'js_options' => array('allowClear'  => false),
+                'options' => array(
+                    -1    => __('Use Global', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+
+
+        )
+    );
+
+
+    /**
      * For Layout option
      * 
      */
     $meta_boxes[] = array(
         'id' => 'page_meta_boxes',
         'title' => 'Page Options',
-        'pages' => array( 'page', 'post' ),
+        'pages' => array( 'page', 'post', 'portfolio' ),
         'context' => 'normal',
         'priority' => 'high',
         'fields' => array(
@@ -223,8 +312,6 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Enter tagline for page.", THEME_LANG ),
                 'type'  => 'text',
             ),
-
-            // data-meta-box.php
 
             array(
                 'name' => __( 'Page breadcrumb', THEME_LANG ),
@@ -361,6 +448,8 @@ function kite_register_meta_boxes( $meta_boxes )
 			),
         )
     );
+
+
 
 
     /**

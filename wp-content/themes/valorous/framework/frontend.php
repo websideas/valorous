@@ -471,13 +471,15 @@ if ( ! function_exists( 'kt_entry_meta_tags' ) ) :
      * Prints HTML with meta information for tags.
      *
      */
-    function kt_entry_meta_tags() {
+    function kt_entry_meta_tags($before = '', $after = '') {
         if ( 'post' == get_post_type() ) {
-            $tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'twentyfifteen' ) );
+            $tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', THEME_LANG ) );
             if ( $tags_list ) {
-                printf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-                    _x( 'Tags', 'Used before tag names.', 'twentyfifteen' ),
-                    $tags_list
+                printf( '%3$s<span class="tags-links"><span class="tags-links-text">%1$s</span> %2$s</span>%4$s',
+                    _x( 'Tags: ', 'Used before tag names.', THEME_LANG ),
+                    $tags_list,
+                    $before,
+                    $after
                 );
             }
         }
@@ -544,8 +546,9 @@ if ( ! function_exists( 'kt_author_box' ) ) :
     function kt_author_box() {
         ?>
         <div class="entry-author clearfix">
-            <?php echo get_avatar( get_the_author_meta('ID'),'avatar' ); ?>
+            <?php echo get_avatar( get_the_author_meta('ID'), 165 ); ?>
             <div class="entry-author-desc">
+                <h4><?php _e('About me', THEME_LANG) ?></h4>
                 <h4>
                     <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
                         <?php echo get_the_author_meta('display_name'); ?>
@@ -567,7 +570,6 @@ if ( ! function_exists( 'kt_author_box' ) ) :
                 <?php $facebook = get_the_author_meta('facebook'); ?>
 
                 <p class="author-social">
-                    <span class="author-label"><?php _e( 'Social Links:', THEME_LANG ) ?> </span>
                     <a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><i class="fa fa-envelope"></i></a>
                     <?php if($facebook){ ?>
                         <a href="<?php echo $facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -585,3 +587,120 @@ if ( ! function_exists( 'kt_author_box' ) ) :
 endif;
 
 
+
+
+/* ---------------------------------------------------------------------------
+ * Share Box [share_box]
+ * --------------------------------------------------------------------------- */
+if( ! function_exists( 'kt_share_box' ) ){
+    function kt_share_box($post_id = null, $style = "", $class = ''){
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+        $link = urlencode(get_permalink($post_id));
+        $title = urlencode(addslashes(get_the_title($post_id)));
+        $excerpt = urlencode(get_the_excerpt());
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'full');
+
+        $html = '';
+
+        ?>
+        <div class="entry-share-box <?php echo $class; ?>">
+            <?php
+            // Facebook
+            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.facebook.com/sharer.php?s=100&amp;p[title]=' . $title . '&amp;p[url]=' . $link.'\', \'sharer\', \'toolbar=0,status=0,width=620,height=280\');popUp.focus();return false;">';
+            $html .= '<i class="fa fa-facebook"></i>';
+            $html .= '</a>';
+
+            // Twitter
+            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://twitter.com/home?status=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false;">';
+            $html .= '<i class="fa fa-twitter"></i>';
+            $html .= '</a>';
+
+            // Google plus
+            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'https://plus.google.com/share?url=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+            $html .= '<i class="fa fa-google-plus"></i>';
+            $html .= "</a>";
+
+            // Pinterest
+            $html .= '<a class="share_link" href="#" onclick="popUp=window.open(\'http://pinterest.com/pin/create/button/?url=' . $link . '&amp;description=' . $title . '&amp;media=' . urlencode($image[0]) . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+            $html .= '<i class="fa fa-pinterest"></i>';
+            $html .= "</a>";
+
+            // linkedin
+            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://linkedin.com/shareArticle?mini=true&amp;url=' . $link . '&amp;title=' . $title. '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+            $html .= '<i class="fa fa-linkedin"></i>';
+            $html .= "</a>";
+
+            // Tumblr
+            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.tumblr.com/share/link?url=' . $link . '&amp;name=' . $title . '&amp;description=' . $excerpt . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+            $html .= '<i class="fa fa-tumblr"></i>';
+            $html .= "</a>";
+
+            // Email
+            $html .= '<a class="'.$style.'" href="mailto:?subject='.$title.'&amp;body='.$link.'">';
+            $html .= '<i class="fa fa-envelope-o"></i>';
+            $html .= "</a>";
+
+
+            echo $html;
+            ?>
+
+        </div>
+    <?php
+    }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * Related Article [related_article]
+ * --------------------------------------------------------------------------- */
+if ( ! function_exists( 'kt_related_article' ) ) :
+    function kt_related_article($post_id = null, $colum = 3){
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+        $current_cat = get_the_category($post_id);
+        $cat = array();
+        foreach($current_cat as $item) $cat[] = $item->slug;
+
+        $args = array(
+            'post_type' => 'post',
+            'orderby' => 'rand',
+            'order' => 'DESC',
+            'posts_per_page' => 3,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'category',
+                    'field' => 'slug',
+                    'terms' => $cat
+                )
+            ),
+            'post__not_in' => array($post_id)
+        );
+        $query = new WP_Query( $args );
+        ?>
+        <?php if($query->have_posts()){ ?>
+            <div id="related-article">
+                <h3 class="title-article"><?php _e('Related Article', THEME_LANG); ?></h3>
+                <div class="row">
+                    <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                        <div class="col-md-4 col-sm-4">
+                            <article <?php post_class(); ?>>
+                                <div class="related-article-thumb">
+                                    <?php //echo themedev_article_thumbnail(); ?>
+                                </div>
+                                <header>
+                                    <h5 class="title-article-item">
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    </h5>
+                                </header>
+                            </article>
+                        </div>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                </div>
+            </div><!-- #related-article -->
+        <?php } ?>
+    <?php }
+endif;

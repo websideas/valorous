@@ -7,7 +7,6 @@
 
 (function($){
     $('document').ready(function() {
-        console.log('call');
 
         $( ".kt-socials-profiles" ).sortable({
             placeholder: "ui-socials-highlight",

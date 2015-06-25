@@ -21,6 +21,11 @@ class WP_Widget_KT_Image extends WP_Widget {
 		
         if($attachment){
     		echo $args['before_widget'];
+            $animation_class = '';
+            if($instance['animation']){
+                $animation_class .= ' kt-image-animation';
+            }
+            echo "<div class='kt-image-content text-".$instance['align']." ".$animation_class."' data-animation='".$instance['animation']."'>";
             if($instance['link']){
                 echo "<a href='".esc_attr($instance['link'])."' target='".esc_attr($instance['target'])."'>";
             }
@@ -28,6 +33,7 @@ class WP_Widget_KT_Image extends WP_Widget {
             if($instance['link']){
                 echo "</a>";
             }
+            echo "</div>";
     		echo $args['after_widget'];
 		}
 	}
@@ -37,6 +43,8 @@ class WP_Widget_KT_Image extends WP_Widget {
 		$instance['link'] = strip_tags($new_instance['link']);
         $instance['target'] = $new_instance['target'];
         $instance['size'] = $new_instance['size'];
+        $instance['animation'] = $new_instance['animation'];
+        $instance['align'] = $new_instance['align'];
         $instance['attachment'] = intval($new_instance['attachment']);
         
 		return $instance;
@@ -44,7 +52,7 @@ class WP_Widget_KT_Image extends WP_Widget {
 
 	public function form( $instance ) {
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'target' => '_self', 'link' => '', 'attachment' => '', 'size' => '', 'animation' => '') );
+		$instance = wp_parse_args( (array) $instance, array( 'target' => '_self', 'link' => '', 'attachment' => '', 'size' => '', 'animation' => '', 'align' => 'center') );
 
 		$link = esc_attr( $instance['link'] );
         $attachment = esc_attr( $instance['attachment'] );
@@ -110,26 +118,26 @@ class WP_Widget_KT_Image extends WP_Widget {
                 $posts_fields[] = "<option value=''>".__('No Animation', THEME_LANG)."</option>";
 
                 foreach($json_a as $key => $value){
-                    $selected = ($value == $key) ? ' selected="selected"' : '';
-
                     $posts_fields[] = "<optgroup label='".ucwords(str_replace('_',' ',$key))."'>";
                     foreach( $value as $k=>$v ){
+                        $selected = ($animation == $k) ? ' selected="selected"' : '';
                         $posts_fields[] .= "<option value='{$k}' {$selected}>".$k."</option>";
                     }
                     $posts_fields[] .= "</optgroup>";
                 }
             ?>
-            <div class="wrap-kt-animate">';
-            <div class="animationSandbox"><h1>Animate</h1></div>';
             <select  name="<?php echo $this->get_field_name('animation'); ?>" id="<?php echo $this->get_field_id('animation'); ?>" class="widefat">'
                 <?php echo implode( $posts_fields ); ?>
             </select>
-            </div>
-
         </p>
-
-
-
+        <p>
+            <label for="<?php echo $this->get_field_id('align'); ?>"><?php _e( 'Align:', THEME_LANG); ?></label>
+            <select name="<?php echo $this->get_field_name('align'); ?>" id="<?php echo $this->get_field_id('align'); ?>" class="widefat">
+                <option value="center"<?php selected( $instance['target'], 'center' ); ?>><?php _e('Center', THEME_LANG); ?></option>
+                <option value="left"<?php selected( $instance['target'], 'left' ); ?>><?php _e('Left', THEME_LANG); ?></option>
+                <option value="right"<?php selected( $instance['target'], 'right' ); ?>><?php _e('Right', THEME_LANG); ?></option>
+            </select>
+        </p>
 <?php
 	}
 

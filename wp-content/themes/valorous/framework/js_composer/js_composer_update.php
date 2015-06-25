@@ -4,9 +4,8 @@ if ( !defined('ABSPATH')) exit;
 
 
 
-add_action( 'vc_after_init', 'add_cta_button_super_color' );
-function add_cta_button_super_color() {
-
+add_action( 'vc_after_init', 'add_option_to_vc_icon' );
+function add_option_to_vc_icon() {
 
     // VC_icon: Add hexagonal
     $background_style = WPBMap::getParam( 'vc_icon', 'background_style' );
@@ -14,13 +13,9 @@ function add_cta_button_super_color() {
     $background_style['value'][__( 'Hexagonal', THEME_LANG )] = 'hexagonal';
     vc_update_shortcode_param( 'vc_icon', $background_style );
 
-
     // VC_icon: Add hexagonal
     $background_color = WPBMap::getParam( 'vc_icon', 'background_color' );
     $background_color['value'][__( 'Custom color', 'js_composer' )] = 'custom';
     vc_update_shortcode_param( 'vc_icon', $background_color );
-
-
-
 
 }

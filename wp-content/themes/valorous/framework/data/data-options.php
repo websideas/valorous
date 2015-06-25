@@ -449,6 +449,33 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Email Address For Contact Info', THEME_LANG), 
                         'default' => __('demo@domain.com', THEME_LANG)
                     ),
+                    array(
+                        'id' => 'header_search',
+                        'type' => 'switch',
+                        'title' => __('Search Icon', THEME_LANG),
+                        'desc' => __('Enable the search Icon in the header.', THEME_LANG),
+                        "default" => 1,
+                        'on' => 'Enabled',
+                        'off' => 'Disabled',
+                    ),
+                    array(
+                        'id' => 'header_cart',
+                        'type' => 'switch',
+                        'title' => __('Cart icon', THEME_LANG),
+                        'desc' => __('Enable the cart Icon in the header.', THEME_LANG),
+                        "default" => 1,
+                        'on' => 'Enabled',
+                        'off' => 'Disabled',
+                    ),
+                    array(
+                        'id' => 'header_language',
+                        'type' => 'switch',
+                        'title' => __('Language switcher', THEME_LANG),
+                        'desc' => __('Enable the language switcher in the header.', THEME_LANG),
+                        "default" => 1,
+                        'on' => 'Enabled',
+                        'off' => 'Disabled',
+                    ),
                 )
             );
             
@@ -1313,7 +1340,154 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                 )
             );
-            
+            $this->sections[] = array(
+                'icon' => 'el-icon-star',
+                'title' => __('Blog', THEME_LANG),
+                'desc' => __('General Blog Options', THEME_LANG),
+                'fields' => array(
+                    array(
+                        'id' => 'blog_pagination',
+                        'type' => 'select',
+                        'title' => __('Pagination Type', THEME_LANG),
+                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'options' => array(
+                            'classic' => __( 'Classic pagination', THEME_LANG ),
+                            'loadmore' => __( 'Load More button', THEME_LANG )
+                        ),
+                        'default' => 'classic'
+                    ),
+                    array(
+                        'id' => 'blog_display_text',
+                        'type' => 'select',
+                        'title' => __('Excerpt or Full Blog Content', THEME_LANG),
+                        'desc' => __('Choose to display an excerpt or full content on blog pages.', THEME_LANG),
+                        'options' => array(
+                            'excerpt' => 'Excerpt',
+                            'full' => 'Full Blog Content',
+                        ),
+                        'default' => 'excerpt'
+                    ),
+                    array(
+                        'id' => 'blog_excerpt_length',
+                        'type' => 'text',
+                        'title' => __('Excerpt Length', THEME_LANG),
+                        'desc' => __("Insert the number of words you want to show in the post excerpts.", THEME_LANG),
+                        'default' => '30',
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id' => 'blog_post_format',
+                        'type' => 'switch',
+                        'title' => __('Show Slider / Video / Audio (Post format)', THEME_LANG),
+                        'desc' => __('', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'blog_share_box',
+                        'type' => 'switch',
+                        'title' => __('Share box in posts', THEME_LANG),
+                        'desc' => __('Show share box in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'blog_next_prev',
+                        'type' => 'switch',
+                        'title' => __('Previous & next buttons', THEME_LANG),
+                        'desc' => __('Show Previous & next buttons in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'blog_author',
+                        'type' => 'switch',
+                        'title' => __('Author info in posts', THEME_LANG),
+                        'desc' => __('Show author info in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'blog_related',
+                        'type' => 'switch',
+                        'title' => __('Related posts', THEME_LANG),
+                        'desc' => __('Show related posts in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id' => 'blog_meta',
+                        'type' => 'switch',
+                        'title' => __('Meta information', THEME_LANG),
+                        'desc' => __('Show Meta information in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'blog_meta_author',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Author', THEME_LANG),
+                        'desc' => __('Show meta author in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    ),
+                    array(
+                        'id' => 'blog_meta_date',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Date', THEME_LANG),
+                        'desc' => __('Show meta date in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    ),
+                    array(
+                        'id' => 'blog_meta_comments',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Comments', THEME_LANG),
+                        'desc' => __('Show post meta comments in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    ),
+                    array(
+                        'id' => 'blog_meta_categories',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Categories', THEME_LANG),
+                        'desc' => __('Show post meta categories in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    ),
+                    array(
+                        'id' => 'blog_meta_tags',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Tags', THEME_LANG),
+                        'desc' => __('Show post meta tags in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    )
+                )
+            );
             /**
 			 *	Woocommerce
 			 **/

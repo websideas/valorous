@@ -357,7 +357,7 @@ vc_map( array(
             'param_name' => 'blog_pagination',
             'admin_label' => true,
             'value' => array(
-                __( 'Classic navigation', THEME_LANG ) => 'classic',
+                __( 'Classic pagination', THEME_LANG ) => 'classic',
                 __( 'Load More button', THEME_LANG ) => 'loadmore',
                 __( 'None', THEME_LANG ) => 'none',
             ),
