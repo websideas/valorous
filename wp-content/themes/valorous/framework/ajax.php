@@ -7,17 +7,41 @@ if ( !defined('ABSPATH')) exit;
 function wp_ajax_fronted_loadmore_blog_callback(){
     check_ajax_referer( 'ajax_frontend', 'security' );
     $settings = $_POST['settings'];
+    $paged = intval($_POST['paged']);
 
     $output = array('error' => 1, 'settings' => $settings);
     extract($output['settings']);
 
-    $output['html'] = do_shortcode('[list_blog_posts loadmore="true" page="1" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" orderby="'.$orderby.'" order="'.$order.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'"]');
+    $output['html'] = do_shortcode('[list_blog_posts loadmore="true" page="'.$paged.'" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" orderby="'.$orderby.'" order="'.$order.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'"]');
 
     echo json_encode($output);
     die();
 }
 add_action( 'wp_ajax_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
 add_action( 'wp_ajax_nopriv_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
+
+if(!function_exists('putRevSlider')){
+    function putRevSlider($data,$putIn = ""){
+        if(class_exists( 'RevSlider' )){
+            $operations = new RevOperations();
+            $arrValues = $operations->getGeneralSettingsValues();
+            $includesGlobally = UniteFunctionsRev::getVal($arrValues, "includes_globally","on");
+            $strPutIn = UniteFunctionsRev::getVal($arrValues, "pages_for_includes");
+            $isPutIn = RevSliderOutput::isPutIn($strPutIn,true);
+
+            if($isPutIn == false && $includesGlobally == "off"){
+                $output = new RevSliderOutput();
+                $option1Name = "Include RevSlider libraries globally (all pages/posts)";
+                $option2Name = "Pages to include RevSlider libraries";
+                $output->putErrorMessage(__("If you want to use the PHP function \"putRevSlider\" in your code please make sure to check \" ",REVSLIDER_TEXTDOMAIN).$option1Name.__(" \" in the backend's \"General Settings\" (top right panel). <br> <br> Or add the current page to the \"",REVSLIDER_TEXTDOMAIN).$option2Name.__("\" option box."));
+                return(false);
+            }
+
+            RevSliderOutput::putSlider($data,$putIn);
+        }
+    }
+}
+
 
 
 function wp_ajax_fronted_get_wishlist_callback(){

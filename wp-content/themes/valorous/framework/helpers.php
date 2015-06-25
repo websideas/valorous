@@ -654,3 +654,67 @@ function render_data_carousel($data){
     }
     return $output;
 }
+
+
+
+/* ---------------------------------------------------------------------------
+ * Share Box [share_box]
+ * --------------------------------------------------------------------------- */
+if( ! function_exists( 'kt_share_box' ) ){
+    function kt_share_box($post_id = null, $style = ""){
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+        $link = urlencode(get_permalink($post_id));
+        $title = urlencode(addslashes(get_the_title($post_id)));
+        $excerpt = urlencode(get_the_excerpt());
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'full');
+
+        $html = '';
+
+        ?>
+        <div class="entry-share-box">
+            <?php
+                // Facebook
+                $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.facebook.com/sharer.php?s=100&amp;p[title]=' . $title . '&amp;p[url]=' . $link.'\', \'sharer\', \'toolbar=0,status=0,width=620,height=280\');popUp.focus();return false;">';
+                $html .= '<i class="fa fa-facebook"></i>';
+                $html .= '</a>';
+
+                // Twitter
+                $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://twitter.com/home?status=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false;">';
+                $html .= '<i class="fa fa-twitter"></i>';
+                $html .= '</a>';
+
+                // Google plus
+                $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'https://plus.google.com/share?url=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                $html .= '<i class="fa fa-google-plus"></i>';
+                $html .= "</a>";
+
+                // Pinterest
+                $html .= '<a class="share_link" href="#" onclick="popUp=window.open(\'http://pinterest.com/pin/create/button/?url=' . $link . '&amp;description=' . $title . '&amp;media=' . urlencode($image[0]) . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                $html .= '<i class="fa fa-pinterest"></i>';
+                $html .= "</a>";
+
+                // linkedin
+                $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://linkedin.com/shareArticle?mini=true&amp;url=' . $link . '&amp;title=' . $title. '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                $html .= '<i class="fa fa-linkedin"></i>';
+                $html .= "</a>";
+
+                // Tumblr
+                $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.tumblr.com/share/link?url=' . $link . '&amp;name=' . $title . '&amp;description=' . $excerpt . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                $html .= '<i class="fa fa-tumblr"></i>';
+                $html .= "</a>";
+
+                // Email
+                $html .= '<a class="'.$style.'" href="mailto:?subject='.$title.'&amp;body='.$link.'">';
+                $html .= '<i class="fa fa-envelope-o"></i>';
+                $html .= "</a>";
+
+
+                echo $html;
+            ?>
+
+        </div>
+    <?php
+    }
+}

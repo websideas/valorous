@@ -255,7 +255,6 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
             return;
         }
         $format = get_post_format();
-        global $wp_embed;
         ?>
 
             <?php if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
@@ -284,12 +283,12 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                     }
                 }elseif($type == ''){
                     echo '<div class="entry-thumb">';
-                    $images = get_galleries_post('_kt_gallery_images');
+                    $images = get_galleries_post('_kt_gallery_images', $size);
                     $galleries_html = '';
                     foreach($images as $image){
                         $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
                     }
-                    $atts = array('desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_position' => 'center', 'margin' => 0);
+                    $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
                     $carousel_ouput = kt_render_carousel($atts);
                     echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
 
@@ -320,7 +319,15 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 if($type == 'upload'){
                     if($audios = rwmb_meta('_kt_audio_mp3', 'type=file')){
                         foreach($audios as $audio) {
-                            echo '<div class="entry-thumb">'.do_shortcode('[audio src="'.$audio['url'].'"][/audio]').'</div><!-- .entry-thumb -->';
+                            echo '<div class="entry-thumb">';
+                                if(has_post_thumbnail()){
+                                    the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) );
+                                }
+                                echo '<div class="entry-thumb-audio">';
+                                the_title('<div class="entry-thumb-title">', '</div>');
+                                echo do_shortcode('[audio src="'.$audio['url'].'"][/audio]');
+                                echo '</div><!-- .entry-thumb-audio -->';
+                            echo '</div><!-- .entry-thumb -->';
                         }
                     }
                 }elseif($type == 'soundcloud'){

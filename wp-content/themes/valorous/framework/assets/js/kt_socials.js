@@ -54,6 +54,8 @@
         $( 'body' ).on( 'click', '.kt-socials-lists li', function ( e ){
             e.preventDefault();
 
+            console.log('call');
+
             var $social = $(this),
                 $parent = $social.closest('.kt-socials-options');
             $profiles = $parent.find('.kt-socials-profiles'),

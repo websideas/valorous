@@ -75,7 +75,6 @@ function kite_register_meta_boxes( $meta_boxes )
                 'type'     => 'select',
                 'options'  => array(
                     '' => __('Select Option', THEME_LANG),
-                    'upload' => __('Upload', THEME_LANG),
                     'external' => __('External url', THEME_LANG),
                 ),
             ),
@@ -84,22 +83,6 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id' => $prefix . 'video_link',
                 'desc' => sprintf( __( 'Enter link to video (Note: read more about available formats at WordPress <a href="%s" target="_blank">codex page</a>).', THEME_LANG ), 'http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F' ),
                 'type'  => 'text',
-            ),
-            array(
-                'name'             => __( 'Upload video File MP4', THEME_LANG ),
-                'id'               => "{$prefix}video_file_mp4",
-                'type'             => 'file_advanced',
-                'max_file_uploads' => 1,
-                'mime_type'        => 'video', // Leave blank for all file types
-                'desc' => __( 'Add your WebM video file. WebM and MP4 format must be included to render your video with cross browser compatibility.', THEME_LANG ),
-            ),
-            array(
-                'name'             => __( 'Upload video File WEBM', THEME_LANG ),
-                'id'               => "{$prefix}video_file_webm",
-                'type'             => 'file_advanced',
-                'max_file_uploads' => 1,
-                'mime_type'        => 'video', // Leave blank for all file types
-                'desc' => __( 'Add your WebM video file. WebM and MP4 format must be included to render your video with cross browser compatibility.', THEME_LANG ),
             ),
         ),
     );

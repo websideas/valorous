@@ -20,6 +20,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'blog_type' => 'classic',
             'blog_layout' => 1,
             'blog_columns' => 3,
+            'blog_columns_tablet' => 2,
+            'featured' => 'false',
+            'thumbnail_type' => 'format',
+
 
             'source' => 'all',
             'categories' => '',
@@ -48,9 +52,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         ), $atts );
         extract($atts);
 
+        $featured = apply_filters('sanitize_boolean', $featured);
 
         global $wp_query, $paged;
-
+        if(!$paged) $paged = 1;
         if($loadmore && $page != 1){
             $paged = $page;
         }
@@ -94,6 +99,8 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         }
 
         ob_start();
+
+
         $wp_query = new WP_Query( $args );
         if ( $wp_query->have_posts() ) :
 
@@ -104,11 +111,26 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
                     $settings = esc_attr( json_encode( $atts ) );
                 }
-                echo "<div class='blog-posts' data-settings='".$settings."' data-type='".$blog_type."'>";
-                echo "<div class='blog-posts-content'>";
+                echo "<div class='blog-posts blog-posts-".$blog_type."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
+
+                echo "<div class='blog-posts-content clearfix'>";
 
                 do_action('before_blog_posts_loop');
+
+                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                    echo "<div class='row'>";
+                }
+
+
             }
+            if($blog_type == 'grid' || $blog_type == 'masonry'){
+                $elementClass[] = 'blog-posts-columns-'.$blog_columns;
+                $elementClass[] = 'blog-posts-layout-'.$blog_layout;
+                $bootstrapColumn = round( 12 / $blog_columns );
+                $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
+                $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
+            }
+
             global $blog_atts;
             $blog_atts = array(
                 'image_size' => $image_size,
@@ -118,19 +140,43 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
                 "date_format" => $date_format,
+                'thumbnail_type' => $thumbnail_type,
                 "class" => ''
             );
             if($loadmore){
                 $blog_atts['class'] = 'loadmore-item';
             }
 
+            $i = ( $paged - 1 ) * $max_items + 1 ;
+            $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
+
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-
-
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
-                get_template_part( 'templates/blog/content', get_post_format() );
+                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                    $classes_extra = '';
+                    if($blog_type == 'grid'){
+                        if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
+                            $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
+
+                        if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
+                            $classes_extra .= ' col-clearfix-sm';
+                    }
+                    echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
+                }
+                get_template_part( $path, get_post_format() );
+                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                    echo "</div><!-- .article-post-item -->";
+                }
+                $i++;
             endwhile;
             remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
+
+            if(!$loadmore) {
+                if ($blog_type == 'grid' || $blog_type == 'masonry') {
+                    echo "</div><!-- .row -->";
+                }
+            }
+
             echo "</div><!-- .blog-posts-content -->";
 
 
@@ -154,6 +200,11 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
 
         $output .= ob_get_clean();
+
+
+
+
+
         if(!$loadmore) {
             $elementClass = array(
                 'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),
@@ -198,24 +249,54 @@ vc_map( array(
                 __( 'Classic', 'js_composer' ) => 'classic',
                 __( 'Grid', 'js_composer' ) => 'grid',
                 __( 'Masonry', 'js_composer' ) => 'masonry',
-                __( 'Timeline', 'js_composer' ) => 'timeline',
             ),
             'description' => '',
         ),
         array(
+            "type" => "kt_heading",
+            "heading" => __("Columns to Show?", THEME_LANG),
+            "edit_field_class" => "kt_sub_heading  vc_column",
+            "param_name" => "items_show",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
+        ),
+        array(
             'type' => 'dropdown',
-            'heading' => __( 'Columns', THEME_LANG ),
+            'heading' => __( 'on Desktop', THEME_LANG ),
             'param_name' => 'blog_columns',
             'value' => array(
                 __( '1 column', 'js_composer' ) => '1',
                 __( '2 columns', 'js_composer' ) => '2',
                 __( '3 columns', 'js_composer' ) => '3',
                 __( '4 columns', 'js_composer' ) => '4',
-                __( '6 columns', 'js_composer' ) => '5',
+                __( '6 columns', 'js_composer' ) => '6',
             ),
             'std' => '3',
-            'description' => __( 'Select columns.', THEME_LANG ),
-            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
+            "edit_field_class" => "vc_col-sm-6 vc_column",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'on Tablet', THEME_LANG ),
+            'param_name' => 'blog_columns_tablet',
+            'value' => array(
+                __( '1 column', 'js_composer' ) => '1',
+                __( '2 columns', 'js_composer' ) => '2',
+                __( '3 columns', 'js_composer' ) => '3',
+                __( '4 columns', 'js_composer' ) => '4',
+                __( '6 columns', 'js_composer' ) => '6',
+            ),
+            'std' => '2',
+            "edit_field_class" => "vc_col-sm-6 vc_column",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'grid', 'masonry' )
+            ),
         ),
         array(
             'type' => 'dropdown',
@@ -229,17 +310,28 @@ vc_map( array(
             'description' => __( 'Select columns.', THEME_LANG ),
             "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
-
         array(
             "type" => "kt_heading",
             "heading" => __("Extra setting", THEME_LANG),
             "param_name" => "extra_settings",
         ),
         array(
+            'type' => 'dropdown',
+            'heading' => __( 'Thumbnail type', THEME_LANG ),
+            'param_name' => 'thumbnail_type',
+            'value' => array(
+                __( 'Post format', 'js_composer' ) => 'format',
+                __( 'Featured Image', 'js_composer' ) => 'image',
+            ),
+            'description' => __( 'Select thumbnail type for article.', THEME_LANG ),
+        ),
+        array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size"
         ),
+
+
         /*
         array(
             "type" => "textfield",
@@ -259,7 +351,6 @@ vc_map( array(
 
 
 
-
         array(
             'type' => 'dropdown',
             'heading' => __( 'Navigation type', 'js_composer' ),
@@ -268,7 +359,7 @@ vc_map( array(
             'value' => array(
                 __( 'Classic navigation', THEME_LANG ) => 'classic',
                 __( 'Load More button', THEME_LANG ) => 'loadmore',
-                __( 'No', 'js_composer' ) => '',
+                __( 'None', THEME_LANG ) => 'none',
             ),
             'description' => __( 'Select the navigation type', 'js_composer' )
         ),

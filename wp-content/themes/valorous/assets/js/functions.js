@@ -134,41 +134,63 @@
     }
 
 
-
     /* ---------------------------------------------
      Blog loadmore
      --------------------------------------------- */
     function init_loadmore(){
-        var ajax_request;
-        $('body').on('click','.blog-posts-loadmore',function(e){
+        $('body').on('click','.blog-loadmore-button',function(e){
             e.preventDefault();
             var $loadmore = $(this),
                 $loading = $loadmore.find('span'),
                 $posts = $loadmore.closest('.blog-posts'),
                 $content = $posts.children('.blog-posts-content'),
-                $type = $posts.data('type');
+                $type = $posts.data('type'),
+                $current = parseInt($posts.attr('data-current')),
+                $paged = $current + 1,
+                $total = parseInt($posts.data('total'));
 
             var data = {
                 action: 'fronted_loadmore_blog',
                 security : ajax_frontend.security,
                 settings: $posts.data('settings'),
+                paged : $paged
             };
 
             $loading.addClass('fa-spin');
 
-            ajax_request = $.post(ajax_frontend.ajaxurl, data, function(response) {
+            $.post(ajax_frontend.ajaxurl, data, function(response) {
                 $loading.removeClass('fa-spin');
-                $content.append(response.html);
-                if($type == 'masonry'){
+                $posts.attr('data-current', $paged) ;
 
+
+                if($paged == $total){
+                    $loadmore.closest('.blog-posts-loadmore').hide();
                 }
-                loadmore_append();
+
+                if($type == 'grid' || $type == 'masonry'){
+                    var $row = $content.children('.row');
+                    if($type == 'masonry'){
+                        var $elems = $(response.html);
+                        $row.append($elems);
+                        loadmore_append();
+                        $row.waitForImages(function() {
+                            $row.masonry( 'appended', $elems, true );
+                        });
+                    }else{
+                        $row.append(response.html);
+                        loadmore_append();
+                    }
+                }else{
+                    $content.append(response.html);
+                    loadmore_append();
+                }
+
+
+
+
                 $content.find('.post-item').removeClass('loadmore-item');
 
             }, 'json');
-
-
-
 
         });
     }
@@ -180,6 +202,7 @@
     function loadmore_append(){
         $('[data-toggle="tooltip"]').tooltip();
         $('.loadmore-item .wp-audio-shortcode, .loadmore-item .wp-video-shortcode').mediaelementplayer( );
+        init_carousel();
 
     }
 

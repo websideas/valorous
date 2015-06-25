@@ -48,11 +48,12 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         if($social){
             $social_type = explode(',', $social);
             foreach ($social_type as $id) {
+                $val = $socials_arr[$id];
                 $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
                 if($style == '3d'){
                     $social_text = '<span class="front"><i class="'.esc_attr($val['icon']).'"></i></span><span class="back"><i class="'.esc_attr($val['icon']).'"></i></span>';
                 }
-                $social_icons .= '<li><a class="'.esc_attr($key).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
+                $social_icons .= '<li><a class="'.esc_attr($id).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
             }
         }else{
             foreach($socials_arr as $key => $val){

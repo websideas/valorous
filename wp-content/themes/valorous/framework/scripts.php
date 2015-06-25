@@ -33,6 +33,7 @@ if ( !function_exists( 'kt_admin_enqueue_scripts' ) ) {
         
         wp_register_script( 'framework-core', FW_JS.'framework-core.js', array('jquery', 'jquery-ui-tabs'), FW_VER, true);
         wp_enqueue_script('framework-core');
+        wp_enqueue_media();
         
     } // End kt_admin_enqueue_scripts.
 }

@@ -313,19 +313,18 @@ function vc_kt_animate_settings($settings, $value){
     $param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
     $type = isset($settings['type']) ? $settings['type'] : '';
     $class = isset($settings['class']) ? $settings['class'] : '';
-    $custom = isset($settings['custom']) ? $settings['custom'] : false;
     
     $string = file_get_contents(FW_URL.'js_composer/animate-config.json');
     $json_a = json_decode($string,true);
     
     $posts_fields = array();
-    $posts_fields[] = "<option value='none'>No Animation</option>";
+    $posts_fields[] = "<option value=''>".__('No Animation', THEME_LANG)."</option>";
     
-    foreach($json_a as $key => $value){
-        $selected = ($value == $key) ? ' selected="selected"' : '';
+    foreach($json_a as $jkey => $jvalue){
+        $selected = ($value == $jkey) ? ' selected="selected"' : '';
         
-        $posts_fields[] = "<optgroup label='".ucwords(str_replace('_',' ',$key))."'>";
-            foreach( $value as $k=>$v ){
+        $posts_fields[] = "<optgroup label='".ucwords(str_replace('_',' ',$jkey))."'>";
+            foreach( $jvalue as $k=>$v ){
                 $posts_fields[] .= "<option value='{$k}' {$selected}>".$k."</option>";
             }
         $posts_fields[] .= "</optgroup>";

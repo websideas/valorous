@@ -10,8 +10,7 @@
         
         $( 'body' ).on( 'click', '.kt_image_upload', function ( e ){
             e.preventDefault();
-            
-                
+
             var $button = $( this ),
                 $widget = $button.closest('.widget-content'),
                 $preview = $widget.find('.kt_image_preview'),
@@ -20,8 +19,9 @@
                 frame,
                 frameOptions = {
     				className: 'media-frame rwmb-file-frame',
-    				multiple : true,
-    				title    : kt_image_lange.frameTitle
+    				multiple : false,
+    				title    : kt_image_lange.frameTitle,
+                    library: {type: 'image'}
     			};
                 
                 

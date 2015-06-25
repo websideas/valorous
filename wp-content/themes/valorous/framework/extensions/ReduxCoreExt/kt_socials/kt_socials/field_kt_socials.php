@@ -91,5 +91,22 @@ if ( !class_exists( 'ReduxFramework_kt_socials' ) ) {
             echo '</div>';
 
         }
+
+
+        /**
+         * Enqueue Function.
+         * If this field requires any scripts, or css define this function and register/enqueue the scripts/css
+         *
+         * @since ReduxFramework 1.0.0
+         */
+        function enqueue() {
+            echo FW_JS.'kt_socials.js';
+            wp_enqueue_script(
+                'redux-field-socials-js',
+                FW_JS.'kt_socials.js',
+                time(),
+                true
+            );
+        } //function
     }
 }
