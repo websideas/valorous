@@ -84,8 +84,15 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
         if($custom_css){
             $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
         }
+        
+        $elementClass = array(
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'wrapper-comingsoon ', $this->settings['base'], $atts ),
+            'extra' => $this->getExtraClass( $el_class ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+        );
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        $output = '<div class="wrapper-comingsoon"><div id="kt_comming_'.$rand.'" class="coming-soon" data-date="'.$day.'" data-month="'.$month.'" data-year="'.$year.'"></div>'.$custom_css.'</div>';
+        $output = '<div class="'.esc_attr( $elementClass ).'"><div id="kt_comming_'.$rand.'" class="coming-soon" data-date="'.$day.'" data-month="'.$month.'" data-year="'.$year.'"></div>'.$custom_css.'</div>';
         
         return $output;
     }

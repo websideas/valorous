@@ -401,15 +401,7 @@ vc_add_param("vc_accordion", array(
         __('Style 5', THEME_LANG) => 'style5',
         __('Style 6', THEME_LANG) => 'style6',
         __('Style 7', THEME_LANG) => 'style7',
-        __('Style 8', THEME_LANG) => 'style8',
-        __('Style 9', THEME_LANG) => 'style9',
-        __('Style 10', THEME_LANG) => 'style10',
-        __('Style 11', THEME_LANG) => 'style11',
-        __('Style 12', THEME_LANG) => 'style12',
-        __('Style 13', THEME_LANG) => 'style13',
-        __('Style 14', THEME_LANG) => 'style14',
-        __('Style 15', THEME_LANG) => 'style15',
-        __('Style 16', THEME_LANG) => 'style16'
+        __('Style 8', THEME_LANG) => 'style8'
 	)
 ));
 $composer_addons = array(
