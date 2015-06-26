@@ -256,7 +256,8 @@ vc_add_params("vc_tabs", array(
             __('Style 2', THEME_LANG) => 'style2',
             __('Style 3', THEME_LANG) => 'style3',
             __('Style 4', THEME_LANG) => 'style4',
-    	)
+    	),
+        'group' => 'Style'
     ),
     array(
         "type" => "dropdown",
@@ -267,7 +268,8 @@ vc_add_params("vc_tabs", array(
     	"value" => array(
             __('Light', THEME_LANG) => 'light',
     		__('Dark', THEME_LANG) => 'dark',
-    	)
+    	),
+        'group' => 'Style'
     ),
 ));
 vc_add_params("vc_tour", array(
@@ -281,7 +283,8 @@ vc_add_params("vc_tour", array(
             __('Normal', THEME_LANG) => '',
     		__('Style 1', THEME_LANG) => 'style1',
             __('Style 2', THEME_LANG) => 'style2'
-    	)
+    	),
+        'group' => 'Style'
     ),
     array(
         "type" => "dropdown",
@@ -292,7 +295,8 @@ vc_add_params("vc_tour", array(
     	"value" => array(
             __('Tabs on the left', THEME_LANG) => 'tabs_on_left',
     		__('Tabs on the right', THEME_LANG) => 'tabs_on_right',
-    	)
+    	),
+        'group' => 'Style'
     ),
 ));
 

@@ -8,11 +8,7 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
-            
-            'day' => 19,
-            'month' => 5,
-            'year' => 2016,
+            'date_coming' => '2016/5/19',
             
             'font_type_title' => '',
             'font_container_title' => '',
@@ -20,7 +16,8 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
             'font_type_value' => '',
             'font_container_value' => '',
             'google_fonts_value' => '',
-
+            
+            'css_animation' => '',
             'el_class' => '',
             'css' => '',
         ), $atts );
@@ -85,14 +82,21 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
             $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
         }
         
+        if($css_animation !=''){
+            $data_animate = 'data-timeeffect="200" data-animation="'.$css_animation.'"';
+            $cl_animate = 'animation-effect';
+            $animate_item = 'animation-effect-item';
+        }
+        
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'wrapper-comingsoon ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'animate' => $cl_animate
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-        $output = '<div class="'.esc_attr( $elementClass ).'"><div id="kt_comming_'.$rand.'" class="coming-soon" data-date="'.$day.'" data-month="'.$month.'" data-year="'.$year.'"></div>'.$custom_css.'</div>';
+        
+        $output = '<div class="'.esc_attr( $elementClass ).'" '.$data_animate.'><div id="kt_comming_'.$rand.'" class="coming-soon '.$animate_item.'" data-date="'.$date_coming.'"></div>'.$custom_css.'</div>';
         
         return $output;
     }
@@ -108,11 +112,12 @@ vc_map( array(
     "description" => __( "Coming soon", THEME_LANG),
     "params" => array(
         array(
-            "type" => "textfield",
-            'heading' => __( 'Title', 'js_composer' ),
-            'param_name' => 'title',
-            'value' => '',
-            "admin_label" => true,
+            'type' => 'textfield',
+            'heading' => __( 'Date coming', 'js_composer' ),
+            'param_name' => 'date_coming',
+            'value' => '2016/5/19',
+            'admin_label' => true,
+            'description' => __( 'Example: 2016/5/19', 'js_composer' ),
         ),
         
         //Typography settings
@@ -217,7 +222,14 @@ vc_map( array(
             'dependency' => array( 'element' => 'font_type_value', 'value' => array( 'google' ) ),
             'description' => __( '', 'js_composer' ),
         ),
-             
+        
+        array(
+            'type' => 'kt_animate',
+            'heading' => __( 'CSS Animation', 'js_composer' ),
+            'param_name' => 'css_animation',
+            'value' => '',
+            'description' => __( 'Select type of animation if you want this element to be animated when it enters into the browsers viewport. Note: Works only in modern browsers.', 'js_composer' )
+        ),
         array(
             "type" => "textfield",
             "heading" => __( "Extra class name", "js_composer" ),

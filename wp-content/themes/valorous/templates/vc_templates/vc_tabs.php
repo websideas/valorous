@@ -13,7 +13,7 @@ wp_enqueue_script( 'jquery-ui-tabs' );
 
 $el_class = $this->getExtraClass( $el_class );
 
-$icon = '';
+$icon = $has_style = '';
 
 $element = 'wpb_tabs';
 if ( 'vc_tour' == $this->shortcode ) $element = 'wpb_tour';
@@ -48,9 +48,11 @@ foreach ( $tab_titles as $tab ) {
 }
 $tabs_nav .= '</ul>' . "\n";
 
+if( $tabs_style != '' ){ $has_style = ' has-style'; }
+
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, trim( $element . ' wpb_content_element '. $el_class ), $this->settings['base'], $atts );
 
-$output .= "\n\t" . '<div class="' . $css_class . ' '.$tabs_style.' '.$tabs_color.' '.$tabs_positions.'" data-interval="' . $interval . '">';
+$output .= "\n\t" . '<div class="' . $css_class . ' '.$tabs_style.$has_style.' '.$tabs_color.' '.$tabs_positions.'" data-interval="' . $interval . '">';
 $output .= "\n\t\t" . '<div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix">';
 $output .= wpb_widget_title( array( 'title' => $title, 'extraclass' => $element . '_heading' ) );
 $output .= "\n\t\t\t" . $tabs_nav;

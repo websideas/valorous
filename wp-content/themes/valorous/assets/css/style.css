@@ -2045,26 +2045,17 @@ body.footer_fixed .static-footer{
 /*
  * Tabs
  */
-.wpb_tabs.style1 .wpb_tabs_nav,
-.wpb_tabs.style2 .wpb_tabs_nav,
-.wpb_tabs.style3 .wpb_tabs_nav,
-.wpb_tabs.style4 .wpb_tabs_nav {
+.wpb_tabs.has-style .wpb_tabs_nav {
 	height:auto;
 	overflow:auto;
 }
-.wpb_tabs.style1 .wpb_tabs_nav li,
-.wpb_tabs.style2 .wpb_tabs_nav li,
-.wpb_tabs.style3 .wpb_tabs_nav li,
-.wpb_tabs.style4 .wpb_tabs_nav li {
+.wpb_tabs.has-style .wpb_tabs_nav li {
 	height:auto;
 	padding:15px 20px;
 	cursor:pointer;
     margin:0;
 }
-.wpb_tabs.style1 .wpb_tabs_nav li a,
-.wpb_tabs.style2 .wpb_tabs_nav li a,
-.wpb_tabs.style3 .wpb_tabs_nav li a,
-.wpb_tabs.style4 .wpb_tabs_nav li a {
+.wpb_tabs.has-style .wpb_tabs_nav li a {
 	padding:0!important;
 	margin:0;
 	pointer-events: none;
@@ -2072,26 +2063,14 @@ body.footer_fixed .static-footer{
 .wpb_tabs .wpb_tabs_nav li a .vc_icon_element-icon{
     margin-right:6px;
 }
-.wpb_tabs.style1 .ui-tabs-panel,
-.wpb_tabs.style2 .ui-tabs-panel,
-.wpb_tabs.style3 .ui-tabs-panel,
-.wpb_tabs.style4 .ui-tabs-panel {
+.wpb_tabs.has-style .ui-tabs-panel {
 	margin-top:-1px;
 }
-.wpb_tabs.style1 .wpb_tabs_nav li:hover,
-.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style2 .wpb_tabs_nav li:hover,
-.wpb_tabs.style2 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style3 .wpb_tabs_nav li:hover,
-.wpb_tabs.style3.wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style4 .wpb_tabs_nav li:hover,
-.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active{
+.wpb_tabs.has-style .wpb_tabs_nav li:hover,
+.wpb_tabs.has-style .wpb_tabs_nav li.ui-tabs-active{
     background: none;
 }
-.wpb_tabs.style1 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style2 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style3 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.style4 .wpb_tabs_nav li.ui-tabs-active{
+.wpb_tabs.has-style .wpb_tabs_nav li.ui-tabs-active{
     border-bottom:1px solid #fff!important;
 }
 /*** Type 1 ***/
@@ -2150,7 +2129,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_tabs.style3 .wpb_tabs_nav li a {
 	font-size:16px;
-    color:#fff;
 }
 .wpb_tabs.style3 .wpb_tabs_nav li.ui-tabs-active a {
 	font-weight:bold;
@@ -2179,63 +2157,41 @@ body.footer_fixed .static-footer{
 	font-weight:bold;
 }
 /** Dark tab **/
-
-.wpb_tabs.dark.style1 .wpb_tabs_nav li,
-.wpb_tabs.dark.style2 .wpb_tabs_nav li,
-.wpb_tabs.dark.style3 .wpb_tabs_nav li,
-.wpb_tabs.dark.style4 .wpb_tabs_nav li {
+.wpb_tabs.dark.has-style .wpb_tabs_nav li {
 	color:#a1b1bc;
 	background:#222533;
 }
-.wpb_tabs.dark.style1 .ui-tabs-panel,
-.wpb_tabs.dark.style2 .ui-tabs-panel,
-.wpb_tabs.dark.style3 .ui-tabs-panel,
-.wpb_tabs.dark.style4 .ui-tabs-panel {
+.wpb_tabs.dark.style3 .wpb_tabs_nav li{
+    background: #a1b1bc;
+}
+.wpb_tabs.dark.has-style .ui-tabs-panel {
 	color:#a1b1bc;
 	background:#222533!important;
 }
-.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active,
-.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active {
+.wpb_tabs.dark.has-style .wpb_tabs_nav li.ui-tabs-active {
 	border-bottom:1px solid #222533 !important;
 	background:#222533 !important;
 }
-.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active a:hover,
-.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active a:hover,
-.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active a:hover,
-.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active a:hover {
+.wpb_tabs.dark.has-style .wpb_tabs_nav li.ui-tabs-active a:hover {
 	color:#ffffff !important;
 }
-.wpb_tabs.dark.style1 .wpb_tabs_nav li.ui-tabs-active a,
-.wpb_tabs.dark.style2 .wpb_tabs_nav li.ui-tabs-active a,
-.wpb_tabs.dark.style3 .wpb_tabs_nav li.ui-tabs-active a,
-.wpb_tabs.dark.style4 .wpb_tabs_nav li.ui-tabs-active a {
+.wpb_tabs.dark.has-style .wpb_tabs_nav li.ui-tabs-active a {
 	color:#ffffff !important;
 }
-
-.wpb_tabs.style1 .wpb_tabs_nav li, .wpb_tabs.style1 .ui-tabs-panel,
-.wpb_tabs.style2 .wpb_tabs_nav li, .wpb_tabs.style2 .ui-tabs-panel,
-.wpb_tabs.style3 .wpb_tabs_nav li, .wpb_tabs.style3 .ui-tabs-panel,
-.wpb_tabs.style4 .wpb_tabs_nav li, .wpb_tabs.style4 .ui-tabs-panel{
+.wpb_tabs.has-style .wpb_tabs_nav li, .wpb_tabs.has-style .ui-tabs-panel{
     border: 1px solid #ecf0f1;
 }
-.wpb_tabs.wpb_content_element.style1 .wpb_accordion_wrapper .wpb_accordion_header, 
-.wpb_tabs.wpb_content_element.style1 .wpb_tour_tabs_wrapper .wpb_tab,
-.wpb_tabs.wpb_content_element.style2 .wpb_accordion_wrapper .wpb_accordion_header, 
-.wpb_tabs.wpb_content_element.style2 .wpb_tour_tabs_wrapper .wpb_tab,
-.wpb_tabs.wpb_content_element.style3 .wpb_accordion_wrapper .wpb_accordion_header, 
-.wpb_tabs.wpb_content_element.style3 .wpb_tour_tabs_wrapper .wpb_tab,
-.wpb_tabs.wpb_content_element.style4 .wpb_accordion_wrapper .wpb_accordion_header, 
-.wpb_tabs.wpb_content_element.style4 .wpb_tour_tabs_wrapper .wpb_tab{
+.wpb_tabs.wpb_content_element.has-style .wpb_accordion_wrapper .wpb_accordion_header,
+.wpb_tabs.wpb_content_element.has-style .wpb_tour_tabs_wrapper .wpb_tab{
     background: #fff;
 }
-.wpb_tabs.style1 .wpb_tabs_nav li:last-child,
-.wpb_tabs.style2 .wpb_tabs_nav li:last-child,
-.wpb_tabs.style3 .wpb_tabs_nav li:last-child,
-.wpb_tabs.style4 .wpb_tabs_nav li:last-child {
+.wpb_tabs.has-style .wpb_tabs_nav li:last-child {
     border-right: 1px solid #ecf0f1 !important;
 }
+.wpb_tabs.style2.dark .wpb_tabs_nav li.ui-tabs-active{
+    box-shadow:6px 0 3px rgba(26, 188, 156, 0.5);
+}
+
 /*
  *Tour
  */
@@ -2384,17 +2340,25 @@ body.footer_fixed .static-footer{
 	font-weight:bold !important;
 	outline: none!important;
 }
+.wpb_accordion.style7 .ui-accordion-header-icon,
+.wpb_accordion.style6 .ui-accordion-header-icon,
+.wpb_accordion.style5 .ui-accordion-header-icon,
+.wpb_accordion.style4 .ui-accordion-header-icon,
+.wpb_accordion.style2 .ui-accordion-header-icon, 
+.wpb_accordion.style1 .ui-accordion-header-icon{
+    background:none!important;
+    height: 100% !important;
+    width: 40px !important;
+    display: block;
+    right: 0 !important;
+    top: 0 !important;
+    text-align: center;
+    cursor: pointer;
+}
+.wpb_accordion.style4 .ui-accordion-header-icon,
 .wpb_accordion.style1 .ui-accordion-header-icon, 
 .wpb_accordion.style2 .ui-accordion-header-icon {
-	background:none!important;
-	height: 100% !important;
-	width: 40px !important;
-	display: block;
-	right: 0 !important;
 	font-weight: normal;
-	top: 0 !important;
-	text-align: center;
-    cursor: pointer;
 }
 .wpb_accordion.style1 .ui-accordion-header-icon{
     border-left: 1px solid #ecf0f1;
@@ -2407,14 +2371,12 @@ body.footer_fixed .static-footer{
 .wpb_accordion.style1 .ui-accordion-header-active .ui-accordion-header-icon:before, 
 .wpb_accordion.style2 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f067";
-	font-family:'FontAwesome';
 }
 .wpb_accordion.style1 .wpb_accordion_content, 
 .wpb_accordion.style2 .wpb_accordion_content {
 	margin: -3px 0 2px 0;
     background: #fff;
     border: 1px solid #ecf0f1;
-    color: #a1b1bc;
 }
 .wpb_accordion.style3 .wpb_accordion_section {
 	margin-bottom: 10px;
@@ -2438,18 +2400,21 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style3 .ui-accordion-header-icon {
 	text-align: center;
-	position:relative !important;
+	position:absolute !important;
 	float: right;
 	color: #fff;
 	background: #a1b1cb !important;
 	width: 30px !important;
 	font-weight: normal;
 	height: 30px!important;
-	line-height: 30px!important;
 	font-size: 24px;
 	right: 0 !important;
-	top: 0 !important;
+	top: 50% !important;
     cursor: pointer;
+    position: absolute;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
 }
 .wpb_accordion.style3 .ui-accordion-header-icon:before {
 	content: "\f068";
@@ -2457,7 +2422,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style3 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f067";
-	font-family:'FontAwesome';
 }
 .wpb_accordion.style3 .wpb_accordion_content {
 	background:none!important;
@@ -2476,25 +2440,12 @@ body.footer_fixed .static-footer{
 .wpb_accordion.style4 .ui-accordion-header-active {
 	outline: none!important;
 }
-.wpb_accordion.style4 .ui-accordion-header-icon {
-	background:none!important;
-	height: 44px !important;
-	width: 43px !important;
-	display: block;
-	right: 0 !important;
-	font-weight: normal;
-	top: 0 !important;
-	text-align: center;
-	line-height: 42px !important;
-    cursor: pointer;
-}
 .wpb_accordion.style4 .ui-accordion-header-icon:before {
 	content: "\f107";
-	font-family:'FontAwesome'
+	font-family:'FontAwesome';
 }
 .wpb_accordion.style4 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f106";
-	font-family:'FontAwesome'
 }
 .wpb_accordion.style4 .wpb_accordion_content {
 	margin: -6px 0 5px 0;
@@ -2520,19 +2471,12 @@ body.footer_fixed .static-footer{
 	outline: none!important;
 }
 .wpb_accordion.style5 .ui-accordion-header-icon {
-	background:none!important;
-	height: 100% !important;
-	width: 50px !important;
-	display: block;
-	left: 0 !important;
 	position:absolute !important;
 	float:left;
 	font-weight: normal;
-	top: 0 !important;
-	text-align: center;
-	margin-right:20px;
 	border-radius: 3px;
-    cursor: pointer;
+    left:0;
+    width:50px!important;
 }
 .wpb_accordion.style5 .ui-accordion-header-icon:before {
 	content: "\f067";
@@ -2540,7 +2484,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style5 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f068";
-	font-family:'FontAwesome'
 }
 .wpb_accordion.style5 .wpb_accordion_content {
 	margin:-6px 0 10px 0;
@@ -2571,17 +2514,9 @@ body.footer_fixed .static-footer{
 	font-weight:bold !important;
 }
 .wpb_accordion.style6 .ui-accordion-header-icon {
-	background:none!important;
-	height: 34px !important;
-	width: 40px !important;
-	display: block;
-	right: 0 !important;
 	font-weight: normal;
-	top: 0 !important;
 	text-align: right;
 	font-size:15px;
-	line-height: 31px !important;
-    cursor: pointer;
 }
 .wpb_accordion.style6 .ui-accordion-header-icon:before {
 	content: "\f055";
@@ -2589,7 +2524,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style6 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f056";
-	font-family:'FontAwesome'
 }
 .wpb_accordion.style6 .wpb_accordion_content {
 	margin: 0px 0 0px 0;
@@ -2602,7 +2536,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style6 .wpb_accordion_content{
     border-bottom: 1px solid #ecf0f1;
-    color: #a1b1bc;
 }
 .wpb_accordion.style6 .ui-accordion-header-active{
     color: #29d9c2;
@@ -2620,20 +2553,11 @@ body.footer_fixed .static-footer{
 	outline: none!important;
 }
 .wpb_accordion.style7 .wpb_accordion_header a {
-	padding: 10px 70px 6px 29px!important;
+	padding: 10px 40px 6px 29px!important;
 }
 .wpb_accordion.style7 .ui-accordion-header-icon {
-	background:none!important;
-	height: 49px !important;
-	width: 66px !important;
-	display: block;
-	right: 0 !important;
 	font-weight: normal !important;
-	top: 0 !important;
-	text-align: center;
 	font-size:24px;
-	line-height: 47px !important;
-    cursor: pointer;
 }
 .wpb_accordion.style7 .ui-accordion-header-icon:before {
 	content: "\f13a";
@@ -2641,7 +2565,6 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style7 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f139";
-	font-family:'FontAwesome';
 }
 .wpb_accordion.style7 .wpb_accordion_content {
 	margin: -2px 0 1px 0;
@@ -2681,31 +2604,30 @@ body.footer_fixed .static-footer{
 }
 .wpb_accordion.style8 .ui-accordion-header-active a:before {
 	content: "\f0d7";
-	font-family:'FontAwesome';
 }
 .wpb_accordion.style8 .ui-accordion-header-icon {
 	background:none!important;
-	height: 39px !important;
 	width: 36px !important;
 	display: block;
 	right: 0 !important;
 	font-weight: normal !important;
-	top: 0 !important;
+	top: 50% !important;
 	text-align: center;
 	font-size:11px;
-	line-height: 38px !important;
     cursor: pointer;
+    position: absolute;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
 }
 .wpb_accordion.style8 .ui-accordion-header-icon:before {
 	content: "\f067";
 	font-family:'FontAwesome';
 	border: 1px solid #ecf0f1;
-	padding: 3px 4px 2px;
+	padding: 0 8px;
 }
 .wpb_accordion.style8 .ui-accordion-header-active .ui-accordion-header-icon:before {
 	content: "\f00d";
-	padding: 3px 4px 2px;
-	font-family:'FontAwesome';
 }
 .wpb_accordion.style8 .wpb_accordion_content {
 	margin: -2px 0 0px 0;
@@ -2725,7 +2647,6 @@ body.footer_fixed .static-footer{
 .wpb_accordion.style8 .wpb_accordion_content{
     background: #fff;
     border: 1px solid #ecf0f1;
-    color: #a1b1bc;
 }
 .wpb_accordion.style8 .wpb_accordion_wrapper .wpb_accordion_header a,
 .wpb_accordion.style4 .wpb_accordion_wrapper .wpb_accordion_header a,
@@ -4665,6 +4586,9 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 /*========== COMING SOON ==========*/
+.wrapper-comingsoon{
+    margin-bottom:15px;
+}
 .coming-soon{
     text-align: center;
 }
@@ -5630,9 +5554,3 @@ SOCIAL
 /** ================================================
 END SOCIAL
 /** ================================================ */
-
-
-
-
-
-

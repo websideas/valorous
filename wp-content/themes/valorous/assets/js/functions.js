@@ -99,10 +99,8 @@
         });
         
         $('.coming-soon').each(function(){
-            var day = $(this).data('date'),
-                month = $(this).data('month'),
-                year = $(this).data('year'); 
-            $(this).countdown(year+"/"+month+"/"+day, function(event) {
+            var date = $(this).data('date');
+            $(this).countdown(date, function(event) {
                 $(this).html(
                     event.strftime('<div class="wrap">'+
                                     '<div class="value-time">%D</div>'+
