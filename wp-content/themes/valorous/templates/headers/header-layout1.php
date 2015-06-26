@@ -11,15 +11,19 @@ if ( !defined('ABSPATH')) exit;
         <nav role="navigation" id="nav">
 
             <ul id="main-nav-tool">
+                <?php if ( kt_is_wc() && kt_option('header_cart', 1) ) { ?>
                 <li class="mini-cart">
-                    <a href="#">
+                    <a href="<?php echo WC()->cart->get_cart_url(); ?>">
                         <span class="icon-bag"></span>
                         <span class="mini-cart-total">0</span>
                     </a>
                 </li>
+                <?php } ?>
+                <?php if ( kt_option('header_search', 1) ) { ?>
                 <li class="mini-search">
                     <a href="#"><span class="icon-magnifier"></span></a>
                 </li>
+                <?php } ?>
             </ul>
 
             <?php
@@ -32,6 +36,11 @@ if ( !defined('ABSPATH')) exit;
                         'walker' => new KTMegaWalker(),
                         //'items_wrap' => kt_nav_wrap() )
                     ) );
+                }else{
+                    printf(
+                        '<ul><li><a href="#">%s</a></li></ul>',
+                        __("No menu assigned!", THEME_LANG)
+                    );
                 }
             ?>
         </nav><!-- #main-nav -->

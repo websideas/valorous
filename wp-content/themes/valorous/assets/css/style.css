@@ -1266,6 +1266,9 @@ h2.widgettitle a.rsswidget:first-child,
     position: fixed;
     z-index: 10100;
     background: rgba(0,0,0,0.8);
+    -moz-box-shadow:0 2px 6px rgba(0,0,0,.05);
+    -webkit-box-shadow:0 2px 6px rgba(0,0,0,.05);
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 body.admin-bar #header.is-sticky.sticky{
     top: 32px;
@@ -1281,11 +1284,6 @@ body.admin-bar #header.is-sticky.sticky{
 #header.is-sticky .site-branding .site-logo,
 #header.is-sticky .site-branding .site-logo img{
     width: 50px!important;
-}
-#header.is-sticky.sticky-shadow{
-    -moz-box-shadow:0 2px 6px rgba(0,0,0,.05);
-    -webkit-box-shadow:0 2px 6px rgba(0,0,0,.05);
-    box-shadow:0 2px 6px rgba(0,0,0,.05)
 }
 
 /*

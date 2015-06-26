@@ -159,10 +159,13 @@ add_filter('kt_content_class', 'kt_content_class_callback');
  * Add class sticky to header
  */
 function theme_header_content_class_callback($classes){
-    $sticky = kt_option('fixed_header', 1);
-    if($sticky){
+    if(kt_option('fixed_header', 1)){
         $classes .= ' sticky-header';
     }
+    if(kt_option('header_full', 1)){
+        $classes .= ' header-fullwidth';
+    }
+
     return $classes;
 }
 

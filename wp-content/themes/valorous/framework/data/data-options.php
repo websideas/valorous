@@ -404,15 +404,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> '',
 				'subsection' => true,
 				'fields'		=> array(
-                    array(
-						'id'		=> 'fixed_header',
-						'type'		=> 'switch',
-						'title'		=> __( 'Fixed Header on Scroll', THEME_LANG ),
-						'subtitle'	=> __( 'Toggle the fixed header when the user scrolls down the site on or off. Please note that for certain header (two and three) styles only the navigation will become fixed.', THEME_LANG),
-						"default"	=> '1',
-						'on'		=> __( 'On', THEME_LANG ),
-						'off'		=> __( 'Off', THEME_LANG ),
-					),
+
                     array(
                         'id'       => 'header',
                         'type'     => 'image_select',
@@ -421,16 +413,59 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Please choose header layout', THEME_LANG ),
                         'options'  => array(
                             'layout1' => array( 'alt' => __( 'Layout 1', THEME_LANG ), 'img' => FW_IMG . 'header/header-v1.png' ),
-                            'layout2' => array( 'alt' => __( 'Layout 2', THEME_LANG ), 'img' => FW_IMG . 'header/header-v2.png' ),
-                            'layout3' => array( 'alt' => __( 'Layout 3', THEME_LANG ), 'img' => FW_IMG . 'header/header-v3.png' ),
+                            //'layout2' => array( 'alt' => __( 'Layout 2', THEME_LANG ), 'img' => FW_IMG . 'header/header-v2.png' ),
+                            //'layout3' => array( 'alt' => __( 'Layout 3', THEME_LANG ), 'img' => FW_IMG . 'header/header-v3.png' ),
                         ),
                         'default'  => 'layout1'
                     ),
-                    
+                    array(
+                        'id'       => 'header_color',
+                        'type'     => 'select',
+                        'title'    => __( 'Header Color Scheme', THEME_LANG ),
+                        'subtitle'     => __( 'Please select your header color scheme here.', THEME_LANG ),
+                        'options'  => array(
+                            'light' => __('Light', THEME_LANG),
+                            'dark' => __('Dark', THEME_LANG )
+                        ),
+                        'default'  => 'light',
+                        'clear' => false
+                    ),
+                    array(
+                        'id'		=> 'fixed_header',
+                        'type'		=> 'switch',
+                        'title'		=> __( 'Fixed Header on Scroll', THEME_LANG ),
+                        'subtitle'	=> __( 'Toggle the fixed header when the user scrolls down the site on or off. Please note that for certain header (two and three) styles only the navigation will become fixed.', THEME_LANG),
+                        "default"	=> '1',
+                        'on'		=> __( 'On', THEME_LANG ),
+                        'off'		=> __( 'Off', THEME_LANG ),
+                    ),
+                    array(
+                        'id'       => 'header_color_fixed',
+                        'type'     => 'select',
+                        'title'    => __( 'Header Color Scheme fixed', THEME_LANG ),
+                        'subtitle'     => __( 'Please select your header color scheme fixed here.', THEME_LANG ),
+                        'options'  => array(
+                            'light' => __('Light', THEME_LANG),
+                            'dark' => __('Dark', THEME_LANG )
+                        ),
+                        'default'  => 'light',
+                        'clear' => false,
+                        'required' => array('fixed_header','equals','1')
+                    ),
+                    array(
+                        'id' => 'header_full',
+                        'type' => 'switch',
+                        'title' => __('Full Width Header', THEME_LANG),
+                        'desc' => __('Do you want the header to span the full width of the page?', THEME_LANG),
+                        "default" => 1,
+                        'on' => 'Enabled',
+                        'off' => 'Disabled',
+                    ),
                     array(
                         'id'   => 'divide_id',
                         'type' => 'divide'
                     ),
+                    /*
                     array(
                         'id'   => 'header_contact_heading',
                         'type' => 'heading',
@@ -449,6 +484,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Email Address For Contact Info', THEME_LANG), 
                         'default' => __('demo@domain.com', THEME_LANG)
                     ),
+                    */
                     array(
                         'id' => 'header_search',
                         'type' => 'switch',
@@ -462,7 +498,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'header_cart',
                         'type' => 'switch',
                         'title' => __('Cart icon', THEME_LANG),
-                        'desc' => __('Enable the cart Icon in the header.', THEME_LANG),
+                        'desc' => __('Enable the cart Icon in the header (Only work if you install WooCommerce).', THEME_LANG),
                         "default" => 1,
                         'on' => 'Enabled',
                         'off' => 'Disabled',
@@ -471,7 +507,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'header_language',
                         'type' => 'switch',
                         'title' => __('Language switcher', THEME_LANG),
-                        'desc' => __('Enable the language switcher in the header.', THEME_LANG),
+                        'desc' => __('Enable the language switcher in the header (Only work if you install WPML).', THEME_LANG),
                         "default" => 1,
                         'on' => 'Enabled',
                         'off' => 'Disabled',

@@ -22,13 +22,7 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class( ); ?>>
-    <div id="search-fullwidth" class="mfp-hide">
-        <div class="container">
-            <p>Start typing and press Enter to search</p>
-            <?php get_search_form() ?>
-        </div>
-    </div><!-- #search-fullwidth -->
-
+    <?php get_template_part( 'searchform',  'full'); ?>
     <?php $position = kt_get_header(); ?>
     <?php
 	/**
@@ -53,9 +47,11 @@
             	do_action( 'theme_before_header' ); ?>
                 <?php $header_layout = kt_get_header_layout(); ?>
                 <div class="header-<?php echo $header_layout ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
-
-                    <header id="header" class="header-fullwidth sticky-shadow <?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="dark" data-sticky="light">
+                    <?php $header_full = kt_option('header_full', 1); ?>
+                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="dark" data-sticky="light">
+                        <?php if(!$header_full){ echo '<div class="container">'; } ?>
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
+                        <?php if(!$header_full){ echo '<div>'; } ?>
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
                         <?php
