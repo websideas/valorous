@@ -58,7 +58,7 @@ function theme_setup() {
     if (function_exists( 'add_image_size' ) ) {
         add_image_size( 'recent_posts', 570, 380, true);
         add_image_size( 'small', 170, 170, true );
-        add_image_size( 'blog-post', 1040, 390, true );
+        add_image_size( 'blog-post', 1200, 400, true );
     }
     
     load_theme_textdomain( THEME_LANG, THEME_DIR . '/languages' );

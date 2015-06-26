@@ -55,13 +55,22 @@
                     .addClass(o.className)
                     .addClass(o.classSticky);
 
+                $('.'+o.classContainer)
+                    .removeClass('header-light header-dark')
+                    .addClass('header-'+_sticky.data('sticky'));
+
                 var $offset = _placeholder.offset(),
                     _scrolltop = _window.scrollTop();
 
                 scrolled = true;
             },
             end = function (_sticky, _placeholder, o) {
-                _placeholder.css({'height':'0px'}); 
+                _placeholder.css({'height':'0px'});
+
+                $('.'+o.classContainer)
+                    .removeClass('header-light header-dark')
+                    .addClass('header-'+_sticky.data('color'));
+
                 _sticky
                     .removeClass(o.className)
                     .removeClass(o.classSticky);
@@ -158,6 +167,7 @@
 	};
     
     $.fn.ktSticky.defaults = {
+        classContainer: 'header-container',
         className: 'is-sticky',
         classSticky: 'sticky',
         topSpacing: 10,

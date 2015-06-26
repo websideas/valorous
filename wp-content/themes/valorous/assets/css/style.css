@@ -496,7 +496,7 @@ select:not([multiple]) {
     display: inline-block;
     line-height: 22px;
     margin: 0 0 0 43px;
-    padding: 35px 0 45px;
+    padding: 35px 0;
     position: relative;
     text-align: left;
     -moz-transition: all 0.25s ease 0s;
@@ -592,16 +592,16 @@ select:not([multiple]) {
     padding: 5px;
     background: rgba(0, 0, 0, 0.8);
     position: absolute;
-    -webkit-box-shadow: 0 1px 3px 0 rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:  0 1px 3px 0 rgba(50, 50, 50, 0.75);
-    box-shadow:       0 1px 3px 0 rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0 8px 15px rgba(0,0,0,.1);
+    -moz-box-shadow:  0 8px 15px rgba(0,0,0,.1);
+    box-shadow:       0 8px 15px rgba(0,0,0,.1);
     background-clip: padding-box;
     width: 200px;
     list-style: none;
     top: 100%;
     left: 0;
     z-index: 10500;
-
+    border-top: 2px solid #d2a952;
     -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
     -moz-transition: opacity 0.5s, -moz-transform 0.5s;
     -ms-transition: opacity 0.5s, -ms-transform 0.5s;
@@ -1249,15 +1249,8 @@ h2.widgettitle a.rsswidget:first-child,
 .header-container.header-fixed{
     position: fixed;
 }
-.header-container{
+.header-container.header-absolute{
     position: absolute;
-}
-
-.header-fixed #header,
-.header-absolute #header,
-.header-fixed .sticky-placeholder,
-.header-absolute .sticky-placeholder{
-    background: none;
 }
 
 #nav,
@@ -1289,6 +1282,60 @@ body.admin-bar #header.is-sticky.sticky{
 #header.is-sticky .site-branding .site-logo img{
     width: 50px!important;
 }
+#header.is-sticky.sticky-shadow{
+    -moz-box-shadow:0 2px 6px rgba(0,0,0,.05);
+    -webkit-box-shadow:0 2px 6px rgba(0,0,0,.05);
+    box-shadow:0 2px 6px rgba(0,0,0,.05)
+}
+
+/*
+ * 10.3. Header Color
+ */
+.header-fixed #header,
+.header-absolute #header,
+.header-fixed .sticky-placeholder,
+.header-absolute .sticky-placeholder{
+    background: none;
+}
+
+/* Header light version */
+.header-light #header.is-sticky{
+    background: rgba(255,255,255,0.8);
+}
+.header-light #nav > ul > li > a{
+    color: #282828;
+}
+.header-light #main-navigation > li > a::after{
+    background: #282828;
+}
+.header-light #main-navigation > li .kt-megamenu-wrapper,
+.header-light #main-navigation > li ul.sub-menu-dropdown{
+    background: rgba(255,255,255,0.8);
+}
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title{
+    color: #6d6d6d;
+    border-color: #6d6d6d;
+}
+.header-light #main-navigation > li ul.sub-menu-dropdown > li,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li{
+    border-color: #6d6d6d;
+}
+.header-light #main-navigation > li ul.sub-menu-dropdown > li > a,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a{
+    color: #6d6d6d;
+}
+.header-light #main-navigation > li ul.sub-menu-dropdown > li:hover > a,
+.header-light #main-navigation > li ul.sub-menu-dropdown > li > a:hover{
+    color: #282828;
+}
+
+
+
+
+
+
 /** ================================================
     12. Footer
 *** ================================================*/

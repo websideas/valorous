@@ -52,9 +52,9 @@
             	 */
             	do_action( 'theme_before_header' ); ?>
                 <?php $header_layout = kt_get_header_layout(); ?>
-                <div class="header-<?php echo $header_layout ?> header-absolute <?php echo apply_filters('theme_header_class', 'header-container', $position) ?>">
+                <div class="header-<?php echo $header_layout ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
 
-                    <header id="header" class="header-fullwidth <?php echo apply_filters('theme_header_content_class', 'header-content') ?>">
+                    <header id="header" class="header-fullwidth sticky-shadow <?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="dark" data-sticky="light">
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
