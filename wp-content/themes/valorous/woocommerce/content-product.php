@@ -42,7 +42,7 @@ if ( ! $product || ! $product->is_visible() )
 $woocommerce_loop['loop']++;
 
 // Extra post classes
-$classes = array('product');
+$classes = array('product','animation-effect-item');
 if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 == $woocommerce_loop['columns'] )
 	$classes[] = 'first';
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )

@@ -443,6 +443,10 @@
             $animate_item.each(function(i){
                 var $animate = $(this);
                 
+                if($animate.hasClass('first')){
+                    $count = 0;
+                }
+                
                 var animation_delay = $count * $time;
                 $count++;
                 if (window_width > 991) {

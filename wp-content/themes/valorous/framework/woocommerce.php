@@ -165,11 +165,14 @@ function woocommerce_get_cart(){
         $cart_total = WC()->cart->get_cart_total();
 		$cart_count = WC()->cart->cart_contents_count;
         
-        $output .= '<div class="shopping_cart">';
-            $output .= '<a class="cart-contents" href="'.WC()->cart->get_cart_url().'" title="'.__("View my shopping cart", THEME_LANG).'"><span class="cart-content-text">'.__('My Cart', THEME_LANG).'</span><span class="cart-content-total">'.$cart_total.'</span></a>';
-            
+        $output .= '<li class="mini-cart">';
+            $output .= '<a href="'.WC()->cart->get_cart_url().'">';
+                $output .= '<span class="icon-bag"></span>';
+                $output .= '<span class="mini-cart-total">'.$cart_count.'</span>';
+            $output .= '</a>';
             $output .= '<div class="shopping-bag">';
             $output .= '<div class="shopping-bag-wrapper mCustomScrollbar">';
+            $output .= '<h3 class="cart-title">'.__( 'Recently added item(s)',THEME_LANG ).'</h3>';
             $output .= '<div class="shopping-bag-content">';
                 if ( sizeof(WC()->cart->cart_contents)>0 ) {
                     $output .= '<div class="bag-products">';
@@ -213,10 +216,7 @@ function woocommerce_get_cart(){
             $output .= '</div><!-- .shopping-bag-content -->';
             $output .= '</div><!-- .shopping-bag-wrapper -->';
             $output .= '</div><!-- .shopping-bag -->';
-        $output .= '</div><!-- .shopping_cart -->';
-
-
-        
+        $output .= '</li>';
     }
     return $output;
 }
@@ -229,7 +229,7 @@ function woocommerce_get_cart(){
  * 
  */ 
 function woocommerce_header_add_to_cart_fragment( $fragments ) {
-    $fragments['.shopping_cart'] = woocommerce_get_cart();
+    $fragments['.mini-cart'] = woocommerce_get_cart();
 	return $fragments;
 }
 add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');

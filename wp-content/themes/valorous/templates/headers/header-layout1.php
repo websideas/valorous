@@ -12,12 +12,7 @@ if ( !defined('ABSPATH')) exit;
 
             <ul id="main-nav-tool">
                 <?php if ( kt_is_wc() && kt_option('header_cart', 1) ) { ?>
-                <li class="mini-cart">
-                    <a href="<?php echo WC()->cart->get_cart_url(); ?>">
-                        <span class="icon-bag"></span>
-                        <span class="mini-cart-total">0</span>
-                    </a>
-                </li>
+                <?php echo woocommerce_get_cart(); ?>
                 <?php } ?>
                 <?php if ( kt_option('header_search', 1) ) { ?>
                 <li class="mini-search">

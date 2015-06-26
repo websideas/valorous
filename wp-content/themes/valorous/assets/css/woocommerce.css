@@ -581,7 +581,7 @@
 /** ================================================
     2. Woocommerce shopping cart
 *** ================================================*/
-.shopping_cart .shopping-bag{  
+.mini-cart .shopping-bag{  
     position: absolute;
     top: 100%;
     right: 0;
@@ -589,7 +589,7 @@
     padding-top: 10px;
     color: #666;
     
-    width: 350px;
+    width: 300px;
     text-align: left;
     
     -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;  /* For Safari 3.1 to 6.0 */
@@ -601,12 +601,12 @@
     -o-transform:       translate(0,40px);
     -ms-transform:      translate(0,40px);
     transform:          translate(0,40px);
-    opacity: 0;
+    opacity: 1;
     display: block;
-    visibility: hidden;
+    visibility: visible;
      
 }
-.shopping_cart:hover .shopping-bag{
+.mini-cart:hover .shopping-bag{
     -webkit-transform:  translate(0,0);
     -moz-transform:     translate(0,0);
     -o-transform:       translate(0,0);
@@ -615,20 +615,28 @@
     opacity: 1;
     visibility: visible;
 }
-.shopping_cart:hover > a:after{
+.mini-cart:hover > a:after{
     display: block;
 }
 .shopping-bag-wrapper{
     height: auto;
-    background: #f7f7f7;
+    background: #fff;
     overflow-y: auto;
     max-height: 500px;
-    -webkit-box-shadow: 0 1px 3px 0 rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:  0 1px 3px 0 rgba(50, 50, 50, 0.75);
-    box-shadow:       0 1px 3px 0 rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 3px 0px 5px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    3px 0px 5px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:         3px 0px 5px 0 rgba(0, 0, 0, 0.3);
+    border:1px solid #e6eced;
 }
-.shopping_cart .shopping-bag-content{
-    padding: 25px 30px;
+.shopping-bag-wrapper h3.cart-title{
+    padding:15px 15px 10px;
+    margin:0;
+    border-bottom:1px solid #e6eced;
+    font-size:15px;
+    color:#777;
+}
+.mini-cart .shopping-bag-content{
+    padding: 20px 15px;
 }
 .cart_block_no_products{
     margin: 0 0 20px;
@@ -640,9 +648,12 @@
 .bag-products .bag-product{
     font-weight: normal;
     overflow: hidden;
-    padding: 10px 0;
+    padding: 0;
+    margin:0 0 25px;
     position: relative;
-    border-bottom: 1px solid #ccc;
+}
+.bag-products .bag-product:last-child{
+    margin:0;
 }
 .bag-products .bag-product .bag-product-details{
     overflow: hidden;
@@ -654,7 +665,7 @@
     float: right;
 }
 .bag-products .bag-product figure img{
-    max-width: 70px;
+    max-width: 80px;
     height: auto;
 }
 .bag-products .bag-product a.remove{
