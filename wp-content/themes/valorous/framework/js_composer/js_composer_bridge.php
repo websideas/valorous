@@ -266,7 +266,7 @@ vc_add_params("vc_tabs", array(
         "description" => __("Color of Tabs.", THEME_LANG),
         "admin_label" => true,
     	"value" => array(
-            __('Light', THEME_LANG) => 'light',
+            __('Light', THEME_LANG) => '',
     		__('Dark', THEME_LANG) => 'dark',
     	),
         'group' => 'Style'
@@ -283,6 +283,18 @@ vc_add_params("vc_tour", array(
             __('Normal', THEME_LANG) => '',
     		__('Style 1', THEME_LANG) => 'style1',
             __('Style 2', THEME_LANG) => 'style2'
+    	),
+        'group' => 'Style'
+    ),
+    array(
+        "type" => "dropdown",
+        "heading" => __("Tabs color", THEME_LANG),
+        "param_name" => "tabs_color",
+        "description" => __("Color of Tabs.", THEME_LANG),
+        "admin_label" => true,
+    	"value" => array(
+            __('Light', THEME_LANG) => '',
+    		__('Dark', THEME_LANG) => 'dark',
     	),
         'group' => 'Style'
     ),
