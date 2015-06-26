@@ -46,9 +46,9 @@
             	 */
             	do_action( 'theme_before_header' ); ?>
                 <?php $header_layout = kt_get_header_layout(); ?>
-                <div class="header-<?php echo $header_layout ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
+                <div class="header-<?php echo $header_layout ?>  <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
                     <?php $header_full = kt_option('header_full', 1); ?>
-                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="dark" data-sticky="light">
+                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="light" data-sticky="light">
                         <?php if(!$header_full){ echo '<div class="container">'; } ?>
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
                         <?php if(!$header_full){ echo '<div>'; } ?>

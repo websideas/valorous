@@ -268,9 +268,12 @@ function theme_before_content_add_title(){
 add_filter('theme_header_class', 'theme_header_class_callback', 10, 2);
 
 function theme_header_class_callback($class, $position){
-    if($position == 'override'){
+    if($position == 'transparent' ){
         $class .= ' header-absolute';
+    }elseif($position == 'gradient'){
+        $class .= ' header-gradient';
     }
+
     return $class;
 }
 

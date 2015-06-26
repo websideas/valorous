@@ -333,8 +333,9 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc'     => __( "Please choose header position", THEME_LANG ),
                 'options'  => array(
                     'default' => __('Default', THEME_LANG),
-                    'override' => __('Override Slideshow', THEME_LANG),
-                    'below' => __('Below Slideshow', THEME_LANG)
+                    'transparent' => __('Transparent header', THEME_LANG),
+                    'gradient' => __('Gradient header', THEME_LANG),
+                    'below' => __('Below Slideshow', THEME_LANG),
                 ),
                 'std'  => 'default'
             ),

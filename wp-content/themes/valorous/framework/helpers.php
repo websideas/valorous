@@ -269,14 +269,14 @@ if (!function_exists('kt_option')){
  * 
  */
 function kt_get_logo(){
-    $logo = array('default' => '', 'retina' => '','sticky' => '', 'sticky_retina' => '');
+    $logo = array('default' => '', 'retina' => '','logo_light' => '', 'logo_light_retina' => '');
     
     $logo_default = kt_option( 'logo' );
     $logo_retina = kt_option( 'logo_retina' );
-    $logo_sticky = kt_option( 'logo_sticky' );
-    $logo_retina_sticky = kt_option( 'logo_retina_sticky' );
-    
-    
+
+    $logo_light = kt_option( 'logo_light' );
+    $logo_light_retina = kt_option( 'logo_light_retina' );
+
     if(is_array($logo_default) && $logo_default['url'] != '' ){
         $logo['default'] = $logo_default['url'];
     }
@@ -285,46 +285,30 @@ function kt_get_logo(){
         $logo['retina'] = $logo_retina['url'];
     }
     
-    if(is_array($logo_sticky ) && $logo_sticky['url'] != '' ){
-        $logo['sticky'] = $logo_sticky['url'];
+    if(is_array($logo_light ) && $logo_light['url'] != '' ){
+        $logo['logo_light'] = $logo_light['url'];
     }else{
-        $logo['sticky'] = $logo['default'];
+        $logo['logo_light'] = $logo['default'];
     }
     
-    if(is_array($logo_retina_sticky ) && $logo_retina_sticky['url'] != '' ){
-        $logo['sticky_retina'] = $logo_retina_sticky['url'];
+    if(is_array($logo_light_retina ) && $logo_light_retina['url'] != '' ){
+        $logo['logo_light_retina'] = $logo_light_retina['url'];
     }
     
-    $layout = kt_option('header', 'layout1');
-    
-    if($layout == 'layout1'){
-        if(!$logo['retina'] && !$logo['default']){
-            $logo['retina'] = THEME_IMG.'logo-retina.png';
-        }
-        if(!$logo['default']){
-            $logo['default'] = THEME_IMG.'logo.png';
-        }
-        if(!$logo['sticky_retina'] && !$logo['sticky']){
-            $logo['sticky_retina'] = THEME_IMG.'logo-retina.png';
-        }
-        if(!$logo['sticky']){
-            $logo['sticky'] = THEME_IMG.'logo.png';
-        }
-    }elseif($layout == 'layout2' || $layout == 'layout3'){
-        if(!$logo['retina'] && !$logo['default']){
-            $logo['retina'] = THEME_IMG.'logo-black-retina.png';
-        }
-        if(!$logo['default']){
-            $logo['default'] = THEME_IMG.'logo-black.png';
-        }
-        if(!$logo['sticky_retina'] && !$logo['sticky']){
-            $logo['sticky_retina'] = THEME_IMG.'logo-retina.png';
-        }
-        if(!$logo['sticky']){
-            $logo['sticky'] = THEME_IMG.'logo.png';
-        }
+
+    if(!$logo['retina'] && !$logo['default']){
+        $logo['retina'] = THEME_IMG.'logo-retina.png';
     }
-    
+    if(!$logo['default']){
+        $logo['default'] = THEME_IMG.'logo.png';
+    }
+    if(!$logo['sticky_retina'] && !$logo['sticky']){
+        $logo['sticky_retina'] = THEME_IMG.'logo-retina.png';
+    }
+    if(!$logo['sticky']){
+        $logo['sticky'] = THEME_IMG.'logo.png';
+    }
+
     
     
     

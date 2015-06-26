@@ -311,12 +311,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         )
                     ),
                     array(
-                        'id'       => 'logo_circle',
-                        'type'     => 'switch',
-                        'title'    => __( 'Logo circle', THEME_LANG ),
-                        'default'  => true,
-                    ),
-                    array(
                         'id'             => 'logo_sticky_width',
                         'type'           => 'dimensions',
                         'output'   => array( '#main-nav > ul > li.menu-logo img'),
@@ -514,7 +508,21 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                 )
             );
-            
+
+            $this->sections[] = array(
+                'id'			=> 'header_title',
+                'title'			=> __( 'Header Title', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'   => 'Title_heading',
+                        'type' => 'heading',
+                        'title'    => __( 'Header Title settings', THEME_LANG ),
+                        'class'    => 'section-heading'
+                    ),
+                )
+            );
             /**
 			 *	Footer
 			 **/

@@ -1246,9 +1246,7 @@ h2.widgettitle a.rsswidget:first-child,
 .site-branding .site-logo .retina-logo {
     display: none ;
 }
-.header-container.header-fixed{
-    position: fixed;
-}
+.header-container.header-gradient,
 .header-container.header-absolute{
     position: absolute;
 }
@@ -1289,17 +1287,39 @@ body.admin-bar #header.is-sticky.sticky{
 /*
  * 10.3. Header Color
  */
-.header-fixed #header,
 .header-absolute #header,
-.header-fixed .sticky-placeholder,
 .header-absolute .sticky-placeholder{
     background: none;
 }
 
-/* Header light version */
-.header-light #header.is-sticky{
-    background: rgba(255,255,255,0.8);
+.header-gradient .sticky-placeholder,
+.header-gradient #header{
+    background: transparent;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
 }
+
+
+
+/* Header light version */
+
+.header-light.header-gradient .sticky-placeholder,
+.header-light.header-gradient #header{
+    background: transparent;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0.5)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+}
+
+
+
 .header-light #nav > ul > li > a{
     color: #282828;
 }
@@ -1328,7 +1348,9 @@ body.admin-bar #header.is-sticky.sticky{
 .header-light #main-navigation > li ul.sub-menu-dropdown > li > a:hover{
     color: #282828;
 }
-
+.header-light #header.is-sticky{
+    background: rgba(255,255,255,0.8);
+}
 
 
 
