@@ -3,30 +3,41 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 ?>
-<div class="container">
-    <div id="header-inner">
-        <div id="header-wrap" class="display-table">
-            <div class="site-branding display-td">
-                <?php get_template_part( 'templates/headers/header',  'branding'); ?>
-            </div><!-- .site-branding -->
-            <div class="display-td header-content-right">
-                <div class="header-content-top clearfix">
-                    <?php echo woocommerce_get_cart(); ?>
-                    <?php woocommerce_get_tool();?>
-                </div><!-- .header-content-top -->
-                <div class="header-content-bottom clearfix">
-                    <?php
-                        if ( has_nav_menu( 'primary' ) ) {  
-                            wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_id' => 'main-nav', 'walker' => new KTMegaWalker(), 'items_wrap' => kt_nav_wrap() ) );
-                        }
-                    ?>
-                    <?php kt_search_form(); ?>
-                </div><!-- .header-content-bottom -->
-            </div><!-- .header-content -->
-        </div><!-- #header-wrap -->
+<!--<div class="container">-->
+    <div id="header-inner" class="clearfix">
+        <div class="site-branding">
+            <?php get_template_part( 'templates/headers/header',  'branding'); ?>
+        </div><!-- .site-branding -->
+        <nav role="navigation" id="nav">
+
+            <ul id="main-nav-tool">
+                <li class="mini-cart">
+                    <a href="#">
+                        <span class="icon-bag"></span>
+                        <span class="mini-cart-total">0</span>
+                    </a>
+                </li>
+                <li class="mini-search">
+                    <a href="#"><span class="icon-magnifier"></span></a>
+                </li>
+            </ul>
+
+            <?php
+                if ( has_nav_menu( 'primary' ) ) {
+                    wp_nav_menu( array(
+                        'theme_location' => 'primary',
+                        'container' => '',
+                        'menu_id'         => 'main-navigation',
+                        'menu_class' => 'hidden-mobile',
+                        'walker' => new KTMegaWalker(),
+                        //'items_wrap' => kt_nav_wrap() )
+                    ) );
+                }
+            ?>
+        </nav><!-- #main-nav -->
         <div id="mobile-content-all">
             <?php kt_search_form(); ?>
             <?php get_template_part( 'templates/headers/header', 'mobile'); ?>
         </div>
     </div>
-</div><!-- .container -->
+<!--</div><!-- .container -->

@@ -55,11 +55,33 @@ if ( post_password_required() ) {
     <?php endif; ?>
     
     <?php
-        $args = array(
-            'class_submit'      => 'btn btn-default',
-        );
+
+
+    $commenter = wp_get_current_commenter();
+    $req = get_option( 'require_name_email' );
+    $aria_req = ( $req ? " aria-required='true'" : '' );
+
+
+
+    $new_fields = array(
+        'author' => '<p>' .  ( $req ? '' : '' ) .
+            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"  placeholder="'.__('Name*', THEME_LANG).'"' . $aria_req . ' /></p>',
+        'email'  => '<p>' . ( $req ? '' : '' ) .
+            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder='.__('Email*', THEME_LANG).'"' . $aria_req . ' /></p>',
+        'url'    => '<p>' .
+            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="'.__('Website', THEME_LANG).'" /></p>',
+    );
+
+
+
+    $comments_args = array(
+        'fields' => apply_filters( 'comment_form_default_fields', $new_fields ),
+        'comment_field' => '<p><textarea id="comment" name="comment" placeholder="'.__('Message*', THEME_LANG).'"  aria-required="true" rows="6"></textarea></p>',
+        'class_submit'      => 'btn btn-default',
+    );
+
     ?>
     
-    <?php comment_form($args); ?>
+    <?php comment_form($comments_args); ?>
 
 </div><!-- .comments-area -->

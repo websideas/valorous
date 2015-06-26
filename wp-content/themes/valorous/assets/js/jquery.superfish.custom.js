@@ -100,7 +100,7 @@
                         $ul_width = $ul.outerWidth(),
                         $marginLeft = parseInt($this.css('marginLeft')),
                         $li_position = $ul.offset().left - $parentOffset.offset().left + $ul_width;
-                    
+
                     
                     if($ul.hasClass(o.megaMenuClass) && !$this.hasClass('kt-megamenu-item-full') ){
                         var $leftCSS = 'auto',

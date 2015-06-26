@@ -87,8 +87,9 @@
                 frame,
                 frameOptions = {
     				className: 'media-frame rwmb-file-frame',
-    				multiple : true,
-    				title    : kt_image_lange.frameTitle
+    				multiple : false,
+    				title    : kt_image_lange.frameTitle,
+                    library: {type: 'image'}
     			};
                 
                 

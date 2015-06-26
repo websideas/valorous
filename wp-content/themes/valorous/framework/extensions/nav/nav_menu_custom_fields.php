@@ -87,7 +87,7 @@ function kt_add_custom_fields( $item_id, $item, $depth, $args ) { ?>
                         ?>
                         <label for="menu-item-image-<?php echo $item_id; ?>">
                             <?php _e( 'Menu image', THEME_LANG); ?><br />
-                            <input type="hidden" value="<?php esc_attr( $item->image ); ?>" name="menu-item-megamenu-image[<?php echo $item_id; ?>]" id="menu-item-image-<?php echo $item_id; ?>" class="widefat edit-menu-item-image" />
+                            <input type="hidden" value="<?php echo esc_attr( $item->image ); ?>" name="menu-item-megamenu-image[<?php echo $item_id; ?>]" id="menu-item-image-<?php echo $item_id; ?>" class="widefat edit-menu-item-image" />
                         </label>
                         <span class="clearfix"></span>
                         <span class="kt_image_preview" style="<?php if($preview){ echo "display: block;";} ?>">
@@ -95,7 +95,7 @@ function kt_add_custom_fields( $item_id, $item, $depth, $args ) { ?>
                             <i class="fa fa-times"></i>
                         </span>
                         <span class="clearfix"></span>
-                        <input type="button" class="button-secondary kt_image_menu" value="<?php _e('Upload image', THEME_LANG); ?>" />
+                        <input type="button" class="button-secondary kt_image_menu" value="<?php _e('Upload image', THEME_LANG); ?>" style="width: 100%;" />
                     </p>
                     <p class="field-clwidth description description-wide">
                         <label for="menu-item-clwidth-<?php echo $item_id; ?>">

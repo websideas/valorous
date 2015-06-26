@@ -24,7 +24,7 @@ get_header(); ?>
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <?php $post_id = get_the_ID(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('post-single'); ?>>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('post-item post-single'); ?>>
                         <?php if( ! post_password_required($post->ID) ): ?>
                             <?php
                                 if(kt_post_option(null, '_kt_post_format', 'blog_post_format', 1)){
@@ -86,7 +86,7 @@ get_header(); ?>
 
 
                             if(kt_post_option(null, '_kt_related_acticles', 'blog_related', 1)){
-                                kt_related_article();
+                                kt_related_article(null);
                             }
 
                             // If comments are open or we have at least one comment, load up the comment template.

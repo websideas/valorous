@@ -31,10 +31,14 @@
         init_MobileMenu();
         init_masonry();
         init_kt_image();
-
+        init_SearchFull();
         init_kt_animation();
         init_loadmore();
-        
+
+        if($('#wpadminbar').length){
+            $('body').addClass('admin-bar');
+        }
+
         $('.kt_lightbox').each(function(){
             var $type = $(this).data('type'),
                 $effect = $(this).data('effect');
@@ -299,7 +303,8 @@
      Main Menu
     --------------------------------------------- */
     function init_MainMenu(){
-        $("nav#main-nav ul.menu").superfish({
+
+        $("ul#main-navigation").superfish({
             hoverClass: 'hovered',
             popUpSelector: 'ul.sub-menu-dropdown,.kt-megamenu-wrapper',
             animation: {},
@@ -479,6 +484,25 @@
                 $this.addClass("animated").addClass($this.data('animation'));
                 $this.css({'opacity':'1'});
             }, { offset:'85%', triggerOnce:true });
+        });
+    }
+
+    /* ---------------------------------------------
+     Search
+     --------------------------------------------- */
+    function init_SearchFull(){
+        $('.mini-search a').magnificPopup({
+            items: {
+                src: '#search-fullwidth',
+                type: 'inline'
+            },
+            //overflowY : 'scroll',
+            focus : 'input.search',
+            callbacks: {
+                beforeOpen: function() {
+                    this.st.mainClass = this.st.el.attr('data-effect');
+                }
+            }
         });
     }
 

@@ -51,39 +51,12 @@
                 
                 _sticky.trigger("sticky.start");
                 _placeholder.css( 'height', _sticky.outerHeight());
-                _sticky.addClass(o.className);
-
-
-                /*
-                setTimeout(function(){
-                    var $offset = _placeholder.offset(),
-                        _scrolltop = _window.scrollTop();
-
-                    _sticky.css('top', '-'+_placeholder.height()+'px' );
-                    _sticky.animate({
-                        top: '0px'
-                    }, 300);
-
-                    //_sticky.addClass(o.classSticky);
-
-                }, o.delay);
-                */
-
-                var t = 0;
-                if( $('#wpadminbar').length > 0 ){
-                    t =  $('#wpadminbar').height();
-                }
+                _sticky
+                    .addClass(o.className)
+                    .addClass(o.classSticky);
 
                 var $offset = _placeholder.offset(),
                     _scrolltop = _window.scrollTop();
-
-                _sticky.css('top', '-'+ _placeholder.height()+'px' );
-                _sticky.addClass(o.classSticky);
-                _sticky.animate({
-                    top: t+'px'
-                }, o.delay , function (){
-                    _sticky.removeAttr('style');
-                });
 
                 scrolled = true;
             },
@@ -130,19 +103,19 @@
                     var o = $.extend({}, $.fn.ktSticky.defaults, op);
 
                     $this.data('sticky-options', o);
-                    
-                    
-                    
+
+                    console.log($this.outerHeight());
+
                     if($this.prev('.sticky-placeholder').length == 0){
                         var $placeholder = $("<div/>",{
                                 "class":  "sticky-placeholder"
-                    		}).insertBefore($this); 
+                    		}).insertBefore($this);
                     }else{
                         var $placeholder = $this.prev('.sticky-placeholder');
                     }
-                    
-                    
-                    
+
+
+
                     _window.scroll(function () {
                         
                         var $offset = $placeholder.offset(),
@@ -187,8 +160,8 @@
     $.fn.ktSticky.defaults = {
         className: 'is-sticky',
         classSticky: 'sticky',
-        topSpacing: 150,
-        delay: 600,
+        topSpacing: 10,
+        delay: 0,
         widthDisable : 1200,
         onInit: $.noop,
         start: $.noop,

@@ -100,7 +100,7 @@ function london_scripts() {
     wp_enqueue_style( 'bootstrap-css', THEME_LIBS . 'bootstrap/css/bootstrap.min.css', array());
     wp_enqueue_style( 'font-awesome', THEME_FONTS . 'font-awesome/css/font-awesome.min.css', array());
     wp_enqueue_style( 'font_kites', THEME_FONTS . 'font_kites/stylesheet.css', array());
-    wp_enqueue_style( 'font_elegant_font', THEME_FONTS . 'elegant_font/style.css', array());
+    wp_enqueue_style( 'simple_line_icons', THEME_FONTS . 'simple_line_icons/simple-line-icons.css', array());
     wp_enqueue_style( 'animate', THEME_CSS . 'animate.min.css', array());
     wp_enqueue_style( 'mCustomScrollbar', THEME_CSS . 'jquery.mCustomScrollbar.min.css', array());
     wp_enqueue_style( 'magnific-popup', THEME_CSS . 'magnific-popup.css', array());
@@ -222,20 +222,22 @@ if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $post_id = null) {
+    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $link = true) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
 
         if(has_post_thumbnail()){ ?>
-            <?php if ( is_singular() ){ ?>
+            <?php if ( $link ){ ?>
+                <div class="entry-thumb">
+                    <a href="<?php the_permalink(); ?>" aria-hidden="true">
+                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                    </a>
+                </div>
+            <?php }else{ ?>
                 <div class="entry-thumb">
                     <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
                 </div><!-- .entry-thumb -->
-            <?php }else{ ?>
-                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
-                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                </a>
             <?php } ?>
         <?php }
     }
@@ -392,7 +394,7 @@ function kt_comments($comment, $args, $depth) {
                 <?php comment_reply_link( array_merge( $args,
                     array('depth' => $depth,
                         'max_depth' => $args['max_depth'],
-                        'reply_text' =>'<i class="fa fa-share"></i> '.__('Reply')
+                        'reply_text' =>' '.__('Reply')
                     ))) ?>
             </div>
         </div>
@@ -420,8 +422,8 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
         <nav class="navigation post-navigation clearfix" role="navigation">
             <div class="nav-links">
                 <?php
-                previous_post_link('<div class="nav-previous"><span class="meta-nav">'.__('Previous:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Previous post link', THEME_LANG ), TRUE);
-                next_post_link('<div class="nav-next"><span class="meta-nav">'.__('Next:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Next post link', THEME_LANG ), TRUE);
+                    previous_post_link('<div class="nav-previous">%link</div>', _x( 'Previous Post', 'Previous post link', THEME_LANG ), TRUE);
+                    next_post_link('<div class="nav-next">%link</div>', _x( 'Next Post', 'Next post link', THEME_LANG ), TRUE);
                 ?>
             </div><!-- .nav-links -->
         </nav><!-- .navigation -->
@@ -524,9 +526,8 @@ if ( ! function_exists( 'kt_entry_meta_time' ) ) :
                 get_the_modified_date()
             );
 
-            printf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span><a href="%2$s" rel="bookmark">%3$s</a></span>',
+            printf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span>%2$s</span>',
                 _x( 'Posted on', 'Used before publish date.', THEME_LANG ),
-                esc_url( get_permalink() ),
                 $time_string
             );
         }
@@ -549,36 +550,48 @@ if ( ! function_exists( 'kt_author_box' ) ) :
             <?php echo get_avatar( get_the_author_meta('ID'), 165 ); ?>
             <div class="entry-author-desc">
                 <h4><?php _e('About me', THEME_LANG) ?></h4>
+                <!--
                 <h4>
                     <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
                         <?php echo get_the_author_meta('display_name'); ?>
                     </a>
                 </h4>
-
-                <?php $description = get_the_author_meta('description'); ?>
-                <?php if($description){ ?><p class="author-description"><?php echo $description; ?></p><?php } ?>
-
-                <?php $url = get_the_author_meta('url'); ?>
-                <?php if($url){ ?>
-                    <p class="author-url">
-                        <span class="author-label"><?php _e( 'Website:', THEME_LANG ) ?> </span>
-                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a></p>
+                -->
+                <?php if($description = get_the_author_meta('description')){ ?>
+                    <p class="author-description"><?php echo $description; ?></p>
                 <?php } ?>
 
-                <?php $googleplus = get_the_author_meta('googleplus'); ?>
-                <?php $twitter = get_the_author_meta('twitter'); ?>
-                <?php $facebook = get_the_author_meta('facebook'); ?>
+                <?php
+                    $googleplus = get_the_author_meta('googleplus');
+                    $url = get_the_author_meta('url');
+                    $twitter = get_the_author_meta('twitter');
+                    $facebook = get_the_author_meta('facebook');
+                    $pinterest = get_the_author_meta('pinterest');
+                    $instagram = get_the_author_meta('instagram');
+                    $tumblr = get_the_author_meta('tumblr');
+                ?>
 
                 <p class="author-social">
-                    <a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><i class="fa fa-envelope"></i></a>
                     <?php if($facebook){ ?>
                         <a href="<?php echo $facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
                     <?php } ?>
                     <?php if($twitter){ ?>
-                        <a href="<?php echo $twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="http://www.twitter.com/<?php echo $twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <?php } ?>
+                    <?php if($pinterest){ ?>
+                        <a href="http://www.pinterest.com/<?php echo $pinterest; ?>" target="_blank"><i class="fa fa-pinterest"></i></a>
                     <?php } ?>
                     <?php if($googleplus){ ?>
                         <a href="<?php echo $googleplus; ?>" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    <?php } ?>
+                    <?php if($instagram){ ?>
+                        <a href="http://instagram.com/<?php echo $instagram; ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <?php } ?>
+                    <?php if($tumblr){ ?>
+                        <a href="http://<?php echo $instagram; ?>.tumblr.com/" target="_blank"><i class="fa fa-tumblr"></i></a>
+                    <?php } ?>
+                    <?php if($url){ ?>
+                        <a href="<?php echo $url; ?>" target="_blank"><i class="fa fa-globe"></i></a>
                     <?php } ?>
                 </p>
             </div>
@@ -656,9 +669,18 @@ if( ! function_exists( 'kt_share_box' ) ){
  * Related Article [related_article]
  * --------------------------------------------------------------------------- */
 if ( ! function_exists( 'kt_related_article' ) ) :
-    function kt_related_article($post_id = null, $colum = 3){
+    function kt_related_article($post_id = null){
         global $post;
         if(!$post_id) $post_id = $post->ID;
+
+        $sidebar = kt_sidebar();
+        if($sidebar['sidebar'] == 'full'){
+            $blog_columns = 3;
+            $blog_columns_tablet = 2;
+        }else{
+            $blog_columns = 2;
+            $blog_columns_tablet = 2;
+        }
 
         $current_cat = get_the_category($post_id);
         $cat = array();
@@ -668,7 +690,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
             'post_type' => 'post',
             'orderby' => 'rand',
             'order' => 'DESC',
-            'posts_per_page' => 3,
+            'posts_per_page' => $blog_columns,
             'tax_query' => array(
                 array(
                     'taxonomy' => 'category',
@@ -684,20 +706,41 @@ if ( ! function_exists( 'kt_related_article' ) ) :
             <div id="related-article">
                 <h3 class="title-article"><?php _e('Related Article', THEME_LANG); ?></h3>
                 <div class="row">
+                    <?php
+
+                    global $blog_atts;
+                    $blog_atts = array(
+                        'image_size' => 'recent_posts',
+                        'readmore' => false,
+                        "show_author" => false,
+                        "show_category" => true,
+                        "show_comment" => false,
+                        "show_date" => true,
+                        "date_format" => 'M d Y',
+                        'thumbnail_type' => 'image',
+                        "class" => ''
+                    );
+
+                    $i = 1;
+                    $bootstrapColumn = round( 12 / $blog_columns );
+                    $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
+                    $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
+
+                    ?>
+
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                        <div class="col-md-4 col-sm-4">
-                            <article <?php post_class(); ?>>
-                                <div class="related-article-thumb">
-                                    <?php //echo themedev_article_thumbnail(); ?>
-                                </div>
-                                <header>
-                                    <h5 class="title-article-item">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h5>
-                                </header>
-                            </article>
-                        </div>
-                    <?php endwhile; ?>
+                        <?php
+                            $classes_extra = '';
+                            if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
+                                $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
+
+                            if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
+                                $classes_extra .= ' col-clearfix-sm';
+                        ?>
+                        <div class="article-post-item <?php echo $classes." ".$classes_extra; ?>">
+                            <?php get_template_part( 'templates/blog/layout/layout1/content', get_post_format() ); ?>
+                        </div><!-- .article-post-item -->
+                    <?php $i++; endwhile; ?>
                     <?php wp_reset_postdata(); ?>
                 </div>
             </div><!-- #related-article -->

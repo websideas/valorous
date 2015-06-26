@@ -22,6 +22,13 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class( ); ?>>
+    <div id="search-fullwidth" class="mfp-hide">
+        <div class="container">
+            <p>Start typing and press Enter to search</p>
+            <?php get_search_form() ?>
+        </div>
+    </div><!-- #search-fullwidth -->
+
     <?php $position = kt_get_header(); ?>
     <?php
 	/**
@@ -39,20 +46,15 @@
                     	do_action( 'theme_slideshows_position' );
                     } 
                 ?>
-                
                 <?php
             	/**
             	 * @hooked 
             	 */
             	do_action( 'theme_before_header' ); ?>
                 <?php $header_layout = kt_get_header_layout(); ?>
-                <div class="header-<?php echo $header_layout ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?>">
-                    <div id="woocommerce-nav-mobile-wrapper">
-                        <div class="container">
-                            <?php woocommerce_get_tool('woocommerce-nav-mobile');?>
-                        </div>
-                    </div><!-- #woocommerce-nav-mobile-wrapper -->
-                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>">
+                <div class="header-<?php echo $header_layout ?> header-absolute <?php echo apply_filters('theme_header_class', 'header-container', $position) ?>">
+
+                    <header id="header" class="header-fullwidth <?php echo apply_filters('theme_header_content_class', 'header-content') ?>">
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
