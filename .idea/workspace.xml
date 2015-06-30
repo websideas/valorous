@@ -27,116 +27,7 @@
     <favorites_list name="valorous" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/functions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6944771" vertical-offset="8867" max-vertical-offset="10380">
-              <caret line="495" column="58" selection-start-line="495" selection-start-column="58" selection-end-line="495" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="woo-variations-plugin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/woo-variations-plugin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.851851" vertical-offset="6244" max-vertical-offset="7155">
-              <caret line="443" column="58" selection-start-line="443" selection-start-column="58" selection-end-line="443" selection-end-column="58" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="content-single-product-quick-view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/content-single-product-quick-view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.916667" vertical-offset="152" max-vertical-offset="1680">
-              <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-              <folding>
-                <element signature="e#6#80#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="woocommerce.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/woocommerce.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="24830" max-vertical-offset="41460">
-              <caret line="1697" column="20" selection-start-line="1697" selection-start-column="20" selection-end-line="1697" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-image.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/single-product/product-image.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.791666" vertical-offset="134" max-vertical-offset="1170">
-              <caret line="61" column="51" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-thumbnails.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/single-product/product-thumbnails.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.72549" vertical-offset="119" max-vertical-offset="1095">
-              <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post-thumbnail-template.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-includes/post-thumbnail-template.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.541666" vertical-offset="1448" max-vertical-offset="2370">
-              <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="media.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-includes/media.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.666667" vertical-offset="10535" max-vertical-offset="51630">
-              <caret line="726" column="9" selection-start-line="726" selection-start-column="9" selection-end-line="726" selection-end-column="9" />
-              <folding>
-                <marker date="1434954107000" expanded="true" signature="40009:40367" placeholder="..." />
-                <marker date="1434954107000" expanded="true" signature="40027:40051" placeholder="{...}" />
-                <marker date="1434954107000" expanded="true" signature="40082:40181" placeholder="{...}" />
-                <marker date="1434954107000" expanded="true" signature="40202:40239" placeholder="{...}" />
-                <marker date="1434954107000" expanded="true" signature="40273:40299" placeholder="{...}" />
-                <marker date="1434954107000" expanded="true" signature="42191:42202" placeholder="..." />
-                <marker date="1434954107000" expanded="false" signature="42304:42315" placeholder="..." />
-                <marker date="1434954107000" expanded="true" signature="100772:100879" placeholder="SELECT ID FR..." />
-                <marker date="1434954107000" expanded="true" signature="100920:101027" placeholder="SELECT ID FR..." />
-                <marker date="1434954107000" expanded="true" signature="101085:101224" placeholder="SELECT DISTI..." />
-                <marker date="1434954107000" expanded="true" signature="104663:104679" placeholder="Insert into ..." />
-                <marker date="1434954107000" expanded="true" signature="104690:104706" placeholder="Insert into ..." />
-                <marker date="1434954107000" expanded="true" signature="117457:117549" placeholder="SELECT post_..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="30338" max-vertical-offset="85695">
-              <caret line="2055" column="1" selection-start-line="2055" selection-start-column="1" selection-end-line="2055" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -426,6 +317,78 @@
               <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="owl-carousel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="owl-carousel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="valorous" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -601,7 +564,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="23" width="1607" height="1001" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -649,21 +612,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/js_composer_parrams.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07025761" vertical-offset="0" max-vertical-offset="4950">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-112.166664" vertical-offset="36473" max-vertical-offset="47400">
-          <caret line="2616" column="9" selection-start-line="2616" selection-start-column="9" selection-end-line="2616" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6580796" vertical-offset="34748" max-vertical-offset="54480">
@@ -998,7 +946,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/post-thumbnail-template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.541666" vertical-offset="1448" max-vertical-offset="2370">
+        <state vertical-scroll-proportion="0.4648712" vertical-offset="1448" max-vertical-offset="2370">
           <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
           <folding />
         </state>
@@ -1006,7 +954,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/single-product/product-thumbnails.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.72549" vertical-offset="119" max-vertical-offset="1095">
+        <state vertical-scroll-proportion="0.2960688" vertical-offset="119" max-vertical-offset="1095">
           <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
           <folding />
         </state>
@@ -1014,29 +962,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/media.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.666667" vertical-offset="10535" max-vertical-offset="51630">
+        <state vertical-scroll-proportion="0.33293697" vertical-offset="10535" max-vertical-offset="51630">
           <caret line="726" column="9" selection-start-line="726" selection-start-column="9" selection-end-line="726" selection-end-column="9" />
           <folding>
-            <marker date="1434954107000" expanded="true" signature="40009:40367" placeholder="..." />
-            <marker date="1434954107000" expanded="true" signature="40027:40051" placeholder="{...}" />
-            <marker date="1434954107000" expanded="true" signature="40082:40181" placeholder="{...}" />
-            <marker date="1434954107000" expanded="true" signature="40202:40239" placeholder="{...}" />
-            <marker date="1434954107000" expanded="true" signature="40273:40299" placeholder="{...}" />
-            <marker date="1434954107000" expanded="true" signature="42191:42202" placeholder="..." />
-            <marker date="1434954107000" expanded="false" signature="42304:42315" placeholder="..." />
-            <marker date="1434954107000" expanded="true" signature="100772:100879" placeholder="SELECT ID FR..." />
-            <marker date="1434954107000" expanded="true" signature="100920:101027" placeholder="SELECT ID FR..." />
-            <marker date="1434954107000" expanded="true" signature="101085:101224" placeholder="SELECT DISTI..." />
-            <marker date="1434954107000" expanded="true" signature="104663:104679" placeholder="Insert into ..." />
-            <marker date="1434954107000" expanded="true" signature="104690:104706" placeholder="Insert into ..." />
-            <marker date="1434954107000" expanded="true" signature="117457:117549" placeholder="SELECT post_..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434954107000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="SELECT ID FR..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="SELECT ID FR..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="Insert into ..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="Insert into ..." />
+            <marker date="1434954107000" expanded="true" signature="-1:-1" placeholder="SELECT post_..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="30338" max-vertical-offset="85695">
+        <state vertical-scroll-proportion="0.5546697" vertical-offset="30338" max-vertical-offset="85695">
           <caret line="2055" column="1" selection-start-line="2055" selection-start-column="1" selection-end-line="2055" selection-end-column="1" />
           <folding />
         </state>
@@ -1044,7 +992,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/woo-variations-plugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.851851" vertical-offset="6244" max-vertical-offset="7155">
+        <state vertical-scroll-proportion="0.47121033" vertical-offset="6244" max-vertical-offset="7155">
           <caret line="443" column="58" selection-start-line="443" selection-start-column="58" selection-end-line="443" selection-end-column="58" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1054,7 +1002,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/woocommerce.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="24830" max-vertical-offset="41460">
+        <state vertical-scroll-proportion="0.7118451" vertical-offset="24830" max-vertical-offset="41460">
           <caret line="1697" column="20" selection-start-line="1697" selection-start-column="20" selection-end-line="1697" selection-end-column="20" />
           <folding />
         </state>
@@ -1062,7 +1010,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/content-single-product-quick-view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.916667" vertical-offset="152" max-vertical-offset="1680">
+        <state vertical-scroll-proportion="0.28299645" vertical-offset="152" max-vertical-offset="1680">
           <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
           <folding>
             <element signature="e#6#80#0#PHP" expanded="true" />
@@ -1072,8 +1020,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6944771" vertical-offset="8867" max-vertical-offset="10380">
-          <caret line="495" column="58" selection-start-line="495" selection-start-column="58" selection-end-line="495" selection-end-column="58" />
+        <state vertical-scroll-proportion="-23.25926" vertical-offset="8867" max-vertical-offset="10380">
+          <caret line="633" column="11" selection-start-line="633" selection-start-column="11" selection-end-line="633" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/libs/owl-carousel/owl.carousel.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/libs/owl-carousel/assets/owl.carousel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45330295" vertical-offset="2452" max-vertical-offset="3330">
+          <caret line="190" column="33" selection-start-line="190" selection-start-column="33" selection-end-line="190" selection-end-column="33" />
           <folding />
         </state>
       </provider>
