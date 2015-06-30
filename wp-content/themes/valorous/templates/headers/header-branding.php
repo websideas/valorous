@@ -12,7 +12,7 @@ $logo = kt_get_logo();
 <<?php echo esc_attr($tag) ?> class="site-logo">
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
         <img src="<?php echo esc_url($logo['default']); ?>" class="logo-light" alt="<?php bloginfo( 'name' ); ?>" />
-        <img src="<?php echo esc_url($logo['logo_dark']); ?>" class="logo-dark" alt="<?php bloginfo( 'name' ); ?>" />
+        <img src="<?php //echo esc_url($logo['logo_dark']); ?>" class="logo-dark" alt="<?php bloginfo( 'name' ); ?>" />
     </a>
 </<?php echo esc_attr($tag) ?>><!-- .site-logo -->
 <div id="site-title"><?php bloginfo( 'name' ); ?></div>

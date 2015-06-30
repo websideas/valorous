@@ -424,7 +424,7 @@ function kt_get_logo(){
     if(is_array($logo_dark ) && $logo_dark['url'] != '' ){
         $logo['logo_dark'] = $logo_dark['url'];
     }
-
+/*
     if($logo['default'] && !$logo['logo_dark']){
         $logo['logo_dark'] = $logo['default'];
     }elseif(!$logo['default'] && $logo['logo_dark']){
@@ -435,7 +435,7 @@ function kt_get_logo(){
         $logo['default'] = THEME_IMG.'logo-light.png';
         $logo['logo_dark'] = THEME_IMG.'logo-dark.png';
     }
-    
+    */
     return $logo;
 }
 /**

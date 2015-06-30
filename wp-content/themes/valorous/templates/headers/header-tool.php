@@ -1,6 +1,6 @@
 <ul id="main-nav-tool">
     <?php if ( kt_is_wc() && kt_option('header_cart', 1) ) { ?>
-        <?php echo woocommerce_get_cart(); ?>
+        <?php echo woocommerce_get_cart(true); ?>
     <?php } ?>
     <?php if ( kt_option('header_search', 1) ) { ?>
         <li class="mini-search hidden-xs hidden-sm">

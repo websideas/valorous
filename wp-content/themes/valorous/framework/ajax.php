@@ -179,3 +179,26 @@ function wp_ajax_fronted_popup_callback() {
     
     die();
 }
+
+
+function wp_ajax_fronted_remove_product_callback(){
+    check_ajax_referer( 'ajax_frontend', 'security' );
+    $product_id = $_POST['product_id'];
+    $item_key = $_POST['item_key'];
+    
+    global $wpdb, $woocommerce;
+    $output = array();
+    
+    foreach ( WC()->cart->cart_contents as $cart_item_key => $cart_item ){
+        if($cart_item_key == $item_key ){
+            WC()->cart->remove_cart_item( $cart_item_key );
+        }
+    }
+	
+    $output['content_product'] = woocommerce_get_cart(false);
+    
+    echo json_encode($output);
+    die();
+}
+add_action( 'wp_ajax_fronted_remove_product', 'wp_ajax_fronted_remove_product_callback' );
+add_action( 'wp_ajax_nopriv_fronted_remove_product', 'wp_ajax_fronted_remove_product_callback' );
