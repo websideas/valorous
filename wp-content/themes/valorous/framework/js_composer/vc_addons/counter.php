@@ -46,6 +46,8 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         ), $atts );
         extract($atts);
 
+
+
         $style_title = '';
         $atts['font_container'] = $font_container_title;
         $atts['google_fonts'] = $google_fonts_title;
@@ -105,7 +107,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         $from = ($from) ? 'data-from="'.$from.'"' : '';
 
 
-        $counter_content = '<div class="counter-content" '.$style_title.'>'.$suffix.'<span class="couter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</div>';
+        $counter_content = '<div class="counter-content" '.$style_title.'>'.$suffix.'<span class="counter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</div>';
         $counter_text = '<div class="counter-text" '.$style_value.'>'.$title.'</div>';
         $counter_icon = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'"  custom_background ="'.$custom_background.'" size="'.$size.'" align="center"]');
 

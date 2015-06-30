@@ -11,7 +11,7 @@
  * @since London 1.0
  */
 
-$sidebar = kt_sidebar();
+$sidebar = kt_get_woo_sidebar();
 
 get_header(); ?>
     <?php

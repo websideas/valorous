@@ -36,15 +36,7 @@ if ( !class_exists( 'ReduxFramework_kt_socials' ) ) {
             $this->parent = $parent;
             $this->field = $field;
             $this->value = $value;
-            
-            $class = ReduxFramework_extension_kt_socials::get_instance();
 
-            if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
-                //$this->extension_url = site_url( str_replace( trailingslashit( ABSPATH ), '', $this->extension_dir ) );
-                $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
-            }
-            
         }
 
         /**

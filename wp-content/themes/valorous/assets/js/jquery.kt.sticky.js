@@ -57,7 +57,7 @@
 
                 $('.'+o.classContainer)
                     .removeClass('header-light header-dark')
-                    .addClass('header-'+_sticky.data('sticky'));
+                    .addClass('header-'+_sticky.data('schemesticky'));
 
                 var $offset = _placeholder.offset(),
                     _scrolltop = _window.scrollTop();
@@ -69,7 +69,7 @@
 
                 $('.'+o.classContainer)
                     .removeClass('header-light header-dark')
-                    .addClass('header-'+_sticky.data('color'));
+                    .addClass('header-'+_sticky.data('scheme'));
 
                 _sticky
                     .removeClass(o.className)
@@ -112,8 +112,6 @@
                     var o = $.extend({}, $.fn.ktSticky.defaults, op);
 
                     $this.data('sticky-options', o);
-
-                    console.log($this.outerHeight());
 
                     if($this.prev('.sticky-placeholder').length == 0){
                         var $placeholder = $("<div/>",{

@@ -12,6 +12,8 @@
  */
 
 $sidebar = kt_sidebar();
+print_r($sidebar);
+
 
 get_header(); ?>
     <div class="container">

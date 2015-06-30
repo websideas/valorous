@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$product_price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 					?>
 					<li class="clearfix">
-						<?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key ); ?>
+						<?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key ); ?>
                         <div class="product-thumbnail">
     						<?php if ( ! $_product->is_visible() ) : ?>
     							<?php echo str_replace( array( 'http:', 'https:' ), '', $thumbnail ) ?>
@@ -68,10 +68,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
     <?php $shop_page_url = get_permalink( wc_get_page_id( 'shop' ) ); ?>
-	<p class="buttons">
-		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
-		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>        
-	</p>
+	<div class="buttons row">
+        <div class="col-md-6"><a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a></div>
+        <div class="col-md-6"><a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a></div>
+	</div>
 
 <?php endif; ?>
 

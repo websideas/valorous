@@ -9,10 +9,6 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-		// Post thumbnail.
-		//twentyfifteen_post_thumbnail();
-	?>
 	<div class="entry-content">
 		<?php the_content(); ?>
 		<?php
@@ -25,10 +21,11 @@
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
+        <?php edit_post_link( __( 'Edit', THEME_LANG ), '<span class="edit-link">', '</span>' ); ?>
 	</div><!-- .entry-content -->
 
     <?php
-    if( kt_option('show_page_comment','no') == 'yes' ){
+    if( kt_option('show_page_comment', 'no') == 'yes' ){
         // If comments are open or we have at least one comment, load up the comment template.
         if ( comments_open() || get_comments_number() ) :
             comments_template();

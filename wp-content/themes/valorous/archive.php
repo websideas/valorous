@@ -11,7 +11,29 @@
  * @since London 1.0
  */
 
-$sidebar = kt_sidebar();
+$sidebar = kt_get_archive_sidebar();
+
+$blog_type = kt_option('archive_loop_style', 'classic');
+$blog_columns = kt_option('archive_columns');
+$blog_columns_tablet = kt_option('archive_columns_tablet');
+$blog_layout = kt_option('archive_layout', '1');
+$readmore = kt_option('archive_readmore', 1);
+$blog_pagination = kt_option('archive_pagination', 'classic');
+$thumbnail_type = kt_option('archive_thumbnail_type', 'image');
+$sharebox = kt_option('archive_sharebox', 1);
+$max_items = get_option('posts_per_page');
+$excerpt_length = kt_option('archive_excerpt_length', 30);
+$show_meta = kt_option('archive_meta', 1);
+$show_author = kt_option('archive_meta_author', 1);
+$show_category = kt_option('archive_meta_categories', 1);
+$show_comment = kt_option('archive_meta_comments', 1);
+$show_date = kt_option('archives_meta_date', 1);
+$date_format = kt_option('archive_date_format', 1);
+$image_size = kt_option('archive_image_size', 'blog_post');
+
+
+$category = single_term_title("", false);
+$catid = get_cat_ID( $category );
 
 get_header(); ?>
     <div class="container">
@@ -21,47 +43,12 @@ get_header(); ?>
          */
         do_action( 'theme_before_main' ); ?>
         <div class="row">
-            <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
-                <?php
-                if( have_posts()){
-                    ?>
-                    <div class="list-blog-posts">
-                        <?php
-                        if( is_home() ){
-                            ?>
-                            <h1 class="page-title"><?php _e('Blog', THEME_LANG ) ?></h1>
-                            <div class="term-description"><p><?php _e('Lastest posts', THEME_LANG ) ?></p></div>
-                            <?php
-                        }else{
-                            the_archive_title( '<h1 class="page-title">', '</h1>' );
-                            the_archive_description( '<div class="term-description">', '</div>' );
-                        }
-
-                        ?>
-                        <div class="blog-posts clearfix">
-                        <?php
-
-                        while( have_posts() ){
-                            the_post();
-                            // Include the page content template.
-                            get_template_part( 'templates/blog/content', get_post_format() );
-                        }
-                        ?>
-                        </div>
-                        <?php
-                            // Previous/next page navigation.
-                            the_posts_pagination( array(
-                                'prev_text'          => __( 'Previous page', THEME_LANG ),
-                                'next_text'          => __( 'Next page', THEME_LANG ),
-                                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', THEME_LANG ) . ' </span>',
-                            ) );
-                        ?>
-                    </div>
+            <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>" role="main">
+                <?php if ( have_posts() ) : ?>
                     <?php
-                }else{
-                    get_template_part( 'templates/blog/recentpost/content' , 'none' );
-                }
-                ?>
+                        echo do_shortcode( '[list_blog_posts source="categories" categories="'.$catid.'" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_columns_tablet="'.$blog_columns_tablet.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'" thumbnail_type="'.$thumbnail_type.'" show_meta="'.$show_meta.'" sharebox="'.$sharebox.'"]' );
+                    ?>
+                <?php endif; ?>
             </div>
             <?php if($sidebar['sidebar'] != 'full'){ ?>
                 <div class="<?php echo apply_filters('kt_sidebar_class', 'sidebar', $sidebar['sidebar']); ?>">

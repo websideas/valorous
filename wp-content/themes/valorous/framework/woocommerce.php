@@ -1,11 +1,5 @@
 <?php
 
-/**
- * remove the "Install the WooThemes Updater plugin to get updates" message
-*/
-remove_action( 'admin_notices', 'woothemes_updater_notice' );
-
-
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
@@ -171,11 +165,12 @@ function woocommerce_get_cart(){
                 $output .= '<span class="mini-cart-total">'.$cart_count.'</span>';
             $output .= '</a>';
             $output .= '<div class="shopping-bag">';
-            $output .= '<div class="shopping-bag-wrapper mCustomScrollbar">';
-            $output .= '<h3 class="cart-title">'.__( 'Recently added item(s)',THEME_LANG ).'</h3>';
+            $output .= '<div class="shopping-bag-wrapper ">';
             $output .= '<div class="shopping-bag-content">';
                 if ( sizeof(WC()->cart->cart_contents)>0 ) {
-                    $output .= '<div class="bag-products">';
+                    $output .= '<h3 class="cart-title">'.__( 'Recently added item(s)',THEME_LANG ).'</h3>';
+                    $output .= '<div class="bag-products mCustomScrollbar">';
+                    $output .= '<div class="bag-products-content">';
                     foreach (WC()->cart->cart_contents as $cart_item_key => $cart_item) {
                         $bag_product = $cart_item['data']; 
                         
@@ -184,34 +179,31 @@ function woocommerce_get_cart(){
         					$output .= '<figure><a class="bag-product-img" href="'.get_permalink($cart_item['product_id']).'">'.$bag_product->get_image().'</a></figure>';                      
         					$output .= '<div class="bag-product-details">';
             					$output .= '<div class="bag-product-title"><a href="'.get_permalink($cart_item['product_id']).'">' . apply_filters('woocommerce_cart_widget_product_title', $bag_product->get_title(), $bag_product) . '</a></div>';
+
+                            $output .= WC()->cart->get_item_data( $cart_item );
+
             					$output .= '<div class="bag-product-price">'.wc_price($bag_product->get_price()).'</div>';
                                 $output .= '<div class="bag-product-qty">'.__('Qty: ', THEME_LANG).$cart_item['quantity'].'</div>';
                                 
         					$output .= '</div>';
         					$output .= apply_filters( 'woocommerce_cart_item_remove_link', sprintf('<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __('Remove this item', 'woocommerce') ), $cart_item_key );
-        					
+
         					$output .= '</div>';
                         }
                     }
                     $output .= '</div>';
+                    $output .= '</div>';
                 }else{
-                   $output .=  "<p class='cart_block_no_products'>".__('No products', THEME_LANG)."</p>";
+                   $output .=  "<p class='cart_block_no_products'>".__('Your cart is empty.', THEME_LANG)."</p>";
                 }
-                
-                $output .= '<div class="bag-total">'.__('Cart subtotal: ', THEME_LANG).$cart_total.'</div><!-- .bag-total -->';
-                
-                $output .= '<div class="bag-buttons clearfix">';
-                    if ( sizeof(WC()->cart->cart_contents)>0 ) {
+
+                if ( sizeof(WC()->cart->cart_contents)>0 ) {
+                    $output .= '<div class="bag-total">'.__('Subtotal: ', THEME_LANG).$cart_total.'</div><!-- .bag-total -->';
+                    $output .= '<div class="bag-buttons clearfix">';
                         $output .= '<a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn-default pull-left">'.__('View cart', THEME_LANG).'</a>';
                         $output .= '<a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-default pull-left">'.__('Checkout', THEME_LANG).'</a>';
-                    }else{
-                        $shop_id = wc_get_page_id('shop');
-                        if($shop_id > 0){
-                            $output .= '<a href="'.get_page_link($shop_id).'" class="btn btn-default button-shop pull-left">'.__('Shop', THEME_LANG).'</a>';
-                        }    
-                    }
-                    
-                $output .= '</div><!-- .bag-buttons -->';
+                    $output .= '</div><!-- .bag-buttons -->';
+                }
             
             $output .= '</div><!-- .shopping-bag-content -->';
             $output .= '</div><!-- .shopping-bag-wrapper -->';
@@ -230,6 +222,7 @@ function woocommerce_get_cart(){
  */ 
 function woocommerce_header_add_to_cart_fragment( $fragments ) {
     $fragments['.mini-cart'] = woocommerce_get_cart();
+
 	return $fragments;
 }
 add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');

@@ -27,7 +27,8 @@ if ( $attachment_ids ) {
     			$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
     			$image       	= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_catalog' ), array(
     				'title'	=> $image_title,
-    				'alt'	=> $image_title
+    				'alt'	=> $image_title,
+                    'class' => 'img-responsive'
     				) );
 
     			echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" title="%s">%s</a>', $image_link, $image_caption, $image ), $post->ID );
@@ -48,7 +49,8 @@ if ( $attachment_ids ) {
     						continue;
     
     					$image = wp_get_attachment_image( $attachment_id, 'shop_catalog', array(
-    						'data-zoom-image' => $image_link
+    						'data-zoom-image' => $image_link,
+                            'class' => 'img-responsive'
     						) );
     
     					//var_dump($image);

@@ -103,27 +103,17 @@
 }
 
 .woocommerce a.remove {
-    border: 1px solid #cccccc;
-    color: #666;
-    display: inline-block;
-    height: 15px;
-    line-height: 30px;
-    margin: 0;
-    outline: medium none;
-    text-align: center;
-    overflow: hidden;
-    text-decoration: none;
-    font-size:0;
-    width: 15px;
-    position: relative;
-    background: url(../images/close.png) no-repeat center center;
+    font-size: 13px;
 }
-
-
-.woocommerce a.remove:hover {
-    border-color: #666666;
+.woocommerce a.remove:after{
+    content: '\f014';
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
 }
-
+.woocommerce a.remove:hover{
+    color: red;
+}
 .woocommerce .blockUI.blockOverlay {
     position: relative;
     background-color: #fff!important;
@@ -586,7 +576,6 @@
     top: 100%;
     right: 0;
     z-index: 1002;
-    padding-top: 10px;
     color: #666;
     
     width: 300px;
@@ -601,9 +590,9 @@
     -o-transform:       translate(0,40px);
     -ms-transform:      translate(0,40px);
     transform:          translate(0,40px);
-    opacity: 1;
+    opacity: 0;
     display: block;
-    visibility: visible;
+    visibility: hidden;
      
 }
 .mini-cart:hover .shopping-bag{
@@ -619,80 +608,71 @@
     display: block;
 }
 .shopping-bag-wrapper{
-    height: auto;
     background: #fff;
-    overflow-y: auto;
-    max-height: 500px;
     -webkit-box-shadow: 3px 0px 5px 0 rgba(0, 0, 0, 0.3);
     -moz-box-shadow:    3px 0px 5px 0 rgba(0, 0, 0, 0.3);
     box-shadow:         3px 0px 5px 0 rgba(0, 0, 0, 0.3);
     border:1px solid #e6eced;
 }
 .shopping-bag-wrapper h3.cart-title{
-    padding:15px 15px 10px;
-    margin:0;
-    border-bottom:1px solid #e6eced;
-    font-size:15px;
-    color:#777;
+    border-bottom: 1px solid #e6eced;
+    color: #777;
+    font-size: 15px;
+    margin: 0;
+    padding: 12px 15px;
 }
 .mini-cart .shopping-bag-content{
-    padding: 20px 15px;
+
 }
 .cart_block_no_products{
-    margin: 0 0 20px;
-    padding: 0;
+    margin: 0;
+    padding: 20px 20px;
 }
 .bag-products{
-    padding-bottom: 15px;
+    height: auto;
+    overflow-y: auto;
+    max-height: 350px;
+}
+.bag-products-content{
+    padding: 20px 0;
 }
 .bag-products .bag-product{
     font-weight: normal;
+    margin: 0 0 25px 15px;
     overflow: hidden;
     padding: 0;
-    margin:0 0 25px;
     position: relative;
 }
 .bag-products .bag-product:last-child{
-    margin:0;
+    margin-bottom: 0;
 }
 .bag-products .bag-product .bag-product-details{
     overflow: hidden;
-    padding: 0 5px 5px 40px;
+    padding: 0 0 15px 15px;
     position: relative;
     text-align: left;
 }
 .bag-products .bag-product figure{
-    float: right;
+    float: left;
 }
 .bag-products .bag-product figure img{
     max-width: 80px;
     height: auto;
 }
 .bag-products .bag-product a.remove{
-    left: 0;
     position: absolute;
-    top: 14px;
-    border: 1px solid #666666;
-    color: #666;
-    display: block;
-    height: 30px;
-    line-height: 30px;
-    outline: medium none;
-    text-align: center;
-    text-decoration: none;
-    width: 30px;
-    background: url(../images/close.png) no-repeat center center;
-}
-.bag-products .bag-product a.remove:before{
-    font-size: 15px;
-    left: 7px;
+    right: 10px;
     top: 0;
 }
-.bag-products .bag-product:hover a.remove{
-    border-color: #000;
+.bag-products .bag-product a.remove:after{
+    content: '\f014';
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
 }
 .bag-product .bag-product-title{
-    margin: 0 0 15px;
+    margin: 0 0 10px;
 }
 .bag-product .bag-product-title a{
     color: #666666;
@@ -701,29 +681,74 @@
     text-decoration: none;
     color: #000;
 }
+.bag-product dl.variation{
+    margin-bottom: 3px;
+}
+.bag-product dl.variation dt {
+    display: inline-block;
+    font-weight: 700;
+    margin: 0 4px 0 0;
+}
+.bag-product dl.variation dd {
+    display: inline-block;
+    margin: 0 4px 0 0;
+}
+.bag-product dl.variation dd p:after{
+    content: ',';
+}
+.bag-product dl.variation dd p{
+    margin: 0;
+    padding: 0;
+}
+.bag-product dl.variation dd:last-child{
+    margin-right: 0;
+}
+.bag-product dl.variation dd:last-child p:after{
+    content: '';
+}
 .bag-product .bag-product-price,
 .bag-product.bag-product-qty{
     display: inline-block;
 }
 .bag-product .bag-product-qty{
-    border-left: 1px solid #666;
-    color: #666;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 12px;
-    padding: 0 0 0 6px;
     text-transform: uppercase;
-    margin-left: 6px;
+    display: inline-block;
+}
+.bag-product .bag-product-qty:before{
+    color: #666;
+    content: "|";
+    margin: 0 6px;
 }
 .bag-total{
-    padding-bottom: 25px;
+    border-top: 1px solid #e6eced;
     font-size: 18px;
+    line-height: 40px;
+    padding: 0 15px;
+}
+.bag-total .amount{
+    float: right;
+    font-weight: bold;
+    font-size: 18px;
+    color: #d0a852;
+}
+.bag-buttons{
+    padding: 15px;
+    background: #363333;
+    margin: 0 -1px -1px;
 }
 .bag-buttons a{
-    margin-right: 10px;
+    margin-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    width: 127px;
 }
-
+.bag-buttons a.button-shop{
+    width: 100%;
+}
+.bag-buttons a:last-child{
+    margin-right: 0px;
+}
 
 
 .mCSB_inside > .mCSB_container{
@@ -1650,10 +1675,8 @@ ul.product-categories > li.cat-parent.current-cat > a{
     6. Product Detail
 *** =========================*/
 .woocommerce .product-detail-content{
-    border: 1px solid #ccc;
     display: block;
     margin-bottom: 50px;
-    padding: 30px 30px;
     max-width: 100%;
 }
 .woocommerce .product-detail-inner{
@@ -1797,7 +1820,8 @@ ul.product-categories > li.cat-parent.current-cat > a{
     color: #fff !important;
     display: inline-block;
     font-size: 14px !important;
-    padding: 2px 10px;
+    padding: 0 10px;
+    line-height: 25px;
     vertical-align: text-bottom;
 }
 .woocommerce .summary .stock.out-of-stock span{
@@ -2027,7 +2051,7 @@ ul.product-categories > li.cat-parent.current-cat > a{
 .themedev-product-popup.woocommerce .woocommerce-review-link{
     display: none;
 }
-.themedev-product-popup.woocommerce .single-product-quickview-images{
+.themedev-product-popup.woocommerce .single-product-quickview{
     padding: 15px;
     background: #FFFFFF;
 }
@@ -2616,6 +2640,8 @@ ul.product-categories > li.cat-parent.current-cat > a{
 
 .widget_shopping_cart_content .button{
     padding:9px 15px;
+    width: 100%;
+    text-align: center;
 }
 .widget_shopping_cart_content dl.variation{
     overflow: hidden;

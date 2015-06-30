@@ -58,7 +58,7 @@ function theme_setup() {
     if (function_exists( 'add_image_size' ) ) {
         add_image_size( 'recent_posts', 570, 380, true);
         add_image_size( 'small', 170, 170, true );
-        add_image_size( 'blog-post', 1200, 400, true );
+        add_image_size( 'blog_post', 1140, 450, true );
     }
     
     load_theme_textdomain( THEME_LANG, THEME_DIR . '/languages' );
@@ -326,7 +326,6 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                                     the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) );
                                 }
                                 echo '<div class="entry-thumb-audio">';
-                                the_title('<div class="entry-thumb-title">', '</div>');
                                 echo do_shortcode('[audio src="'.$audio['url'].'"][/audio]');
                                 echo '</div><!-- .entry-thumb-audio -->';
                             echo '</div><!-- .entry-thumb -->';
@@ -496,7 +495,7 @@ if ( ! function_exists( 'kt_entry_meta_comments' ) ) :
      *
      */
     function kt_entry_meta_comments() {
-        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+        if (! post_password_required() && ( comments_open() || get_comments_number() ) ) {
             echo '<span class="comments-link">';
             comments_popup_link( __( 'Leave a comment', THEME_LANG ), __( '1 Comment', THEME_LANG ), __( '% Comments', THEME_LANG ) );
             echo '</span>';
@@ -546,21 +545,24 @@ if ( ! function_exists( 'kt_author_box' ) ) :
      */
     function kt_author_box() {
         ?>
-        <div class="entry-author clearfix">
-            <?php echo get_avatar( get_the_author_meta('ID'), 165 ); ?>
-            <div class="entry-author-desc">
-                <h4><?php _e('About me', THEME_LANG) ?></h4>
-                <!--
-                <h4>
-                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
-                        <?php echo get_the_author_meta('display_name'); ?>
-                    </a>
-                </h4>
-                -->
-                <?php if($description = get_the_author_meta('description')){ ?>
-                    <p class="author-description"><?php echo $description; ?></p>
-                <?php } ?>
 
+        <div class="author-info">
+            <div class="author-avatar">
+                <?php
+                    $author_bio_avatar_size = apply_filters( 'kt_author_bio_avatar_size', 165 );
+                    echo get_avatar( get_the_author_meta( 'user_email' ), $author_bio_avatar_size );
+                ?>
+            </div><!-- .author-avatar -->
+            <div class="author-description">
+                <h2 class="author-title"><?php printf( __( 'About %s', THEME_LANG ), get_the_author() ); ?></h2>
+                <div class="author-bio">
+                    <?php if($description = get_the_author_meta('description')){ ?>
+                        <p class="author-description-content"><?php echo $description; ?></p>
+                    <?php } ?>
+                    <a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+                        <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', THEME_LANG ), get_the_author() ); ?>
+                    </a>
+                </div>
                 <?php
                     $googleplus = get_the_author_meta('googleplus');
                     $url = get_the_author_meta('url');
@@ -594,8 +596,9 @@ if ( ! function_exists( 'kt_author_box' ) ) :
                         <a href="<?php echo $url; ?>" target="_blank"><i class="fa fa-globe"></i></a>
                     <?php } ?>
                 </p>
-            </div>
-        </div>
+            </div><!-- .author-description -->
+        </div><!-- .author-info -->
+
     <?php }
 endif;
 
@@ -673,7 +676,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
         global $post;
         if(!$post_id) $post_id = $post->ID;
 
-        $sidebar = kt_sidebar();
+        $sidebar = kt_get_single_sidebar();
         if($sidebar['sidebar'] == 'full'){
             $blog_columns = 3;
             $blog_columns_tablet = 2;
@@ -716,6 +719,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         "show_category" => true,
                         "show_comment" => false,
                         "show_date" => true,
+                        'show_meta' => true,
                         "date_format" => 'M d Y',
                         'thumbnail_type' => 'image',
                         "class" => ''

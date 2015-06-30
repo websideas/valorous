@@ -37,7 +37,7 @@ function breadcrumb_trail( $args = array() ) {
         'container'       => 'div',   // container element
         'separator'       => '', // separator between items
         'before'          => '',      // HTML to output before
-        'after'           => '<a href="javascript:history.back()" class="page-return">'.__('Return to Previous Page.', THEME_LANG ).'</a>',      // HTML to output after
+        'after'           => '',      // HTML to output after
         'show_on_front'   => true,    // whether to show on front
         'network'         => false,   // whether to create trail back to main site (multisite)
         'show_title'      => true,    // whether to show the current page title

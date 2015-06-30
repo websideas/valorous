@@ -168,13 +168,13 @@ function kt_colour_brightness($hex, $percent) {
 	return $hash.$hex;
 }
 
-/**
-* Function to get sidebars
-* 
-* @return array
-*/
-
 if (!function_exists('kt_sidebars')){
+    /**
+     * Get sidebars
+     *
+     * @return array
+     */
+
     function kt_sidebars( ){
         $sidebars = array();
         foreach ( $GLOBALS['wp_registered_sidebars'] as $item ) {
@@ -184,65 +184,208 @@ if (!function_exists('kt_sidebars')){
     }
 }
 
-/**
-* Function to get image sizes
-* 
-* @return array
-*/
+
 
 if (!function_exists('kt_get_image_sizes')){
-    function kt_get_image_sizes( $size = '' ) {
+    /**
+     * Get image sizes
+     *
+     * @return array
+     */
+    function kt_get_image_sizes( $full = true, $custom = false ) {
 
-            global $_wp_additional_image_sizes;
-    
-            $sizes = array();
-            $get_intermediate_image_sizes = get_intermediate_image_sizes();
-    
-            // Create the full array with sizes and crop info
-            foreach( $get_intermediate_image_sizes as $_size ) {
-    
-                    if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
-    
-                            $sizes[ $_size ]['width'] = get_option( $_size . '_size_w' );
-                            $sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
-                            $sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
-    
-                    } elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
-    
-                            $sizes[ $_size ] = array( 
-                                    'width' => $_wp_additional_image_sizes[ $_size ]['width'],
-                                    'height' => $_wp_additional_image_sizes[ $_size ]['height'],
-                                    'crop' =>  $_wp_additional_image_sizes[ $_size ]['crop']
-                            );
-    
-                    }
-    
+        global $_wp_additional_image_sizes;
+        $get_intermediate_image_sizes = get_intermediate_image_sizes();
+        $sizes = array();
+        // Create the full array with sizes and crop info
+        foreach( $get_intermediate_image_sizes as $_size ) {
+
+            if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+
+                    $sizes[ $_size ]['width'] = get_option( $_size . '_size_w' );
+                    $sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
+                    $sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
+
+            } elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+
+                    $sizes[ $_size ] = array(
+                            'width' => $_wp_additional_image_sizes[ $_size ]['width'],
+                            'height' => $_wp_additional_image_sizes[ $_size ]['height'],
+                            'crop' =>  $_wp_additional_image_sizes[ $_size ]['crop']
+                    );
+
             }
-    
-            // Get only 1 size if found
-            if ( $size ) {
-    
-                    if( isset( $sizes[ $size ] ) ) {
-                            return $sizes[ $size ];
-                    } else {
-                            return false;
-                    }
-    
+
+            $option_text = array();
+            $option_text[] = ucfirst(str_replace('_', ' ', $_size));
+            $option_text[] = '('.$sizes[ $_size ]['width'].' x '.$sizes[ $_size ]['height'].')';
+            if($sizes[ $_size ]['crop']){
+                $option_text[] = __('Crop', THEME_LANG);
             }
-    
-            return $sizes;
+            $sizes[ $_size ] = implode(' - ', $option_text);
+        }
+
+        if($full){
+            $sizes[ 'full' ] = __('Full', THEME_LANG);
+        }
+        if($custom){
+            $sizes[ 'custom' ] = __('Custom size', THEME_LANG);
+        }
+
+
+        return $sizes;
     }
 }
 
 
-/**
-* Function to get options in front-end
-* @param int $option The option we need from the DB
-* @param string $default If $option doesn't exist in DB return $default value
-* @return string
-*/
+if (!function_exists('kt_get_woo_sidebar')) {
+    /**
+     * Get woo sidebar
+     *
+     * @param null $post_id
+     * @return array
+     */
+    function kt_get_woo_sidebar( $post_id = null )
+    {
+        if(is_product() || $post_id){
+            global $post;
+            if(!$post_id) $post_id = $post->ID;
+
+            $sidebar = array(
+                'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
+                'sidebar_area' => '',
+            );
+
+            if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
+                $sidebar['sidebar'] = kt_option('product_sidebar', 'full');
+                if($sidebar['sidebar'] == 'left' ){
+                    $sidebar['sidebar_area'] = kt_option('product_sidebar_left', 'shop-widget-area');
+                }elseif($sidebar['sidebar'] == 'right'){
+                    $sidebar['sidebar_area'] = kt_option('product_sidebar_right', 'shop-widget-area');
+                }
+            }elseif($sidebar['sidebar'] == 'left'){
+                $sidebar['sidebar_area'] = rwmb_meta('_kt_left_sidebar', array(), $post_id);
+            }elseif($sidebar['sidebar'] == 'right'){
+                $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
+            }
+
+        }elseif(is_shop() || is_product_taxonomy()){
+            $sidebar = array(
+                'sidebar' => kt_option('shop_sidebar', 'full'),
+                'sidebar_area' => '',
+            );
+            if($sidebar['sidebar'] == 'left' ){
+                $sidebar['sidebar_area'] = kt_option('shop_sidebar_left', 'shop-widget-area');
+            }elseif($sidebar['sidebar'] == 'right'){
+                $sidebar['sidebar_area'] = kt_option('shop_sidebar_right', 'shop-widget-area');
+            }
+        }
+        return apply_filters('woo_sidebar', $sidebar);
+
+    }
+}
+
+
+
+if (!function_exists('kt_get_page_sidebar')) {
+    /**
+     * Get page sidebar
+     *
+     * @param null $post_id
+     * @return mixed|void
+     */
+    function kt_get_page_sidebar( $post_id = null )
+    {
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+        $sidebar = array(
+            'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
+            'sidebar_area' => '',
+        );
+        if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
+            $sidebar['sidebar'] = kt_option('blog_sidebar', 'full');
+            if($sidebar['sidebar'] == 'left' ){
+                $sidebar['sidebar_area'] = kt_option('sidebar_left', 'primary-widget-area');
+            }elseif($sidebar['sidebar'] == 'right'){
+                $sidebar['sidebar_area'] = kt_option('sidebar_right', 'primary-widget-area');
+            }
+        }elseif($sidebar['sidebar'] == 'left'){
+            $sidebar['sidebar_area'] = rwmb_meta('_kt_left_sidebar', array(), $post_id);
+        }elseif($sidebar['sidebar'] == 'right'){
+            $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
+        }
+
+        return apply_filters('page_sidebar', $sidebar);
+
+    }
+}
+
+if (!function_exists('kt_get_single_sidebar')) {
+    /**
+     * Get Single post sidebar
+     *
+     * @param null $post_id
+     * @return array
+     */
+    function kt_get_single_sidebar( $post_id = null )
+    {
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+        $sidebar = array(
+            'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
+            'sidebar_area' => '',
+        );
+        if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
+            $sidebar['sidebar'] = kt_option('blog_sidebar', 'full');
+            if($sidebar['sidebar'] == 'left' ){
+                $sidebar['sidebar_area'] = kt_option('blog_sidebar_left', 'blog-widget-area');
+            }elseif($sidebar['sidebar'] == 'right'){
+                $sidebar['sidebar_area'] = kt_option('blog_sidebar_right', 'blog-widget-area');
+            }
+        }elseif($sidebar['sidebar'] == 'left'){
+            $sidebar['sidebar_area'] = rwmb_meta('_kt_left_sidebar', array(), $post_id);
+        }elseif($sidebar['sidebar'] == 'right'){
+            $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
+        }
+
+        return apply_filters('single_sidebar', $sidebar);
+    }
+
+}
+if (!function_exists('kt_get_archive_sidebar')) {
+    /**
+     * Get Archive sidebar
+     *
+     * @return array
+     */
+    function kt_get_archive_sidebar()
+    {
+        $sidebar = array(
+            'sidebar' => kt_option('archive_sidebar', 'full'),
+            'sidebar_area' => '',
+        );
+        if($sidebar['sidebar'] == 'left' ){
+            $sidebar['sidebar_area'] = kt_option('archive_sidebar_left', 'blog-widget-area');
+        }elseif($sidebar['sidebar'] == 'right'){
+            $sidebar['sidebar_area'] = kt_option('archive_sidebar_right', 'blog-widget-area');
+        }
+        return apply_filters('archive_sidebar', $sidebar);
+    }
+
+}
+
+
 
 if (!function_exists('kt_option')){
+    /**
+     * Function to get options in front-end
+     * @param int $option The option we need from the DB
+     * @param string $default If $option doesn't exist in DB return $default value
+     * @return string
+     */
+
     function kt_option( $option=false, $default=false ){
         if($option === FALSE){
             return FALSE;
@@ -269,50 +412,51 @@ if (!function_exists('kt_option')){
  * 
  */
 function kt_get_logo(){
-    $logo = array('default' => '', 'retina' => '','logo_light' => '', 'logo_light_retina' => '');
+    $logo = array('default' => '', 'retina' => '');
     
     $logo_default = kt_option( 'logo' );
-    $logo_retina = kt_option( 'logo_retina' );
-
-    $logo_light = kt_option( 'logo_light' );
-    $logo_light_retina = kt_option( 'logo_light_retina' );
+    $logo_dark = kt_option( 'logo_dark' );
 
     if(is_array($logo_default) && $logo_default['url'] != '' ){
         $logo['default'] = $logo_default['url'];
     }
-    
-    if(is_array($logo_retina ) && $logo_retina['url'] != '' ){
-        $logo['retina'] = $logo_retina['url'];
-    }
-    
-    if(is_array($logo_light ) && $logo_light['url'] != '' ){
-        $logo['logo_light'] = $logo_light['url'];
-    }else{
-        $logo['logo_light'] = $logo['default'];
-    }
-    
-    if(is_array($logo_light_retina ) && $logo_light_retina['url'] != '' ){
-        $logo['logo_light_retina'] = $logo_light_retina['url'];
-    }
-    
 
-    if(!$logo['retina'] && !$logo['default']){
-        $logo['retina'] = THEME_IMG.'logo-retina.png';
-    }
-    if(!$logo['default']){
-        $logo['default'] = THEME_IMG.'logo.png';
-    }
-    if(!$logo['sticky_retina'] && !$logo['sticky']){
-        $logo['sticky_retina'] = THEME_IMG.'logo-retina.png';
-    }
-    if(!$logo['sticky']){
-        $logo['sticky'] = THEME_IMG.'logo.png';
+    if(is_array($logo_dark ) && $logo_dark['url'] != '' ){
+        $logo['logo_dark'] = $logo_dark['url'];
     }
 
-    
-    
+    if($logo['default'] && !$logo['logo_dark']){
+        $logo['logo_dark'] = $logo['default'];
+    }elseif(!$logo['default'] && $logo['logo_dark']){
+        $logo['default'] = $logo['logo_dark'];
+    }
+
+    if(!$logo['default'] && !$logo['logo_dark']){
+        $logo['default'] = THEME_IMG.'logo-light.png';
+        $logo['logo_dark'] = THEME_IMG.'logo-dark.png';
+    }
     
     return $logo;
+}
+/**
+ * Get header scheme
+ *
+ * @param number $post_id Optional. ID of article or page.
+ * @return string
+ *
+ */
+function kt_get_header_scheme(){
+    $scheme = array(
+        'scheme' => rwmb_meta('_kt_header_scheme'),
+        'sticky' => rwmb_meta('_kt_header_scheme')
+    );
+    if(!$scheme['scheme']){
+        $scheme['scheme'] = kt_option('header_scheme', 'dark');
+    }
+    if(!$scheme['sticky']){
+        $scheme['sticky'] = kt_option('header_scheme_fixed', 'dark');
+    }
+    return $scheme;
 }
 
 /**
@@ -326,8 +470,7 @@ function kt_getlayout($post_id = null){
     global $post;
 	if(!$post_id) $post_id = $post->ID;
 
-    $layout = rwmb_meta('_kt_layout');
-    
+    $layout = rwmb_meta('_kt_layout', array(),  $post_id);
     if($layout == 'default' || !$layout){
         $layout = kt_option('layout', 'full');
     }
@@ -344,11 +487,9 @@ function kt_getlayout($post_id = null){
 
 function kt_get_header(){
     $header = 'default';
-    if(is_page() || is_singular('post')){
-        $header_position = rwmb_meta('_kt_header_position');
-        if($header_position){
-            $header = $header_position;
-        }
+    $header_position = rwmb_meta('_kt_header_position');
+    if($header_position){
+        $header = $header_position;
     }
     return $header;
 }
@@ -364,77 +505,7 @@ function kt_get_header_layout(){
     return $layout;
 }
 
-/**
- * Get Layout sidebar of post
- * 
- * @return array
- * 
- */
-function kt_sidebar(){
-    global $post;
-    
-    $sidebar = kt_option('sidebar', 'full');
-    $sidebar_left = kt_option('sidebar_left', 'primary-widget-area');
-    $sidebar_right = kt_option('sidebar_right', 'primary-widget-area');
 
-    if( kt_is_wc() ){
-        if( is_shop() || is_product_category() || is_product_tag() ){
-            $sidebar = kt_option('shop_sidebar', 'full');
-            $sidebar_left = kt_option('shop_sidebar_left', 'shop-widget-area');
-            $sidebar_right = kt_option('shop_sidebar_right', 'shop-widget-area');
-        }elseif( is_product() ){
-            $sidebar = kt_option('product_sidebar', 'full');
-            $sidebar_left = kt_option('product_sidebar_left', 'shop-widget-area');
-            $sidebar_right = kt_option('product_sidebar_right', 'shop-widget-area');
-        }elseif(is_cart()){
-            return array('sidebar' => 'full', 'sidebar_area' => null);
-        }
-    }
-    
-    if($sidebar == 'left'){
-        $sidebar_area = $sidebar_left;
-    }elseif($sidebar == 'right'){
-        $sidebar_area = $sidebar_right;
-    }else{
-        $sidebar_area = null;
-    }
-    
-    $layout_sidebar = array(
-        'sidebar' => $sidebar,
-        'sidebar_area' => $sidebar_area        
-    );
-    
-    if(is_page() || is_singular('post') || is_home() || is_singular('portfolio')){
-        $page_id = get_the_ID();
-        if(is_home()){
-            $page_id = get_option( 'page_for_posts' );
-        }
-
-        $sidebar_post = rwmb_meta('_kt_sidebar', array(), $page_id);
-
-        if($sidebar_post != 'default' && $sidebar_post){
-            $layout_sidebar['sidebar'] = $sidebar_post;
-            if($sidebar_post == 'left'){
-                $sidebar_left_post = rwmb_meta('_kt_left_sidebar', array(), $page_id);
-                if($sidebar_left_post  == 'default'){
-                    $sidebar_left_post = $sidebar_left;
-                }
-                $layout_sidebar['sidebar_area'] = $sidebar_left_post;
-            }elseif($sidebar_post == 'right'){
-                $sidebar_right_post = rwmb_meta('_kt_right_sidebar', array(), $page_id);
-                if($sidebar_right_post  == 'default'){
-                    $sidebar_right_post = $sidebar_right;
-                }
-                $layout_sidebar['sidebar_area'] = $sidebar_right_post;
-            }
-        }
-        
-    }
-
-
-
-    return $layout_sidebar;
-}
 
 /**
  * Get link attach from thumbnail_id.
@@ -656,9 +727,10 @@ function kt_post_option($post_id = null, $meta = '', $option = '', $default = nu
     global $post;
     if(!$post_id) $post_id = $post->ID;
 
-    $meta = get_post_meta($post_id, $meta, true);
-    if($meta == -1 || $meta == '' ){
-        $meta = kt_option($option, $default);
+    $meta_v = get_post_meta($post_id, $meta, true);
+
+    if($meta_v == -1 || $meta_v == '' ){
+        $meta_v = kt_option($option, $default);
     }
-    return $meta;
+    return $meta_v;
 }

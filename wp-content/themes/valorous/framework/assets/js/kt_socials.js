@@ -34,16 +34,12 @@
 
             $lists.find('li[data-type='+$social.data('type')+']').removeClass('selected');
 
-            console.log('li[data-type='+$social.data('type')+']');
-
             $social.remove();
 
             $profiles_val = [];
             $profiles.find('li').each(function(){
                 $profiles_val.push($(this).data('type'));
             });
-
-            console.log($value);
 
             $value.val($profiles_val.join());
 
@@ -52,8 +48,6 @@
 
         $( 'body' ).on( 'click', '.kt-socials-lists li', function ( e ){
             e.preventDefault();
-
-            console.log('call');
 
             var $social = $(this),
                 $parent = $social.closest('.kt-socials-options');
@@ -67,8 +61,6 @@
                 $profiles.find('li').each(function(){
                     $profiles_val.push($(this).data('type'));
                 });
-
-                console.log($value);
 
                 $value.val($profiles_val.join());
             }

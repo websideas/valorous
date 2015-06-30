@@ -3,7 +3,6 @@
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-
 /**
  * Heading field.
  *
@@ -281,24 +280,10 @@ function vc_kt_image_sizes_settings_field($settings, $value){
     $custom = isset($settings['custom']) ? $settings['custom'] : false;
 
     $posts_fields = array();
-    $sizes = kt_get_image_sizes();
-    $sizes['full'] = array();
-    if($custom){
-        $sizes['custom'] = array();
-    }
-
+    $sizes = kt_get_image_sizes(true, $custom);
     foreach($sizes as $key => $size){
         $selected = ($value == $key) ? ' selected="selected"' : '';
-
-        $option_text = array();
-        $option_text[] = ucfirst($key);
-        if(isset($size['width'])){
-            $option_text[] = '('.$size['width'].' x '.$size['height'].')';
-        }
-        if(isset($size['crop']) && $size['crop']){
-            $option_text[] = __('Crop', THEME_LANG);
-        }
-        $posts_fields[] = "<option value='{$key}' {$selected}>".implode(' - ', $option_text)."</option>";
+        $posts_fields[] = "<option value='{$key}' {$selected}>".$size."</option>";
     }
     $output = '<select class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" '.$dependency.'>'
         .implode( $posts_fields )

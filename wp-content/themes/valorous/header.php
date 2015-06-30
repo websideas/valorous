@@ -22,13 +22,27 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class( ); ?>>
-    <?php get_template_part( 'searchform',  'full'); ?>
-    <?php $position = kt_get_header(); ?>
     <?php
-	/**
-	 * @hooked 
-	 */
-	do_action( 'theme_body_top' ); ?>
+    /**
+     * @hooked
+     */
+    do_action( 'theme_body_top' ); ?>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=417674911655656";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <?php get_template_part( 'searchform',  'full'); ?>
+    <?php
+        $position = kt_get_header();
+        $header_layout = kt_get_header_layout();
+        $header_scheme = kt_get_header_scheme();
+    ?>
+
     <div id="page_outter">
         <div id="page">
             <div id="wrapper-content">
@@ -45,10 +59,10 @@
             	 * @hooked 
             	 */
             	do_action( 'theme_before_header' ); ?>
-                <?php $header_layout = kt_get_header_layout(); ?>
-                <div class="header-<?php echo $header_layout ?>  <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
+                <?php  ?>
+                <div class="header-<?php echo $header_layout ?> header-<?php echo esc_attr($header_scheme['scheme']) ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
                     <?php $header_full = kt_option('header_full', 1); ?>
-                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-color="light" data-sticky="light">
+                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-scheme="<?php echo esc_attr($header_scheme['scheme']) ?>" data-schemesticky="<?php echo esc_attr($header_scheme['sticky']) ?>">
                         <?php if(!$header_full){ echo '<div class="container">'; } ?>
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
                         <?php if(!$header_full){ echo '<div>'; } ?>

@@ -18,43 +18,294 @@ function wbc_change_demo_directory_path( $demo_directory_path ) {
 }
 add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
 
+
+
 /**
- * Add breadcrumb
- * 
+ * Add page header
+ *
+ * @since 1.0
  */
-function kt_add_breadcrumb(){
-    if( ! is_home() && ! is_front_page()  ){
+add_action( 'theme_before_content', 'get_page_header', 20 );
+function get_page_header( ){
+    global $post;
+    $show_title = true;
+    if ( is_front_page() && is_singular('page') ){
+        $show_title = rwmb_meta('_kt_page_header', array(), get_option('page_on_front', true));
+    } elseif( $post ){
+        $post_id = $post->ID;
+        $show_title = rwmb_meta('_kt_page_header', array(), $post_id);
+    }
 
-        $show = true;
-        if( is_page() || is_singular()  || is_front_page() ){
-            $show  = rwmb_meta( '_kt_show_breadcrumb' );
-        }
-        if( $show ){
-            ?>
-                <?php if(function_exists('breadcrumb_trail')) { ?>
-                <div class="breadcrumb-wrapper">
-                    <div class="container">
-                        <?php
-                        if( is_woocommerce() ){
-                            woocommerce_breadcrumb(
-                                array(
-                                    'delimiter' =>'<span class="sep navigation-pipe">&nbsp;</span>',
-                                    'wrap_before' => '<nav class="woocommerce-breadcrumb breadcrumbs">', // xmlns:v="http://rdf.data-vocabulary.org/#" itemprop="breadcrumb"
-
-                            ) );
-                        }else{
-                            breadcrumb_trail();
-                        }
-
-                        ?>
-                    </div>
-                </div>
-                <?php } ?>
-            <?php
+    if(kt_is_wc()){
+        if(is_shop()){
+            $show_title = true;
         }
     }
+
+
+    if($show_title){
+        $title = kt_get_page_title();
+        $breadcrumb = kt_get_breadcrumb();
+        $page_header_align = kt_get_page_align();
+        $tagline = kt_get_page_tagline();
+
+        $tagline = ($tagline != '') ? '<div class="page-header-tagline">'.$tagline.'</div>' : $tagline;
+        $title = '<h1 class="page-header-title">'.$title.'</h1>';
+
+        $classes = array('page-header', 'page-header-'.$page_header_align);
+        if($page_header_align != 'center'){
+            $classes[] = 'page-header-side';
+        }
+
+        if($breadcrumb == '' || $page_header_align == 'center'){
+            $layout = '%1$s%2$s%3$s';
+        }else{
+            if($breadcrumb != ''){
+                if($page_header_align == 'right'){
+                    $layout = '<div class="row"><div class="col-md-8 page-header-right pull-right">%1$s%2$s</div><div class="col-md-4 page-header-left">%3$s</div></div>';
+                }else{
+                    $layout = '<div class="row"><div class="col-md-8 page-header-left">%1$s%2$s</div><div class="col-md-4 page-header-right">%3$s</div></div>';
+                }
+            }else{
+                $layout = '%1$s%2$s%3$s';
+            }
+        }
+
+        echo '<div class="'.implode(' ', $classes).'">';
+        echo '<div class="container">';
+            printf(
+                $layout,
+                $title,
+                $tagline,
+                $breadcrumb
+            );
+        echo "</div>";
+        echo "</div>";
+
+
+    }
 }
-add_action('theme_before_content', 'kt_add_breadcrumb');
+
+/**
+ * Get page align
+ *
+ * @return mixed
+ *
+ */
+function kt_get_page_align(){
+    global $post;
+    $page_header_align = '';
+    if ( is_front_page() && is_singular('page') ){
+        $page_header_align =  rwmb_meta('_kt_page_header_align');
+    }elseif( $post ){
+        $post_id = $post->ID;
+        $page_header_align =  rwmb_meta('_kt_page_header_align', array(), $post_id);
+    }
+    if($page_header_align == ''){
+        $page_header_align = kt_option('title_align', 'left');
+    }
+
+    return $page_header_align;
+
+}
+
+/**
+ * Get page title
+ *
+ * @param string $title
+ * @return mixed|void
+ */
+
+function kt_get_page_title( $title = '' ){
+    global $post;
+
+    if ( is_front_page() && !is_singular('page') ) {
+            $title = __( 'Blog', THEME_LANG );
+    } elseif ( is_search() ) {
+        $title = sprintf( __( 'Search Results for: %s', THEME_LANG ), get_search_query() );
+    } elseif( is_404() ) {
+        $title = __( 'Page not found', THEME_LANG );
+    } elseif ( is_archive() ){
+        $title = get_the_archive_title();
+
+    } elseif ( is_front_page() && is_singular('page') ){
+        $page_on_front = get_option('page_on_front', true);
+        $title = get_the_title($page_on_front) ;
+    } elseif( $post ){
+        $post_id = $post->ID;
+        $title = get_the_title($post_id);
+    }
+
+    return apply_filters( 'kt_tittle', $title );
+
+}
+
+/**
+ * Get page tagline
+ *
+ * @return mixed|void
+ */
+
+function kt_get_page_tagline(){
+    global $post;
+    $tagline = '';
+    if ( is_front_page() && !is_singular('page') ) {
+        $tagline =  __('Lastest posts', THEME_LANG);
+    }elseif ( is_front_page() && is_singular('page') ){
+        $tagline =  rwmb_meta('_kt_page_header_taglitle');
+    }elseif ( is_archive() ){
+        $tagline =  get_the_archive_description( );
+    }elseif( $post ){
+        $post_id = $post->ID;
+        $tagline = rwmb_meta('_kt_page_header_taglitle', array(), $post_id);
+    }
+
+    return apply_filters( 'kt_tagline', $tagline );
+}
+
+
+add_filter( 'get_the_archive_title', 'kt_get_the_archive_title');
+/**
+ * Remove text Category and Archives in get_the_archive_title
+ *
+ * @param $title
+ * @return null|string
+ */
+function kt_get_the_archive_title($title) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax() ) {
+        $tax = get_taxonomy( get_queried_object()->taxonomy );
+        /* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+        $title =  single_term_title( '', false );
+    }
+
+    return $title;
+
+}
+
+
+/**
+ * Get breadcrumb
+ *
+ * @param string $breadcrumb
+ * @return mixed|void
+ */
+function kt_get_breadcrumb($breadcrumb = ''){
+    $show = kt_option('title_breadcrumbs');
+    if( is_page() || is_singular() ){
+        $show_option = rwmb_meta( '_kt_show_breadcrumb' );
+        if($show_option != ''){
+            $show = $show_option;
+        }
+    }elseif ( is_front_page() && !is_singular('page') ) {
+        $show_option = rwmb_meta( '_kt_show_breadcrumb' );
+        if($show_option != ''){
+            $show = $show_option;
+        }
+    }
+
+    if($show){
+        if(kt_is_wc()){
+            if( is_woocommerce() ){
+                ob_start();
+                woocommerce_breadcrumb(
+                    array(
+                        'delimiter' =>'<span class="sep navigation-pipe">&nbsp;</span>',
+                        'wrap_before' => '<nav class="woocommerce-breadcrumb breadcrumbs">',
+
+                    ) );
+                $breadcrumb = ob_get_clean();
+            }else{
+                if(function_exists('breadcrumb_trail')) {
+                    $breadcrumb = breadcrumb_trail(array( 'echo' => false));
+                }
+            }
+        }else{
+            if(function_exists('breadcrumb_trail')) {
+                $breadcrumb = breadcrumb_trail(array( 'echo' => false));
+            }
+        }
+    }
+    return apply_filters( 'kt_breadcrumb', $breadcrumb );
+}
+
+
+/**
+ * Get Layout sidebar of post
+ *
+ * @return array
+ *
+ */
+function kt_sidebar(){
+    global $post;
+
+    $sidebar = kt_option('sidebar', 'full');
+    $sidebar_left = kt_option('sidebar_left', 'primary-widget-area');
+    $sidebar_right = kt_option('sidebar_right', 'primary-widget-area');
+
+    if( kt_is_wc() ){
+        if( is_shop() || is_product_category() || is_product_tag() ){
+            $sidebar = kt_option('shop_sidebar', 'full');
+            $sidebar_left = kt_option('shop_sidebar_left', 'shop-widget-area');
+            $sidebar_right = kt_option('shop_sidebar_right', 'shop-widget-area');
+        }elseif( is_product() ){
+            $sidebar = kt_option('product_sidebar', 'full');
+            $sidebar_left = kt_option('product_sidebar_left', 'shop-widget-area');
+            $sidebar_right = kt_option('product_sidebar_right', 'shop-widget-area');
+        }elseif(is_cart() || is_checkout()){
+            return array('sidebar' => 'full', 'sidebar_area' => null);
+        }
+    }
+
+    if($sidebar == 'left'){
+        $sidebar_area = $sidebar_left;
+    }elseif($sidebar == 'right'){
+        $sidebar_area = $sidebar_right;
+    }else{
+        $sidebar_area = null;
+    }
+
+    $layout_sidebar = array(
+        'sidebar' => $sidebar,
+        'sidebar_area' => $sidebar_area
+    );
+
+    if(is_page() || is_singular('post') || is_home() || is_singular('portfolio')){
+        $page_id = get_the_ID();
+        if(is_home()){
+            $page_id = get_option( 'page_for_posts' );
+        }
+
+        $sidebar_post = rwmb_meta('_kt_sidebar', array(), $page_id);
+
+        if($sidebar_post != 'default' && $sidebar_post){
+            $layout_sidebar['sidebar'] = $sidebar_post;
+            if($sidebar_post == 'left'){
+                $sidebar_left_post = rwmb_meta('_kt_left_sidebar', array(), $page_id);
+                if($sidebar_left_post  == 'default'){
+                    $sidebar_left_post = $sidebar_left;
+                }
+                $layout_sidebar['sidebar_area'] = $sidebar_left_post;
+            }elseif($sidebar_post == 'right'){
+                $sidebar_right_post = rwmb_meta('_kt_right_sidebar', array(), $page_id);
+                if($sidebar_right_post  == 'default'){
+                    $sidebar_right_post = $sidebar_right;
+                }
+                $layout_sidebar['sidebar_area'] = $sidebar_right_post;
+            }
+        }
+
+    }elseif(is_archive()){
+
+    }
+
+
+
+    return $layout_sidebar;
+}
 
 
 
@@ -143,13 +394,11 @@ add_filter('kt_sidebar_class', 'kt_sidebar_class_callback', 10, 2);
  */
 function kt_content_class_callback($classes){
     global $post;
-    if(is_page()){
-        if(rwmb_meta('_kt_remove_top')){
-            $classes .= ' remove_top_padding';
-        }
-        if(rwmb_meta('_kt_remove_bottom')){
-            $classes .= ' remove_bottom_padding';
-        }
+    if(rwmb_meta('_kt_remove_top')){
+        $classes .= ' remove_top_padding';
+    }
+    if(rwmb_meta('_kt_remove_bottom')){
+        $classes .= ' remove_bottom_padding';
     }
     return $classes;
 } 
@@ -248,15 +497,7 @@ function theme_slideshows_position_callback(){
     }
 }
 
-/**
- * Add title 
- *
- * @since 1.0
- */
-add_action( 'theme_before_content', 'theme_before_content_add_title', 20 );
-function theme_before_content_add_title(){
-    
-}
+
 
 
 /**

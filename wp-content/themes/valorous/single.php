@@ -11,41 +11,63 @@
  * @since London 1.0
  */
 
-$sidebar = kt_sidebar();
+$sidebar = kt_get_single_sidebar();
+get_header();
 
-get_header(); ?>
+
+?>
     <div class="container">
         <?php
         /**
          * @hooked
          */
         do_action( 'theme_before_main' ); ?>
+        <?php
+            $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
+            $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');;
+        ?>
+        <?php
+            if( ! post_password_required( ) && $show_post_format && $post_format_position == 'fullwidth' ){
+                kt_post_thumbnail('full', 'img-responsive');
+            }
+        ?>
+
         <div class="row">
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
                 <?php while ( have_posts() ) : the_post(); ?>
-                    <?php $post_id = get_the_ID(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('post-item post-single'); ?>>
-                        <?php if( ! post_password_required($post->ID) ): ?>
+                        <header class="entry-header">
                             <?php
-                                if(kt_post_option(null, '_kt_post_format', 'blog_post_format', 1)){
+                                if( ! post_password_required( ) && $show_post_format && $post_format_position == 'content' ){
                                     kt_post_thumbnail('full', 'img-responsive');
                                 }
                             ?>
-                        <?php endif; ?>
-                        <h2 class="entry-title"><?php the_title(); ?></h2>
-                        <div class="entry-meta-data">
-                            <?php
-                                kt_entry_meta_author();
-                                kt_entry_meta_categories();
-                                kt_entry_meta_comments();
-                                kt_entry_meta_time();
-                            ?>
 
-                        </div>
+                            <h2 class="entry-title"><?php the_title(); ?></h2>
+                            <?php if(kt_post_option(null, '_kt_meta_info', 'blog_meta', 1)){ ?>
+                                <div class="entry-meta-data">
+                                    <?php
+                                        if(kt_option('blog_meta_author', 1)){
+                                            kt_entry_meta_author();
+                                        }
+                                        if(kt_option('blog_meta_categories', 1)) {
+                                            kt_entry_meta_categories();
+                                        }
+                                        if(kt_option('blog_meta_date', 1)) {
+                                            kt_entry_meta_time();
+                                        }
+                                        if(kt_option('blog_meta_comments', 1)){
+                                            kt_entry_meta_comments();
+                                        }
+
+                                    ?>
+                                </div>
+                            <?php } ?>
+                        </header><!-- .entry-header -->
                         <div class="entry-content clearfix">
                             <?php the_content(); ?>
                             <?php
-                                if( ! post_password_required($post->ID) ):
+                                if( ! post_password_required( ) ):
                                     wp_link_pages( array(
                                         'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', THEME_LANG ) . '</span>',
                                         'after'       => '</div>',
@@ -71,19 +93,13 @@ get_header(); ?>
 
                             }
 
-
-
                             if(kt_post_option(null, '_kt_author_info', 'blog_author', 1)){
                                 kt_author_box();
                             }
 
-
-
                             if(kt_post_option(null, '_kt_prev_next', 'blog_next_prev', 1)){
                                 kt_paging_nav();
                             }
-
-
 
                             if(kt_post_option(null, '_kt_related_acticles', 'blog_related', 1)){
                                 kt_related_article(null);
@@ -95,6 +111,7 @@ get_header(); ?>
                             endif;
 
                         ?>
+
                     </article><!-- #post-## -->
                 <?php endwhile; // end of the loop. ?>
             </div>

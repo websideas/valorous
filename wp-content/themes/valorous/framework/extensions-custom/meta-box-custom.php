@@ -148,11 +148,8 @@ if ( ! class_exists( 'RWMB_Layerslider_Field' )){
             if ( is_plugin_active( 'LayerSlider/layerslider.php' ) ) {
             global $wpdb;
                 $table_name = $wpdb->prefix . "layerslider";
-                $sliders = $wpdb->get_results( "SELECT * FROM $table_name
-                                                WHERE flag_hidden = '0' AND flag_deleted = '0'
-                                                ORDER BY date_c ASC LIMIT 100" );
+                $sliders = $wpdb->get_results( "SELECT * FROM ".$table_name." WHERE flag_hidden = '0' AND flag_deleted = '0' ORDER BY date_c ASC LIMIT 100" );
                 if ( $sliders != null && !empty( $sliders ) ) {
-
                     foreach ( $sliders as $item ) :
                         $options[$item->id] = $item->name;
                     endforeach;

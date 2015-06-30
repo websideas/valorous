@@ -34,60 +34,24 @@
         init_SearchFull();
         init_kt_animation();
         init_loadmore();
+        init_VCLightBox();
+
+        init_ProductQuickView();
+        init_gridlistToggle();
+        init_productcarouselwoo()
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
         }
 
-        $('.kt_lightbox').each(function(){
-            var $type = $(this).data('type'),
-                $effect = $(this).data('effect');
-            if(typeof $effect === "undefined"){
-                $effect = 'mfp-zoom-in';
-            }
 
-            $(this).find('.vc_icon_element-link').magnificPopup({
-                type: $type,
-                mainClass: $effect,
-                midClick: true,
-                callbacks: {
-                    beforeOpen: function() {
-                       if($type == 'image'){
-                           this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-                           this.st.mainClass = $effect;
-                       }else if($type == 'iframe'){
-                           this.st.iframe.markup = this.st.iframe.markup.replace('mfp-iframe-scaler', 'mfp-iframe-scaler mfp-with-anim');
-                           this.st.mainClass = $effect;
-                       }
-                    }
-                },
-            });
+        $('body').bind('wc_fragments_loaded wc_fragments_refreshed', function (){
+            $('.mCustomScrollbar').mCustomScrollbar();
         });
-        
-        
-        $('.kt_piechart').waypoint(function() {
-        	$(".chart").each(function() {
-            	var size = $(this).attr('data-size');
-            	var fgcolor = $(this).attr('data-fgcolor');
-            	var bgcolor = $(this).attr('data-bgcolor');
-            	var linewidth = $(this).attr('data-linewidth');
-            	var _lineCap = $(this).attr('data-linecap');
-        		$(this).easyPieChart({
-        			easing: 'easeInOutQuad',
-        			barColor: fgcolor,
-        			animate: 2000,
-        			trackColor: bgcolor,
-        			lineWidth: linewidth,
-        			lineCap: _lineCap,
-        			size: size,
-        			scaleColor: false,
-        			onStep: function(from, to, percent) {
-        				$(this.el).find('.percent').text(Math.round(percent)+'%');
-        			}
-        		});
-       		});
-        }, { offset:'95%' });
 
+        $( 'body' ).bind( 'added_to_cart', function( event, fragments, cart_hash ) {
+            $('.mCustomScrollbar').mCustomScrollbar();
+        });
 
         $('.player').each(function(){
             $(this).mb_YTPlayer();
@@ -98,25 +62,7 @@
             currentClass: 'current-menu-item'
         });
         
-        $('.coming-soon').each(function(){
-            var date = $(this).data('date');
-            $(this).countdown(date, function(event) {
-                $(this).html(
-                    event.strftime('<div class="wrap">'+
-                                    '<div class="value-time">%D</div>'+
-                                        '<div class="title">Days</div></div>'+
-                                    '<div class="wrap">'+
-                                        '<div class="value-time">%H</div>'+
-                                        '<div class="title">Hours</div></div>'+
-                                    '<div class="wrap">'+
-                                        '<div class="value-time">%M</div>'+
-                                        '<div class="title">Minutes</div></div>'+
-                                    '<div class="wrap">'+
-                                        '<div class="value-time">%S</div>'+
-                                        '<div class="title">Seconds</div></div>')
-                );
-            });
-        });
+
     });
     
     $(window).resize(function(){
@@ -155,6 +101,103 @@
     function init_masonry(){
         $(".blog-posts-masonry .row").waitForImages(function(){
             $(this).masonry();
+        });
+    }
+    /* ---------------------------------------------
+     VC Lightbox
+     --------------------------------------------- */
+    function init_VCLightBox(){
+        $('.kt_lightbox').each(function(){
+
+            var $type = $(this).data('type'),
+                $effect = $(this).data('effect'),
+                $removalDelay = 500;
+            if(typeof $effect === "undefined"){
+                $effect = '';
+                $removalDelay = 0;
+            }
+            $(this).find('.vc_icon_element-link').magnificPopup({
+                type: $type,
+                mainClass: $effect,
+                removalDelay: $removalDelay,
+                midClick: true,
+                fixedContentPos: false,
+                callbacks: {
+                    beforeOpen: function() {
+                        if($type == 'image'){
+                            this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                            this.st.mainClass = $effect;
+                        }else if($type == 'iframe'){
+                            this.st.iframe.markup = this.st.iframe.markup.replace('mfp-iframe-scaler', 'mfp-iframe-scaler mfp-with-anim');
+                            this.st.mainClass = $effect;
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+
+    /* ---------------------------------------------
+     Search
+     --------------------------------------------- */
+    function init_SearchFull(){
+        $('.mini-search a').magnificPopup({
+            type: 'inline',
+            mainClass : 'mfp-zoom-in',
+            items: { src: '#search-fullwidth' },
+            focus : 'input[name=s]',
+            removalDelay: 200
+        });
+    }
+
+
+
+    /* ---------------------------------------------
+     VC PieChart
+     --------------------------------------------- */
+    function init_VCPieChart(){
+        $('.kt_piechart').waypoint(function() {
+            $(".chart").each(function() {
+                var $chart = $(this);
+                $(this).easyPieChart({
+                    easing: 'easeInOutQuad',
+                    barColor: $chart.attr('data-fgcolor'),
+                    animate: 2000,
+                    trackColor: $chart.attr('data-bgcolor'),
+                    lineWidth: $chart.attr('data-linewidth'),
+                    lineCap: $chart.attr('data-linecap'),
+                    size: $chart.attr('data-size'),
+                    scaleColor: false,
+                    onStep: function(from, to, percent) {
+                        $(this.el).find('.percent').text(Math.round(percent)+'%');
+                    }
+                });
+            });
+        }, { offset:'95%' });
+    }
+    /* ---------------------------------------------
+     VC Coming Soon
+     --------------------------------------------- */
+    function init_VCComingSoon() {
+        $('.coming-soon').each(function () {
+            var date = $(this).data('date');
+            $(this).countdown(date, function (event) {
+                $(this).html(
+                    event.strftime('<div class="wrap">' +
+                    '<div class="value-time">%D</div>' +
+                    '<div class="title">Days</div></div>' +
+                    '<div class="wrap">' +
+                    '<div class="value-time">%H</div>' +
+                    '<div class="title">Hours</div></div>' +
+                    '<div class="wrap">' +
+                    '<div class="value-time">%M</div>' +
+                    '<div class="title">Minutes</div></div>' +
+                    '<div class="wrap">' +
+                    '<div class="value-time">%S</div>' +
+                    '<div class="title">Seconds</div></div>')
+                );
+            });
         });
     }
 
@@ -272,29 +315,23 @@
             // Responsive video
         }
 
-
-
-
         // Skill bar
         if (typeof jQuery.fn.waypoint !== 'undefined') {
             jQuery('.kt-skill-wrapper').waypoint(function () {
-
-                var $skill_bar = jQuery(this).find('.kt-skill-bar'),
-                    val = $skill_bar.data('percent');
-
+                var $skill_bar = jQuery(this).find('.kt-skill-bar');
                 setTimeout(function () {
-                    console.log(val);
-                    $skill_bar.css({"width":val + '%'});
+                    $skill_bar.css({"width": $skill_bar.data('percent') + '%'});
                 }, 200);
             }, { offset:'95%' });
         }
 
-
         // Counter
         $('.kt-counter-wrapper').waypoint(function () {
-            jQuery(this).find('.couter').countTo();
+            jQuery(this).find('.counter').countTo();
         }, { offset:'85%', triggerOnce:true });
 
+        init_VCPieChart();
+        init_VCComingSoon();
     }
 
     /* ---------------------------------------------
@@ -426,6 +463,60 @@
             
         });
     }
+
+
+    /* ---------------------------------------------
+     Product Quick View
+     --------------------------------------------- */
+    function init_ProductQuickView(){
+        $('body').on('click', '.product-quick-view', function(e){
+            e.preventDefault();
+            var objProduct = $(this);
+            objProduct.addClass('loading');
+            var data = {
+                action: 'frontend_product_quick_view',
+                security : ajax_frontend.security,
+                product_id: objProduct.data('id')
+            };
+
+
+            $.post(ajax_frontend.ajaxurl, data, function(response) {
+                objProduct.removeClass('loading');
+                $.magnificPopup.open({
+                    mainClass : 'mfp-zoom-in',
+                    removalDelay: 500,
+                    items: {
+                        src: '<div class="themedev-product-popup woocommerce mfp-with-anim">' + response + '</div>',
+                        type: 'inline'
+                    },
+                    callbacks: {
+                        open: function() {
+                            $('.single-product-quickview-images').owlCarousel({
+                                items: 1,
+                                themeClass: 'owl-kttheme',
+                                autoHeight: true,
+                                nav: true,
+                                navText : ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                                dots: false
+                            });
+
+                            $('.themedev-product-popup form').wc_variation_form();
+
+                        },
+                        close: function(){
+                            objProduct.closest('.functional-buttons').css('display','none');
+                            setTimeout(function(){
+                                objProduct.closest('.functional-buttons').removeAttr('style');
+                            }, 50 );
+                        },
+                        change: function() {
+                            $('.themedev-product-popup form').wc_variation_form();
+                        }
+                    }
+                });
+            });
+        });
+    }
     
     
     /* ---------------------------------------------
@@ -489,25 +580,107 @@
         });
     }
 
+
+
+
+
+
     /* ---------------------------------------------
-     Search
+     Grid list Toggle
      --------------------------------------------- */
-    function init_SearchFull(){
-        $('.mini-search a').magnificPopup({
-            items: {
-                src: '#search-fullwidth',
-                type: 'inline'
-            },
-            //overflowY : 'scroll',
-            focus : 'input.search',
-            callbacks: {
-                beforeOpen: function() {
-                    this.st.mainClass = this.st.el.attr('data-effect');
-                }
-            }
+    function init_gridlistToggle(){
+        $('ul.gridlist-toggle a').on('click', function(e){
+            e.preventDefault();
+            var $this = $(this),
+                $gridlist = $this.closest('.gridlist-toggle'),
+                $products = $this.closest('#main').find('ul.products');
+
+            $gridlist.find('a').removeClass('active');
+            $this.addClass('active');
+            $products
+                .removeClass($this.data('remove'))
+                .addClass($this.data('layout'));
+
         });
     }
 
-    
+
+    var sync1 = $("#sync1");
+    var sync2 = $("#sync2");
+
+    function init_productcarouselwoo(){
+
+        sync1.owlCarousel({
+            singleItem : true,
+            slideSpeed : 1000,
+            items : 1,
+            navigation: false,
+            pagination: false,
+            afterAction : syncPosition,
+            responsiveRefreshRate : 200,
+        });
+
+        sync2.owlCarousel({
+            theme : 'woocommerce-thumbnails',
+            items : 4,
+            itemsCustom : [[992,4], [768, 3], [480, 2]],
+            navigation: true,
+            navigationText: false,
+            pagination:false,
+            responsiveRefreshRate : 100,
+            afterInit : function(el){
+                el.find(".owl-item").eq(0).addClass("synced");
+            }
+        });
+
+        $("#sync2").on("click", ".owl-item", function(e){
+            e.preventDefault();
+            var number = $(this).data("owlItem");
+            sync1.trigger("owl.goTo", number);
+        });
+
+    }
+    function syncPosition(el){
+        var current = this.currentItem;
+        $("#sync2")
+            .find(".owl-item")
+            .removeClass("synced")
+            .eq(current)
+            .addClass("synced")
+        if($("#sync2").data("KTowlCarousel") !== undefined){
+            center(current)
+        }
+    }
+    function center(number){
+        var sync2visible = sync2.data("KTowlCarousel").owl.visibleItems;
+
+        var num = number;
+        var found = false;
+
+        for(var i in sync2visible){
+            if(num === sync2visible[i]){
+                var found = true;
+            }
+        }
+
+        if(found===false){
+            if(num>sync2visible[sync2visible.length-1]){
+                sync2.trigger("owl.goTo", num - sync2visible.length+2)
+            }else{
+                if(num - 1 === -1){
+                    num = 0;
+                }
+                sync2.trigger("owl.goTo", num);
+            }
+        } else if(num === sync2visible[sync2visible.length-1]){
+            sync2.trigger("owl.goTo", sync2visible[1])
+        } else if(num === sync2visible[0]){
+            sync2.trigger("owl.goTo", num-1)
+        }
+    }
+
+
+
+
 })(jQuery); // End of use strict
 

@@ -17,11 +17,11 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'image_size' => '',
             'readmore' => 'true',
             'blog_pagination' => 'classic',
+            'sharebox' => 'true',
             'blog_type' => 'classic',
             'blog_layout' => 1,
             'blog_columns' => 3,
             'blog_columns_tablet' => 2,
-            'featured' => 'false',
             'thumbnail_type' => 'format',
 
 
@@ -35,10 +35,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'max_items' => 10,
             "excerpt_length" => 50,
 
-            'page' => false,
+            'paged' => false,
             'loadmore' => false,
 
-
+            "show_meta" => 'true',
             "show_author" => 'true',
             "show_category" => 'true',
             'show_comment' => 'true',
@@ -50,15 +50,24 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'el_class' => '',
 
         ), $atts );
+
+        global $paged;
         extract($atts);
 
-        $featured = apply_filters('sanitize_boolean', $featured);
-
-        global $wp_query, $paged;
-        if(!$paged) $paged = 1;
-        if($loadmore && $page != 1){
-            $paged = $page;
+        if ($blog_pagination == 'classic') {
+            global $wp_query, $paged;
+            $tmp = $wp_query;
         }
+        if(isset($_POST['paged'])){
+            $paged = intval($_POST['paged']);
+        }
+
+        if(!$paged){
+            $paged = (get_query_var('paged')) ? intval(get_query_var('paged')) : intval(get_query_var('page'));
+        }
+        if (empty($paged) || $paged == 0)
+            $paged = 1;
+
 
         $output = $settings = '';
 
@@ -79,7 +88,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             if($categories){
                 $categories_arr = array_filter(explode( ',', $categories));
                 if(count($categories_arr)){
-                    $args['category__in'] = $categories;
+                    $args['category__in'] = $categories_arr;
                 }
             }
         }elseif($source == 'posts'){
@@ -98,17 +107,16 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             }
         }
 
+
         ob_start();
 
-
+        //$wp_query = null;
         $wp_query = new WP_Query( $args );
         if ( $wp_query->have_posts() ) :
 
             if(!$loadmore){
                 if($blog_pagination == 'loadmore'){
-                    unset($atts['loadmore']);
-                    unset($atts['page']);
-
+                    unset($atts['loadmore'], $atts['el_class'], $atts['css'], $atts['css_animation'], $atts['title']);
                     $settings = esc_attr( json_encode( $atts ) );
                 }
                 echo "<div class='blog-posts blog-posts-".$blog_type."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
@@ -120,7 +128,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     echo "<div class='row'>";
                 }
-
 
             }
             if($blog_type == 'grid' || $blog_type == 'masonry'){
@@ -135,12 +142,14 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $blog_atts = array(
                 'image_size' => $image_size,
                 'readmore' => apply_filters('sanitize_boolean', $readmore),
+                'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
                 "show_author" => apply_filters('sanitize_boolean', $show_author),
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
                 "date_format" => $date_format,
                 'thumbnail_type' => $thumbnail_type,
+                'sharebox' => apply_filters('sanitize_boolean', $sharebox),
                 "class" => ''
             );
             if($loadmore){
@@ -180,7 +189,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             echo "</div><!-- .blog-posts-content -->";
 
 
-            if(!$loadmore) {
+            if(!$loadmore && $wp_query->max_num_pages > 1) {
                 if ($blog_pagination == 'classic') {
                     echo get_the_posts_pagination(array(
                         'prev_text' => __('Previous', THEME_LANG),
@@ -191,19 +200,20 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                     echo '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button"><span class="fa fa-refresh"></span> ' . __('Load more', THEME_LANG) . '</a></div>';
                 }
             }
-            wp_reset_postdata();
+
             if(!$loadmore) {
                 echo "</div><!-- .blog-posts -->";
                 do_action('after_blog_posts_loop');
             }
         endif;
-
+        wp_reset_postdata();
 
         $output .= ob_get_clean();
 
-
-
-
+        if ($blog_pagination == 'classic') {
+            $wp_query = null;
+            $wp_query = $tmp;
+        }
 
         if(!$loadmore) {
             $elementClass = array(
@@ -234,16 +244,15 @@ vc_map( array(
             "param_name" => "title",
             "admin_label" => true,
         ),
-
+        // Layout setting
         array(
             "type" => "kt_heading",
             "heading" => __("Layout setting", THEME_LANG),
             "param_name" => "layout_settings",
         ),
-        // Layout setting
         array(
             'type' => 'dropdown',
-            'heading' => __( 'Type', 'js_composer' ),
+            'heading' => __( 'Loop Style', THEME_LANG ),
             'param_name' => 'blog_type',
             'value' => array(
                 __( 'Classic', 'js_composer' ) => 'classic',
@@ -253,9 +262,20 @@ vc_map( array(
             'description' => '',
         ),
         array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Share box', THEME_LANG ),
+            'param_name' => 'sharebox',
+            'value' => 'true',
+            "description" => __("Show or hide the share box.", THEME_LANG),
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'classic' )
+            ),
+        ),
+        array(
             "type" => "kt_heading",
             "heading" => __("Columns to Show?", THEME_LANG),
-            "edit_field_class" => "kt_sub_heading  vc_column",
+            "edit_field_class" => "kt_sub_heading vc_column",
             "param_name" => "items_show",
             'dependency' => array(
                 'element' => 'blog_type',
@@ -300,20 +320,32 @@ vc_map( array(
         ),
         array(
             'type' => 'dropdown',
-            'heading' => __( 'Layout', THEME_LANG ),
+            'heading' => __( 'Post Layout', THEME_LANG ),
             'param_name' => 'blog_layout',
             'value' => array(
-                __( 'Layout 1', 'js_composer' ) => '1',
-                __( 'Layout 2', 'js_composer' ) => '2',
-                __( 'Layout 3', 'js_composer' ) => '3',
+                __( 'Layout 1', THEME_LANG ) => '1',
+                __( 'Layout 2', THEME_LANG ) => '2',
+                __( 'Layout 3', THEME_LANG ) => '3',
             ),
-            'description' => __( 'Select columns.', THEME_LANG ),
+            'description' => __( 'Please select your layout.', THEME_LANG ),
             "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
         array(
             "type" => "kt_heading",
             "heading" => __("Extra setting", THEME_LANG),
             "param_name" => "extra_settings",
+        ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Readmore button', THEME_LANG ),
+            'param_name' => 'readmore',
+            'value' => 'true',
+            "description" => __("Show or hide the readmore button.", THEME_LANG),
+        ),
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size"
         ),
         array(
             'type' => 'dropdown',
@@ -325,12 +357,6 @@ vc_map( array(
             ),
             'description' => __( 'Select thumbnail type for article.', THEME_LANG ),
         ),
-        array(
-            "type" => "kt_image_sizes",
-            "heading" => __( "Select image sizes", THEME_LANG ),
-            "param_name" => "image_size"
-        ),
-
 
         /*
         array(
@@ -341,14 +367,6 @@ vc_map( array(
             "dependency" => array("element" => "image_size","value" => array('custom')),
         ),
         */
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Show read more button', THEME_LANG ),
-            'param_name' => 'readmore',
-            'value' => 'true',
-            "description" => __("Show or hide the read more.", THEME_LANG),
-        ),
-
 
 
         array(
@@ -507,11 +525,20 @@ vc_map( array(
         // Meta setting
         array(
             'type' => 'kt_switch',
+            'heading' => __( 'Show Meta', THEME_LANG ),
+            'param_name' => 'show_meta',
+            'value' => 'true',
+            "description" => __("Show or hide the meta.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+        ),
+        array(
+            'type' => 'kt_switch',
             'heading' => __( 'Show Author', THEME_LANG ),
             'param_name' => 'show_author',
             'value' => 'true',
             "description" => __("Show or hide the post author.", THEME_LANG),
             'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
         ),
         array(
             'type' => 'kt_switch',
@@ -520,6 +547,7 @@ vc_map( array(
             'value' => 'true',
             "description" => __("Show or hide the post category.", THEME_LANG),
             'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
         ),
         array(
             'type' => 'kt_switch',
@@ -528,6 +556,7 @@ vc_map( array(
             'value' => 'true',
             "description" => __("Show or hide the post comment.", THEME_LANG),
             'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
         ),
         array(
             'type' => 'kt_switch',
@@ -536,20 +565,21 @@ vc_map( array(
             'value' => 'true',
             "description" => __("Show or hide the post date.", THEME_LANG),
             'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
         ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Date format', 'js_composer' ),
             'param_name' => 'date_format',
             'value' => array(
-                __( '05 December 2014', 'js_composer' ) => 'd F Y',
-                __( 'December 13th 2014', 'js_composer' ) => 'F jS Y',
-                __( '13th December 2014', 'js_composer' ) => 'jS F Y',
-                __( '05 Dec 2014', 'js_composer' ) => 'd M Y',
-                __( 'Dec 05 2014', 'js_composer' ) => 'M d Y',
-                __( 'Time ago', 'js_composer' ) => 'time',
+                __( '05 December 2014', THEME_LANG ) => 'd F Y',
+                __( 'December 13th 2014', THEME_LANG ) => 'F jS Y',
+                __( '13th December 2014', THEME_LANG ) => 'jS F Y',
+                __( '05 Dec 2014', THEME_LANG ) => 'd M Y',
+                __( 'Dec 05 2014', THEME_LANG ) => 'M d Y',
+                __( 'Time ago', THEME_LANG ) => 'time',
             ),
-            'description' => __( 'Select order type. If "Meta value" or "Meta value Number" is chosen then meta key is required.', 'js_composer' ),
+            'description' => __( 'Select your date format', THEME_LANG ),
             'group' => __( 'Meta', 'js_composer' ),
             'dependency' => array(
                 'element' => 'show_date',

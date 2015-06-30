@@ -11,7 +11,7 @@
  * @since London 1.0
  */
 
-$sidebar = kt_sidebar();
+$sidebar = kt_get_page_sidebar();
 
 get_header(); ?>
     <div class="container">
@@ -21,26 +21,16 @@ get_header(); ?>
     	 */
     	do_action( 'theme_before_main' );
 
-        the_post();
         ?>
         <div class="row">    
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
-                <?php 
-                if( rwmb_meta('_kt_show_title') || rwmb_meta('_kt_show_title') == '' ){
-                ?>
-                <h1 class="page-title"><?php the_title(); ?></h1>
-                <?php
-                    if( rwmb_meta('_kt_show_taglitle') ){
-                        $tagline =  rwmb_meta('_kt_tagline');
-                        if( $tagline !='' ){ ?>
-                            <div class="term-description"><p><?php echo esc_html( $tagline ); ?></p></div>
-                        <?php }
-                    }
-                } ?>
-                <div class="clear"></div><?php
-                // Include the page content template.
-                get_template_part( 'content', 'page' );
-            	?>
+                <?php /* The loop */ ?>
+                <?php while ( have_posts() ) : the_post(); ?>
+                    <?php
+                        // Include the page content template.
+                        get_template_part( 'content', 'page' );
+                    ?>
+                <?php endwhile; ?>
             </div>
             <?php if($sidebar['sidebar'] != 'full'){ ?>
                 <div class="<?php echo apply_filters('kt_sidebar_class', 'sidebar', $sidebar['sidebar']); ?>">

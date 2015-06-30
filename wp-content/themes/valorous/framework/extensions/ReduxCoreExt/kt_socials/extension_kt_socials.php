@@ -22,8 +22,8 @@ if ( !class_exists( 'ReduxFramework_extension_kt_socials' ) ) {
         public static $instance;
         
         public $extension_dir;
-        
-        static $version = "1.0.2";
+
+        static $version = "1.0";
 
         protected $parent;
         
@@ -40,26 +40,21 @@ if ( !class_exists( 'ReduxFramework_extension_kt_socials' ) ) {
             $this->parent = $parent;
 
             if ( !is_admin() ) return;
-            
-            
-            if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
-                $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
-            }
-            
+
+
             $this->field_name = 'kt_socials';
-            
+
             add_filter( 'redux/' . $this->parent->args['opt_name'] . '/field/class/' . $this->field_name, array( &$this,
                     'overload_field_path'
                 ) );
-            
-            
+
+
         }
         
         public static function get_instance() {
             return self::$instance;
         }
-        
+
         // Forces the use of the embeded field path vs what the core typically would use
         public function overload_field_path( $field ) {
             return dirname( __FILE__ ) . '/' . $this->field_name . '/field_' . $this->field_name . '.php';

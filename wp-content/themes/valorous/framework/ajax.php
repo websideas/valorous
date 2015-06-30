@@ -12,7 +12,8 @@ function wp_ajax_fronted_loadmore_blog_callback(){
     $output = array('error' => 1, 'settings' => $settings);
     extract($output['settings']);
 
-    $output['html'] = do_shortcode('[list_blog_posts loadmore="true" page="'.$paged.'" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" orderby="'.$orderby.'" order="'.$order.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'"]');
+
+    $output['html'] = do_shortcode('[list_blog_posts source="'.$source.'" categories="'.$categories.'" posts="'.$posts.'" authors="'.$authors.'" loadmore="true" page="'.$paged.'" blog_type="'.$blog_type.'" blog_columns="'.$blog_columns.'" blog_layout="'.$blog_layout.'" readmore="'.$readmore.'" blog_pagination="'.$blog_pagination.'" max_items="'.$max_items.'" excerpt_length="'.$excerpt_length.'" orderby="'.$orderby.'" order="'.$order.'" show_author="'.$show_author.'" show_category="'.$show_category.'" show_comment="'.$show_comment.'" show_date="'.$show_date.'" date_format="'.$date_format.'" image_size="'.$image_size.'"]');
 
     echo json_encode($output);
     die();

@@ -3,427 +3,470 @@
  */
 ;(function ( $, window, document, undefined ) {
 
-	$.fn.wc_variation_form = function () {
+    $.fn.wc_variation_form = function () {
 
-		$.fn.wc_variation_form.find_matching_variations = function( product_variations, settings ) {
-			var matching = [];
+        $.fn.wc_variation_form.find_matching_variations = function( product_variations, settings ) {
+            var matching = [];
 
-			for ( var i = 0; i < product_variations.length; i++ ) {
-				var variation = product_variations[i];
-				var variation_id = variation.variation_id;
+            for ( var i = 0; i < product_variations.length; i++ ) {
+                var variation = product_variations[i];
+                var variation_id = variation.variation_id;
 
-				if ( $.fn.wc_variation_form.variations_match( variation.attributes, settings ) ) {
-					matching.push( variation );
-				}
-			}
+                if ( $.fn.wc_variation_form.variations_match( variation.attributes, settings ) ) {
+                    matching.push( variation );
+                }
+            }
 
-			return matching;
-		};
+            return matching;
+        };
 
-		$.fn.wc_variation_form.variations_match = function( attrs1, attrs2 ) {
-			var match = true;
+        $.fn.wc_variation_form.variations_match = function( attrs1, attrs2 ) {
+            var match = true;
 
-			for ( var attr_name in attrs1 ) {
-				if ( attrs1.hasOwnProperty( attr_name ) ) {
-					var val1 = attrs1[ attr_name ];
-					var val2 = attrs2[ attr_name ];
+            for ( var attr_name in attrs1 ) {
+                if ( attrs1.hasOwnProperty( attr_name ) ) {
+                    var val1 = attrs1[ attr_name ];
+                    var val2 = attrs2[ attr_name ];
 
-					if ( val1 !== undefined && val2 !== undefined && val1.length !== 0 && val2.length !== 0 && val1 !== val2 ) {
-						match = false;
-					}
-				}
-			}
+                    if ( val1 !== undefined && val2 !== undefined && val1.length !== 0 && val2.length !== 0 && val1 !== val2 ) {
+                        match = false;
+                    }
+                }
+            }
 
-			return match;
-		};
+            return match;
+        };
 
-		// Unbind any existing events
-		this.unbind( 'check_variations update_variation_values found_variation' );
-		this.find( '.reset_variations' ).unbind( 'click' );
-		this.find( '.variations select' ).unbind( 'change focusin' );
+        // Unbind any existing events
+        this.unbind( 'check_variations update_variation_values found_variation' );
+        this.find( '.reset_variations' ).unbind( 'click' );
+        this.find( '.variations select' ).unbind( 'change focusin' );
 
-		// Bind events
-		$form = this
+        // Bind events
+        $form = this
 
-			// On clicking the reset variation button
-			.on( 'click', '.reset_variations', function( event ) {
+            // On clicking the reset variation button
+            .on( 'click', '.reset_variations', function( event ) {
 
-				$( this ).closest( '.variations_form' ).find( '.variations select' ).val( '' ).change();
+                $( this ).closest( '.variations_form' ).find( '.variations select' ).val( '' ).change();
 
-				var $sku = $( this ).closest( '.product' ).find( '.sku' ),
-					$weight = $( this ).closest( '.product' ).find( '.product_weight' ),
-					$dimensions = $( this ).closest( '.product' ).find( '.product_dimensions' );
+                var $sku = $( this ).closest( '.product' ).find( '.sku' ),
+                    $weight = $( this ).closest( '.product' ).find( '.product_weight' ),
+                    $dimensions = $( this ).closest( '.product' ).find( '.product_dimensions' );
 
-				if ( $sku.attr( 'data-o_sku' ) )
-					$sku.text( $sku.attr( 'data-o_sku' ) );
+                if ( $sku.attr( 'data-o_sku' ) )
+                    $sku.text( $sku.attr( 'data-o_sku' ) );
 
-				if ( $weight.attr( 'data-o_weight' ) )
-					$weight.text( $weight.attr( 'data-o_weight' ) );
+                if ( $weight.attr( 'data-o_weight' ) )
+                    $weight.text( $weight.attr( 'data-o_weight' ) );
 
-				if ( $dimensions.attr( 'data-o_dimensions' ) )
-					$dimensions.text( $dimensions.attr( 'data-o_dimensions' ) );
+                if ( $dimensions.attr( 'data-o_dimensions' ) )
+                    $dimensions.text( $dimensions.attr( 'data-o_dimensions' ) );
 
-				return false;
-			} )
+                return false;
+            } )
 
-			// Upon changing an option
-			.on( 'change', '.variations select', function( event ) {
+            // Upon changing an option
+            .on( 'change', '.variations select', function( event ) {
 
-				$variation_form = $( this ).closest( '.variations_form' );
-				$variation_form.find( 'input[name=variation_id]' ).val( '' ).change();
+                $variation_form = $( this ).closest( '.variations_form' );
 
-				$variation_form
-					.trigger( 'woocommerce_variation_select_change' )
-					.trigger( 'check_variations', [ '', false ] );
+                if ( $variation_form.find( 'input.variation_id' ).length > 0 )
+                    $variation_form.find( 'input.variation_id' ).val( '' ).change();
+                else
+                    $variation_form.find( 'input[name=variation_id]' ).val( '' ).change();
 
-				$( this ).blur();
+                $variation_form
+                    .trigger( 'woocommerce_variation_select_change' )
+                    .trigger( 'check_variations', [ '', false ] );
 
-				if( $().uniform && $.isFunction( $.uniform.update ) ) {
-					$.uniform.update();
-				}
+                $( this ).blur();
 
-			} )
+                if( $().uniform && $.isFunction( $.uniform.update ) ) {
+                    $.uniform.update();
+                }
 
-			// Upon gaining focus
-			.on( 'focusin touchstart', '.variations select', function( event ) {
+                // Custom event for when variation selection has been changed
+                $variation_form.trigger( 'woocommerce_variation_has_changed' );
 
-				$variation_form = $( this ).closest( '.variations_form' );
+            } )
 
-				$variation_form
-					.trigger( 'woocommerce_variation_select_focusin' )
-					.trigger( 'check_variations', [ $( this ).attr( 'name' ), true ] );
+            // Upon gaining focus
+            .on( 'focusin touchstart', '.variations select', function( event ) {
 
-			} )
+                $variation_form = $( this ).closest( '.variations_form' );
 
-			// Check variations
-			.on( 'check_variations', function( event, exclude, focus ) {
-				var all_set = true,
-					any_set = false,
-					showing_variation = false,
-					current_settings = {},
-					$variation_form = $( this ),
-					$reset_variations = $variation_form.find( '.reset_variations' );
+                // Get attribute name from data-attribute_name, or from input name if it doesn't exist
+                if ( typeof( $( this ).data( 'attribute_name' ) ) != 'undefined' )
+                    attribute_name = $( this ).data( 'attribute_name' );
+                else
+                    attribute_name = $( this ).attr( 'name' );
 
-				$variation_form.find( '.variations select' ).each( function() {
+                $variation_form
+                    .trigger( 'woocommerce_variation_select_focusin' )
+                    .trigger( 'check_variations', [ attribute_name, true ] );
 
-					if ( $( this ).val().length === 0 ) {
-						all_set = false;
-					} else {
-						any_set = true;
-					}
+            } )
 
-					if ( exclude && $( this ).attr( 'name' ) === exclude ) {
+            // Check variations
+            .on( 'check_variations', function( event, exclude, focus ) {
+                var all_set = true,
+                    any_set = false,
+                    showing_variation = false,
+                    current_settings = {},
+                    $variation_form = $( this ),
+                    $reset_variations = $variation_form.find( '.reset_variations' );
 
-						all_set = false;
-						current_settings[$( this ).attr( 'name' )] = '';
+                $variation_form.find( '.variations select' ).each( function() {
 
-					} else {
+                    // Get attribute name from data-attribute_name, or from input name if it doesn't exist
+                    if ( typeof( $( this ).data( 'attribute_name' ) ) != 'undefined' )
+                        attribute_name = $( this ).data( 'attribute_name' );
+                    else
+                        attribute_name = $( this ).attr( 'name' );
 
-						// Encode entities
-						value = $( this ).val();
 
-						// Add to settings array
-						current_settings[ $( this ).attr( 'name' ) ] = value;
-					}
+                    if ( $( this ).val().length === 0 ) {
+                        all_set = false;
+                    } else {
+                        any_set = true;
+                    }
 
-				});
+                    if ( exclude && attribute_name === exclude ) {
 
-				var product_id = parseInt( $variation_form.data( 'product_id' ) ),
-					all_variations = $variation_form.data( 'product_variations' );
+                        all_set = false;
+                        current_settings[ attribute_name ] = '';
 
-				// Fallback to window property if not set - backwards compat
-				if ( ! all_variations )
-					all_variations = window.product_variations.product_id;
-				if ( ! all_variations )
-					all_variations = window.product_variations;
-				if ( ! all_variations )
-					all_variations = window['product_variations_' + product_id ];
+                    } else {
 
-				var matching_variations = $.fn.wc_variation_form.find_matching_variations( all_variations, current_settings );
+                        // Encode entities
+                        value = $( this ).val();
 
-				if ( all_set ) {
+                        // Add to settings array
+                        current_settings[ attribute_name ] = value;
+                    }
 
-					var variation = matching_variations.shift();
+                });
 
-					if ( variation ) {
+                var product_id = parseInt( $variation_form.data( 'product_id' ) ),
+                    all_variations = $variation_form.data( 'product_variations' );
 
-						// Found - set ID
-						$variation_form
-							.find( 'input[name=variation_id]' )
-							.val( variation.variation_id )
-							.change();
+                // Fallback to window property if not set - backwards compat
+                if ( ! all_variations )
+                    all_variations = window.product_variations.product_id;
+                if ( ! all_variations )
+                    all_variations = window.product_variations;
+                if ( ! all_variations )
+                    all_variations = window['product_variations_' + product_id ];
 
-						$variation_form.trigger( 'found_variation', [ variation ] );
+                var matching_variations = $.fn.wc_variation_form.find_matching_variations( all_variations, current_settings );
 
-					} else {
+                if ( all_set ) {
 
-						// Nothing found - reset fields
-						$variation_form.find( '.variations select' ).val( '' );
+                    var variation = matching_variations.shift();
 
-						if ( ! focus )
-							$variation_form.trigger( 'reset_image' );
+                    if ( variation ) {
 
-						alert( wc_add_to_cart_variation_params.i18n_no_matching_variations_text );
+                        // Found - set ID
 
-					}
+                        // Get variation input by class, or by input name if class doesn't exist
+                        if ( $variation_form.find( 'input.variation_id' ).length > 0 )
+                            $variation_input = $variation_form.find( 'input.variation_id' );
+                        else
+                            $variation_input = $variation_form.find( 'input[name=variation_id]' );
 
-				} else {
+                        // Set ID
+                        $variation_input
+                            .val( variation.variation_id )
+                            .change();
 
-					$variation_form.trigger( 'update_variation_values', [ matching_variations ] );
+                        $variation_form.trigger( 'found_variation', [ variation ] );
 
-					if ( ! focus )
-						$variation_form.trigger( 'reset_image' );
+                    } else {
 
-					if ( ! exclude ) {
-						$variation_form.find( '.single_variation_wrap' ).slideUp( 200 );
-					}
+                        // Nothing found - reset fields
+                        $variation_form.find( '.variations select' ).val( '' );
 
-				}
+                        if ( ! focus )
+                            $variation_form.trigger( 'reset_image' );
 
-				if ( any_set ) {
+                        alert( wc_add_to_cart_variation_params.i18n_no_matching_variations_text );
 
-					if ( $reset_variations.css( 'visibility' ) === 'hidden' )
-						$reset_variations.css( 'visibility', 'visible' ).hide().fadeIn();
+                    }
 
-				} else {
+                } else {
 
-					$reset_variations.css( 'visibility', 'hidden' );
+                    $variation_form.trigger( 'update_variation_values', [ matching_variations ] );
 
-				}
+                    if ( ! focus )
+                        $variation_form.trigger( 'reset_image' );
 
-			} )
+                    if ( ! exclude ) {
+                        $variation_form.find( '.single_variation_wrap' ).slideUp( 200 ).trigger( 'hide_variation' );
+                    }
 
-			// Reset product image
-			.on( 'reset_image', function( event ) {
+                }
 
-				var $product = $(this).closest( '.product' ),
-					$product_img = $product.find( 'div.images img:eq(0)' ),
-					$product_link = $product.find( 'div.images a.zoom:eq(0)' ),
-					o_src = $product_img.attr( 'data-o_src' ),
-					o_title = $product_img.attr( 'data-o_title' ),
-					o_alt = $product_img.attr( 'data-o_alt' ),
-					o_href = $product_link.attr( 'data-o_href' );
+                if ( any_set ) {
 
-				if ( o_src !== undefined ) {
-					$product_img
-						.attr( 'src', o_src );
-				}
+                    if ( $reset_variations.css( 'visibility' ) === 'hidden' )
+                        $reset_variations.css( 'visibility', 'visible' ).hide().fadeIn();
 
-				if ( o_href !== undefined ) {
-					$product_link
-						.attr( 'href', o_href );
-				}
+                } else {
 
-				if ( o_title !== undefined ) {
-					$product_img
-						.attr( 'title', o_title );
-					$product_link
-						.attr( 'title', o_title );
-				}
+                    $reset_variations.css( 'visibility', 'hidden' );
+                    $sku = $( this ).closest( '.product' ).find( '.sku' );
+                    $sku.text( $sku.attr( 'data-o_sku' ) );
 
-				if ( o_alt !== undefined ) {
-					$product_img
-						.attr( 'alt', o_alt );
-				}
-			} )
+                }
 
-			// Disable option fields that are unavaiable for current set of attributes
-			.on( 'update_variation_values', function( event, variations ) {
+            } )
 
-				$variation_form = $( this ).closest( '.variations_form' );
+            // Reset product image
+            .on( 'reset_image', function( event ) {
 
-				// Loop through selects and disable/enable options based on selections
-				$variation_form.find( '.variations select' ).each( function( index, el ) {
+                var $product = $(this).closest( '.product' ),
+                    $product_img = $product.find( 'div.images img:eq(0)' ),
+                    $product_link = $product.find( 'div.images a.zoom:eq(0)' ),
+                    o_src = $product_img.attr( 'data-o_src' ),
+                    o_title = $product_img.attr( 'data-o_title' ),
+                    o_alt = $product_img.attr( 'data-o_alt' ),
+                    o_href = $product_link.attr( 'data-o_href' );
 
-					current_attr_select = $( el );
+                if ( o_src !== undefined ) {
+                    $product_img
+                        .attr( 'src', o_src );
+                }
 
-					// Reset options
-					if ( ! current_attr_select.data( 'attribute_options' ) )
-						current_attr_select.data( 'attribute_options', current_attr_select.find( 'option:gt(0)' ).get() );
+                if ( o_href !== undefined ) {
+                    $product_link
+                        .attr( 'href', o_href );
+                }
 
-					current_attr_select.find( 'option:gt(0)' ).remove();
-					current_attr_select.append( current_attr_select.data( 'attribute_options' ) );
-					current_attr_select.find( 'option:gt(0)' ).removeClass( 'active' );
+                if ( o_title !== undefined ) {
+                    $product_img
+                        .attr( 'title', o_title );
+                    $product_link
+                        .attr( 'title', o_title );
+                }
 
-					// Get name
-					var current_attr_name = current_attr_select.attr( 'name' );
+                if ( o_alt !== undefined ) {
+                    $product_img
+                        .attr( 'alt', o_alt );
+                }
+            } )
 
-					// Loop through variations
-					for ( var num in variations ) {
+            // Disable option fields that are unavaiable for current set of attributes
+            .on( 'update_variation_values', function( event, variations ) {
 
-						if ( typeof( variations[ num ] ) != 'undefined' ) {
+                $variation_form = $( this ).closest( '.variations_form' );
 
-							var attributes = variations[ num ].attributes;
+                // Loop through selects and disable/enable options based on selections
+                $variation_form.find( '.variations select' ).each( function( index, el ) {
 
-							for ( var attr_name in attributes ) {
-								if ( attributes.hasOwnProperty( attr_name ) ) {
-									var attr_val = attributes[ attr_name ];
+                    current_attr_select = $( el );
 
-									if ( attr_name == current_attr_name ) {
+                    // Reset options
+                    if ( ! current_attr_select.data( 'attribute_options' ) )
+                        current_attr_select.data( 'attribute_options', current_attr_select.find( 'option:gt(0)' ).get() );
 
-										if ( attr_val ) {
+                    current_attr_select.find( 'option:gt(0)' ).remove();
+                    current_attr_select.append( current_attr_select.data( 'attribute_options' ) );
+                    current_attr_select.find( 'option:gt(0)' ).removeClass( 'attached' );
 
-											// Decode entities
-											attr_val = $( '<div/>' ).html( attr_val ).text();
+                    current_attr_select.find( 'option:gt(0)' ).removeClass( 'enabled' );
+                    current_attr_select.find( 'option:gt(0)' ).removeAttr( 'disabled' );
 
-											// Add slashes
-											attr_val = attr_val.replace( /'/g, "\\'" );
-											attr_val = attr_val.replace( /"/g, "\\\"" );
+                    // Get name from data-attribute_name, or from input name if it doesn't exist
+                    if ( typeof( current_attr_select.data( 'attribute_name' ) ) != 'undefined' )
+                        current_attr_name = current_attr_select.data( 'attribute_name' );
+                    else
+                        current_attr_name = current_attr_select.attr( 'name' );
 
-											// Compare the meerkat
-											current_attr_select.find( 'option[value="' + attr_val + '"]' ).addClass( 'active' );
+                    // Loop through variations
+                    for ( var num in variations ) {
 
-										} else {
+                        if ( typeof( variations[ num ] ) != 'undefined' ) {
 
-											current_attr_select.find( 'option:gt(0)' ).addClass( 'active' );
+                            var attributes = variations[ num ].attributes;
 
-										}
-									}
-								}
-							}
-						}
-					}
+                            for ( var attr_name in attributes ) {
+                                if ( attributes.hasOwnProperty( attr_name ) ) {
+                                    var attr_val = attributes[ attr_name ];
 
-					// Detach inactive
-					current_attr_select.find( 'option:gt(0):not(.active)' ).remove();
+                                    if ( attr_name == current_attr_name ) {
 
-				});
+                                        if ( variations[ num ].variation_is_active )
+                                            variation_active = 'enabled';
+                                        else
+                                            variation_active = '';
 
-				// Custom event for when variations have been updated
-				$variation_form.trigger( 'woocommerce_update_variation_values' );
+                                        if ( attr_val ) {
 
-			} )
+                                            // Decode entities
+                                            attr_val = $( '<div/>' ).html( attr_val ).text();
 
-			// Show single variation details (price, stock, image)
-			.on( 'found_variation', function( event, variation ) {
-				var $variation_form = $( this ),
-					$product = $( this ).closest( '.product' ),
-					$product_img = $product.find( 'div.images img:eq(0)' ),
-					$product_link = $product.find( 'div.images a.zoom:eq(0)' ),
-					o_src = $product_img.attr( 'data-o_src' ),
-					o_title = $product_img.attr( 'data-o_title' ),
-					o_alt = $product_img.attr( 'data-o_alt' ),
-					o_href = $product_link.attr( 'data-o_href' ),
-					variation_image = variation.image_src,
-					variation_link  = variation.image_link,
-					variation_title = variation.image_title,
-					variation_alt = variation.image_alt;
+                                            // Add slashes
+                                            attr_val = attr_val.replace( /'/g, "\\'" );
+                                            attr_val = attr_val.replace( /"/g, "\\\"" );
 
-				$variation_form.find( '.variations_button' ).show();
-				$variation_form.find( '.single_variation' ).html( variation.price_html + variation.availability_html );
+                                            // Compare the meerkat
+                                            current_attr_select.find( 'option[value="' + attr_val + '"]' ).addClass( 'attached ' + variation_active );
 
-				if ( o_src === undefined ) {
-					o_src = ( ! $product_img.attr( 'src' ) ) ? '' : $product_img.attr( 'src' );
-					$product_img.attr( 'data-o_src', o_src );
-				}
+                                        } else {
 
-				if ( o_href === undefined ) {
-					o_href = ( ! $product_link.attr( 'href' ) ) ? '' : $product_link.attr( 'href' );
-					$product_link.attr( 'data-o_href', o_href );
-				}
+                                            current_attr_select.find( 'option:gt(0)' ).addClass( 'attached ' + variation_active );
 
-				if ( o_title === undefined ) {
-					o_title = ( ! $product_img.attr( 'title' ) ) ? '' : $product_img.attr( 'title' );
-					$product_img.attr( 'data-o_title', o_title );
-				}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-				if ( o_alt === undefined ) {
-					o_alt = ( ! $product_img.attr( 'alt' ) ) ? '' : $product_img.attr( 'alt' );
-					$product_img.attr( 'data-o_alt', o_alt );
-				}
+                    // Detach unattached
+                    current_attr_select.find( 'option:gt(0):not(.attached)' ).remove();
 
-				if ( variation_image && variation_image.length > 1 ) {
-					$product_img
-						.attr( 'src', variation_image )
-						.attr( 'alt', variation_alt )
-						.attr( 'title', variation_title );
-					$product_link
-						.attr( 'href', variation_link )
-						.attr( 'title', variation_title );
-				} else {
-					$product_img
-						.attr( 'src', o_src )
-						.attr( 'alt', o_alt )
-						.attr( 'title', o_title );
-					$product_link
-						.attr( 'href', o_href )
-						.attr( 'title', o_title );
-				}
+                    // Grey out disabled
+                    current_attr_select.find( 'option:gt(0):not(.enabled)' ).attr( 'disabled', 'disabled' );
 
-				var $single_variation_wrap = $variation_form.find( '.single_variation_wrap' ),
-					$sku = $product.find( '.product_meta' ).find( '.sku' ),
-					$weight = $product.find( '.product_weight' ),
-					$dimensions = $product.find( '.product_dimensions' );
+                });
 
-				if ( ! $sku.attr( 'data-o_sku' ) )
-					$sku.attr( 'data-o_sku', $sku.text() );
+                // Custom event for when variations have been updated
+                $variation_form.trigger( 'woocommerce_update_variation_values' );
 
-				if ( ! $weight.attr( 'data-o_weight' ) )
-					$weight.attr( 'data-o_weight', $weight.text() );
+            } )
 
-				if ( ! $dimensions.attr( 'data-o_dimensions' ) )
-					$dimensions.attr( 'data-o_dimensions', $dimensions.text() );
+            // Show single variation details (price, stock, image)
+            .on( 'found_variation', function( event, variation ) {
+                var $variation_form = $( this ),
+                    $product = $( this ).closest( '.product' ),
+                    $product_img = $product.find( 'div.images img:eq(0)' ),
+                    $product_link = $product.find( 'div.images a.zoom:eq(0)' ),
+                    o_src = $product_img.attr( 'data-o_src' ),
+                    o_title = $product_img.attr( 'data-o_title' ),
+                    o_alt = $product_img.attr( 'data-o_alt' ),
+                    o_href = $product_link.attr( 'data-o_href' ),
+                    variation_image = variation.image_src,
+                    variation_link  = variation.image_link,
+                    variation_title = variation.image_title,
+                    variation_alt = variation.image_alt;
 
-				if ( variation.sku ) {
-					$sku.text( variation.sku );
-				} else {
-					$sku.text( $sku.attr( 'data-o_sku' ) );
-				}
+                $variation_form.find( '.variations_button' ).show();
+                $variation_form.find( '.single_variation' ).html( variation.price_html + variation.availability_html );
 
-				if ( variation.weight ) {
-					$weight.text( variation.weight );
-				} else {
-					$weight.text( $weight.attr( 'data-o_weight' ) );
-				}
+                if ( o_src === undefined ) {
+                    o_src = ( ! $product_img.attr( 'src' ) ) ? '' : $product_img.attr( 'src' );
+                    $product_img.attr( 'data-o_src', o_src );
+                }
 
-				if ( variation.dimensions ) {
-					$dimensions.text( variation.dimensions );
-				} else {
-					$dimensions.text( $dimensions.attr( 'data-o_dimensions' ) );
-				}
+                if ( o_href === undefined ) {
+                    o_href = ( ! $product_link.attr( 'href' ) ) ? '' : $product_link.attr( 'href' );
+                    $product_link.attr( 'data-o_href', o_href );
+                }
 
-				$single_variation_wrap.find( '.quantity' ).show();
+                if ( o_title === undefined ) {
+                    o_title = ( ! $product_img.attr( 'title' ) ) ? '' : $product_img.attr( 'title' );
+                    $product_img.attr( 'data-o_title', o_title );
+                }
 
-				if ( ! variation.is_purchasable || ! variation.is_in_stock || ! variation.variation_is_visible ) {
-					$variation_form.find( '.variations_button' ).hide();
-				}
+                if ( o_alt === undefined ) {
+                    o_alt = ( ! $product_img.attr( 'alt' ) ) ? '' : $product_img.attr( 'alt' );
+                    $product_img.attr( 'data-o_alt', o_alt );
+                }
 
-				if ( ! variation.variation_is_visible ) {
-					$variation_form.find( '.single_variation' ).html( '<p>' + wc_add_to_cart_variation_params.i18n_unavailable_text + '</p>' );
-				}
+                if ( variation_image && variation_image.length > 1 ) {
+                    $product_img
+                        .attr( 'src', variation_image )
+                        .attr( 'alt', variation_alt )
+                        .attr( 'title', variation_title );
+                    $product_link
+                        .attr( 'href', variation_link )
+                        .attr( 'title', variation_title );
+                } else {
+                    $product_img
+                        .attr( 'src', o_src )
+                        .attr( 'alt', o_alt )
+                        .attr( 'title', o_title );
+                    $product_link
+                        .attr( 'href', o_href )
+                        .attr( 'title', o_title );
+                }
 
-				if ( variation.min_qty )
-					$single_variation_wrap.find( 'input[name=quantity]' ).attr( 'min', variation.min_qty ).val( variation.min_qty );
-				else
-					$single_variation_wrap.find( 'input[name=quantity]' ).removeAttr( 'min' );
+                var $single_variation_wrap = $variation_form.find( '.single_variation_wrap' ),
+                    $sku = $product.find( '.product_meta' ).find( '.sku' ),
+                    $weight = $product.find( '.product_weight' ),
+                    $dimensions = $product.find( '.product_dimensions' );
 
-				if ( variation.max_qty )
-					$single_variation_wrap.find( 'input[name=quantity]' ).attr( 'max', variation.max_qty );
-				else
-					$single_variation_wrap.find( 'input[name=quantity]' ).removeAttr( 'max' );
+                if ( ! $sku.attr( 'data-o_sku' ) )
+                    $sku.attr( 'data-o_sku', $sku.text() );
 
-				if ( variation.is_sold_individually === 'yes' ) {
-					$single_variation_wrap.find( 'input[name=quantity]' ).val( '1' );
-					$single_variation_wrap.find( '.quantity' ).hide();
-				}
+                if ( ! $weight.attr( 'data-o_weight' ) )
+                    $weight.attr( 'data-o_weight', $weight.text() );
 
-				$single_variation_wrap.slideDown( 200 ).trigger( 'show_variation', [ variation ] );
+                if ( ! $dimensions.attr( 'data-o_dimensions' ) )
+                    $dimensions.attr( 'data-o_dimensions', $dimensions.text() );
 
-			});
+                if ( variation.sku ) {
+                    $sku.text( variation.sku );
+                } else {
+                    $sku.text( $sku.attr( 'data-o_sku' ) );
+                }
 
-		$form.trigger( 'wc_variation_form' );
+                if ( variation.weight ) {
+                    $weight.text( variation.weight );
+                } else {
+                    $weight.text( $weight.attr( 'data-o_weight' ) );
+                }
 
-		return $form;
-	};
+                if ( variation.dimensions ) {
+                    $dimensions.text( variation.dimensions );
+                } else {
+                    $dimensions.text( $dimensions.attr( 'data-o_dimensions' ) );
+                }
 
-	$( function() {
+                $single_variation_wrap.find( '.quantity' ).show();
 
-		// wc_add_to_cart_variation_params is required to continue, ensure the object exists
-		if ( typeof wc_add_to_cart_variation_params === 'undefined' )
-			return false;
+                if ( ! variation.is_purchasable || ! variation.is_in_stock || ! variation.variation_is_visible ) {
+                    $variation_form.find( '.variations_button' ).hide();
+                }
 
-		$( '.variations_form' ).wc_variation_form();
-		$( '.variations_form .variations select' ).change();
-	});
+                if ( ! variation.variation_is_visible ) {
+                    $variation_form.find( '.single_variation' ).html( '<p>' + wc_add_to_cart_variation_params.i18n_unavailable_text + '</p>' );
+                }
+
+                if ( variation.min_qty !== '' )
+                    $single_variation_wrap.find( '.quantity input.qty' ).attr( 'min', variation.min_qty ).val( variation.min_qty );
+                else
+                    $single_variation_wrap.find( '.quantity input.qty' ).removeAttr( 'min' );
+
+                if ( variation.max_qty !== '' )
+                    $single_variation_wrap.find( '.quantity input.qty' ).attr( 'max', variation.max_qty );
+                else
+                    $single_variation_wrap.find( '.quantity input.qty' ).removeAttr( 'max' );
+
+                if ( variation.is_sold_individually === 'yes' ) {
+                    $single_variation_wrap.find( '.quantity input.qty' ).val( '1' );
+                    $single_variation_wrap.find( '.quantity' ).hide();
+                }
+
+                $single_variation_wrap.slideDown( 200 ).trigger( 'show_variation', [ variation ] );
+
+            });
+
+        $form.trigger( 'wc_variation_form' );
+
+        return $form;
+    };
+
+    $( function() {
+
+        // wc_add_to_cart_variation_params is required to continue, ensure the object exists
+        if ( typeof wc_add_to_cart_variation_params === 'undefined' )
+            return false;
+
+        $( '.variations_form' ).wc_variation_form();
+        $( '.variations_form .variations select' ).change();
+    });
 
 })( jQuery, window, document );

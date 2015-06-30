@@ -18,7 +18,7 @@ $classes = array('post-item post-layout-1', $blog_atts['class']);
         <div class="post-info">
             <div class="entry-ci">
                 <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <?php if($blog_atts['show_author'] || $blog_atts['show_category'] || $blog_atts['show_comment'] || $blog_atts['show_date']){ ?>
+                <?php if($blog_atts['show_meta']){ ?>
                     <div class="entry-meta-data">
                         <?php
                         if($blog_atts['show_author']){

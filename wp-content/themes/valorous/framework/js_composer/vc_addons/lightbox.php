@@ -29,6 +29,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'image_lightbox' => '',
             'video_link' => '',
             'content_width' => '',
+            'lightbox_effect' => '',
 
             'css' => '',
             'css_animation' => '',
@@ -84,7 +85,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-effect="mfp-newspaper" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
+        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-effect="'.$lightbox_effect.'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
         
         $style_content = '';
         if( $content_width != '' ){
@@ -315,7 +316,7 @@ vc_map( array(
         //Image
         array(
 			'type' => 'attach_image',
-			'heading' => __( 'Image Thumbnail', 'js_composer' ),
+			'heading' => __( 'Image Thumbnail', THEME_LANG ),
 			'param_name' => 'image_thumbnail',
 			'dependency' => array(
     			'element' => 'kt_type',
@@ -323,39 +324,43 @@ vc_map( array(
     		),
 			'description' => __( 'Select image from media library.', 'js_composer' ),
 		),
+        // Layout setting
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Lightbox settings", THEME_LANG),
+            "param_name" => "lightbox_settings",
+        ),
         array(
     		'type' => 'dropdown',
-    		'heading' => __( 'Type Lightbox', 'js_composer' ),
+    		'heading' => __( 'Type Lightbox', THEME_LANG ),
     		'param_name' => 'type_lightbox',
     		'value' => array(
                 __( 'Single Image Lightbox', 'js_composer' ) => 'lightbox-image',
     			__( 'Video Lightbox', 'js_composer' ) => 'lightbox-video',
     			__( 'Content Lightbox', 'js_composer' ) => 'lightbox-content'
     		),
-    		'description' => __( 'Select type lightbox.', 'js_composer' ),
-            'group' => __( 'Lightbox', THEME_LANG )
+    		'description' => __( 'Select type lightbox.', THEME_LANG ),
+            "admin_label" => true,
     	),
         array(
     		'type' => 'attach_image',
-    		'heading' => __( 'Image Lightbox', 'js_composer' ),
+    		'heading' => __( 'Image Lightbox', THEME_LANG ),
     		'param_name' => 'image_lightbox',
     		'description' => __( 'Select image from media library.', 'js_composer' ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-image' ),
     		),
-            'group' => __( 'Lightbox', THEME_LANG )
     	),
         array(
     		'type' => 'textfield',
-    		'heading' => __( 'Video Link', 'js_composer' ),
+    		'heading' => __( 'Video Link', THEME_LANG ),
     		'param_name' => 'video_link',
-    		'description' => __( 'Enter your link video.', 'js_composer' ),
+    		'description' => __( 'Enter your link video.', THEME_LANG ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-video' ),
     		),
-            'group' => __( 'Lightbox', THEME_LANG )
     	),
         array(
             "type" => "textarea_html",
@@ -367,19 +372,38 @@ vc_map( array(
     		),
             "value" => __("", THEME_LANG),
             "description" => __("", THEME_LANG),
-            'group' => __( 'Lightbox', THEME_LANG )
         ),
         array(
     		'type' => 'textfield',
-    		'heading' => __( 'Content width', 'js_composer' ),
+    		'heading' => __( 'Content width', THEME_LANG ),
     		'param_name' => 'content_width',
-    		'description' => __( 'Enter your max width of content lightbox.(px)', 'js_composer' ),
+    		'description' => __( 'Enter your max width of content lightbox.(px)', THEME_LANG ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-content' ),
     		),
-            'group' => __( 'Lightbox', THEME_LANG )
     	),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Lightbox Effect', 'js_composer' ),
+            'param_name' => 'lightbox_effect',
+            'value' => array(
+                __( 'None', THEME_LANG ) => '',
+                __( 'Zoom', THEME_LANG ) => 'mfp-zoom-in',
+                __( 'Newspaper', THEME_LANG ) => 'mfp-newspaper',
+                __( 'Horizontal move', THEME_LANG ) => 'mfp-move-horizontal',
+                __( 'Move from top', THEME_LANG ) => 'mfp-move-from-top',
+                __( '3d unfold', THEME_LANG ) => 'mfp-3d-unfold',
+                __( 'Zoom-out', THEME_LANG ) => 'mfp-zoom-out'
+            ),
+            'description' => __( 'Select type lightbox.', THEME_LANG ),
+        ),
+
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Extra setting", THEME_LANG),
+            "param_name" => "extra_settings",
+        ),
         array(
         	'type' => 'dropdown',
         	'heading' => __( 'CSS Animation', 'js_composer' ),

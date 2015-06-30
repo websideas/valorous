@@ -27,57 +27,61 @@ global $post, $product, $woocommerce;
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class('product'); ?>>
     <div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="single-product-quickview-images owl-carousel">
-        	<?php
-        		if ( has_post_thumbnail() ) {
-        
-        			$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
-        			$image_caption 	= get_post( get_post_thumbnail_id() )->post_excerpt;
-        			$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
-        			$image       	= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_catalog' ), array(
-        				'title'	=> $image_title,
-        				'alt'	=> $image_title
-        				) );
-        
-                    //Get attachment IDS
-        			$attachment_ids = $product->get_gallery_attachment_ids();
-        			$attachment_count   = count( $attachment_ids );
-                    
-        
-        			echo apply_filters( 'woocommerce_single_product_image_html', $image , $post->ID );
-                    
-                    
-                    // Display Attachment Images as well
-        			if( $attachment_count > 0 ) :
-        
-        				// Loop in attachment	
-        				foreach ( $attachment_ids as $attachment_id ) {
-        					
-        					// Get attachment image URL
-        					$image_link = wp_get_attachment_url( $attachment_id );
-        
-        					$image_title = esc_attr( get_the_title( $attachment_id ) );
-        					
-        					// If isn't a URL we go to next attachment
-        					if ( !$image_link )
-        						continue;
-        
-        					$image = wp_get_attachment_image( $attachment_id, 'shop_catalog', array(
-        						'data-zoom-image' => $image_link
-        						) );
-        
-        					// Display other items
-        					echo apply_filters( 'woocommerce_single_product_image_html', $image, $post->ID );
-        				}
-        
-        			endif;
-                    
-        
-        		} else {
-        			echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
-        		}
-        	?>
-            </div><!-- .single-product-quickview-images.owl-carousel -->
+            <div class="carousel-navigation-center single-product-quickview">
+                <div class="single-product-quickview-images carousel-pagination-circle-o visiable-navigation">
+                <?php
+                    if ( has_post_thumbnail() ) {
+
+                        $image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
+                        $image_caption 	= get_post( get_post_thumbnail_id() )->post_excerpt;
+                        $image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
+                        $image       	= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_catalog' ), array(
+                            'title'	=> $image_title,
+                            'alt'	=> $image_title,
+                            'class' => 'img-responsive'
+                            ) );
+
+                        //Get attachment IDS
+                        $attachment_ids = $product->get_gallery_attachment_ids();
+                        $attachment_count   = count( $attachment_ids );
+
+
+                        echo apply_filters( 'woocommerce_single_product_image_html', $image , $post->ID );
+
+
+                        // Display Attachment Images as well
+                        if( $attachment_count > 0 ) :
+
+                            // Loop in attachment
+                            foreach ( $attachment_ids as $attachment_id ) {
+
+                                // Get attachment image URL
+                                $image_link = wp_get_attachment_url( $attachment_id );
+
+                                $image_title = esc_attr( get_the_title( $attachment_id ) );
+
+                                // If isn't a URL we go to next attachment
+                                if ( !$image_link )
+                                    continue;
+
+                                $image = wp_get_attachment_image( $attachment_id, 'shop_catalog', false, array(
+                                    'data-zoom-image' => $image_link,
+                                    'class' => 'img-responsive'
+                                ) );
+
+                                // Display other items
+                                echo apply_filters( 'woocommerce_single_product_image_html', $image, $post->ID );
+                            }
+
+                        endif;
+
+
+                    } else {
+                        echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" class="img-responsive" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
+                    }
+                ?>
+                </div><!-- .single-product-quickview-images.owl-carousel -->
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="summary entry-summary">
