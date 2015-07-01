@@ -17,7 +17,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             'image_size' => '',
             'blog_layout' => 1,
             'thumbnail_type' => 'img',
-            'readmore' => false,
+            'readmore' => true,
 
             'source' => 'all',
             'categories' => '',
@@ -152,7 +152,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
 
 
             $elementClass = array(
-                'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),
+                'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-carousel-wrapper', $this->settings['base'], $atts),
                 'extra' => $this->getExtraClass($el_class),
                 'css_animation' => $this->getCSSAnimation($css_animation),
                 'shortcode_custom' => vc_shortcode_custom_css_class($css, ' ')
@@ -206,7 +206,13 @@ vc_map( array(
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size"
         ),
-
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Readmore button', THEME_LANG ),
+            'param_name' => 'readmore',
+            'value' => 'true',
+            "description" => __("Show or hide the readmore button.", THEME_LANG),
+        ),
 
         /*
         array(

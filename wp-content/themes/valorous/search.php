@@ -24,11 +24,9 @@ get_header(); ?>
         do_action( 'theme_before_main' ); ?>
         <div class="row">
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
-                <?php
-                if( have_posts()){
-                    ?>
+                <?php if( have_posts()){ ?>
                     <div class="list-blog-posts">
-                       <h2 class="block-heading"><?php printf( __( 'Search Results for: %s', THEME_LANG ), get_search_query() ); ?></h2>
+                       <h3 class="search-heading"><?php printf( __( "Search Results for: <span>'%s</span>'", THEME_LANG ), get_search_query() ); ?></h3>
 
                         <div class="blog-posts">
                         <?php
@@ -40,8 +38,13 @@ get_header(); ?>
                         ?>
                         </div>
                     </div>
-                    <?php
-                }
+                <?php }else {
+                        // If no content, include the "No posts found" template.
+
+                        printf( __( "Sorry ! No post was found by <span>'%s'</span>.", THEME_LANG ), get_search_query() );
+                        echo " ";
+                        _e('Try searching for something else', THEME_LANG);
+                    }
                 ?>
             </div>
             <?php if($sidebar['sidebar'] != 'full'){ ?>

@@ -40,6 +40,7 @@
         init_gridlistToggle();
         init_productcarouselwoo();
         init_kt_remove_cart();
+        init_carouselwoo();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -395,71 +396,99 @@
         $('.kt-owl-carousel').each(function(){
 
             var objCarousel = $(this),
-                owlMargin = objCarousel.data('margin'),
-                owlNavigationIcon = objCarousel.data('navigation_icon'),
+                owlItems = objCarousel.data('items'),
                 owlPagination = objCarousel.data('dots'),
+                owlNavigationIcon = objCarousel.data('navigation_icon'),
                 owlAutoheight = objCarousel.data('autoheight'),
                 owlNavigation = objCarousel.data('nav'),
                 owlAutoPlay = objCarousel.data('autoplay'),
+                owlTheme = objCarousel.data('theme'),
+                owlitemsCustom = objCarousel.data('itemscustom'),
                 owlSlideSpeed = objCarousel.data('slidespeed'),
-                owlLoop = objCarousel.data('loop'),
                 owlMousedrag = objCarousel.data('mousedrag'),
-                func_cb = objCarousel.data('js-callback');
+
+                owlDesktop = objCarousel.data('desktop'),
+                owlTablet = objCarousel.data('tablet'),
+                owlMobile = objCarousel.data('mobile'),
+
+                func_cb = objCarousel.data('js-callback'),
+                owlSingleItem = true;
 
 
 
-            if(typeof owlMargin === "undefined"){
-                owlMargin = 0;
-            }
-            if(typeof owlNavigationIcon === "undefined"){
-                owlNavigationIcon = 'fa fa-angle-left|fa fa-angle-right';
-            }
+            if(typeof owlDesktop === "undefined"){ owlDesktop = false; }
+            if(typeof owlTablet === "undefined"){ owlTablet = false; }
+            if(typeof owlMobile === "undefined"){ owlMobile = false; }
+
+            if(typeof owlNavigation === "undefined"){ owlNavigation = true; }
+            if(typeof owlAutoheight === "undefined"){ owlAutoheight = true; }
+            if(typeof owlPagination === "undefined"){ owlPagination = true; }
+            if(typeof owlAutoPlay === "undefined"){ owlAutoPlay = false; }
+            if(typeof owlSlideSpeed === "undefined"){ owlSlideSpeed = '200'; }
+            if(typeof owlTheme === "undefined"){ owlTheme = 'style-navigation-center'; }
+            if(typeof owlMousedrag === "undefined"){owlMousedrag = true;}
+            if(typeof owlNavigationIcon === "undefined"){owlNavigationIcon = 'fa fa-angle-left|fa fa-angle-right';}
             var owlNavigationIconArr = owlNavigationIcon.split('|', 2);
 
-            if(typeof owlNavigation === "undefined"){
-                owlNavigation = true;
-            }
-            if(typeof owlAutoheight === "undefined"){
-                owlAutoheight = true;
-            }
-            if(typeof owlPagination === "undefined"){
-                owlPagination = true;
-            }
-            if(typeof owlAutoPlay === "undefined"){
-                owlAutoPlay = false;
-            }
-            if(typeof owlSlideSpeed === "undefined"){
-                owlSlideSpeed = '200';
-            }
-            if(typeof owlSlideSpeed === "undefined"){
-                owlLoop = false;
-            }
-            if(typeof owlMousedrag === "undefined"){
-                owlMousedrag = true;
+
+            if(typeof owlTablet !== "undefined"){
+                owlSingleItem = false;
             }
 
+            if(typeof owlItems === "undefined"){
+                owlItems = owlDesktop;
+            }else{
+                owlItems = parseInt(owlItems, 10);
+                owlSingleItem = false;
+            }
+
+
+
+
+            func_cb =  window[ func_cb ];
 
             var options = {
+                items: owlItems,
                 slideSpeed: owlSlideSpeed,
-                dots: owlPagination,
-                margin: owlMargin,
+                singleItem: owlSingleItem,
+                pagination: owlPagination,
                 autoHeight: owlAutoheight,
-                nav: owlNavigation,
-                navText : ["<i class='"+owlNavigationIconArr[0]+"'></i>", "<i class='"+owlNavigationIconArr[1]+"'></i>"],
-                loop: owlLoop,
-                autoplay: owlAutoPlay,
-                autoplayHoverPause: true,
-                responsiveClass:true,
-                responsive:{
-                    0:{items:objCarousel.data('mobile')},768:{items:objCarousel.data('tablet'),},992:{items:objCarousel.data('desktop')}
-                },
+                navigation: owlNavigation,
+                navigationText : ["<i class='"+owlNavigationIconArr[0]+"'></i>", "<i class='"+owlNavigationIconArr[1]+"'></i>"],
+                theme: owlTheme,
+                autoPlay: owlAutoPlay,
+                stopOnHover: true,
+                addClassActive : true,
                 mouseDrag : owlMousedrag,
-                themeClass: 'owl-kttheme'
 
+                itemsDesktop: [1199, owlDesktop],
+                itemsDesktopSmall: [979, owlDesktop],
+                itemsTabletSmall: [768, owlTablet],
+                itemsMobile: [480, owlMobile],
+
+                afterInit : function(elem){
+                    if( typeof func_cb === 'function'){
+                        func_cb( 'afterInit',   elem );
+                    }
+                },
+                afterUpdate: function(elem) {
+                    if( typeof func_cb === 'function'){
+                        func_cb( 'afterUpdate',   elem );
+                    }
+                },
+                afterMove : function ( elem ){
+                    if( typeof func_cb === 'function'){
+                        func_cb( 'afterUpdate',   elem );
+                    }
+                }
             };
-            $(objCarousel).waitForImages(function() {
+
+            console.log(options);
+
+            objCarousel.waitForImages(function() {
                 objCarousel.owlCarousel(options);
             });
+
 
             
         });
@@ -492,15 +521,16 @@
                     },
                     callbacks: {
                         open: function() {
-                            $('.single-product-quickview-images').owlCarousel({
-                                items: 1,
-                                themeClass: 'owl-kttheme',
-                                autoHeight: true,
-                                nav: true,
-                                navText : ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                                dots: false
+                            $('.single-product-quickview-images').waitForImages(function() {
+                                $(this).owlCarousel({
+                                    items: 1,
+                                    theme: 'carousel-navigation-center',
+                                    autoHeight: true,
+                                    navigation: true,
+                                    navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                                    pagination: false
+                                });
                             });
-
                             $('.themedev-product-popup form').wc_variation_form();
 
                         },
@@ -589,7 +619,7 @@
             var product_id = $(this).attr('data-id'),
                 item_key = $(this).attr('data-itemkey');
             
-            $('#header .mini-cart .shopping-bag').append('<span class="loading_overlay"><i class="fa fa-spinner fa-pulse"></i></span>');
+            $('.mini-cart .shopping-bag').append('<span class="loading_overlay"><i class="fa fa-spinner fa-pulse"></i></span>');
             
             var data = {
         		action: 'fronted_remove_product',
@@ -599,9 +629,8 @@
         	};
             
         	$.post(ajax_frontend.ajaxurl, data, function(response) {
-                $('#header .mini-cart').html(response.content_product);
-                
-                $('#header .mini-cart .shopping-bag span.loading_overlay').remove();
+                $('.mini-cart').html(response.content_product);
+                $('.mini-cart .loading_overlay').remove();
         	}, 'json');
             
             return false;
@@ -630,6 +659,59 @@
     }
 
 
+    /* ---------------------------------------------
+     Owl carousel woo
+     --------------------------------------------- */
+    function init_carouselwoo(){
+
+        $('.woocommerce-carousel-wrapper').each(function(){
+            var carouselWrapper = $(this),
+                wooCarousel = $(this).find('ul.products'),
+                wooCarouselTheme = carouselWrapper.data('theme'),
+                wooAutoPlay = carouselWrapper.data('autoplay'),
+                wooitemsCustom = carouselWrapper.data('itemscustom'),
+                wooSlideSpeed = carouselWrapper.data('slidespeed'),
+                wooNavigation = carouselWrapper.data('navigation'),
+                wooPagination = carouselWrapper.data('pagination');
+
+            if(typeof wooCarouselTheme === "undefined"){
+                wooCarouselTheme = 'style-navigation-center';
+            }
+            if(typeof wooAutoPlay === "undefined"){
+                wooAutoPlay = false;
+            }
+            if(typeof wooSlideSpeed === "undefined"){
+                wooSlideSpeed = '200';
+            }
+            if(typeof wooPagination === "undefined"){
+                wooPagination = true;
+            }
+            if(typeof wooNavigation === "undefined"){
+                wooNavigation = true;
+            }
+            wooCarousel.waitForImages(function() {
+                wooCarousel.owlCarousel({
+                    theme: wooCarouselTheme,
+                    items: 1,
+                    autoPlay: wooAutoPlay,
+                    itemsCustom: wooitemsCustom,
+                    autoHeight: false,
+                    navigation: true,
+                    navigationText: false,
+                    slideSpeed: wooSlideSpeed,
+                    pagination: wooPagination,
+                    afterInit: function (elem) {
+                        if (wooCarouselTheme == 'style-navigation-top') {
+                            var that = this;
+                            that.owlControls.addClass('carousel-heading-top').prependTo(elem.closest('.carousel-wrapper-top'))
+                        }
+                    }
+                });
+            });
+        });
+    }
+
+
     var sync1 = $("#sync1");
     var sync2 = $("#sync2");
 
@@ -642,7 +724,7 @@
             navigation: false,
             pagination: false,
             afterAction : syncPosition,
-            responsiveRefreshRate : 200,
+            responsiveRefreshRate : 200
         });
 
         sync2.owlCarousel({
@@ -703,8 +785,6 @@
             sync2.trigger("owl.goTo", num-1)
         }
     }
-
-
 
 
 })(jQuery); // End of use strict

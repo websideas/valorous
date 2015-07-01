@@ -31,6 +31,11 @@
                                     ?>
                                 </div>
                             <?php } ?>
+                            <?php if($blog_atts['readmore']){ ?>
+                                <div class="entry-more">
+                                    <a href="<?php the_permalink() ?>"><?php _e('Read more', THEME_LANG ); ?></a>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
 

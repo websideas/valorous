@@ -304,7 +304,7 @@ if (!function_exists('kt_get_page_sidebar')) {
             'sidebar_area' => '',
         );
         if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
-            $sidebar['sidebar'] = kt_option('blog_sidebar', 'full');
+            $sidebar['sidebar'] = kt_option('sidebar', 'full');
             if($sidebar['sidebar'] == 'left' ){
                 $sidebar['sidebar_area'] = kt_option('sidebar_left', 'primary-widget-area');
             }elseif($sidebar['sidebar'] == 'right'){
@@ -412,7 +412,7 @@ if (!function_exists('kt_option')){
  * 
  */
 function kt_get_logo(){
-    $logo = array('default' => '', 'retina' => '');
+    $logo = array('default' => '', 'logo_dark' => '');
     
     $logo_default = kt_option( 'logo' );
     $logo_dark = kt_option( 'logo_dark' );
@@ -424,7 +424,7 @@ function kt_get_logo(){
     if(is_array($logo_dark ) && $logo_dark['url'] != '' ){
         $logo['logo_dark'] = $logo_dark['url'];
     }
-/*
+
     if($logo['default'] && !$logo['logo_dark']){
         $logo['logo_dark'] = $logo['default'];
     }elseif(!$logo['default'] && $logo['logo_dark']){
@@ -435,7 +435,7 @@ function kt_get_logo(){
         $logo['default'] = THEME_IMG.'logo-light.png';
         $logo['logo_dark'] = THEME_IMG.'logo-dark.png';
     }
-    */
+
     return $logo;
 }
 /**
@@ -448,7 +448,7 @@ function kt_get_logo(){
 function kt_get_header_scheme(){
     $scheme = array(
         'scheme' => rwmb_meta('_kt_header_scheme'),
-        'sticky' => rwmb_meta('_kt_header_scheme')
+        'sticky' => rwmb_meta('_kt_header_scheme_fixed')
     );
     if(!$scheme['scheme']){
         $scheme['scheme'] = kt_option('header_scheme', 'dark');
@@ -649,20 +649,24 @@ function kt_render_carousel($data, $class = ''){
     }
 
     if($pagination == "true" && $pagination_color){
-        $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-dots .owl-dot span{color:'.$pagination_color.';}';
+        $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-pagination .owl-page span{color:'.$pagination_color.';}';
     }
     if($navigation == "true"){
         if($navigation_color){
-            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{color:'.$navigation_color.';}';
+            $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{color:'.$navigation_color.';}';
         }
         if(($navigation_style == 'circle' || $navigation_style == 'square' || $navigation_style == 'round') && $navigation_background){
-            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{background:'.$navigation_background.';}';
+            $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{background:'.$navigation_background.';}';
         }elseif(($navigation_style == 'circle_border' || $navigation_style == 'square_border' || $navigation_style == 'round_border') && $navigation_border_width){
-            $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{border:'.$navigation_border_width.'px solid;}';
+            $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{border:'.$navigation_border_width.'px solid;}';
             if($navigation_border_color){
-                $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-nav div{border-color:'.$navigation_border_color.';}';
+                $custom_css .= '#'.$uniqid.'.kt-owl-carousel .owl-buttons div{border-color:'.$navigation_border_color.';}';
             }
         }
+    }
+    if(intval($margin)){
+        $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-item{padding-left: '.$margin.'px;padding-right: '.$margin.'px;}';
+        $custom_css .= '#'.$uniqid.'{margin-left: -'.$margin.'px;margin-right: -'.$margin.'px;}';
     }
 
     $autoplay = ($autoplay == 'true') ? $autoplayspeed : $autoplay;
@@ -682,7 +686,7 @@ function kt_render_carousel($data, $class = ''){
         "loop" => $loop,
     );
     $output .= '<div class="'.esc_attr(implode(' ', $owl_carousel_class)).'">';
-    $output .= '<div id="'.esc_attr($uniqid).'" class="owl-carousel kt-owl-carousel" '.render_data_carousel($data_carousel).'>%carousel_html%</div>';
+    $output .= '<div id="'.esc_attr($uniqid).'" class="owl-carousel-kt"><div class="owl-carousel owl-kttheme kt-owl-carousel" '.render_data_carousel($data_carousel).'>%carousel_html%</div></div>';
     $output .= '</div>';
 
     if($custom_css){

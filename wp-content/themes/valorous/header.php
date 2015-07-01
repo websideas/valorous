@@ -65,7 +65,7 @@
                     <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-scheme="<?php echo esc_attr($header_scheme['scheme']) ?>" data-schemesticky="<?php echo esc_attr($header_scheme['sticky']) ?>">
                         <?php if(!$header_full){ echo '<div class="container">'; } ?>
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
-                        <?php if(!$header_full){ echo '<div>'; } ?>
+                        <?php if(!$header_full){ echo '</div>'; } ?>
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
                         <?php

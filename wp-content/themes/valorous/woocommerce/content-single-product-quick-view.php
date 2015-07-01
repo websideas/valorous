@@ -28,7 +28,7 @@ global $post, $product, $woocommerce;
     <div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
             <div class="carousel-navigation-center single-product-quickview">
-                <div class="single-product-quickview-images carousel-pagination-circle-o visiable-navigation">
+                <div class="single-product-quickview-images owl-kttheme carousel-pagination-circle-o visiable-navigation">
                 <?php
                     if ( has_post_thumbnail() ) {
 

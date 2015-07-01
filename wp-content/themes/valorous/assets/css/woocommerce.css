@@ -293,10 +293,11 @@
     font-weight: normal;
 }
 .woocommerce table.shop_table thead th{
-    text-transform: uppercase;
+    background: #1e1e1e;
+    border: medium none;
+    color: #fff;
     padding: 17px 12px;
-    background: #ecf0f1;
-    border: none;
+    text-transform: uppercase;
 }
 .woocommerce table.shop_table th.product-name{
     width: 50%;
@@ -304,14 +305,16 @@
 .woocommerce table.shop_table td{
   padding: 15px 12px;
   vertical-align: top;
-  border: none;
-  border-top: 1px solid #cccccc;
+  border: 1px solid #cccccc;
 }
 .woocommerce table.shop_table td.product-remove,
 .woocommerce table.shop_table td.product-quantity{
     text-align: center;
 }
-.woocommerce table.shop_table td.product-quantity .quantity{ width:135px; }
+.woocommerce table.shop_table td.product-quantity .quantity{
+    margin: 0 auto;
+    width: 135px;
+}
 .woocommerce table.shop_table td.product-thumbnail img,
 .woocommerce table.shop_table td .product-thumbnail img{
     border: 1px solid #cccccc;
@@ -2375,7 +2378,7 @@ ul.product-categories > li.cat-parent.current-cat > a{
 }
 .woocommerce table.shop_table td.actions{
     padding: 10px;
-    background: #ecf0f1;
+    border-bottom: 1px solid #cccccc;
 }
 .woocommerce table.shop_table td.actions .checkout-button,
 .woocommerce table.shop_table td.actions input[name="update_cart"]{

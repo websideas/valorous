@@ -458,7 +458,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'name' => __( 'Page header Tagline', THEME_LANG ),
                 'id' => $prefix . 'page_header_taglitle',
                 'desc' => __( "Enter tagline for page.", THEME_LANG ),
-                'type'  => 'text',
+                'type'  => 'textarea',
             ),
             array(
                 'id'       => "{$prefix}page_header_align",

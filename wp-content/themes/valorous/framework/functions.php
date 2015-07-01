@@ -122,7 +122,7 @@ function kt_get_page_title( $title = '' ){
     if ( is_front_page() && !is_singular('page') ) {
             $title = __( 'Blog', THEME_LANG );
     } elseif ( is_search() ) {
-        $title = sprintf( __( 'Search Results for: %s', THEME_LANG ), get_search_query() );
+        $title = __( 'Search', THEME_LANG );
     } elseif( is_404() ) {
         $title = __( 'Page not found', THEME_LANG );
     } elseif ( is_archive() ){
@@ -157,7 +157,7 @@ function kt_get_page_tagline(){
         $tagline =  get_the_archive_description( );
     }elseif( $post ){
         $post_id = $post->ID;
-        $tagline = rwmb_meta('_kt_page_header_taglitle', array(), $post_id);
+        $tagline = nl2br(rwmb_meta('_kt_page_header_taglitle', array(), $post_id));
     }
 
     return apply_filters( 'kt_tagline', $tagline );
@@ -194,7 +194,7 @@ function kt_get_the_archive_title($title) {
  * @return mixed|void
  */
 function kt_get_breadcrumb($breadcrumb = ''){
-    $show = kt_option('title_breadcrumbs');
+    $show = '';
     if( is_page() || is_singular() ){
         $show_option = rwmb_meta( '_kt_show_breadcrumb' );
         if($show_option != ''){
@@ -206,6 +206,9 @@ function kt_get_breadcrumb($breadcrumb = ''){
             $show = $show_option;
         }
     }
+    if($show == '' || $show == '-1'){
+        $show = kt_option('title_breadcrumbs');
+    }
 
     if($show){
         if(kt_is_wc()){
@@ -213,7 +216,7 @@ function kt_get_breadcrumb($breadcrumb = ''){
                 ob_start();
                 woocommerce_breadcrumb(
                     array(
-                        'delimiter' =>'<span class="sep navigation-pipe">&nbsp;</span>',
+                        'delimiter' =>'<span class="sep navigation-pipe"></span>',
                         'wrap_before' => '<nav class="woocommerce-breadcrumb breadcrumbs">',
 
                     ) );

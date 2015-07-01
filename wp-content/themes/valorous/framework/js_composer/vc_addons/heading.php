@@ -21,10 +21,10 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
 
 
 
-            'width' => '100px',
-            'height' => 1,
+            'width' => '38px',
+            'height' => 2,
             'border_style' => 'solid',
-            'color_border' => '#e0e0e0',
+            'color_border' => '#7e7e7e',
 
             'type' => 'fontawesome',
             'icon_fontawesome' => '',
@@ -256,7 +256,7 @@ vc_map( array(
             "type" => "colorpicker",
             "heading" => __("Border Color", THEME_LANG),
             "param_name" => "color_border",
-            "value" => "#e0e0e0",
+            "value" => "#7e7e7e",
             "description" => "",
             'group' => __( 'Divider', THEME_LANG )
         ),
@@ -275,7 +275,7 @@ vc_map( array(
             "type" => "textfield",
             "heading" => __("Divider width", THEME_LANG),
             "param_name" => "width",
-            "value" => "100px",
+            "value" => "38px",
             "description" => __("Please enter width of divider", THEME_LANG),
             'group' => __( 'Divider', THEME_LANG )
         ),
@@ -285,7 +285,8 @@ vc_map( array(
             'param_name' => 'height',
             'value' => getVcShared( 'separator border widths' ),
             'description' => __( 'Select height width (pixels).', 'js_composer' ),
-            'group' => __( 'Divider', THEME_LANG )
+            'group' => __( 'Divider', THEME_LANG ),
+            'std' => 2
         ),
         array(
             "type" => "kt_number",
