@@ -1,0 +1,235 @@
+<?php
+
+class kt_article_widget extends WP_Widget {
+    public $excerpt_length;
+    function kt_article_widget(){
+        parent::WP_Widget('kt_article_widget',__('KT Acricle',THEME_LANG),array('description' => ''));
+    }
+    function widget( $args, $instance ) {
+        extract($args);
+        $title = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title'], $instance, $this->id_base);
+        $number = intval($instance['number']);
+        $order = $instance['order'];
+        $orderby = $instance['orderby'];
+        
+        $showcat = (bool)$instance['showcat'];
+        $showimage = (bool)$instance['showimage'];
+        $showdate = (bool)$instance['showdate'];
+        $showcomment = (bool)$instance['showcomment'];
+        $showauthor = (bool)$instance['showauthor'];
+        $layout = $instance['layout'];
+        $category_name = $instance['category_name'];
+        
+        echo $before_widget;
+        if ( !empty( $title ) ) {
+            echo $before_title . $title . $after_title; 
+        } 
+    			if(in_array('all',$category_name)){
+                    $args = array(
+        				'orderby' => $orderby, 
+                        'order' => $order,
+                        'posts_per_page' => $number
+        			);
+                }else{
+                    $args = array(
+        				'orderby' => $orderby, 
+                        'order' => $order,
+                        'posts_per_page' => $number,
+                        'category__in' => $category_name
+        			);
+                }
+    			
+    			$query = new WP_Query( $args );
+                
+                global $blog_atts;
+			?>
+            <?php if ( $query->have_posts() ){ ?>
+                <ul class="<?php echo $layout; ?>">
+                    <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                        <?php if($showimage && has_post_thumbnail()){ $class = ' has-thumbnail'; }else{ $class = ''; } ?>
+                        <li class="acticle-item <?php echo $class; ?>">
+                            <?php echo $showimage;
+                                if($showimage && has_post_thumbnail()){
+                                    kt_post_thumbnail('small', 'img-responsive');
+                                }
+                            ?>
+                            <div class="article-attr">
+                                <h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                <?php
+                                    if( $showcat == 'true' ){
+                                        kt_entry_meta_categories();
+                                    }
+                                ?>
+                                <?php if( $showdate || $showcomment == 'true' || $showauthor == 'true' ){ ?>
+                                    <div class="entry-meta-data">
+                                        <?php 
+                                            if($showdate){
+                                                kt_entry_meta_time($blog_atts['date_format']);
+                                            }
+                                            if( $showauthor == 'true' ){
+                                                kt_entry_meta_author();
+                                            }
+                                            if($showcomment == 'true'){
+                                                kt_entry_meta_comments();
+                                            }
+                                        ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </li>
+                    <?php endwhile; wp_reset_postdata(); ?>
+                </ul>
+            <?php } ?>     
+        <?php 
+        echo $after_widget;
+    }
+    function update( $new_instance, $old_instance ) {
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        
+        $instance['order'] =  $new_instance['order'];
+        $instance['orderby'] =  $new_instance['orderby'];
+        $instance['showdate'] = (bool)$new_instance['showdate'];
+        $instance['showcat'] = (bool)$new_instance['showcat'];
+        $instance['showimage'] = (bool)$new_instance['showimage'];
+        $instance['showcomment'] = (bool)$new_instance['showcomment'];
+        $instance['showauthor'] = (bool)$new_instance['showauthor'];
+        $instance['layout'] = $new_instance['layout'];
+        $instance['category_name'] = $new_instance['category_name'];
+        
+        $instance['number'] = intval($new_instance['number']);
+        if(!$instance['number']) $instance['number'] = 5;
+        
+        return $instance;
+    }
+    function form( $instance ) {
+            $instance = wp_parse_args( (array) $instance,
+                array( 'title' => 'Widget Title', 
+                       'number' => '5', 
+                       'layout' => 'layout-1', 
+                       'order' => 'DESC', 
+                       'orderby' => 'date',
+                       'showdate'=> 'true', 
+                       'showimage'=> 'true', 
+                       'showicon'=> 'true',
+                       'showcomment' => 'true',
+                       'showcat' => 'true',
+                       'showauthor' => 'true', 
+                       'category_name' => array('all') 
+                ));
+            $title = strip_tags($instance['title']);
+            $number = format_to_edit($instance['number']);
+            
+            $order = format_to_edit($instance['order']);
+            $orderby = format_to_edit($instance['orderby']);
+            
+            $showdate = format_to_edit($instance['showdate']);
+            $showcat = format_to_edit($instance['showcat']);
+            $showimage = format_to_edit($instance['showimage']);
+            $showcomment = format_to_edit($instance['showcomment']);
+            $showauthor = format_to_edit($instance['showauthor']);
+            $layout = $instance['layout'];
+            
+            $category_name = $instance['category_name'];
+            if(!count($category_name)) $category_name = array('all');
+            
+            $cat = get_terms( 'category', array('hide_empty' => false));
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">
+                <?php _e('Title:',THEME_LANG); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+                name="<?php echo $this->get_field_name('title'); ?>" type="text"
+                value="<?php echo  esc_attr($title);?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('number'); ?>">
+                <?php _e('Number of posts to show:',THEME_LANG); ?> </label>
+            <input type="text" class="widefat" value="<?php echo  esc_attr($number);?>"
+                id="<?php echo $this->get_field_id('number'); ?>"
+                name="<?php echo $this->get_field_name('number'); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('category_name'); ?>">
+                <?php _e('Category:',THEME_LANG); ?> </label>
+            <select class="widefat" id="<?php echo $this->get_field_id('category_name'); ?>" name="<?php echo $this->get_field_name('category_name'); ?>[]" multiple="multiple">
+                <option <?php if (in_array('all',$category_name)){ echo 'selected="selected"';} ?> value="all"><?php _e('All',THEME_LANG); ?></option>
+                <?php foreach($cat as $item){ ?>
+                    <option <?php if (in_array($item->term_id,$category_name)){ echo 'selected="selected"';} ?> value="<?php echo $item->term_id ?>"><?php echo $item->name; ?></option>
+                <?php } ?>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('orderby'); ?>">
+                <?php _e('Order by:', THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('orderby'); ?>" name="<?php echo $this->get_field_name('orderby'); ?>">
+                <option <?php if ( 'name' == $orderby ) echo 'selected="selected"'; ?> value="name"><?php _e('Name',THEME_LANG); ?></option>
+                <option <?php if ( 'id' == $orderby ) echo 'selected="selected"'; ?> value="id"><?php _e('ID',THEME_LANG); ?></option>
+                <option <?php if ( 'date' == $orderby ) echo 'selected="selected"'; ?> value="date"><?php _e('Date',THEME_LANG); ?></option>
+                <option <?php if ( 'author' == $orderby ) echo 'selected="selected"'; ?> value="author"><?php _e('Author',THEME_LANG); ?></option>
+                <option <?php if ( 'modified' == $orderby ) echo 'selected="selected"'; ?> value="modified"><?php _e('Modified',THEME_LANG); ?></option>
+                <option <?php if ( 'rand' == $orderby ) echo 'selected="selected"'; ?> value="rand"><?php _e('Rand',THEME_LANG); ?></option>
+                <option <?php if ( 'comment_count ' == $orderby ) echo 'selected="selected"'; ?> value="comment_count "><?php _e('Comment count',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('order'); ?>">
+                <?php _e('Order:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('order'); ?>" name="<?php echo $this->get_field_name('order'); ?>">
+                <option <?php if ( 'DESC' == $order ) echo 'selected="selected"'; ?> value="DESC"><?php _e('Desc',THEME_LANG); ?></option>
+                <option <?php if ( 'ASC' == $order ) echo 'selected="selected"'; ?> value="ASC"><?php _e('Asc',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('showimage'); ?>">
+                <?php _e('Show Image:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('showimage'); ?>" name="<?php echo $this->get_field_name('showimage'); ?>">
+                <option <?php selected( $showimage, 0 ); ?> value="0"><?php _e('False',THEME_LANG); ?></option>
+                <option <?php selected( $showimage, 1 ); ?> value="1"><?php _e('True',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('showcat'); ?>">
+                <?php _e('Show Category:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('showcat'); ?>" name="<?php echo $this->get_field_name('showcat'); ?>">
+                <option <?php if ( $showcat ) echo 'selected="selected"'; ?> value="true"><?php _e('True',THEME_LANG); ?></option>
+                <option <?php if ( $showcat ) echo 'selected="selected"'; ?> value="false"><?php _e('False',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('showdate'); ?>">
+                <?php _e('Show date:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('showdate'); ?>" name="<?php echo $this->get_field_name('showdate'); ?>">
+                <option <?php if ( $showdate ) echo 'selected="selected"'; ?> value="false"><?php _e('False',THEME_LANG); ?></option>
+                <option <?php if ( $showdate ) echo 'selected="selected"'; ?> value="true"><?php _e('True',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('showauthor'); ?>">
+                <?php _e('Show Author:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('showauthor'); ?>" name="<?php echo $this->get_field_name('showauthor'); ?>">
+                <option <?php if ( $showauthor ) echo 'selected="selected"'; ?> value="true"><?php _e('True',THEME_LANG); ?></option>
+                <option <?php if ( $showauthor ) echo 'selected="selected"'; ?> value="false"><?php _e('False',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('showcomment'); ?>">
+                <?php _e('Show Comment:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('showcomment'); ?>" name="<?php echo $this->get_field_name('showcomment'); ?>">
+                <option <?php if ( $showcomment ) echo 'selected="selected"'; ?> value="false"><?php _e('False',THEME_LANG); ?></option>
+                <option <?php if ( $showcomment ) echo 'selected="selected"'; ?> value="true"><?php _e('True',THEME_LANG); ?></option>
+            </select>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('layout'); ?>">
+                <?php _e('Layout:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
+                <option <?php if ( 'layout-1' == $layout ) echo 'selected="selected"'; ?> value="layout-1"><?php _e('Layout 1',THEME_LANG); ?></option>
+                <option <?php if ( 'layout-2' == $layout ) echo 'selected="selected"'; ?> value="layout-2"><?php _e('Layout 2',THEME_LANG); ?></option>
+            </select>
+        </p>
+<?php
+    }
+}
+     
+register_widget('kt_article_widget');

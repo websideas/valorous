@@ -1134,6 +1134,36 @@ h2.widgettitle a.rsswidget:first-child,
     filter: alpha(opacity=70);
 }
 
+/*===== Widget Article =====*/
+.widget_kt_article ul.layout-1{
+    list-style: none;
+}
+.widget_kt_article ul.layout-1 li{
+    margin-bottom:30px;
+}
+.widget_kt_article ul.layout-1 li .entry-thumb{
+    float:left;    
+    width:120px;
+}
+.widget_kt_article ul.layout-1 li.has-thumbnail .article-attr{
+    margin-left:135px;
+}
+.widget_kt_article ul.layout-1 li .title{
+    margin-bottom:5px;
+    font-weight:bold;
+    font-size:15px;
+    line-height: 24px;
+}
+.widget_kt_article ul.layout-1 li span.cat-links{
+    display: inline-block;
+    margin-bottom:10px;
+    text-transform: uppercase;
+    font-size:12px;
+}
+.widget_kt_article ul.layout-1 li .entry-meta-data{
+    font-size:12px;
+}
+
 /* ==============================
    10. Search Fullwidth
    ============================== */
