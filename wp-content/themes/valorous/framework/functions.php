@@ -97,6 +97,8 @@ function kt_get_page_align(){
     $page_header_align = '';
     if ( is_front_page() && is_singular('page') ){
         $page_header_align =  rwmb_meta('_kt_page_header_align');
+    }if(is_search()){
+        $page_header_align = kt_option('title_align', 'left');
     }elseif( $post ){
         $post_id = $post->ID;
         $page_header_align =  rwmb_meta('_kt_page_header_align', array(), $post_id);
@@ -155,6 +157,8 @@ function kt_get_page_tagline(){
         $tagline =  rwmb_meta('_kt_page_header_taglitle');
     }elseif ( is_archive() ){
         $tagline =  get_the_archive_description( );
+    }elseif(is_search()){
+        $tagline = '';
     }elseif( $post ){
         $post_id = $post->ID;
         $tagline = nl2br(rwmb_meta('_kt_page_header_taglitle', array(), $post_id));

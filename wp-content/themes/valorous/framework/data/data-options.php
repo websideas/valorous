@@ -472,6 +472,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'on' => 'Enabled',
                         'off' => 'Disabled',
                     ),
+
+                    //Header Search Post Type - All - Product
+
                     array(
                         'id' => 'header_cart',
                         'type' => 'switch',
@@ -1691,6 +1694,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'required' => array('blog_sidebar','equals','right'),
                         'clear' => false
                     ),
+
+                    //Related Query Type
+
                     array(
                         'id' => 'blog_post_format',
                         'type' => 'switch',
@@ -1836,6 +1842,15 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                 )
             );
+            /*
+             * 404 Page
+             * Show Page Title
+             * 404 Page -- Default - From Page - Redirect Home
+             * Page 404 (Form page).
+             *
+             *
+             */
+
 
 
             /**
