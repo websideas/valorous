@@ -35,7 +35,7 @@ $woocommerce_loop['columns'] = apply_filters( 'woocommerce_cross_sells_columns',
 $woocommerce_loop['columns_tablet'] = apply_filters( 'woocommerce_cross_sells_columns_tablet', 1 );
 
 if ( $products->have_posts() ) : ?>
-	<div class="cross-sells-products carousel-wrapper-top clearfix col-md-12 col-sm-12 col-xs-12">
+	<div class="cross-sells-products carousel-wrapper-top clearfix">
         <div class="block-heading">
             <h2><?php _e( 'You may be interested in&hellip;', 'woocommerce' ) ?></h2>
         </div>

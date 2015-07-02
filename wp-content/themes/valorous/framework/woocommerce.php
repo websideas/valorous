@@ -428,7 +428,8 @@ remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_prod
 add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_show_product_loop_sale_flash', 10);
 
 
-
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+add_action( 'woocommerce_before_cart_collaterals', 'woocommerce_cross_sell_display', 5 );
 
 
 

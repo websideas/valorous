@@ -130,6 +130,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 </form>
 
+<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+
 <div class="cart-collaterals">
     
     <div class="row">
