@@ -232,7 +232,7 @@
             });
         });
     }
-    
+
 
     /* ---------------------------------------------
      Blog loadmore
@@ -247,14 +247,57 @@
                 $type = $posts.data('type'),
                 $current = parseInt($posts.attr('data-current')),
                 $paged = $current + 1,
-                $total = parseInt($posts.data('total'));
+                $total = parseInt($posts.data('total')),
+                $query_vars = $posts.data('queryvars');
+
+            if(typeof $query_vars === "undefined"){ $query_vars = ajax_frontend.query_vars; }
 
             var data = {
-                action: 'fronted_loadmore_blog',
+                action: 'fronted_loadmore_archive',
                 security : ajax_frontend.security,
                 settings: $posts.data('settings'),
+                queryvars: $query_vars,
                 paged : $paged
             };
+
+            console.log(data);
+
+            $loading.addClass('fa-spin');
+            $.post(ajax_frontend.ajaxurl, data, function(response) {
+                $loading.removeClass('fa-spin');
+                $posts.attr('data-current', $paged);
+
+                if($paged == $total){
+                    $loadmore.closest('.blog-posts-loadmore').hide();
+                }
+
+
+
+                if($type == 'grid' || $type == 'masonry'){
+                    var $row = $content.children('.row');
+                    if($type == 'masonry'){
+                        var $elems = $(response.html);
+                        $row.append($elems);
+                        loadmore_append();
+                        $row.waitForImages(function() {
+                            $row.masonry( 'appended', $elems, true );
+                        });
+                    }else{
+                        $row.append(response.html);
+                        loadmore_append();
+                    }
+                }else{
+                    $content.append(response.html);
+                    loadmore_append();
+                }
+
+                $content.find('.post-item').removeClass('loadmore-item');
+
+                console.log(response);
+
+            }, 'json');
+            /*
+
 
             $loading.addClass('fa-spin');
 
@@ -292,6 +335,8 @@
 
             }, 'json');
 
+            */
+
         });
     }
 
@@ -314,7 +359,7 @@
         $('.kt_custom_css').each(function(){
             var $this = $(this);
             if(!$this.children('style').length){
-                $this.html('<style>'+$this.html()+'</style>');
+                $this.html('<style>'+$this.data('css')+'</style>');
             }
         });
     }
@@ -512,8 +557,6 @@
                     }
                 }
             };
-
-            console.log(options);
 
             objCarousel.waitForImages(function() {
                 objCarousel.owlCarousel(options);

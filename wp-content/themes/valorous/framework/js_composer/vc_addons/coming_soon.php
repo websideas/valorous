@@ -24,7 +24,7 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
         extract($atts);
         
         $rand = rand(); 
-        $custom_css = '';
+        $custom_css = $data_animate = $cl_animate = $animate_item = '';
         
         $style_title = '';
         $atts['font_container'] = $font_container_title;

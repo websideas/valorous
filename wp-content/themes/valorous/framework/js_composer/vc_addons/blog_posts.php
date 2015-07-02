@@ -35,8 +35,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'max_items' => 10,
             "excerpt_length" => 50,
 
-            'paged' => false,
-            'loadmore' => false,
 
             "show_meta" => 'true',
             "show_author" => 'true',
@@ -51,22 +49,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         ), $atts );
 
-        global $paged;
         extract($atts);
 
         if ($blog_pagination == 'classic') {
-            global $wp_query, $paged;
+            global $wp_query;
             $tmp = $wp_query;
         }
-        if(isset($_POST['paged'])){
-            $paged = intval($_POST['paged']);
-        }
 
-        if(!$paged){
-            $paged = (get_query_var('paged')) ? intval(get_query_var('paged')) : intval(get_query_var('page'));
-        }
-        if (empty($paged) || $paged == 0)
-            $paged = 1;
 
 
         $output = $settings = '';
@@ -77,8 +66,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'order' => $order,
             'orderby' => $orderby,
             'posts_per_page' => $max_items,
-            'ignore_sticky_posts' => true,
-            'paged' => $paged
+            'ignore_sticky_posts' => true
         );
 
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
@@ -110,26 +98,23 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         ob_start();
 
-        //$wp_query = null;
+        $wp_query = null;
         $wp_query = new WP_Query( $args );
         if ( $wp_query->have_posts() ) :
 
-            if(!$loadmore){
-                if($blog_pagination == 'loadmore'){
-                    unset($atts['loadmore'], $atts['el_class'], $atts['css'], $atts['css_animation'], $atts['title']);
-                    $settings = esc_attr( json_encode( $atts ) );
-                }
-                echo "<div class='blog-posts blog-posts-".$blog_type."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-
-                echo "<div class='blog-posts-content clearfix'>";
-
-                do_action('before_blog_posts_loop');
-
-                if($blog_type == 'grid' || $blog_type == 'masonry'){
-                    echo "<div class='row'>";
-                }
-
+            if($blog_pagination == 'loadmore'){
+                unset($atts['el_class'], $atts['css'], $atts['css_animation'], $atts['title']);
+                $settings = esc_attr( json_encode( $atts ) );
             }
+            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
+            echo "<div class='blog-posts-content clearfix'>";
+
+            do_action('before_blog_posts_loop');
+
+            if($blog_type == 'grid' || $blog_type == 'masonry'){
+                echo "<div class='row'>";
+            }
+
             if($blog_type == 'grid' || $blog_type == 'masonry'){
                 $elementClass[] = 'blog-posts-columns-'.$blog_columns;
                 $elementClass[] = 'blog-posts-layout-'.$blog_layout;
@@ -152,11 +137,8 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 'sharebox' => apply_filters('sanitize_boolean', $sharebox),
                 "class" => ''
             );
-            if($loadmore){
-                $blog_atts['class'] = 'loadmore-item';
-            }
 
-            $i = ( $paged - 1 ) * $max_items + 1 ;
+            $i = 1 ;
             $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
 
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
@@ -167,7 +149,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                         if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
                             $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
 
-                        if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
+                        if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns_tablet )
                             $classes_extra .= ' col-clearfix-sm';
                     }
                     echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
@@ -180,16 +162,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             endwhile;
             remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
-            if(!$loadmore) {
-                if ($blog_type == 'grid' || $blog_type == 'masonry') {
-                    echo "</div><!-- .row -->";
-                }
+            if ($blog_type == 'grid' || $blog_type == 'masonry') {
+                echo "</div><!-- .row -->";
             }
-
             echo "</div><!-- .blog-posts-content -->";
 
-
-            if(!$loadmore && $wp_query->max_num_pages > 1) {
+            if($wp_query->max_num_pages > 1) {
                 if ($blog_pagination == 'classic') {
                     echo get_the_posts_pagination(array(
                         'prev_text' => __('Previous', THEME_LANG),
@@ -201,10 +179,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 }
             }
 
-            if(!$loadmore) {
-                echo "</div><!-- .blog-posts -->";
-                do_action('after_blog_posts_loop');
-            }
+            echo "</div><!-- .blog-posts -->";
+            do_action('after_blog_posts_loop');
+
+
         endif;
         wp_reset_postdata();
 
@@ -215,19 +193,16 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $wp_query = $tmp;
         }
 
-        if(!$loadmore) {
-            $elementClass = array(
-                'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),
-                'extra' => $this->getExtraClass($el_class),
-                'css_animation' => $this->getCSSAnimation($css_animation),
-                'shortcode_custom' => vc_shortcode_custom_css_class($css, ' ')
-            );
-            $elementClass = preg_replace(array('/\s+/', '/^\s|\s$/'), array(' ', ''), implode(' ', $elementClass));
+        $elementClass = array(
+            'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),
+            'extra' => $this->getExtraClass($el_class),
+            'css_animation' => $this->getCSSAnimation($css_animation),
+            'shortcode_custom' => vc_shortcode_custom_css_class($css, ' ')
+        );
+        $elementClass = preg_replace(array('/\s+/', '/^\s|\s$/'), array(' ', ''), implode(' ', $elementClass));
 
-            return '<div class="' . esc_attr($elementClass) . '">' . $output . '</div>';
-        }else{
-            return $output;
-        }
+        return '<div class="' . esc_attr($elementClass) . '">' . $output . '</div>';
+
     }
 }
 

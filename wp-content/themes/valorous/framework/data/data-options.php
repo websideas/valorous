@@ -1292,7 +1292,7 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
             
             /**
-			 *	Typography sidebar
+			 *	Typography Navigation
 			 **/
 			$this->sections[] = array(
 				'id'			=> 'typography_navigation',
@@ -1328,76 +1328,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     )
                 )
             );
-            
-            /**
-			 *	Popup
-			 **/
-			$this->sections[] = array(
-				'id'			=> 'popup',
-				'title'			=> __( 'Popup', THEME_LANG ),
-				'desc'			=> '',
-				'icon_class'	=> 'icon_desktop',
-				'fields'		=> array(
-                    array(
-						'id'		=> 'enable_popup',
-						'type'		=> 'switch',
-						'title'		=> __( 'Enable Popup', THEME_LANG ),
-						'subtitle'	=> __( '', THEME_LANG),
-						"default"	=> true,
-						'on'		=> __( 'On', THEME_LANG ),
-						'off'		=> __( 'Off', THEME_LANG ),
-					),
-                    array(
-						'id'		=> 'disable_popup_mobile',
-						'type'		=> 'switch',
-						'title'		=> __( 'Disable Popup on Mobile', THEME_LANG ),
-						'subtitle'	=> __( '', THEME_LANG),
-						"default"	=> false,
-						'on'		=> __( 'On', THEME_LANG ),
-						'off'		=> __( 'Off', THEME_LANG ),
-                        'required' => array('enable_popup','equals', 1)
-					),
-                    array(
-                        'id' => 'time_show',
-                        'type' => 'text',
-                        'title' => __('Time to show', THEME_LANG), 
-                        'desc' => __('Unit: s', THEME_LANG),
-                        'default' => __('0', THEME_LANG),
-                        'required' => array('enable_popup','equals', 1)
-                    ),
-                    array(
-                        'id' => 'time_show_again',
-                        'type' => 'text',
-                        'title' => __('Time to show again', THEME_LANG),
-                        'desc' => __('Unit: minutes', THEME_LANG), 
-                        'default' => __('300', THEME_LANG),
-                        'required' => array('enable_popup','equals', 1)
-                    ),
-                    array(
-                        'id'       => 'popup_background',
-                        'type'     => 'background',
-                        'output'   => array( '#popup-wrap' ),
-                        'title'    => __( 'Popup Background', THEME_LANG ),
-                        'subtitle' => __( 'Popup background with image, color, etc.', THEME_LANG ),
-                        'default'  => array(
-                            'background-color' => '#FFFFFF',
-                            'background-image' => THEME_IMG.'popup_bg.png',
-                            'background-repeat' => 'no-repeat',
-                            'background-size'   => 'cover',
-                            'background-position' => 'center center',
-                        ),
-                        'required' => array('enable_popup','equals', 1)
-                    ),
-                    array(
-                        'id'       => 'content_popup',
-                        'type'     => 'editor',
-                        'title'    => __( 'Content Popup', THEME_LANG ),
-                        'subtitle' => __( '', THEME_LANG ),
-                        'required' => array('enable_popup','equals', 1),
-                        'default'  => __('<h3 class="title-top">SIGN UP FOR OUR NEWSLETTER &amp; PROMOTIONS !</h3><p><img src="'.THEME_IMG.'popup_image.png" /></p>[mailchimp opt_in="yes" list="9306fec7e3" text_before="YOUR ENTIRE ORDER WHEN YOU SIGN UP TODAY !" layout="one"]Success! Check your inbox or spam folder for a message containing a confirmation link.[/mailchimp]', THEME_LANG),
-                    ),
-                )
-            );
+
 
             /**
              * General Blog
@@ -1567,6 +1498,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => $image_sizes,
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
+                        'default' => 'blog_post'
                     ),
 
 
@@ -1694,9 +1626,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'required' => array('blog_sidebar','equals','right'),
                         'clear' => false
                     ),
-
-                    //Related Query Type
-
                     array(
                         'id' => 'blog_post_format',
                         'type' => 'switch',
@@ -1753,7 +1682,36 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG)
                     ),
+                    array(
+                        'id'       => 'blog_related_type',
+                        'type'     => 'select',
+                        'title'    => __( 'Single Post: Related Query Type', THEME_LANG ),
+                        'subtitle'     => __( "Please choose sidebar for single post", THEME_LANG ),
+                        'options'  => array(
+                            'categories' => __('Categories', THEME_LANG),
+                            'tags' => __('Tags', THEME_LANG),
+                            'author' => __('Author', THEME_LANG)
+                        ),
+                        'default'  => 'categories',
+                        'clear' => false,
+                    ),
 
+                    array(
+                        'id' => 'blog_related_full',
+                        'type' => 'text',
+                        'title' => __('Related total for full width', THEME_LANG),
+                        'subtitle' => '',
+                        'desc' => '',
+                        'default' => '3',
+                    ),
+                    array(
+                        'id' => 'blog_related_sidebar',
+                        'type' => 'text',
+                        'title' => __('Related total for sidebar', THEME_LANG),
+                        'subtitle' => '',
+                        'desc' => '',
+                        'default' => '2'
+                    ),
 
                     array(
                         'type' => 'divide',
@@ -1839,13 +1797,253 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'desc'			=> 'Search settings',
                 'subsection' => true,
                 'fields'		=> array(
+                    array(
+                        'id'   => 'search_heading',
+                        'type' => 'heading',
+                        'title'    => __( 'Search post general', THEME_LANG ),
+                        'class'    => 'section-heading'
+                    ),
+                    array(
+                        'id'       => 'search_sidebar',
+                        'type'     => 'select',
+                        'title'    => __( 'Search: Sidebar configuration', THEME_LANG ),
+                        'subtitle'     => __( "Please choose archive page ", THEME_LANG ),
+                        'options'  => array(
+                            'full' => __('No sidebars', THEME_LANG),
+                            'left' => __('Left Sidebar', THEME_LANG),
+                            'right' => __('Right Layout', THEME_LANG)
+                        ),
+                        'default'  => 'full',
+                        'clear' => false
+                    ),
+                    array(
+                        'id'       => 'search_sidebar_left',
+                        'type' => 'select',
+                        'title'    => __( 'Search: Sidebar left area', THEME_LANG ),
+                        'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
+                        'options'  => $sidebars,
+                        'default'  => 'blog-widget-area',
+                        'required' => array('archive_sidebar','equals','left'),
+                        'clear' => false
+                    ),
+                    array(
+                        'id'       => 'search_sidebar_right',
+                        'type'     => 'select',
+                        'title'    => __( 'Search: Sidebar right area', THEME_LANG ),
+                        'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
+                        'options'  => $sidebars,
+                        'default'  => 'blog-widget-area',
+                        'required' => array('archive_sidebar','equals','right'),
+                        'clear' => false
+                    ),
+                    array(
+                        'id' => 'search_loop_style',
+                        'type' => 'select',
+                        'title' => __('Search Loop Style', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            'classic' => __( 'Classic', 'js_composer' ),
+                            'grid' => __( 'Grid', 'js_composer' ),
+                            'masonry' => __( 'Masonry', 'js_composer' ),
+                        ),
+                        'default' => 'classic'
+                    ),
+                    array(
+                        'id' => 'search_sharebox',
+                        'type' => 'switch',
+                        'title' => __('Share box', THEME_LANG),
+                        'desc' => __('Show or hide share box.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('archive_loop_style','equals', array( 'classic' ) ),
+                    ),
+                    array(
+                        'id' => 'search_columns',
+                        'type' => 'select',
+                        'title' => __('Columns on desktop', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            '1' => __( '1 column', 'js_composer' ) ,
+                            '2' => __( '2 columns', 'js_composer' ) ,
+                            '3' => __( '3 columns', 'js_composer' ) ,
+                            '4' => __( '4 columns', 'js_composer' ) ,
+                            '6' => __( '6 columns', 'js_composer' ) ,
+                        ),
+                        'default' => '3',
+                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                    ),
+                    array(
+                        'id' => 'search_columns_tablet',
+                        'type' => 'select',
+                        'title' => __('Columns on Tablet', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            '1' => __( '1 column', 'js_composer' ) ,
+                            '2' => __( '2 columns', 'js_composer' ) ,
+                            '3' => __( '3 columns', 'js_composer' ) ,
+                            '4' => __( '4 columns', 'js_composer' ) ,
+                            '6' => __( '6 columns', 'js_composer' ) ,
+                        ),
+                        'default' => '2',
+                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                    ),
+                    array(
+                        'id' => 'search_layout',
+                        'type' => 'select',
+                        'title' => __('Post layout', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            '1' => __( 'Layout 1', THEME_LANG ) ,
+                            '2' => __( 'Layout 2', THEME_LANG ) ,
+                            '3' => __( 'Layout 3', THEME_LANG ) ,
+                        ),
+                        'default' => '1',
+                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                    ),
+                    array(
+                        'id' => 'search_readmore',
+                        'type' => 'switch',
+                        'title' => __('Readmore button ', THEME_LANG),
+                        'desc' => __('Show or hide the readmore button.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'search_pagination',
+                        'type' => 'select',
+                        'title' => __('Pagination Type', THEME_LANG),
+                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'options' => array(
+                            'classic' => __( 'Classic pagination', THEME_LANG ),
+                            'loadmore' => __( 'Load More button', THEME_LANG )
+                        ),
+                        'default' => 'classic'
+                    ),
+                    array(
+                        'id' => 'search_excerpt_length',
+                        'type' => 'text',
+                        'title' => __('Excerpt Length', THEME_LANG),
+                        'desc' => __("Insert the number of words you want to show in the post excerpts.", THEME_LANG),
+                        'default' => '30',
+                    ),
+                    array(
+                        'id'   => 'search_image_size',
+                        'type' => 'select',
+                        'options' => $image_sizes,
+                        'title'    => __( 'Image size', THEME_LANG ),
+                        'desc' => __("Select image size.", THEME_LANG),
+                        'default' => 'blog_post'
+                    ),
+
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id' => 'search_meta',
+                        'type' => 'switch',
+                        'title' => __('Show Meta? ', THEME_LANG),
+                        'desc' => __('Show or hide the meta.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+
+                    array(
+                        'id' => 'search_meta_author',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Author', THEME_LANG),
+                        'desc' => __('Show meta author in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id' => 'search_meta_comments',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Comments', THEME_LANG),
+                        'desc' => __('Show post meta comments in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id' => 'search_meta_categories',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Categories', THEME_LANG),
+                        'desc' => __('Show post meta categories in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+
+                    array(
+                        'id' => 'search_meta_date',
+                        'type' => 'switch',
+                        'title' => __('Post Meta Date', THEME_LANG),
+                        'desc' => __('Show meta date in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id' => 'search_date_format',
+                        'type' => 'select',
+                        'title' => __('Date format', THEME_LANG),
+                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'options' => array(
+                            'd F Y' => __( '05 December 2014', 'js_composer' ) ,
+                            'F jS Y' => __( 'December 13th 2014', 'js_composer' ) ,
+                            'jS F Y' => __( '13th December 2014', 'js_composer' ) ,
+                            'd M Y' => __( '05 Dec 2014', 'js_composer' ) ,
+                            'M d Y' => __( 'Dec 05 2014', 'js_composer' ) ,
+                            'time' => __( 'Time ago', 'js_composer' ) ,
+                        ),
+                        'default' => 'd F Y',
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+                )
+            );
+
+            /**
+             *	Archive settings
+             **/
+            $this->sections[] = array(
+                'id'			=> '404_section',
+                'title'			=> __( '404 Page', THEME_LANG ),
+                'desc'			=> '404 Page settings',
+                'fields'		=> array(
+                    array(
+                        'id'   => '404_heading',
+                        'type' => 'heading',
+                        'title'    => __( '404 Page general', THEME_LANG ),
+                        'class'    => 'section-heading'
+                    ),
+
+                    array(
+                        'id' => '404_page_type',
+                        'type' => 'select',
+                        'title' => __('404 Page', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            'default' => __( 'Default', THEME_LANG ) ,
+                            'page' => __( 'From Page', THEME_LANG ) ,
+                            'home' => __( 'Redirect Home', THEME_LANG ) ,
+                        ),
+                        'default' => 'default',
+                    ),
 
                 )
             );
             /*
-             * 404 Page
+             *
              * Show Page Title
-             * 404 Page -- Default - From Page - Redirect Home
              * Page 404 (Form page).
              *
              *
@@ -2002,15 +2200,6 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> __('Social and share settings', THEME_LANG),
 				'icon_class'	=> 'social_facebook',
 				'fields'		=> array(
-
-                    array(
-                        'id' => 'addthis_id',
-                        'type' => 'text',
-                        'title' => __('Addthis ID', THEME_LANG),
-                        'subtitle' => __("Your Addthis ID", THEME_LANG),
-                        'desc' => '',
-                        'default' => ''
-                    ),
                     array(
 						'id' => 'twitter',
 						'type' => 'text',

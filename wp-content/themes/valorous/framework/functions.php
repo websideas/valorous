@@ -31,7 +31,9 @@ function get_page_header( ){
     $show_title = true;
     if ( is_front_page() && is_singular('page') ){
         $show_title = rwmb_meta('_kt_page_header', array(), get_option('page_on_front', true));
-    } elseif( $post ){
+    }elseif(is_archive()){
+        $show_title = true;
+    }elseif( $post ){
         $post_id = $post->ID;
         $show_title = rwmb_meta('_kt_page_header', array(), $post_id);
     }
@@ -99,9 +101,11 @@ function kt_get_page_align(){
         $page_header_align =  rwmb_meta('_kt_page_header_align');
     }if(is_search()){
         $page_header_align = kt_option('title_align', 'left');
+    }if(is_archive() || is_home()){
+        $page_header_align = '';
     }elseif( $post ){
         $post_id = $post->ID;
-        $page_header_align =  rwmb_meta('_kt_page_header_align', array(), $post_id);
+        $page_header_align = rwmb_meta('_kt_page_header_align', array(), $post_id);
     }
     if($page_header_align == ''){
         $page_header_align = kt_option('title_align', 'left');
@@ -125,11 +129,13 @@ function kt_get_page_title( $title = '' ){
             $title = __( 'Blog', THEME_LANG );
     } elseif ( is_search() ) {
         $title = __( 'Search', THEME_LANG );
+    } elseif( is_home() ){
+        $page_for_posts = get_option('page_for_posts', true);
+        $title = get_the_title($page_for_posts) ;
     } elseif( is_404() ) {
         $title = __( 'Page not found', THEME_LANG );
     } elseif ( is_archive() ){
         $title = get_the_archive_title();
-
     } elseif ( is_front_page() && is_singular('page') ){
         $page_on_front = get_option('page_on_front', true);
         $title = get_the_title($page_on_front) ;
@@ -153,6 +159,9 @@ function kt_get_page_tagline(){
     $tagline = '';
     if ( is_front_page() && !is_singular('page') ) {
         $tagline =  __('Lastest posts', THEME_LANG);
+    }elseif( is_home() ){
+        $page_for_posts = get_option('page_for_posts', true);
+        $tagline = nl2br(rwmb_meta('_kt_page_header_taglitle', array(), $page_for_posts))  ;
     }elseif ( is_front_page() && is_singular('page') ){
         $tagline =  rwmb_meta('_kt_page_header_taglitle');
     }elseif ( is_archive() ){
@@ -239,6 +248,32 @@ function kt_get_breadcrumb($breadcrumb = ''){
     return apply_filters( 'kt_breadcrumb', $breadcrumb );
 }
 
+/**
+ * Get settings archive
+ *
+ * @return array
+ */
+function kt_get_settings_archive(){
+    return array(
+        'blog_type' => kt_option('archive_loop_style', 'classic'),
+        'blog_columns' => kt_option('archive_columns'),
+        'blog_columns_tablet' => kt_option('archive_columns_tablet'),
+        'blog_layout' => kt_option('archive_layout', '1'),
+        'readmore' => kt_option('archive_readmore', 1),
+        'blog_pagination' => kt_option('archive_pagination', 'classic'),
+        'thumbnail_type' => kt_option('archive_thumbnail_type', 'image'),
+        'sharebox' => kt_option('archive_sharebox', 1),
+        'excerpt_length' => kt_option('archive_excerpt_length', 30),
+        'show_meta' => kt_option('archive_meta', 1),
+        'show_author' => kt_option('archive_meta_author', 1),
+        'show_category' => kt_option('archive_meta_categories', 1),
+        'show_comment' => kt_option('archive_meta_comments', 1),
+        'show_date' => kt_option('archives_meta_date', 1),
+        'date_format' => kt_option('archive_date_format', 1),
+        'image_size' => kt_option('archive_image_size', 'blog_post'),
+        'max_items' => get_option('posts_per_page')
+    );
+}
 
 /**
  * Get Layout sidebar of post

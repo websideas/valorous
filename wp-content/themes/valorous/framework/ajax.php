@@ -21,6 +21,81 @@ function wp_ajax_fronted_loadmore_blog_callback(){
 add_action( 'wp_ajax_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
 add_action( 'wp_ajax_nopriv_fronted_loadmore_blog', 'wp_ajax_fronted_loadmore_blog_callback' );
 
+function wp_ajax_fronted_fronted_loadmore_archive_callback(){
+    check_ajax_referer( 'ajax_frontend', 'security' );
+
+    $settings = $_POST['settings'];
+    $query_vars = (is_array($_POST['queryvars'])) ? $_POST['queryvars'] : json_decode( stripslashes( $_POST['queryvars'] ), true );
+    $query_vars['paged'] = intval($_POST['paged']);
+
+
+    $output = array('error' => 1, 'settings' => $settings);
+    extract($output['settings']);
+
+    $wp_query = new WP_Query( $query_vars );
+
+    if($blog_type == 'grid' || $blog_type == 'masonry'){
+        $elementClass[] = 'blog-posts-columns-'.$blog_columns;
+        $elementClass[] = 'blog-posts-layout-'.$blog_layout;
+        $bootstrapColumn = round( 12 / $blog_columns );
+        $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
+        $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
+    }
+
+    global $blog_atts;
+    $blog_atts = array(
+        'image_size' => $image_size,
+        'readmore' => apply_filters('sanitize_boolean', $readmore),
+        'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
+        "show_author" => apply_filters('sanitize_boolean', $show_author),
+        "show_category" => apply_filters('sanitize_boolean', $show_category),
+        "show_comment" => apply_filters('sanitize_boolean', $show_comment),
+        "show_date" => apply_filters('sanitize_boolean', $show_date),
+        "date_format" => $date_format,
+        'thumbnail_type' => $thumbnail_type,
+        'sharebox' => apply_filters('sanitize_boolean', $sharebox),
+        "class" => 'loadmore-item'
+    );
+
+
+    $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
+    ob_start();
+
+    $i = ( $query_vars['paged'] - 1 ) * $max_items + 1 ;
+    while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        if($blog_type == 'grid' || $blog_type == 'masonry'){
+            $classes_extra = '';
+            if($blog_type == 'grid'){
+                if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
+                    $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
+
+                if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
+                    $classes_extra .= ' col-clearfix-sm';
+            }
+            echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
+        }
+
+        get_template_part( $path , get_post_format() );
+
+        if($blog_type == 'grid' || $blog_type == 'masonry'){
+            echo "</div><!-- .article-post-item -->";
+        }
+        $i++;
+
+
+    endwhile;
+    $output['html'] = ob_get_clean();
+
+    echo json_encode($output);
+    die();
+
+}
+
+
+
+add_action( 'wp_ajax_fronted_loadmore_archive', 'wp_ajax_fronted_fronted_loadmore_archive_callback' );
+add_action( 'wp_ajax_nopriv_fronted_loadmore_archive', 'wp_ajax_fronted_loadmore_archive_callback' );
+
 if(!function_exists('putRevSlider')){
     function putRevSlider($data,$putIn = ""){
         if(class_exists( 'RevSlider' )){
@@ -80,64 +155,6 @@ add_action( 'wp_ajax_nopriv_fronted_get_wishlist', 'wp_ajax_fronted_get_wishlist
 
 
 /**
- * Categories products callback AJAX request 
- *
- * @since 1.0
- * @return json
- */
-function wp_ajax_fronted_woocategories_products_callback(){
-    check_ajax_referer( 'ajax_frontend', 'security' );
-    $output = array();
-    
-    $atts = array(
-        "per_page" => $_POST['per_page'],
-        "orderby" => $_POST['orderby'],
-        "order" => $_POST['order'],
-    );
-    
-    global $woocommerce_loop;
-    $woocommerce_loop['columns'] = intval($_POST['columns']);
-    
-    $cat_id = ($_POST['cat_id']) ? $_POST['cat_id'] : 0;
-    
-    
-    if(defined( 'YITH_WOOCOMPARE' )){
-        $YITH_Woocompare_Frontend = new YITH_Woocompare_Frontend();
-    }
-    
-    
-    $meta_query = WC()->query->get_meta_query();
-    $args = array(
-		'posts_per_page'	=> $atts['per_page'],
-		'orderby' 			=> $atts['orderby'],
-		'order' 			=> $atts['order'],
-		'no_found_rows' 	=> 1,
-		'post_status' 		=> 'publish',
-		'post_type' 		=> 'product',
-		'meta_query' 		=> $meta_query,
-	);
-    
-    if($cat_id){
-        $args['tax_query'] = array( array( 'taxonomy' => 'product_cat', 'field' => 'id', 'terms' => $cat_id ) );
-    }
-    
-    $products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
-    if ( $products->have_posts() ) :
-        while ( $products->have_posts() ) : $products->the_post();
-            ob_start();
-            wc_get_template_part( 'content', 'product' );
-            $output[] = ob_get_clean();
-        endwhile; // end of the loop.
-    endif;
-    wp_reset_postdata();
-    
-    echo json_encode($output);
-    die();
-}
-add_action( 'wp_ajax_fronted_woocategories_products', 'wp_ajax_fronted_woocategories_products_callback' );
-add_action( 'wp_ajax_nopriv_fronted_woocategories_products', 'wp_ajax_fronted_woocategories_products_callback' );
-
-/**
  * Product Quick View callback AJAX request 
  *
  * @since 1.0
@@ -146,19 +163,11 @@ add_action( 'wp_ajax_nopriv_fronted_woocategories_products', 'wp_ajax_fronted_wo
 
 function wp_ajax_frontend_product_quick_view_callback() {
     check_ajax_referer( 'ajax_frontend', 'security' );
-    
-    global $product, $woocommerce, $post;
-
-	$product_id = $_POST["product_id"];
-	
+    global $product, $post;
+	$product_id = intval($_POST["product_id"]);
 	$post = get_post( $product_id );
-
 	$product = wc_get_product( $product_id );
-    
-    // Call our template to display the product infos
     wc_get_template( 'content-single-product-quick-view.php');
-    
-    
     die();
     
 }
@@ -167,36 +176,17 @@ add_action( 'wp_ajax_nopriv_frontend_product_quick_view', 'wp_ajax_frontend_prod
 
 
 
-add_action( 'wp_ajax_fronted_popup', 'wp_ajax_fronted_popup_callback' );
-add_action( 'wp_ajax_nopriv_fronted_popup', 'wp_ajax_fronted_popup_callback' );
-
-function wp_ajax_fronted_popup_callback() {
-    check_ajax_referer( 'ajax_frontend', 'security' );
-    $output = array();
-    $time_show_again = kt_option( 'time_show_again', 60 );
-    setcookie('kt_popup', 1, time() + ( $time_show_again*60), '/');
-    echo json_encode($output);
-    
-    die();
-}
-
 
 function wp_ajax_fronted_remove_product_callback(){
     check_ajax_referer( 'ajax_frontend', 'security' );
-    $product_id = $_POST['product_id'];
     $item_key = $_POST['item_key'];
-    
-    global $wpdb, $woocommerce;
     $output = array();
-    
     foreach ( WC()->cart->cart_contents as $cart_item_key => $cart_item ){
         if($cart_item_key == $item_key ){
             WC()->cart->remove_cart_item( $cart_item_key );
         }
     }
-	
     $output['content_product'] = woocommerce_get_cart(false);
-    
     echo json_encode($output);
     die();
 }

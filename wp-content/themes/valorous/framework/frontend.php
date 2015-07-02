@@ -156,11 +156,12 @@ function london_scripts() {
 
     
     wp_enqueue_script( 'london-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
-	
+    global $wp_query;
     wp_localize_script( 'london-script', 'ajax_frontend', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'security' => wp_create_nonce( 'ajax_frontend' ),
-        'current_date' => date_i18n('Y-m-d H:i:s')
+        'current_date' => date_i18n('Y-m-d H:i:s'),
+        'query_vars' => json_encode( $wp_query->query )
     ));
 
     
@@ -180,10 +181,10 @@ function theme_after_footer_top_addscroll(){
 
 
 
-function kt_excerpt_length( $length ) {
-    return 40;
+function kt_excerpt_length( ) {
+    return kt_option('archive_excerpt_length', 30);
 }
-add_filter( 'excerpt_length', 'kt_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'kt_excerpt_length', 99 );
 
 
 
@@ -674,37 +675,43 @@ if( ! function_exists( 'kt_share_box' ) ){
  * Related Article [related_article]
  * --------------------------------------------------------------------------- */
 if ( ! function_exists( 'kt_related_article' ) ) :
-    function kt_related_article($post_id = null){
+    function kt_related_article($post_id = null, $type = 'categories'){
         global $post;
         if(!$post_id) $post_id = $post->ID;
 
-        $sidebar = kt_get_single_sidebar();
+
+        $sidebar = kt_get_single_sidebar($post_id);
         if($sidebar['sidebar'] == 'full'){
             $blog_columns = 3;
             $blog_columns_tablet = 2;
+            $posts_per_page = kt_option('blog_related_full', 3);
         }else{
             $blog_columns = 2;
             $blog_columns_tablet = 2;
+            $posts_per_page = kt_option('blog_related_sidebar', 2);
         }
 
-        $current_cat = get_the_category($post_id);
-        $cat = array();
-        foreach($current_cat as $item) $cat[] = $item->slug;
-
         $args = array(
-            'post_type' => 'post',
-            'orderby' => 'rand',
-            'order' => 'DESC',
-            'posts_per_page' => $blog_columns,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'category',
-                    'field' => 'slug',
-                    'terms' => $cat
-                )
-            ),
+            'posts_per_page' => $posts_per_page,
             'post__not_in' => array($post_id)
         );
+        if($type == 'tags'){
+            $tags = wp_get_post_tags($post_id);
+            if(!$tags) return false;
+            $tag_ids = array();
+            foreach($tags as $tag)
+                $tag_ids[] = $tag->term_id;
+            $args['tag__in'] = $tag_ids;
+        }elseif($type == 'author'){
+            $args['author'] = get_the_author();
+        }else{
+            $categories = get_the_category($post_id);
+            if(!$categories) return false;
+            $category_ids = array();
+            foreach($categories as $category)
+                $category_ids[] = $category->term_id;
+            $args['category__in'] = $category_ids;
+        }
         $query = new WP_Query( $args );
         ?>
         <?php if($query->have_posts()){ ?>

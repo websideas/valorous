@@ -104,6 +104,7 @@
 
 .woocommerce a.remove {
     font-size: 13px;
+    color: #ced3d6;
 }
 .woocommerce a.remove:after{
     content: '\f014';
@@ -362,7 +363,12 @@
     padding: 0;
     display: inline-block;
 }
-
+.woocommerce table.shop_table td.product-name .variation dd p:after{
+    content: ',';
+}
+.woocommerce table.shop_table td.product-name .variation dd:last-child p:after{
+    content: '';
+}
 .woocommerce table.shop_table.customer_details{
     border: 1px solid #CCCCCC;
 }
@@ -585,10 +591,10 @@
     width: 300px;
     text-align: left;
     
-    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;  /* For Safari 3.1 to 6.0 */
-    -moz-transition: opacity 0.5s, -moz-transform 0.5s;
-    -ms-transition: opacity 0.5s, -ms-transform 0.5s;
-    transition: opacity 0.5s, transform 0.5s;
+    -webkit-transition: all 0.5s ease;  /* For Safari 3.1 to 6.0 */
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
     -webkit-transform:  translate(0,40px);
     -moz-transform:     translate(0,40px);
     -o-transform:       translate(0,40px);

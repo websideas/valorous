@@ -135,7 +135,7 @@ if(count($styles)){
 }
 
 if($custom_css){
-    $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+    $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
 }
 
 ?>
