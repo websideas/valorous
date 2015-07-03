@@ -1002,45 +1002,7 @@ h2.widgettitle a.rsswidget:first-child,
 .widget-container .widget-title a.rsswidget:first-child{
     display: none;
 }
-.widget_rss ul,
-.widget_pages ul,
-.widget_recent_entries ul,
-.widget_nav_menu ul,
-.widget_recent_comments ul,
-.widget_meta ul,
-.widget_categories ul,
-.widget_archive ul{
-    margin:0;
-    padding:0;
-}
-.widget_rss ul li,
-.widget_pages ul li,
-.widget_recent_entries ul li,
-.widget_recent_comments ul li,
-.widget_meta ul li,
-.widget_categories ul li,
-.widget_archive ul li,
-.widget_nav_menu ul li{
-    line-height: 24px;
-    list-style: none;
-    padding-left: 17px;
-    position: relative;
-}
-.widget_rss ul li:after,
-.widget_pages ul li,
-.widget_recent_entries ul li,
-.widget_recent_comments ul li,
-.widget_meta ul li,
-.widget_categories ul li,
-.widget_archive ul li,
-.widget_nav_menu ul li{
 
-}
-
-
-.widget_pages ul li a{
-    margin:0;
-}
 .widget_rss ul li span.rss-date,
 .widget_recent_entries ul li .post-date{
     display: block;
@@ -1569,7 +1531,7 @@ body.footer_fixed .static-footer{
     position: relative;
     margin: 0;
 }
-.sidebar  .widget_pages ul li,
+.sidebar .widget_pages ul li,
 .sidebar .widget_recent_comments ul li,
 .sidebar .widget_recent_entries ul li,
 .sidebar .widget_nav_menu ul li,
@@ -1581,6 +1543,30 @@ body.footer_fixed .static-footer{
     list-style: none;
     line-height: normal;
 }
+.sidebar .widget_pages ul li:after,
+.sidebar .widget_recent_comments ul li:after,
+.sidebar .widget_recent_entries ul li:after,
+.sidebar .widget_nav_menu ul li:after,
+.sidebar .widget_meta ul li:after,
+.sidebar .widget_archive ul li:after,
+.sidebar .widget_categories ul li:after{
+    width:4px;
+    height:4px;
+    content:"";
+    background: #9a9a9a;
+    position: absolute;
+    left:10px;
+    top:18px;
+}
+.sidebar .widget_pages ul li ul.children li:after,
+.sidebar .widget_recent_comments ul li ul.children li:after,
+.sidebar .widget_recent_entries ul li ul.children li:after,
+.sidebar .widget_nav_menu ul li ul.children li:after,
+.sidebar .widget_meta ul li ul.children li:after,
+.sidebar .widget_archive ul li ul.children li:after,
+.sidebar .widget_categories ul li ul.children li:after{
+    left:30px;
+}
 .sidebar .widget_rss ul li,
 .sidebar .widget_pages ul li a,
 .sidebar .widget_recent_comments ul li,
@@ -1590,28 +1576,17 @@ body.footer_fixed .static-footer{
 .sidebar .widget_archive ul li a,
 .sidebar .widget_categories ul li a{
     padding:10px 30px;
-    border-bottom:1px solid #ccc;
     display: block;
-    background: url(../images/arrow-widget.png) no-repeat 9px 17px;
+    line-height: normal;
+}
+.sidebar .widget_nav_menu ul li a,
+.sidebar .widget_meta ul li a,
+.sidebar .widget_archive ul li a,
+.sidebar .widget_categories ul li a{
+    text-transform: uppercase;
 }
 .sidebar .widget_rss ul li{
     padding:10px 0 10px 30px;
-}
-.sidebar .widget_pages ul li:last-child ul.children,
-.sidebar .widget_nav_menu ul li:last-child ul.sub-menu,
-.sidebar .widget_categories ul li:last-child ul.children{
-    border-bottom:none;
-}
-.sidebar .widget_rss ul li:last-child,
-.sidebar .widget_pages ul li:last-child a,
-.sidebar .widget_recent_comments ul li:last-child,
-.sidebar .widget_recent_entries ul li:last-child,
-.sidebar .widget_nav_menu ul li:last-child a,
-.sidebar .widget_meta ul li:last-child a,
-.sidebar .widget_archive ul li:last-child a,
-.sidebar .widget_categories > ul > li ul.children li:last-child > a,
-.sidebar .widget_categories > ul > li:last-child > a{
-    border: none;
 }
 .sidebar .widget_nav_menu ul li span,
 .sidebar .widget_archive ul li span,
@@ -1619,13 +1594,6 @@ body.footer_fixed .static-footer{
     position: absolute;
     top:10px;
     right:10px;
-}
-.sidebar .widget_pages ul li ul.children,
-.sidebar .widget_nav_menu ul li ul.sub-menu,
-.sidebar .widget_categories ul li ul.children{
-    margin-top: -1px;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
 }
 .sidebar .widget_pages ul li ul.children li ul.children,
 .sidebar .widget_nav_menu ul li ul.sub-menu li ul.sub-menu,
@@ -1640,21 +1608,45 @@ body.footer_fixed .static-footer{
 .sidebar .widget_pages ul li ul.children li a:before,
 .sidebar .widget_nav_menu ul li ul.sub-menu li a:before,
 .sidebar .widget_categories ul li ul.children li a:before{
-    left:17px;
+    left:30px;
 }
-.sidebar .widget_nav_menu ul li a:hover,
-.sidebar .widget_nav_menu ul li a:focus,
-.sidebar .widget_pages ul li a:hover,
-.sidebar .widget_pages ul li a:focus,
-.sidebar .widget_meta ul li a:hover,
-.sidebar .widget_meta ul li a:focus,
-.sidebar .widget_archive ul li a:hover,
-.sidebar .widget_archive ul li a:focus,
-.sidebar .widget_categories ul li.current-cat > a,
-.sidebar .widget_categories ul li a:hover,
-.sidebar .widget_categories ul li a:focus{
-    background-color: #dbdbdb;
+.sidebar .widget_rss ul li:focus a,
+.sidebar .widget_pages ul li:focus a,
+.sidebar .widget_recent_comments ul li:focus a,
+.sidebar .widget_recent_entries ul li:focus a,
+.sidebar .widget_nav_menu ul li:focus a,
+.sidebar .widget_meta ul li:focus a,
+.sidebar .widget_archive ul li:focus a,
+.sidebar .widget_categories ul li:focus a,
+.sidebar .widget_rss ul li:hover a,
+.sidebar .widget_pages ul li:hover a,
+.sidebar .widget_recent_comments ul li:hover a,
+.sidebar .widget_recent_entries ul li:hover a,
+.sidebar .widget_nav_menu ul li:hover a,
+.sidebar .widget_meta ul li:hover a,
+.sidebar .widget_archive ul li:hover a,
+.sidebar .widget_categories ul li:hover a{
+    color:#d0a852;
 }
+.sidebar .widget_rss ul li:focus:after,
+.sidebar .widget_pages ul li:focus:after,
+.sidebar .widget_recent_comments ul li:focus:after,
+.sidebar .widget_recent_entries ul li:focus:after,
+.sidebar .widget_nav_menu ul li:focus:after,
+.sidebar .widget_meta ul li:focus:after,
+.sidebar .widget_archive ul li:focus:after,
+.sidebar .widget_categories ul li:focus:after,
+.sidebar .widget_rss ul li:hover:after,
+.sidebar .widget_pages ul li:hover:after,
+.sidebar .widget_recent_comments ul li:hover:after,
+.sidebar .widget_recent_entries ul li:hover:after,
+.sidebar .widget_nav_menu ul li:hover:after,
+.sidebar .widget_meta ul li:hover:after,
+.sidebar .widget_archive ul li:hover:after,
+.sidebar .widget_categories ul li:hover:after{
+    background: #d0a852;
+}
+
 
 .sidebar .widget_recent_entries ul li .post-date,
 .sidebar .widget_rss ul li span.rss-date{
