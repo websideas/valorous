@@ -35,7 +35,9 @@ get_header(); ?>
         </div>
         <?php if($sidebar['sidebar'] != 'full'){ ?>
             <div class="<?php echo apply_filters('kt_sidebar_class', 'sidebar', $sidebar['sidebar']); ?>">
-                <?php dynamic_sidebar($sidebar['sidebar_area']); ?>
+                <div class="sidebar-inner">
+                    <?php dynamic_sidebar($sidebar['sidebar_area']); ?>
+                </div>
             </div><!-- .sidebar -->
         <?php } ?>
     </div><!-- .row -->

@@ -94,7 +94,7 @@ get_header( 'shop' ); ?>
             }
     	?>
         <?php if($layout == 'left' || $layout == 'right'){  ?>
-            </div><!-- .col-md-9 -->
+            </div><!-- .row -->
         <?php } ?>
     
     	<?php
