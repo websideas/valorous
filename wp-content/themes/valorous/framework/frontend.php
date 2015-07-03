@@ -407,11 +407,11 @@ function kt_comments($comment, $args, $depth) {
 }
 
 
-if ( ! function_exists( 'kt_paging_nav' ) ) :
+if ( ! function_exists( 'kt_post_nav' ) ) :
     /**
      * Display navigation to next/previous set of posts when applicable.
      */
-    function kt_paging_nav($post_id = null) {
+    function kt_post_nav($post_id = null) {
         global $post;
         if(!$post_id) $post_id = $post->ID;
         // Don't print empty markup if there's nowhere to navigate.
@@ -435,20 +435,33 @@ endif;
 
 
 
+if ( ! function_exists( 'kt_paging_nav' ) ) :
+    /**
+     * Display navigation to next/previous set of posts when applicable.
+     */
+    function kt_paging_nav( ) {
+        the_posts_pagination(array(
+            'prev_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Previous', THEME_LANG), '<i class="fa fa-angle-left"></i>'),
+            'next_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Next', THEME_LANG), '<i class="fa fa-angle-right"></i>'),
+            'before_page_number' => '',
+        ));
+    }
+endif;
+
+
+
 if ( ! function_exists( 'kt_entry_meta_author' ) ) :
     /**
      * Prints HTML with meta information for author.
      *
      */
     function kt_entry_meta_author() {
-        if ( 'post' == get_post_type() ) {
-            printf( '<span class="author vcard">%4$s <span class="screen-reader-text">%1$s </span><a class="url fn n" href="%2$s">%3$s</a></span>',
-                _x( 'Author', 'Used before post author name.', THEME_LANG ),
-                esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-                get_the_author(),
-                __('Posed by:', THEME_LANG )
-            );
-        }
+        printf( '<span class="author vcard">%4$s <span class="screen-reader-text">%1$s </span><a class="url fn n" href="%2$s">%3$s</a></span>',
+            _x( 'Author', 'Used before post author name.', THEME_LANG ),
+            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+            get_the_author(),
+            __('Posed by:', THEME_LANG )
+        );
     }
 endif;
 

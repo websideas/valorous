@@ -169,11 +169,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
             if($wp_query->max_num_pages > 1) {
                 if ($blog_pagination == 'classic') {
-                    echo get_the_posts_pagination(array(
-                        'prev_text' => __('Previous', THEME_LANG),
-                        'next_text' => __('Next', THEME_LANG),
-                        'before_page_number' => '',
-                    ));
+                    kt_paging_nav();
                 } elseif ($blog_pagination == 'loadmore') {
                     echo '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button"><span class="fa fa-refresh"></span> ' . __('Load more', THEME_LANG) . '</a></div>';
                 }

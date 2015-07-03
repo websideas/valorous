@@ -1,3 +1,27 @@
+02.07.2015 - ver 4.6
+   - New: Full screen row height
+   - New: Chart elements (Pie, Doughnut, Line, Bar)
+   - New: YouTube background for row
+   - New: Tabs element
+   - New: Tour element
+   - New: Accordion element
+   - New: Image overlay filters - enhance your images with awesome color overlays
+   - Improved: New cleaner shortcodes (default values are not stored in the [shortcode])
+   - Improved: UI for param group
+   - Improved: Alt tags for images
+   - Improved: Responsive options added to inner columns
+   - Improved: Custom heading element. Cleaner markup, option to choose font from theme
+   - Improved: Icon element now accepts custom color
+   - Improved: Outline button now accepts custom color for border
+   - Improved: Shortcode mapping process speed improvements
+   - Fixed: Removed taxonomy db call from map.php (speed improvements)
+   - Fixed: WP SEO + VC "Page slug changes if a shortcode with custom WP_Query used"
+   - Fixed: Loading js files in vc-gallery.php
+   - Fixed: Design options work when loaded from Templatera
+
+16.06.2015 - ver 4.5.3
+   - prettyPhoto updated to 3.1.6 - latest stable and secure version
+   
 18.05.2015 - ver 4.5.2
    - Performance: Removed call to get taxonomies from vc_map and now it is called via ajax only when it is needed
    - Fixed: slug changing when Yoast SEO plugin activated

@@ -19,8 +19,6 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'letter_spacing' => '0',
 
 
-
-
             'width' => '38px',
             'height' => 2,
             'border_style' => 'solid',
@@ -125,6 +123,12 @@ vc_map( array(
             'admin_label' => true,
             'value' => __( 'This is custom heading element with Google Fonts', 'js_composer' ),
             'description' => __( 'Note: If you are using non-latin characters be sure to activate them under Settings/Visual Composer/General Settings.', 'js_composer' ),
+        ),
+        array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
+            // compatible with btn2 and converted from href{btn1}
         ),
         array(
             "type" => "textarea_html",

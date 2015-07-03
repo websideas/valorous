@@ -126,7 +126,9 @@ var vcGridStylePagination = null;
 	vcGridStylePagination.prototype.initCarousel = function () {
 		// If owlCarousel
 		if ( $.fn.vcOwlCarousel ) {
-			var that = this;
+			var that = this, $vcCarousel;
+			$vcCarousel = this.$content.data( 'owl.vccarousel' );
+			$vcCarousel && $vcCarousel.destroy();
 			this.$content.on( 'initialized.owl.vccarousel', function ( event ) {
 				if ( that.settings.paging_design.indexOf( 'pagination' ) > - 1 ) {
 					var $carousel = event.relatedTarget;
@@ -162,6 +164,7 @@ var vcGridStylePagination = null;
 						$pag_object.render( $pag_object.getPages( 1 + event.page.index ) );
 						$pag_object.setupEvents();
 					} );
+
 					window.vc_prettyPhoto();
 				}
 			} ).vcOwlCarousel( {
@@ -188,7 +191,19 @@ var vcGridStylePagination = null;
 				autoHeight: true,
 				autoplay: this.settings.auto_play === true,
 				autoplayTimeout: this.settings.speed,
-				callbacks: true
+				callbacks: true,
+				onTranslated: function () {
+					// wait for animation to complete
+					setTimeout( function () {
+						jQuery( window ).trigger( 'grid:items:added', that.$el );
+					}, 750 );
+				},
+				onRefreshed: function () {
+					// wait for animation to complete
+					setTimeout( function () {
+						jQuery( window ).trigger( 'grid:items:added', that.$el );
+					}, 750 );
+				}
 			} );
 			// set key up.
 			/*$(document).off('keyup').on('keyup', function (e) {

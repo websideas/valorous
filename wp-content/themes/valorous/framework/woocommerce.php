@@ -398,11 +398,6 @@ function kt_template_single_excerpt(){
  * 
  */
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
-add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20);
-
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
-add_action( 'woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 12);
-
 add_action( 'woocommerce_before_shop_loop', 'woocommerce_gridlist_toggle', 40);
 
 
@@ -599,16 +594,12 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 
         } else { ?>
 
-            <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-
-                <h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
-
-            <?php endif; ?>
             <?php do_action( 'woocommerce_archive_description' ); ?>
 
             <?php if ( have_posts() ) : ?>
-
-                <?php do_action('woocommerce_before_shop_loop'); ?>
+                <div class="woocommerce-before-shop clearfix">
+                    <?php do_action('woocommerce_before_shop_loop'); ?>
+                </div>
 
                 <?php woocommerce_product_loop_start(); ?>
 
@@ -620,9 +611,12 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 
                 <?php endwhile; // end of the loop. ?>
 
+
                 <?php woocommerce_product_loop_end(); ?>
 
-                <?php do_action('woocommerce_after_shop_loop'); ?>
+                <div class="woocommerce-end-shop clearfix">
+                    <?php do_action('woocommerce_after_shop_loop'); ?>
+                </div>
 
             <?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
 
@@ -633,225 +627,3 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
         }
     }
 }
-
-
-if( file_exists( FW_DIR . 'plugins/yith-woocommerce-compare/class.yith-woocompare-frontend.php' ) ){
-    require_once ( FW_DIR . 'plugins/yith-woocommerce-compare/class.yith-woocompare-frontend.php' );
-}
-if( file_exists( FW_DIR . 'plugins/yith-woocommerce-compare/class.yith-woocompare-frontend.php' ) ){
-    require_once ( FW_DIR . 'plugins/yith-woocommerce-compare/class.yith-woocompare-frontend.php' );
-}
-
-
-/**
- * Support Plugin: WooCommerce Variation Swatches and Photos
- * Plugin URI: http://woothemes.com/woocommerce/
- */
-
-if( class_exists('WC_Swatch_Picker') ){
-
-    class KT_WC_Swatch_Picker {
-
-        private $size;
-        private $attributes;
-        private $selected_attributes;
-        private $swatch_type_options;
-
-        public function __construct( $product_id, $attributes, $selected_attributes ) {
-            $this->swatch_type_options = maybe_unserialize( get_post_meta( $product_id, '_swatch_type_options', true ) );
-
-            if ( !$this->swatch_type_options ) {
-                $this->swatch_type_options = array();
-            }
-
-            $product_configured_size = get_post_meta( $product_id, '_swatch_size', true );
-            if ( !$product_configured_size ) {
-                $this->size = 'swatches_image_size';
-            } else {
-                $this->size = $product_configured_size;
-            }
-
-            $this->attributes = $attributes;
-            $this->selected_attributes = $selected_attributes;
-        }
-
-        public function picker() {
-            ?>
-
-            <table class="variations-table" >
-                <tbody>
-                <?php
-                $loop = 0;
-                foreach ( $this->attributes as $name => $options ) : $loop++;
-                    $st_name = sanitize_title( $name );
-                    $hashed_name = md5( $st_name );
-                    $lookup_name = '';
-                    if ( isset( $this->swatch_type_options[$hashed_name] ) ) {
-                        $lookup_name = $hashed_name;
-                    } elseif ( isset( $this->swatch_type_options[$st_name] ) ) {
-                        $lookup_name = $st_name;
-                    }
-                    ?>
-                    <tr>
-                        <td>
-                            <div class="label-wrap">
-                                <label for="<?php echo $st_name; ?>"><?php echo WC_Swatches_Compatibility::wc_attribute_label( $name ); ?></label>
-                            </div>
-                            <?php
-                            if ( isset( $this->swatch_type_options[$lookup_name] ) ) {
-                                $picker_type = $this->swatch_type_options[$lookup_name]['type'];
-                                if ( $picker_type == 'default' ) {
-                                    $this->render_default( $st_name, $options );
-                                } else {
-                                    $this->render_picker( $st_name, $options, $name );
-                                }
-                            } else {
-                                $this->render_default( $st_name, $options );
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php
-        }
-
-        public function render_picker( $name, $options, $real_name = '' ) {
-            $st_name = sanitize_title( $name );
-            $hashed_name = md5( $st_name );
-
-            $lookup_name = '';
-            if ( isset( $this->swatch_type_options[$hashed_name] ) ) {
-                $lookup_name = $hashed_name;
-            } elseif ( isset( $this->swatch_type_options[$st_name] ) ) {
-                $lookup_name = $st_name;
-            }
-
-            $taxonomy_lookup_name = taxonomy_exists( $st_name ) ? $st_name : (taxonomy_exists( $real_name ) ? $real_name : $st_name);
-            $selected_value = (isset( $this->selected_attributes[$lookup_name] )) ? $this->selected_attributes[$lookup_name] : '';
-            ?>
-
-            <?php $layout = apply_filters( 'wc_swatches_and_photos_label_get_layout', (isset( $this->swatch_type_options[$lookup_name]['layout'] ) ? $this->swatch_type_options[$lookup_name]['layout'] : 'default' ), $name, $options, $this ); ?>
-
-            <?php if ( $layout == 'label_above' ) : ?>
-                <?php // $this->render_picker_label_layout( $layout, $name, $options ); ?>
-            <?php endif; ?>
-
-            <?php do_action( 'wc_swatches_and_photos_label_before', $layout, $name, $options, $this ); ?>
-
-            <div
-                data-attribute-name="<?php echo 'attribute_' . $st_name; ?>"
-                data-value="<?php echo !empty($selected_value) ? md5( $selected_value ) : ''; ?>"
-                id="<?php echo esc_attr( $st_name ); ?>"
-                class="select attribute_<?php echo $st_name; ?>_picker">
-
-                <input type="hidden" name="<?php echo 'attribute_' . $st_name; ?>" id="<?php echo 'attribute_' . $st_name; ?>" value="<?php echo $selected_value; ?>" />
-
-                <?php if ( is_array( $options ) ) : ?>
-                    <?php
-                    // Get terms if this is a taxonomy - ordered
-                    if ( taxonomy_exists( $taxonomy_lookup_name ) ) :
-                        $args = array('menu_order' => 'ASC');
-                        $terms = get_terms( $taxonomy_lookup_name, $args );
-
-                        foreach ( $terms as $term ) :
-
-                            if ( !in_array( $term->slug, $options ) ) {
-                                continue;
-                            }
-
-
-                            if ( $this->swatch_type_options[$lookup_name]['type'] == 'term_options' ) {
-                                $size = apply_filters( 'woocommerce_swatches_size_for_product', $this->size, get_the_ID(), $st_name );
-                                $swatch_term = new WC_Swatch_Term( 'swatches_id', $term->term_id, $taxonomy_lookup_name, $selected_value == $term->slug, $size );
-                            } elseif ( $this->swatch_type_options[$lookup_name]['type'] == 'product_custom' ) {
-                                $size = apply_filters( 'woocommerce_swatches_size_for_product', $this->swatch_type_options[$lookup_name]['size'], get_the_ID(), $st_name );
-                                $swatch_term = new WC_Product_Swatch_Term( $this->swatch_type_options[$lookup_name], $term->term_id, $taxonomy_lookup_name, $selected_value == $term->slug, $size );
-                            }
-
-
-                            do_action( 'woocommerce_swatches_before_picker_item', $swatch_term );
-                            echo $swatch_term->get_output();
-                            do_action( 'woocommerce_swatches_after_picker_item', $swatch_term );
-
-                        endforeach;
-                    else :
-                        foreach ( $options as $option ) :
-
-                            $size = apply_filters( 'woocommerce_swatches_size_for_product', $this->swatch_type_options[$lookup_name]['size'], get_the_ID(), $st_name );
-                            $swatch_term = new WC_Product_Swatch_Term( $this->swatch_type_options[$lookup_name], $option, $name, $selected_value == sanitize_title( $option ), $size );
-
-                            do_action( 'woocommerce_swatches_before_picker_item', $swatch_term );
-                            echo $swatch_term->get_output();
-                            do_action( 'woocommerce_swatches_after_picker_item', $swatch_term );
-                        endforeach;
-                    endif;
-                    ?>
-                <?php endif; ?>
-            </div>
-        <?php
-        }
-
-        public function render_default( $name, $options ) {
-            $st_name = sanitize_title( $name );
-            $hashed_name = md5( $st_name );
-            $selected_value = '';
-
-            $lookup_name = '';
-            if ( isset( $this->swatch_type_options[$hashed_name] ) ) {
-                $lookup_name = $hashed_name;
-            } elseif ( isset( $this->swatch_type_options[$st_name] ) ) {
-                $lookup_name = $st_name;
-            }
-
-            ?>
-            <select
-                data-attribute-name="<?php echo 'attribute_' . $st_name; ?>"
-                id="<?php echo esc_attr( $st_name ); ?>">
-                <option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
-                <?php if ( is_array( $options ) ) : ?>
-                    <?php
-                    $selected_value = (isset( $this->selected_attributes[$lookup_name] )) ? $this->selected_attributes[$lookup_name] : '';
-                    // Get terms if this is a taxonomy - ordered
-                    if ( taxonomy_exists( $st_name ) ) :
-                        $args = array('menu_order' => 'ASC');
-                        $terms = get_terms( $st_name, $args );
-
-                        foreach ( $terms as $term ) :
-
-                            if ( !in_array( $term->slug, $options ) ) {
-                                continue;
-                            }
-
-                            echo '<option value="' . esc_attr( md5( $term->slug ) ) . '" ' . selected( $selected_value, $term->slug ) . '>' . $term->name . '</option>';
-                        endforeach;
-                    else :
-                        foreach ( $options as $option ) :
-                            echo '<option value="' . md5( sanitize_title( $option ) ) . '" ' . selected( $selected_value, sanitize_title( $option ) ) . '>' . $option . '</option>';
-                        endforeach;
-                    endif;
-                    ?>
-                <?php endif; ?>
-            </select>
-            <input type="hidden" name="<?php echo 'attribute_' . $st_name; ?>" id="<?php echo 'attribute_' . $st_name; ?>" value="<?php echo $selected_value; ?>" />
-        <?php
-        }
-
-        public function render_picker_label_layout( $layout, $name, $options ) {
-            $st_name = sanitize_title( $name );
-            ?>
-
-            <div
-                id="<?php echo esc_attr( $st_name ); ?>_label"
-                class="attribute_<?php echo $st_name; ?>_picker_label">
-                &nbsp;
-            </div>
-
-        <?php
-        }
-
-    }
-
-} // end if
-

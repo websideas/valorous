@@ -94,44 +94,45 @@ vc_add_shortcode_param('kt_switch', 'kt_switch_settings_field', FW_JS.'kt_switch
 
 
 /**
- * Taxonomy checkbox list field.
+ * Dropdown(select with options) shortcode attribute type generator.
  *
+ * @param $settings
+ * @param $value
+ *
+ * @since 4.4
+ * @return string - html string.
  */
-function vc_kt_taxonomy_settings_field($settings, $value) {
-	$dependency = '';
-
-	$value_arr = $value;
-	if ( !is_array($value_arr) ) {
-		$value_arr = array_map( 'trim', explode(',', $value_arr) );
-	}
+function vc_kt_taxonomy_settings_field( $settings, $value ) {
     $output = '';
-	if ( !empty($settings['taxonomy']) ) {
 
-        $placeholder = '';
-        $terms_fields = array();
-        if($settings['placeholder']){
-            $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
-        }
-        
+    $value_arr = $value;
+    if ( !is_array($value_arr) ) {
+        $value_arr = array_map( 'trim', explode(',', $value_arr) );
+    }
+
+    $size = (!empty($settings['size'])) ? 'size="'.esc_attr($settings['size']).'"' : '';
+    $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
+    $placeholder = (!empty($settings['placeholder'])) ? 'data-placeholder="'.$settings['placeholder'].'"' : '';
+
+    $output .= '<select '.$multiple.' '.$placeholder.' '.$size.'
+        class="wpb_vc_param_value kt-select-field wpb-input wpb-select '
+        . $settings['param_name']
+        . ' ' . $settings['type']. '">';
+    if ( !empty($settings['taxonomy']) ) {
         $terms = get_terms( $settings['taxonomy'] , array('hide_empty' => false));
-		if ( $terms && !is_wp_error($terms) ) {
-			foreach( $terms as $term ) {
-                $selected = (in_array( $term->term_id, $value_arr )) ? ' selected="selected"' : '';
-                $terms_fields[] = "<option value='{$term->term_id}' {$selected}>{$term->name}</option>";
-			}
-		}
+        foreach( $terms as $term ) {
+            $selected = (in_array( $term->term_id, $value_arr )) ? ' selected="selected"' : '';
+            $output .= "<option class='" . $term->term_id . "' value='".$term->term_id."' ".$selected.">".htmlspecialchars($term->name)."</option>";
 
-        $size = (!empty($settings['size'])) ? 'size="'.esc_attr($settings['size']).'"' : '';
-        $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
+        }
+    }
 
-        $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
-                    .implode( $terms_fields )
-                .'</select>';
+    $output .= '</select>';
+    $output .= '<input type="hidden"class="wpb_vc_param_value '.$settings['param_name'].'" name="' . $settings['param_name'] . '" value="'.esc_attr($value).'" />';
 
-	}
-    
     return $output;
 }
+
 vc_add_shortcode_param('kt_taxonomy', 'vc_kt_taxonomy_settings_field', FW_JS.'kt_select.js');
 
 /**
@@ -139,38 +140,37 @@ vc_add_shortcode_param('kt_taxonomy', 'vc_kt_taxonomy_settings_field', FW_JS.'kt
  *
  */
 function vc_kt_posts_settings_field($settings, $value) {
-	$dependency = '';
+
     $output = '';
-    
-	$value_arr = $value;
-	if ( !is_array($value_arr) ) {
-		$value_arr = array_map( 'trim', explode(',', $value_arr) );
-	}
-    $posts_fields = array();
-    $placeholder = '';
-    if($settings['placeholder']){
-        $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
+
+    $value_arr = $value;
+    if ( !is_array($value_arr) ) {
+        $value_arr = array_map( 'trim', explode(',', $value_arr) );
     }
-    
+
+    $size = (!empty($settings['size'])) ? 'size="'.esc_attr($settings['size']).'"' : '';
+    $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
+    $placeholder = (!empty($settings['placeholder'])) ? 'data-placeholder="'.$settings['placeholder'].'"' : '';
+
+    $output .= '<select '.$multiple.' '.$placeholder.' '.$size.'
+        class="wpb_vc_param_value kt-select-field wpb-input wpb-select '
+        . $settings['param_name']
+        . ' ' . $settings['type']. '">';
     if ( !empty($settings['args']) ) {
-        
         $query = new WP_Query( $settings['args']);
         if ( $query->have_posts() ) {
-        	while ( $query->have_posts() ) { $query->the_post();
+            while ( $query->have_posts() ) { $query->the_post();
                 $selected = (in_array( get_the_ID(), $value_arr )) ? ' selected="selected"' : '';
-                $posts_fields[] = "<option value='".get_the_ID()."' {$selected}>".get_the_title()."</option>";
-        	}
+                $output .= "<option value='".get_the_ID()."' {$selected}>".get_the_title()."</option>";
+            }
         }
         wp_reset_postdata();
-
-        $size = (!empty($settings['size'])) ? 'size="'.$settings['size'].'"' : '';
-        $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
-
-        $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
-                    .implode( $posts_fields )
-                .'</select>';
     }
+    $output .= '</select>';
+    $output .= '<input type="hidden"class="wpb_vc_param_value '.$settings['param_name'].'" name="' . $settings['param_name'] . '" value="'.esc_attr($value).'" />';
+
     return $output;
+
 }
 vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_JS.'kt_select.js');
 
@@ -182,32 +182,32 @@ vc_add_shortcode_param('kt_posts', 'vc_kt_posts_settings_field', FW_JS.'kt_selec
  *
  */
 function vc_kt_authors_settings_field($settings, $value) {
-	$dependency = '';
 
-	$value_arr = $value;
-	if ( !is_array($value_arr) ) {
-		$value_arr = array_map( 'trim', explode(',', $value_arr) );
-	}
+    $output = '';
 
-    $terms_fields = array();
-    $placeholder = '';
-    if($settings['placeholder']){
-        $placeholder = 'data-placeholder="'.$settings['placeholder'].'"';
+    $value_arr = $value;
+    if ( !is_array($value_arr) ) {
+        $value_arr = array_map( 'trim', explode(',', $value_arr) );
     }
 
-    $args = array();
-    $authors = get_users( $args );
+    $size = (!empty($settings['size'])) ? 'size="'.esc_attr($settings['size']).'"' : '';
+    $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
+    $placeholder = (!empty($settings['placeholder'])) ? 'data-placeholder="'.$settings['placeholder'].'"' : '';
+
+    $output .= '<select '.$multiple.' '.$placeholder.' '.$size.'
+        class="wpb_vc_param_value kt-select-field wpb-input wpb-select '
+        . $settings['param_name']
+        . ' ' . $settings['type']. '">';
+
+    $authors = get_users( array() );
     foreach( $authors as $author ) {
         $selected = (in_array( $author->ID, $value_arr )) ? ' selected="selected"' : '';
-        $terms_fields[] = "<option value='{$author->ID}' {$selected}>{$author->display_name}</option>";
+        $output .= "<option value='{$author->ID}' {$selected}>{$author->display_name}</option>";
     }
 
-    $size = (!empty($settings['size'])) ? 'size="'.$settings['size'].'"' : '';
-    $multiple = (!empty($settings['multiple'])) ? 'multiple="multiple"' : '';
 
-    $output = '<select '.$placeholder.' '.$multiple.' '.$size.' name="'.esc_attr($settings['param_name']).'" class="wpb_vc_param_value kt-select-field wpb-input wpb-select '.$settings['param_name'].' '.$settings['type'].'_field" '.$dependency.'>'
-                .implode( $terms_fields )
-            .'</select>';
+    $output .= '</select>';
+    $output .= '<input type="hidden"class="wpb_vc_param_value '.$settings['param_name'].'" name="' . $settings['param_name'] . '" value="'.esc_attr($value).'" />';
 
     return $output;
 

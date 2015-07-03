@@ -381,47 +381,6 @@
                 console.log(response);
 
             }, 'json');
-            /*
-
-
-            $loading.addClass('fa-spin');
-
-            $.post(ajax_frontend.ajaxurl, data, function(response) {
-                $loading.removeClass('fa-spin');
-                $posts.attr('data-current', $paged) ;
-
-
-                if($paged == $total){
-                    $loadmore.closest('.blog-posts-loadmore').hide();
-                }
-
-                if($type == 'grid' || $type == 'masonry'){
-                    var $row = $content.children('.row');
-                    if($type == 'masonry'){
-                        var $elems = $(response.html);
-                        $row.append($elems);
-                        loadmore_append();
-                        $row.waitForImages(function() {
-                            $row.masonry( 'appended', $elems, true );
-                        });
-                    }else{
-                        $row.append(response.html);
-                        loadmore_append();
-                    }
-                }else{
-                    $content.append(response.html);
-                    loadmore_append();
-                }
-
-
-
-
-                $content.find('.post-item').removeClass('loadmore-item');
-
-            }, 'json');
-
-            */
-
         });
     }
 
@@ -627,6 +586,12 @@
                 itemsMobile: [480, owlMobile],
 
                 afterInit : function(elem){
+
+                    if(owlPagination && owlNavigation){
+                        var that = this;
+                        that.paginationWrapper.appendTo(objCarousel.closest('.owl-carousel-kt'));
+                    }
+
                     if( typeof func_cb === 'function'){
                         func_cb( 'afterInit',   elem );
                     }

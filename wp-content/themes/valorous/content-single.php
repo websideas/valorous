@@ -65,7 +65,7 @@
     }
 
     if(kt_post_option(null, '_kt_prev_next', 'blog_next_prev', 1)){
-        kt_paging_nav();
+        kt_post_nav();
     }
 
     if(kt_post_option(null, '_kt_related_acticles', 'blog_related', 1)){

@@ -5,15 +5,13 @@
     //var_dump($blog_atts);
 ?>
 <article <?php post_class($classes); ?>>
-
-
     <div class="entry-main-content">
                 <?php kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive'); ?>
                 <div class="post-item-carousel-outer">
                     <div class="post-item-carousel-inner display-table">
                         <div class="post-item-carousel-content display-cell">
                             <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                            <?php if($blog_atts['show_author'] || $blog_atts['show_category'] || $blog_atts['show_comment'] || $blog_atts['show_date']){ ?>
+                            <?php if($blog_atts['show_meta']){ ?>
                                 <div class="entry-meta-data">
                                     <?php
                                     if($blog_atts['show_author']){

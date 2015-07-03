@@ -1019,10 +1019,10 @@ h2.widgettitle a.rsswidget:first-child,
     display: inline-block;
     float:left;
     margin: 0 10px 10px 0;
-    transition: all 0.3s ease-in-out 0s;
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    -moz-transition: all 0.3s ease-in-out 0s;
-    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
     padding:8px 11px;
     color:#d6d6d6;
     border: 1px solid #d6d6d6;
@@ -1171,7 +1171,6 @@ h2.widgettitle a.rsswidget:first-child,
     border: 0 none;
     border-radius: 0;
     color: #b8b8b8;
-    font-family: Vollkorn;
     font-size: 35px;
     font-style: italic;
     font-weight: normal;
@@ -1783,7 +1782,6 @@ body.footer_fixed .static-footer{
     transition: opacity 0.5s ease-in-out;
 }
 .owl-kttheme .owl-buttons div{
-
     box-sizing: content-box;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
@@ -1803,14 +1801,14 @@ body.footer_fixed .static-footer{
 .owl-kttheme .owl-buttons div:hover{
     opacity: 1;
 }
-.carousel-navigation-circle_border .owl-kttheme .owl-buttons div,
+.carousel-navigation-border_circle .owl-kttheme .owl-buttons div,
 .carousel-navigation-circle .owl-kttheme .owl-buttons div{
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     -o-border-radius: 50%;
 }
-.carousel-navigation-round_border .owl-kttheme .owl-buttons div,
+.carousel-navigation-border_round .owl-kttheme .owl-buttons div,
 .carousel-navigation-round .owl-kttheme .owl-buttons div{
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1850,10 +1848,10 @@ body.footer_fixed .static-footer{
     right: -50px;
 }
 .carousel-navigation-center .owl-kttheme .owl-buttons div.owl-prev{
-    left: 0px;
+    left: 50px;
 }
 .carousel-navigation-center .owl-kttheme .owl-buttons div.owl-next{
-    right: 0px;
+    right: 50px;
 }
 .text-left .carousel-navigation-bottom .owl-kttheme .owl-buttons,
 .text-left .owl-kttheme .owl-pagination{
@@ -1869,44 +1867,56 @@ body.footer_fixed .static-footer{
  * Dots pagination
  */
 
-.owl-kttheme .owl-pagination{
+.owl-carousel-kt .owl-pagination{
     margin-top: 10px;
     text-align: center;
     width: 100%;
 }
-.owl-kttheme .owl-pagination .owl-page{
+.owl-carousel-kt .owl-pagination .owl-page{
     display: inline-block;
     margin: 0 5px;
+    cursor: pointer;
 }
-.owl-kttheme .owl-pagination .owl-page span:after{
+.owl-carousel-kt .owl-pagination .owl-page span:after{
     font-family: fontawesome;
     font-weight: normal;
     font-style: normal;
     content: '\f10c';
     opacity: 0.5;
-    font-size: 10px;
+    font-size: 12px;
 }
-.owl-kttheme .owl-pagination .owl-page.active span:after{
+.owl-carousel-kt .owl-pagination .owl-page.active span:after{
     opacity: 1;
 }
 
-.carousel-pagination-dot-circle-o .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-dot-circle-o .owl-carousel-kt .owl-pagination .owl-page span:after{
     content: '\f192';
 }
-.carousel-pagination-circle .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-circle .owl-carousel-kt .owl-pagination .owl-page span:after{
     content: '\f111';
 }
-.carousel-pagination-circle-thin .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-circle-thin .owl-carousel-kt .owl-pagination .owl-page span:after{
     content: '\f1db';
 }
-.carousel-pagination-stop .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-stop .owl-carousel-kt .owl-pagination .owl-page span:after{
     content: '\f04d';
 }
-.carousel-pagination-square .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-square .owl-carousel-kt .owl-pagination .owl-page span:after{
     content: '\f0c8';
 }
-.carousel-pagination-square-o .owl-kttheme .owl-pagination .owl-page span:after{
+.carousel-pagination-square-o .owl-carousel-kt .owl-pagination .owl-page span:after{
      content: '\f096';
+}
+.carousel-pagination-inside .owl-pagination{
+    bottom: 10px;
+    margin: 0;
+    position: absolute;
+    width: auto;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%;
 }
 
 
@@ -4797,7 +4807,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     width:25%;
 }
 .coming-soon .wrap .title{
-    font-family: 'Vollkorn';
     font-weight:400;
     font-size:26px;
     color:#fff;
@@ -4805,7 +4814,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     text-transform: uppercase;
 }
 .coming-soon .wrap .value-time{
-    font-family: 'Vollkorn';
     font-weight:700;
     font-size:86px;
     color:#fff;
@@ -4950,19 +4958,61 @@ body.layout-boxed #page {
 /*
  * 17.2. Pagination
  */
+.woocommerce-pagination ul.page-numbers{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.woocommerce-pagination .li_label{
+    display: none;
+}
+.woocommerce-pagination li{
+    display: inline-block;
+}
+.woocommerce-pagination,
 .pagination{
     display: block;
-    margin: 0 0 10px;
+    margin: 20px 0 10px;
+    position: relative;
+    text-align: center;
+    padding: 0 35px;
 }
+.woocommerce-pagination a.page-numbers,
+.woocommerce-pagination span.page-numbers,
 .pagination .page-numbers{
+    border: 1px solid #d7d7d7;
     display: inline-block;
+    line-height: 32px;
+    min-width: 32px;
     padding: 0 10px;
+    color: #d7d7d7;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
+.woocommerce-pagination a.page-numbers:hover,
+.woocommerce-pagination .page-numbers.current,
+.pagination a.page-numbers:hover,
 .pagination .page-numbers.current{
-
+    border-color: #d0a852;
+    background: #d0a852;
+    color: #FFFFFF;
 }
-.pagination .page-numbers.dots{
-
+.woocommerce-pagination .page-numbers.next,
+.woocommerce-pagination .page-numbers.prev,
+.pagination .page-numbers.next,
+.pagination .page-numbers.prev{
+    position: absolute;
+    top: 0;
+}
+.woocommerce-pagination .page-numbers.next,
+.pagination .page-numbers.next{
+    right: 0;
+}
+.woocommerce-pagination .page-numbers.prev,
+.pagination .page-numbers.prev{
+    left: 0;
 }
 /*
  * 17.2. Media element
@@ -5039,10 +5089,10 @@ article.post-item{
     margin-left: 8px;
     text-align: center;
     width: 22px;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .entry-share-box a:hover{
     border-color: #d0a852;
@@ -5214,6 +5264,16 @@ article.post-item{
     color: #FFF;
     text-transform: uppercase;
 }
+.post-layout-carousel1 .entry-more a{
+    color: #FFF;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid #FFFFFF;
+    padding: 8px 28px;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
 /*
  * 17.4. Single Posts - Entry post
  */
@@ -5304,7 +5364,6 @@ article.post-item{
     display: inline-block;
     background: #eeeeee;
     color: #8e8e8c;
-    font-family: Vollkorn;
     font-style: italic;
     font-size: 15px;
 }
@@ -5413,7 +5472,6 @@ a.comment-reply-link {
     background: #eeeeee;
     color: #8e8e8c;
     display: inline-block;
-    font-family: Vollkorn;
     font-size: 15px;
     font-style: italic;
     padding: 7px 20px;
