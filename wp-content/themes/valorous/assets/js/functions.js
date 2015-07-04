@@ -103,6 +103,7 @@
             top_pos  = $sidebar_inner.offset().top;
         
         if($sidebar.length > 0 && InitStr > 992){
+
             $(window).scroll(function(event){
                 var $sidebar_offset = $sidebar.offset().top,
                     $sidebar_inner_height = $sidebar_inner.outerHeight(),
