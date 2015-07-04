@@ -99,10 +99,10 @@
             $sidebar_inner = $('.sidebar .sidebar-inner'),
             $primary = $('#main'),
             lastScrollTop = 0,
-            currenttoppos = 0,
-            top_pos  = $sidebar_inner.offset().top;
+            currenttoppos = 0;
         
         if($sidebar.length > 0 && InitStr > 992){
+            var top_pos  = $sidebar_inner.offset().top;
             $(window).scroll(function(event){
                 var $sidebar_offset = $sidebar.offset().top,
                     $sidebar_inner_height = $sidebar_inner.outerHeight(),
@@ -115,69 +115,73 @@
                     if(currenttoppos > ( $primary_height - $sidebar_inner_height )){ 
                         currenttoppos = $primary_height - $sidebar_inner_height;
                     }
-                if (st > lastScrollTop){
-                    /*
-                    if($primary_height < $sidebar_inner_height){
-                        $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
-                    }else if((st + _window.height()) > ($sidebar_offset + $sidebar_inner_height)){
-                        $sidebar_inner.css({'position': 'fixed', 'bottom' : '0','width': $width});
-                        var $margin_bottom = $sidebar_inner.css('margin-bottom');
-                        if((st + _window.height()) > ($footer_offset)){
-                            $sidebar.css({'height':$primary_height+'px'});
-                            $sidebar_inner.css({'bottom':'0','position':'absolute'});
+                if( $primary_height < $sidebar_inner_height ){
+                    $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
+                }else{
+                    if (st > lastScrollTop){
+                        /*
+                        if($primary_height < $sidebar_inner_height){
+                            $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
+                        }else if((st + _window.height()) > ($sidebar_offset + $sidebar_inner_height)){
+                            $sidebar_inner.css({'position': 'fixed', 'bottom' : '0','width': $width});
+                            var $margin_bottom = $sidebar_inner.css('margin-bottom');
+                            if((st + _window.height()) > ($footer_offset)){
+                                $sidebar.css({'height':$primary_height+'px'});
+                                $sidebar_inner.css({'bottom':'0','position':'absolute'});
+                            }
+                        }else{
+                            $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
+                        }
+                        */
+                        if(currenttoppos >= ($primary_height - $sidebar_inner_height) ) {
+                            $sidebar_inner.css({
+                                'position' : 'absolute',
+                                'top': ( $primary_height - $sidebar_inner_height ),
+                                'bottom' : 'auto',
+                                'width': $width
+                            });
+                        } else if(st > ( currenttoppos + top_pos + $sidebar_inner_height - _window.height())) {
+                            $sidebar_inner.css({
+                                'position' : 'fixed',
+                                'bottom': '0',
+                                'top': 'auto',
+                                'width': $width
+                            });
+                            currenttoppos = st + _window.height() - top_pos - $sidebar_inner_height;
+                        } else {
+                            $sidebar_inner.css({
+                                'position' : 'absolute',
+                                'top': ( currenttoppos ),
+                                'bottom' : 'auto',
+                                'width': $width
+                            });
                         }
                     }else{
-                        $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
+                        if(currenttoppos <= 0) {
+                            $sidebar_inner.css({
+                                'position' : 'relative',
+                                'top': '0',
+                                'bottom' : 'auto'
+                            });
+                        } else if( st > ( currenttoppos + top_pos ) ) {
+                            $sidebar_inner.css({
+                                'position' : 'absolute',
+                                'top': ( currenttoppos ),
+                                'bottom' : 'auto',
+                                'width': $width
+                            });
+                        } else {
+                            $sidebar_inner.css({
+                                'position' : 'fixed',
+                                'top': '0',
+                                'bottom' : 'auto',
+                                'width': $width,
+                            });
+                            currenttoppos = st - top_pos;
+                        }
                     }
-                    */
-                    if(currenttoppos >= ($primary_height - $sidebar_inner_height) ) {
-                        $sidebar_inner.css({
-                            'position' : 'absolute',
-                            'top': ( $primary_height - $sidebar_inner_height ),
-                            'bottom' : 'auto',
-                            'width': $width
-                        });
-                    } else if(st > ( currenttoppos + top_pos + $sidebar_inner_height - _window.height())) {
-                        $sidebar_inner.css({
-                            'position' : 'fixed',
-                            'bottom': '0',
-                            'top': 'auto',
-                            'width': $width
-                        });
-                        currenttoppos = st + _window.height() - top_pos - $sidebar_inner_height;
-                    } else {
-                        $sidebar_inner.css({
-                            'position' : 'absolute',
-                            'top': ( currenttoppos ),
-                            'bottom' : 'auto',
-                            'width': $width
-                        });
-                    }
-                }else{
-                    if(currenttoppos <= 0) {
-                        $sidebar_inner.css({
-                            'position' : 'relative',
-                            'top': '0',
-                            'bottom' : 'auto'
-                        });
-                    } else if( st > ( currenttoppos + top_pos ) ) {
-                        $sidebar_inner.css({
-                            'position' : 'absolute',
-                            'top': ( currenttoppos ),
-                            'bottom' : 'auto',
-                            'width': $width
-                        });
-                    } else {
-                        $sidebar_inner.css({
-                            'position' : 'fixed',
-                            'top': '0',
-                            'bottom' : 'auto',
-                            'width': $width,
-                        });
-                        currenttoppos = st - top_pos;
-                    }
+                    lastScrollTop = st;
                 }
-                lastScrollTop = st;
             });
         }else{
             $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto', });
