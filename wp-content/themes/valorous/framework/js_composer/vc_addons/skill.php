@@ -7,12 +7,12 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
+            'title' => __( 'Title', 'js_composer' ),
             'percent' => 88,
 
             'options' => '',
             'boxbgcolor' => '',
-            'bgcolor' => '',
+            'bgcolor' => 'accent',
             'height' => 10,
             'style' => 'before',
             'custombgcolor' => '',
@@ -23,7 +23,7 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
             'border_size' => '',
             'border_radius' => '',
 
-            'font_type' => '',
+            'use_theme_fonts' => '',
             'font_container' => '',
             'google_fonts' => '',
 
@@ -96,11 +96,8 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
 
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-        if($font_type != 'google'){
-            $google_fonts_data = array();
-        }
-        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
+        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -149,7 +146,8 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-skill-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'style' => 'kt-style-'.$style
+            'style' => 'kt-style-'.$style,
+            'bgcolor' => 'kt-bgcolor-'.$bgcolor
         );
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
@@ -174,6 +172,11 @@ vc_map( array(
             'value' => __( 'Title', 'js_composer' ),
 			"admin_label" => true,
 		),
+        array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
+        ),
         array(
 			"type" => "kt_number",
 			"heading" => __("Percent", "js_composer"),
@@ -400,14 +403,11 @@ vc_map( array(
             'group' => __( 'Layout options', 'js_composer' )
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'description' => '&nbsp;',
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Layout options', 'js_composer' )
         ),
         array(
@@ -428,7 +428,10 @@ vc_map( array(
 					'font_style_description' => __( 'Select font styling.', 'js_composer' )
 				)
 			),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'group' => __( 'Layout options', 'js_composer' )
 		),
 

@@ -15,10 +15,11 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
             'prefix' => '',
             'suffix' => '',
 
-            'font_type_title' => '',
-            'font_container_title' => '',
-            'google_fonts_title' => '',
-            'font_type_value' => '',
+            'use_theme_fonts' => '',
+            'font_container' => '',
+            'google_fonts' => '',
+
+            'use_theme_fonts_value' => '',
             'font_container_value' => '',
             'google_fonts_value' => '',
 
@@ -46,16 +47,10 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         ), $atts );
         extract($atts);
 
-
-
         $style_title = '';
-        $atts['font_container'] = $font_container_title;
-        $atts['google_fonts'] = $google_fonts_title;
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-        if($font_type_title != 'google'){
-            $google_fonts_data = array();
-        }
+
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -75,12 +70,12 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         $style_value = '';
         $atts['font_container'] = $font_container_value;
         $atts['google_fonts'] = $google_fonts_value;
+        $atts['use_theme_fonts'] = $use_theme_fonts_value;
+
+
         extract($this->getAttributes($atts));
         unset($font_container_data['values']['text_align']);
 
-        if($font_type_value != 'google'){
-            $google_fonts_data = array();
-        }
 
         extract($this->getStyles($el_class, $css, $google_fonts_data, $font_container_data, $atts));
 
@@ -109,6 +104,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
 
         $counter_content = '<div class="counter-content" '.$style_title.'>'.$suffix.'<span class="counter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</div>';
         $counter_text = '<div class="counter-text" '.$style_value.'>'.$title.'</div>';
+
         $counter_icon = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'"  custom_background ="'.$custom_background.'" size="'.$size.'" align="center"]');
 
         $output = '';
@@ -151,6 +147,11 @@ vc_map( array(
             'param_name' => 'title',
             'value' => __( 'Title', 'js_composer' ),
             "admin_label" => true,
+        ),
+        array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
         ),
         array(
             "type" => "textfield",
@@ -387,7 +388,7 @@ vc_map( array(
         ),
         array(
             'type' => 'font_container',
-            'param_name' => 'font_container_title',
+            'param_name' => 'font_container',
             'value' => '',
             'settings' => array(
                 'fields' => array(
@@ -405,19 +406,16 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type_title',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG )
         ),
         array(
             'type' => 'google_fonts',
-            'param_name' => 'google_fonts_title',
+            'param_name' => 'google_fonts',
             'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
@@ -426,7 +424,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type_title', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
         array(
@@ -456,15 +457,12 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type_value',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts_value',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG )
         ),
         array(
             'type' => 'google_fonts',
@@ -477,7 +475,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type_value', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts_value',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
 

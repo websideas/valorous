@@ -8,7 +8,7 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
+            'title' => __( 'Title', 'js_composer' ),
             'icon_box_layout' => '1',
             'icon_box_bg' => '#f7f7f7',
             'link' => '',
@@ -18,7 +18,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'readmore_color' => '',
             'readmore_color_hover' => '',
 
-            'font_type' => '',
+            'use_theme_fonts' => '',
             'font_container' => '',
             'google_fonts' => '',
             'letter_spacing' => '0',
@@ -49,6 +49,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         extract($atts);
         $custom_css = '';
 
+
         $uniqid = 'kt-icon-box-'.uniqid();
         $readmore = apply_filters('sanitize_boolean', $readmore);
         $style_title = '';
@@ -57,9 +58,6 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         unset($font_container_data['values']['text_align']);
 
         $styles = array();
-        if($font_type != 'google'){
-            $google_fonts_data = array();
-        }
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -109,6 +107,8 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             }
 
         }
+
+
 
         $icon_box_title = ($title) ? '<div class="icon-box-title" '.$style_title.'>'.$title.'</div>' : '';
 
@@ -372,13 +372,6 @@ vc_map( array(
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => __( 'Icon color on Hover', 'js_composer' ),
-            'param_name' => 'color_hover',
-            'description' => __( 'Select icon color on hover.', 'js_composer' ),
-            'group' => __( 'Icon', THEME_LANG )
-        ),
-        array(
-            'type' => 'colorpicker',
             'heading' => __( 'Custom Icon Color', 'js_composer' ),
             'param_name' => 'custom_color',
             'description' => __( 'Select custom icon color.', 'js_composer' ),
@@ -386,6 +379,13 @@ vc_map( array(
                 'element' => 'color',
                 'value' => 'custom',
             ),
+            'group' => __( 'Icon', THEME_LANG )
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Icon color on Hover', 'js_composer' ),
+            'param_name' => 'color_hover',
+            'description' => __( 'Select icon color on hover.', 'js_composer' ),
             'group' => __( 'Icon', THEME_LANG )
         ),
         array(
@@ -400,20 +400,20 @@ vc_map( array(
                 __( 'Outline Circle', 'js_composer' ) => 'rounded-outline',
                 __( 'Outline Square', 'js_composer' ) => 'boxed-outline',
                 __( 'Outline Rounded', 'js_composer' ) => 'rounded-less-outline',
-                __( 'Hexagonal', 'js_composer' ) => 'hexagonal',
                 __( 'Diamond Square', 'js_composer' ) => 'diamond_square',
-
+                __( 'Hexagonal', 'js_composer' ) => 'hexagonal',
             ),
             'description' => __( 'Select background shape and style for icon.', 'js_composer' ),
             'group' => __( 'Icon', THEME_LANG )
         ),
+
         array(
             'type' => 'dropdown',
-            'heading' => __( 'Background Color', 'js_composer' ),
+            'heading' => __( 'Background color', 'js_composer' ),
             'param_name' => 'background_color',
             'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'std' => 'grey',
-            'description' => __( 'Background Color.', 'js_composer' ),
+            'description' => __( 'Select background color for icon.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'dependency' => array(
                 'element' => 'background_style',
@@ -423,15 +423,16 @@ vc_map( array(
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => __( 'Custom Icon Background', 'js_composer' ),
-            'param_name' => 'custom_background',
-            'description' => __( 'Select Background icon color.', 'js_composer' ),
+            'heading' => __( 'Custom background color', 'js_composer' ),
+            'param_name' => 'custom_background_color',
+            'description' => __( 'Select custom icon background color.', 'js_composer' ),
             'dependency' => array(
                 'element' => 'background_color',
                 'value' => 'custom',
             ),
             'group' => __( 'Icon', THEME_LANG )
         ),
+
         array(
             'type' => 'colorpicker',
             'heading' => __( 'Background on Hover', 'js_composer' ),
@@ -459,6 +460,17 @@ vc_map( array(
 
         //Typography settings
         array(
+            "type" => "kt_number",
+            "heading" => __("Letter spacing", THEME_LANG),
+            "param_name" => "letter_spacing",
+            "value" => 0,
+            "min" => 0,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
+            'group' => __( 'Typography', THEME_LANG ),
+        ),
+        array(
             'type' => 'font_container',
             'param_name' => 'font_container',
             'value' => '',
@@ -478,26 +490,12 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(
-            "type" => "kt_number",
-            "heading" => __("Letter spacing", THEME_LANG),
-            "param_name" => "letter_spacing",
-            "value" => 0,
-            "min" => 0,
-            "max" => 10,
-            "suffix" => "px",
-            "description" => "",
-            'group' => __( 'Typography', THEME_LANG ),
-        ),
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
         ),
         array(
             'type' => 'google_fonts',
@@ -510,7 +508,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
 

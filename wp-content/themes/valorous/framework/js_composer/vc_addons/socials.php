@@ -10,7 +10,7 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         extract(shortcode_atts(array(
     	   "social" => '',
     	   "size" => 'standard',
-    	   "style" => 'icon',
+    	   "style" => '1',
            'align' => '',
            'tooltip' =>'top',
            'el_class' => '',
@@ -113,14 +113,14 @@ vc_map( array(
 			"heading" => __("Style",THEME_LANG),
 			"param_name" => "style",
 			"value" => array(
-                __('Style 1', THEME_LANG) => '1',
-                __('Style 2', THEME_LANG) => '2',
+                __('Style 1 - Background white + Color social', THEME_LANG) => '1',
+                __('Style 2 - Color social - Hover background white', THEME_LANG) => '2',
                 __('Style 3', THEME_LANG) => '3',
                 __('Style 4', THEME_LANG) => '4',
                 __('Style 5', THEME_LANG) => '5',
                 __('Style 6', THEME_LANG) => '6',
-                __('Style 7', THEME_LANG) => '7',
-                __('Style 3d', THEME_LANG) => '3d'
+                __('Style 3d', THEME_LANG) => '3d',
+                __('Classic', THEME_LANG) => 'classic'
 
 			),
 			"description" => __("",THEME_LANG),

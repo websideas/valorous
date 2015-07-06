@@ -12,14 +12,6 @@ vc_map( array(
     "content_element" => true,
     "show_settings_on_create" => true,
     "params" => array(
-        
-        array(
-            'type' => 'kt_animate',
-            'heading' => __( 'Css Animation', 'js_composer' ),
-            'param_name' => 'css_animation',
-            'value' => '',
-            'description' => __( 'Animation.', 'js_composer' ),
-        ),
         array(
         	'type' => 'dropdown',
         	'heading' => __( 'Icon library', 'js_composer' ),
@@ -113,6 +105,13 @@ vc_map( array(
             'param_name' => 'icon_color',
             'value' => '',
             'description' => __( 'Select backgound color for your testimonial', 'js_composer' ),
+        ),
+        array(
+            'type' => 'kt_animate',
+            'heading' => __( 'Css Animation', 'js_composer' ),
+            'param_name' => 'css_animation',
+            'value' => '',
+            'description' => __( 'Animation.', 'js_composer' ),
         ),
         array(
             "type" => "textfield",
@@ -276,13 +275,11 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
             'css' => ''
         ), $atts ) );
         
-        global $icon_show, $icon_color_show,$data_animate;
-        
-        $data_animate = $cl_animate = $icon_color_show = '';
+        global $icon_show, $icon_color_show, $data_animate;
 
+        $icon_show = $data_animate = $cl_animate = $icon_color_show = '';
         if($icon_type){
-            $icon = 'icon_'.$icon_type;
-            $icon_value = $$icon;
+            $icon_value = isset( ${"icon_" . $icon_type} ) ? esc_attr( ${"icon_" . $icon_type} ) : '';
             if($icon_value){
                 vc_icon_element_fonts_enqueue( $icon_type );
                 $icon_color_show = ($icon_color) ? ' style="color: '.esc_attr($icon_color).';"' : '';
@@ -299,7 +296,7 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
         if($css_animation !=''){
-            $data_animate = 'data-timeeffect="10" data-animation="'.$css_animation.'"';
+            $data_animate = 'data-timeeffect="20" data-animation="'.$css_animation.'"';
             $cl_animate = ' animation-effect';
         }
         
@@ -323,7 +320,7 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         ), $atts ) );
         $icon_li = '';
         
-        global $icon_show, $icon_color_show,$data_animate;
+        global $icon_show, $icon_color_show, $data_animate;
         
         if($icon_type && $custom_icon == 'true'){
             $icon = 'icon_'.$icon_type;
@@ -336,7 +333,7 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         }
         
         if(!$icon_li) $icon_li = $icon_show;
-        if( $data_animate ){ $cl_animate = 'animation-effect-item'; }else{ $cl_animate = ''; }
+        $cl_animate = ( $data_animate ) ?  'animation-effect-item' : '';
         
         return '<li class="kt-list-item '.$cl_animate.' '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
         

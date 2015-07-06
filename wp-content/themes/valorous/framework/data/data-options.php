@@ -320,6 +320,29 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'   => array( '.is-sticky .site-branding .site-logo img'),
                     ),
                     array(
+                        'id'             => 'logo_mobile_width',
+                        'type'           => 'dimensions',
+                        'units'          => array( 'em', 'px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Logo mobile width', THEME_LANG ),
+                        'height'         => false,
+                        'default'        => array( 'width'  => 120, 'height' => 100 ),
+                    ),
+                    array(
+                        'id'       => 'logo_mobile_margin_spacing',
+                        'type'     => 'spacing',
+                        'mode'     => 'margin',
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Logo mobile margin spacing Option', THEME_LANG ),
+                        'default'  => array(
+                            'margin-top'    => '25px',
+                            'margin-right'  => '0px',
+                            'margin-bottom' => '25px',
+                            'margin-left'   => '0px'
+                        )
+                    ),
+                    array(
                         'id'   => 'divide_id',
                         'type' => 'divide'
                     ),

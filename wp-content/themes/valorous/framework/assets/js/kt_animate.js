@@ -6,7 +6,7 @@
             
             setTimeout(function(){ 
                 $('.wrap-kt-animate .animationSandbox' ).removeClass( 'animated '+val );
-            }, 300);
+            }, 500);
         });
     });
 })(jQuery);

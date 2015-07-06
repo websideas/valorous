@@ -31,7 +31,7 @@ class WPBakeryShortCode_KT_Button extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'icon_position' => '',
 
-            'font_type' => '',
+            'use_theme_fonts' => '',
             'font_container' => '',
             'google_fonts' => '',
             'letter_spacing' => '0',
@@ -83,7 +83,7 @@ class WPBakeryShortCode_KT_Button extends WPBakeryShortCode_VC_Custom_heading {
 
 
             if($custom_css){
-                $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+                $custom_css = '<div class="kt_custom_css" data-css="'.$custom_css.'"></div>';
             }
 
 
@@ -93,9 +93,6 @@ class WPBakeryShortCode_KT_Button extends WPBakeryShortCode_VC_Custom_heading {
 
             extract( $this->getAttributes( $atts ) );
             unset($font_container_data['values']['text_align']);
-            if($font_type != 'google'){
-                $google_fonts_data = array();
-            }
             extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
             $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -152,18 +149,6 @@ class WPBakeryShortCode_KT_Button extends WPBakeryShortCode_VC_Custom_heading {
                 'size' => 'kt-button-'.$size
             );
             $icon_elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $icon_elementClass ) );
-            $bt_color_border_hover = ($bt_color_border_hover) ? $bt_color_border_hover : $bt_color_border;
-            $data_attr = array(
-                'color' => $bt_title_color,
-                'color_hover' => $bt_title_color_hover,
-                'bg' => $bt_bg_color,
-                'bg_hover' => $bt_bg_color_hover,
-                'border' => $bt_color_border,
-                'border_hover' => $bt_color_border_hover,
-            );
-            foreach($data_attr as $key => $val){
-                $data_attr_html .= ' data-'.$key.'="'.esc_attr($val).'"';
-            }
 
             $output .= '<a id="'.$uniqid.'" class="'.esc_attr( $icon_elementClass ).'" '.$data_attr_html.' '.implode(' ', $button_link).' '.$style_title.'>'.$title.'</a>';
 
@@ -270,6 +255,12 @@ vc_map( array(
         ),
 
 
+        array(
+            'type' => 'hidden',
+            'param_name' => 'css',
+        ),
+
+
 
         // Border setting
         array(
@@ -361,16 +352,15 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG ),
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
         ),
+
+
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
@@ -382,7 +372,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
 

@@ -186,7 +186,7 @@ function wp_ajax_fronted_remove_product_callback(){
             WC()->cart->remove_cart_item( $cart_item_key );
         }
     }
-    $output['content_product'] = woocommerce_get_cart(false);
+    $output['content_product'] = kt_woocommerce_get_cart(false);
     echo json_encode($output);
     die();
 }

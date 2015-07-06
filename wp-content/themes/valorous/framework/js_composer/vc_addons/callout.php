@@ -12,7 +12,8 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
         $atts = shortcode_atts( array(
             'title' => __( 'Call to Action', THEME_LANG ),
             'layout' => 1,
-            'font_type' => '',
+
+            'use_theme_fonts' => '',
             'font_container' => '',
             'google_fonts' => '',
             'letter_spacing' => '0',
@@ -36,7 +37,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'icon_position' => '',
 
-            'bt_font_type' => '',
+            'bt_use_theme_fonts' => '',
             'bt_font_container' => '',
             'bt_google_fonts' => '',
             'bt_letter_spacing' => '0',
@@ -64,10 +65,6 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
         $styles = array();
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-
-        if($font_type != 'google'){
-            $google_fonts_data = array();
-        }
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -93,7 +90,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             $callout_content .= '<div class="kt-callout-content">'.$content.'</div>';
         }
 
-        $callout_button = do_shortcode('[kt_button title="'.$bt_title.'" link="'.$link.'"  bt_title_color="'.$bt_title_color.'" bt_title_color_hover="'.$bt_title_color_hover.'" bt_bg_color="'.$bt_bg_color.'" bt_bg_color_hover="'.$bt_bg_color_hover.'" bt_align="inline" bt_border_style="'.$bt_border_style.'" bt_color_border="'.$bt_color_border.'" bt_color_border_hover="'.$bt_color_border_hover.'" bt_border_size="'.$bt_border_size.'" bt_radius="'.$bt_radius.'" font_container="'.$bt_font_container.'" letter_spacing="'.$bt_letter_spacing.'" font_type="'.$bt_font_type.'" google_fonts="'.$bt_google_fonts.'"]');
+        $callout_button = do_shortcode('[kt_button title="'.$bt_title.'" link="'.$link.'"  bt_title_color="'.$bt_title_color.'" bt_title_color_hover="'.$bt_title_color_hover.'" bt_bg_color="'.$bt_bg_color.'" bt_bg_color_hover="'.$bt_bg_color_hover.'" bt_align="inline" bt_border_style="'.$bt_border_style.'" bt_color_border="'.$bt_color_border.'" bt_color_border_hover="'.$bt_color_border_hover.'" bt_border_size="'.$bt_border_size.'" bt_radius="'.$bt_radius.'" font_container="'.$bt_font_container.'" letter_spacing="'.$bt_letter_spacing.'" use_theme_fonts="'.$bt_use_theme_fonts.'" google_fonts="'.$bt_google_fonts.'"]');
 
         if($layout == 2){
             $output .= sprintf(
@@ -198,14 +195,11 @@ vc_map( array(
             "description" => "",
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'description' => '',
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
         ),
         array(
             'type' => 'google_fonts',
@@ -217,7 +211,10 @@ vc_map( array(
                     'font_style_description' => __( 'Select font styling.', 'js_composer' )
                 )
             ),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
         array(
@@ -404,15 +401,12 @@ vc_map( array(
             'group' => __( 'Button', THEME_LANG ),
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'bt_font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'bt_use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Button', THEME_LANG ),
-            'description' => __( '&nbsp;', 'js_composer' ),
         ),
         array(
             'type' => 'google_fonts',
@@ -425,7 +419,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Button', THEME_LANG ),
-            'dependency' => array( 'element' => 'bt_font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'bt_use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
 

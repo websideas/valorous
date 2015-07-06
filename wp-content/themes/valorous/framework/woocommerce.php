@@ -153,7 +153,7 @@ function woocommerce_get_tool($id = 'woocommerce-nav'){
  * 
  * @since 1.0
  */
-function woocommerce_get_cart( $wrapper = true ){
+function kt_woocommerce_get_cart( $wrapper = true ){
     $output = '';
     if ( kt_is_wc() ) {
         $cart_total = WC()->cart->get_cart_total();
@@ -217,6 +217,28 @@ function woocommerce_get_cart( $wrapper = true ){
 }
 
 
+/**
+ * Woocommerce cart in header
+ *
+ * @since 1.0
+ */
+function kt_woocommerce_get_cart_mobile( $wrapper = true ){
+    $output = '';
+    if ( kt_is_wc() ) {
+        $cart_count = WC()->cart->cart_contents_count;
+        if( $wrapper == true ){
+            $output .= '<a href="'.WC()->cart->get_cart_url().'" class="mobile-cart">';
+        }
+        $output .= '<span class="icon-bag"></span>';
+        $output .= '<span class="mobile-cart-total">'.$cart_count.'</span>';
+
+        if( $wrapper == true ){
+            $output .= '</a>';
+        }
+    }
+    return $output;
+}
+
 
 
 /**
@@ -224,8 +246,8 @@ function woocommerce_get_cart( $wrapper = true ){
  * 
  */ 
 function woocommerce_header_add_to_cart_fragment( $fragments ) {
-    $fragments['.mini-cart'] = woocommerce_get_cart();
-
+    $fragments['.mini-cart'] = kt_woocommerce_get_cart();
+    $fragments['.mobile-cart'] = kt_woocommerce_get_cart_mobile();
 	return $fragments;
 }
 add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');

@@ -278,7 +278,7 @@
      VC PieChart
      --------------------------------------------- */
     function init_VCPieChart(){
-        $('.kt_piechart').waypoint(function() {
+        $('.kt-piechart-wrapper').waypoint(function() {
             $(".chart").each(function() {
                 var $chart = $(this);
                 $(this).easyPieChart({
@@ -444,6 +444,9 @@
         if (typeof jQuery.fn.waypoint !== 'undefined') {
             jQuery('.kt-skill-wrapper').waypoint(function () {
                 var $skill_bar = jQuery(this).find('.kt-skill-bar');
+
+                console.log($skill_bar.data('percent') );
+
                 setTimeout(function () {
                     $skill_bar.css({"width": $skill_bar.data('percent') + '%'});
                 }, 200);
@@ -500,10 +503,9 @@
      Back to top
      --------------------------------------------- */
     function init_backtotop(){
-        var bottom = $('footer#footer-bottom').outerHeight();
     	var backtotop = $('#backtotop').hide();
     	$(window).scroll(function() {
-    		($(window).scrollTop() != 0) ? backtotop.css({'bottom':bottom+'px'}).fadeIn() : backtotop.fadeOut();  
+    		($(window).scrollTop() != 0) ? backtotop.fadeIn() : backtotop.fadeOut();
     	});
     	backtotop.click(function(e) {
             e.preventDefault();
@@ -742,7 +744,9 @@
      Remove Cart Item
      --------------------------------------------- */
     function init_kt_remove_cart(){
-        $( 'body' ).on('click','#header .bag-product a.remove',function(){
+        $( 'body' ).on('click','#header .bag-product a.remove',function(e){
+            e.preventDefault();
+
             var product_id = $(this).attr('data-id'),
                 item_key = $(this).attr('data-itemkey');
             
@@ -758,9 +762,9 @@
         	$.post(ajax_frontend.ajaxurl, data, function(response) {
                 $('.mini-cart').html(response.content_product);
                 $('.mini-cart .loading_overlay').remove();
+                $('.mCustomScrollbar').mCustomScrollbar();
         	}, 'json');
-            
-            return false;
+
         });
     }
 

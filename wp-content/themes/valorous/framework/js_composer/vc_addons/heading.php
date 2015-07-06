@@ -9,10 +9,11 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
 
-            'text' => '',
+            'text' => __( 'This is custom heading element with Google Fonts', 'js_composer' ),
             'align' => 'center',
             'layout' => 'between',
 
+            'use_theme_fonts' => '',
             'font_type' => '',
             'font_container' => '',
             'google_fonts' => '',
@@ -128,7 +129,6 @@ vc_map( array(
             'type' => 'hidden',
             'heading' => __( 'URL (Link)', 'js_composer' ),
             'param_name' => 'link',
-            // compatible with btn2 and converted from href{btn1}
         ),
         array(
             "type" => "textarea_html",
@@ -221,6 +221,14 @@ vc_map( array(
             // 'description' => __( '', 'js_composer' ),
         ),
         array(
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
+        ),
+        array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
             'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
@@ -240,7 +248,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            // 'description' => __( '', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
         ),
 
         array(

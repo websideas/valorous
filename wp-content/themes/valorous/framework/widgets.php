@@ -141,7 +141,6 @@ function kt_archive_count_span($links) {
 /* Widgets list */
 $kt_widgets = array(
 	'kt_image.php',
-    'designer.php',
     'testimonial_carousel.php',
     'kt_article.php',
 );

@@ -10,5 +10,6 @@ if ( !defined('ABSPATH')) exit;
     <nav role="navigation" id="nav">
         <?php get_template_part( 'templates/headers/header',  'tool'); ?>
         <?php get_template_part( 'templates/headers/header',  'menu'); ?>
+        <?php get_template_part( 'templates/headers/header',  'mobile'); ?>
     </nav><!-- #main-nav -->
 </div>

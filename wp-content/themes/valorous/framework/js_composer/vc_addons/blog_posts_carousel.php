@@ -69,17 +69,12 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
         ), $atts );
         extract($atts);
 
-
         $elementClass = array(
             'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-carousel-wrapper', $this->settings['base'], $atts),
             'extra' => $this->getExtraClass($el_class),
             'css_animation' => $this->getCSSAnimation($css_animation),
             'shortcode_custom' => vc_shortcode_custom_css_class($css, ' ')
         );
-
-        if($blog_layout == 1){
-            $elementClass['pagination'] = 'carousel-pagination-inner';
-        }
 
         $output = $settings = '';
         $this->excerpt_length = $excerpt_length;
@@ -221,7 +216,6 @@ vc_map( array(
                 __( 'Layout 3', 'js_composer' ) => '3',
             ),
             'description' => __( 'Please select your layout.', THEME_LANG ),
-            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
         ),
 
         array(

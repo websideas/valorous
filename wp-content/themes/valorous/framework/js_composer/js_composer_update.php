@@ -4,19 +4,16 @@ if ( !defined('ABSPATH')) exit;
 
 
 
-add_action( 'vc_after_init', 'add_option_to_vc_icon' );
-function add_option_to_vc_icon() {
+add_action( 'vc_after_init', 'kt_add_option_to_vc' );
+function kt_add_option_to_vc() {
 
-    // VC_icon: Add hexagonal
+    // VC_icon: Add hexagonal and Diamond.
+
     $background_style = WPBMap::getParam( 'vc_icon', 'background_style' );
     $background_style['value'][__( 'Diamond Square', THEME_LANG )] = 'diamond_square';
     $background_style['value'][__( 'Hexagonal', THEME_LANG )] = 'hexagonal';
     vc_update_shortcode_param( 'vc_icon', $background_style );
 
-    // VC_icon: Add hexagonal
-    $background_color = WPBMap::getParam( 'vc_icon', 'background_color' );
-    $background_color['value'][__( 'Custom color', 'js_composer' )] = 'custom';
-    vc_update_shortcode_param( 'vc_icon', $background_color );
 
 }
 

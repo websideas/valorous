@@ -29,7 +29,7 @@ class WPBakeryShortCode_KT_Alert extends WPBakeryShortCode {
         $output = '';
         $output .= '<div class="'.esc_attr( $elementClass ).'" role="alert">';
         if($close == 'true'){
-            $output .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="icon_close_alt2"></i></span></button>';
+            $output .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>';
         }
 
 
