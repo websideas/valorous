@@ -586,7 +586,7 @@
     top: 100%;
     right: 0;
     z-index: 1002;
-    color: #666;
+    color: #FFF;
     
     width: 300px;
     text-align: left;
@@ -635,15 +635,16 @@
     display: block;
 }
 .shopping-bag-wrapper{
-    background: #fff;
-    -webkit-box-shadow: 3px 0px 5px 0 rgba(0, 0, 0, 0.3);
-    -moz-box-shadow:    3px 0px 5px 0 rgba(0, 0, 0, 0.3);
-    box-shadow:         3px 0px 5px 0 rgba(0, 0, 0, 0.3);
-    border:1px solid #e6eced;
+    -webkit-box-shadow: 3px 0 5px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    3px 0 5px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:         3px 0 5px 0 rgba(0, 0, 0, 0.3);
+    background: #1e1e1e;
+    border-color: #d2a952 #a0a0a0 #a0a0a0;
+    border-style: solid;
+    border-width: 2px 1px 1px;
 }
 .shopping-bag-wrapper h3.cart-title{
-    border-bottom: 1px solid #e6eced;
-    color: #777;
+    border-bottom: 1px solid #a0a0a0;
     font-size: 15px;
     margin: 0;
     padding: 12px 15px;
@@ -690,6 +691,7 @@
     position: absolute;
     right: 10px;
     top: 0;
+    color: #fff;
 }
 .bag-products .bag-product a.remove:after{
     content: '\f014';
@@ -698,15 +700,18 @@
     font-style: normal;
     font-size: 12px;
 }
+.bag-products .bag-product a.remove:hover{
+    color: red;
+}
 .bag-product .bag-product-title{
     margin: 0 0 10px;
 }
 .bag-product .bag-product-title a{
-    color: #666666;
+    color: #a0a0a0;
 }
 .bag-product .bag-product-title a:hover{
     text-decoration: none;
-    color: #000;
+    color: #FFFFFF;
 }
 .bag-product dl.variation{
     margin-bottom: 3px;
@@ -747,7 +752,7 @@
     margin: 0 6px;
 }
 .bag-total{
-    border-top: 1px solid #e6eced;
+    border-top: 1px solid #a0a0a0;
     font-size: 18px;
     line-height: 40px;
     padding: 0 15px;
@@ -761,14 +766,13 @@
 .bag-buttons{
     padding: 15px;
     background: #363333;
-    margin: 0 -1px -1px;
 }
 .bag-buttons a{
     margin-right: 15px;
     padding-left: 0;
     padding-right: 0;
     text-align: center;
-    width: 127px;
+    width: 126px;
 }
 .bag-buttons a.button-shop{
     width: 100%;
@@ -796,7 +800,7 @@
     background: none;
 }
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
-    background: #000000;
+    background: #d2a952;
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -806,11 +810,33 @@
 .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar, 
 .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
 .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
-    background: #000000;
+    background: #d2a952;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
     opacity: 0.8;
 }
+
+
+
+.header-light .mini-cart .shopping-bag{
+    color: #777777;
+}
+.header-light .shopping-bag-wrapper{
+    background: #FFFFFF;
+    border-color: #d2a952 #e6eced #e6eced;
+}
+.header-light .shopping-bag-wrapper h3.cart-title{
+    border-color: #e6eced;
+    color: #777777;
+}
+.header-light .bag-product .bag-product-title a{
+    color: #282828;
+}
+.header-light .bag-product .bag-product-title a:hover{
+    color: #000000;
+}
+
+
 
 /** =========================
     3. Woocommerce Common

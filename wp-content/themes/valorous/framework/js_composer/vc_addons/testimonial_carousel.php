@@ -203,6 +203,11 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
+        ),
+        array(
             'type' => 'kt_switch',
             'heading' => __( 'Border in heading', THEME_LANG ),
             'param_name' => 'border_heading',

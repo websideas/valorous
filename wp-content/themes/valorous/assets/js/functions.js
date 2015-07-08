@@ -233,16 +233,18 @@
             var $type = $(this).data('type'),
                 $effect = $(this).data('effect'),
                 $removalDelay = 500;
-            if(typeof $effect === "undefined"){
+            if(typeof $effect === "undefined" || $effect == ''){
                 $effect = '';
                 $removalDelay = 0;
             }
+
+            console.log($effect, $removalDelay);
+
             $(this).find('.vc_icon_element-link').magnificPopup({
                 type: $type,
                 mainClass: $effect,
                 removalDelay: $removalDelay,
                 midClick: true,
-                fixedContentPos: false,
                 callbacks: {
                     beforeOpen: function() {
                         if($type == 'image'){

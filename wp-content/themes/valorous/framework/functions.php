@@ -3,20 +3,7 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-/**
- * Change the path to the directory that contains demo data folders.
- *
- * @param [string] $demo_directory_path
- *
- * @return [string]
- */
 
-function wbc_change_demo_directory_path( $demo_directory_path ) {
-	$demo_directory_path = THEME_DIR.'dummy-data/';
-	return $demo_directory_path;
-
-}
-add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
 
 
 
@@ -43,6 +30,8 @@ function get_page_header( ){
             $show_title = true;
         }
     }
+
+    $show_title = apply_filters( 'kt_show_tittle', $show_title );
 
 
     if($show_title){
@@ -383,6 +372,18 @@ function theme_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'theme_body_classes' );
 
+
+
+function kt_disable_title_404($show_tittle){
+    if(is_404()){
+        $show_tittle = false;
+    }
+    return $show_tittle;
+}
+add_filter('kt_show_tittle', 'kt_disable_title_404');
+
+
+
 /**
  * Add class layout for main class
  *
@@ -561,32 +562,10 @@ function theme_header_class_callback($class, $position){
 }
 
 
-
 /**
- * Add popup 
+ * Add favicon to website
  *
- * @since 1.0
  */
-add_action( 'theme_after_footer', 'theme_after_footer_add_popup', 20 );
-function theme_after_footer_add_popup(){
-    $enable_popup = kt_option( 'enable_popup' );
-    $disable_popup_mobile = kt_option( 'disable_popup_mobile' );
-    $content_popup = kt_option( 'content_popup' );
-    $time_show = kt_option( 'time_show', 0 );
-    
-    if( $enable_popup == 1 ){ 
-        if(!isset($_COOKIE['kt_popup'])){ ?>
-            <div id="popup-wrap" class="mfp-hide" data-mobile="<?php echo esc_attr( $disable_popup_mobile ); ?>" data-timeshow="<?php echo esc_attr($time_show); ?>">     
-                <div class="white-popup-block">
-                    <?php echo do_shortcode($content_popup); ?>
-                </div>
-            </div>
-        <?php }
-    }
-}
-
-
-
 
 function kt_blog_favicon() { 
     $custom_favicon = kt_option( 'custom_favicon' );
@@ -613,23 +592,9 @@ function kt_blog_favicon() {
         <link rel="apple-touch-icon" sizes="144x144" href="<?php echo esc_url($custom_favicon_ipad_retina['url']); ?>" />    
     <?php } ?>
 <?php }
+
 add_action('wp_head', 'kt_blog_favicon');
 
-
-/**
- * Add share product 
- *
- * @since 1.0
- */
-add_action( 'wp_head', 'wp_head_addthis_script', 50 );
-function wp_head_addthis_script(){ 
-    $addthis_id = kt_option('addthis_id');
-    if($addthis_id){
-        ?>
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-<?php echo esc_attr( $addthis_id ); ?>" async="async"></script>
-        <?php
-    }
-}
 
 /**
  * Change separator of breadcrumb
@@ -641,33 +606,6 @@ function kt_breadcrumb_trail_args( $args ){
 }
 add_filter('breadcrumb_trail_args', 'kt_breadcrumb_trail_args');
 
-
-
-/**
- * Add logo sticky to main menu
- * 
- */
-function kt_nav_wrap() {
-    $logo = kt_get_logo();
-    $logo_class = ($logo['sticky_retina']) ? 'retina-logo-wrapper' : ''; 
-    $wrap  = '<ul id="%1$s" class="%2$s">';
-        $wrap .= '<li class="menu-logo '.$logo_class.'">'; 
-            ob_start();
-        ?>
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                    <img src="<?php echo esc_url($logo['sticky']); ?>" class="default-logo" alt="<?php bloginfo( 'name' ); ?>" />
-                    <?php if($logo['sticky_retina']){ ?>
-                        <img src="<?php echo esc_url($logo['sticky_retina']); ?>" class="retina-logo" alt="<?php bloginfo( 'name' ); ?>" />
-                    <?php } ?>
-                </a><?php
-            $wrap .= ob_get_contents();
-            ob_end_clean();
-        $wrap .= '</li>';
-        $wrap .= '%3$s';
-    $wrap .= '</ul>';
-
-  return $wrap;
-}
 
 /*
  * Add social media to author
@@ -687,3 +625,20 @@ function kt_contactmethods( $contactmethods ) {
     return $contactmethods;
 }
 add_filter( 'user_contactmethods','kt_contactmethods', 10, 1 );
+
+
+
+/**
+ * Change the path to the directory that contains demo data folders.
+ *
+ * @param [string] $demo_directory_path
+ *
+ * @return [string]
+ */
+
+function wbc_change_demo_directory_path( $demo_directory_path ) {
+    $demo_directory_path = THEME_DIR.'dummy-data/';
+    return $demo_directory_path;
+
+}
+add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );

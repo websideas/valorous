@@ -36,7 +36,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'background_style' => '',
             'background_color' => '',
-            'custom_background' => '',
+            'custom_background_color' => '',
             'size' => 'xs',
 
             'divider_margin_top' => 10,
@@ -84,7 +84,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
 
 
         $output_title = '<' . $font_container_data['values']['tag'] . ' class="kt-heading-title" ' . $style . ' >'.$text.'</' . $font_container_data['values']['tag'] . '>';
-        $output_divider = do_shortcode('[kt_divider align="'.$align.'" border_style="'.$border_style.'" color_border="'.$color_border.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" custom_background="'.$custom_background.'"  background_style="'.$background_style.'" background_color="'.$background_color.'" width="'.$width.'" height="'.$height.'" margin_top="'.$divider_margin_top.'" margin_bottom="'.$divider_margin_bottom.'"]');
+        $output_divider = do_shortcode('[kt_divider align="'.$align.'" border_style="'.$border_style.'" color_border="'.$color_border.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" custom_background_color="'.$custom_background_color.'"  background_style="'.$background_style.'" background_color="'.$background_color.'" width="'.$width.'" height="'.$height.'" margin_top="'.$divider_margin_top.'" margin_bottom="'.$divider_margin_bottom.'"]');
         $output_content = ($content) ? '<div class="kt-heading-content">'.$content.'</div>' : '';
 
 
@@ -481,18 +481,18 @@ vc_map( array(
             ),
             'group' => __( 'Divider', THEME_LANG )
         ),
+
         array(
             'type' => 'colorpicker',
-            'heading' => __( 'Custom Icon Background', 'js_composer' ),
-            'param_name' => 'custom_background',
-            'description' => __( 'Select Background icon color.', 'js_composer' ),
+            'heading' => __( 'Custom background color', 'js_composer' ),
+            'param_name' => 'custom_background_color',
+            'description' => __( 'Select custom icon background color.', 'js_composer' ),
             'dependency' => array(
                 'element' => 'background_color',
                 'value' => 'custom',
             ),
             'group' => __( 'Divider', THEME_LANG )
         ),
-
 
 
 

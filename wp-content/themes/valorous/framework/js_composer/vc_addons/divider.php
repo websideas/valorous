@@ -25,7 +25,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             'custom_color' => '',
             'background_style' => '',
             'background_color' => '',
-            'custom_background' => '',
+            'custom_background_color' => '',
             'size' => 'xs',
 
             'margin_top' => 0,
@@ -83,7 +83,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
                 $elementClass[] = 'kt-divider-box';
             }
 
-            $icon_html = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background ="'.$custom_background.'" size="xs" align="'.$align.'"]');
+            $icon_html = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background_color ="'.$custom_background_color.'" size="xs" align="'.$align.'"]');
 
             if($align != 'left' && $align != 'right'){
                 $divider_html .= $divider_html;
@@ -293,7 +293,7 @@ vc_map( array(
         array(
             'type' => 'colorpicker',
             'heading' => __( 'Custom Icon Background', 'js_composer' ),
-            'param_name' => 'custom_background',
+            'param_name' => 'custom_background_color',
             'description' => __( 'Select Background icon color.', 'js_composer' ),
             'dependency' => array(
                 'element' => 'background_color',

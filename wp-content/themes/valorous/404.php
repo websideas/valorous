@@ -19,24 +19,25 @@ get_header(); ?>
          * @hooked
          */
         do_action( 'theme_before_main' ); ?>
-        <div class="row">
-            <div id="main" class="content-404">
-                <div class="page-not-found">
-                    <div class="img-404">
-                        <img alt="Page not found" src="<?php echo get_template_directory_uri() ?>/assets/images/img-404.jpg">
-                    </div>
-                    <h1><?php _e('This page is not available', THEME_LANG) ?></h1>
+        <div id="main" class="content-404">
+            <div class="page-not-found">
 
-                    <p >
-                        <?php _e('We\'re sorry, but the Web address you\'ve entered is no longer available.', THEME_LANG ); ?>
-                    </p>
 
-                    <h3><?php _e('To find a product, please type its name in the field below.', THEME_LANG ); ?></h3>
-                    <?php get_search_form(); ?>
-                    <div class="buttons"><a title="<?php _e('Home', THEME_LANG); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-default button button-medium"><span><i class="icon-chevron-left left"></i><?php _e('Home page', THEME_LANG ); ?></span></a></div>
+
+                <h1><?php _e('404', THEME_LANG) ?></h1>
+                <h3><?php _e('SORRY, PAGE NOT FOUND', THEME_LANG) ?></h3>
+                <p ><?php _e('We\'re sorry, but the Web address you\'ve entered is no longer available.', THEME_LANG ); ?></p>
+                <?php get_search_form(); ?>
+                <div class="buttons">
+                    <a title="<?php _e('Home', THEME_LANG); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-default button button-medium">
+                        <span>
+                            <?php _e('Home page', THEME_LANG ); ?>
+                            <i class="icon-home button-icon-right"></i>
+                        </span>
+                    </a>
                 </div>
-            </div>
-        </div><!-- .row -->
+            </div><!-- .page-not-found -->
+        </div><!-- #main -->
         <?php
         /**
          * @hooked

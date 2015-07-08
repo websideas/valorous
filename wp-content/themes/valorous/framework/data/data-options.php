@@ -2035,8 +2035,9 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
 
             /**
-             *	Archive settings
+             *	404 Page
              **/
+            /*
             $this->sections[] = array(
                 'id'			=> '404_section',
                 'title'			=> __( '404 Page', THEME_LANG ),
@@ -2064,15 +2065,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                 )
             );
-            /*
-             *
-             * Show Page Title
-             * Page 404 (Form page).
-             *
-             *
-             */
-
-
+            */
 
             /**
 			 *	Woocommerce

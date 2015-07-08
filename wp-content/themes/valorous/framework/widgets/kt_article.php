@@ -108,6 +108,8 @@ class kt_article_widget extends WP_Widget {
         $instance['show_comment'] = isset( $new_instance['show_comment'] ) ? (bool) $new_instance['show_comment'] : false;
         $instance['show_author'] = isset( $new_instance['show_author'] ) ? (bool) $new_instance['show_author'] : false;
 
+        $instance['category'] = isset( $new_instance['show_author'] ) ? $new_instance['category'] :  array();
+
         if ( in_array( $new_instance['orderby'], array( 'name', 'id', 'date', 'author', 'modified', 'rand', 'comment_count' ) ) ) {
             $instance['orderby'] = $new_instance['orderby'];
         } else {
@@ -134,17 +136,20 @@ class kt_article_widget extends WP_Widget {
     }
 
     public function form( $instance ) {
-        $title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
+        $title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : __( 'Recent Posts' , THEME_LANG);
         $number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
-        $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
-        $show_category = isset( $instance['show_category'] ) ? (bool) $instance['show_category'] : false;
+        $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : true;
+        $show_category = isset( $instance['show_category'] ) ? (bool) $instance['show_category'] : true;
         $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : false;
         $show_comment = isset( $instance['show_comment'] ) ? (bool) $instance['show_comment'] : false;
-        $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : false;
+        $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : true;
 
-        $order = $instance['order'];
-        $orderby = $instance['orderby'];
+        $order = isset( $instance['order'] ) ? $instance['order'] : 'DESC';
+        $orderby = isset( $instance['orderby'] ) ? $instance['orderby'] : 'date';
 
+        $category = isset( $instance['category'] ) ? $instance['category'] : array();;
+
+        $categories = get_terms( 'category', array('hide_empty' => false));
 
         ?>
         <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -153,14 +158,13 @@ class kt_article_widget extends WP_Widget {
         <p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
             <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" class="widefat" /></p>
 
-        <p><label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Categories:',THEME_LANG); ?> </label>
+        <div><label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Categories:',THEME_LANG); ?> </label>
             <select class="widefat" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>[]" multiple="multiple">
-                <option <?php if (in_array('all',$category_name)){ echo 'selected="selected"';} ?> value="all"><?php _e('All',THEME_LANG); ?></option>
-                <?php foreach($cat as $item){ ?>
-                    <option <?php if (in_array($item->term_id,$category_name)){ echo 'selected="selected"';} ?> value="<?php echo $item->term_id ?>"><?php echo $item->name; ?></option>
+                <?php foreach($categories as $item){ ?>
+                    <option <?php if (in_array($item->term_id, $category)){ echo 'selected="selected"';} ?> value="<?php echo $item->term_id ?>"><?php echo $item->name; ?></option>
                 <?php } ?>
             </select>
-        </p>
+        </div>
 
         <p><label for="<?php echo $this->get_field_id('orderby'); ?>"><?php _e('Order by:', THEME_LANG); ?></label>
             <select class="widefat" id="<?php echo $this->get_field_id('orderby'); ?>" name="<?php echo $this->get_field_name('orderby'); ?>">
@@ -195,7 +199,13 @@ class kt_article_widget extends WP_Widget {
 
         <p><input class="checkbox" type="checkbox" <?php checked( $show_author ); ?> id="<?php echo $this->get_field_id( 'show_author' ); ?>" name="<?php echo $this->get_field_name( 'show_author' ); ?>" />
             <label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php _e( 'Display post author?', THEME_LANG ); ?></label></p>
-
+        <script type="text/javascript">
+            (function($){
+                $('document').ready(function() {
+                    $('#<?php echo $this->get_field_id('category'); ?>').chosen();
+                });
+            })(jQuery);
+        </script>
 
     <?php
     }

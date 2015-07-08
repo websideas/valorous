@@ -7,7 +7,9 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
     var $excerpt_length;
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'kt_type' => '',
+            'lightbox_align' => 'center',
+            'kt_type' => 'icon',
+            'image_size' => '',
             'font_type' => 'fontawesome',
             'icon_fontawesome' => '',
             'icon_openiconic' => '',
@@ -25,7 +27,8 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'size' => 'md',
             
             'image_thumbnail' => '',
-            'type_lightbox' => '',
+            'type_lightbox' => 'lightbox-image',
+            'image_size_lightbox' => '',
             'image_lightbox' => '',
             'video_link' => '',
             'content_width' => '',
@@ -44,7 +47,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             $type_lightbox = 'image';
             
             $img_lightbox_id = preg_replace( '/[^\d]/', '', $image_lightbox );
-            $img_lightbox = wp_get_attachment_image_src( $img_lightbox_id, 'full' );
+            $img_lightbox = wp_get_attachment_image_src( $img_lightbox_id, $image_size_lightbox );
             if( $kt_type == 'icon' ){
                 $link = urlencode($img_lightbox['0']);
             }elseif( $kt_type == 'image' ){
@@ -58,30 +61,32 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             $link = '#lightbox'.$rand;
         }
         
-        $img_id = preg_replace( '/[^\d]/', '', $image_thumbnail );
-        $img = wpb_getImageBySize( array(
-        	'attach_id' => $img_id,
-        	'thumb_size' => 'full',
-        	'class' => 'vc_single_image-img img-responsive'
-        ) );
-        if ( $img == null ) {
-        	$img['thumbnail'] = '<img class="vc_img-placeholder vc_single_image-img" src="' . vc_asset_url( 'vc/no_image.png' ) . '" />';
-        }
+
         
         $lightbox = '';
         
-        $icon_lightbox = do_shortcode('[vc_icon el_class="kt_lightbox_item" link="url:'.$link.'" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$font_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background="'.$custom_background.'" size="'.$size.'" align="center"]');
+        $icon_lightbox = do_shortcode('[vc_icon el_class="kt_lightbox_item" link="url:'.$link.'" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$font_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background="'.$custom_background.'" size="'.$size.'" align="'.$lightbox_align.'"]');
         
         if( $kt_type == 'icon' ){
             $lightbox = $icon_lightbox;
         }elseif( $kt_type == 'image' ){
+            $img_id = preg_replace( '/[^\d]/', '', $image_thumbnail );
+            $img = wpb_getImageBySize( array(
+                'attach_id' => $img_id,
+                'thumb_size' => $image_size,
+                'class' => 'vc_single_image-img img-responsive'
+            ) );
+            if ( $img == null ) {
+                $img['thumbnail'] = '<img class="vc_img-placeholder vc_single_image-img" src="' . vc_asset_url( 'vc/no_image.png' ) . '" />';
+            }
             $lightbox = '<a class="vc_icon_element-link" href="'.$link.'">'.$img['thumbnail'].'</a>';
         }
         
         $elementClass = array(
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'align' => 'lightbox-'.$lightbox_align
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
@@ -106,6 +111,18 @@ vc_map( array(
     "category" => __('by Theme', THEME_LANG ),
     "wrapper_class" => "clearfix",
     "params" => array(
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Alignment', 'js_composer' ),
+            'param_name' => 'lightbox_align',
+            'value' => array(
+                __( 'Center', 'js_composer' ) => 'center',
+                __( 'Left', 'js_composer' ) => 'left',
+                __( 'Right', 'js_composer' ) => 'right',
+            ),
+        ),
+
         array(
     		'type' => 'dropdown',
     		'heading' => __( 'Type', 'js_composer' ),
@@ -324,7 +341,17 @@ vc_map( array(
     		),
 			'description' => __( 'Select image from media library.', 'js_composer' ),
 		),
-        // Layout setting
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size",
+            'dependency' => array(
+                'element' => 'kt_type',
+                'value' => array( 'image' ),
+            ),
+        ),
+
+
         array(
             "type" => "kt_heading",
             "heading" => __("Lightbox settings", THEME_LANG),
@@ -352,6 +379,15 @@ vc_map( array(
     			'value' => array( 'lightbox-image' ),
     		),
     	),
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes", THEME_LANG ),
+            "param_name" => "image_size_lightbox",
+            'dependency' => array(
+                'element' => 'type_lightbox',
+                'value' => array( 'lightbox-image' ),
+            ),
+        ),
         array(
     		'type' => 'textfield',
     		'heading' => __( 'Video Link', THEME_LANG ),
