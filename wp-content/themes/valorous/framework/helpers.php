@@ -696,7 +696,6 @@ function kt_render_carousel($data, $class = ''){
         }elseif(($navigation_style == 'border_circle' || $navigation_style == 'border_square' || $navigation_style == 'border_round') && $navigation_border_width){
             $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{border:'.$navigation_border_width.'px solid;}';
             if($navigation_border_color){
-                echo $navigation_border_color;
                 $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{border-color:'.$navigation_border_color.';}';
             }
         }

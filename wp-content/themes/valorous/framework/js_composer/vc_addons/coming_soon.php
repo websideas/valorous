@@ -28,11 +28,8 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
         $custom_css = $data_animate = $cl_animate = $animate_item = '';
         
         $style_title = '';
-        $atts['font_container'] = $font_container;
-        $atts['google_fonts'] = $google_fonts;
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -47,6 +44,7 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
 
         if ( ! empty( $styles ) ) {
             $style_title .= esc_attr( implode( ';', $styles ) );
+            $custom_css .= '#kt_comming_'.$rand.' .title{ '.$style_title.' }';
         }
 
         $style_value = '';
@@ -70,13 +68,12 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
 
         if (!empty($styles)) {
             $style_value .= esc_attr(implode(';', $styles));
+            $custom_css .= '#kt_comming_'.$rand.' .value-time{ '.$style_value.' }';
         }
-        
-        $custom_css .= '#kt_comming_'.$rand.' .title{ '.$style_title.' }';
-        $custom_css .= '#kt_comming_'.$rand.' .value-time{ '.$style_value.' }';
+
         
         if($custom_css){
-            $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+            $custom_css = '<div class="kt_custom_css" data-css="'.$custom_css.'"></div>';
         }
         
         if($css_animation !=''){
@@ -121,7 +118,6 @@ vc_map( array(
             'heading' => __( 'URL (Link)', 'js_composer' ),
             'param_name' => 'link',
         ),
-
         //Typography settings
         array(
             "type" => "kt_heading",
@@ -199,9 +195,13 @@ vc_map( array(
             'description' => __( '', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG )
         ),
-        'dependency' => array(
-            'element' => 'use_theme_fonts_value',
-            'value_not_equal_to' => 'yes',
+        array(
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts_value',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
         ),
         array(
             'type' => 'google_fonts',

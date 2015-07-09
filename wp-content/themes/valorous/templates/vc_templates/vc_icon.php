@@ -43,6 +43,11 @@ $custom_css = '';
 
 
 if($background_style == 'hexagonal'){
+    if(!$custom_background_color)
+        $custom_background_color = '#ebebeb';
+
+
+
     $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:before{border-bottom-color: '.$custom_background_color.';}';
     $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:after{border-top-color: '.$custom_background_color.';}';
 
@@ -109,7 +114,6 @@ $iconClass = isset( ${"icon_" . $type} ) ? esc_attr( ${"icon_" . $type} ) : 'fa 
 if(!$iconClass) return;
 
 
-
 $style = '';
 if ( 'custom' === $background_color ) {
     if ( false !== strpos( $background_style, 'outline' ) ) {
@@ -117,6 +121,7 @@ if ( 'custom' === $background_color ) {
     } else {
         $style = 'background-color:' . $custom_background_color;
     }
+
 }
 $style = $style ? ' style="' . esc_attr( $style ) . '"' : '';
 

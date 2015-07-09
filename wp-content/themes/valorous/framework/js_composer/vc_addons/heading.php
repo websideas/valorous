@@ -35,7 +35,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'color' => '',
             'custom_color' => '',
             'background_style' => '',
-            'background_color' => '',
+            'background_color' => 'grey',
             'custom_background_color' => '',
             'size' => 'xs',
 
