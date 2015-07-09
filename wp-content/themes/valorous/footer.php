@@ -59,13 +59,27 @@
                         </div><!-- #footer-area-content -->
                     </footer><!-- #footer-area -->
                 <?php } ?>
-                <?php if(kt_option('footer_bottom', true)){ ?>
+
+
+                <?php if(is_active_sidebar( 'footer-bottom' ) && kt_option('footer_bottom', true)){ ?>
                 	<footer id="footer-bottom">
                         <div class="container">
-                            <?php get_template_part( 'templates/footers/footer', kt_option('footer_bottom_layout', 'sides') ); ?>
+                            <?php dynamic_sidebar('footer-bottom') ?>
                         </div><!-- .container -->
-                	</footer><!-- #footer -->
+                	</footer><!-- #footer-bottom -->
                 <?php } ?>
+
+
+                <?php if(kt_option('footer_copyright', true)){ ?>
+                    <footer id="footer-copyright">
+                        <div class="container">
+                            <?php get_template_part( 'templates/footers/footer', kt_option('footer_copyright_layout', 'sides') ); ?>
+                        </div><!-- .container -->
+                    </footer><!-- #footer-copyright -->
+                <?php } ?>
+
+
+
             </div>
             <?php
         	/**
@@ -79,7 +93,6 @@
 <?php if(kt_option('backtotop', true)){ ?>
     <a id="backtotop" href="#top"></a>
 <?php } ?>
-
 
 <?php wp_footer(); ?>
 

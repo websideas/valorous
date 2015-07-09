@@ -1339,7 +1339,10 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 
-
+.widget_kt_facebook,
+.widget_kt_google{
+    overflow: hidden;
+}
 
 
 /* ==============================
@@ -1576,44 +1579,70 @@ body.admin-bar #header.is-sticky.sticky{
 .header-light #header.is-sticky{
     background: #FFFFFF;
 }
-#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a,
-#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li:hover > a,
-#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover{
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li:hover > a,
+.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover{
     color: #d0a852;
 }
 
 
-
+.header-light .mobile-nav-bar span.mobile-nav-handle:before,
+.header-light .mobile-nav-bar span.mobile-nav-handle:after,
+.header-light .mobile-nav-bar span.mobile-nav-handle span{
+    background: #282828;
+}
+.header-light #header-content-mobile a{
+    color: #282828;
+}
 
 /** ================================================
     12. Footer
 *** ================================================*/
 #footer{
-    background: #1e1e1e;
-    color: #FFFFFF;
+    background: #f5f5f5;
+    color: #252525;
+    border-top: 1px solid #d0a852;
 }
 #footer-top{
     padding: 0 0 30px;
 }
 #footer-area{
-    padding: 0 0 10px 0;
-    background: url("../images/footer-bg.png") no-repeat fixed center top;
-    background-size: cover;
+    padding: 75px 0 55px 0;
+    background: #f5f5f5;
+
 }
 #footer-area h3.widget-title{
-    border-bottom: 1px solid #FFFFFF;
-    color: #FFFFFF;
-    font-weight: bold;
+    border-bottom: 1px solid #e3e3e3;
+    color: #252525;
+    font-weight: normal;
     margin: 0 0 15px;
-    padding: 0 0 15px;
+    padding: 0 0 8px;
     width: 100%;
-    font-family: Cabin;
-    font-size: 22px;
+    font-family: Montserrat;
+    font-size: 12px;
+}
+#footer-area .widget-container{
+    background: #FFF;
+    padding: 35px;
 }
 #footer-bottom{
-    padding-bottom: 20px;
-    padding-top: 20px;
+    background: url("../images/footer-bg.png") no-repeat fixed center top;
+    background-size: cover;
+    padding: 100px 0 80px;
 }
+#footer-copyright{
+    background: #1e1e1e;
+    padding: 25px 0;
+    color: #888888;
+}
+#footer-copyright a{
+    color: #FFF;
+}
+#footer-copyright .socials-icon-wrapper{
+    margin: 0;
+}
+
+
 #bottom-nav > ul{
     margin: 0;
     padding: 0;
@@ -1621,15 +1650,7 @@ body.admin-bar #header.is-sticky.sticky{
 }
 #bottom-nav ul > li{
     display: inline-block;
-    border-right: 1px solid #ccc;
     padding: 0 12px;
-}
-#bottom-nav ul > li > a{
-    color: #666;
-}
-#bottom-nav ul > li > a:hover{
-    text-decoration: none;
-    color: #000000;
 }
 .footer-left{
     text-align: left;
@@ -1639,7 +1660,6 @@ body.admin-bar #header.is-sticky.sticky{
 }
 .footer-left #bottom-nav ul > li:last-child,
 .footer-right #bottom-nav ul > li:last-child{
-    border: none;
     padding-right: 0;
 }
 .footer-left #bottom-nav ul > li:first-child,
@@ -1648,9 +1668,6 @@ body.admin-bar #header.is-sticky.sticky{
 }
 .footer-centered{
     text-align: center;
-}
-.footer-centered #bottom-nav ul > li:last-child{
-    border: none;
 }
 .footer-centered #bottom-nav,
 .footer-centered .footer-copyright{
@@ -2027,6 +2044,68 @@ body.footer_fixed .static-footer{
     display: none;
     top: 0;
 }
+/*
+ * Mailchimp
+ */
+.mailchimp-form{
+    margin-bottom: 15px;
+}
+.mailchimp-before{
+    margin-bottom: 30px;
+}
+.mailchimp-input-name{
+    margin: 0 -4px 8px;
+}
+.mailchimp-input-name .mailchimp-col{
+    width: 50%;
+    padding: 0 4px;
+    float: left;
+}
+.mailchimp-input-name input{
+    width: 100%;
+}
+.mailchimp-layout-2 .mailchimp-input-name{
+    margin: 0;
+}
+.mailchimp-layout-2 .mailchimp-input-name .mailchimp-col{
+    width: 100%;
+    float: none;
+    padding: 0;
+    margin: 0 0 8px;
+}
+.mailchimp-input-email{
+    margin-bottom: 10px;
+}
+.mailchimp-input-button{
+    text-align: center;
+    margin-top: 25px;
+}
+.mailchimp-success,
+.mailchimp-error{
+    clear: both;
+    display: none;
+    text-align: left;
+    margin-top: 20px;
+}
+.mailchimp-success{
+    color: #3c763d;
+}
+.mailchimp-error{
+    color: #a94442;
+}
+.mailchimp-error a,
+.mailchimp-error a:hover,
+.mailchimp-error a:focus{
+    color: #843534!important;
+    font-weight: 700;
+}
+.mailchimp-error a:hover,
+.mailchimp-error a:focus{
+    text-decoration: underline;
+}
+
+
+
 
 /*
  * Blog posts

@@ -15,6 +15,9 @@
 .widget-content .chosen-container{
     width: 100%!important;
 }
+.widget-content .chosen-container + .chosen-container {
+    display: none;
+}
 /*==================================
 * Spinner
 ===================================*/

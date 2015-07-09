@@ -4,16 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Recent_Posts widget class
+ * KT_Posts widget class
  *
- * @since 2.8.0
+ * @since 1.0
  */
-class kt_article_widget extends WP_Widget {
+class Widget_KT_Posts extends WP_Widget {
 
     public function __construct() {
-        $widget_ops = array('classname' => 'widget_kt_article', 'description' => __( "Show posts of categories.") );
-        parent::__construct('kt_article', __('KT Article', THEME_LANG), $widget_ops);
-        $this->alt_option_name = 'widget_kt_article';
+        $widget_ops = array('classname' => 'widget_kt_posts', 'description' => __( "Show posts of categories.") );
+        parent::__construct('kt_posts', __('KT: posts', THEME_LANG), $widget_ops);
+        $this->alt_option_name = 'widget_kt_posts';
 
         add_action( 'save_post', array($this, 'flush_widget_cache') );
         add_action( 'deleted_post', array($this, 'flush_widget_cache') );
@@ -23,7 +23,7 @@ class kt_article_widget extends WP_Widget {
     public function widget($args, $instance) {
         $cache = array();
         if ( ! $this->is_preview() ) {
-            $cache = wp_cache_get( 'widget_kt_article', 'widget' );
+            $cache = wp_cache_get( 'widget_kt_posts', 'widget' );
         }
 
         if ( ! is_array( $cache ) ) {
@@ -42,17 +42,29 @@ class kt_article_widget extends WP_Widget {
         ob_start();
 
         $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' , THEME_LANG);
-
-        /** This filter is documented in wp-includes/default-widgets.php */
         $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
         $number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
         if ( ! $number )
             $number = 5;
-        $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+
+        $args_article =  array(
+            'posts_per_page'      => $number,
+            'no_found_rows'       => true,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'order' => $instance['order'],
+            'orderby' => $instance['orderby']
+        );
+
+        if(is_array($instance['category'])){
+            $args_article['category__in'] = $instance['category'];
+        }
+
+        //print_r($args_article);
 
         /**
-         * Filter the arguments for the Recent Posts widget.
+         * Filter the arguments for the KT Posts widget.
          *
          * @since 3.4.0
          *
@@ -60,26 +72,46 @@ class kt_article_widget extends WP_Widget {
          *
          * @param array $args An array of arguments used to retrieve the recent posts.
          */
-        $r = new WP_Query( apply_filters( 'widget_posts_args', array(
-            'posts_per_page'      => $number,
-            'no_found_rows'       => true,
-            'post_status'         => 'publish',
-            'ignore_sticky_posts' => true
-        ) ) );
+        $r = new WP_Query( apply_filters( 'widget_posts_args', $args_article ) );
 
         if ($r->have_posts()) :
+            $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : true;
+            $show_category = isset( $instance['show_category'] ) ? (bool) $instance['show_category'] : true;
+            $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : false;
+            $show_comment = isset( $instance['show_comment'] ) ? (bool) $instance['show_comment'] : false;
+            $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : true;
+
+            $layout = ( ! empty( $instance['layout'] ) ) ? absint( $instance['layout'] ) : 1;
+            if ( ! $layout )
+                $layout = 1;
             ?>
             <?php echo $args['before_widget']; ?>
-            <?php if ( $title ) {
-            echo $args['before_title'] . $title . $args['after_title'];
-        } ?>
-            <ul>
+            <?php
+            if ( $title ) {
+                echo $args['before_title'] . $title . $args['after_title'];
+            }
+            ?>
+            <ul class="kt-artilce-<?php echo esc_attr($layout) ?>">
                 <?php while ( $r->have_posts() ) : $r->the_post(); ?>
-                    <li>
-                        <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
-                        <?php if ( $show_date ) : ?>
-                            <span class="post-date"><?php echo get_the_date(); ?></span>
-                        <?php endif; ?>
+                    <li <?php post_class('article-widget'); ?>>
+                        <?php
+                            if($show_image && has_post_thumbnail()){
+                                kt_post_thumbnail_image('small', 'img-responsive');
+                            }
+                        ?>
+                        <div class="article-attr">
+                            <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+                            <?php if( $show_category ){ kt_entry_meta_categories(); } ?>
+                            <?php if( $show_date || $show_comment || $show_author ){ ?>
+                                <div class="entry-meta-data">
+                                    <?php
+                                        if( $show_date ){ kt_entry_meta_time(); }
+                                        if( $show_author ){ kt_entry_meta_author(); }
+                                        if( $show_comment ){ kt_entry_meta_comments(); }
+                                    ?>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </li>
                 <?php endwhile; ?>
             </ul>
@@ -92,7 +124,7 @@ class kt_article_widget extends WP_Widget {
 
         if ( ! $this->is_preview() ) {
             $cache[ $args['widget_id'] ] = ob_get_flush();
-            wp_cache_set( 'widget_recent_posts', $cache, 'widget' );
+            wp_cache_set( 'widget_kt_posts', $cache, 'widget' );
         } else {
             ob_end_flush();
         }
@@ -102,6 +134,7 @@ class kt_article_widget extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['number'] = (int) $new_instance['number'];
+        $instance['layout'] = isset( $new_instance['layout'] ) ? (int) $new_instance['show_date'] : 1;
         $instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
         $instance['show_category'] = isset( $new_instance['show_category'] ) ? (bool) $new_instance['show_category'] : false;
         $instance['show_image'] = isset( $new_instance['show_image'] ) ? (bool) $new_instance['show_image'] : false;
@@ -125,14 +158,14 @@ class kt_article_widget extends WP_Widget {
         $this->flush_widget_cache();
 
         $alloptions = wp_cache_get( 'alloptions', 'options' );
-        if ( isset($alloptions['widget_kt_article']) )
-            delete_option('widget_kt_article');
+        if ( isset($alloptions['widget_kt_posts']) )
+            delete_option('widget_kt_posts');
 
         return $instance;
     }
 
     public function flush_widget_cache() {
-        wp_cache_delete('widget_kt_article', 'widget');
+        wp_cache_delete('widget_kt_posts', 'widget');
     }
 
     public function form( $instance ) {
@@ -146,6 +179,7 @@ class kt_article_widget extends WP_Widget {
 
         $order = isset( $instance['order'] ) ? $instance['order'] : 'DESC';
         $orderby = isset( $instance['orderby'] ) ? $instance['orderby'] : 'date';
+        $layout    = isset( $instance['layout'] ) ? absint( $instance['layout'] ) : 1;
 
         $category = isset( $instance['category'] ) ? $instance['category'] : array();;
 
@@ -159,7 +193,7 @@ class kt_article_widget extends WP_Widget {
             <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" class="widefat" /></p>
 
         <div><label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Categories:',THEME_LANG); ?> </label>
-            <select class="widefat" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>[]" multiple="multiple">
+            <select class="widefat categories-chosen" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>[]" multiple="multiple">
                 <?php foreach($categories as $item){ ?>
                     <option <?php if (in_array($item->term_id, $category)){ echo 'selected="selected"';} ?> value="<?php echo $item->term_id ?>"><?php echo $item->name; ?></option>
                 <?php } ?>
@@ -199,10 +233,19 @@ class kt_article_widget extends WP_Widget {
 
         <p><input class="checkbox" type="checkbox" <?php checked( $show_author ); ?> id="<?php echo $this->get_field_id( 'show_author' ); ?>" name="<?php echo $this->get_field_name( 'show_author' ); ?>" />
             <label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php _e( 'Display post author?', THEME_LANG ); ?></label></p>
+
+
+        <p><label for="<?php echo $this->get_field_id('layout'); ?>"><?php _e('Layout:',THEME_LANG); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
+                <option <?php selected( $layout, '1' ); ?> value="1"><?php _e('Layout 1',THEME_LANG); ?></option>
+                <option <?php selected( $layout, '2' ); ?> value="2"><?php _e('Layout 2',THEME_LANG); ?></option>
+            </select>
+        </p>
+
         <script type="text/javascript">
             (function($){
                 $('document').ready(function() {
-                    $('#<?php echo $this->get_field_id('category'); ?>').chosen();
+                    $('.categories-chosen').chosen();
                 });
             })(jQuery);
         </script>
@@ -215,9 +258,9 @@ class kt_article_widget extends WP_Widget {
 
 
 /**
- * Register article widget
+ * Register KT_Posts widget
  *
  *
  */
 
-register_widget('kt_article_widget');
+register_widget('Widget_KT_Posts');

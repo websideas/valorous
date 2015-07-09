@@ -4,8 +4,8 @@
 if ( !defined('ABSPATH')) exit;
 
 
-$footer_left = kt_option('footer_bottom_left');
-$footer_right = kt_option('footer_bottom_right');
+$footer_left = kt_option('footer_copyright_left');
+$footer_right = kt_option('footer_copyright_right');
 
 if(!$footer_left && !$footer_right) return;
 

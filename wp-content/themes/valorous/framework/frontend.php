@@ -460,7 +460,7 @@ if ( ! function_exists( 'kt_entry_meta_author' ) ) :
             _x( 'Author', 'Used before post author name.', THEME_LANG ),
             esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
             get_the_author(),
-            __('Posed by:', THEME_LANG )
+            __('By:', THEME_LANG )
         );
     }
 endif;

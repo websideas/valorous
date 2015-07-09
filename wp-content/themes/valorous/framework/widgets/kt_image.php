@@ -13,7 +13,7 @@ class WP_Widget_KT_Image extends WP_Widget {
 
 	public function __construct() {
 		$widget_ops = array('classname' => 'widget_kt_image', 'description' => __( 'Image for widget.', THEME_LANG ) );
-		parent::__construct('kt_image', __('KT image', THEME_LANG ), $widget_ops);
+		parent::__construct('kt_image', __('KT: image', THEME_LANG ), $widget_ops);
 	}
 
 	public function widget( $args, $instance ) {

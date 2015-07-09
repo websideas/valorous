@@ -627,7 +627,6 @@ function kt_contactmethods( $contactmethods ) {
 add_filter( 'user_contactmethods','kt_contactmethods', 10, 1 );
 
 
-
 /**
  * Change the path to the directory that contains demo data folders.
  *

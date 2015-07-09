@@ -706,15 +706,48 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '#footer-bottom' ),
-                        'units'          => array( 'em', 'px' ), 
+                        'units'          => array( 'em', 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer bottom padding', THEME_LANG ),
                         'default'  => array( )
                     ),
+
+
+
+
+                    /* Footer copyright */
                     array(
-                        'id'       => 'footer_bottom_layout',
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                    array(
+                        'id'   => 'footer_copyright_heading',
+                        'type' => 'heading',
+                        'title'    => __( 'Footer copyright settings', THEME_LANG ),
+                        'class'    => 'section-heading'
+                    ),
+                    array(
+                        'id'       => 'footer_copyright',
+                        'type'     => 'switch',
+                        'title'    => __( 'Footer copyright enable', THEME_LANG ),
+                        'default'  => true,
+                    ),
+                    array(
+                        'id'       => 'footer_copyright_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '#footer-copyright' ),
+                        'units'          => array( 'em', 'px' ), 
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer copyright padding', THEME_LANG ),
+                        'default'  => array( )
+                    ),
+                    array(
+                        'id'       => 'footer_copyright_layout',
                         'type'     => 'select',
-                        'title'    => __( 'Footer bottom layout', THEME_LANG ),
+                        'title'    => __( 'Footer copyright layout', THEME_LANG ),
                         'subtitle'     => __( 'Select your preferred footer layout.', THEME_LANG ),
                         'options'  => array(
                             'centered' => __('Centered', THEME_LANG),
@@ -724,9 +757,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'clear' => false
                     ),
                     array(
-                        'id'       => 'footer_bottom_left',
+                        'id'       => 'footer_copyright_left',
                         'type'     => 'select',
-                        'title'    => __( 'Footer bottom left', THEME_LANG ),
+                        'title'    => __( 'Footer copyright left', THEME_LANG ),
                         'options'  => array(
                             '' => __('Empty', THEME_LANG ),
                             'navigation' => __('Navigation', THEME_LANG ),
@@ -736,9 +769,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => 'copyright'
                     ),
                     array(
-                        'id'       => 'footer_bottom_right',
+                        'id'       => 'footer_copyright_right',
                         'type'     => 'select',
-                        'title'    => __( 'Footer bottom right', THEME_LANG ),
+                        'title'    => __( 'Footer copyright right', THEME_LANG ),
                         'options'  => array(
                             '' => __('Empty', THEME_LANG ),
                             'navigation' => __('Navigation', THEME_LANG ),
@@ -753,11 +786,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                          'title'    => __( 'Select your socials', THEME_LANG ),
                     ),
                     array(
-                        'id'       => 'footer_copyright',
+                        'id'       => 'footer_copyright_text',
                         'type'     => 'editor',
                         'title'    => __( 'Footer Copyright Text', THEME_LANG ),
-                        'default'  => 'LONDON STARS &copy; 2015. Powered by Wordpress&#8482;. All Rights Reserved.'
+                        'default'  => 'Copyright &copy; 2015 - <a href="#">Dancing Flower</a> - All Right Reserver '
                     ),
+
+
+
+
+
                     
                 )
             );
@@ -767,7 +805,7 @@ if ( ! class_exists( 'KT_config' ) ) {
              *	Sidebar
              **/
             $this->sections[] = array(
-                'id'			=> 'csidebar',
+                'id'			=> 'sidebar_section',
                 'title'			=> __( 'Sidebar Widgets', THEME_LANG ),
                 'desc'			=> '',
                 'subsection' => true,
@@ -1062,7 +1100,27 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer Background', THEME_LANG ),
                         'subtitle' => __( 'Footer Background with image, color, etc.', THEME_LANG ),
                         'default'   => array( ),
-                        'output'      => array( '#footer' ),
+                        'output'      => array( '#footer-bottom' ),
+                    ),
+
+                    //Footer copyright settings
+                    array(
+                        'id'   => 'divide-id',
+                        'type' => 'divide'
+                    ),
+                    array(
+                        'id'   => 'footer_copyright_heading',
+                        'type' => 'heading',
+                        'title'    => __( 'Footer copyright settings', THEME_LANG ),
+                        'class'    => 'section-heading'
+                    ),
+                    array(
+                        'id'       => 'footer_copyright_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Footer Background', THEME_LANG ),
+                        'subtitle' => __( 'Footer Background with image, color, etc.', THEME_LANG ),
+                        'default'   => array( ),
+                        'output'      => array( '#footer-copyright' ),
                     )
                 )
             );
@@ -2216,6 +2274,19 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> __('Social and share settings', THEME_LANG),
 				'icon_class'	=> 'social_facebook',
 				'fields'		=> array(
+
+                    array(
+                        'id' => 'mailchimp_api_key',
+                        'type' => 'text',
+                        'title' => __('Mail Chimp API Key', THEME_LANG),
+                        'subtitle' => __('Your Mail Chimp API Key', THEME_LANG),
+                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
+                        'default' => 'acf783f889d685580748b6c543235ef9-us5'
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
                     array(
 						'id' => 'twitter',
 						'type' => 'text',
@@ -2224,12 +2295,58 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'default' => ''
                     ),
                     array(
+                        'id' => 'twitter_consumer_key',
+                        'type' => 'text',
+                        'title' => __('Twitter Consumer Key', THEME_LANG),
+                        'subtitle' => __('Your twitter Consumer Key', THEME_LANG),
+                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_consumer_secret',
+                        'type' => 'text',
+                        'title' => __('Twitter Consumer Secret', THEME_LANG),
+                        'subtitle' => __("Your twitter Consumer Secret.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_access_key',
+                        'type' => 'text',
+                        'title' => __('Twitter Access Token', THEME_LANG),
+                        'subtitle' => __("Your twitter Access Token.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_access_secret',
+                        'type' => 'text',
+                        'title' => __('Twitter Access Token Secret', THEME_LANG),
+                        'subtitle' => __("Your twitter Access Token Secret.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+
+                    array(
 						'id' => 'facebook',
 						'type' => 'text',
 						'title' => __('Facebook', THEME_LANG),
 						'subtitle' => __("Your Facebook page/profile url", THEME_LANG),
 						'default' => ''
                     ),
+                    array(
+                        'id' => 'facebook_app',
+                        'type' => 'text',
+                        'title' => __('Facebook App ID', THEME_LANG),
+                        'subtitle' => __("Add Facebook App ID.", THEME_LANG),
+                        'default' => '417674911655656'
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+
                     array(
 						'id' => 'pinterest',
 						'type' => 'text',

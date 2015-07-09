@@ -42,12 +42,12 @@ require_once ( FW_DIR . 'ajax.php' );
  */
 require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
 
-
 /**
- * Include Widgets register and define all sidebars.
+ * Include Mailchim API.
  *
  */
-require_once ( FW_DIR . 'widgets.php' );
+require_once ( FW_CLASS . 'MCAPI.class.php' );
+
 
 /**
  * Get all functions for frontend
@@ -256,3 +256,8 @@ require_once ( FW_DIR . 'product-cat-meta.php' );
 require_once ( FW_DIR . 'importer.php' );
 
 
+/**
+ * Include Widgets register and define all sidebars.
+ *
+ */
+require_once ( FW_DIR . 'widgets.php' );

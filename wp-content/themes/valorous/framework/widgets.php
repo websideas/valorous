@@ -80,6 +80,16 @@ if ( function_exists('register_sidebar')) {
             ) );
         }
 
+        register_sidebar( array(
+            'name' => __( 'Footer bottom', THEME_LANG),
+            'id' => 'footer-bottom',
+            'description' => __( 'The footer bottom widget area', THEME_LANG),
+            'before_widget' => '<section id="%1$s" class="widget-container %2$s">',
+            'after_widget' => '</section>',
+            'before_title' => '<h4 class="widget-title">',
+            'after_title' => '</h4>',
+        ) );
+
 
         $sidebars =  kt_option('custom_sidebars');
         if( !empty( $sidebars ) && is_array( $sidebars ) ){
@@ -141,12 +151,15 @@ function kt_archive_count_span($links) {
 /* Widgets list */
 $kt_widgets = array(
 	'kt_image.php',
-    'testimonial_carousel.php',
+    'kt_facebook.php',
+    'kt_googleplus.php',
     'kt_article.php',
+    'kt_mailchimp.php'
 );
 
 foreach ( $kt_widgets as $widget ) {
 	require_once( FW_WIDGETS . $widget );
+
 }
 
 
