@@ -4,7 +4,7 @@
 if ( !defined('ABSPATH')) exit;
 
 
-function kt_wc_loop_shop_per_page( $number ){
+function kt_loop_shop_per_page( $number ){
     $num = kt_option('loop_shop_per_page');
     $num =  intval( $num );
     if( $num <=0 ){
@@ -12,16 +12,15 @@ function kt_wc_loop_shop_per_page( $number ){
     }
     return $num;
 }
-
-add_filter('loop_shop_per_page', 'kt_wc_loop_shop_per_page' );
+add_filter('loop_shop_per_page', 'kt_loop_shop_per_page' );
 
 
 
 /**
  * Sale price Percentage
  */
-add_filter( 'woocommerce_sale_price_html', 'woocommerce_custom_sales_price', 10, 2 );
-function woocommerce_custom_sales_price( $price, $product ) {
+add_filter( 'woocommerce_sale_price_html', 'kt_woocommerce_sale_price_html', 10, 2 );
+function kt_woocommerce_sale_price_html( $price, $product ) {
 	$percentage = round( ( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100 );
 	return $price . sprintf( __('<span class="price-save"> %s</span>', THEME_LANG ), $percentage . '%' );
 }
@@ -53,9 +52,9 @@ add_action( 'after_switch_theme', 'kt_woocommerce_image_dimensions', 1 );
  * Change placeholder for woocommerce
  * 
  */
-add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
+add_filter('woocommerce_placeholder_img_src', 'kt_woocommerce_placeholder_img_src');
 
-function custom_woocommerce_placeholder_img_src( $src ) {
+function kt_woocommerce_placeholder_img_src( $src ) {
 	return THEME_IMG . 'placeholder.png';
 }
 
@@ -68,16 +67,32 @@ add_action( 'after_setup_theme', 'woocommerce_theme_setup' );
 if ( ! function_exists( 'woocommerce_theme_setup' ) ):
     function woocommerce_theme_setup() {
         /**
-    	 * Disable Woo styles (will use customized compiled copy)
-    	 */ 
-    	add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-        
-        /**
     	 * Enable support for woocommerce
     	 */
         add_theme_support( 'woocommerce' );
     }
 endif;
+
+/**
+ * remove WC breadcrumb
+ *
+ */
+remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20 );
+
+/**
+ * Add custom style to woocommerce
+ *
+ */
+
+function kt_wp_enqueue_scripts(){
+    wp_register_style( 'kt-woocommerce', THEME_CSS . 'woocommerce.css' );
+    wp_enqueue_style( 'kt-woocommerce' );
+}
+add_action( 'wp_enqueue_scripts', 'kt_wp_enqueue_scripts' );
+
+
+
+
 
 /**
  * Woocommerce tool link in header
@@ -281,13 +296,6 @@ function london_wrapper_end() {
  */
 add_action('woocommerce_cart_actions', 'woocommerce_button_proceed_to_checkout');
 
-/**
- * remove WC breadcrumb
- * 
- */
-// remove WC breadcrumb
-remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20 );
-
 
 /**
  * Change columns of shop
@@ -314,6 +322,7 @@ function kt_woo_shop_columns( $columns ) {
  * Change layout of archive product
  * 
  */
+/*
 add_filter( 'archive_product_layout', 'woocommerce_archive_product_layout' );
 function woocommerce_archive_product_layout( $columns ) {
     $layout = kt_option('shop_sidebar', 'full');
@@ -336,7 +345,7 @@ add_filter( 'woocommerce_gridlist_toggle', 'woocommerce_gridlist_toggle_callback
 function woocommerce_gridlist_toggle_callback(){
     return kt_option('shop_products_layout', 'grid');
 }
-
+*/
 
 /**
  * Change layout of single product
@@ -419,90 +428,27 @@ function kt_template_single_excerpt(){
  * Change hook of archive-product.php
  * 
  */
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
-add_action( 'woocommerce_before_shop_loop', 'woocommerce_gridlist_toggle', 40);
 
-
-
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
-
-add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_rating', 5);
-add_action( 'woocommerce_after_shop_loop_item', 'kt_template_single_excerpt', 7);
-add_action( 'woocommerce_shop_loop_item_image', 'woocommerce_template_loop_product_thumbnail', 5);
-
-add_action( 'woocommerce_shop_loop_item_tools', 'woocommerce_template_loop_price', 10);
-add_action( 'woocommerce_shop_loop_item_tools', 'woocommerce_template_loop_add_to_cart', 15);
-add_action( 'woocommerce_shop_loop_item_tools', 'woocommerce_shop_loop_item_action_action_add', 20);
-
-
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_price', 20);
-
-remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_show_product_loop_sale_flash', 10);
+add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_template_loop_add_to_cart', 10);
 
 
-remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
-add_action( 'woocommerce_before_cart_collaterals', 'woocommerce_cross_sell_display', 5 );
-
-
-
-$effect = kt_option('shop_products_effect', 'center');
-if($effect == 'center'){
-    add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_shop_loop_item_action_action_add', 10);
-    add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_template_loop_add_to_cart', 5);    
-}else{
-    add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_shop_loop_item_quickview', 10);
-    add_action( 'woocommerce_shop_loop_item_tools_bottom', 'woocommerce_template_loop_rating', 10);
-    add_action( 'woocommerce_shop_loop_item_tools_bottom', 'woocommerce_template_loop_add_to_cart', 15);
-    add_action( 'woocommerce_shop_loop_item_tools_bottom', 'woocommerce_shop_loop_item_tools_bottom_functional', 20);
-    
-}
-
-
+add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_shop_loop_item_quickview', 10);
 function kt_woocommerce_shop_loop_item_quickview(){
-    echo '<a href="#" class="product-quick-view" data-id="'.get_the_ID().'"><span>'.__('Quick view', THEME_LANG).'</span><i class="fa fa-spinner fa-pulse"></i></a>';
+    echo '<a href="#" class="product-quick-view" data-id="'.get_the_ID().'">'.__('Quick view', THEME_LANG).'</a>';
 }
 
-
-
-add_action( 'woocommerce_after_shop_loop_item_sale', 'woocommerce_after_shop_loop_item_sale_sale_price', 10, 2);
-function woocommerce_after_shop_loop_item_sale_sale_price($product, $post){
-    $sale_price_dates_to 	= ( $date = get_post_meta( $product->id, '_sale_price_dates_to', true ) ) ? date_i18n( 'Y-m-d', $date ) : '';
-    if($sale_price_dates_to){
-        echo '<div class="woocommerce-countdown clearfix" data-time="'.$sale_price_dates_to.'"></div>';
-    }
-}
-add_action( 'woocommerce_after_shop_loop_item_sale', 'woocommerce_after_shop_loop_item_sale_rating', 20, 2);
-function woocommerce_after_shop_loop_item_sale_rating($product, $post){
-    echo "<div class='woocommerce-countdown-rating'>".$product->get_rating_html()."</div>"; 
-}
-add_action( 'woocommerce_after_shop_loop_item_sale', 'woocommerce_after_shop_loop_item_sale_short_description', 30, 2);
-function woocommerce_after_shop_loop_item_sale_short_description($product, $post){
-    echo apply_filters( 'woocommerce_short_description', $post->post_excerpt );
-}
-function woocommerce_gridlist_toggle(){ ?>
-    <?php $gridlist = apply_filters('woocommerce_gridlist_toggle', 'grid') ?>
-    <ul class="gridlist-toggle hidden-xs">
-        <li><span><?php _e('View as:', THEME_LANG) ?></span></li>
-		<li>
-			<a <?php if($gridlist == 'lists'){ ?>class="active"<?php } ?> href="#" title="<?php _e('List view', THEME_LANG) ?>" data-layout="lists" data-remove="grid"><i class="fa fa-th-list"></i></a>
-		</li>
-		<li>
-			<a <?php if($gridlist == 'grid'){ ?>class="active"<?php } ?> href="#" title="<?php _e('Grid view', THEME_LANG) ?>" data-layout="grid" data-remove="lists"><i class="fa fa-th-large"></i></a>
-		</li>
-	</ul>
-<?php }
 /**
  * Change hook of single-product.php
  * 
  */
 
 
-
+/*
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10, 0);
 add_action( 'woocommerce_after_single_product_content', 'woocommerce_output_product_data_tabs', 10, 0);
 
@@ -555,6 +501,8 @@ function custom_stock_totals($availability_html, $availability_text, $variation)
 }
 add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
 
+*/
+
 
 /**
  * Add share product 
@@ -564,7 +512,6 @@ add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
 add_action( 'woocommerce_single_product_summary', 'theme_share_product_add_share', 50 );
 function theme_share_product_add_share(){ 
     global $post;
-    $addthis_id = kt_option('addthis_id');
     ?>
     <div class="clearfix"></div>
     <div class="product-details-share clearfix">
@@ -572,23 +519,17 @@ function theme_share_product_add_share(){
             <li><a href="javascript:print();"><i class="fa fa-print"></i> <?php _e('Print', THEME_LANG ); ?></a></li>
             <li><a href="mailto:?subject=<?php echo urlencode(get_the_title($post->ID)); ?>&amp;body=<?php echo urlencode(get_permalink($post->ID)); ?>"><i class="fa fa-envelope-o"></i> <?php _e('Send to a friend', THEME_LANG ); ?></a></li>
         </ul>
-        <?php if($addthis_id){ ?>
-            <div class="addthis_native_toolbox"></div>
-        <?php } ?>
     </div><?php
 }
 
 
-
-/* cart hooks */
 add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);
-function kt_woocommerce_before_cart_table( $args )
-{
-	global $woocommerce;
-
-	//$html = '<h3 class="page-title">' . sprintf( __( 'Shopping Cart', THEME_LANG ), $woocommerce->cart->cart_contents_count ) . '</h3><div class="term-description"><p>'.__( 'Great products are not only aesthetically pleasing but also easy to use',THEME_LANG ).'<p></div>';
-    $html = '<p>'. sprintf( __( 'Your shopping cart contains: %d products', THEME_LANG ), $woocommerce->cart->cart_contents_count ) . '</p>';
-    
+/**
+ * Add count products before cart
+ *
+ */
+function kt_woocommerce_before_cart_table( $args ){
+    $html = '<p>'. sprintf( __( 'Your shopping cart contains: %d products', THEME_LANG ), WC()->cart->cart_contents_count ) . '</p>';
 	echo $html;
 }
 

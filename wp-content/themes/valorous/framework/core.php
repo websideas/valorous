@@ -237,17 +237,23 @@ if ( class_exists( 'Vc_Manager', false ) ) {
  */
 require_once ( FW_DIR . 'js_composer/js_composer_update.php' );
 
-/**
- * support for woocommerce helpers
- *
- */
-require_once ( FW_DIR . 'woocommerce.php' );
 
-/**
- * Add image icon for product categories
- *
- */
-require_once ( FW_DIR . 'product-cat-meta.php' );
+
+if(kt_is_wc()){
+    /**
+     * support for woocommerce helpers
+     *
+     */
+    require_once ( FW_DIR . 'woocommerce.php' );
+
+
+    /**
+     * Add image icon for product categories
+     *
+     */
+    require_once ( FW_DIR . 'product-cat-meta.php' );
+}
+
 
 /**
  * Add importer

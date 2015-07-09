@@ -38,7 +38,6 @@
         init_mailchimp();
 
         init_ProductQuickView();
-        init_gridlistToggle();
         init_productcarouselwoo();
         init_kt_remove_cart();
         init_carouselwoo();
@@ -648,7 +647,7 @@
                     mainClass : 'mfp-zoom-in',
                     removalDelay: 500,
                     items: {
-                        src: '<div class="themedev-product-popup woocommerce mfp-with-anim">' + response + '</div>',
+                        src: '<div class="kt-product-popup woocommerce mfp-with-anim">' + response + '</div>',
                         type: 'inline'
                     },
                     callbacks: {
@@ -663,17 +662,17 @@
                                     pagination: false
                                 });
                             });
-                            $('.themedev-product-popup form').wc_variation_form();
+                            $('.kt-product-popup form').wc_variation_form();
 
                         },
                         close: function(){
-                            objProduct.closest('.functional-buttons').css('display','none');
+                            objProduct.css('display','none');
                             setTimeout(function(){
-                                objProduct.closest('.functional-buttons').removeAttr('style');
+                                objProduct.removeAttr('style');
                             }, 50 );
                         },
                         change: function() {
-                            $('.themedev-product-popup form').wc_variation_form();
+                            $('.kt-product-popup form').wc_variation_form();
                         }
                     }
                 });
@@ -802,27 +801,6 @@
                 $('.mini-cart .loading_overlay').remove();
                 $('.mCustomScrollbar').mCustomScrollbar();
         	}, 'json');
-
-        });
-    }
-
-
-
-    /* ---------------------------------------------
-     Grid list Toggle
-     --------------------------------------------- */
-    function init_gridlistToggle(){
-        $('ul.gridlist-toggle a').on('click', function(e){
-            e.preventDefault();
-            var $this = $(this),
-                $gridlist = $this.closest('.gridlist-toggle'),
-                $products = $this.closest('#main').find('ul.products');
-
-            $gridlist.find('a').removeClass('active');
-            $this.addClass('active');
-            $products
-                .removeClass($this.data('remove'))
-                .addClass($this.data('layout'));
 
         });
     }

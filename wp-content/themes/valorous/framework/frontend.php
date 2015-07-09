@@ -111,12 +111,10 @@ function london_scripts() {
     wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
     wp_enqueue_style( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/css/jquery.mb.YTPlayer.min.css', array());
 
-
-    wp_enqueue_style( 'woocommerce-products-filter', THEME_CSS . 'woocommerce-products-filter.css', array());
     
 	// Load our main stylesheet.
     wp_enqueue_style( 'london-main', THEME_CSS . 'style.css', array( 'london-style' ), '20141010' );
-    wp_enqueue_style( 'woocommerce', THEME_CSS . 'woocommerce.css', array('london-main'));
+
     wp_enqueue_style( 'queries', THEME_CSS . 'queries.css', array('london-main'));
     
 	// Load the Internet Explorer specific stylesheet.

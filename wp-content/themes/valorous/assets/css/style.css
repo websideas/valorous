@@ -4980,16 +4980,15 @@ body.layout-boxed #page {
 /*
  * 17.2. Pagination
  */
-.woocommerce-pagination ul.page-numbers{
+.woocommerce nav.woocommerce-pagination ul.page-numbers{
     margin: 0;
     padding: 0;
     list-style: none;
+    border: none;
 }
-.woocommerce-pagination .li_label{
-    display: none;
-}
-.woocommerce-pagination li{
-    display: inline-block;
+.woocommerce nav.woocommerce-pagination ul li{
+    border: medium none;
+    float: none;
 }
 .woocommerce-pagination,
 .pagination{
@@ -4999,8 +4998,8 @@ body.layout-boxed #page {
     text-align: center;
     padding: 0 35px;
 }
-.woocommerce-pagination a.page-numbers,
-.woocommerce-pagination span.page-numbers,
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span,
 .pagination .page-numbers{
     border: 1px solid #d7d7d7;
     display: inline-block;
@@ -5013,8 +5012,10 @@ body.layout-boxed #page {
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
-.woocommerce-pagination a.page-numbers:hover,
-.woocommerce-pagination .page-numbers.current,
+
+.woocommerce nav.woocommerce-pagination ul li a:focus,
+.woocommerce nav.woocommerce-pagination ul li a:hover,
+.woocommerce nav.woocommerce-pagination ul li span.current,
 .pagination a.page-numbers:hover,
 .pagination .page-numbers.current{
     border-color: #d0a852;

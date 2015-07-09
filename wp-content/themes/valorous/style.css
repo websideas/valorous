@@ -134,38 +134,3 @@ a img.aligncenter {
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
 }
-/* Text and button on header */
-.bag-buttons {
-  background-color: #1e1e1e!important; 
-}
-.mini-cart .shopping-bag-content {
-  font-family: "Vollkorn";
-}
-.bag-buttons a {
-  font-size: 13px;
-  font-weight: normal;
-  padding: 7px;
-  text-align: center;
-  width: 126px;
-}
-.bag-total {
-  border-top: 1px solid #a0a0a0;
-  font-size: 16px;
-  line-height: 30px;
-  padding: 7px 15px 0;
-}
-.bag-buttons .btn-default:last-child{
-    background: #2c2c2c; 
-    border-color:#2c2c2c;
-}
-.bag-buttons .btn-default{
-    background: #444; 
-    border-color:#444;
-}
-.bag-buttons .btn-default:focus,
-.bag-buttons .btn-default:hover,
-.bag-buttons .btn-default:focus,
-.bag-buttons .btn-default:active{
-    background: #d2a952; 
-    border-color: #d2a952;
-}
