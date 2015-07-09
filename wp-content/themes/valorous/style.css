@@ -134,3 +134,6 @@ a img.aligncenter {
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
 }
+.bag-buttons {
+  background-color: #1e1e1e!important; 
+}
