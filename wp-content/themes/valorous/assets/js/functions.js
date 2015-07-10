@@ -61,7 +61,9 @@
         $('.player').each(function(){
             $(this).mb_YTPlayer();
         });
-        
+
+        $('.easyzoom').easyZoom();
+
         
         $( '#main-navigation' ).onePageNav({
             currentClass: 'current-menu-item'
@@ -191,8 +193,8 @@
      Woocommercer Quantily
      --------------------------------------------- */
      function woo_quantily(){
-        $('body').on('click','.quantity .quantity-plus',function(){
-            var obj_qty = $(this).closest('.quantity').find('input.qty'),
+        $('body').on('click','.quantity-group .quantity-plus',function(){
+            var obj_qty = $(this).closest('.quantity-group').find('input.qty'),
                 val_qty = parseInt(obj_qty.val()),
                 min_qty = parseInt(obj_qty.attr('min')),
                 max_qty = parseInt(obj_qty.attr('max')),
@@ -201,8 +203,8 @@
             if(max_qty && val_qty > max_qty){ val_qty = max_qty; }
             obj_qty.val(val_qty);
         });
-        $('body').on('click','.quantity .quantity-minus',function(){
-            var obj_qty = $(this).closest('.quantity').find('input.qty'), 
+        $('body').on('click','.quantity-group .quantity-minus',function(){
+            var obj_qty = $(this).closest('.quantity-group').find('input.qty'),
                 val_qty = parseInt(obj_qty.val()),
                 min_qty = parseInt(obj_qty.attr('min')),
                 max_qty = parseInt(obj_qty.attr('max')),
@@ -813,7 +815,7 @@
 
         $('.woocommerce-carousel-wrapper').each(function(){
             var carouselWrapper = $(this),
-                wooCarousel = $(this).find('ul.products'),
+                wooCarousel = $(this).find('ul.shop-products'),
                 wooCarouselTheme = carouselWrapper.data('theme'),
                 wooAutoPlay = carouselWrapper.data('autoplay'),
                 wooitemsCustom = carouselWrapper.data('itemscustom'),

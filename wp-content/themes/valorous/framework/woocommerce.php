@@ -19,12 +19,13 @@ add_filter('loop_shop_per_page', 'kt_loop_shop_per_page' );
 /**
  * Sale price Percentage
  */
+/*
 add_filter( 'woocommerce_sale_price_html', 'kt_woocommerce_sale_price_html', 10, 2 );
 function kt_woocommerce_sale_price_html( $price, $product ) {
-	$percentage = round( ( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100 );
-	return $price . sprintf( __('<span class="price-save"> %s</span>', THEME_LANG ), $percentage . '%' );
+    $percentage = round( ( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100 );
+    return $price . sprintf( __('<span class="price-save"> %s</span>', THEME_LANG ), $percentage . '%' );
 }
-
+*/
 
 /**
  * Define image sizes
@@ -363,65 +364,15 @@ function london_single_product_layout( $columns ) {
  */
 add_filter( 'woocommerce_single_product_carousel', 'woocommerce_single_product_carousel_callback' );
 function woocommerce_single_product_carousel_callback( $columns ) {
-    $layout = kt_option('product_sidebar', 'full');
-    if($layout == 'left' || $layout == 'right'){
+
+    $sidebar = kt_get_woo_sidebar();
+
+    if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
         return '[[992,3], [768, 3], [480, 2]]';
     }else{
         return '[[992,4], [768, 3], [480, 2]]';
     }
     
-}
-
-/**
- * Add functional-buttons for archive-product.php
- * 
- */
-function woocommerce_shop_loop_item_action_action_add(){
-    $count = 1;
-    if(class_exists('YITH_WCWL_UI')){
-        $count++;
-    }
-    if(defined( 'YITH_WOOCOMPARE' )){
-        $count++;
-    }
-    
-    echo "<div class='functional-buttons functional-button-".$count."'>";
-    echo '<a href="#" class="product-quick-view" data-id="'.get_the_ID().'"><span></span><i class="fa fa-spinner fa-pulse"></i></a>';
-    if(class_exists('YITH_WCWL_UI')){
-        echo do_shortcode('[yith_wcwl_add_to_wishlist]');    
-    }
-    if(defined( 'YITH_WOOCOMPARE' )){
-        echo do_shortcode('[yith_compare_button]');
-    }
-    echo "</div>";
-}
-
-/**
- * Add functional-buttons for effect bottom
- * 
- */
-function woocommerce_shop_loop_item_tools_bottom_functional(){
-    if(class_exists('YITH_WCWL_UI')){
-        echo do_shortcode('[yith_wcwl_add_to_wishlist]');    
-    }
-    if(defined( 'YITH_WOOCOMPARE' )){
-        echo do_shortcode('[yith_compare_button]');
-    }
-}
-
-
-function kt_template_single_excerpt(){
-    global $post;
-
-    if ( ! $post->post_excerpt ) {
-    	return;
-    }
-    
-    ?>
-    <div class="product-short-description">
-    	<?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ); ?>
-    </div>
-    <?php
 }
 
 /**
@@ -437,25 +388,65 @@ add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_show_product_
 add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_template_loop_add_to_cart', 10);
 
 
-add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_shop_loop_item_quickview', 10);
-function kt_woocommerce_shop_loop_item_quickview(){
+add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_add_archive_tool', 10);
+function kt_woocommerce_add_archive_tool(){
     echo '<a href="#" class="product-quick-view" data-id="'.get_the_ID().'">'.__('Quick view', THEME_LANG).'</a>';
+    if(class_exists('YITH_WCWL_UI')){
+        echo do_shortcode('[yith_wcwl_add_to_wishlist]');
+    }
+    /*
+    if(defined( 'YITH_WOOCOMPARE' )){
+        echo do_shortcode('[yith_compare_button]');
+    }
+    */
 }
+
+
 
 /**
  * Change hook of single-product.php
  * 
  */
 
+// Remove description heading
+add_filter('woocommerce_product_description_heading', '__return_false');
+
+// Remove compare product
+if(defined( 'YITH_WOOCOMPARE' )){
+    global $yith_woocompare;
+    remove_action( 'woocommerce_single_product_summary', array( $yith_woocompare->obj, 'add_compare_link' ), 35 );
+}
+
+// Remove wishlist product
+add_filter('yith_wcwl_positions', 'yith_wcwl_positions_callback');
+function yith_wcwl_positions_callback($positions){
+    $positions['add-to-cart']['hook'] = '';
+    return $positions;
+}
+
+add_action( 'woocommerce_after_add_to_cart_button', 'woocommerce_shop_loop_item_action_action_product', 50);
+function woocommerce_shop_loop_item_action_action_product(){
+    if(class_exists('YITH_WCWL_UI') || defined( 'YITH_WOOCOMPARE' )){
+        echo "<div class='functional-buttons-product clearfix'>";
+        echo "<div class='functional-buttons'>";
+        if(class_exists('YITH_WCWL_UI')){
+            echo do_shortcode('[yith_wcwl_add_to_wishlist]');
+        }
+        if(defined( 'YITH_WOOCOMPARE' )){
+            echo do_shortcode('[yith_compare_button]');
+        }
+        echo "</div>";
+        echo "</div>";
+    }
+}
+
+
 
 /*
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10, 0);
 add_action( 'woocommerce_after_single_product_content', 'woocommerce_output_product_data_tabs', 10, 0);
 
-add_filter('woocommerce_product_description_heading', 'london_woocommerce_product_description_heading');
-function london_woocommerce_product_description_heading(){
-    return "";
-}
+
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40, 0);
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 15);
@@ -465,10 +456,7 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_p
 
 
 
-if(defined( 'YITH_WOOCOMPARE' )){
-    global $yith_woocompare;
-    remove_action( 'woocommerce_single_product_summary', array( $yith_woocompare->obj, 'add_compare_link' ), 35 );
-}
+
 
 add_filter('yith_wcwl_positions', 'yith_wcwl_positions_callback');
 function yith_wcwl_positions_callback($positions){
@@ -504,23 +492,6 @@ add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
 */
 
 
-/**
- * Add share product 
- *
- * @since 1.0
- */
-add_action( 'woocommerce_single_product_summary', 'theme_share_product_add_share', 50 );
-function theme_share_product_add_share(){ 
-    global $post;
-    ?>
-    <div class="clearfix"></div>
-    <div class="product-details-share clearfix">
-        <ul class="share clearfix">
-            <li><a href="javascript:print();"><i class="fa fa-print"></i> <?php _e('Print', THEME_LANG ); ?></a></li>
-            <li><a href="mailto:?subject=<?php echo urlencode(get_the_title($post->ID)); ?>&amp;body=<?php echo urlencode(get_permalink($post->ID)); ?>"><i class="fa fa-envelope-o"></i> <?php _e('Send to a friend', THEME_LANG ); ?></a></li>
-        </ul>
-    </div><?php
-}
 
 
 add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);

@@ -65,8 +65,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 	<p class="buttons">
-		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
-		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+        <span>
+		    <a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+        </span>
+        <span>
+		    <a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+        </span>
 	</p>
 
 <?php endif; ?>

@@ -24,7 +24,7 @@ global $post, $product, $woocommerce;
 	 	return;
 	 }
 ?>
-<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class('product'); ?>>
+<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class('product wc-single-product'); ?>>
     <div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
             <div class="carousel-navigation-center single-product-quickview">

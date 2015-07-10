@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Woocommerce Compare\n"
+"POT-Creation-Date: 2015-02-13 12:14+0100\n"
+"PO-Revision-Date: 2015-02-13 12:19+0100\n"
+"Last-Translator: Radi Angelov <fullmetalradi@hotmail.com>\n"
+"Language-Team: Your Inspiration Themes <support@yithemes.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-Basepath: ./\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class.yith-woocompare-admin.php:130
+msgid "Products Compare"
+msgstr "Comparador de productos"
+
+#: ../class.yith-woocompare-admin.php:144 ../yith-woocompare-options.php:24
+msgid "General Settings"
+msgstr "Obciones generales"
+
+#: ../class.yith-woocompare-admin.php:375
+msgid "Hard Crop?"
+msgstr "Hard Crop?"
+
+#: ../class.yith-woocompare-frontend.php:142
+msgid "Added"
+msgstr "Añadido"
+
+#: ../class.yith-woocompare-frontend.php:143 ../templates/compare.php:51
+msgid "Product Comparison"
+msgstr "Comparacion de producto"
+
+#: ../class.yith-woocompare-frontend.php:254
+msgid "In stock"
+msgstr "En stock"
+
+#: ../class.yith-woocompare-frontend.php:338 ../yith-woocompare-options.php:47
+#: ../widgets/class.yith-woocompare-widget.php:45
+msgid "Compare"
+msgstr "Comparar"
+
+#: ../class.yith-woocompare-frontend.php:512
+msgid "No products to compare"
+msgstr "Comparador de productos vacio"
+
+#: ../class.yith-woocompare-frontend.php:522 ../templates/compare.php:109
+msgid "Remove"
+msgstr "Eliminar"
+
+#: ../class.yith-woocompare-helper.php:39
+msgid "Image"
+msgstr "Imagen"
+
+#: ../class.yith-woocompare-helper.php:40
+#: ../widgets/class.yith-woocompare-widget.php:62
+msgid "Title"
+msgstr "Titulo"
+
+#: ../class.yith-woocompare-helper.php:41
+msgid "Price"
+msgstr "Precio"
+
+#: ../class.yith-woocompare-helper.php:42
+msgid "Add to cart"
+msgstr "Añadir al carrito"
+
+#: ../class.yith-woocompare-helper.php:43
+msgid "Description"
+msgstr "Descripcion"
+
+#: ../class.yith-woocompare-helper.php:44
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#: ../yith-woocompare-options.php:31
+msgid "Link or Button"
+msgstr "Link o Boton"
+
+#: ../yith-woocompare-options.php:32
+msgid "Choose if you want to use a link or a button for the action button."
+msgstr "Elige si deseas usar boton o link"
+
+#: ../yith-woocompare-options.php:38
+msgid "Link"
+msgstr "Enlace"
+
+#: ../yith-woocompare-options.php:39
+msgid "Button"
+msgstr "Boton"
+
+#: ../yith-woocompare-options.php:44
+msgid "Link/Button text"
+msgstr "Texto del boton/link"
+
+#: ../yith-woocompare-options.php:45
+msgid "Type the text to use for the button or the link of the compare."
+msgstr "Escribe el texto del boton/link comparar."
+
+#: ../yith-woocompare-options.php:52
+msgid "Show button in single product page"
+msgstr "Mostrar boton en pagina de producto individual"
+
+#: ../yith-woocompare-options.php:53
+msgid "Say if you want to show the button in the single product page."
+msgstr ""
+"¿Quieres mostrar el boton de comparar en la pagina individual de cada "
+"producto?"
+
+#: ../yith-woocompare-options.php:61
+msgid "Show button in products list"
+msgstr "Mostrar boton en la lista de productos"
+
+#: ../yith-woocompare-options.php:62
+msgid "Say if you want to show the button in the products list."
+msgstr "¿Quieres mostrar el boton de comparar en la lista de productos?"
+
+#: ../yith-woocompare-options.php:70
+msgid "Open automatically lightbox"
+msgstr "Abrir lightbox (mensaje emergente) automaticamente"
+
+#: ../yith-woocompare-options.php:71
+msgid "Open link after click into \"Compare\" button\"."
+msgstr "Abrir link despues de hacer click en \"Comparar\""
+
+#: ../yith-woocompare-options.php:83
+msgid "Table Settings"
+msgstr "Opciones de tabla"
+
+#: ../yith-woocompare-options.php:90
+msgid "Table title"
+msgstr "Titulo de tabla"
+
+#: ../yith-woocompare-options.php:91
+msgid "Type the text to use for the table title."
+msgstr "Escribe el texto del boton/link comparar."
+
+#: ../yith-woocompare-options.php:93
+msgid "Compare products"
+msgstr "Comparador de productos"
+
+#: ../yith-woocompare-options.php:98
+msgid "Fields to show"
+msgstr "Mostrar boton en la lista de productos"
+
+#: ../yith-woocompare-options.php:99 ../yith-woocompare-options.php:108
+#: ../yith-woocompare-options.php:117
+msgid ""
+"Select the fields to show in the comparison table and order them by "
+"drag&drop (are included also the woocommerce attributes)"
+msgstr ""
+"Elige que campos quieres mostrar en la tabla del comparador y ordenalos "
+"simplemente arrastrandolos (estan incluidos los atributos de productos de "
+"woocommerce)"
+
+#: ../yith-woocompare-options.php:107
+msgid "Repeat \"Price\" field at the end of the table"
+msgstr "Repetir campo \"Precio\" al final de la tabla"
+
+#: ../yith-woocompare-options.php:116
+msgid "Repeat \"Add to cart\" field at the end of the table"
+msgstr "Repetir campo \"Añadir al carrito\" al final de la tabla"
+
+#: ../yith-woocompare-options.php:125
+msgid "Image size"
+msgstr "Imagen"
+
+#: ../yith-woocompare-options.php:126
+msgid "Set the size for the images"
+msgstr "Fijar el tamaño de la imagen"
+
+#: ../templates/compare.php:76
+msgid "Close window [X]"
+msgstr "Cerrar ventana [X]"
+
+#: ../templates/compare.php:101
+msgid "No products added in the compare table."
+msgstr "Comparador de productos"
+
+#: ../widgets/class.yith-woocompare-widget.php:21
+msgid "The widget show the list of products added in the compare table."
+msgstr ""
+"El widget muestra la lista de productos añadidos en la tabla de comparacion"
+
+#: ../widgets/class.yith-woocompare-widget.php:22
+msgid "YITH Woocommerce Compare Widget"
+msgstr "YITH Woocommerce widget de comparador"
+
+#: ../widgets/class.yith-woocompare-widget.php:44
+msgid "Clear all"
+msgstr "Eliminar todos"
+
+#: ../yit-common/yith-panel.php:406
+msgid "Select a date"
+msgstr "Seleccionar fecha"
+
+#: ../yit-common/yith-panel.php:407
+msgid "Hours"
+msgstr "Horas"
+
+#: ../yit-common/yith-panel.php:408 ../yit-common/yith-panel.php:409
+msgid "Minutes"
+msgstr "Minutos"
+
+#: ../yit-common/yith-panel.php:417
+msgid "Upload"
+msgstr "Cargar"
+
+#: ../yit-common/yith-panel.php:444
+msgid "px"
+msgstr "px"
+
+#: ../yit-common/yith-panel.php:445
+msgid "em"
+msgstr "em"
+
+#: ../yit-common/yith-panel.php:446
+msgid "pt"
+msgstr "pt"
+
+#: ../yit-common/yith-panel.php:447
+msgid "rem"
+msgstr "rem"
+
+#: ../yit-common/yith-panel.php:457
+msgid "Select a font family"
+msgstr "Seleccionar fuente"
+
+#: ../yit-common/yith-panel.php:465
+msgid "Regular"
+msgstr "Normal"
+
+#: ../yit-common/yith-panel.php:466
+msgid "Bold"
+msgstr "Negrita"
+
+#: ../yit-common/yith-panel.php:467
+msgid "Extra bold"
+msgstr "Extra negrita"
+
+#: ../yit-common/yith-panel.php:468
+msgid "Italic"
+msgstr "Cursiva"
+
+#: ../yit-common/yith-panel.php:469
+msgid "Italic bold"
+msgstr "Cursiva negrita"
+
+#: ../yit-common/yith-panel.php:481
+msgid "Click to preview"
+msgstr "Click para previsualizar"

@@ -1744,7 +1744,7 @@ ul.product-categories > li.cat-parent.current-cat > a{
 .woocommerce .product-detail-thumbarea{
     position: relative;
 }
-.woocommerce .single-product-main-images,
+.woocommerce ..woocommerce .variations td.variations-label,
 .woocommerce .single-product-main-thumbnails{
     margin-bottom: 20px;
 }
@@ -1784,7 +1784,7 @@ ul.product-categories > li.cat-parent.current-cat > a{
 .woocommerce .easyzoom{ 
     display: block; 
 }
-.woocommerce .easyzoom-flyout img{ 
+.woocommerce .easyzoom-flyout img{
     max-width:none!important; 
 }
 .woocommerce .woocommerce-product-rating,
