@@ -76,6 +76,12 @@ only screen and (min-resolution: 144dpi) {
     .coming-soon .wrap{
         width:50%;
     }
+    .widget_kt_instagram ul li{
+        width:25%;
+    }
+    .widget_kt_instagram ul li:nth-child(8) ~ li{
+        display: none;
+    }
 }
 /* 10. Styles for devices(<=480px ) */
 @media (max-width: 480px) {
@@ -95,7 +101,13 @@ only screen and (min-resolution: 144dpi) {
     .author-info .author-description{
         padding: 0;
     }
-
+    
+    .widget_kt_instagram ul li{
+        width:33.33%;
+    }
+    .widget_kt_instagram ul li:nth-child(6) ~ li{
+        display: none;
+    }
 }
 /* 11. Styles for devices(<=320px ) */
 @media (max-width: 320px) {

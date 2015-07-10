@@ -43,7 +43,7 @@
         init_carouselwoo();
         
         woo_quantily();
-        //scrollsizebar();
+        scrollsizebar();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -63,7 +63,7 @@
         });
         
         
-        $( '#menu-one-page-menu' ).onePageNav({
+        $( '#main-navigation' ).onePageNav({
             currentClass: 'current-menu-item'
         });
                 

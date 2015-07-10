@@ -1159,35 +1159,72 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 /*===== Widget Article =====*/
-.widget_kt_article ul.layout-1{
+.widget_kt_posts ul{
     list-style: none;
+    padding:0;
+    margin:0;
 }
-.widget_kt_article ul.layout-1 li{
+.widget_kt_posts ul.kt-artilce-1 li{
     margin-bottom:30px;
 }
-.widget_kt_article ul.layout-1 li .entry-thumb{
+.widget_kt_posts ul.kt-artilce-1 li .entry-thumb{
     float:left;    
-    width:120px;
+    width:100px;
 }
-.widget_kt_article ul.layout-1 li.has-thumbnail .article-attr{
-    margin-left:135px;
+.widget_kt_posts ul.kt-artilce-1 li.has-post-thumbnail .article-attr{
+    margin-left:115px;
 }
-.widget_kt_article ul.layout-1 li .title{
+.widget_kt_posts ul.kt-artilce-1 li .title{
     margin-bottom:5px;
-    font-weight:bold;
+    font-weight:600;
     font-size:15px;
     line-height: 24px;
 }
-.widget_kt_article ul.layout-1 li span.cat-links{
+.widget_kt_posts ul.kt-artilce-1 li span.cat-links{
     display: inline-block;
     margin-bottom:10px;
     text-transform: uppercase;
     font-size:12px;
 }
-.widget_kt_article ul.layout-1 li .entry-meta-data{
+.widget_kt_posts ul.kt-artilce-1 li .entry-meta-data{
     font-size:12px;
 }
-
+/*===== Widget Instagram =====*/
+#footer-bottom .widget_kt_instagram{
+    margin:0;
+}
+.widget_kt_instagram{
+    position: relative;
+}
+.widget_kt_instagram:after{
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.7);
+}
+.widget_kt_instagram ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.widget_kt_instagram ul li{
+    float:left;
+    width:12.5%;
+}
+.widget_kt_instagram .widget-image{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:  translate(-50%,-50%);
+    -moz-transform:     translate(-50%,-50%);
+    -o-transform:       translate(-50%,-50%);
+    -ms-transform:      translate(-50%,-50%);
+    transform:          translate(-50%,-50%);
+    z-index:10;
+}
 
 
 
@@ -1627,11 +1664,6 @@ body.admin-bar #header.is-sticky.sticky{
 #footer-area .widget-container{
     background: #FFF;
     padding: 35px;
-}
-#footer-bottom{
-    background: url("../images/footer-bg.png") no-repeat fixed center top;
-    background-size: cover;
-    padding: 100px 0 80px;
 }
 #footer-copyright{
     background: #1e1e1e;

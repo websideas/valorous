@@ -100,7 +100,7 @@ class Widget_KT_Posts extends WP_Widget {
                             }
                         ?>
                         <div class="article-attr">
-                            <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+                            <h3 class="title"><a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a></h3>
                             <?php if( $show_category ){ kt_entry_meta_categories(); } ?>
                             <?php if( $show_date || $show_comment || $show_author ){ ?>
                                 <div class="entry-meta-data">
@@ -134,7 +134,7 @@ class Widget_KT_Posts extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['number'] = (int) $new_instance['number'];
-        $instance['layout'] = isset( $new_instance['layout'] ) ? (int) $new_instance['show_date'] : 1;
+        $instance['layout'] = isset( $new_instance['layout'] ) ? (int) $new_instance['layout'] : 1;
         $instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
         $instance['show_category'] = isset( $new_instance['show_category'] ) ? (bool) $new_instance['show_category'] : false;
         $instance['show_image'] = isset( $new_instance['show_image'] ) ? (bool) $new_instance['show_image'] : false;
@@ -179,7 +179,7 @@ class Widget_KT_Posts extends WP_Widget {
 
         $order = isset( $instance['order'] ) ? $instance['order'] : 'DESC';
         $orderby = isset( $instance['orderby'] ) ? $instance['orderby'] : 'date';
-        $layout    = isset( $instance['layout'] ) ? absint( $instance['layout'] ) : 1;
+        $layout = isset( $instance['layout'] ) ? absint( $instance['layout'] ) : 1;
 
         $category = isset( $instance['category'] ) ? $instance['category'] : array();;
 
