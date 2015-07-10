@@ -69,7 +69,6 @@ if ( post_password_required() ) {
 
 
         </div><!-- .product-detail-inner -->
-
         <?php
         /**
          * woocommerce_after_single_product_summary hook

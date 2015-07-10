@@ -279,9 +279,11 @@ if (!function_exists('kt_get_woo_sidebar')) {
             }elseif($sidebar['sidebar'] == 'right'){
                 $sidebar['sidebar_area'] = kt_option('shop_sidebar_right', 'shop-widget-area');
             }
+        }elseif(is_cart()){
+            $sidebar = kt_get_page_sidebar(get_option('woocommerce_cart_page_id'));
         }
-        return apply_filters('woo_sidebar', $sidebar);
 
+        return apply_filters('woo_sidebar', $sidebar);
     }
 }
 

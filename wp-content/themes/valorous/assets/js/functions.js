@@ -43,7 +43,7 @@
         init_carouselwoo();
         
         woo_quantily();
-        scrollsizebar();
+        //scrollsizebar();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');

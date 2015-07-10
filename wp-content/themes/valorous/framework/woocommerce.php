@@ -494,15 +494,22 @@ add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
 
 
 
-add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);
+
 /**
  * Add count products before cart
  *
  */
+/*
+add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);
 function kt_woocommerce_before_cart_table( $args ){
     $html = '<p>'. sprintf( __( 'Your shopping cart contains: %d products', THEME_LANG ), WC()->cart->cart_contents_count ) . '</p>';
 	echo $html;
 }
+*/
+
+
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
 
 
 
