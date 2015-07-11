@@ -354,7 +354,7 @@ select:not([multiple]) {
     -o-border-radius: 0;
     border: 1px solid transparent;
     display: inline-block;
-    font-family: Cabin;
+    font-family: "Montserrat"
     line-height: 1.42857;
     padding: 9px 30px;
     font-weight: bold;
@@ -1002,15 +1002,15 @@ ul.navigation-mobile > li > ul.sub-menu-dropdown > li li.current-menu-item > a{
    9. Widgets
    ============================== */
 .widget-container{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .widget-title{
     border-bottom: 1px solid #e3e3e3;
     color: #363636;
-    font-size: 22px;
+    font-size: 15px;
     padding: 0 0 8px;
     text-transform: uppercase;
-    font-family: Cabin;
+    font-family: "Montserrat"
 }
 .searchform{
     margin: 0 auto;
@@ -1072,8 +1072,8 @@ h2.widgettitle a.rsswidget:first-child,
     -moz-transition: all 0.2s ease-in-out 0s;
     -o-transition: all 0.2s ease-in-out 0s;
     padding:8px 11px;
-    color:#d6d6d6;
-    border: 1px solid #d6d6d6;
+    color:#8f8f8f;
+    border: 1px solid #8f8f8f;
 }
 .widget_product_tag_cloud a:hover,
 .widget_product_tag_cloud a:focus,
@@ -1320,9 +1320,12 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_archive ul li a,
 .widget_product_categories ul li a,
 .widget_categories ul li a{
-    padding: 8px 30px;
-    display: block;
-    line-height: normal;
+	color: #313131;
+	display: block;
+	font-family: Montserrat;
+	font-size: 13px;
+	line-height: normal;
+	padding: 8px 30px;
 }
 .widget_nav_menu ul li a,
 .widget_meta ul li a,
@@ -4511,6 +4514,13 @@ body .mejs-container.mejs-audio .mejs-controls div{
 /*
  * 17.3. Blog Posts
  */
+a:hover{
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+}
 article.post-item{
     margin-bottom: 50px;
 }
@@ -4528,20 +4538,38 @@ article.post-item{
 .entry-thumb img{
     width: 100%;
 }
-.blog-posts .entry-title {
-    font-size: 26px;
-    line-height: 1.5;
-    font-weight: bold;
-    font-family: 'Cabin';
+.blog-posts .entry-title a { 
+	color:#000;
 }
-.entry-meta-data{
-    color: #b5b5b5;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+.blog-posts .entry-title { 
+  font-family: "Montserrat";
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.entry-meta-data .cat-links a:hover{
+	text-decoration: underline;
+}
+.post-layout-carousel1 .entry-more a:hover{
+	color: #d2a952;
+	border-color: #d2a952;
+}
+.entry-meta-data .cat-links,
+.entry-meta-data .cat-links a{
+	color: #d0a852;
+}
+.entry-meta-data {
+  color: #8f8f8f;
+  font-family: "Montserrat";
+  font-size: 13px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .entry-meta-data > span:after {
     content: "-";
     margin-right: 4px; margin-left: 6px;
+	color: #8f8f8f;
 }
 .entry-meta-data > span:last-child:after {
     content:'';
@@ -4552,7 +4580,7 @@ article.post-item{
 
 }
 .entry-share-box a{
-    border: 1px solid #d6d6d6;
+    border: 1px solid #8f8f8f;
     color: #b5b5b5;
     display: inline-block;
     font-size: 13px;
@@ -4706,7 +4734,7 @@ article.post-item{
     margin: 0;
 }
 .post-item-carousel .entry-title{
-    font-family: Cabin;
+    font-family: "Montserrat"
     font-size: 18px;
     line-height: 1;
     margin: 0 0 8px;
@@ -4848,7 +4876,7 @@ article.post-item{
  * 17.4. Single Posts - Entry post
  */
 .post-single .entry-title{
-    font-family: Cabin;
+    font-family: "Montserrat"
     font-size: 26px;
     margin: 0 0 15px;
 }
