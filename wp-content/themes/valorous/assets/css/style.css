@@ -1167,12 +1167,18 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_posts ul.kt-artilce-1 li{
     margin-bottom:30px;
 }
+.widget_kt_posts ul.kt-artilce-1 li:last-child{
+    margin-bottom:0;
+}
 .widget_kt_posts ul.kt-artilce-1 li .entry-thumb{
     float:left;    
     width:100px;
 }
 .widget_kt_posts ul.kt-artilce-1 li.has-post-thumbnail .article-attr{
     margin-left:115px;
+}
+.widget_kt_posts ul.kt-artilce-1.no-image li.has-post-thumbnail .article-attr{
+    margin-left:0;
 }
 .widget_kt_posts ul.kt-artilce-1 li .title{
     margin-bottom:5px;
@@ -1188,6 +1194,7 @@ h2.widgettitle a.rsswidget:first-child,
 }
 .widget_kt_posts ul.kt-artilce-1 li .entry-meta-data{
     font-size:12px;
+    margin:0;
 }
 /*===== Widget Instagram =====*/
 #footer-bottom .widget_kt_instagram{
