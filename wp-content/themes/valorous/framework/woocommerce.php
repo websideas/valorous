@@ -92,78 +92,6 @@ function kt_wp_enqueue_scripts(){
 add_action( 'wp_enqueue_scripts', 'kt_wp_enqueue_scripts' );
 
 
-
-
-
-/**
- * Woocommerce tool link in header
- * 
- * @since 1.0
- */
-function woocommerce_get_tool($id = 'woocommerce-nav'){
-    global $wpdb, $yith_wcwl;
-    if ( kt_is_wc() ) { ?>
-        <nav class="woocommerce-nav-container" id="<?php echo esc_attr($id); ?>">
-            <ul class="menu">
-                <?php 
-                    $style_shop = $style_checkout = "none";
-                    if((sizeof( WC()->cart->cart_contents) > 0)){
-                        $style_checkout = "inline-block";
-                    }else{
-                        $style_shop = "inline-block";
-                    }
-                ?>
-                <li class='shop-link' style="display: <?php echo esc_attr($style_shop); ?>;">
-                    <?php $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>
-                    <a href="<?php echo esc_url( $shop_page_url ); ?>" title="<?php _e('Shop', THEME_LANG); ?>"><?php _e('Shop', THEME_LANG); ?></a>                    
-                </li>            
-                <li class='my-account-link'>                        
-                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account', THEME_LANG); ?>"><?php _e('My Account', THEME_LANG); ?></a>
-                </li>
-                <li class='checkout-link' style="display: <?php echo esc_attr($style_checkout); ?>;">
-                    <a href="<?php echo WC()->cart->get_checkout_url(); ?>" title="<?php _e('Checkout', THEME_LANG); ?>"><?php _e('Checkout', THEME_LANG); ?></a>
-                </li>                
-                <?php 
-                    if(class_exists('YITH_WCWL_UI')){
-                        $count = array();
-            	       
-                		if( is_user_logged_in() ) {
-                		    $count = $wpdb->get_results( $wpdb->prepare( 'SELECT COUNT(*) as `cnt` FROM `' . YITH_WCWL_ITEMS_TABLE . '` WHERE `user_id` = %d', get_current_user_id()  ), ARRAY_A );
-                		    $count = $count[0]['cnt'];
-                		} elseif( yith_usecookies() ) {
-                		    $count[0]['cnt'] = count( yith_getcookie( 'yith_wcwl_products' ) );
-                		    $count = $count[0]['cnt'];
-                		} else {
-                		    //$count[0]['cnt'] = count( $_SESSION['yith_wcwl_products'] );
-                		    //$count = $count[0]['cnt'];
-                		}
-                        
-                		if (is_array($count)) {
-                			$count = 0;
-                		}
-                        echo "<li class='wishlist-link'>";
-                            echo '<a href="'.$yith_wcwl->get_wishlist_url('').'">'.__("My Wishlist ", THEME_LANG).'<span>('.$count.')</span></a>';
-                        echo "</li>";
-                    }
-                ?>
-                <?php
-                    if(defined( 'YITH_WOOCOMPARE' )){
-                        echo "<li class='woocompare-link'>";
-                        echo '<a href="#" class="yith-woocompare-open">'.__("Compare", THEME_LANG).'</a>';
-                        echo "</li>";
-                    }
-                ?>
-                <?php
-            	/**
-            	 * @hooked 
-            	 */
-            	do_action( 'woocommerce_get_tool' ); ?>
-                
-            </ul>
-        </nav>
-    <?php }
-}
-
 /**
  * Woocommerce cart in header
  * 
@@ -211,7 +139,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                 $output .= '</div>';
                 $output .= '</div>';
             }else{
-               $output .=  "<p class='cart_block_no_products'>".__('Your cart is empty.', THEME_LANG)."</p>";
+               $output .=  "<p class='cart_block_no_products'>".__('Your cart is currently empty.', THEME_LANG)."</p>";
             }
 
             if ( sizeof(WC()->cart->cart_contents)>0 ) {

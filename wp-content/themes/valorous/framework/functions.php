@@ -24,6 +24,10 @@ function get_page_header( ){
         $post_id = $post->ID;
         $show_title = rwmb_meta('_kt_page_header', array(), $post_id);
     }
+    if($show_title == ''){
+        $show_title = true;
+    }
+
 
     if(kt_is_wc()){
         if(is_shop()){

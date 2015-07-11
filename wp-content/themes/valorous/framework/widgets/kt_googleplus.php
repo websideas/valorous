@@ -51,7 +51,7 @@ class Widget_KT_Goolge extends WP_Widget {
                 echo $args['before_title'] . $title . $args['after_title'];
             }
             ?>
-            <div class="g-page" data-href="<?php echo esc_attr($href); ?>" data-width="263" data-theme="<?php echo esc_attr($color) ?>" data-layout="<?php echo esc_attr($layout) ?>" data-rel="publisher" data-showtagline="<?php echo $tagline ? 'true' : 'false' ?>" data-showcoverphoto="<?php echo $cover ? 'true' : 'false' ?>"></div>
+            <div class="g-page" data-href="<?php echo esc_attr($href); ?>" data-width="262" data-theme="<?php echo esc_attr($color) ?>" data-layout="<?php echo esc_attr($layout) ?>" data-rel="publisher" data-showtagline="<?php echo $tagline ? 'true' : 'false' ?>" data-showcoverphoto="<?php echo $cover ? 'true' : 'false' ?>"></div>
             <?php
             echo $args['after_widget'];
         }
