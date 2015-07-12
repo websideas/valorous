@@ -48,6 +48,11 @@ require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
  */
 require_once ( FW_CLASS . 'MCAPI.class.php' );
 
+/**
+ * Include Mailchimp Setting.
+ *
+ */
+require_once ( FW_CLASS . 'instagram-settings.php' );
 
 /**
  * Get all functions for frontend

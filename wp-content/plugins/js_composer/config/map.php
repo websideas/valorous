@@ -803,7 +803,7 @@ vc_map( array(
 			'value' => 'fa fa-info-circle',
 			'settings' => array(
 				'emptyIcon' => false, // default true, display an "EMPTY" icon?
-				'iconsPerPage' => 200, // default 100, how many icons per/page to display
+				'iconsPerPage' => 4000, // default 100, how many icons per/page to display
 			),
 			'dependency' => array(
 				'element' => 'icon_type',
@@ -818,7 +818,7 @@ vc_map( array(
 			'settings' => array(
 				'emptyIcon' => false, // default true, display an "EMPTY" icon?
 				'type' => 'openiconic',
-				'iconsPerPage' => 200, // default 100, how many icons per/page to display
+				'iconsPerPage' => 4000, // default 100, how many icons per/page to display
 			),
 			'dependency' => array(
 				'element' => 'icon_type',
@@ -833,7 +833,7 @@ vc_map( array(
 			'settings' => array(
 				'emptyIcon' => false, // default true, display an "EMPTY" icon?
 				'type' => 'typicons',
-				'iconsPerPage' => 200, // default 100, how many icons per/page to display
+				'iconsPerPage' => 4000, // default 100, how many icons per/page to display
 			),
 			'dependency' => array(
 				'element' => 'icon_type',
@@ -848,7 +848,7 @@ vc_map( array(
 			'settings' => array(
 				'emptyIcon' => false, // default true, display an "EMPTY" icon?
 				'type' => 'entypo',
-				'iconsPerPage' => 300, // default 100, how many icons per/page to display
+				'iconsPerPage' => 4000, // default 100, how many icons per/page to display
 			),
 			'dependency' => array(
 				'element' => 'icon_type',
@@ -862,7 +862,7 @@ vc_map( array(
 			'settings' => array(
 				'emptyIcon' => false, // default true, display an "EMPTY" icon?
 				'type' => 'linecons',
-				'iconsPerPage' => 200, // default 100, how many icons per/page to display
+				'iconsPerPage' => 4000, // default 100, how many icons per/page to display
 			),
 			'dependency' => array(
 				'element' => 'icon_type',

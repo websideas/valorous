@@ -205,6 +205,7 @@ class WPBakeryShortCode_VC_Tta_Section extends WPBakeryShortCode_VC_Tta_Accordio
 		}
 
 		$output .= '</a>';
+		$output .= '</h4>'; // close h4 fix #2229
 
 		return $output;
 	}

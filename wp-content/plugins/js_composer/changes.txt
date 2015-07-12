@@ -1,3 +1,12 @@
+11.07.2015 - ver 4.6.1
+   - Fixed: Cannot redeclare hex2rgb()
+   - Icons per page set to 200 in message box element
+   - Changed syntax in js_composer_front.js - now W3 Total Cache should not have problems with minifying
+   - Compatibility with PHP 5.2.4 added
+   - Fixed: Woo Rating count in grid
+   - Fixed: Post image element in grid
+   - Fixed: Pinterest button height
+
 02.07.2015 - ver 4.6
    - New: Full screen row height
    - New: Chart elements (Pie, Doughnut, Line, Bar)

@@ -12,7 +12,7 @@ class Widget_KT_Posts extends WP_Widget {
 
     public function __construct() {
         $widget_ops = array('classname' => 'widget_kt_posts', 'description' => __( "Show posts of categories.") );
-        parent::__construct('kt_posts', __('KT: posts', THEME_LANG), $widget_ops);
+        parent::__construct('kt_posts', __('KT: Posts', THEME_LANG), $widget_ops);
         $this->alt_option_name = 'widget_kt_posts';
 
         add_action( 'save_post', array($this, 'flush_widget_cache') );

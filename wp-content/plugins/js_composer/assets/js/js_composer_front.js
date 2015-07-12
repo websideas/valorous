@@ -8,8 +8,7 @@ document.documentElement.className += 'ontouchstart' in document.documentElement
 		'-ms-',
 		""
 	];
-	for ( var i in
-		prefix ) {
+	for ( var i = 0; i < prefix.length; i++ ) {
 		if ( prefix[ i ] + 'transform' in document.documentElement.style ) {
 			document.documentElement.className += " vc_transform ";
 		}
@@ -745,7 +744,7 @@ function getSizeName() {
 
 function loadScript( url, $obj, callback ) {
 
-	var script = document.createElement( "script" )
+	var script = document.createElement( "script" );
 	script.type = "text/javascript";
 
 	if ( script.readyState ) {  //IE

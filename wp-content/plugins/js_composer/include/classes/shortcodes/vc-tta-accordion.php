@@ -38,9 +38,9 @@ class WPBakeryShortCode_VC_Tta_Accordion extends WPBakeryShortCodesContainer {
 		$this->sectionClass = $sectionClass;
 		/** @var $sectionClass WPBakeryShortCode_VC_Tta_Section */
 		if ( is_object( $sectionClass ) ) {
-			$sectionClass::$tta_base_shortcode = $this;
-			$sectionClass::$self_count = 0;
-			$sectionClass::$section_info = array();
+			WPBakeryShortCode_VC_Tta_Section::$tta_base_shortcode = $this;
+			WPBakeryShortCode_VC_Tta_Section::$self_count = 0;
+			WPBakeryShortCode_VC_Tta_Section::$section_info = array();
 
 			return true;
 		}
@@ -324,8 +324,8 @@ class WPBakeryShortCode_VC_Tta_Accordion extends WPBakeryShortCodesContainer {
 
 			if ( $active_section < 1 ) {
 				$active_section = 1;
-			} else if ( $active_section > $sectionClass::$self_count ) {
-				$active_section = $sectionClass::$self_count;
+			} else if ( $active_section > WPBakeryShortCode_VC_Tta_Section::$self_count ) {
+				$active_section = WPBakeryShortCode_VC_Tta_Section::$self_count;
 			}
 		}
 
@@ -351,7 +351,7 @@ class WPBakeryShortCode_VC_Tta_Accordion extends WPBakeryShortCodesContainer {
 		$html[] = '<ul class="' . $this->getTtaPaginationClasses() . '">';
 
 		if ( ! $isPageEditabe ) {
-			foreach ( $sectionClass::$section_info as $nth => $section ) {
+			foreach ( WPBakeryShortCode_VC_Tta_Section::$section_info as $nth => $section ) {
 				$strict_bounds = ( 'vc_tta_tabs' === $this->shortcode );
 				$active_section = $this->getActiveSection( $atts, $strict_bounds );
 

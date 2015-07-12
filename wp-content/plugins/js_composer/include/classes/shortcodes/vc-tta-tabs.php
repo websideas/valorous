@@ -149,10 +149,10 @@ class WPBakeryShortCode_VC_Tta_Tabs extends WPBakeryShortCode_VC_Tta_Accordion {
 		$html[] = '<div class="vc_tta-tabs-container">';
 		$html[] = '<ul class="vc_tta-tabs-list">';
 		if ( ! $isPageEditabe ) {
-			foreach ( $sectionClass::$section_info as $nth => $section ) {
-				$strict_bounds = ( 'vc_tta_tabs' === $this->shortcode );
-				$active_section = $this->getActiveSection( $atts, $strict_bounds );
+			$strict_bounds = ( 'vc_tta_tabs' === $this->shortcode );
+			$active_section = $this->getActiveSection( $atts, $strict_bounds );
 
+			foreach ( WPBakeryShortCode_VC_Tta_Section::$section_info as $nth => $section ) {
 				$classes = array( 'vc_tta-tab' );
 				if ( ( $nth + 1 ) === $active_section ) {
 					$classes[] = $this->activeClass;

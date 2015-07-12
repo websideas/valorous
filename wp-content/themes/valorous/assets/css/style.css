@@ -46,9 +46,9 @@
 /* ==============================
    1. Common styles
    ============================== */
-::-moz-selection{ color: #fff; background:#000000; }
-::-webkit-selection{ color: #fff;	background:#000000; }
-::selection{ color: #fff;	background:#000000; }
+::-moz-selection{ color: #fff; background:#d0a852; }
+::-webkit-selection{ color: #fff;	background:#d0a852; }
+::selection{ color: #fff;	background:#d0a852; }
 
 html{
     overflow-y: scroll;
@@ -599,10 +599,15 @@ select:not([multiple]) {
     visibility: hidden;
 }
 #main-navigation > li ul.sub-menu-dropdown.right-overflow{
-    right: 100%;
+    right: 0;
     left: auto;
-    top: -2px;
+    top: 100%;
 }
+#main-navigation > li li ul.sub-menu-dropdown.right-overflow{
+    top: -2px;
+    right: 100%;
+}
+
 #main-navigation > li:hover > .kt-megamenu-wrapper,
 #main-navigation > li:hover > ul.sub-menu-dropdown,
 #main-navigation > li li:hover > ul.sub-menu-dropdown{

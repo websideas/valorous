@@ -128,7 +128,7 @@ foreach ( $values as $k => $v ) {
 	if ( 'line' === $type ) {
 		$color = is_array( $color ) ? end( $color ) : $color;
 		$highlight = is_array( $highlight ) ? end( $highlight ) : $highlight;
-		$rgb = hex2rgb( $color );
+		$rgb = vc_hex2rgb( $color );
 		$fill_color = 'rgba(' . $rgb[0] . ', ' . $rgb[1] . ', ' . $rgb[2] . ', 0.1)';
 	} else {
 		$fill_color = $color;

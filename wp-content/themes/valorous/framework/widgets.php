@@ -42,7 +42,7 @@ if ( function_exists('register_sidebar')) {
             'after_title' => '</h3>',
         ) );
 
-        $count = 4;
+        $count = 5;
 
         for($i=1; $i<=$count;$i++){
             register_sidebar( array(
@@ -154,7 +154,9 @@ $kt_widgets = array(
     'kt_facebook.php',
     'kt_googleplus.php',
     'kt_article.php',
-    'kt_mailchimp.php'
+    'kt_mailchimp.php',
+    'kt_twitter.php',
+    'kt_instagram.php',
 );
 
 foreach ( $kt_widgets as $widget ) {

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * KT_Facebook widget class
+ * KT_Goolge widget class
  *
  * @since 1.0
  */
@@ -60,7 +60,7 @@ class Widget_KT_Goolge extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-        $instance['href'] = strip_tags($new_instance['href']);
+        $instance['href'] = $new_instance['href'];
 
         $instance['cover'] = isset( $new_instance['layout'] ) ? (bool) $new_instance['cover'] : false;
         $instance['tagline'] = isset( $new_instance['tagline'] ) ? (bool) $new_instance['tagline'] : false;
@@ -83,15 +83,13 @@ class Widget_KT_Goolge extends WP_Widget {
     }
 
     public function form( $instance ) {
-        $title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : __( 'Google Plus' , THEME_LANG);
-        $href     = isset( $instance['title'] ) ? esc_attr( $instance['href'] ) : '';
 
-        $layout = isset( $instance['layout'] ) ? $instance['layout'] : 'portrait';
-        $color = isset( $instance['color'] ) ? $instance['color'] : 'light';
+        print_r($instance);
 
-        $cover = isset( $instance['cover'] ) ? (bool) $instance['cover'] : true;
-        $tagline = isset( $instance['tagline'] ) ? (bool) $instance['tagline'] : true;
+        $defaults = array( 'title' => __( 'Google Plus' , THEME_LANG), 'href' => '', 'layout' => 'portrait', 'color' => 'light', 'cover' => true, 'tagline' => true);
+        $instance = wp_parse_args( (array) $instance, $defaults );
 
+        $title = strip_tags($instance['title']);
 
         ?>
 
@@ -99,27 +97,27 @@ class Widget_KT_Goolge extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
         <p><label for="<?php echo $this->get_field_id( 'href' ); ?>"><?php _e( 'The URL of the Google plus Page:', THEME_LANG ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'href' ); ?>" name="<?php echo $this->get_field_name( 'href' ); ?>" type="text" value="<?php echo $href; ?>" /></p>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'href' ); ?>" name="<?php echo $this->get_field_name( 'href' ); ?>" type="text" value="<?php echo $instance['href']; ?>" /></p>
 
         <p><label for="<?php echo $this->get_field_id('layout'); ?>"><?php _e('Layout:',THEME_LANG); ?></label>
             <select class="widefat" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
-                <option <?php selected( $layout, 'portrait' ); ?> value="portrait"><?php _e('Portrait',THEME_LANG); ?></option>
-                <option <?php selected( $layout, 'landscape' ); ?> value="landscape"><?php _e('Landscape',THEME_LANG); ?></option>
+                <option <?php selected( $instance['layout'], 'portrait' ); ?> value="portrait"><?php _e('Portrait',THEME_LANG); ?></option>
+                <option <?php selected( $instance['layout'], 'landscape' ); ?> value="landscape"><?php _e('Landscape',THEME_LANG); ?></option>
             </select>
         </p>
 
         <p><label for="<?php echo $this->get_field_id('color'); ?>"><?php _e('Color theme:',THEME_LANG); ?></label>
             <select class="widefat" id="<?php echo $this->get_field_id('color'); ?>" name="<?php echo $this->get_field_name('color'); ?>">
-                <option <?php selected( $color, 'light' ); ?> value="light"><?php _e('Light',THEME_LANG); ?></option>
-                <option <?php selected( $color, 'dark' ); ?> value="dark"><?php _e('Dark',THEME_LANG); ?></option>
+                <option <?php selected( $instance['color'], 'light' ); ?> value="light"><?php _e('Light',THEME_LANG); ?></option>
+                <option <?php selected( $instance['color'], 'dark' ); ?> value="dark"><?php _e('Dark',THEME_LANG); ?></option>
             </select>
         </p>
 
-        <p><input class="checkbox" type="checkbox" <?php checked( $cover ); ?> id="<?php echo $this->get_field_id( 'cover' ); ?>" name="<?php echo $this->get_field_name( 'cover' ); ?>" />
+        <p><input class="checkbox" type="checkbox" <?php checked( $instance['cover'] ); ?> id="<?php echo $this->get_field_id( 'cover' ); ?>" name="<?php echo $this->get_field_name( 'cover' ); ?>" />
             <label for="<?php echo $this->get_field_id( 'cover' ); ?>"><?php _e( 'Cover Photo', THEME_LANG ); ?></label>
             <br/><small><?php _e('Only work with portrait layout', THEME_LANG); ?></small></p>
 
-        <p><input class="checkbox" type="checkbox" <?php checked( $tagline ); ?> id="<?php echo $this->get_field_id( 'tagline' ); ?>" name="<?php echo $this->get_field_name( 'tagline' ); ?>" />
+        <p><input class="checkbox" type="checkbox" <?php checked( $instance['tagline'] ); ?> id="<?php echo $this->get_field_id( 'tagline' ); ?>" name="<?php echo $this->get_field_name( 'tagline' ); ?>" />
             <label for="<?php echo $this->get_field_id( 'tagline' ); ?>"><?php _e( 'Tagline', THEME_LANG ); ?></label>
             <br/><small><?php _e('Only work with portrait layout', THEME_LANG); ?></small></p>
 
@@ -128,7 +126,7 @@ class Widget_KT_Goolge extends WP_Widget {
 }
 
 /**
- * Register KT_Facebook widget
+ * Register KT_Goolge widget
  *
  *
  */

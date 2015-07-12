@@ -773,9 +773,7 @@ function vc_colorCreator( $colour, $per ) {
  * @return array|bool
  */
 function vc_hex2rgb( $color ) {
-	if ( ! empty( $color ) && $color[0] == '#' ) {
-		$color = substr( $color, 1 );
-	}
+	$color = str_replace( '#', '', $color );
 
 	if ( strlen( $color ) == 6 ) {
 		list( $r, $g, $b ) = array(
@@ -1007,7 +1005,7 @@ if ( function_exists( 'lcfirst' ) === false ) {
 	 * @return mixed
 	 */
 	function lcfirst( $str ) {
-		$str[0] = mb_strtolower( $str[0] );
+		$str[0] = function_exists( 'mb_strtolower' ) ? mb_strtolower( $str[0] ) : strtolower( $str[0] );
 
 		return $str;
 	}
@@ -1143,29 +1141,6 @@ function vc_message_warning( $message ) {
 	<div class="vc_message_box-icon"><i class="fa fa-exclamation-triangle"></i>
 	</div><p>' . $message . '</p>
 </div>';
-}
-
-/**
- * Convert hex color to RGB
- *
- * @param string $hex color
- *
- * @return array
- */
-function hex2rgb( $hex ) {
-	$hex = str_replace( '#', '', $hex );
-
-	if ( strlen( $hex ) === 3 ) {
-		$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
-		$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
-		$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
-	} else {
-		$r = hexdec( substr( $hex, 0, 2 ) );
-		$g = hexdec( substr( $hex, 2, 2 ) );
-		$b = hexdec( substr( $hex, 4, 2 ) );
-	}
-
-	return array( $r, $g, $b );
 }
 
 /**
