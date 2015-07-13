@@ -70,7 +70,7 @@ if ( ! class_exists( 'KT_Instagram' ) ) {
         }
         
         /*
-         * Common mechanism to query the instagram api
+         * Common mechanism to query the instagr$image);am api
          */
         public function queryInstagram($url){
             //Execute and return query
@@ -79,16 +79,18 @@ if ( ! class_exists( 'KT_Instagram' ) ) {
         }
         
         
-        public function showInstagram($images, $column = 3){
-            $output = '';
-            
+        public function showInstagram($images, $column = 3, $output = ''){
+
             $output .= '<ul class="instagram-'.$column.' clearfix">';
 			foreach($images as $image){
+                //print_r($image->caption);
+                $caption = (!empty($image->caption->text)) ? $image->caption->text : '';
+
 				$output .= sprintf(
 					'<li><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
 					esc_attr($image->link),
 					esc_attr($image->images->thumbnail->url),
-					esc_attr($image->caption->text)
+					esc_attr($caption)
 				);
 			}
             $output .= '</ul>';

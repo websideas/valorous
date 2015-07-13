@@ -23,13 +23,17 @@
 /** ================================================
     1. Woocommerce Common
 *** ================================================*/
+
+.yith-woocompare-widget a.remove,
 .woocommerce a.remove{
     color: #282828!important;
 }
+.yith-woocompare-widget a.remove:hover,
 .woocommerce a.remove:hover{
     color: red!important;
-    background: none;
+    background: none!important;
 }
+.yith-woocompare-widget a.remove:after,
 .woocommerce a.remove:after{
     content: '\f014';
     font-family: FontAwesome;
@@ -616,6 +620,9 @@ body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
     padding: 0 0 20px;
     position: relative;
 }
+.woocommerce ul.product_list_widget li:last-child{
+    padding-bottom: 0;
+}
 .woocommerce ul.product_list_widget li img{
     float: left;
     width: 70px;
@@ -669,6 +676,7 @@ body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
 .woocommerce.widget_shopping_cart .total{
     padding-top: 10px;
     border-top: 1px solid #e3e3e3;
+    margin-top: 20px;
 }
 .woocommerce .widget_shopping_cart .buttons,
 .woocommerce.widget_shopping_cart .buttons{
@@ -698,6 +706,30 @@ body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
 }
 .woocommerce .widget_price_filter .ui-slider .ui-slider-range{
     background: #d0a852;
+}
+
+.yith-woocompare-widget .clear-all{
+    display: inline-block;
+    margin-top: 10px;
+}
+.yith-woocompare-widget ul.products-list{
+    margin-bottom: 20px;
+}
+.yith-woocompare-widget ul.products-list a.remove{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.yith-woocompare-widget a.remove{
+    text-indent: -999px;
+    overflow: hidden;
+    position: relative;
+}
+.yith-woocompare-widget a.remove:after{
+    text-indent: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 /** ================================================
     5. Woocommerce shop products

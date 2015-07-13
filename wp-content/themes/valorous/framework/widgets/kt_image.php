@@ -17,10 +17,19 @@ class WP_Widget_KT_Image extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+
+        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Image' , THEME_LANG);
+        $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
         $attachment = get_thumbnail_attachment($instance['attachment'], $instance['size']);
-		
+
         if($attachment){
     		echo $args['before_widget'];
+
+            if ( $title ) {
+                echo $args['before_title'] . $title . $args['after_title'];
+            }
+
             $animation_class = '';
             if($instance['animation']){
                 $animation_class .= ' kt-image-animation';
@@ -40,6 +49,8 @@ class WP_Widget_KT_Image extends WP_Widget {
 
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+
 		$instance['link'] = strip_tags($new_instance['link']);
         $instance['target'] = $new_instance['target'];
         $instance['size'] = $new_instance['size'];
@@ -52,7 +63,8 @@ class WP_Widget_KT_Image extends WP_Widget {
 
 	public function form( $instance ) {
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'target' => '_self', 'link' => '', 'attachment' => '', 'size' => '', 'animation' => '', 'align' => 'center') );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => __('Image', THEME_LANG), 'target' => '_self', 'link' => '', 'attachment' => '', 'size' => '', 'animation' => '', 'align' => 'center') );
+        $title = strip_tags($instance['title']);
 
 		$link = esc_attr( $instance['link'] );
         $attachment = esc_attr( $instance['attachment'] );
@@ -66,6 +78,8 @@ class WP_Widget_KT_Image extends WP_Widget {
         }
 		
 	?>
+        <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
         <p style="text-align: center;">
             <input type="button" style="width: 100%; padding: 10px; height: auto;" class="button kt_image_upload" value="<?php esc_attr_e('Select your image', THEME_LANG) ?>" />
             <input class="widefat kt_image_attachment" id="<?php echo $this->get_field_id('attachment'); ?>" name="<?php echo $this->get_field_name('attachment'); ?>" type="hidden" value="<?php echo esc_attr($attachment); ?>" />
@@ -133,9 +147,9 @@ class WP_Widget_KT_Image extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id('align'); ?>"><?php _e( 'Align:', THEME_LANG); ?></label>
             <select name="<?php echo $this->get_field_name('align'); ?>" id="<?php echo $this->get_field_id('align'); ?>" class="widefat">
-                <option value="center"<?php selected( $instance['target'], 'center' ); ?>><?php _e('Center', THEME_LANG); ?></option>
-                <option value="left"<?php selected( $instance['target'], 'left' ); ?>><?php _e('Left', THEME_LANG); ?></option>
-                <option value="right"<?php selected( $instance['target'], 'right' ); ?>><?php _e('Right', THEME_LANG); ?></option>
+                <option value="center"<?php selected( $instance['align'], 'center' ); ?>><?php _e('Center', THEME_LANG); ?></option>
+                <option value="left"<?php selected( $instance['align'], 'left' ); ?>><?php _e('Left', THEME_LANG); ?></option>
+                <option value="right"<?php selected( $instance['align'], 'right' ); ?>><?php _e('Right', THEME_LANG); ?></option>
             </select>
         </p>
 <?php

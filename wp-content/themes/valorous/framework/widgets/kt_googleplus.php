@@ -12,7 +12,7 @@ class Widget_KT_Goolge extends WP_Widget {
 
     public function __construct() {
         $widget_ops = array('classname' => 'widget_kt_google', 'description' => __( "Embed Google+ Badge.", THEME_LANG) );
-        parent::__construct('kt_google', __('KT: Google+ Badge', THEME_LANG), $widget_ops);
+        parent::__construct('widget_kt_google', __('KT: Google+ Badge', THEME_LANG), $widget_ops);
         $this->alt_option_name = 'widget_kt_google';
 
         add_action('wp_footer', array($this, 'footer'));
@@ -60,7 +60,7 @@ class Widget_KT_Goolge extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-        $instance['href'] = $new_instance['href'];
+        $instance['href'] = esc_url( $new_instance['href'] );
 
         $instance['cover'] = isset( $new_instance['layout'] ) ? (bool) $new_instance['cover'] : false;
         $instance['tagline'] = isset( $new_instance['tagline'] ) ? (bool) $new_instance['tagline'] : false;
@@ -75,7 +75,9 @@ class Widget_KT_Goolge extends WP_Widget {
         } else {
             $instance['color'] = 'light';
         }
-;
+
+        return $instance;
+
     }
 
     public function flush_widget_cache() {
@@ -83,8 +85,6 @@ class Widget_KT_Goolge extends WP_Widget {
     }
 
     public function form( $instance ) {
-
-        print_r($instance);
 
         $defaults = array( 'title' => __( 'Google Plus' , THEME_LANG), 'href' => '', 'layout' => 'portrait', 'color' => 'light', 'cover' => true, 'tagline' => true);
         $instance = wp_parse_args( (array) $instance, $defaults );

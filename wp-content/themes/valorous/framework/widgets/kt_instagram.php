@@ -47,24 +47,20 @@ class Widget_KT_Instagram extends WP_Widget {
             $kt_instagram = new KT_Instagram();
             $data = $kt_instagram->getUserMedia( array('count' => $number ));
             
-            if(!empty($data)){ 
-                
-                
-                
+            if(!empty($data)){
                 $columns = ( ! empty( $instance['columns'] ) ) ? absint( $instance['columns'] ) : 3;
                 if ( ! $columns )
                     $columns = 3;
-                    
-                echo $kt_instagram->showInstagram($data, $columns); 
+
+                echo $kt_instagram->showInstagram($data, $columns);
+
             }else{
                 printf(
                     '<strong>%s</strong>',
                     __('Empty username or access token', THEME_LANG) 
                 );
             }
-            if(!empty($shots)){ 
-                echo $isg->showInstagram($shots); 
-            }
+
             
         }else{
             printf(
