@@ -454,12 +454,49 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
     /**
      * Display navigation to next/previous set of posts when applicable.
      */
-    function kt_paging_nav( ) {
-        the_posts_pagination(array(
-            'prev_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Previous', THEME_LANG), '<i class="fa fa-angle-left"></i>'),
-            'next_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Next', THEME_LANG), '<i class="fa fa-angle-right"></i>'),
-            'before_page_number' => '',
-        ));
+    function kt_paging_nav( $type = 'classic' ) {
+
+        if($type != 'loadmore'){
+            global $wp_query;
+
+            // Don't print empty markup if there's only one page.
+            if ( $wp_query->max_num_pages < 2 ) {
+                return;
+            }
+        }
+
+
+
+        if($type == 'loadmore'){
+            printf(
+                '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button">%s %s</a></div>',
+                '<span class="fa fa-refresh"></span>',
+                __('Load more', THEME_LANG)
+            );
+        }elseif($type == 'normal'){ ?>
+
+            <nav class="navigation paging-navigation" role="navigation">
+                <h1 class="screen-reader-text"><?php _e( 'Posts navigation', THEME_LANG ); ?></h1>
+                <div class="nav-links">
+
+                    <?php if ( get_next_posts_link() ) : ?>
+                        <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav"></span> Older posts', THEME_LANG ) ); ?></div>
+                    <?php endif; ?>
+
+                    <?php if ( get_previous_posts_link() ) : ?>
+                        <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav"></span>', THEME_LANG ) ); ?></div>
+                    <?php endif; ?>
+
+                </div><!-- .nav-links -->
+            </nav><!-- .navigation -->
+
+        <?php }else{
+            the_posts_pagination(array(
+                'prev_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Previous', THEME_LANG), '<i class="fa fa-angle-left"></i>'),
+                'next_text' => sprintf('<span class="screen-reader-text">%s</span>%s', __('Next', THEME_LANG), '<i class="fa fa-angle-right"></i>'),
+                'before_page_number' => '',
+            ));
+        }
     }
 endif;
 

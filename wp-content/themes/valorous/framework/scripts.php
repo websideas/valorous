@@ -276,10 +276,15 @@ function kt_setting_script() {
 
         <?php } ?>
         @media (max-width: 991px) {
-            <?php $logo_width = kt_option('logo_mobile_width');?>
+            <?php
+                $logo_width = kt_option('logo_mobile_width');
+                $footer_bottom = kt_option('footer_bottom_padding');
+
+            ?>
             .site-branding .site-logo img{
                 width: <?php echo $logo_width['width'] ?>!important;
             }
+
         }
     </style>
     

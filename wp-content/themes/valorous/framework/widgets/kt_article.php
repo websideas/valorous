@@ -96,8 +96,9 @@ class Widget_KT_Posts extends WP_Widget {
                 <?php while ( $r->have_posts() ) : $r->the_post(); ?>
                     <li <?php post_class('article-widget clearfix'); ?>>
                         <?php
+                            $image_size = ($layout == 2) ? 'recent_posts' : 'small';
                             if($show_image && has_post_thumbnail()){
-                                kt_post_thumbnail_image('small', 'img-responsive');
+                                kt_post_thumbnail_image( $image_size, 'img-responsive' );
                             }
                         ?>
                         <div class="article-attr">

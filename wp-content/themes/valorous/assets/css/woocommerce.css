@@ -1052,6 +1052,13 @@ body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
     margin: 40px 0 80px;
     text-align: center;
 }
+.woocommerce-empty .cart-empty-icon{
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+.woocommerce-empty .cart-empty{
+    margin-bottom: 50px;
+}
 .woocommerce .cart-collaterals .cross-sells,
 .woocommerce-page .cart-collaterals .cross-sells{
     width: 100%;

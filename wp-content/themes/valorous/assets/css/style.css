@@ -1180,12 +1180,31 @@ h2.widgettitle a.rsswidget:first-child,
     padding:0;
     margin:0;
 }
-.widget_kt_posts ul.kt-artilce-1 li{
+.widget_kt_posts ul li{
     margin-bottom:30px;
 }
-.widget_kt_posts ul.kt-artilce-1 li:last-child{
+.widget_kt_posts ul li:last-child{
     margin-bottom:0;
 }
+.widget_kt_posts ul li .title{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -3px 0 3px;
+}
+.widget_kt_posts ul li .entry-meta-data{
+    font-size:12px;
+    margin:0;
+}
+.widget_kt_posts ul li span.cat-links{
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size:12px;
+    display: block;
+}
+
+
+
 .widget_kt_posts ul.kt-artilce-1 li .entry-thumb{
     float: left;
     margin: 0;
@@ -1197,22 +1216,9 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_posts ul.kt-artilce-1.no-image li.has-post-thumbnail .article-attr{
     margin-left:0;
 }
-.widget_kt_posts ul.kt-artilce-1 li .title{
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 24px;
-    margin: -3px 0 3px;
-}
-.widget_kt_posts ul.kt-artilce-1 li span.cat-links{
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    font-size:12px;
-    display: block;
-}
-.widget_kt_posts ul.kt-artilce-1 li .entry-meta-data{
-    font-size:12px;
-    margin:0;
-}
+
+
+
 /*===== Widget Twitter =====*/
 
 .widget_kt_twitter ul{
@@ -1256,45 +1262,6 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_instagram ul.instagram-4 li{
     width: 25%;
 }
-/*
-
-#footer-bottom .widget_kt_instagram{
-    margin:0;
-}
-.widget_kt_instagram{
-    position: relative;
-}
-.widget_kt_instagram:after{
-    content: "";
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.7);
-}
-.widget_kt_instagram ul{
-    margin:0;
-    padding:0;
-    list-style: none;
-}
-.widget_kt_instagram ul li{
-    float:left;
-    width:12.5%;
-}
-.widget_kt_instagram .widget-image{
-    position: absolute;
-    top:50%;
-    left:50%;
-    -webkit-transform:  translate(-50%,-50%);
-    -moz-transform:     translate(-50%,-50%);
-    -o-transform:       translate(-50%,-50%);
-    -ms-transform:      translate(-50%,-50%);
-    transform:          translate(-50%,-50%);
-    z-index:10;
-}
-*/
-
 .widget-title a.rsswidget{
     color:#363636;
     margin-right:5px;
@@ -1466,6 +1433,9 @@ h2.widgettitle a.rsswidget:first-child,
 /* ==============================
    10. Search Fullwidth
    ============================== */
+.mfp-close{
+    font-family: "Times New Roman", Helvetica, Arial, sans-serif;
+}
 #search-fullwidth{
     color: #fff;
     margin: 0 auto;
@@ -1620,6 +1590,9 @@ body.admin-bar #header.is-sticky.sticky{
 .header-absolute #header,
 .header-absolute .sticky-placeholder{
     background: none;
+    -moz-box-shadow: 0 0 0;
+    -webkit-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
 }
 
 .header-gradient .sticky-placeholder,
@@ -1816,6 +1789,59 @@ body.footer_fixed .static-footer #footer{
 body.footer_fixed .static-footer{
     padding: 0!important;
 }
+
+
+
+
+
+
+#footer-bottom{
+    padding: 40px 0;
+
+}
+#footer-bottom.bottom-instagram{
+    position: relative;
+    padding: 0;
+}
+#footer-bottom .instagram_bg{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+#footer-bottom .instagram_bg:before{
+    content: "";
+    position: absolute;
+    top:0;
+    display: block;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+#footer-bottom .instagram_bg li{
+    float:left;
+    width:12.5%;
+    padding: 0;
+}
+#footer-bottom .instagram_bg li.double{
+    /*width: 25%;*/
+}
+#footer-bottom.bottom-instagram .kt-image-content{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:  translate(-50%,-50%);
+    -moz-transform:     translate(-50%,-50%);
+    -o-transform:       translate(-50%,-50%);
+    -ms-transform:      translate(-50%,-50%);
+    transform:          translate(-50%,-50%);
+    z-index:10;
+}
+
+
+
 
 
 

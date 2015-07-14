@@ -62,12 +62,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'ignore_sticky_posts' => true
         );
 
-        if ($blog_pagination == 'classic') {
+
+        if ($blog_pagination == 'classic' || $blog_pagination == 'normal') {
             global $wp_query, $paged;
             $tmp = $wp_query;
             $args['paged'] = $paged;
-        }
 
+        }
 
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
             $args['meta_key'] = $meta_key;
@@ -167,13 +168,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             }
             echo "</div><!-- .blog-posts-content -->";
 
-            if($wp_query->max_num_pages > 1) {
-                if ($blog_pagination == 'classic') {
-                    kt_paging_nav();
-                } elseif ($blog_pagination == 'loadmore') {
-                    echo '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button"><span class="fa fa-refresh"></span> ' . __('Load more', THEME_LANG) . '</a></div>';
-                }
-            }
+            kt_paging_nav($blog_pagination);
 
             echo "</div><!-- .blog-posts -->";
             do_action('after_blog_posts_loop');
@@ -184,7 +179,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         $output .= ob_get_clean();
 
-        if ($blog_pagination == 'classic') {
+        if ($blog_pagination == 'classic' || $blog_pagination == 'normal') {
             $wp_query = null;
             $wp_query = $tmp;
         }

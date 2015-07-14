@@ -77,25 +77,60 @@ if ( ! class_exists( 'KT_Instagram' ) ) {
             $query = json_decode(file_get_contents($url));
             return $query;
         }
-        
+
+        /**
+         * Show Instagram
+         *
+         * @param $images
+         * @param int $column
+         * @param string $output
+         * @return string
+         */
         
         public function showInstagram($images, $column = 3, $output = ''){
-
-            $output .= '<ul class="instagram-'.$column.' clearfix">';
+            //print_r($images);
+            $output .= '<ul class="instagram-'.$column.' clearfix blog-posts-masonry">';
+            $i = 1;
 			foreach($images as $image){
-                //print_r($image->caption);
+                $width = ($i == 3 || $i == 6) ? 'double' : '';
                 $caption = (!empty($image->caption->text)) ? $image->caption->text : '';
-
 				$output .= sprintf(
-					'<li><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
+					'<li class="%4$s"><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
 					esc_attr($image->link),
-					esc_attr($image->images->thumbnail->url),
-					esc_attr($caption)
+					esc_attr($image->images->standard_resolution->url),
+					esc_attr($caption),
+                    esc_attr( $width )
 				);
+                $i++;
 			}
             $output .= '</ul>';
             
             return $output;
         }
+
+        public function BgInstagram($images, $output = ''){
+            //print_r($images);
+            $output .= '<ul class="instagram_bg clearfix">';
+            $i = 1;
+            foreach($images as $image){
+                $width = ($i == 3 || $i == 6) ? 'double' : '';
+                $caption = (!empty($image->caption->text)) ? $image->caption->text : '';
+                $output .= sprintf(
+                    '<li class="%4$s"><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
+                    esc_attr($image->link),
+                    esc_attr($image->images->standard_resolution->url),
+                    esc_attr($caption),
+                    esc_attr( $width )
+                );
+                $i++;
+            }
+            $output .= '</ul>';
+
+            return $output;
+        }
+
+
+
+
     }
 }

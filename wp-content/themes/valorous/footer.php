@@ -26,6 +26,7 @@
         	 */
         	do_action( 'theme_before_footer' ); ?>
             <div id="footer">
+
                 <?php if(is_active_sidebar( 'footer-top' ) && kt_option('footer_top', true)){ ?>
                     <footer id="footer-top">
                         <div class="container">
@@ -33,6 +34,7 @@
                         </div><!-- .container -->
                     </footer><!-- #footer-top -->
                 <?php } ?>
+
                 <?php
                     $layouts = explode('-', kt_option('footer_widgets_layout', '4-4-4'));
                     $sidebar_widgets = true;
@@ -43,6 +45,7 @@
                         }
                     }
                 ?>
+
                 <?php if(kt_option('footer_widgets', true) && $sidebar_widgets){ ?>
                     <footer id="footer-area">
                         <div id="footer-area-content">
@@ -59,37 +62,9 @@
                     </footer><!-- #footer-area -->
                 <?php } ?>
 
-
-                <?php //if(is_active_sidebar( 'footer-bottom' ) && kt_option('footer_bottom', true)){ ?>
-                	<footer id="footer-bottom">
-                        <div class="widget-container widget_kt_instagram">
-                            <ul class="kt_8_column clearfix">
-                                <li><img src="<?php echo THEME_IMG; ?>/1.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/2.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/3.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/4.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/5.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/1.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/2.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/3.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/4.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/5.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/1.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/2.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/3.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/4.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/5.png" class="img-responsive" /></li>
-                                <li><img src="<?php echo THEME_IMG; ?>/1.png" class="img-responsive" /></li>
-                            </ul>
-                            <div class="widget-image"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo THEME_IMG; ?>/img-logo.png" class="img-responsive" /></a></div>
-                        </div>
-                        <!--
-                        <div class="container">
-                            <?php dynamic_sidebar('footer-bottom') ?>
-                        </div>--><!-- .container -->
-                	</footer><!-- #footer-bottom -->
-                <?php //} ?>
-
+                <?php if(kt_option('footer_bottom', true)){ ?>
+                    <?php get_template_part( 'templates/footers/footer', 'bottom' ); ?>
+                <?php } ?>
 
                 <?php if(kt_option('footer_copyright', true)){ ?>
                     <footer id="footer-copyright">

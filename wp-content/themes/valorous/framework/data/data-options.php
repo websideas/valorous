@@ -270,6 +270,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Logo Dark', THEME_LANG ),
                     ),
                     array(
+                        'id'       => 'logo_footer',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'compiler' => true,
+                        'title'    => __( 'Logo Footer', THEME_LANG ),
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                    array(
                         'id'             => 'logo_width',
                         'type'           => 'dimensions',
                         'units'          => array( 'em', 'px'),
@@ -294,6 +305,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'margin-left'   => '0px'
                         )
                     ),
+
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+
                     array(
                         'id'             => 'logo_sticky_width',
                         'type'           => 'dimensions',
@@ -318,6 +335,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'margin-left'   => '0px'
                         ),
                         'output'   => array( '.is-sticky .site-branding .site-logo img'),
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
                     ),
                     array(
                         'id'             => 'logo_mobile_width',
@@ -700,17 +721,26 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => true,
                     ),
                     array(
+                        'id'       => 'footer_bottom_instagram',
+                        'type'     => 'switch',
+                        'title'    => __( 'Use instagram background if available', THEME_LANG ),
+                        'default'  => true,
+                    ),
+
+
+                    array(
                         'id'       => 'footer_bottom_padding',
                         'type'     => 'spacing',
                         'mode'     => 'padding',
                         'left'     => false,
                         'right'    => false,
-                        'output'   => array( '#footer-bottom' ),
                         'units'          => array( 'em', 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer bottom padding', THEME_LANG ),
-                        'default'  => array( )
+                        'default'  => array( ),
+                        'subtitle' => 'Disable if you use instagram background',
                     ),
+
 
 
 
@@ -986,7 +1016,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'background',
                         'title'    => __( 'Footer Background', THEME_LANG ),
                         'subtitle' => __( 'Footer Background with image, color, etc.', THEME_LANG ),
-                        'default'   => array( 'background-color'=>'#f6f6f6' ),
+                        'default'   => array( ),
                         'output'      => array( '#footer' ),
                     ),
                     array(

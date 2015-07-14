@@ -64,7 +64,12 @@ only screen and (min-resolution: 144dpi) {
         clear: both;
     }
 
-
+    #footer-bottom .instagram_bg li:nth-child(10) ~ li{
+        display: none;
+    }
+    #footer-bottom .instagram_bg li{
+        width:20%;
+    }
 
 }
 
@@ -76,11 +81,11 @@ only screen and (min-resolution: 144dpi) {
     .coming-soon .wrap{
         width:50%;
     }
-    .widget_kt_instagram ul li{
-        width:25%;
-    }
-    .widget_kt_instagram ul li:nth-child(8) ~ li{
+    #footer-bottom .instagram_bg li:nth-child(8) ~ li{
         display: none;
+    }
+    #footer-bottom .instagram_bg li{
+        width:25%;
     }
 }
 /* 10. Styles for devices(<=480px ) */
@@ -101,13 +106,18 @@ only screen and (min-resolution: 144dpi) {
     .author-info .author-description{
         padding: 0;
     }
-    
-    .widget_kt_instagram ul li{
-        width:33.33%;
+
+    #footer-area .widget-container{
+        padding: 15px;
     }
-    .widget_kt_instagram ul li:nth-child(6) ~ li{
+
+    #footer-bottom .instagram_bg li:nth-child(4) ~ li{
         display: none;
     }
+    #footer-bottom .instagram_bg li{
+        width:50%;
+    }
+
 }
 /* 11. Styles for devices(<=320px ) */
 @media (max-width: 320px) {

@@ -49,7 +49,14 @@ require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
 require_once ( FW_CLASS . 'MCAPI.class.php' );
 
 /**
- * Include Mailchimp Setting.
+ * Include Instagram API.
+ *
+ */
+
+require_once ( FW_CLASS . 'instagram-api.php' );
+
+/**
+ * Include Instagram Setting.
  *
  */
 require_once ( FW_CLASS . 'instagram-settings.php' );

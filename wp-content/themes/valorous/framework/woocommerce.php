@@ -109,7 +109,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
             $output .= '<span class="icon-bag"></span>';
             $output .= '<span class="mini-cart-total">'.$cart_count.'</span>';
         $output .= '</a>';
-        $output .= '<div class="shopping-bag">';
+        $output .= '<div class="shopping-bag woocommerce">';
         $output .= '<div class="shopping-bag-wrapper ">';
         $output .= '<div class="shopping-bag-content">';
             if ( sizeof(WC()->cart->cart_contents)>0 ) {

@@ -225,6 +225,7 @@
         $(".blog-posts-masonry .row").waitForImages(function(){
             $(this).masonry();
         });
+
     }
     /* ---------------------------------------------
      VC Lightbox
@@ -239,9 +240,6 @@
                 $effect = '';
                 $removalDelay = 0;
             }
-
-            console.log($effect, $removalDelay);
-
             $(this).find('.vc_icon_element-link').magnificPopup({
                 type: $type,
                 mainClass: $effect,
@@ -331,6 +329,8 @@
      Blog loadmore
      --------------------------------------------- */
     function init_loadmore(){
+
+        var ajax_request;
         $('body').on('click','.blog-loadmore-button',function(e){
             e.preventDefault();
             var $loadmore = $(this),
@@ -352,19 +352,17 @@
                 queryvars: $query_vars,
                 paged : $paged
             };
-
-            console.log(data);
-
+            if(ajax_request && ajax_request.readystate != 4){
+                ajax_request.abort();
+            }
             $loading.addClass('fa-spin');
-            $.post(ajax_frontend.ajaxurl, data, function(response) {
+            ajax_request = $.post(ajax_frontend.ajaxurl, data, function(response) {
                 $loading.removeClass('fa-spin');
                 $posts.attr('data-current', $paged);
 
                 if($paged == $total){
                     $loadmore.closest('.blog-posts-loadmore').hide();
                 }
-
-
 
                 if($type == 'grid' || $type == 'masonry'){
                     var $row = $content.children('.row');
