@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('post-item post-single'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('post-single'); ?>>
     <?php
         $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
         $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');;

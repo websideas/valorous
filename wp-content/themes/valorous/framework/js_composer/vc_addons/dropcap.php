@@ -9,11 +9,11 @@ class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'size' => '',
+            'size' => 'md',
             'font_container' => '',
-            'border_radius' => '',
+            'border_radius' => '0',
             'custom_background' => '',
-            'font_type' => '',
+            'use_theme_fonts' => '',
             'google_fonts' => '',
 
             'el_class' => '',
@@ -27,9 +27,6 @@ class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
         unset($font_container_data['values']['text_align']);
 
         $styles = array();
-        if($font_type != 'google'){
-            $google_fonts_data = array();
-        }
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
 
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
@@ -80,12 +77,18 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
+        ),
+        array(
             'type' => 'dropdown',
             'heading' => __( 'Size', 'js_composer' ),
             'param_name' => 'size',
             'value' => getVcShared( 'sizes' ),
             'std' => 'md',
-            'description' => __( 'Dropcap size.', 'js_composer' )
+            'description' => __( 'Dropcap size.', 'js_composer' ),
+            "admin_label" => true,
         ),
         
         //Typography settings
@@ -127,15 +130,12 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG )
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
         ),
         array(
             'type' => 'google_fonts',
@@ -148,7 +148,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
             'description' => __( '', 'js_composer' ),
         ),
             

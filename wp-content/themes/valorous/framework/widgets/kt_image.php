@@ -18,8 +18,8 @@ class WP_Widget_KT_Image extends WP_Widget {
 
 	public function widget( $args, $instance ) {
 
-        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Image' , THEME_LANG);
-        $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+        $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
+
 
         $attachment = get_thumbnail_attachment($instance['attachment'], $instance['size']);
 

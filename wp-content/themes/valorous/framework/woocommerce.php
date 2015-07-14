@@ -38,7 +38,7 @@ function kt_woocommerce_image_dimensions() {
 	}
 
   	$catalog = array('width' => '500','height' => '600', 'crop' => 1 );
-    $thumbnail = array('width' => '500', 'height' => '600', 'crop' => 1 );
+    $thumbnail = array('width' => '200', 'height' => '240', 'crop' => 1 );
 	$single = array( 'width' => '1000','height' => '1200', 'crop' => 1);
 	
 	// Image sizes
@@ -121,7 +121,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                     
                     if ($bag_product->exists() && $cart_item['quantity']>0) {
                         $output .= '<div class="bag-product clearfix">';
-    					$output .= '<figure><a class="bag-product-img" href="'.get_permalink($cart_item['product_id']).'">'.$bag_product->get_image().'</a></figure>';                      
+    					$output .= '<figure><a class="bag-product-img" href="'.get_permalink($cart_item['product_id']).'">'.$bag_product->get_image().'</a></figure>';
     					$output .= '<div class="bag-product-details">';
         					$output .= '<div class="bag-product-title"><a href="'.get_permalink($cart_item['product_id']).'">' . apply_filters('woocommerce_cart_widget_product_title', $bag_product->get_title(), $bag_product) . '</a></div>';
 

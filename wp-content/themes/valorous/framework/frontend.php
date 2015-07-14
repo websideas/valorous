@@ -99,7 +99,7 @@ function london_scripts() {
     wp_enqueue_style( 'london-style', get_stylesheet_uri(), array('mediaelement', 'wp-mediaelement') );
     wp_enqueue_style( 'bootstrap-css', THEME_LIBS . 'bootstrap/css/bootstrap.min.css', array());
     wp_enqueue_style( 'font-awesome', THEME_FONTS . 'font-awesome/css/font-awesome.min.css', array());
-    wp_enqueue_style( 'font_kites', THEME_FONTS . 'font_kites/stylesheet.css', array());
+    wp_enqueue_style( 'elegant_font', THEME_FONTS . 'elegant_font/style.css', array());
     wp_enqueue_style( 'simple_line_icons', THEME_FONTS . 'simple_line_icons/simple-line-icons.css', array());
     wp_enqueue_style( 'animate', THEME_CSS . 'animate.min.css', array());
     wp_enqueue_style( 'mCustomScrollbar', THEME_CSS . 'jquery.mCustomScrollbar.min.css', array());
@@ -253,93 +253,110 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '', $post_id = null) {
+    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '', $link = true) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
         $format = get_post_format();
-        ?>
 
-            <?php if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
-                <?php if ( is_singular() ){ ?>
-                    <div class="entry-thumb">
-                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                    </div><!-- .entry-thumb -->
-                <?php }else{ ?>
-                    <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
-                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                    </a>
-                <?php } ?>
-            <?php }elseif($format == 'gallery'){
-                $type = rwmb_meta('_kt_gallery_type');
-                if($type == 'rev' && class_exists( 'RevSlider' )){
-                    if ($rev = rwmb_meta('_kt_gallery_rev_slider')) {
-                        echo '<div class="entry-thumb">';
-                        putRevSlider($rev);
-                        echo '</div><!-- .entry-thumb -->';
-                    }
-                }elseif($type == 'layer' && is_plugin_active( 'LayerSlider/layerslider.php' ) ) {
-                    if($layerslider = rwmb_meta('_kt_gallery_layerslider')){
-                        echo '<div class="entry-thumb">';
-                        echo do_shortcode('[layerslider id="'.rwmb_meta('_kt_gallery_layerslider').'"]');
-                        echo '</div><!-- .entry-thumb -->';
-                    }
-                }elseif($type == ''){
+        if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
+            <?php if ( $link ){ ?>
+                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
+                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                </a>
+            <?php }else{ ?>
+                <div class="entry-thumb">
+                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+                </div><!-- .entry-thumb -->
+            <?php } ?>
+        <?php }elseif($format == 'gallery'){
+            $type = rwmb_meta('_kt_gallery_type');
+            if($type == 'rev' && class_exists( 'RevSlider' )){
+                if ($rev = rwmb_meta('_kt_gallery_rev_slider')) {
                     echo '<div class="entry-thumb">';
-                    $images = get_galleries_post('_kt_gallery_images', $size);
-                    $galleries_html = '';
-                    foreach($images as $image){
-                        $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
-                    }
-                    $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
-                    $carousel_ouput = kt_render_carousel($atts);
-                    echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
-
+                    putRevSlider($rev);
                     echo '</div><!-- .entry-thumb -->';
                 }
-            }elseif($format == 'video'){
-                $type = rwmb_meta('_kt_video_type');
-                if($type == 'upload'){
-                    $mp4 = kt_get_single_file('_kt_video_file_mp4');
-                    $webm = kt_get_single_file('_kt_video_file_webm');
-                    if($mp4 || $webm){
-                        $video_shortcode = "[video ";
-                        if($mp4) $video_shortcode .= 'mp4="'.$mp4.'" ';
-                        if($webm) $video_shortcode .= 'webm="'.$webm.'" ';
-                        $video_shortcode .= "]";
-                        echo '<div class="entry-thumb">'.do_shortcode($video_shortcode).'</div><!-- .entry-thumb -->';
-                    }
-
-                }elseif($type == 'external'){
-                    if($video_link = rwmb_meta('_kt_video_link')){
-                        global $wp_embed;
-                        $embed = $wp_embed->run_shortcode( '[embed]' . $video_link . '[/embed]' );
-                        echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">'.do_shortcode($embed).'</div></div><!-- .entry-thumb -->';
-                    }
+            }elseif($type == 'layer' && is_plugin_active( 'LayerSlider/layerslider.php' ) ) {
+                if($layerslider = rwmb_meta('_kt_gallery_layerslider')){
+                    echo '<div class="entry-thumb">';
+                    echo do_shortcode('[layerslider id="'.rwmb_meta('_kt_gallery_layerslider').'"]');
+                    echo '</div><!-- .entry-thumb -->';
                 }
-            }elseif($format == 'audio'){
-                $type = rwmb_meta('_kt_audio_type');
-                if($type == 'upload'){
-                    if($audios = rwmb_meta('_kt_audio_mp3', 'type=file')){
-                        foreach($audios as $audio) {
-                            echo '<div class="entry-thumb">';
-                                if(has_post_thumbnail()){
-                                    the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) );
-                                }
-                                echo '<div class="entry-thumb-audio">';
-                                echo do_shortcode('[audio src="'.$audio['url'].'"][/audio]');
-                                echo '</div><!-- .entry-thumb-audio -->';
-                            echo '</div><!-- .entry-thumb -->';
-                        }
-                    }
-                }elseif($type == 'soundcloud'){
-                    if($soundcloud = rwmb_meta('_kt_audio_soundcloud')){
+            }elseif($type == ''){
+                echo '<div class="entry-thumb">';
+                $images = get_galleries_post('_kt_gallery_images', $size);
+                $galleries_html = '';
+                foreach($images as $image){
+                    $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
+                }
+                $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
+                $carousel_ouput = kt_render_carousel($atts);
+                echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
+
+                echo '</div><!-- .entry-thumb -->';
+            }
+        }elseif($format == 'video'){
+            $type = rwmb_meta('_kt_video_type');
+            if($type == 'upload'){
+                $mp4 = kt_get_single_file('_kt_video_file_mp4');
+                $webm = kt_get_single_file('_kt_video_file_webm');
+                if($mp4 || $webm){
+                    $video_shortcode = "[video ";
+                    if($mp4) $video_shortcode .= 'mp4="'.$mp4.'" ';
+                    if($webm) $video_shortcode .= 'webm="'.$webm.'" ';
+                    $video_shortcode .= "]";
+                    echo '<div class="entry-thumb">'.do_shortcode($video_shortcode).'</div><!-- .entry-thumb -->';
+                }
+
+            }elseif($type == 'external'){
+                if($video_link = rwmb_meta('_kt_video_link')){
+                    global $wp_embed;
+                    $embed = $wp_embed->run_shortcode( '[embed]' . $video_link . '[/embed]' );
+                    echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">'.do_shortcode($embed).'</div></div><!-- .entry-thumb -->';
+                }
+            }
+        }elseif($format == 'audio'){
+            $type = rwmb_meta('_kt_audio_type');
+            if($type == 'upload'){
+                if($audios = rwmb_meta('_kt_audio_mp3', 'type=file')){
+                    foreach($audios as $audio) {
                         echo '<div class="entry-thumb">';
-                        echo do_shortcode($soundcloud);
+                            if(has_post_thumbnail()){
+                                the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) );
+                            }
+                            echo '<div class="entry-thumb-audio">';
+                            echo do_shortcode('[audio src="'.$audio['url'].'"][/audio]');
+                            echo '</div><!-- .entry-thumb-audio -->';
                         echo '</div><!-- .entry-thumb -->';
                     }
                 }
+            }elseif($type == 'soundcloud'){
+                if($soundcloud = rwmb_meta('_kt_audio_soundcloud')){
+                    echo '<div class="entry-thumb">';
+                    echo do_shortcode($soundcloud);
+                    echo '</div><!-- .entry-thumb -->';
+                }
             }
+        }elseif($format == 'link'){ ?>
+            <div class="entry-thumb post-link-wrapper">
+                <div class="entry-thumb-content">
+                    <div class="post-link-title"><?php the_title(); ?></div>
+                    <div class="post-link-content">
+                        <a href="<?php echo rwmb_meta('_kt_external_url'); ?>"><?php echo rwmb_meta('_kt_external_url'); ?></a>
+                    </div>
+                </div><!-- .entry-thumb-content -->
+            </div><!-- .post-link-wrapper -->
+        <?php }elseif($format == 'quote'){ ?>
+            <div class="entry-thumb post-quote-wrapper">
+                <div class="entry-thumb-content">
+                    <div class="post-quote-content">
+                        <?php echo rwmb_meta('_kt_quote_content'); ?>
+                    </div>
+                    <div class="post-quote-author"><?php echo rwmb_meta('_kt_quote_author'); ?></div>
+                </div><!-- .entry-thumb-content -->
+            </div><!-- .post-quote-wrapper -->
+        <?php }
     }
 endif;
 

@@ -159,7 +159,11 @@ a:hover, a:focus{
 blockquote,
 .blockquote-reverse,
 blockquote.pull-right{
-    border-color: #000000;
+    border-color: #d2a952;
+    color: #9a9a9a;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 28px;
     position: relative;
 }
 blockquote.classic{
@@ -4426,6 +4430,7 @@ body.layout-boxed #page {
     margin: 0;
     padding: 60px 0;
     border: none;
+    background: #f4f4f4;
 }
 .page-header-left{
     text-align: left;
@@ -4645,13 +4650,19 @@ article.post-item{
     margin-bottom: 15px;
 }
 
-.post-item.format-link,
-.post-item.format-quote{
+
+
+
+
+
+
+.post-quote-wrapper,
+.post-link-wrapper{
     background: #ececeb;
     padding: 15px;
 }
-.post-item.format-link .entry-main-content,
-.post-item.format-quote .entry-main-content{
+.post-quote-wrapper .entry-thumb-content,
+.post-link-wrapper .entry-thumb-content{
     background: #eeeeed;
     border: 1px dashed #d7d7d6;
     padding: 18px 15px 34px;
@@ -4659,8 +4670,8 @@ article.post-item{
     font-family: Georgia;
     text-align: left;
 }
-.post-item.format-link .entry-main-content:after,
-.post-item.format-quote .entry-main-content:after{
+.post-quote-wrapper .entry-thumb-content:after,
+.post-link-wrapper .entry-thumb-content:after{
     bottom: 35px;
     color: #c4c1c1;
     content: '\f10e';
@@ -4670,25 +4681,25 @@ article.post-item{
     position: absolute;
     right: 12px;
 }
-.post-item.format-link .entry-main-content:after{
+.post-link-wrapper .entry-thumb-content:after{
     content: '\f0c1';
 }
 
-.post-item.format-quote .post-quote-content,
-.post-item.format-link .post-link-title{
+.post-quote-wrapper .post-quote-content,
+.post-link-wrapper .post-link-title{
     color: #5d5d5d;
     font-size: 18px;
     font-style: italic;
     line-height: 30px;
     margin-bottom: 10px;
 }
-.post-item.format-quote .post-quote-author,
-.post-item.format-link .post-link-content a{
+.post-quote-wrapper .post-quote-author,
+.post-link-wrapper .post-link-content a{
     color: #d0a852;
     text-transform: uppercase;
     font-size: 14px;
 }
-.post-item.format-quote .post-quote-author{
+.post-quote-wrapper .post-quote-author{
     letter-spacing: 2px;
 }
 .post-item.format-audio .entry-thumb-audio{
@@ -4701,6 +4712,13 @@ article.post-item{
     min-height: 55px;
     overflow: hidden;
 }
+
+
+
+
+
+
+
 
 .blog-posts-loadmore{
     text-align: center;
@@ -4911,6 +4929,9 @@ article.post-item{
 /*
  * 17.4. Single Posts - Entry post
  */
+.entry-thumb-fullwidth .entry-thumb{
+    margin-bottom: 25px;
+}
 .post-single .entry-title{
     font-family: "Montserrat"
     font-size: 26px;

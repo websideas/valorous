@@ -51,13 +51,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         extract($atts);
 
-        if ($blog_pagination == 'classic') {
-            global $wp_query;
-            $tmp = $wp_query;
-        }
-
-
-
         $output = $settings = '';
 
         $this->excerpt_length = $excerpt_length;
@@ -68,6 +61,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'posts_per_page' => $max_items,
             'ignore_sticky_posts' => true
         );
+
+        if ($blog_pagination == 'classic') {
+            global $wp_query, $paged;
+            $tmp = $wp_query;
+            $args['paged'] = $paged;
+        }
+
 
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
             $args['meta_key'] = $meta_key;

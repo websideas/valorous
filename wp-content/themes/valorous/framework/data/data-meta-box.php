@@ -471,7 +471,7 @@ function kite_register_meta_boxes( $meta_boxes )
                     'center' => __('Center', THEME_LANG),
                     'right' => __('Right', THEME_LANG)
                 ),
-                'std'  => 'left',
+                'std'  => '',
             ),
 
             array(

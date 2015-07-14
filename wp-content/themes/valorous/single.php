@@ -22,13 +22,12 @@ get_header();
         do_action( 'theme_before_main' ); ?>
         <?php
             $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
-            $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');;
+            $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');
         ?>
-        <?php
-            if( ! post_password_required( ) && $show_post_format && $post_format_position == 'fullwidth' ){
-                kt_post_thumbnail('full', 'img-responsive');
-            }
-        ?>
+
+        <?php if( ! post_password_required( ) && $show_post_format && $post_format_position == 'fullwidth' ){ ?>
+            <div class="entry-thumb-fullwidth"><?php kt_post_thumbnail('full', 'img-responsive'); ?></div>
+        <?php } ?>
 
         <div class="row">
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">

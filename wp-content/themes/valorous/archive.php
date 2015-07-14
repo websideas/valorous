@@ -92,11 +92,7 @@ get_header(); ?>
 
                         // Previous/next page navigation.
                         if ($settings['blog_pagination'] == 'classic') {
-                            echo get_the_posts_pagination(array(
-                                'prev_text' => __('Previous', THEME_LANG),
-                                'next_text' => __('Next', THEME_LANG),
-                                'before_page_number' => '',
-                            ));
+                            kt_paging_nav();
                         } elseif ($settings['blog_pagination'] == 'loadmore') {
                             echo '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button"><span class="fa fa-refresh"></span> ' . __('Load more', THEME_LANG) . '</a></div>';
                         }
