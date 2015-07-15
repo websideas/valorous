@@ -41,14 +41,14 @@ $woocommerce_loop['loop']++;
 // Extra post classes
 $classes = array( 'product' );
 if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 == $woocommerce_loop['columns'] ) {
-	$classes[] = 'first';
+	$classes[] = 'first col-clearfix-lg col-clearfix-md';
 }
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 
 if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns_tablet'] || 1 == $woocommerce_loop['columns_tablet'] )
-    $classes[] = 'first-tablet';
+    $classes[] = 'first-tablet col-clearfix-sm col-clearfix-xs';
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns_tablet'] )
     $classes[] = 'last-tablet';
 
@@ -67,6 +67,16 @@ $classes[] = 'col-xs-'.$bootstrapTabletColumn.' col-sm-'. $bootstrapColumn .' co
 
         <div class="product-image-container">
             <div class="product-image-content">
+
+                <?php
+                /**
+                 * woocommerce_shop_loop_item_before_image hook
+                 *
+                 * @hooked woocommerce_show_product_loop_sale_flash - 10
+                 */
+                do_action( 'woocommerce_shop_loop_item_before_image' );
+                ?>
+
                 <?php
                 $attachment_ids = $product->get_gallery_attachment_ids();
                 $attachment = '';
@@ -89,16 +99,20 @@ $classes[] = 'col-xs-'.$bootstrapTabletColumn.' col-sm-'. $bootstrapColumn .' co
                     <?php echo $image_thumb; ?>
                     <?php echo $attachment; ?>
                 </a>
-                <?php
-                /**
-                 * woocommerce_shop_loop_item_after_image hook
-                 *
-                 * @hooked woocommerce_template_loop_add_to_cart - 5
-                 * @hooked woocommerce_show_product_loop_sale_flash - 10
-                 * @hooked woocommerce_shop_loop_item_action_action_add - 15
-                 */
-                do_action( 'woocommerce_shop_loop_item_after_image' );
-                ?>
+                <div class="product-image-tool">
+                    <?php
+                    /**
+                     * woocommerce_shop_loop_item_after_image hook
+                     *
+                     * @hooked woocommerce_template_loop_add_to_cart - 5
+                     * @hooked woocommerce_show_product_loop_sale_flash - 10
+                     * @hooked woocommerce_shop_loop_item_action_action_add - 15
+                     */
+                    do_action( 'woocommerce_shop_loop_item_after_image' );
+                    ?>
+                </div>
+
+
             </div>
         </div>
 

@@ -251,9 +251,10 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'subsection' => true,
 				'fields'		=> array(
                     array(
-                        'id'   => 'logos_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Logos settings', THEME_LANG ),
+                        'id'       => 'logos_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Logos settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'logo',
@@ -368,10 +369,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'favicon_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Favicon settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'favicon_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Favicon settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'custom_favicon',
@@ -489,10 +490,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                     /*
                     array(
-                        'id'   => 'header_contact_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Header contact settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'header_contact_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Header contact settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id' => 'header_phone',
@@ -547,10 +548,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'title_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Header Title settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'title_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Header Title settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'title_align',
@@ -565,13 +566,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => 'left',
                         'clear' => false
                     ),
-                    array(
-                        'id'   => 'title_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Header Title settings', THEME_LANG ),
-                        'class'    => 'section-heading'
-                    ),
-
                     array(
                         'id'       => 'title_breadcrumbs',
                         'type'     => 'switch',
@@ -600,10 +594,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
 
                     array(
-                        'id'   => 'footer_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer',
@@ -631,10 +625,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                     // Footer Top settings
                     array(
-                        'id'   => 'footer_top_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer top settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_top_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer top settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_top',
@@ -660,10 +654,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_widgets_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer widgets settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_widgets_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer widgets settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_widgets',
@@ -709,10 +703,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_bottom_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer bottom settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_bottom_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer bottom settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_bottom',
@@ -751,10 +745,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_copyright_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer copyright settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_copyright_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer copyright settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_copyright',
@@ -955,10 +949,10 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'header_layout1_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Header layout 1 settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'header_layout1_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Header layout 1 settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'            => 'header-layout-opacity',
@@ -976,10 +970,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'header_sticky_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Header sticky settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'header_sticky_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Header sticky settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'            => 'header_sticky_opacity',
@@ -1006,10 +1000,10 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'footer_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_background',
@@ -1041,10 +1035,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_top_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer top settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_top_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer top settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_top_background',
@@ -1073,10 +1067,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_widgets_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer widgets settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_widgets_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer widgets settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_widgets_border',
@@ -1119,10 +1113,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_bottom_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer bottom settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_bottom_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer bottom settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_bottom_background',
@@ -1139,10 +1133,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'footer_copyright_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Footer copyright settings', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'footer_copyright_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Footer copyright settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'footer_copyright_background',
@@ -1206,9 +1200,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'   => 'typography_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'typography Heading settings', THEME_LANG ),
+                        'id'       => 'typography_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Typography Heading settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'typography_heading1',
@@ -1462,10 +1457,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'archive_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Archive post general', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'archive_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Archive post general', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'archive_sidebar',
@@ -1699,10 +1694,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'blog_single_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Single post general', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'blog_single_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Single post general', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'blog_sidebar',
@@ -1909,10 +1904,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
                 'fields'		=> array(
                     array(
-                        'id'   => 'search_heading',
-                        'type' => 'heading',
-                        'title'    => __( 'Search post general', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => 'search_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Search post general', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'search_sidebar',
@@ -2132,12 +2127,11 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'desc'			=> '404 Page settings',
                 'fields'		=> array(
                     array(
-                        'id'   => '404_heading',
-                        'type' => 'heading',
-                        'title'    => __( '404 Page general', THEME_LANG ),
-                        'class'    => 'section-heading'
+                        'id'       => '404_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( '404 Page general', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
-
                     array(
                         'id' => '404_page_type',
                         'type' => 'select',
@@ -2165,10 +2159,10 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'icon_class'	=> 'icon_cart_alt',
 				'fields'		=> array(
                     array(
-                        'id'     => 'shop_products_heading',
-                        'type'     => 'heading',
-                        'title'    => __('Shop Products settings', THEME_LANG),
-                        'class'    => 'section-heading'
+                        'id'       => 'shop_products_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Shop Products settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'shop_sidebar',
@@ -2251,10 +2245,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide'
                     ),
                     array(
-                        'id'     => 'shop_single_product',
-                        'type'     => 'heading',
-                        'title'    => __('Single Product Layout', THEME_LANG),
-                        'class'    => 'section-heading'
+                        'id'       => 'shop_single_product',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Shop Product settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'product_sidebar',

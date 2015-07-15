@@ -223,7 +223,7 @@ function london_wrapper_end() {
  * Add checkout button to cart page
  * 
  */
-add_action('woocommerce_cart_actions', 'woocommerce_button_proceed_to_checkout');
+//add_action('woocommerce_cart_actions', 'woocommerce_button_proceed_to_checkout');
 
 
 /**
@@ -312,21 +312,23 @@ remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
-add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_show_product_loop_sale_flash', 10);
-add_action( 'woocommerce_shop_loop_item_after_image', 'woocommerce_template_loop_add_to_cart', 10);
+add_action( 'woocommerce_shop_loop_item_before_image', 'woocommerce_show_product_loop_sale_flash', 10);
+add_action( 'woocommerce_shop_loop_item_before_image', 'woocommerce_template_loop_add_to_cart', 10);
 
 
 add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_add_archive_tool', 10);
 function kt_woocommerce_add_archive_tool(){
-    echo '<a href="#" class="product-quick-view" data-id="'.get_the_ID().'">'.__('Quick view', THEME_LANG).'</a>';
+    printf(
+        '<div class="tool-inner"><a href="#" class="product-quick-view" data-id="%s">%s</a></div>',
+        get_the_ID(),
+        __('Quick view', THEME_LANG)
+    );
     if(class_exists('YITH_WCWL_UI')){
-        echo do_shortcode('[yith_wcwl_add_to_wishlist]');
+        echo do_shortcode('<div class="tool-inner">[yith_wcwl_add_to_wishlist]</div>');
     }
-    /*
     if(defined( 'YITH_WOOCOMPARE' )){
-        echo do_shortcode('[yith_compare_button]');
+        echo do_shortcode('<div class="tool-inner">[yith_compare_button]</div>');
     }
-    */
 }
 
 
@@ -427,13 +429,13 @@ add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
  * Add count products before cart
  *
  */
-/*
+
 add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);
 function kt_woocommerce_before_cart_table( $args ){
-    $html = '<p>'. sprintf( __( 'Your shopping cart contains: %d products', THEME_LANG ), WC()->cart->cart_contents_count ) . '</p>';
+    $html = '<h2>'. sprintf( __( 'Your shopping cart: <span>(%d items)</span>', THEME_LANG ), WC()->cart->cart_contents_count ) . '</h2>';
 	echo $html;
 }
-*/
+
 
 
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );

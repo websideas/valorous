@@ -563,6 +563,62 @@ if (!function_exists('get_thumbnail_attachment')){
 }
 
 /**
+ * Custom wpml
+ *
+ */
+
+function kt_custom_wpml(){
+    if(kt_is_wpml()){
+
+        $languages = apply_filters( 'wpml_active_languages', array('skip_missing' => false) );
+
+
+        if(!empty($languages)){
+
+            foreach( $languages as $lang_k=>$lang ){
+                if( $lang['active'] ){
+                    $active_lang = $lang;
+                }
+            }
+
+            echo '<li class="kt-wpml-languages">';
+
+            if($active_lang['country_flag_url']){
+                printf(
+                    '<a class="current-language" href="%s"><img src="%s" height="12" width="18" alt="%s" /></a>',
+                    'javascript:void(0)',
+                    esc_url($active_lang['country_flag_url']),
+                    esc_attr($active_lang['language_code'])
+                );
+            }
+
+            echo '<ul>';
+            foreach($languages as $l){
+                echo '<li>';
+                if(!$l['active']) {
+                    echo '<a href="'.$l['url'].'">';
+                }else{
+                    echo '<span>';
+                }
+                if($l['country_flag_url']){
+                    echo '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
+                }
+                echo "<span>".$l['native_name']."</span>";
+
+                if(!$l['active']){
+                    echo '</a>';
+                }else{
+                    echo '</span>';
+                }
+                echo '</li>';
+            }
+            echo '</ul></li>';
+        }
+    }
+}
+
+
+/**
  * Get image form meta.
  * 
  * @param string $meta. meta id of article.

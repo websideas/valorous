@@ -57,6 +57,21 @@ only screen and (min-resolution: 144dpi) {
         float: none;
     }
 
+
+    /* Footer */
+    #footer-copyright .display-table{
+        display: block;
+    }
+    #footer-copyright .display-table .display-td{
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+    }
+    #footer-copyright .display-table .display-td:last-child{
+        margin-bottom: 0;
+    }
+
+
 }
 /* 7. Styles for devices(>=768px and <= 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
@@ -64,6 +79,8 @@ only screen and (min-resolution: 144dpi) {
         clear: both;
     }
 
+
+    /* Footer */
     #footer-bottom .instagram_bg li:nth-child(10) ~ li{
         display: none;
     }
@@ -81,6 +98,9 @@ only screen and (min-resolution: 144dpi) {
     .coming-soon .wrap{
         width:50%;
     }
+
+
+    /* Footer */
     #footer-bottom .instagram_bg li:nth-child(8) ~ li{
         display: none;
     }
@@ -107,10 +127,11 @@ only screen and (min-resolution: 144dpi) {
         padding: 0;
     }
 
+
+    /* Footer */
     #footer-area .widget-container{
         padding: 15px;
     }
-
     #footer-bottom .instagram_bg li:nth-child(4) ~ li{
         display: none;
     }
@@ -118,10 +139,18 @@ only screen and (min-resolution: 144dpi) {
         width:50%;
     }
 
+
+    /* Woocommerce */
+    .woocommerce ul.products li.product{
+        width: 100%;
+    }
+
 }
 /* 11. Styles for devices(<=320px ) */
 @media (max-width: 320px) {
     .content-404 form{max-width: 320px;}
+
+    /* Woocommerce */
     .woocommerce table.shop_table td.actions .checkout-button,
     .woocommerce table.shop_table td.actions input[name="update_cart"]{
         width:100%;

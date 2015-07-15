@@ -17,9 +17,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <div class="row">
     <div class="col-md-8">
         <form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
-        <h2><?php _e('My Cart', THEME_LANG) ?></h2>
         <?php do_action( 'woocommerce_before_cart_table' ); ?>
-
         <table class="shop_table cart" cellspacing="0">
             <thead>
                 <tr>

@@ -577,10 +577,10 @@ select:not([multiple]) {
 #main-navigation > li > a:focus:after,
 #main-navigation > li.current-menu-item > a:after,
 #main-navigation > li.current-menu-parent > a:after,
-#main-navigation > li.hovered > a:after
-{
+#main-navigation > li.hovered > a:after {
     width: 100%;
 }
+#main-nav-tool .kt-wpml-languages ul,
 #main-navigation > li .kt-megamenu-wrapper,
 #main-navigation > li ul.sub-menu-dropdown{
     padding: 0;
@@ -609,6 +609,7 @@ select:not([multiple]) {
     display: block;
     visibility: hidden;
 }
+#main-nav-tool .kt-wpml-languages ul,
 #main-navigation > li ul.sub-menu-dropdown.right-overflow{
     right: 0;
     left: auto;
@@ -618,7 +619,7 @@ select:not([multiple]) {
     top: -2px;
     right: 100%;
 }
-
+#main-nav-tool .kt-wpml-languages:hover ul,
 #main-navigation > li:hover > .kt-megamenu-wrapper,
 #main-navigation > li:hover > ul.sub-menu-dropdown,
 #main-navigation > li li:hover > ul.sub-menu-dropdown{
@@ -634,6 +635,7 @@ select:not([multiple]) {
     left: 100%;
     top: -2px;
 }
+#main-nav-tool .kt-wpml-languages ul li,
 #main-navigation > li ul.sub-menu-dropdown > li{
     display: block;
     border-bottom: 1px solid #333333;
@@ -643,15 +645,20 @@ select:not([multiple]) {
     font-weight: 500;
     text-transform: uppercase;
 }
+#main-nav-tool .kt-wpml-languages ul li:last-child,
 #main-navigation > li ul.sub-menu-dropdown > li:last-child{
     border-bottom: none;
 }
+#main-nav-tool .kt-wpml-languages ul li > span,
+#main-nav-tool .kt-wpml-languages ul li > a,
 #main-navigation > li ul.sub-menu-dropdown > li > a{
     display: block;
     color: #cbcbcb;
     padding: 8px 15px;
     font-size: 12px;
 }
+#main-nav-tool .kt-wpml-languages ul li > span,
+#main-nav-tool .kt-wpml-languages ul li > a:hover,
 #main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a,
 #main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a,
 #main-navigation > li ul.sub-menu-dropdown > li:hover > a,
@@ -659,27 +666,31 @@ select:not([multiple]) {
     color: #FFF;
     background: #333333;
 }
+#main-nav-tool .kt-wpml-languages ul li > span span,
+#main-nav-tool .kt-wpml-languages ul li > a span{
+    margin-left: 5px;
+}
 #main-navigation > li .kt-megamenu-wrapper{
     width: 100%;
     padding: 25px 15px 20px;
-    max-width: 1170px;
+    /*max-width: 1170px;*/
 }
 
 #main-navigation > li.kt-megamenu-item-five .kt-megamenu-wrapper{
     width: 90%;
-    max-width: 1053px;
+    /*max-width: 1053px;*/
 }
 #main-navigation > li.kt-megamenu-item-four .kt-megamenu-wrapper{
     width: 80%;
-    max-width: 920px;
+    /*max-width: 920px;*/
 }
 #main-navigation > li.kt-megamenu-item-three .kt-megamenu-wrapper{
     width: 75%;
-    max-width: 878px;
+    /*max-width: 878px;*/
 }
 #main-navigation > li.kt-megamenu-item-half .kt-megamenu-wrapper{
     width: 50%;
-    max-width: 585px;
+    /*max-width: 585px;*/
 }
 #main-navigation > li .kt-megamenu-wrapper.megamenu-position-left-menubar{
     right: auto;
@@ -724,7 +735,7 @@ select:not([multiple]) {
     table-layout: fixed;
 }
 #main-navigation > li .kt-megamenu-wrapper.megamenu-layout-table > ul > li{
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #ffffff;
     display: table-cell;
     padding: 0 30px;
     float: none;
@@ -1313,9 +1324,8 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_archive ul li span,
 .widget_product_categories ul li span,
 .widget_categories ul li span{
-    position: absolute;
-    top: 0;
-    right: 10px;
+    float: right;
+    margin-left: 5px;
 }
 .widget_pages ul li ul.children li ul.children,
 .widget_nav_menu ul li ul.sub-menu li ul.sub-menu,
@@ -1640,18 +1650,22 @@ body.admin-bar #header.is-sticky.sticky{
 .header-light #main-navigation > li > a::after{
     background: #282828;
 }
+.header-light #main-nav-tool .kt-wpml-languages ul,
 .header-light #main-navigation > li .kt-megamenu-wrapper,
 .header-light #main-navigation > li ul.sub-menu-dropdown{
     background: #FFFFFF;
 }
 
-
+.header-light #main-nav-tool .kt-wpml-languages ul li,
 .header-light #main-navigation > li ul.sub-menu-dropdown > li{
     border-color: #eaeaea;
 }
+.header-light #main-nav-tool .kt-wpml-languages ul li > a,
 .header-light #main-navigation > li ul.sub-menu-dropdown > li > a{
     color: #282828;
 }
+.header-light #main-nav-tool .kt-wpml-languages ul li > span,
+.header-light #main-nav-tool .kt-wpml-languages ul li > a:hover,
 .header-light #main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a,
 .header-light #main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a,
 .header-light #main-navigation > li ul.sub-menu-dropdown > li:hover > a,
@@ -1679,7 +1693,9 @@ body.admin-bar #header.is-sticky.sticky{
 .header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover{
     color: #d0a852;
 }
-
+.header-light #main-navigation > li .kt-megamenu-wrapper.megamenu-layout-table > ul > li{
+    border-color: #333333;
+}
 
 .header-light .mobile-nav-bar span.mobile-nav-handle:before,
 .header-light .mobile-nav-bar span.mobile-nav-handle:after,
@@ -2011,91 +2027,8 @@ body.footer_fixed .static-footer{
 /* ==============================
    15. Custom Revolution Slider
    ============================== */
-.tp-bullets.simplebullets.round .bullet{
-    width:11px;
-    height:11px;
-    background: #6b6b6a;
-    border-radius:100%;
-    margin:4px 10px 0;
-}
-.tp-bullets.simplebullets.round .bullet.last{ margin-right:10px; }
-.tp-bullets.simplebullets.round .bullet.selected{
-    background: #000;
-}
-.tp-bullets.simplebullets.round .bullet:after{
-    position: absolute;
-    width:20px;
-    height:1px;
-    top:5px;
-    left:11px;
-    background: #6b6b6a;
-    content:"";
-}
-.tp-bullets.simplebullets.round .bullet.last:after{ display: none; }
-.tp-bullets .tp-rightarrow.round,
-.tp-bullets .tp-leftarrow.round{
-    height: 30px;
-    margin: 0;
-    width: 30px;
-    background: none;
-    text-align: center;
-    margin-top: -5px;
-    position: relative;
-}
-.tp-bullets .tp-rightarrow.round:after,
-.tp-bullets .tp-leftarrow.round:after{
-    font-family:fontkite;
-    content:"\e808";
-    position: absolute;
-    top:4px;
-    left:0;
-    font-size:30px;
-    color:#000;
-}
-.tp-bullets .tp-rightarrow.round:after{
-    content:"\e802";
-}
-.tp-bullets .tp-rightarrow.round:hover,
-.tp-bullets .tp-leftarrow.round:hover{
-    opacity: 0.5;
-}
-.tp-leftarrow.default,
-.tp-rightarrow.default{
-    height: 31px;
-    margin: 0;
-    padding: 0;
-    transition: background 0.8s ease 0s;
-    -webkit-transition: background 0.8s ease 0s;
-    -moz-transition: background 0.8s ease 0s;
-    -o-transition: background 0.8s ease 0s;
-    width: 74px;
-    background: rgba(255,255,255,0.5);
-    text-align: center;
-}
-.tp-leftarrow.default:before,
-.tp-rightarrow.default:before{
-    color: #cccccc;
-    content: "\e807";
-    font-family: "fontkite";
-    font-size: 30px;
-    font-style: normal;
-    font-weight: normal;
-    height: 100%;
-    left: 0;
-    line-height: 32px;
-    position: absolute;
-    top: 0;
-    transition: all 0.8s ease 0s;
-    width: 100%;
-}
-.tp-leftarrow.default:before{
-    content: "\e800";
-}
-.tp-leftarrow.default:hover,
-.tp-rightarrow.default:hover{
-    background:#333;
-}
-.rev_slider img{ vertical-align: top; }
+
+
 
 
 /* ==============================
@@ -4785,20 +4718,6 @@ article.post-item{
     background: #d0a852;
     border-color: #d0a852;
 }
-.post-layout-classic.post-item.format-link .entry-main-content,
-.post-layout-classic.post-item.format-quote .entry-main-content{
-    padding: 30px 160px 30px 40px;
-}
-.post-layout-classic.post-item.format-quote .post-quote-content,
-.post-layout-classic.post-item.format-link .post-link-title{
-    font-size: 22px;
-    line-height: 33px;
-}
-.post-layout-classic.post-item.format-link .entry-main-content:after,
-.post-layout-classic.post-item.format-quote .entry-main-content:after{
-    right: 40px;
-    bottom: 30px;
-}
 /* Blog Layout 1 */
 .post-layout-1 {
     text-align: center;
@@ -4814,10 +4733,12 @@ article.post-item{
     margin: 0;
 }
 .post-item-carousel .entry-title{
-    font-family: "Montserrat"
-    font-size: 18px;
+    font-family: Montserrat;
+    font-size: 21px;
     line-height: 1;
     margin: 0 0 8px;
+    padding: 0;
+    font-weight: normal;
 }
 .post-item-carousel .entry-meta-data{
     color: #fff;
