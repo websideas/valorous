@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
                 // add the product in the widget
                 widget_list.unblock().html( response.widget_table );
 
-                if (yith_woocompare.auto_open == 'yes') $('body').trigger( 'yith_woocompare_open_popup', { response: response.table_url, button: button } );
+                if ( yith_woocompare.auto_open == 'yes') $('body').trigger( 'yith_woocompare_open_popup', { response: response.table_url, button: button } );
             }
         });
     });
@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
     $('body').on( 'yith_woocompare_open_popup', function( e, data ) {
         var response = data.response;
 
-        if ($(window).width() >= 768) {
+        if ( $(window).width() >= 768 ) {
             $.colorbox({
                 href: response,
                 iframe: true,

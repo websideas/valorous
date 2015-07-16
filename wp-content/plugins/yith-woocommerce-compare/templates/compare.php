@@ -12,8 +12,8 @@ if( defined('WOOCOMMERCE_USE_CSS') && WOOCOMMERCE_USE_CSS ) wp_dequeue_style('wo
 
 $is_iframe = (bool)( isset( $_REQUEST['iframe'] ) && $_REQUEST['iframe'] );
 
-wp_enqueue_script( 'jquery-fixedheadertable', YITH_WOOCOMPARE_URL . 'assets/js/jquery.dataTables.min.js', array('jquery'), '1.3', true );
-wp_enqueue_script( 'jquery-fixedcolumns', YITH_WOOCOMPARE_URL . 'assets/js/FixedColumns.min.js', array('jquery', 'jquery-fixedheadertable'), '1.3', true );
+wp_enqueue_script( 'jquery-fixedheadertable', YITH_WOOCOMPARE_ASSETS_URL . '/js/jquery.dataTables.min.js', array('jquery'), '1.3', true );
+wp_enqueue_script( 'jquery-fixedcolumns', YITH_WOOCOMPARE_ASSETS_URL . '/js/FixedColumns.min.js', array('jquery', 'jquery-fixedheadertable'), '1.3', true );
 
 $widths = array();
 foreach( $products as $product ) $widths[] = '{ "sWidth": "205px", resizeable:true }';
@@ -48,7 +48,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width" />
-    <title><?php _e( 'Product Comparison', 'yit' ) ?></title>
+    <title><?php _e( 'Product Comparison', 'yith-wcmp' ) ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" />
@@ -73,8 +73,10 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 
 <h1>
     <?php echo $localized_table_text ?>
-    <?php if ( ! $is_iframe ) : ?><a class="close" href="#"><?php _e( 'Close window [X]', 'yit' ) ?></a><?php endif; ?>
+    <?php if ( ! $is_iframe ) : ?><a class="close" href="#"><?php _e( 'Close window [X]', 'yith-wcmp' ) ?></a><?php endif; ?>
 </h1>
+
+<?php do_action( 'yith_woocompare_before_main_table' ); ?>
 
 <table class="compare-list" cellpadding="0" cellspacing="0"<?php if ( empty( $products ) ) echo ' style="width:100%"' ?>>
     <thead>
@@ -98,7 +100,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
     <?php if ( empty( $products ) ) : ?>
 
         <tr class="no-products">
-            <td><?php _e( 'No products added in the compare table.', 'yit' ) ?></td>
+            <td><?php _e( 'No products added in the compare table.', 'yith-wcmp' ) ?></td>
         </tr>
 
     <?php else : ?>
@@ -120,7 +122,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
                     <?php if ( $field == 'image' ) echo '<div class="fixed-th"></div>'; ?>
                 </th>
 
-                <?php foreach( $products as $i => $product ) : $product_class = ( $i % 2 == 0 ? 'odd' : 'even' ) . ' product_' . $product->id ?>
+                <?php foreach( $products as $i => $product ) : $product_class = ( $i % 2 == 0 ? 'odd' : 'even' ) . ' product_' . $product->id; ?>
                     <td class="<?php echo $product_class; ?>"><?php
                         switch( $field ) {
 
@@ -170,6 +172,8 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 
     </tbody>
 </table>
+
+<?php do_action( 'yith_woocompare_after_main_table' ); ?>
 
 <?php if( wp_script_is( 'responsive-theme', 'enqueued' ) ) wp_dequeue_script( 'responsive-theme' ) ?><?php if( wp_script_is( 'responsive-theme', 'enqueued' ) ) wp_dequeue_script( 'responsive-theme' ) ?>
 <?php do_action('wp_print_footer_scripts'); ?>

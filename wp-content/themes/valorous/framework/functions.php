@@ -645,3 +645,20 @@ function wbc_change_demo_directory_path( $demo_directory_path ) {
 
 }
 add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
+
+
+
+add_filter( 'kt_placeholder', 'kt_placeholder_callback');
+function kt_placeholder_callback( $size = '') {
+
+    $imgage = THEME_IMG . 'placeholder-post.png';
+
+    $placeholder = kt_option('archive_placeholder');
+
+    if(is_array($placeholder) && $placeholder['id'] != '' ){
+        $obj = get_thumbnail_attachment($placeholder['id'], $size);
+        $imgage = $obj['url'];
+    }
+
+    return $imgage;
+}

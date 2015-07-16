@@ -1206,12 +1206,14 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_posts ul li .entry-meta-data{
     font-size:12px;
     margin:0;
+    line-height: normal;
 }
 .widget_kt_posts ul li span.cat-links{
     margin-bottom: 5px;
     text-transform: uppercase;
     font-size:12px;
     display: block;
+    line-height: normal;
 }
 
 
@@ -4537,6 +4539,15 @@ article.post-item{
 }
 .entry-thumb img{
     width: 100%;
+}
+.entry-thumb.no-image:before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    content: '';
+    border: 2px solid #e3e3e3;
 }
 .blog-posts .entry-title a { 
 	color:#000;

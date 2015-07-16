@@ -11,6 +11,8 @@
  * @since London 1.0
  */
 
+
+
 $sidebar = kt_get_page_sidebar();
 
 get_header(); ?>

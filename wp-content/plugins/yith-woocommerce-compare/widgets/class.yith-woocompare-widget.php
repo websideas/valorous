@@ -18,8 +18,13 @@ if( !class_exists( 'YITH_WOOCOMPARE' ) ) {
     class YITH_Woocompare_Widget extends WP_Widget {
 
         function __construct() {
-            $widget_ops = array('classname' => 'yith-woocompare-widget', 'description' => __( 'The widget show the list of products added in the compare table.', 'yit') );
-            parent::__construct('yith-woocompare-widget', __('YITH Woocommerce Compare Widget', 'yit'), $widget_ops);
+            $widget_ops = array (
+	            'classname' => 'yith-woocompare-widget',
+	            'description' => __( 'The widget show the list of products added in the compare table.', 'yith-wcmp'
+	            )
+            );
+
+	        parent::__construct( 'yith-woocompare-widget', __( 'YITH Woocommerce Compare Widget', 'yith-wcmp' ), $widget_ops );
         }
 
 
@@ -38,11 +43,11 @@ if( !class_exists( 'YITH_WOOCOMPARE' ) ) {
             echo $before_widget . $before_title . $localized_widget_title . $after_title; ?>
 
             <ul class="products-list" data-lang="<?php echo $lang ?>">
-            <?php echo $yith_woocompare->obj->list_products_html(); ?>
+                <?php echo $yith_woocompare->obj->list_products_html(); ?>
             </ul>
 
-            <a href="<?php echo $yith_woocompare->obj->remove_product_url('all') ?>" data-product_id="all" class="clear-all"><?php _e( 'Clear all', 'yit' ) ?></a>
-            <a href="<?php echo add_query_arg( array( 'iframe' => 'true' ), $yith_woocompare->obj->view_table_url() ) ?>" class="compare button"><?php _e( 'Compare', 'yit' ) ?></a>
+            <a href="<?php echo $yith_woocompare->obj->remove_product_url('all') ?>" data-product_id="all" class="clear-all"><?php _e( 'Clear all', 'yith-wcmp' ) ?></a>
+            <a href="<?php echo add_query_arg( array( 'iframe' => 'true' ), $yith_woocompare->obj->view_table_url() ) ?>" class="compare button"><?php _e( 'Compare', 'yith-wcmp' ) ?></a>
 
             <?php echo $after_widget;
         }

@@ -223,23 +223,37 @@ if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $link = true) {
+    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $link = true, $placeholder = true) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
-
-        if(has_post_thumbnail()){ ?>
-            <?php if ( $link ){ ?>
-                <div class="entry-thumb">
-                    <a href="<?php the_permalink(); ?>" aria-hidden="true">
-                        <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                    </a>
-                </div>
-            <?php }else{ ?>
-                <div class="entry-thumb">
-                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                </div><!-- .entry-thumb -->
+        $class = 'entry-thumb';
+        $attrs = '';
+        if( $link ){
+            $tag = 'a';
+            $attrs .= 'href="'.get_the_permalink().'"';
+        } else{
+            $tag = 'div';
+        }
+        if(!has_post_thumbnail() && $placeholder){
+            $class .= ' no-image';
+        }
+        if(has_post_thumbnail() || $placeholder){ ?>
+            <<?php echo $tag ?> <?php echo $attrs ?> class="<?php echo $class; ?>">
+            <?php if(has_post_thumbnail()){ ?>
+                <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+            <?php }elseif($placeholder){ ?>
+                <?php
+                    $image = apply_filters( 'kt_placeholder', $size );
+                    printf(
+                        '<img src="%s" alt="%s" class="%s"/>',
+                        $image,
+                        __('No image', THEME_LANG),
+                        $class_img.' no-image'
+                    )
+                ?>
             <?php } ?>
+            </<?php echo $tag ?>><!-- .entry-thumb -->
         <?php }
     }
 endif;
@@ -253,20 +267,45 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '', $link = true) {
+    function kt_post_thumbnail($size = 'post-thumbnail', $class_img = '', $link = true, $placeholder = true) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
         $format = get_post_format();
 
         if(has_post_thumbnail() && ($format == '' || $format == 'image')){ ?>
+
             <?php if ( $link ){ ?>
-                <a class="entry-thumb" href="<?php the_permalink(); ?>" aria-hidden="true">
-                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
-                </a>
+                <a href="<?php the_permalink(); ?>" aria-hidden="true" class="entry-thumb">
             <?php }else{ ?>
                 <div class="entry-thumb">
-                    <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+            <?php } ?>
+                <?php the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => $class_img ) ); ?>
+            <?php if ( $link ){ ?>
+                </a>
+            <?php }else{ ?>
+                </div><!-- .entry-thumb -->
+            <?php } ?>
+
+        <?php }elseif(!has_post_thumbnail() && ($format == '' || $format == 'image') && $placeholder){ ?>
+            <?php $image = apply_filters( 'kt_placeholder', $size ); ?>
+            <?php if ( $link ){ ?>
+                <a href="<?php the_permalink(); ?>" aria-hidden="true" class="entry-thumb no-image">
+            <?php }else{ ?>
+                <div class="entry-thumb no-image">
+            <?php } ?>
+
+            <?php
+                printf(
+                    '<img src="%s" alt="%s" class="%s"/>',
+                    $image,
+                    __('No image', THEME_LANG),
+                    $class_img
+                );
+            ?>
+            <?php if ( $link ){ ?>
+                </a>
+            <?php }else{ ?>
                 </div><!-- .entry-thumb -->
             <?php } ?>
         <?php }elseif($format == 'gallery'){
@@ -688,50 +727,56 @@ if( ! function_exists( 'kt_share_box' ) ){
 
         $html = '';
 
-        ?>
-        <div class="entry-share-box <?php echo $class; ?>">
-            <?php
-            // Facebook
-            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.facebook.com/sharer.php?s=100&amp;p[title]=' . $title . '&amp;p[url]=' . $link.'\', \'sharer\', \'toolbar=0,status=0,width=620,height=280\');popUp.focus();return false;">';
-            $html .= '<i class="fa fa-facebook"></i>';
-            $html .= '</a>';
+        $social_share = kt_option('social_share');
 
-            // Twitter
-            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://twitter.com/home?status=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false;">';
-            $html .= '<i class="fa fa-twitter"></i>';
-            $html .= '</a>';
+        foreach($social_share as $key => $val){
+            if($val){
+                if($key == 'facebook'){
+                    // Facebook
+                    $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.facebook.com/sharer.php?s=100&amp;p[title]=' . $title . '&amp;p[url]=' . $link.'\', \'sharer\', \'toolbar=0,status=0,width=620,height=280\');popUp.focus();return false;">';
+                    $html .= '<i class="fa fa-facebook"></i>';
+                    $html .= '</a>';
+                }elseif($key == 'twitter'){
+                    // Twitter
+                    $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://twitter.com/home?status=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false;">';
+                    $html .= '<i class="fa fa-twitter"></i>';
+                    $html .= '</a>';
+                }elseif($key == 'google_plus'){
+                    // Google plus
+                    $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'https://plus.google.com/share?url=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                    $html .= '<i class="fa fa-google-plus"></i>';
+                    $html .= "</a>";
+                }elseif($key == 'pinterest'){
+                    // Pinterest
+                    $html .= '<a class="share_link" href="#" onclick="popUp=window.open(\'http://pinterest.com/pin/create/button/?url=' . $link . '&amp;description=' . $title . '&amp;media=' . urlencode($image[0]) . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                    $html .= '<i class="fa fa-pinterest"></i>';
+                    $html .= "</a>";
+                }elseif($key == 'linkedin'){
+                    // linkedin
+                    $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://linkedin.com/shareArticle?mini=true&amp;url=' . $link . '&amp;title=' . $title. '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                    $html .= '<i class="fa fa-linkedin"></i>';
+                    $html .= "</a>";
+                }elseif($key == 'tumblr'){
+                    // Tumblr
+                    $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.tumblr.com/share/link?url=' . $link . '&amp;name=' . $title . '&amp;description=' . $excerpt . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
+                    $html .= '<i class="fa fa-tumblr"></i>';
+                    $html .= "</a>";
+                }elseif($key == 'email'){
+                    // Email
+                    $html .= '<a class="'.$style.'" href="mailto:?subject='.$title.'&amp;body='.$link.'">';
+                    $html .= '<i class="fa fa-envelope-o"></i>';
+                    $html .= "</a>";
+                }
+            }
+        }
 
-            // Google plus
-            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'https://plus.google.com/share?url=' . $link . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
-            $html .= '<i class="fa fa-google-plus"></i>';
-            $html .= "</a>";
-
-            // Pinterest
-            $html .= '<a class="share_link" href="#" onclick="popUp=window.open(\'http://pinterest.com/pin/create/button/?url=' . $link . '&amp;description=' . $title . '&amp;media=' . urlencode($image[0]) . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
-            $html .= '<i class="fa fa-pinterest"></i>';
-            $html .= "</a>";
-
-            // linkedin
-            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://linkedin.com/shareArticle?mini=true&amp;url=' . $link . '&amp;title=' . $title. '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
-            $html .= '<i class="fa fa-linkedin"></i>';
-            $html .= "</a>";
-
-            // Tumblr
-            $html .= '<a class="'.$style.'" href="#" onclick="popUp=window.open(\'http://www.tumblr.com/share/link?url=' . $link . '&amp;name=' . $title . '&amp;description=' . $excerpt . '\', \'popupwindow\', \'scrollbars=yes,width=800,height=400\');popUp.focus();return false">';
-            $html .= '<i class="fa fa-tumblr"></i>';
-            $html .= "</a>";
-
-            // Email
-            $html .= '<a class="'.$style.'" href="mailto:?subject='.$title.'&amp;body='.$link.'">';
-            $html .= '<i class="fa fa-envelope-o"></i>';
-            $html .= "</a>";
-
-
-            echo $html;
-            ?>
-
-        </div>
-    <?php
+        if($html){
+            printf(
+                '<div class="entry-share-box %s">%s</div>',
+                $class,
+                $html
+            );
+        }
     }
 }
 

@@ -1444,7 +1444,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'icon' => 'el-icon-star',
                 'title' => __('Blog', THEME_LANG),
                 'desc' => __('General Blog Options', THEME_LANG),
-                'fields' => array( )
+                'fields' => array(
+
+                )
             );
 
             /**
@@ -1598,6 +1600,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'desc' => __("Insert the number of words you want to show in the post excerpts.", THEME_LANG),
                         'default' => '30',
                     ),
+
+                    array(
+                        'id'       => 'archive_placeholder',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'compiler' => true,
+                        'title'    => __( 'Placeholder', THEME_LANG ),
+                    ),
+
+
                     array(
                         'id'   => 'archive_image_size',
                         'type' => 'select',
@@ -1753,6 +1765,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default' => 'content'
                     ),
                     array(
+                        'id'   => 'blog_image_size',
+                        'type' => 'select',
+                        'options' => $image_sizes,
+                        'title'    => __( 'Image size', THEME_LANG ),
+                        'desc' => __("Select image size.", THEME_LANG),
+                        'default' => 'blog_post'
+                    ),
+                    array(
                         'id' => 'blog_share_box',
                         'type' => 'switch',
                         'title' => __('Share box in posts', THEME_LANG),
@@ -1832,6 +1852,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG)
                     ),
+
+
+
                     array(
                         'id' => 'blog_meta_author',
                         'type' => 'switch',
@@ -2298,7 +2321,35 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> __('Social and share settings', THEME_LANG),
 				'icon_class'	=> 'social_facebook',
 				'fields'		=> array(
-
+                    array(
+                        'id'       => 'social_share',
+                        'type'     => 'sortable',
+                        'mode'     => 'checkbox', // checkbox or text
+                        'title'    => __( 'Social Share', THEME_LANG ),
+                        'desc'     => __( 'Reorder and Enable/Disable Social Share Buttons.', THEME_LANG ),
+                        'options'  => array(
+                            'facebook' => __('Facebook', THEME_LANG),
+                            'twitter' => __('Twitter', THEME_LANG),
+                            'google_plus' => __('Google+', THEME_LANG),
+                            'pinterest' => __('Pinterest', THEME_LANG),
+                            'linkedin' => __('Linkedin', THEME_LANG),
+                            'tumblr' => __('Tumblr', THEME_LANG),
+                            'mail' => __('Mail', THEME_LANG),
+                        ),
+                        'default'  => array(
+                            'facebook' => true,
+                            'twitter' => true,
+                            'google_plus' => true,
+                            'pinterest' => true,
+                            'linkedin' => true,
+                            'tumblr' => true,
+                            'mail' => true,
+                        )
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
                     array(
                         'id' => 'mailchimp_api_key',
                         'type' => 'text',

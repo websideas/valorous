@@ -26,7 +26,8 @@ get_header();
         ?>
 
         <?php if( ! post_password_required( ) && $show_post_format && $post_format_position == 'fullwidth' ){ ?>
-            <div class="entry-thumb-fullwidth"><?php kt_post_thumbnail('full', 'img-responsive'); ?></div>
+            <?php $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post'); ?>
+            <div class="entry-thumb-fullwidth"><?php kt_post_thumbnail($imagesize, 'img-responsive'); ?></div>
         <?php } ?>
 
         <div class="row">

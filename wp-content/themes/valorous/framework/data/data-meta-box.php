@@ -13,7 +13,7 @@ add_filter( 'rwmb_meta_boxes', 'kite_register_meta_boxes' );
 function kite_register_meta_boxes( $meta_boxes )
 {
     $prefix = '_kt_';
-
+    $image_sizes = kt_get_image_sizes();
 
     /**
      * For Post Audio
@@ -221,6 +221,16 @@ function kite_register_meta_boxes( $meta_boxes )
                 ),
                 'std' => ''
             ),
+
+            array(
+                'type' => 'select',
+                'name' => __('Post image size', THEME_LANG),
+                'desc' => __('Select the format position.', THEME_LANG),
+                'id'   => "{$prefix}blog_image_size",
+                'options' => array_merge(array('' => __('Use Global', THEME_LANG)), $image_sizes),
+                'std' => ''
+            ),
+
             array(
                 'name' => __('Meta info', THEME_LANG),
                 'id'   => "{$prefix}meta_info",

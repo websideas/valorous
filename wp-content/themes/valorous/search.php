@@ -10,6 +10,8 @@
 $sidebar = kt_get_search_sidebar();
 $settings = kt_get_settings_archive();
 
+print_r($settings);
+
 get_header(); ?>
     <div class="container">
         <?php
