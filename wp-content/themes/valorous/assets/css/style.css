@@ -477,10 +477,12 @@ select:not([multiple]) {
 /* ==============================
    7. Main menu
    ============================== */
+#nav > div > ul,
 #nav > ul{
     margin: 0;
     padding: 0;
     float: right;
+    list-style: none;
 }
 #nav > ul > li{
     display: inline-block;

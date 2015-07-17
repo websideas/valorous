@@ -356,6 +356,11 @@ class KTMegaWalker extends Walker_Nav_Menu{
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
 		}
+
+        if(is_array($args)){
+            $args = (object) $args;
+        }
+
         
         $item_output = '';
         

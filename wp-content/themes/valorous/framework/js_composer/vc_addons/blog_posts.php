@@ -62,12 +62,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'ignore_sticky_posts' => true
         );
 
+        if($blog_pagination != 'none'){
+            if ( get_query_var('paged') ) { $paged = get_query_var('paged'); }
+            elseif ( get_query_var('page') ) { $paged = get_query_var('page'); }
+            else { $paged = 1; }
 
-        if ($blog_pagination == 'classic' || $blog_pagination == 'normal') {
-            global $wp_query, $paged;
-            $tmp = $wp_query;
             $args['paged'] = $paged;
-
         }
 
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
@@ -99,14 +99,16 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         ob_start();
 
-        $wp_query = null;
-        $wp_query = new WP_Query( $args );
-        if ( $wp_query->have_posts() ) :
+        query_posts($args);
+        if ( have_posts() ) :
 
             if($blog_pagination == 'loadmore'){
                 unset($atts['el_class'], $atts['css'], $atts['css_animation'], $atts['title']);
                 $settings = esc_attr( json_encode( $atts ) );
             }
+
+            global $wp_query;
+
             echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
             echo "<div class='blog-posts-content clearfix'>";
 
@@ -125,7 +127,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             }
 
             global $blog_atts;
-            $blog_atts = array(
+            $blog_atts_posts = array(
                 'image_size' => $image_size,
                 'readmore' => apply_filters('sanitize_boolean', $readmore),
                 'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
@@ -143,7 +145,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
 
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
-            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+
+            //while ( $wp_query->have_posts() ) : $wp_query->the_post();
+            while ( have_posts() ) : the_post();
+
+                $blog_atts = $blog_atts_posts;
+
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     $classes_extra = '';
                     if($blog_type == 'grid'){
@@ -155,7 +162,10 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                     }
                     echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
                 }
+
                 get_template_part( $path, get_post_format() );
+
+
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     echo "</div><!-- .article-post-item -->";
                 }
@@ -175,14 +185,9 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
 
         endif;
-        wp_reset_postdata();
+        wp_reset_query();
 
         $output .= ob_get_clean();
-
-        if ($blog_pagination == 'classic' || $blog_pagination == 'normal') {
-            $wp_query = null;
-            $wp_query = $tmp;
-        }
 
         $elementClass = array(
             'base' => apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'blog-posts-wrapper ', $this->settings['base'], $atts),

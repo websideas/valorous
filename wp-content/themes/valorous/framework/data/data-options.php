@@ -1666,7 +1666,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
 
                     array(
-                        'id' => 'archives_meta_date',
+                        'id' => 'archive_meta_date',
                         'type' => 'switch',
                         'title' => __('Post Meta Date', THEME_LANG),
                         'desc' => __('Show meta date in blog posts.', THEME_LANG),
@@ -1985,7 +1985,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
-                        'required' => array('archive_loop_style','equals', array( 'classic' ) ),
+                        'required' => array('search_loop_style','equals', array( 'classic' ) ),
                     ),
                     array(
                         'id' => 'search_columns',
@@ -2000,7 +2000,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
                         'default' => '3',
-                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                        'required' => array('search_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
                         'id' => 'search_columns_tablet',
@@ -2015,7 +2015,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
                         'default' => '2',
-                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                        'required' => array('search_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
                         'id' => 'search_layout',
@@ -2028,7 +2028,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '3' => __( 'Layout 3', THEME_LANG ) ,
                         ),
                         'default' => '1',
-                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
+                        'required' => array('search_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
                         'id' => 'search_readmore',

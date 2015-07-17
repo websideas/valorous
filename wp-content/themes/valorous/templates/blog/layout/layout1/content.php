@@ -1,7 +1,7 @@
 <?php
 global $blog_atts;
 $classes = array('post-item post-layout-1', $blog_atts['class']);
-
+//print_r($blog_atts);
 ?>
 
 <article <?php post_class($classes); ?>>

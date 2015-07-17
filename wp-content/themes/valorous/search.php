@@ -8,9 +8,9 @@
  */
 
 $sidebar = kt_get_search_sidebar();
-$settings = kt_get_settings_archive();
+$settings = kt_get_settings_search();
 
-print_r($settings);
+//print_r($settings);
 
 get_header(); ?>
     <div class="container">
@@ -40,7 +40,7 @@ get_header(); ?>
                             }
 
                             global $blog_atts;
-                            $blog_atts = array(
+                            $blog_atts_posts = array(
                                 'image_size' => $settings['image_size'],
                                 'readmore' => apply_filters('sanitize_boolean', $settings['readmore']),
                                 'show_meta' =>  apply_filters('sanitize_boolean', $settings['show_meta']),
@@ -62,7 +62,7 @@ get_header(); ?>
 
                             $i = 1;
                             while ( have_posts() ) : the_post();
-
+                                $blog_atts = $blog_atts_posts;
                                 if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                     $classes_extra = '';
                                     if($settings['blog_type'] == 'grid'){

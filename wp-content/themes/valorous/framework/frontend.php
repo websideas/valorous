@@ -495,18 +495,16 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
      */
     function kt_paging_nav( $type = 'classic' ) {
 
-        if($type != 'loadmore'){
-            global $wp_query;
+        global $wp_query;
 
-            // Don't print empty markup if there's only one page.
-            if ( $wp_query->max_num_pages < 2 ) {
-                return;
-            }
+        // Don't print empty markup if there's only one page.
+        if ( $wp_query->max_num_pages < 2 ) {
+            return;
         }
 
-
-
-        if($type == 'loadmore'){
+        if($type == 'none'){
+            return ;
+        }elseif($type == 'loadmore'){
             printf(
                 '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button">%s %s</a></div>',
                 '<span class="fa fa-refresh"></span>',
