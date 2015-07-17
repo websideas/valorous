@@ -57,9 +57,9 @@
                 <div class="header-<?php echo $header_layout ?> header-<?php echo esc_attr($header_scheme['scheme']) ?> <?php echo apply_filters('theme_header_class', 'header-container', $position) ?> ">
                     <?php $header_full = kt_option('header_full', 1); ?>
                     <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>" data-scheme="<?php echo esc_attr($header_scheme['scheme']) ?>" data-schemesticky="<?php echo esc_attr($header_scheme['sticky']) ?>">
-                        <?php if(!$header_full){ echo '<div class="container">'; } ?>
-                        <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
-                        <?php if(!$header_full){ echo '</div>'; } ?>
+                        <div class="container">
+                            <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
+                        </div>
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
                         <?php

@@ -404,7 +404,7 @@ function theme_body_classes( $classes ) {
     
     if( kt_option( 'footer_fixed' ) == 1 ){
         $classes[] = 'footer_fixed';
-    } 
+    }
     
 
 	return $classes;
@@ -475,12 +475,14 @@ add_filter('kt_sidebar_class', 'kt_sidebar_class_callback', 10, 2);
  * @since 1.0
  */
 function kt_content_class_callback($classes){
-    global $post;
-    if(rwmb_meta('_kt_remove_top')){
-        $classes .= ' remove_top_padding';
-    }
-    if(rwmb_meta('_kt_remove_bottom')){
-        $classes .= ' remove_bottom_padding';
+
+    if(is_page() || is_singular()){
+        if(rwmb_meta('_kt_remove_top')){
+            $classes .= ' remove_top_padding';
+        }
+        if(rwmb_meta('_kt_remove_bottom')){
+            $classes .= ' remove_bottom_padding';
+        }
     }
     return $classes;
 } 

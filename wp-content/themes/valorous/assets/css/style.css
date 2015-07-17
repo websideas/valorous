@@ -1523,9 +1523,14 @@ h2.widgettitle a.rsswidget:first-child,
 .sticky-placeholder{
     background: #1e1e1e;
 }
-#header.header-fullwidth{
+.layout-full #header.header-fullwidth{
     padding: 0 30px;
 }
+.layout-full #header.header-fullwidth .container{
+    width: auto;
+    padding: 0;
+}
+
 .header-container{
     z-index: 9999;
     top: 0;
@@ -4359,8 +4364,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     margin: 0 auto;
 }
 body.layout-boxed {
-    background: url("../images/pattern-calendar.png") repeat top center #979797 ;
-    background-size: 100%;
+    background: url("../images/pattern-calendar.png") repeat top center #979797;
 }
 body.layout-boxed #page_outter{
     background-color: rgba(255, 255, 255, 0.2);
@@ -4568,10 +4572,6 @@ article.post-item{
 	color: #d2a952;
 	border-color: #d2a952;
 }
-.entry-meta-data .cat-links,
-.entry-meta-data .cat-links a{
-	color: #d0a852;
-}
 .entry-meta-data {
   color: #8f8f8f;
   font-family: "Montserrat";
@@ -4585,7 +4585,7 @@ article.post-item{
 	color: #8f8f8f;
 }
 .entry-meta-data > span:last-child:after {
-    content:'';
+    content: '';
     margin-left: 0px;
     margin-right: 0px;
 }

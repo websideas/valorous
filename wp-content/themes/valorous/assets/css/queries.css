@@ -37,7 +37,9 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 4. Styles for devices(<=1199px) */
 @media (max-width: 1199px) {
-
+    #header.header-fullwidth{
+        padding: 0 10px;
+    }
 }
 /* 5. Styles for devices(>=992px) */
 @media (min-width: 992px) {
@@ -110,6 +112,11 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 10. Styles for devices(<=480px ) */
 @media (max-width: 480px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .coming-soon .wrap{
         width:100%;
     }

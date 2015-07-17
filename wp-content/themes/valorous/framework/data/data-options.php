@@ -894,20 +894,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'active'   => '#000000',
                         )
                     ),
-                    array(
-                        'id'       => 'default_cover_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Cover Background', THEME_LANG ),
-                        'background-repeat' => false,
-                        'background-attachment' => false,
-                        'background-position' => false,
-                        'background-image' => false,
-                        'background-size' => false,
-                        'preview' => false,
-                        'default'   => array( ),
-                        'output'      => array( '.page-bg-cover' ),
-                    )
-
                 )
             );
             
@@ -923,7 +909,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'styling_body_background',
                         'type'     => 'background',
-                        'output'   => array( 'body' ),
+                        'output'   => array( 'body', 'body.layout-boxed' ),
                         'title'    => __( 'Body Background for full width mod', THEME_LANG ),
                         'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
                         'default'   => '#FFFFFF'
@@ -1375,7 +1361,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Sidebar text', THEME_LANG ),
                         'subtitle' => __( 'Specify the sidebar title font properties.', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '.sidebar' ),
+                        'output'      => array( '.sidebar', '.wpb_widgetised_column' ),
                         'default'  => array(
                         
                         ),
@@ -1386,7 +1372,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Sidebar title', THEME_LANG ),
                         'subtitle' => __( 'Specify the sidebar title font properties.', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '.sidebar .widget-container .widget-title' ),
+                        'output'      => array( '.sidebar .widget-title', '.wpb_widgetised_column .widget-title' ),
                         'default'  => array(
                             'color'       => '#ffffff',
                             'font-size'   => '18px',
@@ -1411,12 +1397,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'typography',
                         'title'    => __( 'Top Menu Level', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '#main-nav > ul > li > a' )
+                        'output'      => array( '#nav > ul > li > a' )
                     ),
                     array(
                         'id'       => 'typography_navigation_second',
                         'type'     => 'typography',
-                        'title'    => __( 'Top Menu Level', THEME_LANG ),
+                        'title'    => __( 'Second Menu Level', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( '#main-nav > ul > li ul.sub-menu-dropdown > li > a' )
                     ),
