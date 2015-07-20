@@ -169,7 +169,8 @@ $composer_addons = array(
     'dropcap.php',
     'lightbox.php',
     'piechart.php',
-    'coming_soon.php'
+    'coming_soon.php',
+    'googlemap.php'
 );
 
 foreach ( $composer_addons as $addon ) {

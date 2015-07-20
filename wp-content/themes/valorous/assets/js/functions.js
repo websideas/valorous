@@ -68,7 +68,28 @@
         $( '#main-navigation' ).onePageNav({
             currentClass: 'current-menu-item'
         });
-                
+        
+        /*--------------------------------------------------------------------------------------*/
+        /* 	Google Map Short code																*/
+        /*--------------------------------------------------------------------------------------*/
+        
+        $(".googlemap").each(function(){
+            var mapObj = $(this); 
+            var scrollwheel = mapObj.data('scrollwheel');
+            var vScrollwheel = (scrollwheel == '1') ?  false : true;
+            mapObj.gmap3({
+                marker:{
+                    values:[{address: mapObj.data('location'), options:{icon: mapObj.data('iconmap')}}],
+                },
+                map:{
+                    options:{
+                        zoom: mapObj.data('zoom'),
+                        mapTypeId: mapObj.data('type').toLowerCase(),
+                        scrollwheel: vScrollwheel
+                    }
+                }
+            });
+        });   
     });
     
     $(window).resize(function(){
