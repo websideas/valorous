@@ -43,9 +43,9 @@
                 <?php 
                     if($position == 'below'){
                         /**
-                    	 * @hooked theme_slideshows_position_callback 10
+                    	 * @hooked kt_slideshows_position_callback 10
                     	 */
-                    	do_action( 'theme_slideshows_position' );
+                    	do_action( 'kt_slideshows_position' );
                     } 
                 ?>
                 <?php
@@ -64,7 +64,13 @@
                     <div id="mobile-nav-holder">
                         <?php
                             if ( has_nav_menu( 'primary' ) ) {  
-                                wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_id' => 'main-nav-mobile', 'menu_class' => 'menu navigation-mobile', 'walker' => new KTMenuWalker() ) );
+                                wp_nav_menu( array(
+                                    'theme_location' => 'primary',
+                                    'container' => 'nav',
+                                    'container_id' => 'main-nav-mobile',
+                                    'menu_class' => 'menu navigation-mobile',
+                                    'walker' => new KTMenuWalker() )
+                                );
                             }
                         ?>
                     </div>
@@ -73,9 +79,9 @@
                 <?php 
                     if($position != 'below'){
                         /**
-                    	 * @hooked theme_slideshows_position_callback 10
+                    	 * @hooked kt_slideshows_position_callback 10
                     	 */
-                    	do_action( 'theme_slideshows_position' );
+                    	do_action( 'kt_slideshows_position' );
                     } 
                 ?>
                 

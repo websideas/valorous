@@ -414,7 +414,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'dark' => __('Dark', THEME_LANG ),
                             'light' => __('Light', THEME_LANG)
                         ),
-                        'default'  => 'dark',
+                        'default'  => 'light',
                         'clear' => false
                     ),
                     array(
@@ -435,7 +435,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'dark' => __('Dark', THEME_LANG ),
                             'light' => __('Light', THEME_LANG),
                         ),
-                        'default'  => 'dark',
+                        'default'  => 'light',
                         'clear' => false,
                         'required' => array('fixed_header','equals','1')
                     ),
@@ -1419,7 +1419,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Breadcrumbs on Mobile Devices', THEME_LANG ),
                         'default'  => false,
-                        'required' => array('title_breadcrumbs','equals', array( 1 ) ),
                     ),
                     array(
                         'id'       => 'title_separator',
@@ -1490,10 +1489,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'line-height'     => false,
                         'output'      => array( '.page-header .breadcrumbs', '.page-header .breadcrumbs a' )
                     ),
+                    array(
+                        'id'       => 'title_breadcrumbs_color',
+                        'type'     => 'color',
+                        'title'    => __( 'Breadcrumbs Color', THEME_LANG ),
+                        'default'  => '',
+                        'transparent' => false,
+                    ),
 
-
-
-                    //Breadcrumbs Color*
 
 
 

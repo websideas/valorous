@@ -36,7 +36,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'background_style' => '',
             'background_color' => 'grey',
-            'custom_background' => '',
+            'custom_background_color' => '',
             'background_color_hover' => '',
             'size' => 'md',
             'align' => 'center',
@@ -110,7 +110,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
 
         $icon_box_title = ($title) ? '<div class="icon-box-title" '.$style_title.'>'.$title.'</div>' : '';
         $icon_box_content = '<div class="icon-box-content">'.$content.'</div>';
-        $icon_box_icon= do_shortcode('[vc_icon el_class="icon-box-icon" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background="'.$custom_background.'" size="'.$size.'" align="center"]');
+        $icon_box_icon= do_shortcode('[vc_icon el_class="icon-box-icon" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background_color="'.$custom_background_color.'" size="'.$size.'" align="center"]');
 
         $output = '';
         if($icon_box_layout == 2 || $icon_box_layout == 6){

@@ -322,67 +322,75 @@ if (!function_exists('kt_option')){
         }
     }
 }
+if (!function_exists('kt_get_logo')){
+    /**
+     * Get logo of current page
+     *
+     * @return string
+     *
+     */
+    function kt_get_logo(){
+        $logo = array('default' => '', 'logo_dark' => '');
 
-/**
- * Get logo of current page
- * 
- * @return string
- * 
- */
-function kt_get_logo(){
-    $logo = array('default' => '', 'logo_dark' => '');
-    
-    $logo_default = kt_option( 'logo' );
-    $logo_dark = kt_option( 'logo_dark' );
+        $logo_default = kt_option( 'logo' );
+        $logo_dark = kt_option( 'logo_dark' );
 
-    if(is_array($logo_default) && $logo_default['url'] != '' ){
-        $logo['default'] = $logo_default['url'];
+        if(is_array($logo_default) && $logo_default['url'] != '' ){
+            $logo['default'] = $logo_default['url'];
+        }
+
+        if(is_array($logo_dark ) && $logo_dark['url'] != '' ){
+            $logo['logo_dark'] = $logo_dark['url'];
+        }
+
+        if($logo['default'] && !$logo['logo_dark']){
+            $logo['logo_dark'] = $logo['default'];
+        }elseif(!$logo['default'] && $logo['logo_dark']){
+            $logo['default'] = $logo['logo_dark'];
+        }
+
+        if(!$logo['default'] && !$logo['logo_dark']){
+            $logo['default'] = THEME_IMG.'logo-light.png';
+            $logo['logo_dark'] = THEME_IMG.'logo-dark.png';
+        }
+
+        return $logo;
     }
-
-    if(is_array($logo_dark ) && $logo_dark['url'] != '' ){
-        $logo['logo_dark'] = $logo_dark['url'];
-    }
-
-    if($logo['default'] && !$logo['logo_dark']){
-        $logo['logo_dark'] = $logo['default'];
-    }elseif(!$logo['default'] && $logo['logo_dark']){
-        $logo['default'] = $logo['logo_dark'];
-    }
-
-    if(!$logo['default'] && !$logo['logo_dark']){
-        $logo['default'] = THEME_IMG.'logo-light.png';
-        $logo['logo_dark'] = THEME_IMG.'logo-dark.png';
-    }
-
-    return $logo;
 }
-/**
- * Get header scheme
- *
- * @param number $post_id Optional. ID of article or page.
- * @return string
- *
- */
-function kt_get_header_scheme(){
-    $scheme = array(
-        'scheme' => rwmb_meta('_kt_header_scheme'),
-        'sticky' => rwmb_meta('_kt_header_scheme_fixed')
-    );
-    if(!$scheme['scheme']){
-        $scheme['scheme'] = kt_option('header_scheme', 'dark');
-    }
-    if(!$scheme['sticky']){
-        $scheme['sticky'] = kt_option('header_scheme_fixed', 'dark');
-    }
-    return $scheme;
-}
+if (!function_exists('kt_get_header_scheme')) {
+    /**
+     * Get header scheme
+     *
+     * @param number $post_id Optional. ID of article or page.
+     * @return string
+     *
+     */
+    function kt_get_header_scheme()
+    {
+        if (is_page() || is_singular()) {
+            $scheme = array(
+                'scheme' => rwmb_meta('_kt_header_scheme'),
+                'sticky' => rwmb_meta('_kt_header_scheme_fixed')
+            );
+        } else {
+            $scheme = array('scheme' => '', 'sticky' => '');
+        }
 
+        if (!$scheme['scheme']) {
+            $scheme['scheme'] = kt_option('header_scheme', 'light');
+        }
+        if (!$scheme['sticky']) {
+            $scheme['sticky'] = kt_option('header_scheme_fixed', 'light');
+        }
+        return $scheme;
+    }
+}
 /**
  * Get Layout of post
- * 
+ *
  * @param number $post_id Optional. ID of article or page.
  * @return string
- * 
+ *
  */
 function kt_getlayout($post_id = null){
     global $post;
@@ -392,7 +400,7 @@ function kt_getlayout($post_id = null){
     if($layout == 'default' || !$layout){
         $layout = kt_option('layout', 'full');
     }
-    
+
     return $layout;
 }
 

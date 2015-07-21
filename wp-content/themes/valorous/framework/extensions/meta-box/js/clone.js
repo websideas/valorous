@@ -9,7 +9,7 @@ jQuery( function ( $ )
 	 */
 	function clone( $container )
 	{
-		var $clone_last = $container.find( '.rwmb-clone:last' ),
+		var $clone_last = $container.children( '.rwmb-clone:last' ),
 			$clone = $clone_last.clone(),
 			$input;
 
@@ -120,6 +120,30 @@ jQuery( function ( $ )
 	}
 
 	/**
+	 * Toggle add button
+	 * Used with [data-max-clone] attribute. When max clone is reached, the add button is hid and vice versa
+	 *
+	 * @param $input jQuery element of input div
+	 *
+	 * @return void
+	 */
+	function toggleAddButton( $input )
+	{
+		var $button = $input.find( '.add-clone' ),
+			maxClone = parseInt( $input.data( 'max-clone' ) ),
+			numClone = $input.find( '.rwmb-clone' ).length;
+
+		if ( numClone == maxClone )
+		{
+			$button.hide();
+		}
+		else
+		{
+			$button.show();
+		}
+	}
+
+	/**
 	 * Clone WYSIWYG field
 	 * @param $container
 	 * @return void
@@ -214,15 +238,14 @@ jQuery( function ( $ )
 
 	}
 
-
 	// Add more clones
-	$( '.add-clone' ).on( 'click', function ( e )
+	$( '#poststuff' ).on( 'click', '.add-clone', function ( e )
 	{
 		e.preventDefault();
 
-		var $input = $( this ).parents( '.rwmb-input' );
+		var $input = $( this ).closest( '.rwmb-input' );
 
-		if ( $( this ).parents( '.rwmb-field' ).hasClass( 'rwmb-wysiwyg-wrapper' ) )
+		if ( $( this ).closest( '.rwmb-field' ).hasClass( 'rwmb-wysiwyg-wrapper' ) )
 		{
 			cloneWYSIWYG( $input );
 		}
@@ -232,27 +255,31 @@ jQuery( function ( $ )
 		}
 
 		toggleRemoveButtons( $input );
-	} );
-
+		toggleAddButton( $input );
+	} )
 	// Remove clones
-	$( '.rwmb-input' ).on( 'click', '.remove-clone', function ( e )
+	.on( 'click', '.remove-clone', function ( e )
 	{
 		e.preventDefault();
 
 		var $this = $( this ),
-			$input = $this.parents( '.rwmb-input' );
+			$input = $this.closest( '.rwmb-input' );
 
-		// Remove clone only if there're 2 or more of them
-		if ( $input.find( '.rwmb-clone' ).length <= 1 )
+		// Remove clone only if there are 2 or more of them
+		if ( $input.find( '.rwmb-clone' ).length < 2 )
 		{
 			return;
 		}
 
 		$this.parent().remove();
 
-		// Toggle remove buttons
 		toggleRemoveButtons( $input );
+		toggleAddButton( $input )
 	} );
 
 	toggleRemoveButtons();
+
+	$( '.rwmb-input' ).sortable( {
+		handle: '.rwmb-clone-icon'
+	} );
 } );

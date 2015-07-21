@@ -14,6 +14,11 @@ function kite_register_meta_boxes( $meta_boxes )
 {
     $prefix = '_kt_';
     $image_sizes = kt_get_image_sizes();
+    $menus = wp_get_nav_menus();
+    $menus_arr = array();
+    foreach ( $menus as $menu ) {
+        $menus_arr[$menu->slug] = esc_html( $menu->name );
+    }
 
     /**
      * For Post Audio
@@ -450,13 +455,13 @@ function kite_register_meta_boxes( $meta_boxes )
         'context' => 'normal',
         'priority' => 'high',
         'tabs'      => array(
-            'sliders'  => array(
-                'label' => __( 'Sliders', THEME_LANG ),
-                'icon'  => 'fa fa-picture-o',
-            ),
             'page_header' => array(
                 'label' => __( 'Page Header', THEME_LANG ),
                 'icon'  => 'fa fa-bars',
+            ),
+            'sliders'  => array(
+                'label' => __( 'Sliders', THEME_LANG ),
+                'icon'  => 'fa fa-picture-o',
             ),
             'header'  => array(
                 'label' => __( 'Header', THEME_LANG ),
@@ -571,6 +576,17 @@ function kite_register_meta_boxes( $meta_boxes )
                 'std'  => 'default',
                 'tab'  => 'header',
             ),
+            array(
+                'name' => __('Main Navigation Menu', THEME_LANG),
+                'id'   => "{$prefix}header_main_menu",
+                'type' => 'select',
+                'options' => array_merge(
+                    array( '' => __('Default', THEME_LANG), ),
+                    $menus_arr
+                ),
+                'std'  => '',
+                'tab'  => 'header',
+            ),
 
             //sliders
             array(
@@ -659,17 +675,17 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __("Select your sidebar.", THEME_LANG),
             ),
             array(
-                'name' => __('Remove top spacing', THEME_LANG),
-                'id' => $prefix . 'remove_top',
-                'desc' => __("Remove the spacing at the top of the page", THEME_LANG ),
-                'type'  => 'checkbox',
+                'name' => __('Page top spacing', THEME_LANG),
+                'id' => $prefix . 'page_top_spacing',
+                'desc' => __("Enter your page top spacing (Example: 30px).", THEME_LANG ),
+                'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
             array(
-                'name' => __('Remove bottom spacing', THEME_LANG ),
-                'id' => $prefix . 'remove_bottom',
-                'desc' => __("Remove the spacing at the bottom of the page", THEME_LANG ),
-                'type'  => 'checkbox',
+                'name' => __('Page top spacing', THEME_LANG),
+                'id' => $prefix . 'page_bottom_spacing',
+                'desc' => __("Enter your page bottom spacing (Example: 30px).", THEME_LANG ),
+                'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
             array(

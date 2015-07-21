@@ -61,36 +61,39 @@ function get_page_header( ){
         $breadcrumb = kt_get_breadcrumb();
         $page_header_align = kt_get_page_align();
 
-
-        $subtitle = ($subtitle != '') ? '<div class="page-header-tagline">'.$subtitle.'</div>' : $subtitle;
         $title = '<h1 class="page-header-title">'.$title.'</h1>';
+        $subtitle = ($subtitle != '') ? '<div class="page-header-tagline">'.$subtitle.'</div>' : $subtitle;
+
+        $breadcrumb_class = (!kt_option('title_breadcrumbs_mobile', false)) ? 'hidden-xs hidden-sm' : '';
+
 
         $classes = array('page-header', 'page-header-'.$page_header_align);
         if($page_header_align != 'center'){
             $classes[] = 'page-header-side';
         }
 
+
         if($breadcrumb == '' || $page_header_align == 'center'){
             $layout = '%1$s%2$s%3$s';
         }else{
             if($breadcrumb != ''){
                 if($page_header_align == 'right'){
-                    $layout = '<div class="row"><div class="col-md-8 page-header-right pull-right">%1$s%2$s</div><div class="col-md-4 page-header-left">%3$s</div></div>';
+                    $layout = '<div class="row"><div class="col-md-8 page-header-right pull-right">%1$s%2$s</div><div class="col-md-4 page-header-left %4$s">%3$s</div></div>';
                 }else{
-                    $layout = '<div class="row"><div class="col-md-8 page-header-left">%1$s%2$s</div><div class="col-md-4 page-header-right">%3$s</div></div>';
+                    $layout = '<div class="row"><div class="col-md-8 page-header-left">%1$s%2$s</div><div class="col-md-4 page-header-right %4$s">%3$s</div></div>';
                 }
             }else{
-                $layout = '%1$s%2$s%3$s';
+                $layout = '%1$s%2$s%3$s%4$s';
             }
         }
-
         echo '<div class="'.implode(' ', $classes).'">';
         echo '<div class="container">';
             printf(
                 $layout,
                 $title,
                 $subtitle,
-                $breadcrumb
+                $breadcrumb,
+                $breadcrumb_class
             );
         echo "</div>";
         echo "</div>";
@@ -270,6 +273,8 @@ function kt_get_breadcrumb($breadcrumb = ''){
                 $breadcrumb = breadcrumb_trail(array( 'echo' => false));
             }
         }
+
+
     }
     return apply_filters( 'kt_breadcrumb', $breadcrumb );
 }
@@ -419,25 +424,6 @@ add_filter('kt_sidebar_class', 'kt_sidebar_class_callback', 10, 2);
 
 
 /**
- * Add class remove top or bottom padding
- *
- * @since 1.0
- */
-function kt_content_class_callback($classes){
-
-    if(is_page() || is_singular()){
-        if(rwmb_meta('_kt_remove_top')){
-            $classes .= ' remove_top_padding';
-        }
-        if(rwmb_meta('_kt_remove_bottom')){
-            $classes .= ' remove_bottom_padding';
-        }
-    }
-    return $classes;
-} 
-add_filter('kt_content_class', 'kt_content_class_callback');
-
-/**
  * Add class sticky to header
  */
 function theme_header_content_class_callback($classes){
@@ -459,10 +445,10 @@ add_filter('theme_header_content_class', 'theme_header_content_class_callback');
  *
  * @since 1.0
  */
-add_action( 'theme_slideshows_position', 'theme_slideshows_position_callback' );
-function theme_slideshows_position_callback(){
-    global $post;
-    if(is_page() || is_singular('post')){
+add_action( 'kt_slideshows_position', 'kt_slideshows_position_callback' );
+function kt_slideshows_position_callback(){
+
+    if(is_page() || is_singular()){
         
         $slideshow = rwmb_meta('_kt_slideshow_source');
         if($slideshow == 'revslider'){
@@ -475,61 +461,14 @@ function theme_slideshows_position_callback(){
             if($layerslider && is_plugin_active( 'LayerSlider/layerslider.php' )){
                 echo do_shortcode('[layerslider id="'.$layerslider.'"]');
             }
-        }elseif($slideshow == 'custom_bg'){
-            $img = rwmb_meta('_kt_custom_bg');
-            $image = wp_get_attachment_url( $img );
-
-            if ( $image ) {
-                echo '<div class="page-bg-cover category-slide-container"><div class="container"><div class="cover-img" style="background-image: url(\''.esc_url( $image ).'\');"></div></div></div>';
-            }
         }
 
-
-    }elseif ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-        if(is_product_category()){
-            
-            	global $wp_query;
-                $cat = $wp_query->get_queried_object();
-                $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
-                $image = wp_get_attachment_url( $thumbnail_id );
-                if ( $image ) {
-                    echo '<div class="page-bg-cover category-slide-container"><div class="container"><div class="cover-img" style="background-image: url(\''.esc_url( $image ).'\');"></div></div></div>';
-                } 
-        }else{
-
-            // shop page
-            if ( is_post_type_archive( 'product' ) && get_query_var( 'paged' ) == 0 ) {
-                $shop_page   = wc_get_page_id( 'shop' ) ;
-
-                if ( $shop_page ) {
-                    $slideshow = rwmb_meta('_kt_slideshow_source', false, $shop_page);
-                    if($slideshow == 'revslider'){
-                        $revslider = rwmb_meta('_kt_rev_slider',  false, $shop_page);
-                        if($revslider && class_exists( 'RevSlider' )){
-                            echo putRevSlider($revslider);
-                        }
-                    }elseif($slideshow == 'layerslider'){
-                        $layerslider = rwmb_meta('_kt_layerslider', false, $shop_page );
-                        if($layerslider && is_plugin_active( 'LayerSlider/layerslider.php' )){
-                            echo do_shortcode('[layerslider id="'.$layerslider.'"]');
-                        }
-                    }elseif($slideshow == 'custom_bg'){
-                        $img = rwmb_meta('_kt_custom_bg', false, $shop_page );
-                        $image = wp_get_attachment_url( $img );
-
-                        if ( $image ) {
-                            echo '<div class="page-bg-cover category-slide-container"><div class="container"><div class="cover-img" style="background-image: url(\''.esc_url( $image ).'\');"></div></div></div>';
-                        }
-                    }
-
-                }
-            }
-
+    }elseif ( kt_is_wc() ) {
+        if(is_shop()){
+            echo "call";
         }
-
     }
 }
-
 
 
 
@@ -628,7 +567,6 @@ add_filter( 'user_contactmethods','kt_contactmethods', 10, 1 );
 function wbc_change_demo_directory_path( $demo_directory_path ) {
     $demo_directory_path = THEME_DIR.'dummy-data/';
     return $demo_directory_path;
-
 }
 add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
 

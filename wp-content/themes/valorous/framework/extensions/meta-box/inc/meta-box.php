@@ -241,13 +241,13 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 					if ( typeof rwmb == "undefined" )
 					{
 						var rwmb = {
-							validationOptions : jQuery.parseJSON( \'' . json_encode( $this->validation ) . '\' ),
-							summaryMessage : "' . esc_js( __( 'Please correct the errors highlighted below and try again.', 'meta-box' ) ) . '"
+							validationOptions : jQuery.parseJSON( \'' , json_encode( $this->validation ) , '\' ),
+							summaryMessage : "' , esc_js( __( 'Please correct the errors highlighted below and try again.', 'meta-box' ) ) , '"
 						};
 					}
 					else
 					{
-						var tempOptions = jQuery.parseJSON( \'' . json_encode( $this->validation ) . '\' );
+						var tempOptions = jQuery.parseJSON( \'' , json_encode( $this->validation ) . '\' );
 						jQuery.extend( true, rwmb.validationOptions, tempOptions );
 					}
 					</script>
@@ -302,9 +302,10 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 
 			foreach ( $this->fields as $field )
 			{
-				$name = $field['id'];
-				$old  = get_post_meta( $post_id, $name, ! $field['multiple'] );
-				$new  = isset( $_POST[$name] ) ? $_POST[$name] : ( $field['multiple'] ? array() : '' );
+				$name   = $field['id'];
+				$single = $field['clone'] || ! $field['multiple'];
+				$old    = get_post_meta( $post_id, $name, $single );
+				$new    = isset( $_POST[$name] ) ? $_POST[$name] : ( $single ? '' : array() );
 
 				// Allow field class change the value
 				$new = call_user_func( array( self::get_class_name( $field ), 'value' ), $new, $old, $post_id, $field );
@@ -382,12 +383,12 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		 */
 		static function normalize_fields( $fields )
 		{
-			foreach ( $fields as &$field )
+			foreach ( $fields as $k => $field )
 			{
 				$field = wp_parse_args( $field, array(
 					'id'          => '',
+					'name'        => '',
 					'multiple'    => false,
-					'clone'       => false,
 					'std'         => '',
 					'desc'        => '',
 					'format'      => '',
@@ -396,10 +397,23 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 					'field_name'  => isset( $field['id'] ) ? $field['id'] : '',
 					'required'    => false,
 					'placeholder' => '',
+
+					'clone'       => false,
+					'max_clone'   => 0,
+					'sort_clone'  => false,
 				) );
 
+				$class = self::get_class_name( $field );
+
+				// Make sure field has correct 'type', ignore warning error when users forget to set field type or set incorrect one
+				if ( false === $class )
+				{
+					unset( $fields[$k] );
+					continue;
+				}
+
 				// Allow field class add/change default field values
-				$field = call_user_func( array( self::get_class_name( $field ), 'normalize_field' ), $field );
+				$field = call_user_func( array( $class, 'normalize_field' ), $field );
 
 				if ( isset( $field['fields'] ) )
 					$field['fields'] = self::normalize_fields( $field['fields'] );
@@ -408,6 +422,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				$field = apply_filters( 'rwmb_normalize_field', $field );
 				$field = apply_filters( "rwmb_normalize_{$field['type']}_field", $field );
 				$field = apply_filters( "rwmb_normalize_{$field['id']}_field", $field );
+
+				$fields[$k] = $field;
 			}
 
 			return $fields;

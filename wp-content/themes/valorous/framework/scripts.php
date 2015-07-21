@@ -94,23 +94,40 @@ function kt_setting_script() {
     ?>
     <style id="kt-theme-custom-css" type="text/css">
         <?php echo $advanced_css; ?>
+
+        <?php
+            if(is_page() || is_singular()){
+                $page_top_spacing = rwmb_meta('_kt_page_top_spacing');
+                if($page_top_spacing != ''){
+                    echo '#content{padding-top: '.$page_top_spacing.'}';
+                }
+                $page_bottom_spacing = rwmb_meta('_kt_page_bottom_spacing');
+                if($page_bottom_spacing != ''){
+                    echo '#content{padding-bottom: '.$page_bottom_spacing.'}';
+                }
+            }
+        ?>
+
+
         <?php if($title_separator){ ?>
         .page-header h1.page-header-title + .page-header-tagline::before{
             background: <?php echo $title_separator; ?>
         }
         <?php } ?>
+
         <?php if( $accent !='' ){ ?>
 
-            ::-moz-selection{ background:<?php echo $accent; ?>; color: #FFFFFF;}
-            ::-webkit-selection{ background:<?php echo $accent; ?>; color: #FFFFFF;}
-            ::selection{ background:<?php echo $accent; ?>; color: #FFFFFF;}
+            ::-moz-selection{ background:<?php echo $accent; ?>;}
+            ::-webkit-selection{ background:<?php echo $accent; ?>;}
+            ::selection{ background:<?php echo $accent; ?>;}
 
 
         <?php } ?>
+
+
+
         @media (max-width: 991px) {
-            <?php
-                $logo_width = kt_option('logo_mobile_width');
-            ?>
+            <?php $logo_width = kt_option('logo_mobile_width'); ?>
             .site-branding .site-logo img{
                 width: <?php echo $logo_width['width'] ?>!important;
             }

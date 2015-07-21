@@ -1,10 +1,10 @@
 === Meta Box ===
-Contributors: rilwis, franz-josef-kaiser, Omnicia, funkedgeek, PerWiklander, ruanmer
+Contributors: rilwis, fitwp, f-j-kaiser, Omnicia, funkedgeek, PerWiklander, ruanmer
 Donate link: http://www.deluxeblogtips.com/donate
 Tags: meta-box, custom-fields, custom-field, meta, meta-boxes
 Requires at least: 3.5
-Tested up to: 4.1
-Stable tag: 4.4.2
+Tested up to: 4.2.2
+Stable tag: 4.5.5
 License: GPLv2 or later
 
 Meta Box plugin is a complete tool to create meta box and custom fields in WordPress: lightweight, powerful and easy-to-use.
@@ -60,9 +60,51 @@ To getting started with the plugin API, please read [this tutorial](http://metab
 == Frequently Asked Questions ==
 
 == Screenshots ==
-1. Supported fields
+1. Text Fields
+1. Basic Fields
+1. Advanced Fields
+1. File Image Upload Fields
+1. Media Fields
+1. Post Taxonomy Fields
 
 == Changelog ==
+
+= 4.5.5 =
+* Fix: CSS alignment for sort clone icon for field type `group` (require Meta Box Group extension)
+* Fix: rwmbSelect is not defined
+
+= 4.5.4 =
+* Improvement: Add "Select All|None" for `select`, `select_advanced`, `post` fields
+* Improvement: Add `max_clone` parameter which limits number of clones
+* Improvement: Add `sort_clone` parameter which allows users to sort (drag and drop) cloned inputs
+* Improvement: Add Polish language. Thank Michael
+* Fix: Prevent warning when post type doesn't exist (`post` field)
+
+= 4.5.3 =
+* Improvement: Use `wp_json_encode` instead of `json_encode`. Thank Sam Ford.
+* Fix: Escape value for cloneable fields
+* Fix: Notice for missing parameters for `rwmb_meta` field for `map`
+
+
+= 4.5.2 =
+* Improvement: Add Persian (Farsi) language. Thank Ahmad Azimi.
+* Improvement: Update Spanish translation. Thank David Perez.
+* Fix: Cloning text fields
+* Fix: rwmb_meta works incorrectly for image fields if multiple=false
+
+= 4.5.1 =
+* Improvement: Add ability to use multiple post types for `post` field
+* Fix: Duplicated description for `checkbox` field
+* Fix: Blank gallery for image fields
+
+= 4.5 =
+* Improvement: Separate `esc_meta` method
+* Improvement: Add ability to use URL to retrieve options for autocomplete field
+* Improvement: Add `rwmb_get_field` and `rwmb_the_field` functions to get and display field values in the frontend
+* Improvement: Add field type `custom_html` to display any HTML in the meta box
+* Improvement: Add field type `key_value` which allows users to add any number of key-value pairs
+* Improvement: Use single JS file to display Google Maps in the frontend. No more inline Javascript.
+* Improvement: Code refactor
 
 = 4.4.3 =
 * Fix: Incorrect path to loader image for `plupload_image`
@@ -70,7 +112,6 @@ To getting started with the plugin API, please read [this tutorial](http://metab
 * Improvement: No errors showing if invalid value is returned from `rwmb_meta_boxes` filter
 * Improvement: Add filter for add/remove clone buttons text
 * Improvement: Add French translation
-
 
 = 4.4.2 =
 * Fix: Values of text_list field not showing correctly

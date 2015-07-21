@@ -4551,12 +4551,6 @@ body.layout-boxed #page {
 #content{
     padding: 30px 0;
 }
-#content.remove_top_padding{
-    padding-top: 0;
-}
-#content.remove_bottom_padding{
-    padding-bottom: 0;
-}
 .footer_fixed #wrapper-content{
     position: relative;
     z-index:99;
