@@ -39,17 +39,6 @@ function kt_is_active_plugin(   $plugin ){
     return is_plugin_active( $plugin ) ;
 }
 
-/**
- * Flag boolean.
- * 
- * @param $input string
- * @return boolean
- */
-function kt_sanitize_boolean( $input = '' ) {
-	return in_array($input, array('1', 'true', 'y', 'on'));
-}
-add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
-
 
 if (!function_exists('kt_sidebars')){
     /**
@@ -130,7 +119,10 @@ if (!function_exists('kt_get_woo_sidebar')) {
      */
     function kt_get_woo_sidebar( $post_id = null )
     {
-        if(is_product() || $post_id){
+        if(is_product() || $post_id || is_shop()){
+            if(is_shop() && !$post_id){
+                $post_id = get_option( 'woocommerce_shop_page_id' );
+            }
             global $post;
             if(!$post_id) $post_id = $post->ID;
 
@@ -151,8 +143,7 @@ if (!function_exists('kt_get_woo_sidebar')) {
             }elseif($sidebar['sidebar'] == 'right'){
                 $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
             }
-
-        }elseif(is_shop() || is_product_taxonomy() || is_product_tag()){
+        }elseif( is_product_taxonomy() || is_product_tag()){
             $sidebar = array(
                 'sidebar' => kt_option('shop_sidebar', 'full'),
                 'sidebar_area' => '',
@@ -163,7 +154,6 @@ if (!function_exists('kt_get_woo_sidebar')) {
                 $sidebar['sidebar_area'] = kt_option('shop_sidebar_right', 'shop-widget-area');
             }
         }
-
         return apply_filters('woo_sidebar', $sidebar);
     }
 }
@@ -304,7 +294,7 @@ if (!function_exists('kt_option')){
      * @return string
      */
 
-    function kt_option( $option=false, $default=false ){
+    function kt_option( $option = false, $default = false ){
         if($option === FALSE){
             return FALSE;
         }
@@ -372,6 +362,20 @@ if (!function_exists('kt_get_header_scheme')) {
                 'scheme' => rwmb_meta('_kt_header_scheme'),
                 'sticky' => rwmb_meta('_kt_header_scheme_fixed')
             );
+        }elseif(is_archive()){
+            if(kt_is_wc()){
+                if(is_shop()){
+                    $page_id = get_option( 'woocommerce_shop_page_id' );
+                    $scheme = array(
+                        'scheme' => rwmb_meta('_kt_header_scheme', array(), $page_id),
+                        'sticky' => rwmb_meta('_kt_header_scheme_fixed', array(), $page_id)
+                    );
+                }else{
+                    $scheme = array('scheme' => '', 'sticky' => '');
+                }
+            }else{
+                $scheme = array('scheme' => '', 'sticky' => '');
+            }
         } else {
             $scheme = array('scheme' => '', 'sticky' => '');
         }
@@ -385,67 +389,114 @@ if (!function_exists('kt_get_header_scheme')) {
         return $scheme;
     }
 }
-/**
- * Get Layout of post
- *
- * @param number $post_id Optional. ID of article or page.
- * @return string
- *
- */
-function kt_getlayout($post_id = null){
-    global $post;
-	if(!$post_id) $post_id = $post->ID;
+if (!function_exists('kt_getlayout')) {
+    /**
+     * Get Layout of post
+     *
+     * @param number $post_id Optional. ID of article or page.
+     * @return string
+     *
+     */
+    function kt_getlayout($post_id = null){
+        global $post;
+        if(!$post_id) $post_id = $post->ID;
 
-    $layout = rwmb_meta('_kt_layout', array(),  $post_id);
-    if($layout == 'default' || !$layout){
-        $layout = kt_option('layout', 'full');
+        $layout = rwmb_meta('_kt_layout', array(),  $post_id);
+        if($layout == 'default' || !$layout){
+            $layout = kt_option('layout', 'full');
+        }
+
+        return $layout;
+    }
+}
+
+if (!function_exists('kt_show_slideshow')) {
+    /**
+     * Show slideshow of page or singular
+     *
+     * @param $post_id
+     *
+     */
+    function kt_show_slideshow($post_id = null)
+    {
+
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
+
+        $slideshow = rwmb_meta('_kt_slideshow_source', array(), $post_id);
+        if ($slideshow == 'revslider') {
+            $revslider = rwmb_meta('_kt_rev_slider', array(), $post_id);
+            if ($revslider && class_exists('RevSlider')) {
+                echo putRevSlider($revslider);
+            }
+        } elseif ($slideshow == 'layerslider') {
+            $layerslider = rwmb_meta('_kt_layerslider', array(), $post_id);
+            if ($layerslider && is_plugin_active('LayerSlider/layerslider.php')) {
+                echo do_shortcode('[layerslider id="' . $layerslider . '"]');
+            }
+        }
     }
 
-    return $layout;
 }
 
-/**
- * Get Header
- * 
- * @return string
- * 
- */
+if (!function_exists('kt_get_header')) {
+    /**
+     * Get Header
+     *
+     * @return string
+     *
+     */
+    function kt_get_header(){
+        $header = 'default';
+        $header_position = '';
 
-function kt_get_header(){
-    $header = 'default';
-    $header_position = rwmb_meta('_kt_header_position');
-    if($header_position){
-        $header = $header_position;
+        if(is_page() || is_singular()){
+            $header_position = rwmb_meta('_kt_header_position');
+        }elseif(is_archive()){
+            if(kt_is_wc()){
+                if(is_shop()){
+                    $page_id = get_option( 'woocommerce_shop_page_id' );
+                    $header_position = rwmb_meta('_kt_header_position', array(), $page_id);
+                }
+            }
+        }
+
+        if($header_position){
+            $header = $header_position;
+        }
+        return $header;
     }
-    return $header;
 }
 
-/**
- * Get Header Layout
- * 
- * @return string
- * 
- */
-function kt_get_header_layout(){
-    $layout = kt_option('header', 'layout1');
-    return $layout;
+if (!function_exists('kt_get_header_layout')) {
+    /**
+     * Get Header Layout
+     *
+     * @return string
+     *
+     */
+    function kt_get_header_layout(){
+        $layout = kt_option('header', 'layout1');
+        return $layout;
+    }
 }
 
 
 
-/**
- * Get link attach from thumbnail_id.
- *
- * @param number $thumbnail_id ID of thumbnail.
- * @param string|array $size Optional. Image size. Defaults to 'post-thumbnail'
- * @return array
- */
 if (!function_exists('get_thumbnail_attachment')){
+    /**
+     * Get link attach from thumbnail_id.
+     *
+     * @param number $thumbnail_id ID of thumbnail.
+     * @param string|array $size Optional. Image size. Defaults to 'post-thumbnail'
+     * @return array
+     */
+
     function get_thumbnail_attachment($thumbnail_id ,$size = 'post-thumbnail'){
-        if(!$thumbnail_id) return ;
+        if(!$thumbnail_id) return false;
         
         $attachment = get_post( $thumbnail_id );
-        if(!$attachment) return;
+        if(!$attachment) return false;
         
         $image = wp_get_attachment_image_src($thumbnail_id, $size);
     	return array(
@@ -458,118 +509,118 @@ if (!function_exists('get_thumbnail_attachment')){
     	);
     }
 }
+if (!function_exists('kt_custom_wpml')){
+    /**
+     * Custom wpml
+     *
+     */
 
-/**
- * Custom wpml
- *
- */
+    function kt_custom_wpml(){
+        $output = $active_l = '';
 
-function kt_custom_wpml(){
-    $output = '';
-    if(kt_is_wpml()){
+        if(kt_is_wpml()){
+            $languages = apply_filters( 'wpml_active_languages', array('skip_missing' => false) );
+            if(!empty($languages)){
 
-        $languages = apply_filters( 'wpml_active_languages', array('skip_missing' => false) );
+                $output .= '<ul>';
+                foreach($languages as $l){
+                    $output .= '<li>';
 
+                    $output .= (!$l['active']) ? '<a href="'.$l['url'].'">' : '<span>';
+                    if($l['country_flag_url']){
+                        $output .= '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
+                    }
+                    $output .= "<span>".$l['native_name']."</span>";
+                    $output .= (!$l['active']) ? '</a>' : '</span>';
 
-        if(!empty($languages)){
+                    $output .= '</li>';
 
-            foreach( $languages as $lang_k=>$lang ){
-                if( $lang['active'] ){
-                    $active_lang = $lang;
+                    if( $l['active'] ){
+                        $active_l .= sprintf(
+                            '<a class="current-language" href="%s"><img src="%s" height="12" width="18" alt="%s" /></a>',
+                            'javascript:void(0)',
+                            esc_url($l['country_flag_url']),
+                            esc_attr($l['language_code'])
+                        );
+                    }
+
                 }
+                $output .= '</ul>';
+
+                $output = '<li class="kt-wpml-languages">'.$active_l. $output.'</li>';
+
             }
+        }
+        echo $output;
+    }
+}
+if (!function_exists('get_link_image_post')) {
+    /**
+     * Get image form meta.
+     *
+     * @param string $meta . meta id of article.
+     * @param string|array $size Optional. Image size. Defaults to 'screen'.
+     * @param number $post_id Optional. ID of article.
+     * @return array
+     */
 
-            $output .= '<li class="kt-wpml-languages">';
+    function get_link_image_post($meta, $post_id = null, $size = 'screen')
+    {
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
 
-            if($active_lang['country_flag_url']){
-                $output .= sprintf(
-                    '<a class="current-language" href="%s"><img src="%s" height="12" width="18" alt="%s" /></a>',
-                    'javascript:void(0)',
-                    esc_url($active_lang['country_flag_url']),
-                    esc_attr($active_lang['language_code'])
-                );
-            }
+        $media_image = rwmb_meta($meta, 'type=image&size=' . $size, $post_id);
 
-            $output .= '<ul>';
-            foreach($languages as $l){
-                $output .= '<li>';
+        if (!$media_image) return;
 
-                $output .= (!$l['active']) ? '<a href="'.$l['url'].'">' : '<span>';
-                if($l['country_flag_url']){
-                    $output .= '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
-                }
-                $output .= "<span>".$l['native_name']."</span>";
-                $output .= (!$l['active']) ? '</a>' : '</span>';
-
-                $output .= '</li>';
-            }
-            $output .= '</ul></li>';
+        foreach ($media_image as $item) {
+            return $item;
+            break;
         }
     }
-    echo $output;
 }
 
 
-/**
- * Get image form meta.
- * 
- * @param string $meta. meta id of article.
- * @param string|array $size Optional. Image size. Defaults to 'screen'.
- * @param number $post_id Optional. ID of article.
- * @return array
- */
+if (!function_exists('get_galleries_post')) {
+    /**
+     * Get all image form meta box.
+     *
+     * @param string $meta . meta id of article.
+     * @param string|array $size Optional. Image size. Defaults to 'screen'.
+     * @param array $post_id Optional. ID of article.
+     * @return array
+     */
+    function get_galleries_post($meta, $size = 'screen', $post_id = null)
+    {
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
 
-function get_link_image_post($meta, $post_id = null, $size = 'screen') {
-	global $post;
-	if(!$post_id) $post_id = $post->ID;
-    
-	$media_image = rwmb_meta($meta, 'type=image&size='.$size, $post_id);
-    
-	if(!$media_image) return;
-    
-	foreach ($media_image as $item) {
-		return $item;
-		break;
-	}
-}
-
-/**
- * Get all image form meta box.
- *
- * @param string $meta. meta id of article.
- * @param string|array $size Optional. Image size. Defaults to 'screen'.
- * @param array $post_id Optional. ID of article.
- * @return array
- */
-function get_galleries_post($meta, $size = 'screen', $post_id = null) {
-	global $post;
-	if(!$post_id) $post_id = $post->ID;
-	
-	$media_image = rwmb_meta($meta, 'type=image&size='.$size, $post_id);
-	return (count($media_image)) ? $media_image : false;
-}
-
-
-/**
- * Get Single file form meta box.
- *
- * @param string $meta. meta id of article.
- * @param string|array $size Optional. Image size. Defaults to 'screen'.
- * @param array $post_id Optional. ID of article.
- * @return array
- */
-function kt_get_single_file($meta, $post_id = null) {
-    global $post;
-    if(!$post_id) $post_id = $post->ID;
-    $medias = rwmb_meta($meta, 'type=file', $post_id);
-    if (count($medias)){
-        foreach($medias as $media){
-            return $media['url'];
-        }
+        $media_image = rwmb_meta($meta, 'type=image&size=' . $size, $post_id);
+        return (count($media_image)) ? $media_image : false;
     }
-    return false;
 }
-
+if (!function_exists('kt_get_single_file')) {
+    /**
+     * Get Single file form meta box.
+     *
+     * @param string $meta . meta id of article.
+     * @param string|array $size Optional. Image size. Defaults to 'screen'.
+     * @param array $post_id Optional. ID of article.
+     * @return array
+     */
+    function kt_get_single_file($meta, $post_id = null)
+    {
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
+        $medias = rwmb_meta($meta, 'type=file', $post_id);
+        if (count($medias)) {
+            foreach ($medias as $media) {
+                return $media['url'];
+            }
+        }
+        return false;
+    }
+}
 
 /**
  * Render Carousel
@@ -684,44 +735,47 @@ function kt_render_carousel($data, $class = ''){
 }
 
 
+if (!function_exists('render_data_carousel')) {
 
-/**
- * Render data option for carousel
- * 
- * @param $data array. All data for carousel
- * 
- */
-function render_data_carousel($data){
-    $output = "";
-    foreach($data as $key => $val){
-        if($val != ''){
-            $output .= ' data-'.$key.'="'.esc_attr($val).'"';
+    /*
+     * Render data option for carousel
+     * @param $data
+     * @return string
+     */
+    function render_data_carousel($data)
+    {
+        $output = "";
+        foreach ($data as $key => $val) {
+            if ($val != '') {
+                $output .= ' data-' . $key . '="' . esc_attr($val) . '"';
+            }
         }
+        return $output;
     }
-    return $output;
 }
 
 
 
+if (!function_exists('kt_post_option')) {
+    /**
+     * Check option for in article
+     *
+     * @param number $post_id Optional. ID of article.
+     * @param string $meta Optional. meta oftion in article
+     * @param string $option Optional. if meta is Global, Check option in theme option.
+     * @param string $default Optional. Default vaule if theme option don't have data
+     * @return boolean
+     */
+    function kt_post_option($post_id = null, $meta = '', $option = '', $default = null)
+    {
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
 
+        $meta_v = get_post_meta($post_id, $meta, true);
 
-/**
- * Check option for in article
- *
- * @param number $post_id Optional. ID of article.
- * @param string $meta Optional. meta oftion in article
- * @param string $option Optional. if meta is Global, Check option in theme option.
- * @param string $default Optional. Default vaule if theme option don't have data
- * @return boolean
- */
-function kt_post_option($post_id = null, $meta = '', $option = '', $default = null){
-    global $post;
-    if(!$post_id) $post_id = $post->ID;
-
-    $meta_v = get_post_meta($post_id, $meta, true);
-
-    if($meta_v == -1 || $meta_v == '' ){
-        $meta_v = kt_option($option, $default);
+        if ($meta_v == -1 || $meta_v == '') {
+            $meta_v = kt_option($option, $default);
+        }
+        return $meta_v;
     }
-    return $meta_v;
 }

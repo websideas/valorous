@@ -96,16 +96,44 @@ function kt_setting_script() {
         <?php echo $advanced_css; ?>
 
         <?php
-            if(is_page() || is_singular()){
-                $page_top_spacing = rwmb_meta('_kt_page_top_spacing');
+            $is_shop = false;
+            if(is_archive()){
+                if(kt_is_wc()){
+                    if(is_shop()){
+                        $is_shop = true;
+                    }
+                }
+            }
+
+            if(is_page() || is_singular() || $is_shop){
+
+                global $post;
+                $post_id = $post->ID;
+                if($is_shop){
+                    $post_id = get_option( 'woocommerce_shop_page_id' );
+                }
+
+                $page_top_spacing = rwmb_meta('_kt_page_top_spacing', array(), $post_id);
                 if($page_top_spacing != ''){
                     echo '#content{padding-top: '.$page_top_spacing.'}';
                 }
-                $page_bottom_spacing = rwmb_meta('_kt_page_bottom_spacing');
+                $page_bottom_spacing = rwmb_meta('_kt_page_bottom_spacing', array(), $post_id);
                 if($page_bottom_spacing != ''){
                     echo '#content{padding-bottom: '.$page_bottom_spacing.'}';
                 }
+
+                $page_header_top = rwmb_meta('_kt_page_header_top', array(), $post_id);
+                if($page_header_top != ''){
+                    echo 'div.page-header{padding-top: '.$page_header_top.'}';
+                }
+                $page_header_bottom = rwmb_meta('_kt_page_header_bottom', array(), $post_id);
+                if($page_header_bottom != ''){
+                    echo 'div.page-header{padding-bottom: '.$page_header_bottom.'}';
+                }
             }
+
+
+
         ?>
 
 

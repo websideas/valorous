@@ -805,7 +805,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'styling_body_background',
                         'type'     => 'background',
-                        'output'   => array( 'body', 'body.layout-boxed' ),
+                        'output'   => array( 'body.layout-full', 'body.layout-boxed #page' ),
                         'title'    => __( 'Body Background for full width mod', THEME_LANG ),
                         'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
                         'default'   => '#FFFFFF'
@@ -813,7 +813,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'styling_boxed_background',
                         'type'     => 'background',
-                        'output'   => array( 'body.layout-boxed #page' ),
+                        'output'   => array( 'body.layout-boxed' ),
                         'title'    => __( 'Boxed Background for boxed mod', THEME_LANG ),
                         'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
                         'default'   => '#'
@@ -2320,6 +2320,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'home' => __( 'Redirect Home', THEME_LANG ) ,
                         ),
                         'default' => 'default',
+                    ),
+
+
+                    array(
+                        'id'       => 'notfound_page_id',
+                        'type'     => 'select',
+                        'data'     => 'pages',
+                        'title'    => __( 'Pages Select Option', THEME_LANG ),
+                        'desc'     => __( 'Select your page 404 you want use', THEME_LANG ),
+                        'required' => array( 'notfound_page_type', '=', 'page' ),
                     ),
 
                 )

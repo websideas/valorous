@@ -63,7 +63,7 @@
                     </header><!-- #header -->
                     <div id="mobile-nav-holder">
                         <?php
-                            if ( has_nav_menu( 'primary' ) ) {  
+                            if ( has_nav_menu( 'primary' ) ) {
                                 wp_nav_menu( array(
                                     'theme_location' => 'primary',
                                     'container' => 'nav',
@@ -76,13 +76,13 @@
                     </div>
                 </div><!-- .header-container -->
                 
-                <?php 
+                <?php
                     if($position != 'below'){
                         /**
                     	 * @hooked kt_slideshows_position_callback 10
                     	 */
                     	do_action( 'kt_slideshows_position' );
-                    } 
+                    }
                 ?>
                 
                 <?php

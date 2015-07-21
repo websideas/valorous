@@ -15,9 +15,10 @@ function kite_register_meta_boxes( $meta_boxes )
     $prefix = '_kt_';
     $image_sizes = kt_get_image_sizes();
     $menus = wp_get_nav_menus();
-    $menus_arr = array();
+
+    $menus_arr = array('' => __('Default', THEME_LANG));
     foreach ( $menus as $menu ) {
-        $menus_arr[$menu->slug] = esc_html( $menu->name );
+        $menus_arr[$menu->term_id] = esc_html( $menu->name );
     }
 
     /**
@@ -471,11 +472,12 @@ function kite_register_meta_boxes( $meta_boxes )
                 'label' => __( 'Page layout', THEME_LANG ),
                 'icon'  => 'fa fa-columns',
             ),
+            /*
             'extra' => array(
                 'label' => __( 'Extra', THEME_LANG ),
                 'icon'  => 'fa fa-asterisk',
             ),
-
+            */
         ),
         'fields' => array(
             // Page Header
@@ -493,14 +495,22 @@ function kite_register_meta_boxes( $meta_boxes )
                 'std'  => -1,
                 'tab'  => 'page_header',
             ),
+            array(
+                'name' => __( 'Page Header Custom Text', THEME_LANG ),
+                'id' => $prefix . 'page_header_custom',
+                'desc' => __( "Enter cstom Text for page header.", THEME_LANG ),
+                'type'  => 'text',
+                'tab'  => 'page_header',
+            ),
 
             array(
                 'name' => __( 'Page header subtitle', THEME_LANG ),
-                'id' => $prefix . 'page_header_taglitle',
+                'id' => $prefix . 'page_header_subtitle',
                 'desc' => __( "Enter subtitle for page.", THEME_LANG ),
-                'type'  => 'textarea',
+                'type'  => 'text',
                 'tab'  => 'page_header',
             ),
+
             array(
                 'id'       => "{$prefix}page_header_align",
                 'type'     => 'select',
@@ -529,6 +539,40 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Show page breadcrumb.", THEME_LANG ),
                 'tab'  => 'page_header',
             ),
+            /*
+            array(
+                'name' => __('Separator bettwen title and subtitle', THEME_LANG),
+                'id'   => "{$prefix}page_header_separator",
+                'type' => 'select',
+                'options' => array(
+                    -1    => __('Default', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1,
+                'desc' => __( "Show separator bettwen title and subtitle.", THEME_LANG ),
+                'tab'  => 'page_header',
+            ),
+            */
+            //Separator Color
+
+
+
+            array(
+                'name' => __('Page header top spacing', THEME_LANG),
+                'id' => $prefix . 'page_header_top',
+                'desc' => __("(Example: 30px). Emtpy for use default", THEME_LANG ),
+                'type'  => 'text',
+                'tab'  => 'page_header',
+            ),
+            array(
+                'name' => __('Page header bottom spacing', THEME_LANG),
+                'id' => $prefix . 'page_header_bottom',
+                'desc' => __("(Example: 30px). Emtpy for use default", THEME_LANG ),
+                'type'  => 'text',
+                'tab'  => 'page_header',
+            ),
+
 
 
 
@@ -576,17 +620,16 @@ function kite_register_meta_boxes( $meta_boxes )
                 'std'  => 'default',
                 'tab'  => 'header',
             ),
+            /*
             array(
                 'name' => __('Main Navigation Menu', THEME_LANG),
                 'id'   => "{$prefix}header_main_menu",
                 'type' => 'select',
-                'options' => array_merge(
-                    array( '' => __('Default', THEME_LANG), ),
-                    $menus_arr
-                ),
+                'options' => $menus_arr,
                 'std'  => '',
                 'tab'  => 'header',
             ),
+            */
 
             //sliders
             array(
@@ -619,15 +662,6 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __('Select the Layer Slider.', THEME_LANG),
             ),
 
-            array(
-                'name' => __('Select Custom Image', THEME_LANG),
-                'id' => $prefix . 'custom_bg',
-                'default' => true,
-                'class' => $prefix . 'custom_bg',
-                'type' => 'image_advanced',
-                'tab'  => 'sliders',
-                'desc' => __('Select the images for slider.', THEME_LANG),
-            ),
 
             //Page layout
 
@@ -647,7 +681,7 @@ function kite_register_meta_boxes( $meta_boxes )
             array(
                 'name' => __('Sidebar configuration', THEME_LANG),
                 'id' => $prefix . 'sidebar',
-                'desc' => __("Choose the sidebar configuration for the detail page.", THEME_LANG),
+                'desc' => __("Choose the sidebar configuration for the detail page.<br/><b>Note: Cart and checkout page always no sidebars.</b>", THEME_LANG),
                 'type' => 'select',
                 'options' => array(
                     'default' => __('Default', THEME_LANG),

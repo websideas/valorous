@@ -12,6 +12,12 @@
  */
 
 
+$type = kt_option('notfound_page_type', 'default');
+/* Redirect Home */
+if( $type == 'home'){
+    wp_redirect( home_url() ); exit;
+}
+
 get_header(); ?>
     <div class="container">
         <?php
@@ -19,24 +25,19 @@ get_header(); ?>
          * @hooked
          */
         do_action( 'theme_before_main' ); ?>
-        <div id="main" class="content-404">
-            <div class="page-not-found">
-
-
-
-                <h1><?php _e('404', THEME_LANG) ?></h1>
-                <h3><?php _e('SORRY, PAGE NOT FOUND', THEME_LANG) ?></h3>
-                <p ><?php _e('We\'re sorry, but the Web address you\'ve entered is no longer available.', THEME_LANG ); ?></p>
-                <?php get_search_form(); ?>
-                <div class="buttons">
-                    <a title="<?php _e('Home', THEME_LANG); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-default button button-medium">
-                        <span>
-                            <?php _e('Home page', THEME_LANG ); ?>
-                            <i class="icon-home button-icon-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </div><!-- .page-not-found -->
+        <div id="main">
+            <?php
+                if($type == 'page'){
+                    if($page_id = kt_option('notfound_page_id')){
+                        $page = get_post($page_id);
+                        echo apply_filters( "the_content", $page->post_content );
+                    }else{
+                        get_template_part( 'content',  '404');
+                    }
+                }else{
+                    get_template_part( 'content',  '404');
+                }
+            ?>
         </div><!-- #main -->
         <?php
         /**

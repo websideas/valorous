@@ -4,7 +4,16 @@
 if ( !defined('ABSPATH')) exit;
 
 
-
+/**
+ * Flag boolean.
+ *
+ * @param $input string
+ * @return boolean
+ */
+function kt_sanitize_boolean( $input = '' ) {
+    return in_array($input, array('1', 'true', 'y', 'on'));
+}
+add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
 
 
 /**
@@ -25,7 +34,11 @@ function get_page_header( ){
     }elseif(is_archive()){
         $show_title = kt_option('archive_page_header', 1);
         if(kt_is_wc()){
-            if(is_shop() || is_product_taxonomy() || is_product_tag() ){
+            if(is_shop()){
+                $shop_page_id = get_option( 'woocommerce_shop_page_id' );
+                $show_title = rwmb_meta('_kt_page_header', array(), $shop_page_id);
+            }
+            if(is_product_taxonomy() || is_product_tag() || $show_title == '' ||  $show_title == '-1'){
                 $show_title = kt_option('shop_page_header', 1);
             }
         }
@@ -150,7 +163,8 @@ function kt_get_page_title( $title = '' ){
         $title = get_the_title($page_on_front) ;
     } elseif( is_page() || is_singular() ){
         $post_id = $post->ID;
-        $title = get_the_title($post_id);
+        $custom_text = rwmb_meta('_kt_page_header_custom', array(), $post_id);
+        $title = ($custom_text != '') ? $custom_text : get_the_title($post_id);
     }
 
     return apply_filters( 'kt_title', $title );
@@ -170,27 +184,25 @@ function kt_get_page_subtitle(){
         $tagline =  __('Lastest posts', THEME_LANG);
     }elseif( is_home() ){
         $page_for_posts = get_option('page_for_posts', true);
-        $tagline = nl2br(rwmb_meta('_kt_page_header_taglitle', array(), $page_for_posts))  ;
+        $tagline = nl2br(rwmb_meta('_kt_page_header_subtitle', array(), $page_for_posts))  ;
     }elseif ( is_front_page() && is_singular('page') ){
-        $tagline =  rwmb_meta('_kt_page_header_taglitle');
+        $tagline =  rwmb_meta('_kt_page_header_subtitle');
     }elseif ( is_archive() ){
         $tagline =  get_the_archive_description( );
         if(kt_is_wc()){
             if(is_shop()){
                 $shop_page_id = get_option( 'woocommerce_shop_page_id' );
-                if($shop_page_id){
-                    $tagline = rwmb_meta('_kt_page_header_taglitle', array(), $shop_page_id);
-                }
+                $tagline = rwmb_meta('_kt_page_header_subtitle', array(), $shop_page_id);
             }
         }
     }elseif(is_search()){
         $tagline = '';
     }elseif( $post ){
         $post_id = $post->ID;
-        $tagline = nl2br(rwmb_meta('_kt_page_header_taglitle', array(), $post_id));
+        $tagline = nl2br(rwmb_meta('_kt_page_header_subtitle', array(), $post_id));
     }
 
-    return apply_filters( 'kt_tagline', $tagline );
+    return apply_filters( 'kt_subtitle', $tagline );
 }
 
 
@@ -352,9 +364,24 @@ function theme_body_classes( $classes ) {
     if( is_page() || is_singular('post')){
         $classes[] = 'layout-'.kt_getlayout($post->ID);
         $classes[] = rwmb_meta('_kt_extra_page_class');
+    }elseif(is_archive()){
+        if(kt_is_wc()){
+            if(is_shop()){
+                $page_id = get_option( 'woocommerce_shop_page_id' );
+
+                $classes[] = 'layout-'.kt_getlayout($page_id);
+                $classes[] = rwmb_meta('_kt_extra_page_class', array(), $page_id);
+            }else{
+                $classes[] = 'layout-'.kt_option('layout');
+            }
+        }else{
+            $classes[] = 'layout-'.kt_option('layout');
+        }
     }else{
         $classes[] = 'layout-'.kt_option('layout');
     }
+
+
     
     if( kt_option( 'footer_fixed' ) == 1 ){
         $classes[] = 'footer_fixed';
@@ -365,15 +392,6 @@ function theme_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'theme_body_classes' );
 
-
-
-function kt_disable_title_404($show_tittle){
-    if(is_404()){
-        $show_tittle = false;
-    }
-    return $show_tittle;
-}
-add_filter('kt_show_tittle', 'kt_disable_title_404');
 
 
 
@@ -447,29 +465,15 @@ add_filter('theme_header_content_class', 'theme_header_content_class_callback');
  */
 add_action( 'kt_slideshows_position', 'kt_slideshows_position_callback' );
 function kt_slideshows_position_callback(){
-
     if(is_page() || is_singular()){
-        
-        $slideshow = rwmb_meta('_kt_slideshow_source');
-        if($slideshow == 'revslider'){
-            $revslider = rwmb_meta('_kt_rev_slider');
-            if($revslider && class_exists( 'RevSlider' )){
-                echo putRevSlider($revslider);
-            }
-        }elseif($slideshow == 'layerslider'){
-            $layerslider = rwmb_meta('_kt_layerslider');
-            if($layerslider && is_plugin_active( 'LayerSlider/layerslider.php' )){
-                echo do_shortcode('[layerslider id="'.$layerslider.'"]');
-            }
-        }
-
+        kt_show_slideshow();
     }elseif ( kt_is_wc() ) {
         if(is_shop()){
-            echo "call";
+            $shop_page_id = get_option( 'woocommerce_shop_page_id' );
+            kt_show_slideshow($shop_page_id);
         }
     }
 }
-
 
 
 /**

@@ -1902,6 +1902,14 @@ body.admin-bar #header.is-sticky.sticky{
     color: #282828;
 }
 
+.header-light .button-toggle .close::before,
+.header-light .button-toggle .close::after,
+.header-light .button-toggle .line{
+    background: #282828;
+}
+
+
+
 /** ================================================
     12. Footer
 *** ================================================*/
@@ -4529,7 +4537,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
  * 17.1. Main common styles
  */
 #page{
-    background: #FFF;
     overflow: hidden;
     position: relative;
     z-index: 0;

@@ -7,7 +7,7 @@
         <?php
         if( ! post_password_required( ) && $show_post_format && $post_format_position == 'content' ){
             $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post');
-            kt_post_thumbnail( $imagesize, 'img-responsive' );
+            kt_post_thumbnail( $imagesize, 'img-responsive', false );
         }
         ?>
 
