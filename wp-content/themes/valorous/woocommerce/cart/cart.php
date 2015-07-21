@@ -117,7 +117,8 @@ do_action( 'woocommerce_before_cart' ); ?>
                 <tr>
                     <td colspan="6" class="actions">
 
-                        <input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
+                        <a href="#" class="btn btn-gray pull-left"><?php _e( 'Continue shopping', THEME_LANG ); ?></a>
+                        <input type="submit" class="btn btn-darkl" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
 
                         <?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -143,7 +144,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                     <p>
                         <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" />
                     </p>
-                    <input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+                    <input type="submit" class="btn btn-darkl" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
                     <?php do_action( 'woocommerce_cart_coupon' ); ?>
                 </div>
             <?php } ?>

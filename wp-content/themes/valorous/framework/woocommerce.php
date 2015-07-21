@@ -144,9 +144,11 @@ function kt_woocommerce_get_cart( $wrapper = true ){
 
             if ( sizeof(WC()->cart->cart_contents)>0 ) {
                 $output .= '<div class="bag-total">'.__('Subtotal: ', THEME_LANG).$cart_total.'</div><!-- .bag-total -->';
-                $output .= '<div class="bag-buttons clearfix">';
-                    $output .= '<a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn-default pull-left">'.__('View cart', THEME_LANG).'</a>';
-                    $output .= '<a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-default pull-left">'.__('Checkout', THEME_LANG).'</a>';
+                $output .= '<div class="bag-buttons">';
+                $output .= '<div class="bag-buttons-content clearfix">';
+                    $output .= '<span><a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn btn-darkl">'.__('View cart', THEME_LANG).'</a></span>';
+                    $output .= '<span><a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-dark">'.__('Checkout', THEME_LANG).'</a></span>';
+                $output .= '</div><!-- .bag-buttons -->';
                 $output .= '</div><!-- .bag-buttons -->';
             }
         

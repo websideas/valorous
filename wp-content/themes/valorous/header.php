@@ -98,3 +98,52 @@
             		 * @hooked
             		 */
             		do_action( 'theme_content_top' ); ?>
+                    <!--
+                    <div class="container">
+
+                        <p style="background: gray; padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-border-w btn-lg">Button</a>
+                            <a href="#" class="btn btn-border-w btn-round btn-lg">Button</a>
+                            <a href="#" class="btn btn-border-w btn-circle btn-lg">Button</a>
+                            <br/><br/>
+                            <a href="#" class="btn btn-border-w">Button</a>
+                            <a href="#" class="btn btn-border-w btn-round">Button</a>
+                            <a href="#" class="btn btn-border-w btn-circle">Button</a>
+                            <br/><br/>
+                            <a href="#" class="btn btn-border-w btn-sm">Button</a>
+                            <a href="#" class="btn btn-border-w btn-round btn-sm">Button</a>
+                            <a href="#" class="btn btn-border-w btn-circle btn-sm">Button</a>
+                            <br/><br/>
+                            <a href="#" class="btn btn-border-w btn-xs">Button</a>
+                            <a href="#" class="btn btn-border-w btn-round btn-xs">Button</a>
+                            <a href="#" class="btn btn-border-w btn-circle btn-xs">Button</a>
+                        </p>
+                        <p style="padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-border-d">Button</a>
+                            <a href="#" class="btn btn-border-d btn-round">Button</a>
+                            <a href="#" class="btn btn-border-d btn-circle">Button</a>
+                        </p>
+                        <p style="padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-gray">Button</a>
+                            <a href="#" class="btn btn-gray btn-round">Button</a>
+                            <a href="#" class="btn btn-gray btn-circle">Button</a>
+                        </p>
+
+                        <p style="padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-dark">Button</a>
+                            <a href="#" class="btn btn-dark btn-round">Button</a>
+                            <a href="#" class="btn btn-dark btn-circle">Button</a>
+                        </p>
+                        <p style="padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-darkl">Button</a>
+                            <a href="#" class="btn btn-darkl btn-round">Button</a>
+                            <a href="#" class="btn btn-darkl btn-circle">Button</a>
+                        </p>
+                        <p style="padding: 10px 0;text-align: center">
+                            <a href="#" class="btn btn-default">Button</a>
+                            <a href="#" class="btn btn-default btn-round">Button</a>
+                            <a href="#" class="btn btn-default btn-circle">Button</a>
+                        </p>
+
+                    </div>
+                    -->

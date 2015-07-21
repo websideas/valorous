@@ -217,73 +217,6 @@ blockquote.classic.blockquote-reverse:before{
     background-color: #222533;
     color: #ffffff;
 }
-
-/*
- * 2.5 Dropcap
- */
-.dropcap {
-    float: left;
-    font-size: 45px;
-    line-height: 45px;
-    margin-right: 6px;
-    padding: 0;
-    position: relative;
-    text-transform: uppercase;
-    top: 1px;
-    text-align: center;
-    font-weight: 900;
-}
-.dropcap-rectangle{
-    background-color: #000000;
-    color: #ffffff;
-    font-size: 30px;
-    line-height: 34px;
-    padding: 0 7px;
-    top: 8px;
-}
-.dropcap-round,
-.dropcap-square{
-    background-color: #000000;
-    color: #ffffff;
-    font-size: 25px;
-    line-height: 34px;
-    padding: 0 7px;
-    top: 8px;
-    width: 34px;
-}
-.dropcap-round{
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-}
-.dropcap.dropcap-big{
-    font-size: 80px;
-    line-height: 70px;
-}
-.dropcap.dropcap-big.dropcap-rectangle{
-    font-size: 55px;
-    line-height: 70px;
-    padding: 0 10px;
-    top: 8px;
-}
-.dropcap.dropcap-big.dropcap-square,
-.dropcap.dropcap-big.dropcap-round{
-    font-size: 45px;
-    line-height: 65px;
-    top: 8px;
-    width: 65px;
-}
-/*
- * 2.6 List
- */
-.list-unspace{
-    padding-left: 0;
-    margin-bottom:30px;
-}
-.list-unspace li{
-    margin-left: 17px;
-}
-
 /* ==============================
    3. Forms fields
    ============================== */
@@ -319,7 +252,7 @@ input[type=phone]:focus,
 input[type=text]:focus,
 textarea:focus{
     box-shadow: none;
-    border-color: #999;
+    border-color: #666666;
     outline: 0;
 }
 select{
@@ -360,16 +293,13 @@ select:not([multiple]) {
 .wpcf7-submit,
 .btn{
     border-radius: 0;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    -o-border-radius: 0;
     border: 1px solid transparent;
     display: inline-block;
-    font-family: "Montserrat"
+    font-family: "Montserrat";
     line-height: 1.42857;
-    padding: 9px 30px;
-    font-weight: bold;
-    font-size: 16px;
+    padding: 8px 28px;
+    font-weight: normal;
+    font-size: 13px;
     text-transform: uppercase;
 }
 .wpcf7-submit:focus,
@@ -378,25 +308,30 @@ select:not([multiple]) {
 .btn.active:focus {
     outline: none;
 }
-.btn.active {
+.btn.active,
+.btn:active{
+    -webkit-box-shadow: none;
     box-shadow: none;
 }
 /* Button size */
 .btn-group-xs > .btn,
 .btn-xs{
     padding: 1px 15px;
+    font-size: 12px;
 }
-.btn-group-sm >
-.btn, .btn-sm{
+.btn-group-sm > .btn,
+.btn-sm{
     padding: 5px 20px;
+    font-size: 12px;
 }
-.btn-group-lg >
-.btn, .btn-lg{
+.btn-group-lg > .btn,
+.btn-lg{
     padding: 10px 36px;
+    font-size: 18px;
 }
 /* Button shapes */
 .btn.btn-round {
-    border-radius: 2px;
+    border-radius: 3px;
 }
 .btn.btn-circle {
     border-radius: 30px;
@@ -416,10 +351,9 @@ select:not([multiple]) {
 .btn-default:active,
 .btn-default:focus,
 .btn-default:hover,
-.wpcf7-submit:hover,
-.open > .dropdown-toggle.btn-default{
-    background: #444;
-    border-color: #444;
+.wpcf7-submit:hover{
+    background: #ecb848;
+    border-color: #ecb848;
     color: #FFF;
 }
 .button .button-icon-right{
@@ -428,6 +362,76 @@ select:not([multiple]) {
 .button .button-icon-left{
     margin-right: 5px;
 }
+
+
+
+
+/* Border white */
+.btn.btn-border-w{
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    background: transparent;
+}
+.btn.btn-border-w:hover,
+.btn.btn-border-w:focus{
+    color: #FFFFFF;
+    border-color: #d0a852;
+    background: #d0a852;
+}
+/* Border dark */
+.btn.btn-border-d{
+    border: 2px solid #282828;
+    color: #282828;
+    background: transparent;
+}
+.btn.btn-border-d:hover,
+.btn.btn-border-d:focus{
+    color: #FFFFFF;
+    border-color: #d0a852;
+    background: #d0a852;
+}
+
+/* Dark */
+.btn.btn-dark{
+    border: 2px solid #282828;
+    color: #FFFFFF;
+    background: #282828;
+}
+.btn.btn-dark:hover,
+.btn.btn-dark:focus{
+    color: #FFFFFF;
+    border-color: #d0a852;
+    background: #d0a852;
+}
+
+/* Dark lighter */
+.btn.btn-darkl{
+    border: 2px solid #444;
+    color: #FFFFFF;
+    background: #444;
+}
+.btn.btn-darkl:hover,
+.btn.btn-darkl:focus{
+    color: #FFFFFF;
+    border-color: #d0a852;
+    background: #d0a852;
+}
+/* Gray */
+.btn.btn-gray{
+    border: 2px solid #e5e5e5;
+    background: #e5e5e5;
+    color: #777;
+}
+.btn.btn-gray:hover,
+.btn.btn-gray:focus{
+    color: #444444;
+    background: #d5d5d5;
+    border-color: #d5d5d5;
+}
+
+
+
+
 /* ==============================
    5. Breadcrumb
    ============================== */
@@ -2351,7 +2355,7 @@ body.footer_fixed .static-footer{
     position: relative;
     background-color: #f5f5f5;
     color: #d7d7d7 !important;
-    border-color: #e2e2e2;
+    border-color: #282828;
 }
 .mailchimp-input-button .mailchimp-submit.loading:before{
     background: rgba(255,255,255, .5);
@@ -2369,12 +2373,14 @@ body.footer_fixed .static-footer{
     -webkit-animation:spin 2s linear infinite;
     -moz-animation:spin 2s linear infinite;
     animation:spin 2s linear infinite;
-    height: 40px;
+    height: 36px;
     position: absolute;
     width: 100%;
-    line-height: 40px;
+    line-height: 36px;
     left: 0;
     top: 0;
+    color: #282828;
+    font-size: 16px;
 }
 
 
