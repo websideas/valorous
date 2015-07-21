@@ -203,7 +203,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}post_format",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -215,7 +215,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __('Select the format position.', THEME_LANG),
                 'id'   => "{$prefix}blog_post_format_position",
                 'options' => array(
-                    ''    => __('Use Global', THEME_LANG),
+                    ''    => __('Default', THEME_LANG),
                     'content' => __( 'Content', THEME_LANG ),
                     'fullwidth' => __( 'Fullwidth', THEME_LANG ),
                 ),
@@ -227,7 +227,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'name' => __('Post image size', THEME_LANG),
                 'desc' => __('Select the format position.', THEME_LANG),
                 'id'   => "{$prefix}blog_image_size",
-                'options' => array_merge(array('' => __('Use Global', THEME_LANG)), $image_sizes),
+                'options' => array_merge(array('' => __('Default', THEME_LANG)), $image_sizes),
                 'std' => ''
             ),
 
@@ -236,7 +236,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}meta_info",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -247,7 +247,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}prev_next",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -258,7 +258,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}author_info",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -269,7 +269,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}social_sharing",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -280,7 +280,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}related_acticles",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
@@ -449,26 +449,52 @@ function kite_register_meta_boxes( $meta_boxes )
         'pages' => array( 'page', 'post', 'portfolio','product' ),
         'context' => 'normal',
         'priority' => 'high',
+        'tabs'      => array(
+            'sliders'  => array(
+                'label' => __( 'Sliders', THEME_LANG ),
+                'icon'  => 'fa fa-picture-o',
+            ),
+            'page_header' => array(
+                'label' => __( 'Page Header', THEME_LANG ),
+                'icon'  => 'fa fa-bars',
+            ),
+            'header'  => array(
+                'label' => __( 'Header', THEME_LANG ),
+                'icon'  => 'fa fa-desktop',
+            ),
+            'page_layout' => array(
+                'label' => __( 'Page layout', THEME_LANG ),
+                'icon'  => 'fa fa-columns',
+            ),
+            'extra' => array(
+                'label' => __( 'Extra', THEME_LANG ),
+                'icon'  => 'fa fa-asterisk',
+            ),
+
+        ),
         'fields' => array(
-
-
-
-
-
-
             // Page Header
             array(
+
                 'name' => __( 'Page Header', THEME_LANG ),
                 'id' => $prefix . 'page_header',
                 'desc' => __( "Show Page Header.", THEME_LANG ),
-                'type'  => 'checkbox',
-                'std'  => '1'
+                'type' => 'select',
+                'options' => array(
+                    -1    => __('Default', THEME_LANG),
+                    0		=> __('Hidden', THEME_LANG),
+                    1		=> __('Show', THEME_LANG),
+                ),
+                'std'  => -1,
+                'tab'  => 'page_header',
             ),
+
             array(
-                'name' => __( 'Page header Tagline', THEME_LANG ),
+                'name' => __( 'Page header subtitle', THEME_LANG ),
                 'id' => $prefix . 'page_header_taglitle',
-                'desc' => __( "Enter tagline for page.", THEME_LANG ),
+                'desc' => __( "Enter subtitle for page.", THEME_LANG ),
                 'type'  => 'textarea',
+                'tab'  => 'page_header',
             ),
             array(
                 'id'       => "{$prefix}page_header_align",
@@ -476,12 +502,13 @@ function kite_register_meta_boxes( $meta_boxes )
                 'name'    => __( 'Page Header align', THEME_LANG ),
                 'desc'     => __( 'Please select Page Header align', THEME_LANG ),
                 'options'  => array(
-                    ''    => __('Use Global', THEME_LANG),
+                    ''    => __('Default', THEME_LANG),
                     'left' => __('Left', THEME_LANG ),
                     'center' => __('Center', THEME_LANG),
                     'right' => __('Right', THEME_LANG)
                 ),
                 'std'  => '',
+                'tab'  => 'page_header',
             ),
 
             array(
@@ -489,12 +516,13 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}show_breadcrumb",
                 'type' => 'select',
                 'options' => array(
-                    -1    => __('Use Global', THEME_LANG),
+                    -1    => __('Default', THEME_LANG),
                     0		=> __('Hidden', THEME_LANG),
                     1		=> __('Show', THEME_LANG),
                 ),
                 'std'  => -1,
                 'desc' => __( "Show page breadcrumb.", THEME_LANG ),
+                'tab'  => 'page_header',
             ),
 
 
@@ -505,19 +533,16 @@ function kite_register_meta_boxes( $meta_boxes )
 
             // Header
             array(
-                'type' => 'divider',
-                'id' => 'fake_divider_id_1',
-            ),
-            array(
                 'name' => __('Header Color Scheme', THEME_LANG),
                 'id'   => "{$prefix}header_scheme",
                 'type' => 'select',
                 'options' => array(
-                    ''    => __('Use Global', THEME_LANG),
+                    ''    => __('Default', THEME_LANG),
                     'light'		=> __('Light', THEME_LANG),
                     'dark'		=> __('Dark', THEME_LANG),
                 ),
-                'std'  => ''
+                'std'  => '',
+                'tab'  => 'header',
             ),
 
             array(
@@ -525,11 +550,12 @@ function kite_register_meta_boxes( $meta_boxes )
                 'id'   => "{$prefix}header_scheme_fixed",
                 'type' => 'select',
                 'options' => array(
-                    ''    => __('Use Global', THEME_LANG),
+                    ''    => __('Default', THEME_LANG),
                     'light'		=> __('Light', THEME_LANG),
                     'dark'		=> __('Dark', THEME_LANG),
                 ),
-                'std'  => ''
+                'std'  => '',
+                'tab'  => 'header',
             ),
             array(
                 'name'    => __( 'Header position', THEME_LANG ),
@@ -542,13 +568,11 @@ function kite_register_meta_boxes( $meta_boxes )
                     'gradient' => __('Gradient header', THEME_LANG),
                     'below' => __('Below Slideshow', THEME_LANG),
                 ),
-                'std'  => 'default'
+                'std'  => 'default',
+                'tab'  => 'header',
             ),
 
-            array(
-                'type' => 'divider',
-                'id' => 'fake_divider_id',
-            ),
+            //sliders
             array(
                 'name' => __('Select Your Slideshow Type', THEME_LANG),
                 'id' => $prefix . 'slideshow_source',
@@ -560,34 +584,36 @@ function kite_register_meta_boxes( $meta_boxes )
                     'layerslider' => __('Layer Slider', THEME_LANG),
                     'custom_bg' => __('Custom Image', THEME_LANG),
                 ),
+                'tab'  => 'sliders',
             ),
             array(
                 'name' => __('Select Revolution Slider', THEME_LANG),
                 'id' => $prefix . 'rev_slider',
                 'default' => true,
-                'type' => 'revSlider'
+                'type' => 'revSlider',
+                'tab'  => 'sliders',
+                'desc' => __('Select the Revolution Slider.', THEME_LANG),
             ),
             array(
                 'name' => __('Select Layer Slider', THEME_LANG),
                 'id' => $prefix . 'layerslider',
                 'default' => true,
-                'type' => 'layerslider'
+                'type' => 'layerslider',
+                'tab'  => 'sliders',
+                'desc' => __('Select the Layer Slider.', THEME_LANG),
             ),
 
             array(
-                'name' => __('Select Image', THEME_LANG),
+                'name' => __('Select Custom Image', THEME_LANG),
                 'id' => $prefix . 'custom_bg',
                 'default' => true,
                 'class' => $prefix . 'custom_bg',
-                'type' => 'image_advanced'
+                'type' => 'image_advanced',
+                'tab'  => 'sliders',
+                'desc' => __('Select the images for slider.', THEME_LANG),
             ),
 
-
-
-            array(
-                'type' => 'divider',
-                'id' => 'fake_divider_id',
-            ),
+            //Page layout
 
             array(
                 'name' => __('Page layout', THEME_LANG),
@@ -595,15 +621,12 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __("Please choose this page's layout.", THEME_LANG),
                 'type' => 'select',
                 'options' => array(
-                    'default' => __('Default option', THEME_LANG),
+                    'default' => __('Default', THEME_LANG),
                     'full' => __('Full width Layout', THEME_LANG),
                     'boxed' => __('Boxed Layout', THEME_LANG),
                 ),
-                'std' => 'default'
-            ),
-            array(
-                'type' => 'divider',
-                'id' => 'fake_divider_id',
+                'std' => 'default',
+                'tab'  => 'page_layout',
             ),
             array(
                 'name' => __('Sidebar configuration', THEME_LANG),
@@ -611,56 +634,57 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __("Choose the sidebar configuration for the detail page.", THEME_LANG),
                 'type' => 'select',
                 'options' => array(
-                    'default' => __('Default option', THEME_LANG),
+                    'default' => __('Default', THEME_LANG),
                     'full' => __('No sidebars', THEME_LANG),
                     'left' => __('Left Sidebar', THEME_LANG),
                     'right' => __('Right Layout', THEME_LANG)
                 ),
-                'std' => 'default'
+                'std' => 'default',
+                'tab'  => 'page_layout',
             ),
             array(
                 'name' => __('Left sidebar', THEME_LANG),
                 'id' => $prefix . 'left_sidebar',
                 'default' => false,
-                'type' => 'sidebars'
+                'type' => 'sidebars',
+                'tab'  => 'page_layout',
+                'desc' => __("Select your sidebar.", THEME_LANG),
             ),
             array(
                 'name' => __('Right sidebar', THEME_LANG),
                 'id' => $prefix . 'right_sidebar',
                 'default' => false,
-                'type' => 'sidebars'
-            ),
-            array(
-                'type' => 'divider',
-                'id' => 'fake_divider_id',
+                'type' => 'sidebars',
+                'tab'  => 'page_layout',
+                'desc' => __("Select your sidebar.", THEME_LANG),
             ),
             array(
                 'name' => __('Remove top spacing', THEME_LANG),
                 'id' => $prefix . 'remove_top',
                 'desc' => __("Remove the spacing at the top of the page", THEME_LANG ),
                 'type'  => 'checkbox',
+                'tab'  => 'page_layout',
             ),
             array(
                 'name' => __('Remove bottom spacing', THEME_LANG ),
                 'id' => $prefix . 'remove_bottom',
                 'desc' => __("Remove the spacing at the bottom of the page", THEME_LANG ),
                 'type'  => 'checkbox',
+                'tab'  => 'page_layout',
             ),
             array(
                 'name' => 'Extra page class',
                 'id' => $prefix . 'extra_page_class',
                 'desc' => "If you wish to add extra classes to the body class of the page (for custom css use), then please add the class(es) here.",
                 'type'  => 'text',
+                'tab'  => 'page_layout',
             ),
+
         )
     );
 
 
 
 
-
-
     return $meta_boxes;
 }
-
-

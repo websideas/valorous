@@ -129,7 +129,7 @@ if ( class_exists( 'RW_Meta_Box' ) ) {
     // Add plugin meta-box-show-hide
     require_once (FW_EXT_DIR . 'meta-box-show-hide/meta-box-show-hide.php');
 
-    // Add plugin meta-box-show-hide
+    // Add plugin meta-box-tabs
     require_once (FW_EXT_DIR . 'meta-box-tabs/meta-box-tabs.php');
 
 

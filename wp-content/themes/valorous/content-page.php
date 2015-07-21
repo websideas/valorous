@@ -2,9 +2,6 @@
 /**
  * The template used for displaying page content
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
  */
 ?>
 
@@ -25,7 +22,7 @@
 	</div><!-- .entry-content -->
 
     <?php
-    if( kt_option('show_page_comment', 'no') == 'yes' ){
+    if( kt_option( 'show_page_comment', 0 ) ){
         // If comments are open or we have at least one comment, load up the comment template.
         if ( comments_open() || get_comments_number() ) :
             comments_template();

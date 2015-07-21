@@ -539,6 +539,9 @@ body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
     opacity: 0.8;
 }
 
+body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
+    margin-right: 15px;
+}
 
 
 .header-light .mini-cart .shopping-bag{

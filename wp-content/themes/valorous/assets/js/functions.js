@@ -68,6 +68,14 @@
         $( '#main-navigation' ).onePageNav({
             currentClass: 'current-menu-item'
         });
+
+
+
+        $('.button-toggle').click(function(e){
+            e.preventDefault();
+            $(this).closest('#nav').toggleClass('is-opened');
+
+        });
                 
     });
     

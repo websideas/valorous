@@ -7,7 +7,7 @@ if ( !defined('ABSPATH')) exit;
     <div class="site-branding">
         <?php get_template_part( 'templates/headers/header',  'branding'); ?>
     </div><!-- .site-branding -->
-    <nav role="navigation" id="nav">
+    <nav role="navigation" id="nav" class="nav-main">
         <?php get_template_part( 'templates/headers/header',  'tool'); ?>
         <?php get_template_part( 'templates/headers/header',  'menu'); ?>
         <?php get_template_part( 'templates/headers/header',  'mobile'); ?>

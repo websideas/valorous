@@ -10,18 +10,6 @@ if ( !defined('ABSPATH')) exit;
 
 
 /**
- * Add search to header
- * 
- * 
- */
-function kt_search_form(){
-    if(kt_is_wc()){
-        get_product_search_form();
-    }else{
-        get_search_form();
-    }
-}
-/**
  * Function check if WC Plugin installed
  */
 function kt_is_wc(){
@@ -32,19 +20,9 @@ function kt_is_wc(){
  *  @true  if WPML installed.
  */
 function  kt_is_wpml(){
-    return function_exists('icl_get_languages');
+    return class_exists('SitePress');
 }
 
-/**
- * Get Page id - Supported WPML Plguin
- * @return page id
- */
-function kt_get_page_id(  $ID , $post_type= 'page'){
-    if(kt_is_wpml()){
-        $ID =   icl_object_id($ID, $post_type , true) ;
-    }
-    return $ID;
-}
 
 /**
  *
@@ -72,101 +50,6 @@ function kt_sanitize_boolean( $input = '' ) {
 }
 add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
 
-/**
- * Convert hexdec color string to rgb(a) string
- *
- * @param $color string
- * @param $opacity boolean
- * @return void
- */
-
-function kt_hex2rgba($color, $opacity = false) {
-
-	$default = 'rgb(0,0,0)';
-
-	//Return default if no color provided
-	if(empty($color))
-          return $default;
-
-	//Sanitize $color if "#" is provided
-        if ($color[0] == '#' ) {
-        	$color = substr( $color, 1 );
-        }
-
-        //Check if color has 6 or 3 characters and get values
-        if (strlen($color) == 6) {
-                $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-        } elseif ( strlen( $color ) == 3 ) {
-                $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
-        } else {
-                return $default;
-        }
-
-        //Convert hexadec to rgb
-        $rgb =  array_map('hexdec', $hex);
-
-        //Check if opacity is set(rgba or rgb)
-        if($opacity){
-        	if(abs($opacity) > 1)
-        		$opacity = 1.0;
-        	$output = 'rgba('.implode(",",$rgb).','.$opacity.')';
-        } else {
-        	$output = 'rgb('.implode(",",$rgb).')';
-        }
-
-        //Return rgb(a) color string
-        return $output;
-}
-
-/**
- * Convert hexdec color string to darken or lighten
- *
- * http://lab.clearpixel.com.au/2008/06/darken-or-lighten-colours-dynamically-using-php/
- *
- * $brightness = 0.5; // 50% brighter
- * $brightness = -0.5; // 50% darker
- *
- */
-
-function kt_colour_brightness($hex, $percent) {
-	// Work out if hash given
-	$hash = '';
-	if (stristr($hex,'#')) {
-		$hex = str_replace('#','',$hex);
-		$hash = '#';
-	}
-	/// HEX TO RGB
-	$rgb = array(hexdec(substr($hex,0,2)), hexdec(substr($hex,2,2)), hexdec(substr($hex,4,2)));
-	//// CALCULATE
-	for ($i=0; $i<3; $i++) {
-		// See if brighter or darker
-		if ($percent > 0) {
-			// Lighter
-			$rgb[$i] = round($rgb[$i] * $percent) + round(255 * (1-$percent));
-		} else {
-			// Darker
-			$positivePercent = $percent - ($percent*2);
-			$rgb[$i] = round($rgb[$i] * $positivePercent) + round(0 * (1-$positivePercent));
-		}
-		// In case rounding up causes us to go to 256
-		if ($rgb[$i] > 255) {
-			$rgb[$i] = 255;
-		}
-	}
-	//// RBG to Hex
-	$hex = '';
-	for($i=0; $i < 3; $i++) {
-		// Convert the decimal digit to hex
-		$hexDigit = dechex($rgb[$i]);
-		// Add a leading zero if necessary
-		if(strlen($hexDigit) == 1) {
-		$hexDigit = "0" . $hexDigit;
-		}
-		// Append to the hex string
-		$hex .= $hexDigit;
-	}
-	return $hash.$hex;
-}
 
 if (!function_exists('kt_sidebars')){
     /**
@@ -269,7 +152,7 @@ if (!function_exists('kt_get_woo_sidebar')) {
                 $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
             }
 
-        }elseif(is_shop() || is_product_taxonomy()){
+        }elseif(is_shop() || is_product_taxonomy() || is_product_tag()){
             $sidebar = array(
                 'sidebar' => kt_option('shop_sidebar', 'full'),
                 'sidebar_area' => '',
@@ -279,8 +162,6 @@ if (!function_exists('kt_get_woo_sidebar')) {
             }elseif($sidebar['sidebar'] == 'right'){
                 $sidebar['sidebar_area'] = kt_option('shop_sidebar_right', 'shop-widget-area');
             }
-        }elseif(is_cart()){
-            $sidebar = kt_get_page_sidebar(get_option('woocommerce_cart_page_id'));
         }
 
         return apply_filters('woo_sidebar', $sidebar);
@@ -298,8 +179,18 @@ if (!function_exists('kt_get_page_sidebar')) {
      */
     function kt_get_page_sidebar( $post_id = null )
     {
+
         global $post;
         if(!$post_id) $post_id = $post->ID;
+
+        if(kt_is_wc()){
+            $cart_id = wc_get_page_id('cart');
+            $checkout_id = wc_get_page_id('checkout');
+            if($post_id == $cart_id || $post_id == $checkout_id || is_cart() || is_checkout()){
+                return array('sidebar' => 'full', 'sidebar_area' => '');
+            }
+        }
+
 
         $sidebar = array(
             'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
@@ -317,6 +208,8 @@ if (!function_exists('kt_get_page_sidebar')) {
         }elseif($sidebar['sidebar'] == 'right'){
             $sidebar['sidebar_area'] = rwmb_meta('_kt_right_sidebar', array(), $post_id);
         }
+
+
 
         return apply_filters('page_sidebar', $sidebar);
 
@@ -346,9 +239,6 @@ if (!function_exists('kt_get_single_sidebar')) {
             }elseif($sidebar['sidebar'] == 'right'){
                 $sidebar['sidebar_area'] = kt_option('blog_sidebar_right', 'blog-widget-area');
             }
-
-
-
         }elseif($sidebar['sidebar'] == 'left'){
             $sidebar['sidebar_area'] = rwmb_meta('_kt_left_sidebar', array(), $post_id);
         }elseif($sidebar['sidebar'] == 'right'){
@@ -359,7 +249,6 @@ if (!function_exists('kt_get_single_sidebar')) {
     }
 
 }
-
 
 
 if (!function_exists('kt_get_archive_sidebar')) {
@@ -568,6 +457,7 @@ if (!function_exists('get_thumbnail_attachment')){
  */
 
 function kt_custom_wpml(){
+    $output = '';
     if(kt_is_wpml()){
 
         $languages = apply_filters( 'wpml_active_languages', array('skip_missing' => false) );
@@ -581,10 +471,10 @@ function kt_custom_wpml(){
                 }
             }
 
-            echo '<li class="kt-wpml-languages">';
+            $output .= '<li class="kt-wpml-languages">';
 
             if($active_lang['country_flag_url']){
-                printf(
+                $output .= sprintf(
                     '<a class="current-language" href="%s"><img src="%s" height="12" width="18" alt="%s" /></a>',
                     'javascript:void(0)',
                     esc_url($active_lang['country_flag_url']),
@@ -592,29 +482,23 @@ function kt_custom_wpml(){
                 );
             }
 
-            echo '<ul>';
+            $output .= '<ul>';
             foreach($languages as $l){
-                echo '<li>';
-                if(!$l['active']) {
-                    echo '<a href="'.$l['url'].'">';
-                }else{
-                    echo '<span>';
-                }
-                if($l['country_flag_url']){
-                    echo '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
-                }
-                echo "<span>".$l['native_name']."</span>";
+                $output .= '<li>';
 
-                if(!$l['active']){
-                    echo '</a>';
-                }else{
-                    echo '</span>';
+                $output .= (!$l['active']) ? '<a href="'.$l['url'].'">' : '<span>';
+                if($l['country_flag_url']){
+                    $output .= '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
                 }
-                echo '</li>';
+                $output .= "<span>".$l['native_name']."</span>";
+                $output .= (!$l['active']) ? '</a>' : '</span>';
+
+                $output .= '</li>';
             }
-            echo '</ul></li>';
+            $output .= '</ul></li>';
         }
     }
+    echo $output;
 }
 
 

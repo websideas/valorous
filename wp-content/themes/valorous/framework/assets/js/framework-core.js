@@ -36,6 +36,7 @@
     	});
         
         /* Slideshow source =====================================================*/
+        /*
         var $slideshow_config = $('#_kt_slideshow_source'),
             $rev_slider = $('#_kt_rev_slider').closest('.rwmb-field'),
             $layerslider = $('#_kt_layerslider').closest('.rwmb-field'),
@@ -65,7 +66,7 @@
     	$slideshow_config.change(function() {
             kt_slideshow();
     	});
-        
+        */
         
         
     });

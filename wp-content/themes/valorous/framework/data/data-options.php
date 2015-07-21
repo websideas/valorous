@@ -190,50 +190,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => 'full',
                         'clear' => false
                     ),
-                    array(
-                        'id'       => 'sidebar',
-                        'type'     => 'select',
-                        'title'    => __( 'Sidebar configuration', THEME_LANG ),
-                        'subtitle'     => __( "Please choose page layout", THEME_LANG ),
-                        'options'  => array(
-                            'full' => __('No sidebars', THEME_LANG),
-                            'left' => __('Left Sidebar', THEME_LANG),
-                            'right' => __('Right Layout', THEME_LANG)
-                        ),
-                        'default'  => 'right',
-                        'clear' => false,
-                    ),
-                    array(
-                        'id'       => 'sidebar_left',
-                        'type' => 'select',
-                        'title'    => __( 'Sidebar left area', THEME_LANG ),
-                        'subtitle'     => __( "Please choose default layout", THEME_LANG ),
-                        'options'  => $sidebars,
-                        'default'  => 'primary-widget-area',
-                        'required' => array('sidebar','equals','left')
-                        //'clear' => false
-                    ),
-                    array(
-                        'id'       => 'sidebar_right',
-                        'type'     => 'select',
-                        'title'    => __( 'Sidebar right area', THEME_LANG ),
-                        'subtitle'     => __( "Please choose page layout", THEME_LANG ),
-                        'options'  => $sidebars,
-                        'default'  => 'primary-widget-area',
-                        'required' => array('sidebar','equals','right')
-                        //'clear' => false
-                    ),
 
                     array(
-                        'id'       => 'show_page_comment',
-                        'type'     => 'select',
-                        'title'    => __( 'Show comments on page ?', THEME_LANG ),
-                        'options'  => array(
-                            'no' => __('No', THEME_LANG),
-                            'yes' => __('Yes', THEME_LANG),
-                        ),
-                        'default'  => 'no',
-                        'clear' => false,
+                        'id'       => 'archive_placeholder',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'compiler' => true,
+                        'title'    => __( 'Placeholder', THEME_LANG ),
+                        'subtitle'     => __( "Placeholder for none image", THEME_LANG ),
                     ),
 
 
@@ -436,7 +400,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Please choose header layout', THEME_LANG ),
                         'options'  => array(
                             'layout1' => array( 'alt' => __( 'Layout 1', THEME_LANG ), 'img' => FW_IMG . 'header/header-v1.png' ),
-                            //'layout2' => array( 'alt' => __( 'Layout 2', THEME_LANG ), 'img' => FW_IMG . 'header/header-v2.png' ),
+                            'layout2' => array( 'alt' => __( 'Layout 2', THEME_LANG ), 'img' => FW_IMG . 'header/header-v2.png' ),
                             //'layout3' => array( 'alt' => __( 'Layout 3', THEME_LANG ), 'img' => FW_IMG . 'header/header-v3.png' ),
                         ),
                         'default'  => 'layout1'
@@ -541,40 +505,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 )
             );
 
-            $this->sections[] = array(
-                'id'			=> 'header_title',
-                'title'			=> __( 'Header Title', THEME_LANG ),
-                'desc'			=> '',
-                'subsection' => true,
-                'fields'		=> array(
-                    array(
-                        'id'       => 'title_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Header Title settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'title_align',
-                        'type'     => 'select',
-                        'title'    => __( 'Header Title align', THEME_LANG ),
-                        'subtitle'     => __( 'Please select page header align', THEME_LANG ),
-                        'options'  => array(
-                            'left' => __('Left', THEME_LANG ),
-                            'center' => __('Center', THEME_LANG),
-                            'right' => __('Right', THEME_LANG)
-                        ),
-                        'default'  => 'left',
-                        'clear' => false
-                    ),
-                    array(
-                        'id'       => 'title_breadcrumbs',
-                        'type'     => 'switch',
-                        'title'    => __( 'Show breadcrumbs', THEME_LANG ),
-                        'default'  => true,
-                    ),
 
-                )
-            );
             /**
 			 *	Footer
 			 **/
@@ -620,7 +551,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'   => array( '#footer' ),
                         'units'          => array( 'em', 'px' ), 
                         'units_extended' => 'true',
-                        'title'    => __( 'Footer  padding', THEME_LANG ),
+                        'title'    => __( 'Footer padding', THEME_LANG ),
                         'default'  => array( )
                     ),
                     // Footer Top settings
@@ -777,7 +708,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'centered' => __('Centered', THEME_LANG),
                             'sides' => __('Sides', THEME_LANG )
                         ),
-                        'default'  => 'sides',
+                        'default'  => 'centered',
                         'clear' => false
                     ),
                     array(
@@ -790,7 +721,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'socials' => __('Socials', THEME_LANG ),
                             'copyright' => __('Copyright', THEME_LANG ),
                         ),
-                        'default'  => 'copyright'
+                        'default'  => 'socials'
                     ),
                     array(
                         'id'       => 'footer_copyright_right',
@@ -802,7 +733,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'socials' => __('Socials', THEME_LANG ),
                             'copyright' => __('Copyright', THEME_LANG ),
                         ),
-                        'default'  => 'navigation'
+                        'default'  => 'copyright'
                     ),
                     array(
                          'id'   => 'footer_socials',
@@ -825,38 +756,7 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
 
 
-            /**
-             *	Sidebar
-             **/
-            $this->sections[] = array(
-                'id'			=> 'sidebar_section',
-                'title'			=> __( 'Sidebar Widgets', THEME_LANG ),
-                'desc'			=> '',
-                'subsection' => true,
-                'fields'		=> array(
 
-                    array(
-                        'id'          => 'custom_sidebars',
-                        'type'        => 'slides',
-                        'title'       => __('Slides Options', THEME_LANG ),
-                        'subtitle'    => __('Unlimited sidebar with drag and drop sortings.', THEME_LANG ),
-                        'desc'        => '',
-                        'class'       => 'slider-no-image-preview',
-                        'content_title' =>'Sidebar',
-                        'show' => array(
-                            'title' => true,
-                            'description' => true,
-                            'url' => false,
-                        ),
-                        'placeholder' => array(
-                            'title'           => __('Sidebar title', THEME_LANG ),
-                            'description'     => __('Sidebar Description', THEME_LANG ),
-                        ),
-                    ),
-
-                )
-
-            );
             
 
             /**
@@ -888,11 +788,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'link_color',
                         'title'    => __( 'Links Color', THEME_LANG ),
                         'output'      => array( 'a' ),
-                        'default'  => array(
-                            'regular' => '#666666',
-                            'hover'   => '#000000',
-                            'active'   => '#000000',
-                        )
+                        'default'  => array( )
                     ),
                 )
             );
@@ -1008,18 +904,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'bottom'      => false,
-                        'default'  => array(
-                            'border-color'  => '#cccccc',
-                            'border-style'  => 'solid',
-                            'border-top'    => '1px'
-                        )
+                        'default'  => array( )
                     ),
                     
                     // Footer top settings
-                    array(
-                        'id'   => 'divide-id',
-                        'type' => 'divide'
-                    ),
                     array(
                         'id'       => 'footer_top_heading',
                         'type'     => 'raw',
@@ -1049,10 +937,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                     // Footer widgets settings
                     array(
-                        'id'   => 'divide-id',
-                        'type' => 'divide'
-                    ),
-                    array(
                         'id'       => 'footer_widgets_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Footer widgets settings', THEME_LANG ).'</div>',
@@ -1067,11 +951,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'top'      => false,
-                        'default'  => array(
-                            'border-color'  => '#cccccc',
-                            'border-style'  => 'solid',
-                            'border-bottom'    => '1px'
-                        )
+                        'default'  => array( )
                     ),
                     array(
                         'id'       => 'footer_widgets_background',
@@ -1095,10 +975,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                     
                     //Footer bottom settings
                     array(
-                        'id'   => 'divide-id',
-                        'type' => 'divide'
-                    ),
-                    array(
                         'id'       => 'footer_bottom_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Footer bottom settings', THEME_LANG ).'</div>',
@@ -1115,10 +991,6 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                     //Footer copyright settings
                     array(
-                        'id'   => 'divide-id',
-                        'type' => 'divide'
-                    ),
-                    array(
                         'id'       => 'footer_copyright_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Footer copyright settings', THEME_LANG ).'</div>',
@@ -1131,7 +1003,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Footer Background with image, color, etc.', THEME_LANG ),
                         'default'   => array( ),
                         'output'      => array( '#footer-copyright' ),
-                    )
+                    ),
+                    array(
+                        'id'       => 'footer_copyright_link',
+                        'type'     => 'link_color',
+                        'title'    => __( 'Links Color', THEME_LANG ),
+                        'output'      => array( '#footer-copyright a' ),
+                        'default'  => array(  )
+                    ),
+
+
                 )
             );
 
@@ -1179,11 +1060,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => array(
                             
                         ),
-                    ),
-                    //Footer bottom settings
-                    array(
-                        'id'   => 'divide-id',
-                        'type' => 'divide'
                     ),
                     array(
                         'id'       => 'typography_heading',
@@ -1294,6 +1170,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer top', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer top font properties.', THEME_LANG ),
                         'google'   => true,
+
+                        'text-align'      => false,
+                        'color'           => false,
+
                         'output'      => array( '#footer-top' ),
                         'default'  => array(
                             'color'       => '',
@@ -1308,6 +1188,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer widgets', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer widgets font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-align'      => false,
                         'output'      => array( '#footer-area' ),
                         'default'  => array(
                             'color'       => '',
@@ -1322,21 +1203,18 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer widgets title', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer widgets title font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-align'      => false,
                         'output'      => array( '#footer-area h3.widget-title' ),
-                        'default'  => array(
-                            'color'       => '#666666',
-                            'font-size'   => '30px',
-                            'font-weight' => 'Normal',
-                            'line-height' => '30px'
-                        ),
+                        'default'  => array( ),
                     ),
                     array(
-                        'id'       => 'typography_footer_content',
+                        'id'       => 'typography_footer_copyright',
                         'type'     => 'typography',
-                        'title'    => __( 'Footer', THEME_LANG ),
+                        'title'    => __( 'Footer copyright', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer font properties.', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '#footer' ),
+                        'text-align'      => false,
+                        'output'      => array( '#footer-copyright' ),
                         'default'  => array(
                             'color'       => '',
                             'font-size'   => '',
@@ -1344,6 +1222,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'line-height' => ''
                         ),
                     ),
+
+                    array(
+                        'id'       => 'typography_footer_copyright_link',
+                        'type'     => 'link_color',
+                        'title'    => __( 'Links Color', THEME_LANG ),
+                        'output'      => array( '#footer-copyright a' ),
+                        'default'  => array(  )
+                    ),
+
                 )
             );
             /**
@@ -1397,30 +1284,290 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'typography',
                         'title'    => __( 'Top Menu Level', THEME_LANG ),
                         'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
                         'output'      => array( '#nav > ul > li > a' )
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'typography_navigation_dropdown',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Dropdown menu', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'typography_navigation_second',
                         'type'     => 'typography',
                         'title'    => __( 'Second Menu Level', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '#main-nav > ul > li ul.sub-menu-dropdown > li > a' )
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'output'      => array(
+                            '#main-nav-tool .kt-wpml-languages ul li > span',
+                            '#main-nav-tool .kt-wpml-languages ul li > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li > a'
+                        )
+                    ),
+                    array(
+                        'id'       => 'typography_navigation_mega',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Mega menu', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'typography_navigation_heading',
                         'type'     => 'typography',
                         'title'    => __( 'Heading title', THEME_LANG ),
                         'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
                         'output'      => array( 
-                            '#main-nav > ul > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
-                            '#main-nav > ul > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span',
-                            '#main-nav > ul > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title' 
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span',
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title'
+                        ),
+                        'default'  => array( ),
+                    ),
+                    array(
+                        'id'       => 'typography_navigation_mega_link',
+                        'type'     => 'typography',
+                        'title'    => __( 'Mega menu', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'output'      => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a'
                         ),
                         'default'  => array( ),
                     )
                 )
             );
 
+            /**
+             *	Sidebar
+             **/
+            $this->sections[] = array(
+                'id'			=> 'sidebar_section',
+                'title'			=> __( 'Sidebar Widgets', THEME_LANG ),
+                'desc'			=> '',
+                'fields'		=> array(
+
+                    array(
+                        'id'          => 'custom_sidebars',
+                        'type'        => 'slides',
+                        'title'       => __('Slides Options', THEME_LANG ),
+                        'subtitle'    => __('Unlimited sidebar with drag and drop sortings.', THEME_LANG ),
+                        'desc'        => '',
+                        'class'       => 'slider-no-image-preview',
+                        'content_title' =>'Sidebar',
+                        'show' => array(
+                            'title' => true,
+                            'description' => true,
+                            'url' => false,
+                        ),
+                        'placeholder' => array(
+                            'title'           => __('Sidebar title', THEME_LANG ),
+                            'description'     => __('Sidebar Description', THEME_LANG ),
+                        ),
+                    ),
+                )
+            );
+
+            /**
+             *	Page header
+             **/
+            $this->sections[] = array(
+                'id'			=> 'page_header_section',
+                'title'			=> __( 'Page header', THEME_LANG ),
+                'desc'			=> '',
+                'fields'		=> array(
+
+                    array(
+                        'id'       => 'title_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Page header settings', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id'       => 'title_align',
+                        'type'     => 'select',
+                        'title'    => __( 'Page header align', THEME_LANG ),
+                        'subtitle'     => __( 'Please select page header align', THEME_LANG ),
+                        'options'  => array(
+                            'left' => __('Left', THEME_LANG ),
+                            'center' => __('Center', THEME_LANG),
+                            'right' => __('Right', THEME_LANG)
+                        ),
+                        'default'  => 'left',
+                        'clear' => false
+                    ),
+                    array(
+                        'id'       => 'title_breadcrumbs',
+                        'type'     => 'switch',
+                        'title'    => __( 'Show breadcrumbs', THEME_LANG ),
+                        'default'  => true,
+                    ),
+                    array(
+                        'id'       => 'title_breadcrumbs_mobile',
+                        'type'     => 'switch',
+                        'title'    => __( 'Breadcrumbs on Mobile Devices', THEME_LANG ),
+                        'default'  => false,
+                        'required' => array('title_breadcrumbs','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id'       => 'title_separator',
+                        'type'     => 'switch',
+                        'title'    => __( 'Separator bettwen title and subtitle', THEME_LANG ),
+                        'default'  => true,
+                    ),
+                    array(
+                        'id'       => 'title_separator_color',
+                        'type'     => 'color',
+                        'title'    => __( 'Separator Color', THEME_LANG ),
+                        'default'  => '',
+                        'transparent' => false,
+                        'required' => array('title_separator','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id'       => 'title_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '.page-header' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Title padding', THEME_LANG ),
+                        'default'  => array( )
+                    ),
+                    array(
+                        'id'       => 'title_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Background', THEME_LANG ),
+                        'subtitle' => __( 'Page header with image, color, etc.', THEME_LANG ),
+                        'output'      => array( '.page-header' ),
+                        'default'   => array( ),
+                    ),
+                    array(
+                        'id'       => 'title_parallax',
+                        'type'     => 'switch',
+                        'title'    => __( 'Parallax Background Image', THEME_LANG ),
+                        'subtitle' => __( 'Enable parallax background image when scrolling.', THEME_LANG ),
+                        'default'  => true,
+                    ),
+                    array(
+                        'id'       => 'title_typography',
+                        'type'     => 'typography',
+                        'title'    => __( 'Typography title', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'line-height'     => false,
+                        'output'      => array( '.page-header h1.page-header-title' )
+                    ),
+                    array(
+                        'id'       => 'title_typography_subtitle',
+                        'type'     => 'typography',
+                        'title'    => __( 'Typography sub title', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'line-height'     => false,
+                        'output'      => array( '.page-header .page-header-tagline' )
+                    ),
+
+                    array(
+                        'id'       => 'title_typography_breadcrumbs',
+                        'type'     => 'typography',
+                        'title'    => __( 'Typography breadcrumbs', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'line-height'     => false,
+                        'output'      => array( '.page-header .breadcrumbs', '.page-header .breadcrumbs a' )
+                    ),
+
+
+
+                    //Breadcrumbs Color*
+
+
+
+                )
+            );
+
+
+            /**
+             * General page
+             *
+             */
+            $this->sections[] = array(
+                'icon' => 'el-icon-star',
+                'title' => __('Page', THEME_LANG),
+                'desc' => __('General Page Options', THEME_LANG),
+                'fields' => array(
+                    array(
+                        'id' => 'show_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+
+                    array(
+                        'id'       => 'sidebar',
+                        'type'     => 'select',
+                        'title'    => __( 'Sidebar configuration', THEME_LANG ),
+                        'subtitle'     => __( "Please choose page layout", THEME_LANG ),
+                        'options'  => array(
+                            'full' => __('No sidebars', THEME_LANG),
+                            'left' => __('Left Sidebar', THEME_LANG),
+                            'right' => __('Right Layout', THEME_LANG)
+                        ),
+                        'default'  => 'right',
+                        'clear' => false,
+                    ),
+                    array(
+                        'id'       => 'sidebar_left',
+                        'type' => 'select',
+                        'title'    => __( 'Sidebar left area', THEME_LANG ),
+                        'subtitle'     => __( "Please choose default layout", THEME_LANG ),
+                        'options'  => $sidebars,
+                        'default'  => 'primary-widget-area',
+                        'required' => array('sidebar','equals','left')
+                        //'clear' => false
+                    ),
+                    array(
+                        'id'       => 'sidebar_right',
+                        'type'     => 'select',
+                        'title'    => __( 'Sidebar right area', THEME_LANG ),
+                        'subtitle'     => __( "Please choose page layout", THEME_LANG ),
+                        'options'  => $sidebars,
+                        'default'  => 'primary-widget-area',
+                        'required' => array('sidebar','equals','right')
+                        //'clear' => false
+                    ),
+
+
+
+                    array(
+                        'id' => 'show_page_comment',
+                        'type' => 'switch',
+                        'title' => __('Show comments on page ?', THEME_LANG),
+                        'desc' => __('Show or hide the readmore button.', THEME_LANG),
+                        "default" => 0,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+
+                )
+            );
 
             /**
              * General Blog
@@ -1451,9 +1598,18 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'full_width' => true
                     ),
                     array(
+                        'id' => 'archive_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
                         'id'       => 'archive_sidebar',
                         'type'     => 'select',
-                        'title'    => __( 'Archive: Sidebar configuration', THEME_LANG ),
+                        'title'    => __( 'Sidebar configuration', THEME_LANG ),
                         'subtitle'     => __( "Please choose archive page ", THEME_LANG ),
                         'options'  => array(
                             'full' => __('No sidebars', THEME_LANG),
@@ -1466,7 +1622,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'archive_sidebar_left',
                         'type' => 'select',
-                        'title'    => __( 'Archive: Sidebar left area', THEME_LANG ),
+                        'title'    => __( 'Sidebar left area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
                         'default'  => 'blog-widget-area',
@@ -1476,7 +1632,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'archive_sidebar_right',
                         'type'     => 'select',
-                        'title'    => __( 'Archive: Sidebar right area', THEME_LANG ),
+                        'title'    => __( 'Sidebar right area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
                         'default'  => 'blog-widget-area',
@@ -1486,7 +1642,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id' => 'archive_loop_style',
                         'type' => 'select',
-                        'title' => __('Archive Loop Style', THEME_LANG),
+                        'title' => __('Loop Style', THEME_LANG),
                         'desc' => '',
                         'options' => array(
                             'classic' => __( 'Classic', 'js_composer' ),
@@ -1587,13 +1743,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default' => '30',
                     ),
 
-                    array(
-                        'id'       => 'archive_placeholder',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Placeholder', THEME_LANG ),
-                    ),
 
 
                     array(
@@ -1696,6 +1845,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Single post general', THEME_LANG ).'</div>',
                         'full_width' => true
+                    ),
+                    array(
+                        'id' => 'single_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
                     ),
                     array(
                         'id'       => 'blog_sidebar',
@@ -1910,7 +2068,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'id'			=> 'search_section',
                 'title'			=> __( 'Search', THEME_LANG ),
                 'desc'			=> 'Search settings',
-                'subsection' => true,
                 'fields'		=> array(
                     array(
                         'id'       => 'search_heading',
@@ -2129,20 +2286,28 @@ if ( ! class_exists( 'KT_config' ) ) {
             /**
              *	404 Page
              **/
-            /*
             $this->sections[] = array(
                 'id'			=> '404_section',
                 'title'			=> __( '404 Page', THEME_LANG ),
                 'desc'			=> '404 Page settings',
                 'fields'		=> array(
                     array(
-                        'id'       => '404_heading',
+                        'id'       => 'notfound_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( '404 Page general', THEME_LANG ).'</div>',
                         'full_width' => true
                     ),
                     array(
-                        'id' => '404_page_type',
+                        'id' => 'notfound_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'notfound_page_type',
                         'type' => 'select',
                         'title' => __('404 Page', THEME_LANG),
                         'desc' => '',
@@ -2156,7 +2321,6 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                 )
             );
-            */
 
             /**
 			 *	Woocommerce
@@ -2172,6 +2336,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Shop Products settings', THEME_LANG ).'</div>',
                         'full_width' => true
+                    ),
+                    array(
+                        'id' => 'shop_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
                     ),
                     array(
                         'id'       => 'shop_sidebar',
@@ -2260,6 +2433,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'full_width' => true
                     ),
                     array(
+                        'id' => 'product_page_header',
+                        'type' => 'switch',
+                        'title' => __('Show Page header', THEME_LANG),
+                        'desc' => __('Show page header or?.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
                         'id'       => 'product_sidebar',
                         'type'     => 'select',
                         'title'    => __( 'Product: Sidebar configuration', THEME_LANG ),
@@ -2307,47 +2489,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> __('Social and share settings', THEME_LANG),
 				'icon_class'	=> 'social_facebook',
 				'fields'		=> array(
-                    array(
-                        'id'       => 'social_share',
-                        'type'     => 'sortable',
-                        'mode'     => 'checkbox', // checkbox or text
-                        'title'    => __( 'Social Share', THEME_LANG ),
-                        'desc'     => __( 'Reorder and Enable/Disable Social Share Buttons.', THEME_LANG ),
-                        'options'  => array(
-                            'facebook' => __('Facebook', THEME_LANG),
-                            'twitter' => __('Twitter', THEME_LANG),
-                            'google_plus' => __('Google+', THEME_LANG),
-                            'pinterest' => __('Pinterest', THEME_LANG),
-                            'linkedin' => __('Linkedin', THEME_LANG),
-                            'tumblr' => __('Tumblr', THEME_LANG),
-                            'mail' => __('Mail', THEME_LANG),
-                        ),
-                        'default'  => array(
-                            'facebook' => true,
-                            'twitter' => true,
-                            'google_plus' => true,
-                            'pinterest' => true,
-                            'linkedin' => true,
-                            'tumblr' => true,
-                            'mail' => true,
-                        )
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-                    array(
-                        'id' => 'mailchimp_api_key',
-                        'type' => 'text',
-                        'title' => __('Mail Chimp API Key', THEME_LANG),
-                        'subtitle' => __('Your Mail Chimp API Key', THEME_LANG),
-                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
-                        'default' => 'acf783f889d685580748b6c543235ef9-us5'
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
+
                     array(
 						'id' => 'twitter',
 						'type' => 'text',
@@ -2356,58 +2498,12 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'default' => ''
                     ),
                     array(
-                        'id' => 'twitter_consumer_key',
-                        'type' => 'text',
-                        'title' => __('Twitter Consumer Key', THEME_LANG),
-                        'subtitle' => __('Your twitter Consumer Key', THEME_LANG),
-                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
-                        'default' => ''
-                    ),
-                    array(
-                        'id' => 'twitter_consumer_secret',
-                        'type' => 'text',
-                        'title' => __('Twitter Consumer Secret', THEME_LANG),
-                        'subtitle' => __("Your twitter Consumer Secret.", THEME_LANG),
-                        'default' => ''
-                    ),
-                    array(
-                        'id' => 'twitter_access_key',
-                        'type' => 'text',
-                        'title' => __('Twitter Access Token', THEME_LANG),
-                        'subtitle' => __("Your twitter Access Token.", THEME_LANG),
-                        'default' => ''
-                    ),
-                    array(
-                        'id' => 'twitter_access_secret',
-                        'type' => 'text',
-                        'title' => __('Twitter Access Token Secret', THEME_LANG),
-                        'subtitle' => __("Your twitter Access Token Secret.", THEME_LANG),
-                        'default' => ''
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-
-                    array(
 						'id' => 'facebook',
 						'type' => 'text',
 						'title' => __('Facebook', THEME_LANG),
 						'subtitle' => __("Your Facebook page/profile url", THEME_LANG),
 						'default' => ''
                     ),
-                    array(
-                        'id' => 'facebook_app',
-                        'type' => 'text',
-                        'title' => __('Facebook App ID', THEME_LANG),
-                        'subtitle' => __("Add Facebook App ID.", THEME_LANG),
-                        'default' => '417674911655656'
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-
                     array(
 						'id' => 'pinterest',
 						'type' => 'text',
@@ -2497,7 +2593,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                      )
                  )
             );
-            
+
+
             /**
 			 *	Advanced
 			 **/
@@ -2507,6 +2604,124 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'desc'			=> '',
                 'icon_class'	=> 'icon_star_alt',
             );
+
+
+            /**
+             *	Advanced Social Share
+             **/
+            $this->sections[] = array(
+                'id'			=> 'share_section',
+                'title'			=> __( 'Social Share', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'social_share',
+                        'type'     => 'sortable',
+                        'mode'     => 'checkbox', // checkbox or text
+                        'title'    => __( 'Social Share', THEME_LANG ),
+                        'desc'     => __( 'Reorder and Enable/Disable Social Share Buttons.', THEME_LANG ),
+                        'options'  => array(
+                            'facebook' => __('Facebook', THEME_LANG),
+                            'twitter' => __('Twitter', THEME_LANG),
+                            'google_plus' => __('Google+', THEME_LANG),
+                            'pinterest' => __('Pinterest', THEME_LANG),
+                            'linkedin' => __('Linkedin', THEME_LANG),
+                            'tumblr' => __('Tumblr', THEME_LANG),
+                            'mail' => __('Mail', THEME_LANG),
+                        ),
+                        'default'  => array(
+                            'facebook' => true,
+                            'twitter' => true,
+                            'google_plus' => true,
+                            'pinterest' => true,
+                            'linkedin' => true,
+                            'tumblr' => true,
+                            'mail' => true,
+                        )
+                    )
+                )
+            );
+
+
+            /**
+             *	Advanced Mail Chimp API
+             **/
+            $this->sections[] = array(
+                'id'			=> 'socials_api_section',
+                'title'			=> __( 'Socials API', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'twitter_api_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Twitter API', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id' => 'twitter_consumer_key',
+                        'type' => 'text',
+                        'title' => __('Twitter Consumer Key', THEME_LANG),
+                        'subtitle' => __('Your twitter Consumer Key', THEME_LANG),
+                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_consumer_secret',
+                        'type' => 'text',
+                        'title' => __('Twitter Consumer Secret', THEME_LANG),
+                        'subtitle' => __("Your twitter Consumer Secret.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_access_key',
+                        'type' => 'text',
+                        'title' => __('Twitter Access Token', THEME_LANG),
+                        'subtitle' => __("Your twitter Access Token.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id' => 'twitter_access_secret',
+                        'type' => 'text',
+                        'title' => __('Twitter Access Token Secret', THEME_LANG),
+                        'subtitle' => __("Your twitter Access Token Secret.", THEME_LANG),
+                        'default' => ''
+                    ),
+                    array(
+                        'id'       => 'facebook_app_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Facebook App', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id' => 'facebook_app',
+                        'type' => 'text',
+                        'title' => __('Facebook App ID', THEME_LANG),
+                        'subtitle' => __("Add Facebook App ID.", THEME_LANG),
+                        'default' => '417674911655656'
+                    ),
+                    array(
+                        'id'       => 'mailchimp_api_key_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Mail Chimp API', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id' => 'mailchimp_api_key',
+                        'type' => 'text',
+                        'title' => __('Mail Chimp API Key', THEME_LANG),
+                        'subtitle' => __('Your Mail Chimp API Key', THEME_LANG),
+                        'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
+                        'default' => 'acf783f889d685580748b6c543235ef9-us5'
+                    ),
+                )
+            );
+
+
+
+
+
 
             /**
 			 *	Advanced Custom CSS

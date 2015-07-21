@@ -69,7 +69,7 @@
                 <?php if(kt_option('footer_copyright', true)){ ?>
                     <footer id="footer-copyright">
                         <div class="container">
-                            <?php get_template_part( 'templates/footers/footer', kt_option('footer_copyright_layout', 'sides') ); ?>
+                            <?php get_template_part( 'templates/footers/footer', kt_option('footer_copyright_layout', 'centered') ); ?>
                         </div><!-- .container -->
                     </footer><!-- #footer-copyright -->
                 <?php } ?>
