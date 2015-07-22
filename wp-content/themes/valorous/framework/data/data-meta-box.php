@@ -738,7 +738,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'tab'  => 'page_layout',
             ),
             array(
-                'name' => __('Page top spacing', THEME_LANG),
+                'name' => __('Page bottom spacing', THEME_LANG),
                 'id' => $prefix . 'page_bottom_spacing',
                 'desc' => __("Enter your page bottom spacing (Example: 30px).", THEME_LANG ),
                 'type'  => 'text',
