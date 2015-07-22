@@ -4531,11 +4531,20 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     padding:0;
 }
 /*============ Client ============*/
+.kt_client .row{
+    margin:0!important;
+}
 .kt_client .kt_client_col{
     padding: 0!important;
 }
+.kt_client .kt_client_col a{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
 .kt_client .kt_client_col .client-logo{
-    height: 200px;
     display: block;
     background-position: center center;
     background-repeat: no-repeat;
@@ -4565,10 +4574,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     border-width: 1px;
 }
 .kt_client .style2 .kt_client_col.lastrow{
-    border-bottom: none;
+    border-bottom: none!important;
 }
 .kt_client .style2 .kt_client_col.lastcol{
-    border-right: none;
+    border-right: none!important;
 }
 .kt_client .style2 .kt_client_col:hover{
     background-color: #f2f2f2;

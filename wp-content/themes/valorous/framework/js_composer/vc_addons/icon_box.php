@@ -156,7 +156,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             $output = '<div class="icon-box-inner" style="background:'.$icon_box_bg.';">'.$output.'</div>';
         }
         if($custom_css){
-            $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+            $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
         }
 
 

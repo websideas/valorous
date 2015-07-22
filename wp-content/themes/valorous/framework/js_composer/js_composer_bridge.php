@@ -171,7 +171,7 @@ $composer_addons = array(
     'piechart.php',
     'coming_soon.php',
     'googlemap.php',
-    'client.php',
+    'client_gird.php',
 );
 
 foreach ( $composer_addons as $addon ) {

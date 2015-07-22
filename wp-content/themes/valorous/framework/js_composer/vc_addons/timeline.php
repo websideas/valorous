@@ -135,7 +135,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         }
         
         if($custom_css){
-            $custom_css = '<div class="kt_custom_css">'.$custom_css.'</div>';
+            $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
         }
         if($css_animation !=''){
             $data_animate = 'data-timeeffect="200" data-animation="'.$css_animation.'"';

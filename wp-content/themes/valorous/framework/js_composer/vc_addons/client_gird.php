@@ -3,11 +3,13 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-class WPBakeryShortCode_Client extends WPBakeryShortCode {
+class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
     var $excerpt_length;
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'client_style' => 'style1',
+            'height_item' => '200',
+            
             'image_size' => 'thumbnail',
             'source' => 'all',
             'categories' => '',
@@ -16,6 +18,11 @@ class WPBakeryShortCode_Client extends WPBakeryShortCode {
             'orderby' => 'date',
             'meta_key' => '',
             'order' => 'DESC',
+            
+            'border_width' => '',
+            'border_type' => '',
+            'border_color' => '',
+            'border_custom_color' => '',
 
             'desktop' => 3,
             'tablet' => 2,
@@ -75,27 +82,74 @@ class WPBakeryShortCode_Client extends WPBakeryShortCode {
         $col_tab = 12/$tablet;
         $col_mobile = 12/$mobile;
         
-        $output  = '';
+        $output = $custom_css = '';
+        
+        $rand = rand();
+        
+        if( $border_width ){
+            if( $client_style == 'style1' ){
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{
+                    border-width:'.$border_width.'px;
+                }';   
+            }
+            $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
+                border-width:'.$border_width.'px;
+            }';
+        }
+        
+        if($border_type ){
+            if( $client_style == 'style1' ){
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{
+                    border-style: '.$border_type.' none none '.$border_type.';
+                }';
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1 .kt_client_col{
+                    border-style: none '.$border_type.' '.$border_type.' none;
+                }';
+            }else{
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style2 .kt_client_col{
+                    border-style: none '.$border_type.' '.$border_type.' none;
+                }';
+            }
+        }
+        if( $border_color ){
+            if( $border_color != 'custom' ){
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
+                    border-color: '.$border_color.';
+                }';
+            }else{
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
+                    border-color: '.$border_custom_color.';
+                }';
+            }
+        }
+        if($custom_css){
+            $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
+        }
+        
         $output .= '<div class="'.esc_attr( $elementClass ).'">';
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) :
-                $output .= '<div class="kt_client"><div class="row '.$client_style.'" data-desktop="'.$desktop.'" data-tablet="'.$tablet.'" data-mobile="'.$mobile.'">';
+                $output .= '<div id="kt_client_'.$rand.'" class="kt_client"><div class="row '.$client_style.'" data-desktop="'.$desktop.'" data-tablet="'.$tablet.'" data-mobile="'.$mobile.'">';
                     while ( $query->have_posts() ) : $query->the_post();
                         $thumbnail = get_thumbnail_attachment(get_post_thumbnail_id(),$image_size);
-                        $output .= '<div class="kt_client_col col-xs-'.$col_mobile.' col-sm-'.$col_tab.' col-md-'.$col_desktop.'"><div class="client-logo" style="background-image: url('.$thumbnail['url'].');"></div></div>';
+                        $output .= '<div class="kt_client_col col-xs-'.$col_mobile.' col-sm-'.$col_tab.' col-md-'.$col_desktop.'">';
+                            $output .= '<div class="client-logo" style="background-image: url('.$thumbnail['url'].');height:'.$height_item.'px;">';
+                                $link = rwmb_meta('_kt_link_client');
+                                if($link){ $output .= '<a href="'.$link.'"></a>'; }
+                            $output .= '</div>';
+                        $output .= '</div>';
                     endwhile; wp_reset_postdata();
                 $output .= '</div></div>';
             endif;
-        $output .= '</div>';
-
+        $output .= $custom_css.'</div>';
 
     	return $output;
     }
 }
 
 vc_map( array(
-    "name" => __( "Client", THEME_LANG),
-    "base" => "client",
+    "name" => __( "Clients Gird", THEME_LANG),
+    "base" => "clients_gird",
     "category" => __('by Theme', THEME_LANG ),
     "wrapper_class" => "clearfix",
     "params" => array(
@@ -104,6 +158,17 @@ vc_map( array(
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
         ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Height Item", THEME_LANG),
+            "param_name" => "height_item",
+            "value" => "200",
+            "min" => "1",
+            "max" => "500",
+            "step" => "1",
+            "suffix" => "px",
+        ),
+        
         //Layout settings
         array(
             'type' => 'dropdown',
@@ -113,6 +178,7 @@ vc_map( array(
                 __( 'Style 1', THEME_LANG ) => 'style1',
                 __( 'Style 2', THEME_LANG ) => 'style2',
             ),
+            'admin_label' => true,
             'description' => __( 'Select your style.', THEME_LANG ),
         ),
         array(
@@ -268,6 +334,59 @@ vc_map( array(
             'std' => '1',
             'group' => __( 'Column settings', THEME_LANG ),
         ),
+        //border
+        array(
+            "type" => "kt_number",
+            "heading" => __("Border Width", THEME_LANG),
+            "param_name" => "border_width",
+            "value" => 1,
+            "min" => 1,
+            "max" => 5,
+            "suffix" => "px",
+            "description" => "",
+            'group' => __( 'Border', THEME_LANG ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Border Style', 'js_composer' ),
+            'param_name' => 'border_type',
+            'value' => array(
+                __( 'Dashed', 'js_composer' ) => 'dashed',
+                __( 'Solid', 'js_composer' ) => 'solid',
+                __( 'Dotted', 'js_composer' ) => 'dotted',
+                __( 'Double', 'js_composer' ) => 'double',
+                __( 'Groove', 'js_composer' ) => 'groove',
+                __( 'Ridge', 'js_composer' ) => 'ridge',
+                __( 'Inset', 'js_composer' ) => 'inset',
+                __( 'Outset', 'js_composer' ) => 'outset'
+            ),
+            'std' => 'solid',
+            'description' => __( 'Select type border.', 'js_composer' ),
+            'group' => __( 'Border', THEME_LANG )
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Border Color', 'js_composer' ),
+            'param_name' => 'border_color',
+            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'std' => 'custom',
+            'description' => __( 'Border Color.', 'js_composer' ),
+            'param_holder_class' => 'vc_colored-dropdown',
+            'group' => __( 'Border', THEME_LANG )
+        ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom Border Color', 'js_composer' ),
+            'param_name' => 'border_custom_color',
+            'description' => __( 'Select custom border color.', 'js_composer' ),
+            'value' => '#e5e5e5',
+            'dependency' => array(
+                'element' => 'border_color',
+                'value' => 'custom',
+            ),
+            'group' => __( 'Border', THEME_LANG )
+        ),
+        
         array(
 			'type' => 'css_editor',
 			'heading' => __( 'Css', 'js_composer' ),
