@@ -316,6 +316,9 @@
     padding: 20px 0;
     border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
+.woocommerce table.shop_table.customer_details td{
+    padding:6px 0;
+}
 .woocommerce ul#shipping_method{
     white-space: nowrap;
 }
@@ -327,6 +330,29 @@
 .woocommerce td.product-name dl.variation dd,
 .woocommerce td.product-name dl.variation dt{
     margin-bottom: 0;
+}
+.woocommerce .woocommerce-error, .woocommerce .woocommerce-info, .woocommerce .woocommerce-message{
+    padding:25px!important;
+    border:2px solid;
+    text-transform: uppercase;
+}
+.woocommerce .woocommerce-error::before, .woocommerce .woocommerce-info::before, .woocommerce .woocommerce-message::before{
+    display: none;
+}
+.woocommerce .woocommerce-error{
+    background: #fff0ed;
+    border-color:#ea4f21;
+    color:#ea4f21;
+}
+.woocommerce .woocommerce-info{
+    background: #effafe;
+    border-color:#6bcef5;
+    color:#6bcef5;
+}
+.woocommerce .woocommerce-message{
+    background: #e7f6f1;
+    border-color:#33b889;
+    color:#33b889;
 }
 /** ================================================
     2. Woocommerce shopping cart
