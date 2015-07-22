@@ -44,6 +44,7 @@
         
         woo_quantily();
         //scrollsizebar();
+        kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');//Add class client
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -98,7 +99,11 @@
                 byRow: true
             });
         });
-
+        
+        /**==============================
+        ***  Client
+        ===============================**/
+        kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
     });
     
     function scrollsizebar(){
@@ -963,7 +968,45 @@
             sync2.trigger("owl.goTo", num-1)
         }
     }
-
+    
+    /* ---------------------------------------------
+     Kt Client
+     --------------------------------------------- */
+     
+    function kt_changeSize(parent,field){
+        var desktop = $(parent).data('desktop'),
+            tablet = $(parent).data('tablet'),
+            mobile = $(parent).data('mobile'),
+            $width = $(window).width();
+            console.log(desktop);
+        if($width<768){
+            kt_contentChange(mobile,field);
+        }else if($width<992){
+            kt_contentChange(tablet,field);
+        }else{
+            kt_contentChange(desktop,field);
+        }
+    }
+    function kt_contentChange(n,field){
+        var $stt = $(field).length,
+            $lastrow;
+        
+        $(field).removeClass('lastrow');
+        $(field).removeClass('lastcol'); 
+        
+        $(field ).each(function( index ) {
+          if((index+1) % n == 0){
+            $(this).addClass('lastcol');
+          }                          
+        });
+        
+        if($stt % n == 0){
+          $lastrow = $stt-n-1;
+        }else{
+          $lastrow = Math.floor($stt/n) * n - 1;
+        }
+        $(field+":gt("+$lastrow+")" ).addClass('lastrow');
+    }
 
 })(jQuery); // End of use strict
 

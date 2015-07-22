@@ -170,7 +170,8 @@ $composer_addons = array(
     'lightbox.php',
     'piechart.php',
     'coming_soon.php',
-    'googlemap.php'
+    'googlemap.php',
+    'client.php',
 );
 
 foreach ( $composer_addons as $addon ) {

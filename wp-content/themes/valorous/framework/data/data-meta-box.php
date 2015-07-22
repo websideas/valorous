@@ -359,6 +359,28 @@ function kite_register_meta_boxes( $meta_boxes )
 
         )
     );
+    /**
+     * For Client
+     * 
+     */
+    
+    $meta_boxes[] = array(
+        'id' => 'client_meta_boxes',
+        'title' => 'Client Options',
+        'pages' => array( 'kt_client' ),
+        'context' => 'normal',
+        'priority' => 'default',
+        'fields' => array(
+            
+            array(
+                'name' => __( 'Link Client', THEME_LANG ),
+                'id' => $prefix . 'link_client',
+                'desc' => __( "Link Client.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+
+        )
+    );
     
     
     /**

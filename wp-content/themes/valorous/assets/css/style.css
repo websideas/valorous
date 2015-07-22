@@ -4121,6 +4121,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     border-radius:50%;
     display: block;
 }
+.team-item.layout-1 figure img{
+    width:100%;
+    height:auto;
+}
 .team-item.layout-1 .team-hover{
     background: rgba(0, 0, 0, 0.6);
     height: 100%;
@@ -4165,8 +4169,12 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     position: relative;
     display: block;
 }
+.team-item.layout-2 figure img{
+    width:100%;
+    height:auto;
+}
 .team-item.layout-2 figure .team-hover{
-    background: rgba(44, 62, 80, 0.75);
+    background: rgba(0, 0, 0, 0.75);
     height: 100%;
     margin: 0;
     overflow: hidden;
@@ -4214,14 +4222,14 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     margin:0;
 }
 .team-item.layout-2{
-    border-bottom: 10px solid #e8eaed;
+    border-bottom: 10px solid #d2a952;
     transition: all 0.3s ease-out 0s;
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
 }
 .team-item.layout-2:hover{
-    border-color:#1abc9c;
+    border-color:#ecb848;
 }
 /*========= Timeline =========*/
 /*Vertical*/
@@ -4522,7 +4530,49 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .page-template-page-comingsoon #content{
     padding:0;
 }
-
+/*============ Client ============*/
+.kt_client .kt_client_col{
+    padding: 0!important;
+}
+.kt_client .kt_client_col .client-logo{
+    height: 200px;
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+/*======style1=======*/
+.kt_client .style1{    
+    border-color: #e5e5e5;
+    border-style: solid none none solid;
+    border-width: 1px;
+}
+.kt_client .style1 .kt_client_col{
+    background-color: #fff;
+    border-color: #e5e5e5;
+    border-style: none solid solid none;
+    border-width: 1px;   
+}
+.kt_client .style1 .kt_client_col:hover{
+    background-color: #f2f2f2;
+}
+/*======style2=======*/
+.kt_client .style2 .kt_client_col{
+    padding: 0!important;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #e5e5e5;
+    border-style: none solid solid none;
+    border-width: 1px;
+}
+.kt_client .style2 .kt_client_col.lastrow{
+    border-bottom: none;
+}
+.kt_client .style2 .kt_client_col.lastcol{
+    border-right: none;
+}
+.kt_client .style2 .kt_client_col:hover{
+    background-color: #f2f2f2;
+}
 
 /* ==============================
    16. Popup

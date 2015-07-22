@@ -3,13 +3,13 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
+class WPBakeryShortCode_Teams_Carousel extends WPBakeryShortCode {
     var $excerpt_length;
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'team_layout' => '',
-            'image_size' => '',
+            'team_layout' => '1',
+            'image_size' => 'thumbnail',
             'source' => 'all',
             'categories' => '',
             'posts' => '',
@@ -106,7 +106,6 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
                 $output .= '</div>';
             }
 
-            
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) :
 
@@ -182,8 +181,8 @@ class WPBakeryShortCode_Team_Carousel extends WPBakeryShortCode {
 }
 
 vc_map( array(
-    "name" => __( "Team Carousel", THEME_LANG),
-    "base" => "team_carousel",
+    "name" => __( "Teams Carousel", THEME_LANG),
+    "base" => "teams_carousel",
     "category" => __('by Theme', THEME_LANG ),
     "wrapper_class" => "clearfix",
     "params" => array(
@@ -197,10 +196,6 @@ vc_map( array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
-            'dependency' => array(
-                'element' => 'show_thumb',
-                'value' => array( 'true' )
-            ),
         ),
         //Layout settings
         array(

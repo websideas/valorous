@@ -94,4 +94,44 @@ function register_posttype() {
         'show_admin_column'             => true
     ));
    /* =========================================== END PORTFOLIO ===========================================*/
+   /* =============================================== CLIENT ==============================================*/
+    $labels = array( 
+        'name' => __( 'Client', THEME_LANG),
+        'singular_name' => __( 'Client', THEME_LANG),
+        'add_new' => __( 'Add New', THEME_LANG),
+        'all_items' => __( 'All Client', THEME_LANG),
+        'add_new_item' => __( 'Add New Client', THEME_LANG),
+        'edit_item' => __( 'Edit Client', THEME_LANG),
+        'new_item' => __( 'New Client', THEME_LANG),
+        'view_item' => __( 'View Client', THEME_LANG),
+        'search_items' => __( 'Search Client', THEME_LANG),
+        'not_found' => __( 'No Client found', THEME_LANG),
+        'not_found_in_trash' => __( 'No Client found in Trash', THEME_LANG),
+        'parent_item_colon' => __( 'Parent Client', THEME_LANG),
+        'menu_name' => __( 'Client', THEME_LANG)
+    );
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => false,
+        'supports' 	=> array('title', 'thumbnail'),
+    );
+    register_post_type( 'kt_client', $args );
+    
+    register_taxonomy('client-category',array('kt_client'), array(
+        "label" 						=> __("Categories", THEME_LANG), 
+        "singular_label" 				=> __("Category", THEME_LANG), 
+        'public'                        => false,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => false,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        'rewrite'                       => false,
+        'query_var'                     => true,
+        'show_admin_column'             => true
+    ));
+   /* ============================================ END CLIENT ============================================*/
 }
