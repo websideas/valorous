@@ -500,3 +500,17 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
         }
     }
 }
+
+function woocommerce_show_product_loop_new_flash(){
+    global $post;
+    
+    $time_new = kt_option('time_product_new');
+    
+    $now = strtotime( date("Y-m-d H:i:s") );
+	$post_date = strtotime( $post->post_date );
+	$num_day = (int)(($now-$post_date)/(3600*24));
+	if( $num_day < $time_new ){
+		echo "<span class='kt_new'>".__( 'New!',THEME_LANG )."</span>";
+	}
+}
+add_action( 'woocommerce_shop_loop_item_before_image', 'woocommerce_show_product_loop_new_flash', 5 );

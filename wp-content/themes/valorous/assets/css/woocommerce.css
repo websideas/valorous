@@ -41,6 +41,7 @@
     font-style: normal;
     font-weight: normal;
 }
+.woocommerce span.kt_new,
 .woocommerce span.onsale{
     background: #f45245;
     font-weight: normal;
@@ -53,6 +54,14 @@
     padding: 0 5px;
     top: 0;
     z-index: 1;
+}
+.woocommerce span.kt_new{
+    top:30px;
+    position: absolute;
+    text-align: center;
+    min-width: 3.236em;
+    color:#fff;
+    margin:0;
 }
 .woocommerce .select2-container .select2-choice{
     border-radius: 0;

@@ -2493,7 +2493,24 @@ if ( ! class_exists( 'KT_config' ) ) {
                     //Product reviews position - Tab,Below
                     //Social Media Sharing Buttons
                     //Single Product Gallery Type
-
+                    
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                    array(
+                        'id'       => 'shop_single_product',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Shop Product settings', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id'       => 'time_product_new',
+                        'type'     => 'text',
+                        'title'    => __( 'Time Product New', THEME_LANG ),
+                        'default'  => '30',
+                        'desc' => __('Time Product New ( unit: days ).', THEME_LANG),
+                    ),
                 )
             );
             $this->sections[] = array(
