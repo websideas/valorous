@@ -10,9 +10,9 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
     protected function content($atts, $content = null) {
         extract( shortcode_atts( array(
-            'timeline_tyle' => '',
+            'timeline_tyle' => 'vertical',
             'horizontal_style' => 'style_1',
-            'timeline_column' => '',
+            'timeline_column' => 4,
             
             'font_container' => '',
             'letter_spacing' => '0',

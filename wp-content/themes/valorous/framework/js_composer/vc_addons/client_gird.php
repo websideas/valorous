@@ -21,8 +21,8 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
             
             'border_width' => '',
             'border_type' => '',
-            'border_color' => '',
-            'border_custom_color' => '',
+            'border_color' => 'custom',
+            'border_custom_color' => '#e5e5e5',
 
             'desktop' => 3,
             'tablet' => 2,
@@ -111,17 +111,18 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
                 }';
             }
         }
-        if( $border_color ){
-            if( $border_color != 'custom' ){
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
-                    border-color: '.$border_color.';
-                }';
-            }else{
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
+        
+        if( $border_color == 'custom' ){
+            if( $client_style == 'style1' ){
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{
                     border-color: '.$border_custom_color.';
                 }';
             }
+            $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
+                border-color: '.$border_custom_color.';
+            }';
         }
+        
         if($custom_css){
             $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
         }
@@ -129,7 +130,7 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
         $output .= '<div class="'.esc_attr( $elementClass ).'">';
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) :
-                $output .= '<div id="kt_client_'.$rand.'" class="kt_client"><div class="row '.$client_style.'" data-desktop="'.$desktop.'" data-tablet="'.$tablet.'" data-mobile="'.$mobile.'">';
+                $output .= '<div id="kt_client_'.$rand.'" class="kt_client '.$border_color.'"><div class="row '.$client_style.'" data-desktop="'.$desktop.'" data-tablet="'.$tablet.'" data-mobile="'.$mobile.'">';
                     while ( $query->have_posts() ) : $query->the_post();
                         $thumbnail = get_thumbnail_attachment(get_post_thumbnail_id(),$image_size);
                         $output .= '<div class="kt_client_col col-xs-'.$col_mobile.' col-sm-'.$col_tab.' col-md-'.$col_desktop.'">';
