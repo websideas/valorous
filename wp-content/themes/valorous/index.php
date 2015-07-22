@@ -9,9 +9,6 @@
  *
  * Learn more: {@link https://codex.wordpress.org/Template_Hierarchy}
  *
- * @package WordPress
- * @subpackage London
- * @since London 1.0
  */
 
 

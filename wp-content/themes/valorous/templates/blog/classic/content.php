@@ -9,7 +9,7 @@
         if($blog_atts['thumbnail_type'] == 'image'){
             kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true, false);
         }else{
-            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive');
+            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true, false);
         }
     ?>
 
@@ -46,7 +46,7 @@
                 </div>
                 <?php if($blog_atts['readmore']){ ?>
                     <div class="entry-more">
-                        <a href="<?php the_permalink() ?>"><?php _e('Read more', THEME_LANG ); ?></a>
+                        <a href="<?php the_permalink() ?>" class="btn <?php echo $blog_atts['readmore']; ?>"><?php _e('Read more', THEME_LANG ); ?></a>
                     </div>
                 <?php } ?>
             </div>

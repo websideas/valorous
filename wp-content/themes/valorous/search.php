@@ -10,6 +10,9 @@
 $sidebar = kt_get_search_sidebar();
 $settings = kt_get_settings_search();
 
+
+print_r($sidebar);
+
 //print_r($settings);
 
 get_header(); ?>
@@ -98,9 +101,10 @@ get_header(); ?>
                     </div>
                 <?php }else { ?>
                     <div class="search-content-error">
+                        <h1><?php _e('Nothing Found', THEME_LANG) ?></h1>
                         <p>
-                            <?php printf( __( "Sorry ! No post was found by <span class='search-keyword'>'%s'</span>.", THEME_LANG ), get_search_query() ); ?>
-                            <?php _e('Try searching for something else', THEME_LANG); ?>
+                            <?php printf( __( "Sorry ! but nothing was found by <span class='search-keyword'>'%s'</span>.", THEME_LANG ), get_search_query() ); ?>
+                            <?php _e('Please try again with some different keywords.', THEME_LANG); ?>
                         </p>
                         <?php get_search_form(); ?>
                     </div>

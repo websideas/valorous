@@ -2081,7 +2081,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'search_sidebar',
                         'type'     => 'select',
-                        'title'    => __( 'Search: Sidebar configuration', THEME_LANG ),
+                        'title'    => __( 'Sidebar configuration', THEME_LANG ),
                         'subtitle'     => __( "Please choose archive page ", THEME_LANG ),
                         'options'  => array(
                             'full' => __('No sidebars', THEME_LANG),
@@ -2094,11 +2094,11 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'search_sidebar_left',
                         'type' => 'select',
-                        'title'    => __( 'Search: Sidebar left area', THEME_LANG ),
+                        'title'    => __( 'Sidebar left area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
                         'default'  => 'blog-widget-area',
-                        'required' => array('archive_sidebar','equals','left'),
+                        'required' => array('search_sidebar','equals','left'),
                         'clear' => false
                     ),
                     array(
@@ -2108,7 +2108,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
                         'default'  => 'blog-widget-area',
-                        'required' => array('archive_sidebar','equals','right'),
+                        'required' => array('search_sidebar','equals','right'),
                         'clear' => false
                     ),
                     array(

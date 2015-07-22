@@ -5,17 +5,12 @@ if ( !defined('ABSPATH')) exit;
 
 
 class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
-    var $excerpt_length;
-
-    function custom_excerpt_length( ) {
-        return $this->excerpt_length;
-    }
 
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
             'image_size' => '',
-            'readmore' => 'true',
+            'readmore' => '',
             'blog_pagination' => 'classic',
             'sharebox' => 'true',
             'blog_type' => 'classic',
@@ -51,9 +46,12 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         extract($atts);
 
+
         $output = $settings = '';
 
-        $this->excerpt_length = $excerpt_length;
+        $excerpt_length =  intval( $excerpt_length );
+        $exl_function = create_function('$n', 'return '.$excerpt_length.';');
+        add_filter( 'excerpt_length', $exl_function , 999 );
 
         $args = array(
             'order' => $order,
@@ -129,7 +127,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             global $blog_atts;
             $blog_atts_posts = array(
                 'image_size' => $image_size,
-                'readmore' => apply_filters('sanitize_boolean', $readmore),
+                'readmore' => $readmore,
                 'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
                 "show_author" => apply_filters('sanitize_boolean', $show_author),
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
@@ -143,8 +141,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
             $i = 1 ;
             $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
-
-            add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
             //while ( $wp_query->have_posts() ) : $wp_query->the_post();
             while ( have_posts() ) : the_post();
@@ -171,7 +167,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 }
                 $i++;
             endwhile;
-            remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
             if ($blog_type == 'grid' || $blog_type == 'masonry') {
                 echo "</div><!-- .row -->";
@@ -187,6 +182,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         endif;
         wp_reset_query();
 
+        remove_filter('excerpt_length', $exl_function, 999 );
         $output .= ob_get_clean();
 
         $elementClass = array(
@@ -307,10 +303,20 @@ vc_map( array(
             "param_name" => "extra_settings",
         ),
         array(
-            'type' => 'kt_switch',
+            'type' => 'dropdown',
             'heading' => __( 'Readmore button', THEME_LANG ),
             'param_name' => 'readmore',
-            'value' => 'true',
+            'value' => array(
+                __('None', THEME_LANG) => '',
+                __( 'Link', 'js_composer' ) => 'link',
+                __( 'Button Accent', 'js_composer' ) => 'btn-default',
+                __( 'Button White', 'js_composer' ) => 'btn-white',
+                __( 'Button Dark', 'js_composer' ) => 'btn-dark',
+                __( 'Button Dark lighter', 'js_composer' ) => 'btn-darkl',
+                __( 'Button Gray', 'js_composer' ) => 'btn-gray',
+                __( 'Button White Border', 'js_composer' ) => 'btn-border-w',
+                __( 'Button Dark Border', 'js_composer' ) => 'btn-border-d',
+            ),
             "description" => __("Show or hide the readmore button.", THEME_LANG),
         ),
         array(

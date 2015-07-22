@@ -5,9 +5,6 @@
  * The area of the page that contains both current comments
  * and the comment form.
  *
- * @package WordPress
- * @subpackage London
- * @since  London 1.0
  */
 
 /*

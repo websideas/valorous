@@ -210,14 +210,14 @@ add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
-add_action('woocommerce_before_main_content', 'london_wrapper_start', 10);
-add_action('woocommerce_after_main_content', 'london_wrapper_end', 10);
+add_action('woocommerce_before_main_content', 'kt_wrapper_start', 10);
+add_action('woocommerce_after_main_content', 'kt_wrapper_end', 10);
 
-function london_wrapper_start() {
+function kt_wrapper_start() {
   echo '<div class="content-wrapper"><div class="container wc-container">';
 }
 
-function london_wrapper_end() {
+function kt_wrapper_end() {
   echo '</div><!-- .container --></div>';
 }
 
@@ -282,8 +282,8 @@ function woocommerce_gridlist_toggle_callback(){
  * Change layout of single product
  * 
  */
-add_filter( 'single_product_layout', 'london_single_product_layout' );
-function london_single_product_layout( $columns ) {
+add_filter( 'single_product_layout', 'kt_single_product_layout' );
+function kt_single_product_layout( $columns ) {
     $layout = kt_option('product_sidebar', 'full');
     return $layout;
 }

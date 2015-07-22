@@ -9,7 +9,7 @@
         <p ><?php _e('We\'re sorry, but the Web address you\'ve entered is no longer available.', THEME_LANG ); ?></p>
         <?php get_search_form(); ?>
         <div class="buttons">
-            <a title="<?php _e('Home', THEME_LANG); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-default button button-medium">
+            <a title="<?php _e('Home', THEME_LANG); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-default">
                 <span>
                     <?php _e('Home page', THEME_LANG ); ?>
                     <i class="icon-home button-icon-right"></i>

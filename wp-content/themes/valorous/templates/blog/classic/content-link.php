@@ -1,7 +1,7 @@
 <?php
 global $blog_atts;
 $classes = array('post-item post-layout-classic', $blog_atts['class']);
-
+//print_r($blog_atts);
 ?>
 <article <?php post_class($classes); ?>>
     <?php
@@ -13,7 +13,6 @@ $classes = array('post-item post-layout-classic', $blog_atts['class']);
     ?>
     <?php if($blog_atts['thumbnail_type'] == 'image'){ ?>
         <div class="entry-main-content">
-
             <div class="post-info">
                 <div class="entry-ci">
                     <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
