@@ -519,7 +519,7 @@ select:not([multiple]) {
     display: inline-block;
     line-height: 22px;
     margin: 0 0 0 20px;
-    padding: 35px 10px;
+    padding: 30px 10px;
     position: relative;
     text-align: left;
     -moz-transition: all 0.25s ease 0s;
