@@ -9,6 +9,7 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
         $atts = shortcode_atts( array(
             'client_style' => 'style1',
             'height_item' => '200',
+            'target_link' => '_self',
             
             'image_size' => 'thumbnail',
             'source' => 'all',
@@ -136,7 +137,7 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
                         $output .= '<div class="kt_client_col col-xs-'.$col_mobile.' col-sm-'.$col_tab.' col-md-'.$col_desktop.'">';
                             $output .= '<div class="client-logo" style="background-image: url('.$thumbnail['url'].');height:'.$height_item.'px;">';
                                 $link = rwmb_meta('_kt_link_client');
-                                if($link){ $output .= '<a href="'.$link.'"></a>'; }
+                                if($link){ $output .= '<a target="'.$target_link.'" href="'.$link.'"></a>'; }
                             $output .= '</div>';
                         $output .= '</div>';
                     endwhile; wp_reset_postdata();
@@ -168,6 +169,18 @@ vc_map( array(
             "max" => "500",
             "step" => "1",
             "suffix" => "px",
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Target Link', THEME_LANG ),
+            'param_name' => 'target_link',
+            'value' => array(
+                __( 'Self', THEME_LANG ) => '_self',
+                __( 'Blank', THEME_LANG ) => '_blank',
+                __( 'Parent', THEME_LANG ) => '_parent',
+                __( 'Top', THEME_LANG ) => '_top',
+            ),
+            'description' => __( 'Select target link.', THEME_LANG ),
         ),
         
         //Layout settings
