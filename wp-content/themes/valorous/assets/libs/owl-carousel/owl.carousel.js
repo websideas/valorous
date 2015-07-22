@@ -1210,11 +1210,23 @@ if (typeof Object.create !== "function") {
         autoHeight : function () {
             var base = this,
                 $currentimg = $(base.$owlItems[base.currentItem]).find("img"),
-                iterations;
+                iterations,
+                start = base.currentItem,
+                end = start + base.options.items,
+                visible = base.$owlItems.toArray().slice(start, end);
+
+            heights = [],
+                maxheight = 0;
+
+            $.each(visible, function(index, item) {
+                heights.push($(item).height());
+            });
+
+            maxheight = Math.max.apply(null, heights);
 
             function addHeight() {
                 var $currentItem = $(base.$owlItems[base.currentItem]).height();
-                base.wrapperOuter.css("height", $currentItem + "px");
+                base.wrapperOuter.css("height", maxheight + "px");
                 if (!base.wrapperOuter.hasClass("autoHeight")) {
                     window.setTimeout(function () {
                         base.wrapperOuter.addClass("autoHeight");
