@@ -71,7 +71,8 @@ $classes[] = 'col-xs-'.$bootstrapTabletColumn.' col-sm-'. $bootstrapColumn .' co
                 <?php
                 /**
                  * woocommerce_shop_loop_item_before_image hook
-                 *
+                 *  
+                 * @hooked woocommerce_show_product_loop_new_flash - 5
                  * @hooked woocommerce_show_product_loop_sale_flash - 10
                  */
                 do_action( 'woocommerce_shop_loop_item_before_image' );

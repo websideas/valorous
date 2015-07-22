@@ -514,3 +514,4 @@ function woocommerce_show_product_loop_new_flash(){
 	}
 }
 add_action( 'woocommerce_shop_loop_item_before_image', 'woocommerce_show_product_loop_new_flash', 5 );
+add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_loop_new_flash', 5 );
