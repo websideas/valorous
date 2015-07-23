@@ -44,14 +44,22 @@ class Widget_KT_Instagram extends WP_Widget {
             
             $kt_instagram = new KT_Instagram();
             $data = $kt_instagram->getUserMedia( array('count' => $number ));
-            
+            $show_follow = isset( $instance['show_follow'] ) ? (bool) $instance['show_follow'] : true;
+
             if(!empty($data)){
                 $columns = ( ! empty( $instance['columns'] ) ) ? absint( $instance['columns'] ) : 3;
                 if ( ! $columns )
                     $columns = 3;
 
                 echo $kt_instagram->showInstagram($data, $columns);
-
+                if($show_follow){
+                    printf(
+                        '<p>%s #<a target="_blank" href="%s">%s</a></p>',
+                        __('Follow Us', THEME_LANG),
+                        $this->username,
+                        $this->username
+                    );
+                }
             }else{
                 printf(
                     '<strong>%s</strong>',
@@ -83,13 +91,15 @@ class Widget_KT_Instagram extends WP_Widget {
         if(!$instance['columns']){
             $instance['columns'] = 3;
         }
+        $instance['show_follow'] = isset( $new_instance['show_follow'] ) ? (bool) $new_instance['show_follow'] : false;
+
         return $instance;
     }
 
 
     public function form( $instance ) {
 
-        $defaults = array( 'title' => __( 'Instagram' , THEME_LANG), 'number' => 9, 'columns' => 3);
+        $defaults = array( 'title' => __( 'Instagram' , THEME_LANG), 'number' => 9, 'columns' => 3, 'show_follow' => true);
         $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title = strip_tags($instance['title']);
@@ -108,6 +118,10 @@ class Widget_KT_Instagram extends WP_Widget {
                     <option <?php selected( $instance['columns'], '3' ); ?> value="3"><?php _e('3',THEME_LANG); ?></option>
                     <option <?php selected( $instance['columns'], '4' ); ?> value="4"><?php _e('4',THEME_LANG); ?></option>
                 </select></p>
+
+            <p><input class="checkbox" type="checkbox" <?php checked( $show_follow ); ?> id="<?php echo $this->get_field_id( 'show_follow' ); ?>" name="<?php echo $this->get_field_name( 'show_follow' ); ?>" />
+                <label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php _e( 'Follow link', THEME_LANG ); ?></label></p>
+
         <?php }else{ 
             printf(
                 '<p>Please config instagram in %shere%s for use widget</p>',

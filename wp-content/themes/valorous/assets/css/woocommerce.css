@@ -84,7 +84,6 @@
     border-color: #d2a952;
     border-radius: 0;
     color: #ffffff;
-    font-family: Montserrat;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.42857;
@@ -184,16 +183,20 @@
 .woocommerce ul.shop-products .added_to_cart:before,
 .woocommerce ul.shop-products .addtocart_button.product_type_variable:before{
     font-family: "Simple-Line-Icons";
-    content: "\e04e";
+    content: "\e04f";
 }
 .woocommerce ul.shop-products .product-quick-view:before{
     content: "\e087";
 }
 .woocommerce ul.shop-products .added_to_cart:before{
-    content: "\e04f";
+    content: "\e035";
 }
-.woocommerce ul.shop-products .button.product_type_variable:before{
+.woocommerce ul.shop-products .addtocart_button.product_type_grouped:before,
+.woocommerce ul.shop-products .addtocart_button.product_type_variable:before{
     content: "\e051";
+}
+.woocommerce ul.shop-products .addtocart_button.product_type_external:before{
+    content: "\e08d";
 }
 .woocommerce ul.shop-products .button.loading{
     opacity: 1;
@@ -331,12 +334,15 @@
 .woocommerce td.product-name dl.variation dt{
     margin-bottom: 0;
 }
-.woocommerce .woocommerce-error, .woocommerce .woocommerce-info, .woocommerce .woocommerce-message{
-    padding:25px!important;
-    border:2px solid;
-    text-transform: uppercase;
+.woocommerce .woocommerce-error,
+.woocommerce .woocommerce-info,
+.woocommerce .woocommerce-message{
+    border: 2px solid !important;
+    padding: 12px 20px !important;
 }
-.woocommerce .woocommerce-error::before, .woocommerce .woocommerce-info::before, .woocommerce .woocommerce-message::before{
+.woocommerce .woocommerce-error:before,
+.woocommerce .woocommerce-info:before,
+.woocommerce .woocommerce-message:before{
     display: none;
 }
 .woocommerce .woocommerce-error{
@@ -345,14 +351,30 @@
     color:#ea4f21;
 }
 .woocommerce .woocommerce-info{
-    background: #effafe;
-    border-color:#6bcef5;
-    color:#6bcef5;
+    background: none;
+    border-color:#d0a852!important;
 }
 .woocommerce .woocommerce-message{
-    background: #e7f6f1;
-    border-color:#33b889;
-    color:#33b889;
+    background: none;
+    border-color: #d1f2f0 !important;
+}
+.woocommerce .woocommerce-message .button.wc-forward{
+    background: none;
+    color: #515151;
+    float: right;
+    line-height: normal;
+    margin: 5px 0 0;
+    padding: 0;
+}
+.woocommerce .woocommerce-message .button.wc-forward:after{
+    content: '\f0da';
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    margin-left: 5px;
+}
+.woocommerce .woocommerce-message .button.wc-forward:hover{
+    color: #d0a852
 }
 /** ================================================
     2. Woocommerce shopping cart
@@ -435,7 +457,7 @@
 .bag-products{
     height: auto;
     overflow-y: auto;
-    max-height: 375px;
+    max-height: 380px;
 }
 .bag-products-content{
     padding: 20px 0;
@@ -468,6 +490,9 @@
     right: 0;
     top: 0;
     color: #ffffff!important;
+}
+.bag-products .bag-product a.remove:hover{
+    color: red!important;
 }
 .bag-product .bag-product-title{
     margin: 0 22px 10px 0;
@@ -792,6 +817,9 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     position: absolute;
     right: 0;
     top: 0;
+}
+.price_slider_amount .price_label{
+    line-height: 42px;
 }
 /** ================================================
     5. Woocommerce shop products

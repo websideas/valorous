@@ -8,7 +8,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
             'image_size' => '',
             'readmore' => '',
             'blog_pagination' => 'classic',
@@ -205,12 +204,6 @@ vc_map( array(
     "category" => __('by Theme', THEME_LANG ),
     "description" => __( "Display blog posts", THEME_LANG),
     "params" => array(
-        array(
-            "type" => "textfield",
-            "heading" => __( "Title", THEME_LANG ),
-            "param_name" => "title",
-            "admin_label" => true,
-        ),
         // Layout setting
         array(
             "type" => "kt_heading",

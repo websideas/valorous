@@ -92,14 +92,14 @@ if ( ! class_exists( 'KT_Instagram' ) ) {
             $output .= '<ul class="instagram-'.$column.' clearfix blog-posts-masonry">';
             $i = 1;
 			foreach($images as $image){
-                $width = ($i == 3 || $i == 6) ? 'double' : '';
+                //$width = ($i == 3 || $i == 6) ? 'double' : '';
                 $caption = (!empty($image->caption->text)) ? $image->caption->text : '';
 				$output .= sprintf(
-					'<li class="%4$s"><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
+					'<li><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></li>',
 					esc_attr($image->link),
 					esc_attr($image->images->standard_resolution->url),
-					esc_attr($caption),
-                    esc_attr( $width )
+					esc_attr($caption)
+                    //esc_attr( $width )
 				);
                 $i++;
 			}

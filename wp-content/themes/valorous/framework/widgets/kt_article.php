@@ -77,9 +77,9 @@ class Widget_KT_Posts extends WP_Widget {
         if ($r->have_posts()) :
             $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : true;
             $show_category = isset( $instance['show_category'] ) ? (bool) $instance['show_category'] : true;
-            $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : false;
+            $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : true;
             $show_comment = isset( $instance['show_comment'] ) ? (bool) $instance['show_comment'] : false;
-            $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : true;
+            $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : false;
 
             $layout = ( ! empty( $instance['layout'] ) ) ? absint( $instance['layout'] ) : 1;
             if ( ! $layout )
@@ -175,9 +175,9 @@ class Widget_KT_Posts extends WP_Widget {
         $number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
         $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : true;
         $show_category = isset( $instance['show_category'] ) ? (bool) $instance['show_category'] : true;
-        $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : false;
+        $show_image = isset( $instance['show_image'] ) ? (bool) $instance['show_image'] : true;
         $show_comment = isset( $instance['show_comment'] ) ? (bool) $instance['show_comment'] : false;
-        $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : true;
+        $show_author = isset( $instance['show_author'] ) ? (bool) $instance['show_author'] : false;
 
         $order = isset( $instance['order'] ) ? $instance['order'] : 'DESC';
         $orderby = isset( $instance['orderby'] ) ? $instance['orderby'] : 'date';

@@ -153,6 +153,11 @@ if (!function_exists('kt_get_woo_sidebar')) {
             }elseif($sidebar['sidebar'] == 'right'){
                 $sidebar['sidebar_area'] = kt_option('shop_sidebar_right', 'shop-widget-area');
             }
+        }elseif(is_cart()){
+            $sidebar = array(
+                'sidebar' => 'full',
+                'sidebar_area' => '',
+            );
         }
         return apply_filters('woo_sidebar', $sidebar);
     }
@@ -596,7 +601,8 @@ if (!function_exists('get_galleries_post')) {
         if (!$post_id) $post_id = $post->ID;
 
         $media_image = rwmb_meta($meta, 'type=image&size=' . $size, $post_id);
-        return (count($media_image)) ? $media_image : false;
+
+        return (count($media_image) ) ? $media_image : false;
     }
 }
 if (!function_exists('kt_get_single_file')) {

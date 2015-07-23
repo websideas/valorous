@@ -59,6 +59,7 @@ function theme_setup() {
         add_image_size( 'recent_posts', 570, 380, true);
         add_image_size( 'small', 170, 170, true );
         add_image_size( 'blog_post', 1140, 450, true );
+        add_image_size( 'blog_post_sidebar', 1140, 450, false );
     }
     
     load_theme_textdomain( THEME_LANG, THEME_DIR . '/languages' );
@@ -318,17 +319,19 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                     echo '</div><!-- .entry-thumb -->';
                 }
             }elseif($type == ''){
-                echo '<div class="entry-thumb">';
                 $images = get_galleries_post('_kt_gallery_images', $size);
-                $galleries_html = '';
-                foreach($images as $image){
-                    $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
-                }
-                $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
-                $carousel_ouput = kt_render_carousel($atts);
-                echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
+                if($images){
+                    echo '<div class="entry-thumb">';
+                    $galleries_html = '';
+                    foreach($images as $image){
+                        $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
+                    }
+                    $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
+                    $carousel_ouput = kt_render_carousel($atts);
+                    echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
 
-                echo '</div><!-- .entry-thumb -->';
+                    echo '</div><!-- .entry-thumb -->';
+                }
             }
         }elseif($format == 'video'){
             $type = rwmb_meta('_kt_video_type');

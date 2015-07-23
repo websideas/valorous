@@ -128,7 +128,16 @@ function kt_get_page_align(){
         $page_header_align =  rwmb_meta('_kt_page_header_align');
     }elseif(is_page() || is_singular()){
         $page_header_align =  rwmb_meta('_kt_page_header_align');
+    }elseif(is_archive()){
+        if(kt_is_wc()){
+            if(is_shop()){
+                $shop_page_id = get_option( 'woocommerce_shop_page_id' );
+                $page_header_align = rwmb_meta('_kt_page_header_align', array(), $shop_page_id);
+            }
+        }
     }
+
+
     if($page_header_align == ''){
         $page_header_align = kt_option('title_align', 'left');
     }
@@ -158,6 +167,12 @@ function kt_get_page_title( $title = '' ){
         $title = __( 'Page not found', THEME_LANG );
     } elseif ( is_archive() ){
         $title = get_the_archive_title();
+        if(kt_is_wc()) {
+            if (is_shop()) {
+                $shop_page_id = get_option('woocommerce_shop_page_id');
+                $title = get_the_title($shop_page_id);
+            }
+        }
     } elseif ( is_front_page() && is_singular('page') ){
         $page_on_front = get_option('page_on_front', true);
         $title = get_the_title($page_on_front) ;

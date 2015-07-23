@@ -30,8 +30,9 @@
                         </div>
                     <?php } ?>
                     <?php if($blog_atts['readmore']){ ?>
+                        <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
                         <div class="entry-more">
-                            <a href="<?php the_permalink() ?>"><?php _e('Read more', THEME_LANG ); ?></a>
+                            <a href="<?php the_permalink() ?>" class="<?php echo $moreclass ?>"><?php _e('Read more', THEME_LANG ); ?></a>
                         </div>
                     <?php } ?>
                 </div>

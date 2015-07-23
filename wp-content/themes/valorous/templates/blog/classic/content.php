@@ -1,7 +1,6 @@
 <?php
     global $blog_atts;
     $classes = array('post-item post-layout-classic', $blog_atts['class']);
-    //print_r($blog_atts);
 ?>
 <article <?php post_class($classes); ?>>
 
@@ -45,8 +44,9 @@
                     <?php the_excerpt(); ?>
                 </div>
                 <?php if($blog_atts['readmore']){ ?>
+                    <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
                     <div class="entry-more">
-                        <a href="<?php the_permalink() ?>" class="btn <?php echo $blog_atts['readmore']; ?>"><?php _e('Read more', THEME_LANG ); ?></a>
+                        <a href="<?php the_permalink() ?>" class="<?php echo $moreclass ?>"><?php _e('Read more', THEME_LANG ); ?></a>
                     </div>
                 <?php } ?>
             </div>

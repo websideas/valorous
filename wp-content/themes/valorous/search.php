@@ -11,10 +11,6 @@ $sidebar = kt_get_search_sidebar();
 $settings = kt_get_settings_search();
 
 
-print_r($sidebar);
-
-//print_r($settings);
-
 get_header(); ?>
     <div class="container">
         <?php
@@ -26,7 +22,7 @@ get_header(); ?>
             <div id="main" class="<?php echo apply_filters('kt_main_class', 'main-class', $sidebar['sidebar']); ?>">
                 <?php if( have_posts()){ ?>
                     <div class="list-blog-posts">
-                       <h3 class="search-heading"><?php printf( __( "Search Results for: <span class='search-keyword'>'%s</span>'", THEME_LANG ), get_search_query() ); ?></h3>
+                       <h3 class="search-heading"><?php printf( __( "Search Results for: <span class='search-keyword'>'%s'</span>", THEME_LANG ), get_search_query() ); ?></h3>
 
                         <?php global $wp_query; ?>
                         <div class='blog-posts blog-posts-<?php echo esc_attr($settings['blog_type']) ?>' data-settings="<?php echo esc_attr( json_encode( $settings ) ); ?>" data-type='<?php echo esc_attr($settings['blog_type']) ?>' data-total='<?php echo esc_attr($wp_query->max_num_pages); ?>' data-current='1'>

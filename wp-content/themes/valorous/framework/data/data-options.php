@@ -1056,10 +1056,34 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Pragraph', THEME_LANG ),
                         'subtitle' => __( 'Specify the pragraph font properties.', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( 'p' ),
-                        'default'  => array(
-                            
+                        'output'   => array( 'p' ),
+                        'default'  => array( ),
+                        'color'    => false
+                    ),
+                    array(
+                        'id'       => 'typography_button',
+                        'type'     => 'typography',
+                        'title'    => __( 'Button', THEME_LANG ),
+                        'subtitle' => __( 'Specify the button font properties.', THEME_LANG ),
+                        'google'   => true,
+                        'output'   => array(
+                            '.button',
+                            '.wpcf7-submit',
+                            '.btn',
+                            '.woocommerce #respond input#submit',
+                            '.woocommerce a.button',
+                            '.woocommerce button.button',
+                            '.woocommerce input.button',
+                            '.woocommerce #respond input#submit.alt',
+                            '.woocommerce a.button.alt',
+                            '.woocommerce button.button.alt',
+                            '.woocommerce input.button.alt',
+
                         ),
+                        'default'  => array( ),
+                        'color'    => false,
+                        'text-align'    => false,
+                        'font-size'    => false,
                     ),
                     array(
                         'id'       => 'typography_heading',
