@@ -1735,7 +1735,6 @@ function wp_video_shortcode( $attr, $content = '' ) {
 	global $content_width;
 	$post_id = get_post() ? get_the_ID() : 0;
 
-
 	static $instance = 0;
 	$instance++;
 
