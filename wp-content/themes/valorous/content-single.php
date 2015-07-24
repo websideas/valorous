@@ -48,27 +48,31 @@
         ?>
     </div><!-- .entry-content -->
 
+
     <?php
+        $show_sharebox = kt_post_option(null, '_kt_social_sharing', 'blog_share_box', 1);
+        if(get_the_tag_list() || $show_sharebox){
+            echo '<div class="entry-tool clearfix">';
+            kt_entry_meta_tags('<div class="tags-container pull-left">', '</div>');
+            if($show_sharebox){
+                kt_share_box( null, '', 'pull-right');
+            }
+            echo "</div>";
 
-    $show_sharebox = kt_post_option(null, '_kt_social_sharing', 'blog_share_box', 1);
-    if(get_the_tag_list() || $show_sharebox){
-        echo '<div class="entry-tool clearfix">';
-        kt_entry_meta_tags('<div class="tags-container pull-left">', '</div>');
-        if($show_sharebox){
-            kt_share_box( null, '', 'pull-right');
         }
-        echo "</div>";
 
-    }
+        if(kt_post_option(null, '_kt_author_info', 'blog_author', 1)){
+            kt_author_box();
+        }
 
-    if(kt_post_option(null, '_kt_author_info', 'blog_author', 1)){
-        kt_author_box();
-    }
+        if(kt_post_option(null, '_kt_prev_next', 'blog_next_prev', 1)){
+            kt_post_nav();
+        }
+    ?>
 
-    if(kt_post_option(null, '_kt_prev_next', 'blog_next_prev', 1)){
-        kt_post_nav();
-    }
+</article><!-- #post-## -->
 
+<?php
     if(kt_post_option(null, '_kt_related_acticles', 'blog_related', 1)){
         kt_related_article(null, kt_option('blog_related_type', 'categories'));
     }
@@ -78,6 +82,5 @@
         comments_template();
     endif;
 
-    ?>
+?>
 
-</article><!-- #post-## -->

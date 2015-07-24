@@ -303,12 +303,14 @@ vc_map( array(
                 __('None', THEME_LANG) => '',
                 __( 'Link', 'js_composer' ) => 'link',
                 __( 'Button Accent', 'js_composer' ) => 'btn-default',
+
                 __( 'Button White', 'js_composer' ) => 'btn-white',
                 __( 'Button Dark', 'js_composer' ) => 'btn-dark',
                 __( 'Button Dark lighter', 'js_composer' ) => 'btn-darkl',
                 __( 'Button Gray', 'js_composer' ) => 'btn-gray',
-                __( 'Button White Border', 'js_composer' ) => 'btn-border-w',
-                __( 'Button Dark Border', 'js_composer' ) => 'btn-border-d',
+                __( 'Button Accent Border', 'js_composer' ) => 'btn-default-b',
+                __( 'Button White Border', 'js_composer' ) => 'btn-white-b',
+                __( 'Button Dark Border', 'js_composer' ) => 'btn-dark-b',
             ),
             "description" => __("Show or hide the readmore button.", THEME_LANG),
         ),
@@ -347,6 +349,7 @@ vc_map( array(
             'value' => array(
                 __( 'Classic pagination', THEME_LANG ) => 'classic',
                 __( 'Load More button', THEME_LANG ) => 'loadmore',
+                __( 'Normal pagination', THEME_LANG ) => 'normal',
                 __( 'None', THEME_LANG ) => 'none',
             ),
             'description' => __( 'Select the navigation type', 'js_composer' )
@@ -372,6 +375,8 @@ vc_map( array(
             "param_name" => "el_class",
             "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
         ),
+
+
         // Data settings
         array(
             "type" => "dropdown",

@@ -9,8 +9,8 @@
 if ( !defined('ABSPATH')) exit;
 
 
-add_filter( 'rwmb_meta_boxes', 'kite_register_meta_boxes' );
-function kite_register_meta_boxes( $meta_boxes )
+add_filter( 'rwmb_meta_boxes', 'kt_register_meta_boxes' );
+function kt_register_meta_boxes( $meta_boxes )
 {
     $prefix = '_kt_';
     $image_sizes = kt_get_image_sizes();
@@ -561,7 +561,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Show page breadcrumb.", THEME_LANG ),
                 'tab'  => 'page_header',
             ),
-            /*
+
             array(
                 'name' => __('Separator bettwen title and subtitle', THEME_LANG),
                 'id'   => "{$prefix}page_header_separator",
@@ -575,8 +575,7 @@ function kite_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Show separator bettwen title and subtitle.", THEME_LANG ),
                 'tab'  => 'page_header',
             ),
-            */
-            //Separator Color
+
 
 
 
@@ -597,8 +596,49 @@ function kite_register_meta_boxes( $meta_boxes )
 
 
 
-
-
+            array(
+                'name' => __( 'Background Image', THEME_LANG ),
+                'id'  => "{$prefix}page_header_bg",
+                'type' => 'image_advanced',
+                'max_file_uploads' => 1,
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom background image for page header.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Background color', THEME_LANG ),
+                'id'   => "{$prefix}page_header_bg_color",
+                'type' => 'color',
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom background color for page header.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Separator custom color', THEME_LANG ),
+                'id'   => "{$prefix}page_header_separator_color",
+                'type' => 'color',
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom color for separator.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Typography title custom color', THEME_LANG ),
+                'id'   => "{$prefix}page_header_title_color",
+                'type' => 'color',
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom color for title.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Typography sub title custom color', THEME_LANG ),
+                'id'   => "{$prefix}page_header_subtitle_color",
+                'type' => 'color',
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom color for sub title.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Typography breadcrumbs custom color', THEME_LANG ),
+                'id'   => "{$prefix}page_header_breadcrumbs_color",
+                'type' => 'color',
+                'tab'  => 'page_header',
+                'desc' => __( "Choose custom color for breadcrumbs.", THEME_LANG ),
+            ),
 
 
 

@@ -1,8 +1,22 @@
 
 (function($){
     "use strict"; // Start of use strict
-    
-    
+
+
+    /* --------------------------------------------
+     Mobile detect
+     --------------------------------------------- */
+    var ktmobile;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        ktmobile = true;
+        $("html").addClass("mobile");
+    }
+    else {
+        ktmobile = false;
+        $("html").addClass("no-mobile");
+    }
+
+
     /* ---------------------------------------------
      Scripts initialization
      --------------------------------------------- */
@@ -27,6 +41,7 @@
         init_shortcodes();
         init_carousel();
         init_backtotop();
+        init_parallax();
         init_MainMenu();
         init_MobileMenu();
         init_masonry();
@@ -36,6 +51,7 @@
         init_loadmore();
         init_VCLightBox();
         init_mailchimp();
+
 
         init_ProductQuickView();
         init_productcarouselwoo();
@@ -295,6 +311,22 @@
             });
         });
     }
+
+    /* -------------------------------------------
+     Parallax
+     --------------------------------------------- */
+
+    function init_parallax(){
+
+        if (($(window).width() >= 1024) && (ktmobile == false)) {
+            $(".kt-parallax").each(function(){
+                $(this).parallax("50%", 0.1);
+            });
+
+        }
+
+    }
+
 
     /* ---------------------------------------------
      Search

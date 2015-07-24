@@ -261,6 +261,9 @@ div#post-body .rwmb-select{
 .slider-no-image-preview .redux_slides_add_remove{
      display: none;
 }
+.rwmb-color-wrapper .wp-picker-holder{
+    z-index: 1;
+}
 /*==================================
 * Troubleshooting
 ===================================*/

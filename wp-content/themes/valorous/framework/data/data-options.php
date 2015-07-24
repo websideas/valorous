@@ -1042,13 +1042,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the body font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'body' ),
-                        'default'  => array(
-                            'color'       => '#666666',
-                            'font-size'   => '14px',
-                            'font-family' => 'Dosis',
-                            'font-weight' => 'Normal',
-                            'line-height' => '22px'
-                        ),
+                        'default'  => array( )
                     ),
                     array(
                         'id'       => 'typography_pragraph',
@@ -1452,12 +1446,20 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                     array(
                         'id'       => 'title_separator_color',
-                        'type'     => 'color',
+                        'type'     => 'background',
                         'title'    => __( 'Separator Color', THEME_LANG ),
                         'default'  => '',
                         'transparent' => false,
-                        'required' => array('title_separator','equals', array( 1 ) ),
+                        'background-repeat'     => false,
+                        'background-attachment' => false,
+                        'background-position'   => false,
+                        'background-image'      => false,
+                        'background-size'       => false,
+                        'preview'               => false,
+                        'output'   => array( '.page-header .page-header-separator' ),
                     ),
+
+
                     array(
                         'id'       => 'title_padding',
                         'type'     => 'spacing',
@@ -1479,13 +1481,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'   => array( ),
                     ),
                     array(
-                        'id'       => 'title_parallax',
-                        'type'     => 'switch',
-                        'title'    => __( 'Parallax Background Image', THEME_LANG ),
-                        'subtitle' => __( 'Enable parallax background image when scrolling.', THEME_LANG ),
-                        'default'  => true,
-                    ),
-                    array(
                         'id'       => 'title_typography',
                         'type'     => 'typography',
                         'title'    => __( 'Typography title', THEME_LANG ),
@@ -1501,9 +1496,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-align'      => false,
                         'line-height'     => false,
-                        'output'      => array( '.page-header .page-header-tagline' )
+                        'output'      => array( '.page-header .page-header-subtitle' )
                     ),
-
                     array(
                         'id'       => 'title_typography_breadcrumbs',
                         'type'     => 'typography',
@@ -1513,17 +1507,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'line-height'     => false,
                         'output'      => array( '.page-header .breadcrumbs', '.page-header .breadcrumbs a' )
                     ),
-                    array(
-                        'id'       => 'title_breadcrumbs_color',
-                        'type'     => 'color',
-                        'title'    => __( 'Breadcrumbs Color', THEME_LANG ),
-                        'default'  => '',
-                        'transparent' => false,
-                    ),
-
-
-
-
                 )
             );
 
@@ -1758,7 +1741,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'desc' => __('Select the pagination type.', THEME_LANG),
                         'options' => array(
                             'classic' => __( 'Classic pagination', THEME_LANG ),
-                            'loadmore' => __( 'Load More button', THEME_LANG )
+                            'loadmore' => __( 'Load More button', THEME_LANG ),
+                            'normal' => __( 'Normal pagination', THEME_LANG ),
                         ),
                         'default' => 'classic'
                     ),
@@ -1841,7 +1825,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'archive_date_format',
                         'type' => 'select',
                         'title' => __('Date format', THEME_LANG),
-                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'desc' => __('Select the date formart.', THEME_LANG),
                         'options' => array(
                             'd F Y' => __( '05 December 2014', 'js_composer' ) ,
                             'F jS Y' => __( 'December 13th 2014', 'js_composer' ) ,
@@ -2072,7 +2056,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'blog_date_format',
                         'type' => 'select',
                         'title' => __('Date format', THEME_LANG),
-                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'desc' => __('Select the date format.', THEME_LANG),
                         'options' => array(
                             'd F Y' => __( '05 December 2014', 'js_composer' ) ,
                             'F jS Y' => __( 'December 13th 2014', 'js_composer' ) ,
@@ -2216,7 +2200,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'desc' => __('Select the pagination type.', THEME_LANG),
                         'options' => array(
                             'classic' => __( 'Classic pagination', THEME_LANG ),
-                            'loadmore' => __( 'Load More button', THEME_LANG )
+                            'loadmore' => __( 'Load More button', THEME_LANG ),
+                            'normal' => __( 'Normal pagination', THEME_LANG ),
                         ),
                         'default' => 'classic'
                     ),
@@ -2295,7 +2280,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'search_date_format',
                         'type' => 'select',
                         'title' => __('Date format', THEME_LANG),
-                        'desc' => __('Select the pagination type.', THEME_LANG),
+                        'desc' => __('Select the date format.', THEME_LANG),
                         'options' => array(
                             'd F Y' => __( '05 December 2014', 'js_composer' ) ,
                             'F jS Y' => __( 'December 13th 2014', 'js_composer' ) ,

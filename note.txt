@@ -1,5 +1,48 @@
 http://www.jqueryscript.net/time-clock/Simple-Animated-Number-Counter-Plugin-with-jQuery-Countimator.html
 
+http://demo.mekshq.com/?theme=sidewalk
+
+http://fotorama.io/
+
+My fave moments
+MOST POPULAR
+
+
+Welcome To Jay
+Elegant, inspirational & clean WordPress blog theme with e-commerce capability
+
+Blog of Erin Dougan
+A Place for Your Digital Stories
+
+Welcome to Ping, a minimal and light HTML Template for creatives. One of the most simple-to-use templates in Themeforest
+
+About me widget
+	http://jay.mondotheme.com/
+
+
+About me page
+	http://jay.mondotheme.com/about-me/
+	http://demo.korra.io/brook/about-me/
+	http://demo.kingkongthemes.com/vaicalon/about/
+	http://leaftree.pt/materialog/about-2.html
+
+Landing for homepage
+	1. Slideshow for blog
+    	http://wpexplorer-demos.com/chic/
+    	http://xgio.net/html/yourjourney/
+    	http://demo.cactusthemes.com/newstube/slider-grid-layout-3/
+    	http://demo.cactusthemes.com/newstube/slider-post-carousel/
+    	http://demo.cactusthemes.com/newstube/slider-post-slider/
+    	http://zatolab.com/airashi/
+    	http://marmalade.pryanik.co/
+    	http://solopine.com/rosemary/
+    	http://broadsword.warriorsofcode.com/?fp_style=imaged#
+
+	2. List articles with categories
+		http://chirps.bringthepixel.com/
+
+	3. Big image with name of blog
+		http://jamesblog.pego-design.com/
 
 
         
@@ -26,7 +69,7 @@ For buttons
     http://demo.woorockets.com/themes/one/html/sc-button.html
     
     
-creative - sáng t?o   
+creative - sï¿½ng t?o   
 classic - C? di?n
 modern - hi?n d?i
 simple - don gi?n

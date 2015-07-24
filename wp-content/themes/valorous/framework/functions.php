@@ -17,6 +17,31 @@ add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
 
 
 /**
+ * Add class to next button
+ *
+ * @param string $attr
+ * @return string
+ */
+function kt_next_posts_link_attributes( $attr = '' ) {
+    return "class='btn btn-default'";
+}
+add_filter( 'next_posts_link_attributes', 'kt_next_posts_link_attributes', 15 );
+
+
+/**
+ * Add class to prev button
+ *
+ * @param string $attr
+ * @return string
+ */
+function kt_previous_posts_link_attributes( $attr = '' ) {
+    return "class='btn btn-default'";
+}
+add_filter( 'previous_posts_link_attributes', 'kt_previous_posts_link_attributes', 15 );
+
+
+
+/**
  * Add page header
  *
  * @since 1.0
@@ -74,8 +99,15 @@ function get_page_header( ){
         $breadcrumb = kt_get_breadcrumb();
         $page_header_align = kt_get_page_align();
 
+
         $title = '<h1 class="page-header-title">'.$title.'</h1>';
-        $subtitle = ($subtitle != '') ? '<div class="page-header-tagline">'.$subtitle.'</div>' : $subtitle;
+        if($subtitle != ''){
+
+            //title_separator_color
+
+            $separator = '<div class="page-header-clr clearfix"><div class="page-header-separator"></div></div>';
+            $subtitle = $separator.'<div class="page-header-subtitle">'.$subtitle.'</div>';
+        }
 
         $breadcrumb_class = (!kt_option('title_breadcrumbs_mobile', false)) ? 'hidden-xs hidden-sm' : '';
 

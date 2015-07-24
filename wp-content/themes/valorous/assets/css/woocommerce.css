@@ -441,7 +441,7 @@
     border-style: solid;
     border-width: 2px 1px 1px;
 }
-.shopping-bag-wrapper h3.cart-title{
+.shopping-bag-wrapper .cart-title{
     border-bottom: 1px solid #a0a0a0;
     font-size: 15px;
     margin: 0;
@@ -550,7 +550,6 @@
 }
 .bag-total .amount{
     float: right;
-    font-weight: bold;
     font-size: 18px;
     color: #d0a852;
 }
@@ -616,7 +615,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     background: #FFFFFF;
     border-color: #d2a952 #e6eced #e6eced;
 }
-.header-light .shopping-bag-wrapper h3.cart-title{
+.header-light .shopping-bag-wrapper .cart-title{
     border-color: #e6eced;
     color: #777777;
 }

@@ -113,7 +113,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
         $output .= '<div class="shopping-bag-wrapper ">';
         $output .= '<div class="shopping-bag-content">';
             if ( sizeof(WC()->cart->cart_contents)>0 ) {
-                $output .= '<h3 class="cart-title">'.__( 'Recently added item(s)',THEME_LANG ).'</h3>';
+                $output .= '<div class="cart-title">'.__( 'Recently added item(s)',THEME_LANG ).'</div>';
                 $output .= '<div class="bag-products mCustomScrollbar">';
                 $output .= '<div class="bag-products-content">';
                 foreach (WC()->cart->cart_contents as $cart_item_key => $cart_item) {
@@ -143,7 +143,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
             }
 
             if ( sizeof(WC()->cart->cart_contents)>0 ) {
-                $output .= '<div class="bag-total">'.__('Subtotal: ', THEME_LANG).$cart_total.'</div><!-- .bag-total -->';
+                $output .= '<div class="bag-total"><strong>'.__('Subtotal: ', THEME_LANG).'</strong>'.$cart_total.'</div><!-- .bag-total -->';
                 $output .= '<div class="bag-buttons">';
                 $output .= '<div class="bag-buttons-content clearfix">';
                     $output .= '<span><a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn btn-darkl">'.__('View cart', THEME_LANG).'</a></span>';

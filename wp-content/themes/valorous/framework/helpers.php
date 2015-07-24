@@ -514,6 +514,8 @@ if (!function_exists('get_thumbnail_attachment')){
     	);
     }
 }
+
+
 if (!function_exists('kt_custom_wpml')){
     /**
      * Custom wpml

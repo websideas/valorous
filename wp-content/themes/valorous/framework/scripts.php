@@ -39,23 +39,6 @@ if ( !function_exists( 'kt_admin_enqueue_scripts' ) ) {
 }
 
 
-/**
- * Add stylesheet and script for frontend
- * 
- * @since       1.0
- * @return      void
- * @access      public
- */
-
-
-add_action( 'wp_enqueue_scripts', 'wp_enqueue_scripts_frontend' );
-if ( !function_exists( 'wp_enqueue_scripts_frontend' ) ) {
-    function wp_enqueue_scripts_frontend(){
-        
-        
-
-    } // End wp_enqueue_scripts_frontend.
-}
 
 /**
  * Custom admin logo
@@ -89,13 +72,15 @@ function kt_setting_script() {
     
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '');
-    $title_separator = kt_option('title_separator_color', '');
      
     ?>
     <style id="kt-theme-custom-css" type="text/css">
-        <?php echo $advanced_css; ?>
 
         <?php
+
+            echo $advanced_css;
+
+
             $is_shop = false;
             if(is_archive()){
                 if(kt_is_wc()){
@@ -113,23 +98,57 @@ function kt_setting_script() {
                     $post_id = get_option( 'woocommerce_shop_page_id' );
                 }
 
-                $page_top_spacing = rwmb_meta('_kt_page_top_spacing', array(), $post_id);
-                if($page_top_spacing != ''){
-                    echo '#content{padding-top: '.$page_top_spacing.'}';
+                $pageh_spacing = rwmb_meta('_kt_page_top_spacing', array(), $post_id);
+                if($pageh_spacing != ''){
+                    echo '#content{padding-top: '.$pageh_spacing.';}';
                 }
-                $page_bottom_spacing = rwmb_meta('_kt_page_bottom_spacing', array(), $post_id);
-                if($page_bottom_spacing != ''){
-                    echo '#content{padding-bottom: '.$page_bottom_spacing.'}';
+                $pageh_spacing = rwmb_meta('_kt_page_bottom_spacing', array(), $post_id);
+                if($pageh_spacing != ''){
+                    echo '#content{padding-bottom:'.$pageh_spacing.';}';
                 }
 
-                $page_header_top = rwmb_meta('_kt_page_header_top', array(), $post_id);
-                if($page_header_top != ''){
-                    echo 'div.page-header{padding-top: '.$page_header_top.'}';
+                $pageh_top = rwmb_meta('_kt_page_header_top', array(), $post_id);
+                if($pageh_top != ''){
+                    echo 'div.page-header{padding-top: '.$pageh_top.';}';
                 }
-                $page_header_bottom = rwmb_meta('_kt_page_header_bottom', array(), $post_id);
-                if($page_header_bottom != ''){
-                    echo 'div.page-header{padding-bottom: '.$page_header_bottom.'}';
+
+                $pageh_bottom = rwmb_meta('_kt_page_header_bottom', array(), $post_id);
+                if($pageh_bottom != ''){
+                    echo 'div.page-header{padding-bottom: '.$pageh_bottom.';}';
                 }
+
+                $pageh_separator_color = rwmb_meta('_kt_page_header_separator_color', array(), $post_id);
+                if($pageh_separator_color != ''){
+                    echo '.page-header h1.page-header-title + .page-header-tagline:before{background:'.$pageh_separator_color.';}';
+                }
+
+                $pageh_title_color = rwmb_meta('_kt_page_header_title_color', array(), $post_id);
+                if($pageh_title_color != ''){
+                    echo 'div.page-header h1.page-header-title{color:'.$pageh_title_color.';}';
+                }
+
+                $pageh_subtitle_color = rwmb_meta('_kt_page_header_subtitle_color', array(), $post_id);
+                if($pageh_subtitle_color != ''){
+                    echo 'div.page-header .page-header-subtitle{color:'.$pageh_subtitle_color.';}';
+                }
+
+                $pageh_breadcrumbs_color = rwmb_meta('_kt_page_header_breadcrumbs_color', array(), $post_id);
+                if($pageh_breadcrumbs_color != ''){
+                    echo 'div.page-header .breadcrumbs,div.page-header .breadcrumbs a{color:'.$pageh_breadcrumbs_color.';}';
+                }
+
+                $pageh_bg_color = rwmb_meta('_kt_page_header_bg_color', array(), $post_id);
+                if($pageh_bg_color != ''){
+                    echo 'div.page-header{background:'.$pageh_bg_color.';}';
+                }
+
+                $pageh_bg_img = get_link_image_post('_kt_page_header_bg', $post_id, 'full');
+                if($pageh_bg_img){
+                    echo 'div.page-header{background-image:url('.$pageh_bg_img['url'].');}';
+                }
+
+
+
             }
 
 
@@ -137,11 +156,7 @@ function kt_setting_script() {
         ?>
 
 
-        <?php if($title_separator){ ?>
-        .page-header h1.page-header-title + .page-header-tagline::before{
-            background: <?php echo $title_separator; ?>
-        }
-        <?php } ?>
+
 
         <?php if( $accent !='' ){ ?>
 

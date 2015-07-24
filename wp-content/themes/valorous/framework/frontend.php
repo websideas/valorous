@@ -77,23 +77,15 @@ function theme_setup() {
 endif;
 
 
-/**
- * Outputs the header meta title tag
- *
- * @since 1.0
- * @return void
- */
-if ( ! function_exists( 'kt_meta_title' ) ) {
-	function kt_meta_title() {
-	   
-	}
-}
-
 
 /**
- * Enqueue scripts and styles.
+ * Add stylesheet and script for frontend
  *
+ * @since       1.0
+ * @return      void
+ * @access      public
  */
+
 function kt_add_scripts() {
 
     wp_enqueue_style( 'mediaelement-style', get_stylesheet_uri(), array('mediaelement', 'wp-mediaelement') );
@@ -150,8 +142,10 @@ function kt_add_scripts() {
     wp_enqueue_script( 'menu-one-page', THEME_JS . 'jquery.nav.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/jquery.mb.YTPlayer.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'gmap3', THEME_JS . 'gmap3.min.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'parallax', THEME_JS . 'jquery.parallax-1.1.3.js', array( 'jquery' ), null, true );
 
     wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
+
     global $wp_query;
     wp_localize_script( 'main-script', 'ajax_frontend', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -510,16 +504,16 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
             );
         }elseif($type == 'normal'){ ?>
 
-            <nav class="navigation paging-navigation" role="navigation">
+            <nav class="navigation paging-navigation clearfix" role="navigation">
                 <h1 class="screen-reader-text"><?php _e( 'Posts navigation', THEME_LANG ); ?></h1>
                 <div class="nav-links">
 
                     <?php if ( get_next_posts_link() ) : ?>
-                        <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav"></span> Older posts', THEME_LANG ) ); ?></div>
+                        <div class="nav-previous"><?php next_posts_link( '<i class="fa fa-angle-double-left"></i> '.__( 'Older posts', THEME_LANG ) ); ?></div>
                     <?php endif; ?>
 
                     <?php if ( get_previous_posts_link() ) : ?>
-                        <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav"></span>', THEME_LANG ) ); ?></div>
+                        <div class="nav-next"><?php previous_posts_link( __( 'Newer posts', THEME_LANG ).' <i class="fa fa-angle-double-right"></i>' ); ?></div>
                     <?php endif; ?>
 
                 </div><!-- .nav-links -->
