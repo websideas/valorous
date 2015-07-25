@@ -29,6 +29,4 @@ $classes = array('post-item-carousel post-layout-carousel2', $blog_atts['class']
             <?php } ?>
         </div>
     </div>
-
-
 </article>

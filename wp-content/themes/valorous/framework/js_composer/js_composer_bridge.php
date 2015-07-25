@@ -161,6 +161,7 @@ $composer_addons = array(
     'testimonial_carousel.php',
     'blog_posts.php',
     'blog_posts_carousel.php',
+    'elastic_posts.php',
     'button.php',
     'skill.php',
     'socials.php',

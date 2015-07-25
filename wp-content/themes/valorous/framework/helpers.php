@@ -439,6 +439,11 @@ if (!function_exists('kt_show_slideshow')) {
             if ($layerslider && is_plugin_active('LayerSlider/layerslider.php')) {
                 echo do_shortcode('[layerslider id="' . $layerslider . '"]');
             }
+        }elseif($slideshow == 'elastic_post'){
+            $elastic_post = rwmb_meta('_kt_elastic_post', array('type' => 'taxonomy', 'taxonomy' => 'kt_elastic_post'), $post_id);
+            if(count($elastic_post)){
+
+            }
         }
     }
 

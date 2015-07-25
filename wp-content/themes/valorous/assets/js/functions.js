@@ -40,6 +40,7 @@
         $(window).trigger("resize");
         init_shortcodes();
         init_carousel();
+        init_eislideshow();
         init_backtotop();
         init_parallax();
         init_MainMenu();
@@ -91,6 +92,7 @@
             $(this).closest('#nav').toggleClass('is-opened');
 
         });
+
 
 
     });
@@ -582,8 +584,24 @@
     		$('html, body').animate({scrollTop:0},500);
     	});
     }
-    
 
+
+    /* ---------------------------------------------
+     Eislideshow
+     --------------------------------------------- */
+    function init_eislideshow(){
+        $('.kt-eislideshow').each(function(){
+            var objEis = $(this),
+                eisAuto = objEis.data('auto');
+
+            if(typeof eisAuto === "undefined"){ eisAuto = false; }
+
+            objEis.eislideshow({
+                autoplay : eisAuto
+            });
+
+        });
+    }
     /* ---------------------------------------------
      Owl carousel
      --------------------------------------------- */

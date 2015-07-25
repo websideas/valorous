@@ -99,8 +99,7 @@ function kt_add_scripts() {
     wp_enqueue_style( 'magnific-effect', THEME_CSS . 'magnific-effect.css', array());
     wp_enqueue_style( 'owl-carousel', THEME_LIBS . 'owl-carousel/owl.carousel.css', array());
     wp_enqueue_style( 'owl-theme', THEME_LIBS . 'owl-carousel/owl.theme.css', array());
-
-    wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
+    wp_enqueue_style( 'eislideshow', THEME_CSS . 'jquery.eislideshow.css', array());
     wp_enqueue_style( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/css/jquery.mb.YTPlayer.min.css', array());
 
     
@@ -143,6 +142,8 @@ function kt_add_scripts() {
     wp_enqueue_script( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/jquery.mb.YTPlayer.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'gmap3', THEME_JS . 'gmap3.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'parallax', THEME_JS . 'jquery.parallax-1.1.3.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'eislideshow', THEME_JS . 'jquery.eislideshow.js', array( 'jquery' ), null, true );
+
 
     wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
 
@@ -205,6 +206,23 @@ if ( ! function_exists( 'kt_comment_nav' ) ) :
     }
 endif;
 
+function kt_get_post_thumbnail_url($size = 'post-thumbnail', $post_id = null){
+    global $post;
+        if(!$post_id) $post_id = $post->ID;
+
+    $image_url = false;
+    if(has_post_thumbnail($post_id)){
+        $attachment_image = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
+        if($attachment_image){
+            $image_url = $attachment_image[0];
+        }
+    }else{
+        $image_url = apply_filters( 'kt_placeholder', $size );
+    }
+    return $image_url;
+}
+
+
 if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
     /**
      * Display an optional post thumbnail.
@@ -213,7 +231,7 @@ if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
      * element when on single views.
      *
      */
-    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $link = true, $placeholder = true) {
+    function kt_post_thumbnail_image($size = 'post-thumbnail', $class_img = '', $link = true, $placeholder = true, $echo = true) {
         if ( post_password_required() || is_attachment()) {
             return;
         }
@@ -228,6 +246,11 @@ if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
         if(!has_post_thumbnail() && $placeholder){
             $class .= ' no-image';
         }
+
+        if(!$echo){
+            ob_start();
+        }
+
         if(has_post_thumbnail() || $placeholder){ ?>
             <<?php echo $tag ?> <?php echo $attrs ?> class="<?php echo $class; ?>">
             <?php if(has_post_thumbnail()){ ?>
@@ -245,6 +268,11 @@ if ( ! function_exists( 'kt_post_thumbnail_image' ) ) :
             <?php } ?>
             </<?php echo $tag ?>><!-- .entry-thumb -->
         <?php }
+
+        if(!$echo){
+            return ob_get_clean();
+        }
+
     }
 endif;
 
@@ -551,14 +579,21 @@ if ( ! function_exists( 'kt_entry_meta_categories' ) ) :
      * Prints HTML with meta information for categories.
      *
      */
-    function kt_entry_meta_categories() {
+    function kt_entry_meta_categories( $separator = ', ', $echo = true ) {
         if ( 'post' == get_post_type() ) {
-            $categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', THEME_LANG ) );
+            $categories_list = get_the_category_list( _x( $separator, 'Used between list items, there is a space after the comma.', THEME_LANG ) );
             if ( $categories_list ) {
-                printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-                    _x( 'Categories', 'Used before category names.', THEME_LANG ),
-                    $categories_list
-                );
+                if($echo){
+                    printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                        _x( 'Categories', 'Used before category names.', THEME_LANG ),
+                        $categories_list
+                    );
+                }else{
+                    return sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                        _x( 'Categories', 'Used before category names.', THEME_LANG ),
+                        $categories_list
+                    );
+                }
             }
         }
     }
@@ -605,7 +640,7 @@ if ( ! function_exists( 'kt_entry_meta_time' ) ) :
      * Prints HTML with meta information for time.
      *
      */
-    function kt_entry_meta_time($format = 'd F Y') {
+    function kt_entry_meta_time($format = 'd F Y', $echo = true) {
         if ( in_array( get_post_type(), array( 'post', 'attachment' ) ) ) {
             $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
@@ -621,11 +656,18 @@ if ( ! function_exists( 'kt_entry_meta_time' ) ) :
                 esc_attr( get_the_modified_date( 'c' ) ),
                 get_the_modified_date()
             );
+            if($echo){
+                printf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    _x( 'Posted on', 'Used before publish date.', THEME_LANG ),
+                    $time_string
+                );
+            }else{
+                return sprintf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    _x( 'Posted on', 'Used before publish date.', THEME_LANG ),
+                    $time_string
+                );
+            }
 
-            printf( '<span class="posted-on"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-                _x( 'Posted on', 'Used before publish date.', THEME_LANG ),
-                $time_string
-            );
         }
     }
 endif;

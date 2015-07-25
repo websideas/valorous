@@ -150,7 +150,7 @@ only screen and (min-resolution: 144dpi) {
 
 
     /* Woocommerce */
-    .woocommerce ul.products li.product{
+    .woocommerce ul.shop-products li.product{
         width: 100%;
     }
 

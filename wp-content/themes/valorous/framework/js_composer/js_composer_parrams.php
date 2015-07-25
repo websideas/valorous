@@ -119,6 +119,10 @@ function vc_kt_taxonomy_settings_field( $settings, $value ) {
         . $settings['param_name']
         . ' ' . $settings['type']. '">';
     if ( !empty($settings['taxonomy']) ) {
+        if(empty($settings['multiple'])){
+            if (empty($settings['placeholder'])) $settings['placeholder'] = '';
+            $output .= "<option class='' value=''>".htmlspecialchars($settings['placeholder'])."</option>";
+        }
         $terms = get_terms( $settings['taxonomy'] , array('hide_empty' => false));
         foreach( $terms as $term ) {
             $selected = (in_array( $term->term_id, $value_arr )) ? ' selected="selected"' : '';

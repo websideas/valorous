@@ -703,7 +703,7 @@ function kt_register_meta_boxes( $meta_boxes )
                     '' => __('Select Option', THEME_LANG),
                     'revslider' => __('Revolution Slider', THEME_LANG),
                     'layerslider' => __('Layer Slider', THEME_LANG),
-                    'custom_bg' => __('Custom Image', THEME_LANG),
+                    'elastic_post' => __('Elastic Slider - Post', THEME_LANG),
                 ),
                 'tab'  => 'sliders',
             ),
@@ -723,7 +723,20 @@ function kt_register_meta_boxes( $meta_boxes )
                 'tab'  => 'sliders',
                 'desc' => __('Select the Layer Slider.', THEME_LANG),
             ),
-
+// TAXONOMY
+            array(
+                'name'    => __( 'Elastic slider - Post', THEME_LANG ),
+                'id'      => "{$prefix}elastic_post",
+                'type'    => 'taxonomy',
+                'tab'  => 'sliders',
+                'desc' => __('Select the Elastic Slider.', THEME_LANG),
+                'placeholder' => __('Select Option', THEME_LANG),
+                'options' => array(
+                    'taxonomy' => 'kt_elastic_post',
+                    'type'     => 'select',
+                    'args'     => array()
+                ),
+            ),
 
             //Page layout
 
