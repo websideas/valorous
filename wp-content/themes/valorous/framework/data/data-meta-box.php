@@ -725,14 +725,14 @@ function kt_register_meta_boxes( $meta_boxes )
             ),
 // TAXONOMY
             array(
-                'name'    => __( 'Elastic slider - Post', THEME_LANG ),
-                'id'      => "{$prefix}elastic_post",
+                'name'    => __( 'Post slider', THEME_LANG ),
+                'id'      => "{$prefix}post_slider",
                 'type'    => 'taxonomy',
                 'tab'  => 'sliders',
-                'desc' => __('Select the Elastic Slider.', THEME_LANG),
+                'desc' => __('Select the Post slider.', THEME_LANG),
                 'placeholder' => __('Select Option', THEME_LANG),
                 'options' => array(
-                    'taxonomy' => 'kt_elastic_post',
+                    'taxonomy' => 'kt_post_slider',
                     'type'     => 'select',
                     'args'     => array()
                 ),
@@ -756,7 +756,7 @@ function kt_register_meta_boxes( $meta_boxes )
             array(
                 'name' => __('Sidebar configuration', THEME_LANG),
                 'id' => $prefix . 'sidebar',
-                'desc' => __("Choose the sidebar configuration for the detail page.<br/><b>Note: Cart and checkout page always no sidebars.</b>", THEME_LANG),
+                'desc' => __("Choose the sidebar configuration for the detail page.<br/><b>Note: Cart and checkout, My account page always use no sidebars.</b>", THEME_LANG),
                 'type' => 'select',
                 'options' => array(
                     'default' => __('Default', THEME_LANG),

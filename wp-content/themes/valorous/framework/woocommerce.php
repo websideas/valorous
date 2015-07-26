@@ -250,35 +250,6 @@ function kt_woo_shop_columns( $columns ) {
 
 
 /**
- * Change layout of archive product
- * 
- */
-/*
-add_filter( 'archive_product_layout', 'woocommerce_archive_product_layout' );
-function woocommerce_archive_product_layout( $columns ) {
-    $layout = kt_option('shop_sidebar', 'full');
-    return $layout;
-}
-
-add_filter( 'woocommerce_product_loop_start', 'woocommerce_product_loop_start_callback' );
-function woocommerce_product_loop_start_callback($classes){
-    if(is_product_category() || is_shop() || is_product_tag()){
-        $products_layout = kt_option('shop_products_layout', 'grid');
-        $classes .= ' '.$products_layout;
-    }
-    
-    $effect = kt_option('shop_products_effect', 'center');
-    $classes .= ' effect-'.$effect;
-    
-    return $classes;
-}
-add_filter( 'woocommerce_gridlist_toggle', 'woocommerce_gridlist_toggle_callback' );
-function woocommerce_gridlist_toggle_callback(){
-    return kt_option('shop_products_layout', 'grid');
-}
-*/
-
-/**
  * Change layout of single product
  * 
  */
@@ -298,12 +269,50 @@ function woocommerce_single_product_carousel_callback( $columns ) {
     $sidebar = kt_get_woo_sidebar();
 
     if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
-        return '[[992,3], [768, 3], [480, 2]]';
+        return '[[992,3], [768, 2], [480, 2]]';
     }else{
         return '[[992,4], [768, 3], [480, 2]]';
     }
-    
 }
+
+/**
+ * Layout for thumbarea
+ *
+ * If have sidebar use col 12
+ * else use 5
+ *
+ */
+
+add_filter( 'woocommerce_single_product_thumb_area', 'woocommerce_single_product_thumb_area_callback' );
+function woocommerce_single_product_thumb_area_callback(){
+    $sidebar = kt_get_woo_sidebar();
+    if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
+        return 'col-sm-12 col-md-5';
+    }else{
+        return 'col-sm-5 col-md-5';
+    }
+}
+
+/**
+ * Layout for summary area
+ *
+ * If have sidebar use col 12
+ * else use 7
+ *
+ */
+
+add_filter( 'woocommerce_single_product_summary_area', 'woocommerce_single_product_summary_area_callback' );
+function woocommerce_single_product_summary_area_callback(){
+    $sidebar = kt_get_woo_sidebar();
+    if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
+        return 'col-sm-12 col-md-7';
+    }else{
+        return 'col-sm-7 col-md-7';
+    }
+}
+
+
+
 
 /**
  * Change hook of archive-product.php
@@ -371,58 +380,6 @@ function woocommerce_shop_loop_item_action_action_product(){
         echo "</div>";
     }
 }
-
-
-
-/*
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10, 0);
-add_action( 'woocommerce_after_single_product_content', 'woocommerce_output_product_data_tabs', 10, 0);
-
-
-
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40, 0);
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 15);
-
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10, 0);
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 17, 0);
-
-
-
-
-
-add_filter('yith_wcwl_positions', 'yith_wcwl_positions_callback');
-function yith_wcwl_positions_callback($positions){
-    unset($positions['add-to-cart']);
-    return $positions;
-}
-
-
-function woocommerce_shop_loop_item_action_action_product(){
-    if(class_exists('YITH_WCWL_UI') || defined( 'YITH_WOOCOMPARE' )){
-        echo "<div class='functional-buttons-product clearfix'>";
-        echo "<div class='functional-buttons'>";
-        if(class_exists('YITH_WCWL_UI')){
-            echo do_shortcode('[yith_wcwl_add_to_wishlist]');    
-        }
-        if(defined( 'YITH_WOOCOMPARE' )){
-            echo do_shortcode('[yith_compare_button]');
-        }
-        echo "</div>";
-        echo "</div>";
-    }
-}
-add_action( 'woocommerce_after_add_to_cart_button', 'woocommerce_shop_loop_item_action_action_product', 50);
-
-
-function custom_stock_totals($availability_html, $availability_text, $variation) {
-    $availability         = $variation->get_availability();
-	$availability_html = '<p class="stock ' . esc_attr( $availability['class'] ) . '"><span>' . esc_html( $availability_text ) . '</span></p>';
-	return 	$availability_html;
-}
-add_filter('woocommerce_stock_html', 'custom_stock_totals', 20, 3);
-
-*/
-
 
 
 
@@ -504,11 +461,11 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 function woocommerce_show_product_loop_new_flash(){
     global $post;
     
-    $time_new = kt_option('time_product_new');
+    $time_new = kt_option('time_product_new', 30);
     
     $now = strtotime( date("Y-m-d H:i:s") );
 	$post_date = strtotime( $post->post_date );
-	$num_day = (int)(($now-$post_date)/(3600*24));
+	$num_day = (int)(($now - $post_date)/(3600*24));
 	if( $num_day < $time_new ){
 		echo "<span class='kt_new'>".__( 'New!',THEME_LANG )."</span>";
 	}

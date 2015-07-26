@@ -100,6 +100,7 @@ function kt_add_scripts() {
     wp_enqueue_style( 'owl-carousel', THEME_LIBS . 'owl-carousel/owl.carousel.css', array());
     wp_enqueue_style( 'owl-theme', THEME_LIBS . 'owl-carousel/owl.theme.css', array());
     wp_enqueue_style( 'eislideshow', THEME_CSS . 'jquery.eislideshow.css', array());
+    wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
     wp_enqueue_style( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/css/jquery.mb.YTPlayer.min.css', array());
 
     

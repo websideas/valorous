@@ -31,7 +31,8 @@ $args = array(
 
 $products = new WP_Query( $args );
 
-$woocommerce_loop['columns'] = apply_filters( 'woocommerce_cross_sells_columns', 1 );
+$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns_addons', 1 );
+$woocommerce_loop['columns_tablet'] = apply_filters( 'loop_shop_columns_addons_tablet', 1 );
 
 if ( $products->have_posts() ) : ?>
 

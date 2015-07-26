@@ -3,11 +3,7 @@
  */
 .easyzoom {
 	position: relative;
-
-	/* 'Shrink-wrap' the element */
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
+	display: block;
 }
 
 .easyzoom img {

@@ -24,8 +24,7 @@ class WPBakeryShortCode_Elastic_Posts extends WPBakeryShortCode {
 
         extract($atts);
 
-
-        $output = $slider_large = $slider_thumbs = '';
+        $output = '';
         if ($category) {
             $args = array(
                 'order' => $order,
@@ -44,11 +43,21 @@ class WPBakeryShortCode_Elastic_Posts extends WPBakeryShortCode {
             if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
                 $args['meta_key'] = $meta_key;
             }
-
+            $blog_vertical_html = '';
 
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) {
+                while ( $query->have_posts() ) : $query->the_post();
+                    ob_start();
+                    get_template_part( 'templates/blog/vertical/content' );
+                    $blog_vertical_html .= ob_get_contents();
+                    ob_end_clean();
 
+                endwhile;
+
+                $output .= $blog_vertical_html;
+
+                /*
                 $atts_carousel = array(
                     'margin' => 0,
                     'desktop' => 1,
@@ -75,6 +84,7 @@ class WPBakeryShortCode_Elastic_Posts extends WPBakeryShortCode {
                 endwhile;
 
                 $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
+                */
 
             }
 

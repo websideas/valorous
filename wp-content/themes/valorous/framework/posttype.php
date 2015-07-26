@@ -15,9 +15,9 @@ if ( !defined('ABSPATH')) exit;
 add_action( 'init', 'register_posttype' );
 function register_posttype() {
 
-    register_taxonomy('kt_elastic_post',array('post'), array(
-        "label" 						=> __("Elastic slider", THEME_LANG),
-        "singular_label" 				=> __("Elastic slider", THEME_LANG),
+    register_taxonomy('kt_post_slider',array('post'), array(
+        "label" 						=> __("Post slider", THEME_LANG),
+        "singular_label" 				=> __("Post slider", THEME_LANG),
         'public'                        => false,
         'hierarchical'                  => true,
         'show_ui'                       => true,

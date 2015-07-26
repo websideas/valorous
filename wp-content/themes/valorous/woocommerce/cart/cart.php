@@ -118,7 +118,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                     <td colspan="6" class="actions">
 
                         <a href="#" class="btn btn-gray pull-left"><?php _e( 'Continue shopping', THEME_LANG ); ?></a>
-                        <input type="submit" class="btn btn-darkl" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
+                        <input type="submit" class="btn btn-darkl update_cart" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
 
                         <?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -139,15 +139,18 @@ do_action( 'woocommerce_before_cart' ); ?>
         <div class="cart-collaterals">
             <?php do_action( 'woocommerce_cart_collaterals' ); ?>
             <?php if ( WC()->cart->coupons_enabled() ) { ?>
-                <div class="coupon">
-                    <h3><?php _e( 'Coupon', 'woocommerce' ); ?></h3>
-                    <p>
-                        <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" />
-                    </p>
-                    <input type="submit" class="btn btn-darkl" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
-                    <?php do_action( 'woocommerce_cart_coupon' ); ?>
-                </div>
+                <form method="post" action="http://localhost/valorous/cart/">
+                    <div class="coupon">
+                        <h3><?php _e( 'Coupon', 'woocommerce' ); ?></h3>
+                        <p>
+                            <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" />
+                        </p>
+                        <input type="submit" class="btn btn-darkl" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+                        <?php do_action( 'woocommerce_cart_coupon' ); ?>
+                    </div>
+                </form>
             <?php } ?>
+
         </div>
     </div>
 </div>

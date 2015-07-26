@@ -455,7 +455,7 @@ add_filter( 'body_class', 'theme_body_classes' );
 function kt_main_class_callback($classes, $layout){
     
     if($layout == 'left' || $layout == 'right'){
-        $classes .= ' col-md-9 col-xs-12'; 
+        $classes .= ' col-md-9 col-sm-8 col-xs-12';
     }else{
         $classes .= ' col-md-12 col-xs-12';
     }
@@ -480,7 +480,7 @@ add_filter('kt_main_class', 'kt_main_class_callback', 10, 2);
  */
 function kt_sidebar_class_callback($classes, $layout){
     if($layout == 'left' || $layout == 'right'){
-        $classes .= ' col-md-3 col-xs-12'; 
+        $classes .= ' col-md-3 col-sm-4 col-xs-12';
     }
     return $classes;
 }

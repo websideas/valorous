@@ -674,10 +674,17 @@
                 addClassActive : true,
                 mouseDrag : owlMousedrag,
 
+                /*
                 itemsDesktop: [1199, owlDesktop],
-                itemsDesktopSmall: [979, owlDesktop],
-                itemsTabletSmall: [768, owlTablet],
+                itemsDesktopSmall: [991, owlDesktop],
+                itemsTablet: [768, owlTablet],
                 itemsMobile: [480, owlMobile],
+                */
+
+                itemsDesktop : [1199,owlDesktop], //5 items between 1000px and 901px
+                itemsDesktopSmall : [991,owlDesktop], // betweem 992px and 769px
+                itemsTablet: [768,owlTablet], //2 items between 768 and 480
+                itemsMobile : [479, owlMobile],
 
                 afterInit : function(elem){
 
@@ -701,7 +708,7 @@
                     }
                 }
             };
-
+            console.log(options);
             objCarousel.waitForImages(function() {
                 objCarousel.owlCarousel(options);
             });
@@ -963,7 +970,7 @@
         sync2.owlCarousel({
             theme : 'woocommerce-thumbnails',
             items : 4,
-            itemsCustom : [[992,4], [768, 3], [480, 2]],
+            itemsCustom : [[991,4], [768, 4], [480, 4]],
             navigation: true,
             navigationText: false,
             pagination:false,

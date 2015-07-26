@@ -32,7 +32,7 @@ if ( post_password_required() ) {
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class('wc-single-product'); ?>>
     <div class="product-detail-content">
         <div class="row product-detail-inner">
-            <div class="<?php echo apply_filters('woocommerce_single_product_thumb_area', 'col-xs-12 col-sm-5 col-md-5'); ?>">
+            <div class="<?php echo apply_filters('woocommerce_single_product_thumb_area', ''); ?>">
                 <div class="product-detail-thumbarea">
                     <?php
                     /**
@@ -46,7 +46,7 @@ if ( post_password_required() ) {
                 </div><!-- .product-detail-thumbarea -->
             </div><!-- .woocommerce_single_product_thumb_area -->
 
-            <div class="<?php echo apply_filters('woocommerce_single_product_summary_area', 'col-xs-12 col-sm-7 col-md-7'); ?>">
+            <div class="<?php echo apply_filters('woocommerce_single_product_summary_area', ''); ?>">
                 <div class="summary entry-summary">
 
                     <?php
