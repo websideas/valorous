@@ -32,9 +32,7 @@ get_header(); ?>
         </div>
         <?php if($sidebar['sidebar'] != 'full'){ ?>
             <div class="<?php echo apply_filters('kt_sidebar_class', 'sidebar', $sidebar['sidebar']); ?>">
-                <div class="sidebar-inner">
-                    <?php dynamic_sidebar($sidebar['sidebar_area']); ?>
-                </div>
+                <?php dynamic_sidebar($sidebar['sidebar_area']); ?>
             </div><!-- .sidebar -->
         <?php } ?>
     </div><!-- .row -->

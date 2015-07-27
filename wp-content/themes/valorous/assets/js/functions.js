@@ -95,8 +95,12 @@
 
         });
 
-
-
+        /**==============================
+        ***  Sticky sidebar
+        ===============================**/
+        $('.sidebar').theiaStickySidebar({
+			additionalMarginTop: 120
+		});
     });
     
     $(window).resize(function(){
