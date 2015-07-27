@@ -12,6 +12,7 @@
         
         
         /* SIDEBAR =====================================================*/
+        /*
         var $sidebar_config = $('#_kt_sidebar'),
             $sidebar_left = $('#_kt_left_sidebar').closest('.rwmb-field'),
             $sidebar_right = $('#_kt_right_sidebar').closest('.rwmb-field');
@@ -34,7 +35,7 @@
     	$sidebar_config.change(function() {
             kt_sidebar();
     	});
-        
+        */
         /* Slideshow source =====================================================*/
         /*
         var $slideshow_config = $('#_kt_slideshow_source'),
