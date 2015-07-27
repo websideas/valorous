@@ -18,7 +18,9 @@ $classes = array('post-item post-layout-1', $blog_atts['class']);
 
         <div class="post-info">
             <div class="entry-ci">
-                <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <h2 class="entry-title">
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h2>
                 <?php if($blog_atts['show_meta']){ ?>
                     <div class="entry-meta-data">
                         <?php
@@ -35,19 +37,21 @@ $classes = array('post-item post-layout-1', $blog_atts['class']);
                             kt_entry_meta_time($blog_atts['date_format']);
                         }
                         ?>
-                    </div>
+                    </div><!-- .entry-meta-data -->
                 <?php } ?>
-                <div class="entry-excerpt">
-                    <?php the_excerpt(); ?>
-                </div>
+
+                <?php if($blog_atts['show_excerpt']){ ?>
+                    <div class="entry-excerpt">
+                        <?php the_excerpt(); ?>
+                    </div><!-- .entry-excerpt -->
+                <?php } ?>
                 <?php if($blog_atts['readmore']){ ?>
                     <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
                     <div class="entry-more">
                         <a href="<?php the_permalink() ?>" class="<?php echo $moreclass ?>"><?php _e('Read more', THEME_LANG ); ?></a>
-                    </div>
+                    </div><!-- .entry-more -->
                 <?php } ?>
             </div>
-
-        </div>
-    </div>
+        </div><!-- .post-info -->
+    </div><!-- .entry-main-content -->
 </article>

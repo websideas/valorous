@@ -5707,13 +5707,9 @@ article.post-item {
     margin: 0 0 5px;
 }
 
+.entry-meta-data a:hover,
 .entry-meta-data .cat-links a:hover {
     text-decoration: underline;
-}
-
-.post-layout-carousel1 .entry-more a:hover {
-    color: #d2a952;
-    border-color: #d2a952;
 }
 
 .entry-meta-data {
@@ -5769,7 +5765,8 @@ article.post-item {
     display: block;
 }
 
-.entry-excerpt {
+.entry-excerpt,
+.entry-more{
     margin-bottom: 15px;
 }
 
@@ -5858,13 +5855,29 @@ article.post-item {
 }
 
 /* Blog Layout 1 */
-.post-layout-1 {
-    text-align: center;
+
+
+/* Blog Layout 2 */
+.post-layout-2{
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+}
+/* Blog Layout 3 */
+.post-layout-3{
+    background: #FFFFFF;
+    padding: 25px;
+}
+.post-layout-3 .entry-thumb{
+    margin-top: -25px;
+    margin-left: -25px;
+    margin-right: -25px;
 }
 
+
+
 /*
- * 17.4. Blog Posts Carousel
- */
+* 17.4. Blog Posts Carousel
+*/
 .post-item-carousel {
     position: relative;
     overflow: hidden;

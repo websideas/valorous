@@ -34,6 +34,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
     $blog_atts = array(
         'image_size' => $image_size,
         'readmore' => $readmore,
+        'show_excerpt' =>  apply_filters('sanitize_boolean', $show_excerpt),
         'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
         "show_author" => apply_filters('sanitize_boolean', $show_author),
         "show_category" => apply_filters('sanitize_boolean', $show_category),

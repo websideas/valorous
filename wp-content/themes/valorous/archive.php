@@ -11,7 +11,6 @@
 $sidebar = kt_get_archive_sidebar();
 $settings = kt_get_settings_archive();
 
-
 get_header(); ?>
     <div class="container">
         <?php
@@ -24,7 +23,13 @@ get_header(); ?>
                 <?php do_action('before_blog_posts_loop'); ?>
                 <?php if ( have_posts() ) : ?>
                     <?php global $wp_query; ?>
-                    <div class='blog-posts blog-posts-<?php echo esc_attr($settings['blog_type']) ?>' data-settings="<?php echo esc_attr( json_encode( $settings ) ); ?>" data-type='<?php echo esc_attr($settings['blog_type']) ?>' data-total='<?php echo esc_attr($wp_query->max_num_pages); ?>' data-current='1'>
+                    <div class='blog-posts blog-posts-<?php echo esc_attr($settings['blog_type']) ?>'
+                         data-settings="<?php echo esc_attr( json_encode( $settings ) ); ?>"
+                         data-type='<?php echo esc_attr($settings['blog_type']) ?>'
+                         data-total='<?php echo esc_attr($wp_query->max_num_pages); ?>'
+                         data-current='1'
+                         style="text-align: <?php echo esc_attr($settings['align']); ?>"
+                         >
 
                         <?php
                         // Start the Loop.
@@ -40,12 +45,13 @@ get_header(); ?>
                         global $blog_atts;
                         $blog_atts = array(
                             'image_size' => $settings['image_size'],
-                            'readmore' => apply_filters('sanitize_boolean', $settings['readmore']),
+                            'readmore' => $settings['readmore'],
                             'show_meta' =>  apply_filters('sanitize_boolean', $settings['show_meta']),
                             "show_author" => apply_filters('sanitize_boolean', $settings['show_author']),
                             "show_category" => apply_filters('sanitize_boolean', $settings['show_category']),
                             "show_comment" => apply_filters('sanitize_boolean', $settings['show_comment']),
                             "show_date" => apply_filters('sanitize_boolean', $settings['show_date']),
+                            "show_excerpt" => apply_filters('sanitize_boolean', $settings['show_excerpt']),
                             "date_format" => $settings['date_format'],
                             'thumbnail_type' => $settings['thumbnail_type'],
                             'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),

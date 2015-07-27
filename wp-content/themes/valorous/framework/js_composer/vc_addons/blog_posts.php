@@ -17,7 +17,8 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'blog_columns' => 3,
             'blog_columns_tablet' => 2,
             'thumbnail_type' => 'format',
-
+            'show_excerpt' => 'true',
+            'blog_align' => 'left',
 
             'source' => 'all',
             'categories' => '',
@@ -44,7 +45,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         ), $atts );
 
         extract($atts);
-
 
         $output = $settings = '';
 
@@ -106,7 +106,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
             global $wp_query;
 
-            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
+            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1' style='text-align: ".$blog_align.";'>";
             echo "<div class='blog-posts-content clearfix'>";
 
             do_action('before_blog_posts_loop');
@@ -127,6 +127,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $blog_atts_posts = array(
                 'image_size' => $image_size,
                 'readmore' => $readmore,
+                'show_excerpt' =>  apply_filters('sanitize_boolean', $show_excerpt),
                 'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
                 "show_author" => apply_filters('sanitize_boolean', $show_author),
                 "show_category" => apply_filters('sanitize_boolean', $show_category),
@@ -303,7 +304,6 @@ vc_map( array(
                 __('None', THEME_LANG) => '',
                 __( 'Link', 'js_composer' ) => 'link',
                 __( 'Button Accent', 'js_composer' ) => 'btn-default',
-
                 __( 'Button White', 'js_composer' ) => 'btn-white',
                 __( 'Button Dark', 'js_composer' ) => 'btn-dark',
                 __( 'Button Dark lighter', 'js_composer' ) => 'btn-darkl',
@@ -329,6 +329,13 @@ vc_map( array(
             ),
             'description' => __( 'Select thumbnail type for article.', THEME_LANG ),
         ),
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Excerpt?', THEME_LANG ),
+            'param_name' => 'show_excerpt',
+            'value' => 'true',
+            "description" => __("Show or hide the Excerpt.", THEME_LANG),
+        ),
 
         /*
         array(
@@ -339,7 +346,16 @@ vc_map( array(
             "dependency" => array("element" => "image_size","value" => array('custom')),
         ),
         */
-
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Text align', 'js_composer' ),
+            'param_name' => 'blog_align',
+            'value' => array(
+                __( 'Left', THEME_LANG ) => 'left',
+                __( 'Center', THEME_LANG ) => 'center'
+            ),
+            'description' => __( 'Select text align', 'js_composer' )
+        ),
 
         array(
             'type' => 'dropdown',

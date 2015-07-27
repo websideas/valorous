@@ -154,12 +154,7 @@ if ( ! class_exists( 'KT_config' ) ) {
         
         public function setSections() {
             
-            $this->sections[] = array(
-                'id' 	=> 'general',
-                'title'  => __( 'General', THEME_LANG ),
-                'desc'   => __( '', THEME_LANG ),
-                'icon_class'	=> 'icon_cogs'
-            );
+
 
 
             global $wp_registered_sidebars;
@@ -171,7 +166,12 @@ if ( ! class_exists( 'KT_config' ) ) {
 
             $image_sizes = kt_get_image_sizes();
 
-
+            $this->sections[] = array(
+                'id' 	=> 'general',
+                'title'  => __( 'General', THEME_LANG ),
+                'desc'   => __( '', THEME_LANG ),
+                'icon'	=> 'icon_cogs'
+            );
             $this->sections[] = array(
                 'id' 	=> 'general_layout',
                 'title'  => __( 'General', THEME_LANG ),
@@ -1381,6 +1381,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'id'			=> 'sidebar_section',
                 'title'			=> __( 'Sidebar Widgets', THEME_LANG ),
                 'desc'			=> '',
+                'icon'          => 'icon_plus_alt2',
                 'fields'		=> array(
 
                     array(
@@ -1411,6 +1412,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'id'			=> 'page_header_section',
                 'title'			=> __( 'Page header', THEME_LANG ),
                 'desc'			=> '',
+                'icon'          => 'icon_archive_alt',
                 'fields'		=> array(
 
                     array(
@@ -1525,6 +1527,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'icon' => 'el-icon-star',
                 'title' => __('Page', THEME_LANG),
                 'desc' => __('General Page Options', THEME_LANG),
+                'icon' => 'icon_document_alt',
                 'fields' => array(
                     array(
                         'id' => 'show_page_header',
@@ -1592,6 +1595,7 @@ if ( ! class_exists( 'KT_config' ) ) {
             $this->sections[] = array(
                 'icon' => 'el-icon-star',
                 'title' => __('Blog', THEME_LANG),
+                'icon' => 'icon_pencil-edit',
                 'desc' => __('General Blog Options', THEME_LANG),
                 'fields' => array(
 
@@ -1632,7 +1636,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'left' => __('Left Sidebar', THEME_LANG),
                             'right' => __('Right Layout', THEME_LANG)
                         ),
-                        'default'  => 'full',
+                        'default'  => 'right',
                         'clear' => false
                     ),
                     array(
@@ -1656,6 +1660,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'clear' => false
                     ),
                     array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
                         'id' => 'archive_loop_style',
                         'type' => 'select',
                         'title' => __('Loop Style', THEME_LANG),
@@ -1665,17 +1673,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
-                        'default' => 'classic'
-                    ),
-                    array(
-                        'id' => 'archive_sharebox',
-                        'type' => 'switch',
-                        'title' => __('Share box', THEME_LANG),
-                        'desc' => __('Show or hide share box.', THEME_LANG),
-                        "default" => 1,
-                        'on' => __('Enabled', THEME_LANG),
-                        'off' =>__('Disabled', THEME_LANG),
-                        'required' => array('archive_loop_style','equals', array( 'classic' ) ),
+                        'default' => 'masonry'
                     ),
                     array(
                         'id' => 'archive_columns',
@@ -1689,7 +1687,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '4' => __( '4 columns', 'js_composer' ) ,
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
-                        'default' => '3',
+                        'default' => '2',
                         'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
@@ -1721,14 +1719,50 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
-                        'id' => 'archive_readmore',
+                        'id' => 'archive_sharebox',
                         'type' => 'switch',
-                        'title' => __('Readmore button ', THEME_LANG),
-                        'desc' => __('Show or hide the readmore button.', THEME_LANG),
+                        'title' => __('Share box', THEME_LANG),
+                        'desc' => __('Show or hide share box.', THEME_LANG),
                         "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
-                        'off' =>__('Disabled', THEME_LANG)
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('archive_loop_style','equals', array( 'classic' ) ),
                     ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id' => 'archive_align',
+                        'type' => 'select',
+                        'title' => __('Text align', THEME_LANG),
+                        'desc' => '',
+                        'options' => array(
+                            'left' => __( 'Left', THEME_LANG ) ,
+                            'center' => __( 'Center', THEME_LANG ) ,
+                        ),
+                        'default' => 'left'
+                    ),
+                    array(
+                        'id' => 'archive_readmore',
+                        'type' => 'select',
+                        'title' => __('Readmore button ', THEME_LANG),
+                        'desc' => __('Select button style.', THEME_LANG),
+                        "default" => 'link',
+                        'options' => array(
+                            '' => __('None', THEME_LANG),
+                            'link' => __( 'Link', 'js_composer' ),
+                            'btn-default' => __( 'Button Accent', 'js_composer' ),
+                            'btn-white' => __( 'Button White', 'js_composer' ),
+                            'btn-dark' => __( 'Button Dark', 'js_composer' ),
+                            'btn-darkl' => __( 'Button Dark lighter', 'js_composer' ),
+                            'btn-gray' => __( 'Button Gray', 'js_composer' ) ,
+                            'btn-default-b' => __( 'Button Accent Border', 'js_composer' ) ,
+                            'btn-white-b' => __( 'Button White Border', 'js_composer' ),
+                            'btn-dark-b' => __( 'Button Dark Border', 'js_composer' ),
+                        ),
+                    ),
+
                     array(
                         'id' => 'archive_thumbnail_type',
                         'type' => 'select',
@@ -1739,6 +1773,30 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'image' => __( 'Featured Image', THEME_LANG ) ,
                         ),
                         'default' => 'image'
+                    ),
+                    array(
+                        'id'   => 'archive_image_size',
+                        'type' => 'select',
+                        'options' => $image_sizes,
+                        'title'    => __( 'Image size', THEME_LANG ),
+                        'desc' => __("Select image size.", THEME_LANG),
+                        'default' => 'recent_posts'
+                    ),
+                    array(
+                        'id' => 'archive_excerpt',
+                        'type' => 'switch',
+                        'title' => __('Show Excerpt? ', THEME_LANG),
+                        'desc' => __('Show or hide the excerpt.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id' => 'archive_excerpt_length',
+                        'type' => 'text',
+                        'title' => __('Excerpt Length', THEME_LANG),
+                        'desc' => __("Insert the number of words you want to show in the post excerpts.", THEME_LANG),
+                        'default' => '30',
                     ),
                     array(
                         'id' => 'archive_pagination',
@@ -1752,26 +1810,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         ),
                         'default' => 'classic'
                     ),
-                    array(
-                        'id' => 'archive_excerpt_length',
-                        'type' => 'text',
-                        'title' => __('Excerpt Length', THEME_LANG),
-                        'desc' => __("Insert the number of words you want to show in the post excerpts.", THEME_LANG),
-                        'default' => '30',
-                    ),
-
-
-
-                    array(
-                        'id'   => 'archive_image_size',
-                        'type' => 'select',
-                        'options' => $image_sizes,
-                        'title'    => __( 'Image size', THEME_LANG ),
-                        'desc' => __("Select image size.", THEME_LANG),
-                        'default' => 'blog_post'
-                    ),
-
-
                     array(
                         'type' => 'divide',
                         'id' => 'divide_fake',
@@ -1986,7 +2024,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id' => 'blog_related_full',
                         'type' => 'text',
-                        'title' => __('Related total for full width', THEME_LANG),
+                        'title' => __('Related number for full width', THEME_LANG),
                         'subtitle' => '',
                         'desc' => '',
                         'default' => '3',
@@ -1994,7 +2032,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id' => 'blog_related_sidebar',
                         'type' => 'text',
-                        'title' => __('Related total for sidebar', THEME_LANG),
+                        'title' => __('Related number for sidebar', THEME_LANG),
                         'subtitle' => '',
                         'desc' => '',
                         'default' => '2'
@@ -2085,6 +2123,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'id'			=> 'search_section',
                 'title'			=> __( 'Search', THEME_LANG ),
                 'desc'			=> 'Search settings',
+                'icon'          => 'icon_search',
                 'fields'		=> array(
                     array(
                         'id'       => 'search_heading',
@@ -2300,20 +2339,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                 )
             );
-            /**
-             *	Advertising
-             **/
-            $this->sections[] = array(
-                'id'			=> 'advertising_section',
-                'title'			=> __( 'Advertising', THEME_LANG ),
-                'desc'			=> 'Advertising settings',
-                'fields'		=> array(
-                    //Advertising type - Display code , Custom Image
-                    //Advertising Code html ( Ex: Google ads)
-                    //Image URL
-                    //Advertising url
-                )
-            );
+
             /**
              *	404 Page
              **/
@@ -2321,6 +2347,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'id'			=> '404_section',
                 'title'			=> __( '404 Page', THEME_LANG ),
                 'desc'			=> '404 Page settings',
+                'icon'          => 'icon_error-circle_alt',
                 'fields'		=> array(
                     array(
                         'id'       => 'notfound_heading',
@@ -2370,7 +2397,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'id'			=> 'woocommerce',
 				'title'			=> __( 'Woocommerce', THEME_LANG ),
 				'desc'			=> '',
-				'icon_class'	=> 'icon_cart_alt',
+				'icon'	=> 'icon_cart_alt',
 				'fields'		=> array(
                     array(
                         'id'       => 'shop_products_heading',
@@ -2652,6 +2679,21 @@ if ( ! class_exists( 'KT_config' ) ) {
                  )
             );
 
+            /**
+             *	Advertising
+             **/
+            $this->sections[] = array(
+                'id'			=> 'advertising_section',
+                'title'			=> __( 'Advertising', THEME_LANG ),
+                'desc'			=> 'Advertising settings',
+                'icon'          => 'icon_target',
+                'fields'		=> array(
+                    //Advertising type - Display code , Custom Image
+                    //Advertising Code html ( Ex: Google ads)
+                    //Image URL
+                    //Advertising url
+                )
+            );
 
             /**
 			 *	Advanced
@@ -2660,7 +2702,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'id'			=> 'advanced',
 				'title'			=> __( 'Advanced', THEME_LANG ),
 				'desc'			=> '',
-                'icon_class'	=> 'icon_star_alt',
+                'icon'	=> 'icon_star_alt',
             );
 
 
