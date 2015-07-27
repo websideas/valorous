@@ -9,10 +9,11 @@ class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'image_gallery' => '',
-            'image_size' => 'full',
-            'row_height' => 400,
+            'image_size' => '',
+            'row_height' => 150,
             'margin_image' => 10,
-            'gallery_popup' => 'yes',
+            'gallery_popup' => 'true',
+            'image_size_popup' => 'full',
             
             'el_class' => '',
             'css' => '',
@@ -27,7 +28,7 @@ class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
         if( $image_gallery ){ $image_gallery = explode( ',', $image_gallery ); }else{ $image_gallery = array(); }
-        if( $gallery_popup == 'yes' ){ $popup = ' popup-gallery'; }else{ $popup = ''; }
+        if( $gallery_popup == 'true' ){ $popup = ' popup-gallery'; }else{ $popup = ''; }
         $output = '';
         if( count($image_gallery) > 0 ){
             $output .= '<div class="'.esc_attr( $elementClass ).'" style="margin-left:-'.$margin_image.'px;margin-right:-'.$margin_image.'px;">';
@@ -35,11 +36,14 @@ class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
                     foreach ( $image_gallery as $attach_id ) {
                     	if ( $attach_id > 0 ) {
                     		$image = wpb_getImageBySize( array( 'attach_id' => $attach_id, 'thumb_size' => $image_size ) );
+                            if( $gallery_popup == 'true' ){
+                                $image_popup = wp_get_attachment_image_src( $attach_id, $image_size_popup );
+                            }
                     	}
                         $output .= '<div class="gallery-item">';
-                            if( $gallery_popup == 'yes' ){ $output .= '<a href="'.$image['p_img_large'][0].'">'; }
+                            if( $gallery_popup == 'true' ){ $output .= '<a href="'.$image_popup[0].'">'; }
                                 $output .= $image['thumbnail'];
-                            if( $gallery_popup == 'yes' ){ $output .= "</a>"; }
+                            if( $gallery_popup == 'true' ){ $output .= "</a>"; }
                         $output .= '</div>';
                     }
                 $output .= '</div>';
@@ -54,10 +58,10 @@ class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
 
 // Add your Visual Composer logic here
 vc_map( array(
-    "name" => __( "KT Gallery", THEME_LANG),
+    "name" => __( "KT Gallery Justified", THEME_LANG),
     "base" => "kt_gallery",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Gallery", THEME_LANG),
+    "description" => __( "", THEME_LANG),
     "params" => array(
         //Image
         array(
@@ -70,31 +74,40 @@ vc_map( array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
-            "std" => "full"
         ),
         array(
-            "type" => "textfield",
-            "heading" => __( "Row Height", THEME_LANG ),
+            "type" => "kt_number",
+            "heading" => __("Row Height", THEME_LANG),
             "param_name" => "row_height",
+            "value" => 150,
+            "min" => 0,
+            "max" => 1000,
+            "suffix" => "px",
             "description" => __( "The preferred height of rows in pixel.", THEME_LANG ),
-            "std" => 400
         ),
         array(
-            "type" => "textfield",
-            "heading" => __( "Margin", THEME_LANG ),
+            "type" => "kt_number",
+            "heading" => __("Margin", THEME_LANG),
             "param_name" => "margin_image",
+            "value" => 10,
+            "min" => 0,
+            "max" => 50,
+            "suffix" => "px",
             "description" => __( "Decide the margins between the images.", THEME_LANG ),
-            "std" => 10
         ),
         array(
-            'type' => 'dropdown',
+            'type' => 'kt_switch',
             'heading' => __( 'Gallery Popup', THEME_LANG ),
             'param_name' => 'gallery_popup',
-            'value' => array(
-                __( 'Yes', THEME_LANG ) => 'yes',
-                __( 'No', THEME_LANG ) => 'no',
-            ),
-            'std' => 'yes',
+            'value' => 'true',
+            "description" => __("Use or don't use popup gallery.", THEME_LANG),
+        ),
+        array(
+            "type" => "kt_image_sizes",
+            "heading" => __( "Select image sizes popup gallery", THEME_LANG ),
+            "param_name" => "image_size_popup",
+            "std" => "full",
+            "dependency" => array("element" => "gallery_popup","value" => array('true'),'not_empty' => true,),
         ),
         
         array(

@@ -1,4 +1,3 @@
-
 (function($){
     "use strict"; // Start of use strict
 
@@ -1091,7 +1090,7 @@
         		delegate: 'a',
         		type: 'image',
         		tLoading: 'Loading...',
-        		mainClass: 'mfp-img-mobile',
+        		mainClass: 'mfp-zoom-in',
         		gallery: {
         			enabled: true,
         			navigateByImgClick: true,
@@ -1101,7 +1100,13 @@
         			titleSrc: function(item) {
         				return item.el.attr('title');
         			}
-        		}
+        		},
+                callbacks: {
+                    beforeOpen: function() {
+                        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                        this.st.mainClass = 'mfp-zoom-in';
+                    }
+                }
         	});
         });
     }
