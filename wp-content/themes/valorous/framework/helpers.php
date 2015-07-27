@@ -889,3 +889,40 @@ if (!function_exists('kt_post_option')) {
         return $meta_v;
     }
 }
+
+if (!function_exists('kt_get_template_part')) {
+    /**
+     * Check option for in article
+     *
+     * @param number $post_id Optional. ID of article.
+     * @param string $meta Optional. meta oftion in article
+     * @param string $option Optional. if meta is Global, Check option in theme option.
+     * @param string $default Optional. Default vaule if theme option don't have data
+     * @return boolean
+     */
+    function kt_get_template_part($slug, $name = null, $blog_atts = array())
+    {
+        /**
+         * Fires before the specified template part file is loaded.
+         *
+         * The dynamic portion of the hook name, `$slug`, refers to the slug name
+         * for the generic template part.
+         *
+         * @since 3.0.0
+         *
+         * @param string $slug The slug name for the generic template.
+         * @param string $name The name of the specialized template.
+         */
+        do_action( "get_template_part_{$slug}", $slug, $name );
+
+        $templates = array();
+        $name = (string) $name;
+        if ( '' !== $name )
+            $templates[] = "{$slug}-{$name}.php";
+
+        $templates[] = "{$slug}.php";
+
+        include(locate_template($templates));
+
+    }
+}

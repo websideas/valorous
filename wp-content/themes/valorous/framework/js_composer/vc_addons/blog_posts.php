@@ -106,13 +106,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
             global $wp_query;
 
-            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1' style='text-align: ".$blog_align.";'>";
+            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
             echo "<div class='blog-posts-content clearfix'>";
 
             do_action('before_blog_posts_loop');
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
-                echo "<div class='row'>";
+                echo "<div class='row' style='text-align: ".$blog_align.";'>";
             }
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
@@ -123,7 +123,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
             }
 
-            global $blog_atts;
             $blog_atts_posts = array(
                 'image_size' => $image_size,
                 'readmore' => $readmore,
@@ -142,9 +141,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $i = 1 ;
             $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
 
-            //while ( $wp_query->have_posts() ) : $wp_query->the_post();
             while ( have_posts() ) : the_post();
-
                 $blog_atts = $blog_atts_posts;
 
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
@@ -159,7 +156,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                     echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
                 }
 
-                get_template_part( $path, get_post_format() );
+                kt_get_template_part( $path, get_post_format(), $blog_atts);
 
 
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
@@ -298,6 +295,20 @@ vc_map( array(
         ),
         array(
             'type' => 'dropdown',
+            'heading' => __( 'Text align', 'js_composer' ),
+            'param_name' => 'blog_align',
+            'value' => array(
+                __( 'Left', THEME_LANG ) => 'left',
+                __( 'Center', THEME_LANG ) => 'center'
+            ),
+            'description' => __( 'Not working for archive style classic', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'classic' )
+            ),
+        ),
+        array(
+            'type' => 'dropdown',
             'heading' => __( 'Readmore button', THEME_LANG ),
             'param_name' => 'readmore',
             'value' => array(
@@ -346,16 +357,7 @@ vc_map( array(
             "dependency" => array("element" => "image_size","value" => array('custom')),
         ),
         */
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Text align', 'js_composer' ),
-            'param_name' => 'blog_align',
-            'value' => array(
-                __( 'Left', THEME_LANG ) => 'left',
-                __( 'Center', THEME_LANG ) => 'center'
-            ),
-            'description' => __( 'Select text align', 'js_composer' )
-        ),
+
 
         array(
             'type' => 'dropdown',

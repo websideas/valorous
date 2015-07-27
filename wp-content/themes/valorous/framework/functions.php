@@ -67,6 +67,10 @@ function get_page_header( ){
                 $show_title = kt_option('shop_page_header', 1);
             }
         }
+    }elseif(is_search()){
+        $show_title = kt_option('search_page_header', 1);
+    }elseif(is_author()){
+        $show_title = kt_option('author_page_header', 1);
     }elseif(is_404()){
         $show_title = kt_option('notfound_page_header', 1);
     }elseif(is_page() || is_singular()){
@@ -344,27 +348,52 @@ function kt_get_breadcrumb($breadcrumb = ''){
  * @return array
  */
 function kt_get_settings_archive(){
-    return array(
-        'blog_type' => kt_option('archive_loop_style', 'classic'),
-        'blog_columns' => kt_option('archive_columns'),
-        'blog_columns_tablet' => kt_option('archive_columns_tablet'),
-        'blog_layout' => kt_option('archive_layout', '1'),
-        'readmore' => kt_option('archive_readmore', 'link'),
-        'blog_pagination' => kt_option('archive_pagination', 'classic'),
-        'thumbnail_type' => kt_option('archive_thumbnail_type', 'image'),
-        'sharebox' => kt_option('archive_sharebox', 1),
-        'show_excerpt' => kt_option('archive_excerpt', 1),
-        'align' => kt_option('archive_align', 'left'),
-        'excerpt_length' => kt_option('archive_excerpt_length', 30),
-        'show_meta' => kt_option('archive_meta', 1),
-        'show_author' => kt_option('archive_meta_author', 1),
-        'show_category' => kt_option('archive_meta_categories', 1),
-        'show_comment' => kt_option('archive_meta_comments', 1),
-        'show_date' => kt_option('archive_meta_date', 1),
-        'date_format' => kt_option('archive_date_format', 1),
-        'image_size' => kt_option('archive_image_size', 'blog_post'),
-        'max_items' => get_option('posts_per_page')
-    );
+    if(is_author()){
+        $settings = array(
+            'blog_type' => kt_option('author_loop_style', 'masonry'),
+            'blog_columns' => kt_option('author_columns', 2),
+            'blog_columns_tablet' => kt_option('author_columns_tablet', 2),
+            'blog_layout' => kt_option('author_layout', 1),
+            'readmore' => kt_option('author_readmore', 'link'),
+            'blog_pagination' => kt_option('author_pagination', 'classic'),
+            'thumbnail_type' => kt_option('author_thumbnail_type', 'image'),
+            'sharebox' => kt_option('author_sharebox', 1),
+            'align' => kt_option('author_align', 'left'),
+            'show_excerpt' => kt_option('author_excerpt', 1),
+            'excerpt_length' => kt_option('author_excerpt_length', 30),
+            'show_meta' => kt_option('author_meta', 1),
+            'show_author' => kt_option('author_meta_author', 1),
+            'show_category' => kt_option('author_meta_categories', 1),
+            'show_comment' => kt_option('author_meta_comments', 1),
+            'show_date' => kt_option('author_meta_date', 1),
+            'date_format' => kt_option('author_date_format', 1),
+            'image_size' => kt_option('author_image_size', 'recent_posts'),
+            'max_items' => get_option('posts_per_page')
+        );
+    }else{
+        $settings = array(
+            'blog_type' => kt_option('archive_loop_style', 'masonry'),
+            'blog_columns' => kt_option('archive_columns', 2),
+            'blog_columns_tablet' => kt_option('archive_columns_tablet', 2),
+            'blog_layout' => kt_option('archive_layout', 1),
+            'readmore' => kt_option('archive_readmore', 'link'),
+            'blog_pagination' => kt_option('archive_pagination', 'classic'),
+            'thumbnail_type' => kt_option('archive_thumbnail_type', 'image'),
+            'sharebox' => kt_option('archive_sharebox', 1),
+            'align' => kt_option('archive_align', 'left'),
+            'show_excerpt' => kt_option('archive_excerpt', 1),
+            'excerpt_length' => kt_option('archive_excerpt_length', 30),
+            'show_meta' => kt_option('archive_meta', 1),
+            'show_author' => kt_option('archive_meta_author', 1),
+            'show_category' => kt_option('archive_meta_categories', 1),
+            'show_comment' => kt_option('archive_meta_comments', 1),
+            'show_date' => kt_option('archive_meta_date', 1),
+            'date_format' => kt_option('archive_date_format', 1),
+            'image_size' => kt_option('archive_image_size', 'recent_posts'),
+            'max_items' => get_option('posts_per_page')
+        );
+    }
+    return $settings;
 }
 
 /**
@@ -374,14 +403,16 @@ function kt_get_settings_archive(){
  */
 function kt_get_settings_search(){
     return array(
-        'blog_type' => kt_option('search_loop_style', 'classic'),
-        'blog_columns' => kt_option('search_columns'),
-        'blog_columns_tablet' => kt_option('search_columns_tablet'),
-        'blog_layout' => kt_option('search_layout', '1'),
-        'readmore' => kt_option('search_readmore', 1),
+        'blog_type' => kt_option('search_loop_style', 'masonry'),
+        'blog_columns' => kt_option('search_columns', 3),
+        'blog_columns_tablet' => kt_option('search_columns_tablet', 2),
+        'blog_layout' => kt_option('search_layout', 1),
+        'align' => kt_option('archive_align', 'left'),
+        'readmore' => kt_option('search_readmore', 'link'),
         'blog_pagination' => kt_option('search_pagination', 'classic'),
         'thumbnail_type' => kt_option('search_thumbnail_type', 'image'),
         'sharebox' => kt_option('search_sharebox', 1),
+        'show_excerpt' => kt_option('search_excerpt', 1),
         'excerpt_length' => kt_option('search_excerpt_length', 30),
         'show_meta' => kt_option('search_meta', 1),
         'show_author' => kt_option('search_meta_author', 1),
@@ -390,7 +421,8 @@ function kt_get_settings_search(){
         'show_date' => kt_option('search_meta_date', 1),
         'date_format' => kt_option('search_date_format', 1),
         'image_size' => kt_option('search_image_size', 'blog_post'),
-        'max_items' => get_option('posts_per_page')
+        'max_items' => get_option('posts_per_page'),
+
     );
 }
 
@@ -639,3 +671,17 @@ function kt_placeholder_callback( $size = '') {
 
     return $imgage;
 }
+
+
+if ( ! function_exists( 'kt_excerpt_more' ) && ! is_admin() ) :
+    /**
+     * Replaces "[...]" (appended to automatically generated excerpts) with ...
+     *
+     * @param string $more Default Read More excerpt link.
+     * @return string Filtered Read More excerpt link.
+     */
+    function kt_excerpt_more( $more ) {
+        return ' &hellip; ' ;
+    }
+    add_filter( 'excerpt_more', 'kt_excerpt_more' );
+endif;

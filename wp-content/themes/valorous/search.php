@@ -38,10 +38,9 @@ get_header(); ?>
                                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
                             }
 
-                            global $blog_atts;
-                            $blog_atts_posts = array(
+                            $blog_atts_s = array(
                                 'image_size' => $settings['image_size'],
-                                'readmore' => apply_filters('sanitize_boolean', $settings['readmore']),
+                                'readmore' => $settings['readmore'],
                                 'show_meta' =>  apply_filters('sanitize_boolean', $settings['show_meta']),
                                 "show_author" => apply_filters('sanitize_boolean', $settings['show_author']),
                                 "show_category" => apply_filters('sanitize_boolean', $settings['show_category']),
@@ -50,18 +49,22 @@ get_header(); ?>
                                 "date_format" => $settings['date_format'],
                                 'thumbnail_type' => $settings['thumbnail_type'],
                                 'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
+                                "show_excerpt" => apply_filters('sanitize_boolean', $settings['show_excerpt']),
                                 "class" => ''
                             );
+
                             $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$settings['blog_layout'].'/content';
 
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
-                                echo "<div class='blog-posts-content clearfix'>";
+                                echo "<div class='blog-posts-content clearfix' style='text-align: ".$settings['align']."'>";
                                 echo "<div class='row'>";
                             }
 
                             $i = 1;
                             while ( have_posts() ) : the_post();
-                                $blog_atts = $blog_atts_posts;
+
+                                $blog_atts = $blog_atts_s;
+
                                 if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                     $classes_extra = '';
                                     if($settings['blog_type'] == 'grid'){
@@ -73,7 +76,9 @@ get_header(); ?>
                                     }
                                     echo "<div class='article-post-item ".$classes." ".$classes_extra." ".$i."'>";
                                 }
-                                get_template_part( $path, get_post_format() );
+
+                                kt_get_template_part( $path, get_post_format(), $blog_atts );
+
                                 if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                     echo "</div><!-- .article-post-item -->";
                                 }

@@ -866,8 +866,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                 <div class="row">
                     <?php
 
-                    global $blog_atts;
-                    $blog_atts = array(
+                    $blog_atts_posts = array(
                         'image_size' => 'recent_posts',
                         'readmore' => false,
                         "show_author" => false,
@@ -877,7 +876,8 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         'show_meta' => true,
                         "date_format" => 'M d Y',
                         'thumbnail_type' => 'image',
-                        "class" => ''
+                        "class" => '',
+                        'show_excerpt' => true
                     );
 
                     $i = 1;
@@ -889,6 +889,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
 
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                         <?php
+                            $blog_atts = $blog_atts_posts;
                             $classes_extra = '';
                             if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
                                 $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
@@ -897,7 +898,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                                 $classes_extra .= ' col-clearfix-sm';
                         ?>
                         <div class="article-post-item <?php echo $classes." ".$classes_extra; ?>">
-                            <?php get_template_part( 'templates/blog/layout/layout1/content', get_post_format() ); ?>
+                            <?php kt_get_template_part( 'templates/blog/layout/layout1/content', get_post_format(), $blog_atts); ?>
                         </div><!-- .article-post-item -->
                     <?php $i++; endwhile; ?>
                     <?php wp_reset_postdata(); ?>

@@ -120,8 +120,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             $carousel_ouput = kt_render_carousel(apply_filters( 'kt_render_args', $atts));
             $blog_carousel_html = '';
 
-            global $blog_atts;
-            $blog_atts = array(
+            $blog_atts_posts = array(
                 'image_size' => $image_size,
                 'readmore' => apply_filters('sanitize_boolean', $readmore),
                 'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
@@ -137,9 +136,10 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
 
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
+                $blog_atts = $blog_atts_posts;
                 $blog_carousel_html .= '<div class="carousel-posts-item">';
                 ob_start();
-                get_template_part( 'templates/blog/carousel/content', $blog_layout );
+                kt_get_template_part( 'templates/blog/carousel/content', $blog_layout, $blog_atts);
                 $blog_carousel_html .= ob_get_contents();
                 ob_end_clean();
 

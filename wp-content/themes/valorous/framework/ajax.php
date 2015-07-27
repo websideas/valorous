@@ -30,8 +30,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
         $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
     }
 
-    global $blog_atts;
-    $blog_atts = array(
+    $blog_atts_posts = array(
         'image_size' => $image_size,
         'readmore' => $readmore,
         'show_excerpt' =>  apply_filters('sanitize_boolean', $show_excerpt),
@@ -52,6 +51,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
 
     $i = ( $query_vars['paged'] - 1 ) * $max_items + 1 ;
     while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        $blog_atts = $blog_atts_posts;
         if($blog_type == 'grid' || $blog_type == 'masonry'){
             $classes_extra = '';
             if($blog_type == 'grid'){
