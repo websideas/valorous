@@ -62,6 +62,8 @@
         woo_quantily();
         //scrollsizebar();
         kt_changeSize('.kt_client .style2');//Add class client
+        kt_gallery();
+        kt_popup_gallery();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -1066,6 +1068,37 @@
                 $lastrow = Math.floor($stt/n) * n - 1;
             }
             $(this).find(".kt_client_col:gt("+$lastrow+")" ).addClass('lastrow');
+        });
+    }
+    function kt_gallery(){
+        $('.justified-gallery').each(function(){
+            $(this).justifiedGallery({
+                rowHeight: $(this).data('height'),
+                //maxRowHeight: $(this).data('height'),
+                margins: $(this).data('margin'),
+                captions: false,
+                lastRow: 'justify',
+            });
+        });
+    }
+    function kt_popup_gallery(){
+        $('.popup-gallery').each(function(){
+            $(this).magnificPopup({
+        		delegate: 'a',
+        		type: 'image',
+        		tLoading: 'Loading...',
+        		mainClass: 'mfp-img-mobile',
+        		gallery: {
+        			enabled: true,
+        			navigateByImgClick: true,
+        			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        		},
+                image: {
+        			titleSrc: function(item) {
+        				return item.el.attr('title');
+        			}
+        		}
+        	});
         });
     }
 

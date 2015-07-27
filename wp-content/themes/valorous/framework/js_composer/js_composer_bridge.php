@@ -173,6 +173,7 @@ $composer_addons = array(
     'coming_soon.php',
     'googlemap.php',
     'client_gird.php',
+    'gallery.php',
 );
 
 foreach ( $composer_addons as $addon ) {
