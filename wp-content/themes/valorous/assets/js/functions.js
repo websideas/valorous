@@ -59,10 +59,10 @@
         init_carouselwoo();
         
         woo_quantily();
-        //scrollsizebar();
         kt_changeSize('.kt_client .style2');//Add class client
         kt_gallery();
         kt_popup_gallery();
+        kt_sidebar_sticky();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -91,15 +91,7 @@
         $('.button-toggle').click(function(e){
             e.preventDefault();
             $(this).closest('#nav').toggleClass('is-opened');
-
         });
-
-        /**==============================
-        ***  Sticky sidebar
-        ===============================**/
-        $('.sidebar').theiaStickySidebar({
-			additionalMarginTop: 120
-		});
     });
     
     $(window).resize(function(){
@@ -129,101 +121,6 @@
         kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
     });
     
-    function scrollsizebar(){
-        var _window = $( window ),
-            InitStr = _window.width(),
-            $sidebar = $('.sidebar'),
-            $sidebar_inner = $('.sidebar .sidebar-inner'),
-            $primary = $('#main'),
-            lastScrollTop = 0,
-            currenttoppos = 0;
-        
-        if($sidebar.length > 0 && InitStr > 992){
-            var top_pos  = $sidebar_inner.offset().top;
-            $(window).scroll(function(event){
-                var $sidebar_offset = $sidebar.offset().top,
-                    $sidebar_inner_height = $sidebar_inner.outerHeight(),
-                    $footer_offset = $('#footer').offset().top,
-                    $primary_height = $primary.outerHeight(),
-                    $width = $sidebar.width(),
-                    st = _window.scrollTop();
-                    
-                    if(currenttoppos < 0 ) currenttoppos = 0;
-                    if(currenttoppos > ( $primary_height - $sidebar_inner_height )){ 
-                        currenttoppos = $primary_height - $sidebar_inner_height;
-                    }
-                if( $primary_height < $sidebar_inner_height ){
-                    $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
-                }else{
-                    if (st > lastScrollTop){
-                        /*
-                        if($primary_height < $sidebar_inner_height){
-                            $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
-                        }else if((st + _window.height()) > ($sidebar_offset + $sidebar_inner_height)){
-                            $sidebar_inner.css({'position': 'fixed', 'bottom' : '0','width': $width});
-                            var $margin_bottom = $sidebar_inner.css('margin-bottom');
-                            if((st + _window.height()) > ($footer_offset)){
-                                $sidebar.css({'height':$primary_height+'px'});
-                                $sidebar_inner.css({'bottom':'0','position':'absolute'});
-                            }
-                        }else{
-                            $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto'});
-                        }
-                        */
-                        if(currenttoppos >= ($primary_height - $sidebar_inner_height) ) {
-                            $sidebar_inner.css({
-                                'position' : 'absolute',
-                                'top': ( $primary_height - $sidebar_inner_height ),
-                                'bottom' : 'auto',
-                                'width': $width
-                            });
-                        } else if(st > ( currenttoppos + top_pos + $sidebar_inner_height - _window.height())) {
-                            $sidebar_inner.css({
-                                'position' : 'fixed',
-                                'bottom': '0',
-                                'top': 'auto',
-                                'width': $width
-                            });
-                            currenttoppos = st + _window.height() - top_pos - $sidebar_inner_height;
-                        } else {
-                            $sidebar_inner.css({
-                                'position' : 'absolute',
-                                'top': ( currenttoppos ),
-                                'bottom' : 'auto',
-                                'width': $width
-                            });
-                        }
-                    }else{
-                        if(currenttoppos <= 0) {
-                            $sidebar_inner.css({
-                                'position' : 'relative',
-                                'top': '0',
-                                'bottom' : 'auto'
-                            });
-                        } else if( st > ( currenttoppos + top_pos ) ) {
-                            $sidebar_inner.css({
-                                'position' : 'absolute',
-                                'top': ( currenttoppos ),
-                                'bottom' : 'auto',
-                                'width': $width
-                            });
-                        } else {
-                            $sidebar_inner.css({
-                                'position' : 'fixed',
-                                'top': '0',
-                                'bottom' : 'auto',
-                                'width': $width,
-                            });
-                            currenttoppos = st - top_pos;
-                        }
-                    }
-                    lastScrollTop = st;
-                }
-            });
-        }else{
-            $sidebar_inner.css({'position': 'static', 'bottom' : 'auto','width':'auto', });
-        }            
-    }
     /* ---------------------------------------------
      Woocommercer Quantily
      --------------------------------------------- */
@@ -1073,6 +970,10 @@
             $(this).find(".kt_client_col:gt("+$lastrow+")" ).addClass('lastrow');
         });
     }
+    
+    /* ---------------------------------------------
+     Kt Gallery
+     --------------------------------------------- */
     function kt_gallery(){
         $('.justified-gallery').each(function(){
             $(this).justifiedGallery({
@@ -1091,6 +992,7 @@
         		type: 'image',
         		tLoading: 'Loading...',
         		mainClass: 'mfp-zoom-in',
+                removalDelay: 500,
         		gallery: {
         			enabled: true,
         			navigateByImgClick: true,
@@ -1109,6 +1011,21 @@
                 }
         	});
         });
+    }
+    
+    /**==============================
+    ***  Sticky sidebar
+    ===============================**/
+    function kt_sidebar_sticky(){
+        var margin_sidebar_sticky;
+        if($('#wpadminbar').length > 0){
+            margin_sidebar_sticky = parseInt( $('#wpadminbar').outerHeight() ) + 100;
+        }else{
+            margin_sidebar_sticky = 100;
+        }
+        $('.sidebar').theiaStickySidebar({ 
+    		additionalMarginTop: margin_sidebar_sticky
+    	}); 
     }
 
 })(jQuery); // End of use strict

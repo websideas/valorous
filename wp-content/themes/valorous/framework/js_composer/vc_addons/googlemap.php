@@ -35,7 +35,7 @@ vc_map( array(
     "name" => __( "Google map", THEME_LANG),
     "base" => "googlemap",
     "category" => __('by Theme'),
-    "description" => __( "Google map", THEME_LANG),
+    "description" => __( "", THEME_LANG),
     "params" => array(
         array(
           "type" => "textfield",

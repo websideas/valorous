@@ -67,7 +67,7 @@ vc_map( array(
     "name" => __( "Dropcap", THEME_LANG),
     "base" => "dropcap",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Dropcap", THEME_LANG),
+    "description" => __( "", THEME_LANG),
     "params" => array(
         array(
             "type" => "textfield",

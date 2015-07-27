@@ -103,7 +103,7 @@ vc_map( array(
     "name" => __( "Coming soon", THEME_LANG),
     "base" => "comingsoon",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Coming soon", THEME_LANG),
+    "description" => __( "", THEME_LANG),
     "params" => array(
         array(
             'type' => 'textfield',

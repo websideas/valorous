@@ -99,7 +99,7 @@ vc_map( array(
     "name" => __( "Piechart", THEME_LANG),
     "base" => "piechart",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Piechart", THEME_LANG),
+    "description" => __( "", THEME_LANG),
     "params" => array(
         array(
             "type" => "textfield",

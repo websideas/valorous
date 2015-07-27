@@ -5,7 +5,7 @@ if ( !defined('ABSPATH')) exit;
 
 require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 
-class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
+class WPBakeryShortCode_KT_Gallery_Justified extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'image_gallery' => '',
@@ -59,7 +59,7 @@ class WPBakeryShortCode_KT_Gallery extends WPBakeryShortCode_VC_Custom_heading {
 // Add your Visual Composer logic here
 vc_map( array(
     "name" => __( "KT Gallery Justified", THEME_LANG),
-    "base" => "kt_gallery",
+    "base" => "kt_gallery_justified",
     "category" => __('by Theme', THEME_LANG ),
     "description" => __( "", THEME_LANG),
     "params" => array(
