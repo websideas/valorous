@@ -424,7 +424,6 @@ if (!function_exists('kt_show_slideshow')) {
      */
     function kt_show_slideshow($post_id = null)
     {
-
         global $post;
         if (!$post_id) $post_id = $post->ID;
 
@@ -439,15 +438,113 @@ if (!function_exists('kt_show_slideshow')) {
             if ($layerslider && is_plugin_active('LayerSlider/layerslider.php')) {
                 echo do_shortcode('[layerslider id="' . $layerslider . '"]');
             }
-        }elseif($slideshow == 'elastic_post'){
-            $elastic_post = rwmb_meta('_kt_elastic_post', array('type' => 'taxonomy', 'taxonomy' => 'kt_elastic_post'), $post_id);
-            if(count($elastic_post)){
+        }elseif($slideshow == 'vertical'){
+            $args = get_args_slider_page($post_id);
+            $blog_vertical_html = '';
+            $query = new WP_Query( $args );
+            if ( $query->have_posts() ) {
+                $blog_vertical_html .= '<div class="featured-articles-vertical clearfix">';
+                while ( $query->have_posts() ) : $query->the_post();
+                    ob_start();
+                    get_template_part( 'templates/blog/vertical/content' );
+                    $blog_vertical_html .= ob_get_contents();
+                    ob_end_clean();
+                endwhile;
+                $blog_vertical_html .= '</div>';
+            }
+            wp_reset_postdata();
+            echo $blog_vertical_html;
+        }elseif($slideshow == 'carousel'){
+            $args = get_args_slider_page($post_id);
+            $query = new WP_Query( $args );
+            if ( $query->have_posts() ) {
+                $atts_carousel = array(
+                    'margin' => 0,
+                    'desktop' => 1,
+                    'loop' => 'true',
+                    'tablet' => 1,
+                    'mobile' => 1,
+                    'pagination' => 'false',
+                    'navigation_position' => 'center',
+                    'navigation_always_on' => 'true'
+                );
+                $carousel_ouput = kt_render_carousel(apply_filters( 'kt_render_args', $atts_carousel));
+                $blog_carousel_html = '';
 
+                while ($query->have_posts()) : $query->the_post();
+
+                    $blog_carousel_html .= '<div class="featured-carousel-item">';
+                    ob_start();
+                    get_template_part('templates/blog/featured/content');
+                    $blog_carousel_html .= ob_get_contents();
+                    ob_end_clean();
+
+                    $blog_carousel_html .= '</div><!-- .featured-carousel-item -->';
+
+                endwhile;
+                wp_reset_postdata();
+
+                echo str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
             }
         }
     }
-
 }
+
+if (!function_exists('get_args_slider_page')) {
+    /**
+     * Get args slider
+     *
+     * @param $post_id
+     * @return array
+     */
+    function get_args_slider_page($post_id)
+    {
+        global $post;
+        if (!$post_id) $post_id = $post->ID;
+
+        $atts = array(
+            'source' => rwmb_meta('_kt_data_source', array(), $post_id),
+            'orderby' => rwmb_meta('_kt_post_orderby', array(), $post_id),
+            'meta_key' => rwmb_meta('_kt_post_meta_key', array(), $post_id),
+            'order' => rwmb_meta('_kt_post_order', array(), $post_id),
+            'max_items' => 10,
+        );
+        extract($atts);
+
+        $args = array(
+            'order' => $order,
+            'orderby' => $orderby,
+            'posts_per_page' => 4,
+            'ignore_sticky_posts' => true
+        );
+        if ($orderby == 'meta_value' || $orderby == 'meta_value_num') {
+            $args['meta_key'] = $meta_key;
+        }
+
+        if ($source == 'categories') {
+            $categories = rwmb_meta('_kt_post_categories', array('type' => 'taxonomy', 'taxonomy' => 'category'), $post_id);
+            if ($categories) {
+                foreach ($categories as $category) {
+                    $categories_arr[] = $category->term_id;
+                }
+            }
+            $args['category__in'] = $categories_arr;
+        } elseif ($source == 'posts') {
+            $posts = rwmb_meta('_kt_post_posts', array('multiple' => true), $post_id);
+            if ($posts) {
+                $args['post__in'] = $posts;
+            }
+        } elseif ($source == 'authors') {
+            $authors = rwmb_meta('_kt_post_authors', array('multiple' => true), $post_id);
+            if ($authors) {
+                $args['author__in'] = $authors;
+            }
+        }
+
+        return $args;
+    }
+}
+
 
 if (!function_exists('kt_get_header')) {
     /**

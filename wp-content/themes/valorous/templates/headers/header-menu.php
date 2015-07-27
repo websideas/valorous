@@ -15,6 +15,6 @@ if ( has_nav_menu( 'primary' ) ) {
 }else{
     printf(
         '<ul><li><a href="#">%s</a></li></ul>',
-        __("No menu assigned!", THEME_LANG)
+        __("Define your site main menu!", THEME_LANG)
     );
 }

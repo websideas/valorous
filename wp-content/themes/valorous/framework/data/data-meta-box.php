@@ -478,13 +478,13 @@ function kt_register_meta_boxes( $meta_boxes )
         'context' => 'normal',
         'priority' => 'high',
         'tabs'      => array(
-            'page_header' => array(
-                'label' => __( 'Page Header', THEME_LANG ),
-                'icon'  => 'fa fa-bars',
-            ),
             'sliders'  => array(
                 'label' => __( 'Sliders', THEME_LANG ),
                 'icon'  => 'fa fa-picture-o',
+            ),
+            'page_header' => array(
+                'label' => __( 'Page Header', THEME_LANG ),
+                'icon'  => 'fa fa-bars',
             ),
             'header'  => array(
                 'label' => __( 'Header', THEME_LANG ),
@@ -703,7 +703,8 @@ function kt_register_meta_boxes( $meta_boxes )
                     '' => __('Select Option', THEME_LANG),
                     'revslider' => __('Revolution Slider', THEME_LANG),
                     'layerslider' => __('Layer Slider', THEME_LANG),
-                    'elastic_post' => __('Elastic Slider - Post', THEME_LANG),
+                    'vertical' => __('Vertical Posts', THEME_LANG),
+                    'carousel' => __('Featured Carousel Posts', THEME_LANG),
                 ),
                 'tab'  => 'sliders',
             ),
@@ -723,23 +724,103 @@ function kt_register_meta_boxes( $meta_boxes )
                 'tab'  => 'sliders',
                 'desc' => __('Select the Layer Slider.', THEME_LANG),
             ),
-// TAXONOMY
+
+            /* ============================================== */
             array(
-                'name'    => __( 'Post slider', THEME_LANG ),
-                'id'      => "{$prefix}post_slider",
+                'id' => $prefix . 'divider_sliders',
+                'type' => 'divider',
+                'tab'  => 'sliders',
+            ),
+            /* ============================================== */
+            array(
+                'name' => __('Data source', THEME_LANG),
+                'id' => $prefix . 'data_source',
+                'desc' => __("Select content type for your posts.", THEME_LANG),
+                'type' => 'select',
+                'options' => array(
+                    '' => __('All', THEME_LANG),
+                    'categories' => __('Specific Categories', THEME_LANG),
+                    'authors' => __('Specific Authors', THEME_LANG),
+                    'posts' => __('Specific Posts', THEME_LANG),
+                ),
+                'std' => '',
+                'tab'  => 'sliders',
+            ),
+            array(
+                'name'    => __( 'Categories', THEME_LANG ),
+                'id'      => "{$prefix}post_categories",
                 'type'    => 'taxonomy',
                 'tab'  => 'sliders',
-                'desc' => __('Select the Post slider.', THEME_LANG),
+                'desc' => __('Select your categories.', THEME_LANG),
                 'placeholder' => __('Select Option', THEME_LANG),
+                'multiple' => true,
                 'options' => array(
-                    'taxonomy' => 'kt_post_slider',
-                    'type'     => 'select',
+                    'taxonomy' => 'category',
+                    'type'     => 'select_advanced',
                     'args'     => array()
                 ),
             ),
+            array(
+                'name'    => __( 'Authors', THEME_LANG ),
+                'id'      => "{$prefix}post_authors",
+                'type'    => 'user',
+                'tab'  => 'sliders',
+                'desc' => __('Select your authors.', THEME_LANG),
+                'placeholder' => __('Select Option', THEME_LANG),
+                'multiple' => true
+            ),
 
+            array(
+                'name'    => __( 'Specific Posts', THEME_LANG ),
+                'id'      => "{$prefix}post_posts",
+                'type'    => 'post',
+                'tab'  => 'sliders',
+                'desc' => __('Select your posts.', THEME_LANG),
+                'placeholder' => __('Select Option', THEME_LANG),
+                'multiple' => true
+            ),
+
+            array(
+                'name' => __('Order by', THEME_LANG),
+                'id' => $prefix . 'post_orderby',
+                'desc' => __('Select order type. If "Meta value" or "Meta value Number" is chosen then meta key is required.', THEME_LANG),
+                'type' => 'select',
+                'options' => array(
+                    'date' => __( 'Date', 'js_composer' ),
+                    'ID' => __( 'Order by post ID', 'js_composer' ),
+                    'author'=> __( 'Author', 'js_composer' ),
+                    'title' => __( 'Title', 'js_composer' ),
+                    'modified' => __( 'Last modified date', 'js_composer' ),
+                    'parent' => __( 'Post/page parent ID', 'js_composer' ) ,
+                    'comment_count' => __( 'Number of comments', 'js_composer' ),
+                    'menu_order' => __( 'Menu order/Page Order', 'js_composer' ),
+                    'meta_value' => __( 'Meta value', 'js_composer' ),
+                    'meta_value_num' => __( 'Meta value number', 'js_composer' ),
+                    'rand' => __( 'Random order', 'js_composer' ) ,
+                ),
+                'std' => 'date',
+                'tab'  => 'sliders',
+            ),
+            array(
+                'name' => __('Meta key', THEME_LANG),
+                'id' => $prefix . 'post_meta_key',
+                'type' => 'text',
+                'tab'  => 'sliders',
+                'desc' => __('Select your meta key.', THEME_LANG),
+            ),
+            array(
+                'name' => __('Sorting', THEME_LANG),
+                'id' => $prefix . 'post_order',
+                'desc' => __('Select sorting order.', THEME_LANG),
+                'type' => 'select',
+                'options' => array(
+                    'DESC' => __( 'Descending', 'js_composer' ),
+                    'ASC' => __( 'Ascending', 'js_composer' ),
+                ),
+                'std' => 'DESC',
+                'tab'  => 'sliders',
+            ),
             //Page layout
-
             array(
                 'name' => __('Page layout', THEME_LANG),
                 'id' => $prefix . 'layout',

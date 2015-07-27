@@ -783,6 +783,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => '',
                         'transparent' => false,
                     ),
+                    /*
+                     * Main Color - Pick the main (accent) color for your site
+                     * Secondary Color - Pick the secondary color for your site (pagination numbers, most commented widget numbers, etc.)
+                     */
+
+
                     array(
                         'id'       => 'styling_link',
                         'type'     => 'link_color',
@@ -2294,7 +2300,20 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                 )
             );
-
+            /**
+             *	Advertising
+             **/
+            $this->sections[] = array(
+                'id'			=> 'advertising_section',
+                'title'			=> __( 'Advertising', THEME_LANG ),
+                'desc'			=> 'Advertising settings',
+                'fields'		=> array(
+                    //Advertising type - Display code , Custom Image
+                    //Advertising Code html ( Ex: Google ads)
+                    //Image URL
+                    //Advertising url
+                )
+            );
             /**
              *	404 Page
              **/

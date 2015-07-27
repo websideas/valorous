@@ -389,7 +389,7 @@ vc_map( array(
                 __('Specific Authors', THEME_LANG) => 'authors'
             ),
             "admin_label" => true,
-            'std' => 'all',
+            'std' => '',
             "description" => __("Select content type for your posts.", THEME_LANG),
             'group' => __( 'Data settings', 'js_composer' ),
         ),
@@ -467,7 +467,6 @@ vc_map( array(
             'type' => 'textfield',
             'heading' => __( 'Meta key', 'js_composer' ),
             'param_name' => 'meta_key',
-            'description' => __( 'Input meta key for grid ordering.', 'js_composer' ),
             'group' => __( 'Data settings', 'js_composer' ),
             'param_holder_class' => 'vc_grid-data-type-not-ids',
             'dependency' => array(
