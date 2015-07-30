@@ -1418,34 +1418,35 @@ h2.widgettitle a.rsswidget:first-child,
     filter: alpha(opacity=70);
 }
 
-/*===== Widget Article =====*/
+/*===== Widget Article + Widget Tabs =====*/
+.kt_tabs_content ul,
 .widget_kt_posts ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
+.kt_tabs_content ul li,
 .widget_kt_posts ul li {
     margin-bottom: 20px;
 }
-
+.kt_tabs_content ul li:last-child,
 .widget_kt_posts ul li:last-child {
     margin-bottom: 0;
 }
-
+.kt_tabs_content ul li .title,
 .widget_kt_posts ul li .title {
     font-size: 13px;
     line-height: 24px;
     margin: -3px 0 3px;
     text-transform: uppercase;
 }
-
+.kt_tabs_content ul li .entry-meta-data,
 .widget_kt_posts ul li .entry-meta-data {
     font-size: 12px;
     margin: 0;
     line-height: normal;
 }
-
+.kt_tabs_content ul li span.cat-links,
 .widget_kt_posts ul li span.cat-links {
     margin-bottom: 5px;
     text-transform: uppercase;
@@ -1453,17 +1454,17 @@ h2.widgettitle a.rsswidget:first-child,
     display: block;
     line-height: normal;
 }
-
+.kt_tabs_content ul li .entry-thumb,
 .widget_kt_posts ul.kt-artilce-1 li .entry-thumb {
     float: left;
     margin: 0;
     width: 68px;
 }
-
+.kt_tabs_content ul li .article-attr,
 .widget_kt_posts ul.kt-artilce-1 li .article-attr {
     margin-left: 78px;
 }
-
+.kt_tabs_content ul.no-image li .article-attr,
 .widget_kt_posts ul.kt-artilce-1.no-image li .article-attr {
     margin-left: 0;
 }

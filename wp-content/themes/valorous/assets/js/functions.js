@@ -92,6 +92,8 @@
             e.preventDefault();
             $(this).closest('#nav').toggleClass('is-opened');
         });
+        
+        $('.kt_widget_tabs').tabs();
     });
     
     $(window).resize(function(){

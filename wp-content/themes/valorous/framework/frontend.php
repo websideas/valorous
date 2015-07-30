@@ -148,7 +148,7 @@ function kt_add_scripts() {
     wp_enqueue_script( 'justifiedGallery', THEME_JS . 'jquery.justifiedGallery.min.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'sticky-sidebar', THEME_JS . 'theia-sticky-sidebar.js', array( 'jquery' ), null, true );
 
-
+    wp_enqueue_script('jquery-ui-tabs');
     wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
 
     global $wp_query;
