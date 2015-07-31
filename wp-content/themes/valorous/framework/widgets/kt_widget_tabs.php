@@ -145,7 +145,16 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                                                     echo date_format($date,"d M Y");
                                                 } ?>
                                             </div>
-                                            <div class="kt-comment-content"><?php echo strip_tags($comment->comment_content); ?></div>
+                                            <div class="kt-comment-content">
+                                                <?php 
+                                                    $str = $comment->comment_content;
+                                                    if (mb_strlen($str) > 40) {
+                                                        echo mb_substr($str, 0, 40).'...';
+                                                    } else {
+                                                        echo $str;
+                                                    } 
+                                                ?>
+                                            </div>
                                         </div>
                                     </li>
                                 <?php } ?>
