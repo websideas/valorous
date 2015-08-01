@@ -242,97 +242,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Logo Footer', THEME_LANG ),
                     ),
                     array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-                    array(
-                        'id'             => 'logo_width',
-                        'type'           => 'dimensions',
-                        'units'          => array( 'em', 'px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Logo width', THEME_LANG ),
-                        'height'         => false,
-                        'default'        => array( 'width'  => 120, 'height' => 100 ),
-                        'output'   => array( '.site-branding .site-logo img' ),
-                    ),
-                    array(
-                        'id'       => 'logo_margin_spacing',
-                        'type'     => 'spacing',
-                        'mode'     => 'margin',
-                        'output'   => array( '.site-branding .site-logo img' ),
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Logo margin spacing Option', THEME_LANG ),
-                        'default'  => array(
-                            'margin-top'    => '25px',
-                            'margin-right'  => '0px',
-                            'margin-bottom' => '25px',
-                            'margin-left'   => '0px'
-                        )
-                    ),
-
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-
-                    array(
-                        'id'             => 'logo_sticky_width',
-                        'type'           => 'dimensions',
-                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
-                        'units'          => array( 'em', 'px'), 
-                        'units_extended' => 'true', 
-                        'title'          => __( 'Logo sticky width', THEME_LANG ),
-                        'height'         => false,
-                        'default'        => array( 'width'  => 200, 'height' => 100 )
-                    ),
-                    array(
-                        'id'       => 'logo_sticky_margin_spacing',
-                        'type'     => 'spacing',
-                        'mode'     => 'margin',
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Logo sticky margin spacing Option', THEME_LANG ),
-                        'default'  => array(
-                            'margin-top'    => '12px',
-                            'margin-right'  => '0px',
-                            'margin-bottom' => '12px',
-                            'margin-left'   => '0px'
-                        ),
-                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-                    array(
-                        'id'             => 'logo_mobile_width',
-                        'type'           => 'dimensions',
-                        'units'          => array( 'em', 'px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Logo mobile width', THEME_LANG ),
-                        'height'         => false,
-                        'default'        => array( 'width'  => 120, 'height' => 100 ),
-                    ),
-                    array(
-                        'id'       => 'logo_mobile_margin_spacing',
-                        'type'     => 'spacing',
-                        'mode'     => 'margin',
-                        'units'          => array( 'em', 'px' ),
-                        'units_extended' => 'true',
-                        'title'    => __( 'Logo mobile margin spacing Option', THEME_LANG ),
-                        'default'  => array(
-                            'margin-top'    => '25px',
-                            'margin-right'  => '0px',
-                            'margin-bottom' => '25px',
-                            'margin-left'   => '0px'
-                        )
-                    ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-                    array(
                         'id'       => 'favicon_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Favicon settings', THEME_LANG ).'</div>',
@@ -525,18 +434,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer Fixed', THEME_LANG ),
                         'default'  => false,
                     ),
-                    array(
-                        'id'       => 'footer_padding',
-                        'type'     => 'spacing',
-                        'mode'     => 'padding',
-                        'left'     => false,
-                        'right'    => false,
-                        'output'   => array( '#footer' ),
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Footer padding', THEME_LANG ),
-                        'default'  => array( )
-                    ),
+
                     // Footer Top settings
                     array(
                         'id'       => 'footer_top_heading',
@@ -550,18 +448,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer top enable', THEME_LANG ),
                         'default'  => true,
                     ),
-                    array(
-                        'id'       => 'footer_top_padding',
-                        'type'     => 'spacing',
-                        'mode'     => 'padding',
-                        'left'     => false,
-                        'right'    => false,
-                        'output'   => array( '#footer-top' ),
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Footer top padding', THEME_LANG ),
-                        'default'  => array( )
-                    ),
+
                     // Footer widgets settings
                     array(
                         'id'   => 'divide_id',
@@ -579,18 +466,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer widgets enable', THEME_LANG ),
                         'default'  => true,
                     ),
-                    array(
-                        'id'       => 'footer_widgets_padding',
-                        'type'     => 'spacing',
-                        'mode'     => 'padding',
-                        'left'     => false,
-                        'right'    => false,
-                        'output'   => array( '#footer-area' ),
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Footer widgets padding', THEME_LANG ),
-                        'default'  => array( )
-                    ),
+
                     array(
                         'id'       => 'footer_widgets_layout',
                         'type'     => 'image_select',
@@ -613,10 +489,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                     
                     /* Footer bottom */
                     array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
-                    array(
                         'id'       => 'footer_bottom_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Footer bottom settings', THEME_LANG ).'</div>',
@@ -635,29 +507,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => true,
                     ),
 
-
-                    array(
-                        'id'       => 'footer_bottom_padding',
-                        'type'     => 'spacing',
-                        'mode'     => 'padding',
-                        'left'     => false,
-                        'right'    => false,
-                        'units'          => array( 'em', 'px' ),
-                        'units_extended' => 'true',
-                        'title'    => __( 'Footer bottom padding', THEME_LANG ),
-                        'default'  => array( ),
-                        'subtitle' => 'Disable if you use instagram background',
-                    ),
-
-
-
-
-
                     /* Footer copyright */
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
                     array(
                         'id'       => 'footer_copyright_heading',
                         'type'     => 'raw',
@@ -669,18 +519,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer copyright enable', THEME_LANG ),
                         'default'  => true,
-                    ),
-                    array(
-                        'id'       => 'footer_copyright_padding',
-                        'type'     => 'spacing',
-                        'mode'     => 'padding',
-                        'left'     => false,
-                        'right'    => false,
-                        'output'   => array( '#footer-copyright' ),
-                        'units'          => array( 'em', 'px' ), 
-                        'units_extended' => 'true',
-                        'title'    => __( 'Footer copyright padding', THEME_LANG ),
-                        'default'  => array( )
                     ),
                     array(
                         'id'       => 'footer_copyright_layout',
@@ -809,7 +647,105 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
                 )
             );
-            
+
+            /**
+             *	Styling Logo
+             **/
+            $this->sections[] = array(
+                'id'			=> 'styling-logo',
+                'title'			=> __( 'Logo', THEME_LANG ),
+                'subsection' => true,
+                'fields'		=> array(
+
+                    array(
+                        'id'             => 'logo_width',
+                        'type'           => 'dimensions',
+                        'units'          => array( 'em', 'px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Logo width', THEME_LANG ),
+                        'height'         => false,
+                        'default'        => array( 'width'  => 120, 'height' => 100 ),
+                        'output'   => array( '.site-branding .site-logo img' ),
+                    ),
+                    array(
+                        'id'       => 'logo_margin_spacing',
+                        'type'     => 'spacing',
+                        'mode'     => 'margin',
+                        'output'   => array( '.site-branding .site-logo img' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Logo margin spacing Option', THEME_LANG ),
+                        'default'  => array(
+                            'margin-top'    => '25px',
+                            'margin-right'  => '0px',
+                            'margin-bottom' => '25px',
+                            'margin-left'   => '0px'
+                        )
+                    ),
+
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+
+                    array(
+                        'id'             => 'logo_sticky_width',
+                        'type'           => 'dimensions',
+                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
+                        'units'          => array( 'em', 'px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Logo sticky width', THEME_LANG ),
+                        'height'         => false,
+                        'default'        => array( 'width'  => 200, 'height' => 100 )
+                    ),
+                    array(
+                        'id'       => 'logo_sticky_margin_spacing',
+                        'type'     => 'spacing',
+                        'mode'     => 'margin',
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Logo sticky margin spacing Option', THEME_LANG ),
+                        'default'  => array(
+                            'margin-top'    => '12px',
+                            'margin-right'  => '0px',
+                            'margin-bottom' => '12px',
+                            'margin-left'   => '0px'
+                        ),
+                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                    array(
+                        'id'             => 'logo_mobile_width',
+                        'type'           => 'dimensions',
+                        'units'          => array( 'em', 'px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Logo mobile width', THEME_LANG ),
+                        'height'         => false,
+                        'default'        => array( 'width'  => 120, 'height' => 100 ),
+                    ),
+                    array(
+                        'id'       => 'logo_mobile_margin_spacing',
+                        'type'     => 'spacing',
+                        'mode'     => 'margin',
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Logo mobile margin spacing Option', THEME_LANG ),
+                        'default'  => array(
+                            'margin-top'    => '25px',
+                            'margin-right'  => '0px',
+                            'margin-bottom' => '25px',
+                            'margin-left'   => '0px'
+                        )
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                )
+            );
             
             /**
 			 *	Styling Header
@@ -975,7 +911,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'navigation_bordertop',
                         'type'     => 'color',
                         'title'    => __( 'Dropdown & Mega border top color', THEME_LANG ),
-                        'default'  => '',
+                        'default'  => '#d0a852',
                         'transparent' => false
                     ),
 
@@ -1041,11 +977,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         ),
                         'transparent'           => false,
                     ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-
                     array(
                         'type' => 'divide',
                         'id' => 'divide_fake',
@@ -1419,6 +1350,20 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'   => array( ),
                         'output'      => array( '#footer' ),
                     ),
+
+                    array(
+                        'id'       => 'footer_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '#footer' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer padding', THEME_LANG ),
+                        'default'  => array( )
+                    ),
+
                     array(
                         'id'       => 'footer_border',
                         'type'     => 'border',
@@ -1447,6 +1392,18 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'      => array( '#footer-top' ),
                     ),
                     array(
+                        'id'       => 'footer_top_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '#footer-top' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer top padding', THEME_LANG ),
+                        'default'  => array( )
+                    ),
+                    array(
                         'id'       => 'footer_top_border',
                         'type'     => 'border',
                         'title'    => __( 'Footer top Border', THEME_LANG ),
@@ -1467,6 +1424,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'full_width' => true
                     ),
                     array(
+                        'id'       => 'footer_widgets_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Footer widgets Background', THEME_LANG ),
+                        'subtitle' => __( 'Footer widgets Background with image, color, etc.', THEME_LANG ),
+                        'default'   => array( ),
+                        'output'      => array( '#footer-area' ),
+                    ),
+                    array(
                         'id'       => 'footer_widgets_border',
                         'type'     => 'border',
                         'title'    => __( 'Footer widgets Border', THEME_LANG ),
@@ -1478,12 +1443,20 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => array( )
                     ),
                     array(
-                        'id'       => 'footer_widgets_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Footer widgets Background', THEME_LANG ),
-                        'subtitle' => __( 'Footer widgets Background with image, color, etc.', THEME_LANG ),
-                        'default'   => array( ),
-                        'output'      => array( '#footer-area' ),
+                        'id'       => 'footer_widgets_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '#footer-area' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer widgets padding', THEME_LANG ),
+                        'default'  => array( )
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
                     ),
                     array(
                         'id'       => 'footer_widgets_title_border',
@@ -1513,12 +1486,32 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'      => array( '#footer-bottom' ),
                     ),
 
+                    array(
+                        'id'       => 'footer_bottom_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer bottom padding', THEME_LANG ),
+                        'default'  => array( ),
+                        'subtitle' => 'Disable if you use instagram background',
+                    ),
+
                     //Footer copyright settings
                     array(
                         'id'       => 'footer_copyright_heading',
                         'type'     => 'raw',
                         'content'  => '<div class="section-heading">'.__( 'Footer copyright settings', THEME_LANG ).'</div>',
                         'full_width' => true
+                    ),
+                    array(
+                        'id'       => 'footer_copyright_link',
+                        'type'     => 'link_color',
+                        'title'    => __( 'Links Color', THEME_LANG ),
+                        'output'      => array( '#footer-copyright a' ),
+                        'default'  => array(  )
                     ),
                     array(
                         'id'       => 'footer_copyright_background',
@@ -1529,14 +1522,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'      => array( '#footer-copyright' ),
                     ),
                     array(
-                        'id'       => 'footer_copyright_link',
-                        'type'     => 'link_color',
-                        'title'    => __( 'Links Color', THEME_LANG ),
-                        'output'      => array( '#footer-copyright a' ),
-                        'default'  => array(  )
+                        'id'       => 'footer_copyright_padding',
+                        'type'     => 'spacing',
+                        'mode'     => 'padding',
+                        'left'     => false,
+                        'right'    => false,
+                        'output'   => array( '#footer-copyright' ),
+                        'units'          => array( 'em', 'px' ),
+                        'units_extended' => 'true',
+                        'title'    => __( 'Footer copyright padding', THEME_LANG ),
+                        'default'  => array( )
                     ),
-
-
                 )
             );
 

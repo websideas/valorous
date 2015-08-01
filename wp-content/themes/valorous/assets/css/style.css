@@ -1874,7 +1874,8 @@ h2.widgettitle a.rsswidget:first-child,
     font-style: italic;
     font-weight: normal;
     height: auto;
-    padding: 16px 90px 16px 32px;
+    padding: 13px 90px 13px 26px;
+    line-height: normal;
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
     -ms-transition: all .3s ease-out;

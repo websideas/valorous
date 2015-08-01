@@ -641,33 +641,6 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     margin-right: 15px;
 }
 
-
-
-/*
-.header-light .mini-cart .shopping-bag{
-    color: #777777;
-}
-.header-light .shopping-bag-wrapper{
-    background: #FFFFFF;
-    border-color: #d2a952 #e6eced #e6eced;
-}
-.header-light .shopping-bag-wrapper .cart-title{
-    border-color: #e6eced;
-}
-.header-light .bag-product .bag-product-title a{
-    color: #282828;
-}
-.header-light .bag-products .bag-product a.remove{
-    color: #282828!important;
-}
-.header-light .bag-products .bag-product a.remove:hover{
-    color: red!important;
-}
-.header-light .bag-total{
-    border-color: #e6eced;
-}
-*/
-
 /** ================================================
     2. Grid list Toggle
 *** ================================================*/
