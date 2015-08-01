@@ -7,13 +7,13 @@
  */
 ?>
                 <?php
-            	/**
-            	 * @hooked 
-                 * 
-            	 */
-            	do_action( 'theme_content_bottom' ); ?>
-        	</div><!-- #content -->
-        </div>
+                /**
+                 * @hooked
+                 *
+                 */
+                do_action( 'theme_content_bottom' ); ?>
+            </div><!-- #content -->
+        </div><!-- #wrapper-content -->
         <?php if(kt_option('footer', true)){ ?>
             <?php
         	/**
@@ -23,7 +23,7 @@
         	 */
         	do_action( 'theme_before_footer' ); ?>
             <div id="footer">
-
+                <div class="animate-content-overlay"></div>
                 <?php if(is_active_sidebar( 'footer-top' ) && kt_option('footer_top', true)){ ?>
                     <footer id="footer-top">
                         <div class="container">

@@ -137,6 +137,7 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
                 $blog_atts = $blog_atts_posts;
+
                 $blog_carousel_html .= '<div class="carousel-posts-item">';
                 ob_start();
                 kt_get_template_part( 'templates/blog/carousel/content', $blog_layout, $blog_atts);
@@ -226,25 +227,9 @@ vc_map( array(
         array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
-            "param_name" => "image_size"
+            "param_name" => "image_size",
+            ""
         ),
-        /*
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Readmore button', THEME_LANG ),
-            'param_name' => 'readmore',
-            'value' => 'true',
-            "description" => __("Show or hide the readmore button.", THEME_LANG),
-        ),
-
-        array(
-            "type" => "textfield",
-            "heading" => __( "Image size custom", THEME_LANG ),
-            "param_name" => "img_size_custom",
-            'description' => __('Default: 300x200 (Width x Height)', THEME_LANG),
-            "dependency" => array("element" => "image_size","value" => array('custom')),
-        ),
-        */
         array(
             'type' => 'dropdown',
             'heading' => __( 'CSS Animation', 'js_composer' ),

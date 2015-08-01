@@ -10,7 +10,7 @@ if ( !defined('ABSPATH')) exit;
         <?php echo kt_woocommerce_get_cart(true); ?>
     <?php } ?>
     <?php if ( kt_option('header_search', 1) ) { ?>
-        <li class="mini-search hidden-xs hidden-sm">
+        <li class="mini-search">
             <a href="#"><span class="icon-magnifier"></span></a>
         </li>
     <?php } ?>

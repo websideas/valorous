@@ -64,7 +64,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
             echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
         }
 
-        get_template_part( $path , get_post_format() );
+        kt_get_template_part( $path, get_post_format(), $blog_atts);
 
         if($blog_type == 'grid' || $blog_type == 'masonry'){
             echo "</div><!-- .article-post-item -->";
@@ -82,8 +82,6 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
     die();
 
 }
-
-
 
 add_action( 'wp_ajax_fronted_loadmore_archive', 'wp_ajax_fronted_fronted_loadmore_archive_callback' );
 add_action( 'wp_ajax_nopriv_fronted_loadmore_archive', 'wp_ajax_fronted_loadmore_archive_callback' );

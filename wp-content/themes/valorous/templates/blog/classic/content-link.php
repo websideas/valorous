@@ -1,5 +1,4 @@
 <?php
-global $blog_atts;
 $classes = array('post-item post-layout-classic', $blog_atts['class']);
 //print_r($blog_atts);
 ?>

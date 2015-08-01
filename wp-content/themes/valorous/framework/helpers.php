@@ -254,15 +254,25 @@ if (!function_exists('kt_get_archive_sidebar')) {
      */
     function kt_get_archive_sidebar()
     {
-        $sidebar = array(
-            'sidebar' => kt_option('archive_sidebar', 'full'),
-            'sidebar_area' => '',
-        );
+        if(is_home()){
+            $post_id = get_option( 'page_for_posts' );
+            $sidebar = array(
+                'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
+                'sidebar_area' => '',
+            );
+        }else{
+            $sidebar = array(
+                'sidebar' => kt_option('archive_sidebar', 'full'),
+                'sidebar_area' => '',
+            );
+        }
+
         if($sidebar['sidebar'] == 'left' ){
             $sidebar['sidebar_area'] = kt_option('archive_sidebar_left', 'blog-widget-area');
         }elseif($sidebar['sidebar'] == 'right'){
             $sidebar['sidebar_area'] = kt_option('archive_sidebar_right', 'blog-widget-area');
         }
+
         return apply_filters('archive_sidebar', $sidebar);
     }
 }
@@ -428,17 +438,30 @@ if (!function_exists('kt_show_slideshow')) {
         if (!$post_id) $post_id = $post->ID;
 
         $slideshow = rwmb_meta('_kt_slideshow_source', array(), $post_id);
+
+        $output = '';
+
         if ($slideshow == 'revslider') {
             $revslider = rwmb_meta('_kt_rev_slider', array(), $post_id);
             if ($revslider && class_exists('RevSlider')) {
-                echo putRevSlider($revslider);
+                ob_start();
+                putRevSlider($revslider);
+                $revslider_html = ob_get_contents();
+                ob_end_clean();
+
+                $output .= $revslider_html;
+
             }
         } elseif ($slideshow == 'layerslider') {
             $layerslider = rwmb_meta('_kt_layerslider', array(), $post_id);
             if ($layerslider && is_plugin_active('LayerSlider/layerslider.php')) {
-                echo do_shortcode('[layerslider id="' . $layerslider . '"]');
+                $layerslider_html = do_shortcode('[layerslider id="' . $layerslider . '"]');
+                if($layerslider_html){
+                    $output .= $layerslider_html;
+                }
             }
         }elseif($slideshow == 'vertical'){
+
             $args = get_args_slider_page($post_id);
             $blog_vertical_html = '';
             $query = new WP_Query( $args );
@@ -453,7 +476,8 @@ if (!function_exists('kt_show_slideshow')) {
                 $blog_vertical_html .= '</div>';
             }
             wp_reset_postdata();
-            echo $blog_vertical_html;
+            $output .= $blog_vertical_html;
+
         }elseif($slideshow == 'carousel'){
             $args = get_args_slider_page($post_id);
             $query = new WP_Query( $args );
@@ -482,11 +506,18 @@ if (!function_exists('kt_show_slideshow')) {
                     $blog_carousel_html .= '</div><!-- .featured-carousel-item -->';
 
                 endwhile;
-                wp_reset_postdata();
 
-                echo str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
             }
+            wp_reset_postdata();
+            $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
+
         }
+
+        if($output != ''){
+            echo '<div id="main-content-sideshow">'.$output.'</div>';
+        }
+
+
     }
 }
 
@@ -625,25 +656,12 @@ if (!function_exists('kt_custom_wpml')){
      */
 
     function kt_custom_wpml(){
-        $output = $active_l = '';
+        $output = $active_l = $language_html = '';
 
         if(kt_is_wpml()){
             $languages = apply_filters( 'wpml_active_languages', array('skip_missing' => false) );
             if(!empty($languages)){
-
-                $output .= '<ul>';
                 foreach($languages as $l){
-                    $output .= '<li>';
-
-                    $output .= (!$l['active']) ? '<a href="'.$l['url'].'">' : '<span>';
-                    if($l['country_flag_url']){
-                        $output .= '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
-                    }
-                    $output .= "<span>".$l['native_name']."</span>";
-                    $output .= (!$l['active']) ? '</a>' : '</span>';
-
-                    $output .= '</li>';
-
                     if( $l['active'] ){
                         $active_l .= sprintf(
                             '<a class="current-language" href="%s"><img src="%s" height="12" width="18" alt="%s" /></a>',
@@ -651,12 +669,24 @@ if (!function_exists('kt_custom_wpml')){
                             esc_url($l['country_flag_url']),
                             esc_attr($l['language_code'])
                         );
+                    }else{
+                        $language_html .= '<li>';
+
+                        $language_html .= '<a href="'.$l['url'].'">';
+                        if($l['country_flag_url']){
+                            $language_html .= '<img src="'.$l['country_flag_url'].'" height="12" alt="'.$l['language_code'].'" width="18" />';
+                        }
+                        $language_html .= "<span>".$l['native_name']."</span>";
+                        $language_html .= '</a>';
+
+                        $language_html .= '</li>';
                     }
-
                 }
-                $output .= '</ul>';
+                if($language_html != ''){
+                    $language_html = '<ul>'.$language_html.'</ul>';
+                }
 
-                $output = '<li class="kt-wpml-languages">'.$active_l. $output.'</li>';
+                $output = '<li class="kt-wpml-languages">'.$active_l. $language_html.'</li>';
 
             }
         }

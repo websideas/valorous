@@ -1,5 +1,4 @@
 <?php
-global $blog_atts;
 //var_dump($blog_atts);
 ?>
 <article <?php post_class('post-item-recentpost recentpost-4'); ?>>

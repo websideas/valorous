@@ -556,26 +556,6 @@ function kt_slideshows_position_callback(){
     }
 }
 
-
-/**
- * Add class header
- *
- * @since 1.0
- * @return string
- */
-add_filter('theme_header_class', 'theme_header_class_callback', 10, 2);
-
-function theme_header_class_callback($class, $position){
-    if($position == 'transparent' ){
-        $class .= ' header-absolute';
-    }elseif($position == 'gradient'){
-        $class .= ' header-gradient';
-    }
-
-    return $class;
-}
-
-
 /**
  * Add favicon to website
  *

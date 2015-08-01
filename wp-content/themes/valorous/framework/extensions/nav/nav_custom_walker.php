@@ -371,7 +371,7 @@ class KTMegaWalker extends Walker_Nav_Menu{
         if(!$megamenu_columnlink || $depth != 1){
             $item_output .= '<a'. $attributes .'>';
         }else{
-            $item_output .= '<span>';
+            $item_output .= '<span class="megamenu-title">';
         }
         if(($this->megamenu_enable && $depth == 1)){
             $image = get_post_meta( $item->ID, '_menu_item_megamenu_image', true );

@@ -158,7 +158,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
                 kt_get_template_part( $path, get_post_format(), $blog_atts);
 
-
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     echo "</div><!-- .article-post-item -->";
                 }

@@ -8,10 +8,11 @@
 5. Styles for devices(<=1199px)
 6. Styles for devices(<=991px )
 7. Styles for devices(>=768px and <= 991px)
-8. Styles for devices(<=767px )
-9. Styles for devices(>=768px and <= 991px)
-10. Styles for devices(<=480px )
-11. Styles for devices(<=320px )
+8. Styles for devices(<=782px )
+9. 9. Styles for devices(<=767px )
+10. Styles for devices(<=600px )
+11. Styles for devices(<=480px )
+12. Styles for devices(<=320px )
 */
 
 /* 1. Retina logo */
@@ -37,8 +38,10 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 4. Styles for devices(<=1199px) */
 @media (max-width: 1199px) {
-    #header.header-fullwidth{
-        padding: 0 10px;
+    .layout-full .header-layout1 #header.header-fullwidth,
+    .layout-full .header-layout2 #header.header-fullwidth,
+    .layout-full .header-layout3 #header.header-fullwidth .nav-container{
+        padding: 0 15px;
     }
 }
 /* 5. Styles for devices(>=992px) */
@@ -49,15 +52,23 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 6. Styles for devices(<=991px ) */
 @media (max-width: 991px) {
+
+    .container{
+        width: auto;
+    }
+    .nav-container.is-sticky,
+    body.layout-boxed #header.is-sticky{
+        width: 100%;
+    }
+
     #mobile-nav-holder{
         display: block;
     }
-    body.admin-bar #header.is-sticky.sticky{
-        top: 0;
+    .site-branding{
+        float: none;
+        text-align: center;
     }
-
     /* Posts */
-
     .post-layout-classic .entry-share-box{
         float: none;
     }
@@ -99,8 +110,21 @@ only screen and (min-resolution: 144dpi) {
     }
 
 }
+/* 8. Styles for devices(<=782px ) */
+@media screen and ( max-width: 782px ) {
+    body.admin-bar .nav-container.is-sticky,
+    body.admin-bar #header.is-sticky.sticky {
+        top: 46px;
+    }
 
-/* 8. Styles for devices(<=767px ) */
+    body.admin-bar #mobile-nav-content{
+        padding-top: 46px;
+    }
+
+}
+
+
+/* 9. Styles for devices(<=767px ) */
 @media (max-width: 767px) {
     .col-clearfix-xs {
         clear: both;
@@ -140,7 +164,21 @@ only screen and (min-resolution: 144dpi) {
 
 
 }
-/* 10. Styles for devices(<=480px ) */
+
+
+/* 10. Styles for devices(<=600px ) */
+@media (max-width: 600px) {
+    body.admin-bar .nav-container.is-sticky,
+    body.admin-bar #header.is-sticky.sticky {
+        top: 0;
+    }
+    body.admin-bar #mobile-nav-content{
+        padding-top: 0;
+    }
+}
+
+
+/* 11. Styles for devices(<=480px ) */
 @media (max-width: 480px) {
     .container {
         padding-left: 10px;
@@ -212,7 +250,9 @@ only screen and (min-resolution: 144dpi) {
         font-size: inherit;
     }
 }
-/* 11. Styles for devices(<=320px ) */
+
+
+/* 12. Styles for devices(<=320px ) */
 @media (max-width: 320px) {
     .content-404 form{max-width: 320px;}
 

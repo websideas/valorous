@@ -1,6 +1,4 @@
 <?php
-    global $blog_atts;
-
     $classes = array('post-item-carousel post-layout-carousel1', $blog_atts['class']);
     //var_dump($blog_atts);
 ?>

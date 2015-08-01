@@ -10,10 +10,11 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         extract(shortcode_atts(array(
     	   "social" => '',
     	   "size" => 'standard',
-    	   "style" => '1',
+    	   "style" => 'accent',
            'align' => '',
            'tooltip' =>'top',
            'el_class' => '',
+           'background_style' => 'empty',
 
             'css' => '',
     	), $atts));
@@ -50,17 +51,11 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
             foreach ($social_type as $id) {
                 $val = $socials_arr[$id];
                 $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                if($style == '3d'){
-                    $social_text = '<span class="front"><i class="'.esc_attr($val['icon']).'"></i></span><span class="back"><i class="'.esc_attr($val['icon']).'"></i></span>';
-                }
                 $social_icons .= '<li><a class="'.esc_attr($id).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
             }
         }else{
             foreach($socials_arr as $key => $val){
                 $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                if($style == '3d'){
-                    $social_text = '<span class="front"><i class="'.esc_attr($val['icon']).'"></i></span><span class="back"><i class="'.esc_attr($val['icon']).'"></i></span>';
-                }
                 $social_icons .= '<li><a class="'.esc_attr($key).'"  '.$tooltiphtml.' title="'.esc_attr($val['title']).'" href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
             }
         }
@@ -69,10 +64,19 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'socials-icon-wrapper', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'style' => 'model-'.$style,
+            'style' => 'social-style-'.$style,
             'size' => 'social-icons-'.$size,
+            'shape' => 'social-background-'.$background_style,
             'clearfix' => 'clearfix'
         );
+        if($background_style == 'empty'){
+            $elementClass[] = 'social-background-empty';
+        }elseif ( strpos( $background_style, 'outline' ) !== false ) {
+            $elementClass[] = 'social-background-outline';
+        }else{
+            $elementClass[] = 'social-background-fill';
+        }
+
 
         if($align){
             $elementClass['align'] = 'social-icons-'.$align;
@@ -113,19 +117,33 @@ vc_map( array(
 			"heading" => __("Style",THEME_LANG),
 			"param_name" => "style",
 			"value" => array(
-                __('Style 1 - Background white + Color social', THEME_LANG) => '1',
-                __('Style 2 - Color social - Hover background white', THEME_LANG) => '2',
-                __('Style 3', THEME_LANG) => '3',
-                __('Style 4', THEME_LANG) => '4',
-                __('Style 5', THEME_LANG) => '5',
-                __('Style 6', THEME_LANG) => '6',
-                __('Style 3d', THEME_LANG) => '3d',
-                __('Classic', THEME_LANG) => 'classic'
-
+                __('Accent', THEME_LANG) => 'accent',
+                __('Dark', THEME_LANG) => 'dark',
+                __('Light', THEME_LANG) => 'light',
+                __('Color', THEME_LANG) => 'color',
 			),
 			"description" => __("",THEME_LANG),
             "admin_label" => true,
 		),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Background shape', 'js_composer' ),
+            'param_name' => 'background_style',
+            'value' => array(
+                __( 'None', 'js_composer' ) => '',
+                __( 'Circle', 'js_composer' ) => 'rounded',
+                __( 'Square', 'js_composer' ) => 'boxed',
+                __( 'Rounded', 'js_composer' ) => 'rounded-less',
+                __( 'Diamond Square', 'js_composer' ) => 'diamond-square',
+                __( 'Outline Circle', 'js_composer' ) => 'rounded-outline',
+                __( 'Outline Square', 'js_composer' ) => 'boxed-outline',
+                __( 'Outline Rounded', 'js_composer' ) => 'rounded-less-outline',
+                __( 'Outline Diamond Square', 'js_composer' ) => 'diamond-square-outline',
+            ),
+            'description' => __( 'Select background shape and style for social.', THEME_LANG ),
+            "admin_label" => true,
+        ),
+
         array(
 			"type" => "dropdown",
 			"class" => "",

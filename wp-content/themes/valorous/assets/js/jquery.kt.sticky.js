@@ -39,14 +39,17 @@
             scrolled = false,
             
             start = function (_sticky,_placeholder, o) {
+
+                console.log('start now');
+
                 var _body = $('body');
                 /*
                 if(_body.hasClass('tablets') == true && o.tablets == false)
                     return false;
-                */
+
                 if( _window.outerWidth() <= o.widthDisable )
                     return false;
-                
+                 */
                 o.start.call(this);
                 
                 _sticky.trigger("sticky.start");
@@ -55,21 +58,25 @@
                     .addClass(o.className)
                     .addClass(o.classSticky);
 
-                $('.'+o.classContainer)
-                    .removeClass('header-light header-dark')
-                    .addClass('header-'+_sticky.data('schemesticky'));
+                var $classContainer = $('.'+o.classContainer);
 
-                var $offset = _placeholder.offset(),
-                    _scrolltop = _window.scrollTop();
+                $classContainer
+                    .removeClass( 'header-light header-dark header-absolute header-normal' )
+                    .addClass( 'header-' + $classContainer.data('schemesticky') );
+
+                var $offset = _placeholder.offset();
 
                 scrolled = true;
             },
             end = function (_sticky, _placeholder, o) {
                 _placeholder.css({'height':'0px'});
 
-                $('.'+o.classContainer)
-                    .removeClass('header-light header-dark')
-                    .addClass('header-'+_sticky.data('scheme'));
+                var $classContainer = $('.'+o.classContainer);
+
+                $classContainer
+                    .removeClass('header-light header-dark header-absolute header-normal')
+                    .addClass('header-' + $classContainer.data('scheme'))
+                    .addClass('header-' + $classContainer.data('position'));
 
                 _sticky
                     .removeClass(o.className)
@@ -109,16 +116,21 @@
                     if ($this.data('sticky-options')) {
 						return false;
 					}
-                    var o = $.extend({}, $.fn.ktSticky.defaults, op);
+                    var o = $.extend({}, $.fn.ktSticky.defaults, op),
+                        sContent = $this;
 
                     $this.data('sticky-options', o);
 
-                    if($this.prev('.sticky-placeholder').length == 0){
+                    if(o.contentSticky){
+                        sContent = $this.find(o.contentSticky);
+                    }
+
+                    if(sContent.prev('.sticky-placeholder').length == 0){
                         var $placeholder = $("<div/>",{
                                 "class":  "sticky-placeholder"
-                    		}).insertBefore($this);
+                    		}).insertBefore(sContent);
                     }else{
-                        var $placeholder = $this.prev('.sticky-placeholder');
+                        var $placeholder = sContent.prev('.sticky-placeholder');
                     }
 
 
@@ -126,23 +138,25 @@
                     _window.scroll(function () {
                         
                         var $offset = $placeholder.offset(),
-                            _scrolltop = _window.scrollTop();
-                        
-                        if ($offset.top + o.topSpacing <  _scrolltop && !scrolled) {
-                            start( $this, $placeholder, o );
+                            _scrolltop = _window.scrollTop(),
+                            $offset_number = $offset.top + o.offset;
+
+
+                        if ($offset_number <  _scrolltop && !scrolled) {
+                            start( sContent, $placeholder, o );
                         }
                         
-                        if ($offset.top + o.topSpacing > _scrolltop && scrolled) {
-                            end($this, $placeholder, o);
+                        if ($offset_number >= _scrolltop && scrolled) {
+                            end(sContent, $placeholder, o);
                         }
                         
                     });
-                    
+                    /*
                     _window.on("debouncedresize", function( event ) {
                         if( _window.outerWidth() <= o.widthDisable )
                             end($this, $placeholder, o);
                     });
-                    
+                    */
                     
                     o.onInit.call(this);
                     
@@ -166,11 +180,11 @@
     
     $.fn.ktSticky.defaults = {
         classContainer: 'header-container',
+        contentSticky : false,
         className: 'is-sticky',
         classSticky: 'sticky',
-        topSpacing: 10,
-        delay: 0,
-        widthDisable : 1200,
+        offset: 0,
+        //widthDisable : 1200,
         onInit: $.noop,
         start: $.noop,
         end: $.noop

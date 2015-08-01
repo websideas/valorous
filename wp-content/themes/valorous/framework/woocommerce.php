@@ -123,7 +123,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                         $output .= '<div class="bag-product clearfix">';
     					$output .= '<figure><a class="bag-product-img" href="'.get_permalink($cart_item['product_id']).'">'.$bag_product->get_image().'</a></figure>';
     					$output .= '<div class="bag-product-details">';
-        					$output .= '<div class="bag-product-title"><a href="'.get_permalink($cart_item['product_id']).'">' . apply_filters('woocommerce_cart_widget_product_title', $bag_product->get_title(), $bag_product) . '</a></div>';
+        					$output .= '<h3 class="bag-product-title"><a href="'.get_permalink($cart_item['product_id']).'">' . apply_filters('woocommerce_cart_widget_product_title', $bag_product->get_title(), $bag_product) . '</a></h3>';
 
                         $output .= WC()->cart->get_item_data( $cart_item );
 
@@ -146,8 +146,8 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                 $output .= '<div class="bag-total"><strong>'.__('Subtotal: ', THEME_LANG).'</strong>'.$cart_total.'</div><!-- .bag-total -->';
                 $output .= '<div class="bag-buttons">';
                 $output .= '<div class="bag-buttons-content clearfix">';
-                    $output .= '<span><a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn btn-darkl">'.__('View cart', THEME_LANG).'</a></span>';
-                    $output .= '<span><a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-dark">'.__('Checkout', THEME_LANG).'</a></span>';
+                    $output .= '<span><a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn-viewcart">'.__('View cart', THEME_LANG).'</a></span>';
+                    $output .= '<span><a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-default-b">'.__('Checkout', THEME_LANG).'</a></span>';
                 $output .= '</div><!-- .bag-buttons -->';
                 $output .= '</div><!-- .bag-buttons -->';
             }

@@ -68,12 +68,12 @@ add_action('login_head', 'kt_custom_login_logo');
  */
 function kt_setting_script() {
     
-    $tracking_code = kt_option('advanced_tracking_code');
-    echo $tracking_code;
+    //$tracking_code = kt_option('advanced_tracking_code');
+    //echo $tracking_code;
     
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '');
-     
+
     ?>
     <style id="kt-theme-custom-css" type="text/css">
 
@@ -148,8 +148,84 @@ function kt_setting_script() {
                     echo 'div.page-header{background-image:url('.$pageh_bg_img['url'].');}';
                 }
 
+            }
+
+            $navigation_height = kt_option('navigation_height');
+            if(!$navigation_height['height'] || $navigation_height['height'] == 'px'){
+                $navigation_height['height'] = '100px';
+            }
+            echo '#nav > ul > li{line-height: '.$navigation_height['height'].'}';
+
+            $navigation_height_fixed = kt_option('navigation_height_fixed');
+            if(!$navigation_height_fixed['height'] || $navigation_height_fixed['height'] == 'px'){
+                $navigation_height_fixed['height'] = '100px';
+            }
+            echo '.nav-container.is-sticky #nav > ul > li, #header.is-sticky #nav > ul > li{line-height: '.$navigation_height_fixed['height'].'}';
+
+            if($navigation_bordertop = kt_option('navigation_bordertop')){
+                echo '#main-nav-tool .kt-wpml-languages ul, #main-navigation > li .kt-megamenu-wrapper, #main-navigation > li ul.sub-menu-dropdown{border-color: '.$navigation_bordertop.';}';
+            }
 
 
+            if($navigation_light_color = kt_option('navigation_light_color')){
+                echo '.header-light #main-navigation > li > a span:after,.header-light .mobile-nav-bar span.mobile-nav-handle:before,.header-light .mobile-nav-bar span.mobile-nav-handle:after,.header-light .mobile-nav-bar span.mobile-nav-handle span{background:'.$navigation_light_color.';}';
+                echo '.header-light .button-toggle .line,.header-light .button-toggle .close:before,.header-light .button-toggle .close:after{background:'.$navigation_light_color.';}';
+            }
+            if($navigation_light_color_hover = kt_option('navigation_light_color_hover')){
+                echo '.header-light #nav > ul > li > a:hover span:after, .header-light #nav > ul > li > a:focus span:after, .header-light #nav > ul > li.current-menu-item > a span:after, .header-light #nav > ul > li.current-menu-parent > a span:after{background: '.$navigation_light_color_hover.';}';
+                echo '.header-light .mobile-nav-bar:hover span.mobile-nav-handle:before,.header-light .mobile-nav-bar:hover span.mobile-nav-handle:after,.header-light .mobile-nav-bar:hover span.mobile-nav-handle span{background: '.$navigation_light_color_hover.';}';
+            }
+            $dropdown_light_background_hover = kt_option('dropdown_light_background_hover', '');
+            if($dropdown_light_background_hover['background-color'] != ''){
+                echo '.header-light #main-nav-tool .kt-wpml-languages ul li, .header-light #main-navigation > li ul.sub-menu-dropdown > li{border-color: '.$dropdown_light_background_hover['background-color'].'}';
+            }
+            if($mega_light_vertical = kt_option('mega_light_vertical')){
+                echo '.header-light #main-navigation > li .kt-megamenu-wrapper.megamenu-layout-table > ul > li{border-color: '.$mega_light_vertical.';}';
+            }
+            if($mega_light_color = kt_option('mega_light_color')){
+                echo '.header-light .bag-buttons .btn-viewcart{border-color: '.$mega_light_color.';color:'.$mega_light_color.';}';
+            }
+            if($navigation_light_box_background = kt_option('navigation_light_box_background')){
+                    echo '.header-light .bag-buttons .btn-viewcart:hover{background: '.$mega_light_color.';border-color: '.$mega_light_color.';color:'.$navigation_light_box_background['background-color'].';}';
+                }
+            if($mega_light_title_color = kt_option('mega_light_title_color')){
+                echo '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a, .header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title, .header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title{border-color: '.$mega_light_title_color.';}';
+            }
+            if($cart_light_divders = kt_option('cart_light_divders')){
+                echo '.header-light .shopping-bag-wrapper .cart-title, .header-light .bag-total{border-color: '.$cart_light_divders.';}';
+            }
+
+
+
+
+            if($navigation_dark_color = kt_option('navigation_dark_color')){
+                echo '.header-dark #main-navigation > li > a span:after,.header-dark .mobile-nav-bar span.mobile-nav-handle:before,.header-dark .mobile-nav-bar span.mobile-nav-handle:after,.header-dark .mobile-nav-bar span.mobile-nav-handle span{background:'.$navigation_dark_color.';}';
+                echo '.header-dark .button-toggle .line,.header-dark .button-toggle .close:before,.header-dark .button-toggle .close:after{background:'.$navigation_light_color.';}';
+            }
+            if($navigation_dark_color_hover = kt_option('navigation_dark_color_hover')){
+                echo '.header-dark #nav > ul > li > a:hover span:after, .header-dark #nav > ul > li > a:focus span:after, .header-dark #nav > ul > li.current-menu-item > a span:after, .header-dark #nav > ul > li.current-menu-parent > a span:after{background: '.$navigation_dark_color_hover.';}';
+            }
+            $dropdown_dark_background_hover = kt_option('dropdown_dark_background_hover', '');
+            if($dropdown_dark_background_hover['background-color'] != ''){
+                echo '.header-dark #main-nav-tool .kt-wpml-languages ul li, .header-dark #main-navigation > li ul.sub-menu-dropdown > li{border-color: '.$dropdown_dark_background_hover['background-color'].'}';
+            }
+            if($mega_dark_vertical = kt_option('mega_dark_vertical')){
+                echo '.header-dark #main-navigation > li .kt-megamenu-wrapper.megamenu-layout-table > ul > li, .header-dark .shopping-bag-wrapper .cart-title, .header-dark .bag-total{border-color: '.$mega_dark_vertical.';}';
+            }
+            if($mega_dark_color = kt_option('mega_dark_color')){
+                echo '.header-dark .bag-buttons .btn-viewcart{border-color: '.$mega_dark_color.';color:'.$mega_dark_color.';}';
+            }
+            if($mega_dark_color_hover = kt_option('mega_dark_color_hover')){
+                echo '.header-dark .bag-buttons .btn-viewcart:hover{border-color: '.$mega_dark_color_hover.';color:'.$mega_dark_color_hover.';}';
+                if($navigation_dark_box_background = kt_option('navigation_dark_box_background')){
+                    echo '.header-dark .bag-buttons .btn-viewcart:hover{background: '.$mega_dark_color.';border-color: '.$mega_dark_color.';color:'.$navigation_dark_box_background['background-color'].';}';
+                }
+            }
+            if($mega_dark_title_color = kt_option('mega_dark_title_color')){
+                echo '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a, .header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title, .header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title{border-color: '.$mega_dark_title_color.';}';
+            }
+            if($cart_dark_divders = kt_option('cart_dark_divders')){
+                echo '.header-dark .shopping-bag-wrapper .cart-title, .header-light .bag-total{border-color: '.$cart_dark_divders.';}';
             }
 
 

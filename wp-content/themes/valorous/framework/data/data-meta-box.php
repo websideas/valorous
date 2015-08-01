@@ -676,7 +676,6 @@ function kt_register_meta_boxes( $meta_boxes )
                 'options'  => array(
                     'default' => __('Default', THEME_LANG),
                     'transparent' => __('Transparent header', THEME_LANG),
-                    'gradient' => __('Gradient header', THEME_LANG),
                     'below' => __('Below Slideshow', THEME_LANG),
                 ),
                 'std'  => 'default',

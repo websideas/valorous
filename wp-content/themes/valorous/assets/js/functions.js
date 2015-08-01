@@ -101,7 +101,17 @@
         /**==============================
         ***  Sticky header
         ===============================**/
-        $('#header.sticky-header').ktSticky();
+        if($('#header.sticky-header').length){
+            if($('.header-layout3').length){
+                $('#header.sticky-header').ktSticky({
+                    contentSticky : '.nav-container'
+                });
+            }else{
+                $('#header.sticky-header').ktSticky();
+            }
+
+        }
+
 
         /**==============================
          ***  Fixed footer
@@ -238,7 +248,7 @@
      Search
      --------------------------------------------- */
     function init_SearchFull(){
-        $('.mini-search a').magnificPopup({
+        $('.mini-search a, a.mobile-search').magnificPopup({
             type: 'inline',
             mainClass : 'mfp-zoom-in',
             items: { src: '#search-fullwidth' },
@@ -455,7 +465,7 @@
      Mobile Menu
     --------------------------------------------- */
     function init_MobileMenu(){
-        $('ul.navigation-mobile ul.sub-menu-dropdown').each(function(){
+        $('ul.navigation-mobile > li > ul.sub-menu-dropdown').each(function(){
             $(this).parent().children('a').prepend( '<span class="open-submenu"></span>' );
             $(this).parent().children('span.title-megamenu').prepend( '<span class="open-submenu"></span>' );
         });
@@ -470,9 +480,15 @@
         $('.mobile-nav-bar').on('click', function(e){
             e.preventDefault();
             $( this ).toggleClass('active');
-            $('nav#main-nav-mobile').toggle();
+            $('body').toggleClass('menu-animate');
         });
-        
+
+        $('.animate-content-overlay').on('click', function(e){
+            e.preventDefault();
+            $('.mobile-nav-bar').toggleClass('active');
+            $('body').toggleClass('menu-animate');
+        });
+
     }
     
     /* ---------------------------------------------
@@ -612,7 +628,7 @@
                     }
                 }
             };
-            console.log(options);
+
             objCarousel.waitForImages(function() {
                 objCarousel.owlCarousel(options);
             });

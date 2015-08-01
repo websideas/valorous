@@ -828,13 +828,13 @@ if ( ! function_exists( 'kt_related_article' ) ) :
 
         $sidebar = kt_get_single_sidebar($post_id);
         if($sidebar['sidebar'] == 'full'){
+            $blog_columns = 4;
+            $blog_columns_tablet = 2;
+            $posts_per_page = kt_option('blog_related_full', 4);
+        }else{
             $blog_columns = 3;
             $blog_columns_tablet = 2;
-            $posts_per_page = kt_option('blog_related_full', 3);
-        }else{
-            $blog_columns = 2;
-            $blog_columns_tablet = 2;
-            $posts_per_page = kt_option('blog_related_sidebar', 2);
+            $posts_per_page = kt_option('blog_related_sidebar', 3);
         }
 
         $args = array(
@@ -877,7 +877,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         "date_format" => 'M d Y',
                         'thumbnail_type' => 'image',
                         "class" => '',
-                        'show_excerpt' => true
+                        'show_excerpt' => false
                     );
 
                     $i = 1;

@@ -410,7 +410,7 @@
     right: 0;
     z-index: 1002;
     color: #FFF;
-
+    line-height: normal;
     width: 300px;
     text-align: left;
 
@@ -462,9 +462,7 @@
     -moz-box-shadow:    3px 0 5px 0 rgba(0, 0, 0, 0.3);
     box-shadow:         3px 0 5px 0 rgba(0, 0, 0, 0.3);
     background: #1e1e1e;
-    border-color: #d2a952 #a0a0a0 #a0a0a0;
-    border-style: solid;
-    border-width: 2px 1px 1px;
+    border-top: 2px solid #d2a952;
 }
 .shopping-bag-wrapper .cart-title{
     border-bottom: 1px solid #a0a0a0;
@@ -511,16 +509,26 @@
     height: auto;
 }
 .bag-products .bag-product a.remove{
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 0;
+    color: #282828 !important;
+    left: 5px;
     position: absolute;
-    right: 0;
-    top: 0;
-    color: #ffffff!important;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    line-height: 15px;
 }
 .bag-products .bag-product a.remove:hover{
     color: red!important;
+    background: rgba(255, 255, 255, 0.7)!important;
 }
 .bag-product .bag-product-title{
-    margin: 0 22px 10px 0;
+    margin: 0 0 7px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
 }
 .bag-product .bag-product-title a{
     color: #a0a0a0;
@@ -563,24 +571,19 @@
     display: inline-block;
 }
 .bag-product .bag-product-qty:before{
-    color: #666;
     content: "|";
     margin: 0 6px;
 }
 .bag-total{
     border-top: 1px solid #a0a0a0;
-    font-size: 16px;
     line-height: 30px;
-    padding: 7px 15px 0;
+    padding: 7px 15px;
 }
 .bag-total .amount{
     float: right;
-    font-size: 18px;
-    color: #d0a852;
 }
 .bag-buttons{
-    padding: 15px;
-    background: #1e1e1e;
+    padding: 0 15px 15px;
 }
 .bag-buttons .bag-buttons-content{
     margin: 0 -4px;
@@ -591,8 +594,14 @@
     padding: 0 4px;
     width: 50%;
 }
-
-
+.bag-buttons span .btn{
+    padding-left: 0;
+    padding-right: 0;
+    display: block;
+}
+.bag-buttons .btn.btn-viewcart{
+    border-width: 2px;
+}
 
 body .mCSB_inside > .mCSB_container{
     margin-right: 15px;
@@ -633,6 +642,8 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 
 
+
+/*
 .header-light .mini-cart .shopping-bag{
     color: #777777;
 }
@@ -642,13 +653,9 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 .header-light .shopping-bag-wrapper .cart-title{
     border-color: #e6eced;
-    color: #777777;
 }
 .header-light .bag-product .bag-product-title a{
     color: #282828;
-}
-.header-light .bag-product .bag-product-title a:hover{
-    color: #000000;
 }
 .header-light .bag-products .bag-product a.remove{
     color: #282828!important;
@@ -656,13 +663,10 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .header-light .bag-products .bag-product a.remove:hover{
     color: red!important;
 }
-.header-light .bag-buttons{
-    background: #FFFFFF;
-}
 .header-light .bag-total{
     border-color: #e6eced;
 }
-
+*/
 
 /** ================================================
     2. Grid list Toggle
