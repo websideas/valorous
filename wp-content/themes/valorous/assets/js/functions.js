@@ -216,7 +216,7 @@
             var vScrollwheel = (scrollwheel == '1') ? false : true;
             mapObj.gmap3({
                 marker: {
-                    values: [{address: mapObj.data('location'), options: {icon: mapObj.data('iconmap')}}],
+                    values: [{address: mapObj.data('location'), options: {icon: mapObj.data('icon')}}],
                 },
                 map: {
                     options: {
