@@ -2,7 +2,7 @@
 
 $classes = array('');
 ?>
-<article <?php post_class($classes); ?> style="background-image: url(<?php echo kt_get_post_thumbnail_url('blog_post'); ?>);">
+<article <?php post_class($classes); ?> data-title="<?php the_title(); ?>" data-thumb="<?php echo kt_get_post_thumbnail_url('blog_post'); ?>" style="background-image: url(<?php echo kt_get_post_thumbnail_url('blog_post'); ?>);">
     <div class="entry-main-content">
         <?php kt_entry_meta_categories(' '); ?>
         <?php kt_post_thumbnail_image('small', 'img-responsive'); ?>

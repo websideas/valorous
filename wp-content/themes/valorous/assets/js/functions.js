@@ -605,9 +605,8 @@
                 itemsDesktopSmall : [991,owlDesktop], // betweem 992px and 769px
                 itemsTablet: [768,owlTablet], //2 items between 768 and 480
                 itemsMobile : [479, owlMobile],
-
+                
                 afterInit : function(elem){
-
                     if(owlPagination && owlNavigation){
                         var that = this;
                         that.paginationWrapper.appendTo(objCarousel.closest('.owl-carousel-kt'));
@@ -616,6 +615,7 @@
                     if( typeof func_cb === 'function'){
                         func_cb( 'afterInit',   elem );
                     }
+                    kt_carousel_thumbnail( elem );
                 },
                 afterUpdate: function(elem) {
                     if( typeof func_cb === 'function'){
@@ -626,6 +626,7 @@
                     if( typeof func_cb === 'function'){
                         func_cb( 'afterUpdate',   elem );
                     }
+                    kt_carousel_thumbnail( elem );
                 }
             };
 
@@ -637,7 +638,36 @@
             
         });
     }
-
+    
+    /* ---------------------------------------------
+     Get Image Carousel Thumbnail
+     --------------------------------------------- */
+     function kt_carousel_thumbnail( elem ){
+        if( $(elem).find('.slide_img').length != 0 ){ $('.slide_img').remove(); }
+        var imgurl_next,imgurl_prev,title_next,title_prev;
+        if( $(elem).find('.owl-item.active').next().length === 0 ){
+            imgurl_next = $(elem).find('.owl-item').first().find('article.post').data('thumb');
+            title_next = $(elem).find('.owl-item').first().find('article.post').data('title');
+        }else{
+            imgurl_next = $(elem).find('.owl-item.active').next().find('article.post').data('thumb');
+            title_next = $(elem).find('.owl-item.active').next().find('article.post').data('title');
+        }
+        if(typeof imgurl_next != 'undefined' ){
+            $(elem).find('.owl-next').append('<div class="slide_img_next slide_img">'+title_next+'<span class="img" style="background-image:url('+imgurl_next+')"></span></div>');
+        }
+        
+        if( $(elem).find('.owl-item.active').prev().length === 0 ){
+            imgurl_prev = $(elem).find('.owl-item').last().find('article.post').data('thumb');
+            title_prev = $(elem).find('.owl-item').last().find('article.post').data('title');
+        }else{
+            imgurl_prev = $(elem).find('.owl-item.active').prev().find('article.post').data('thumb');
+            title_prev = $(elem).find('.owl-item.active').prev().find('article.post').data('title');
+        }
+        if(typeof imgurl_prev != 'undefined' ){
+            $(elem).find('.owl-prev').append('<div class="slide_img_prev slide_img">'+title_prev+'<span class="img" style="background-image:url('+imgurl_prev+')"></span></div>');            
+        }
+     }
+     
 
     /* ---------------------------------------------
      Product Quick View
