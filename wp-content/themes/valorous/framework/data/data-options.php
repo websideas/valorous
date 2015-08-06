@@ -321,13 +321,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                     ),
 
                     array(
-                        'id'		=> 'fixed_header',
-                        'type'		=> 'switch',
-                        'title'		=> __( 'Fixed Header on Scroll', THEME_LANG ),
-                        'subtitle'	=> __( 'Toggle the fixed header when the user scrolls down the site on or off. Please note that for certain header (two and three) styles only the navigation will become fixed.', THEME_LANG),
-                        "default"	=> '1',
-                        'on'		=> __( 'On', THEME_LANG ),
-                        'off'		=> __( 'Off', THEME_LANG ),
+                        'id'       => 'fixed_header',
+                        'type'     => 'button_set',
+                        'title'    => __( 'Sticky header', THEME_LANG ),
+                        'options'  => array(
+                            '1' => __('Disabled', THEME_LANG),
+                            '2' => __('Fixed Sticky', THEME_LANG),
+                            '3' => __('Slide Down', THEME_LANG),
+                        ),
+                        'default'  => '2',
+                        'desc' => __('Choose your sticky effect.', THEME_LANG)
                     ),
 
                     array(
@@ -336,8 +339,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Full Width Header', THEME_LANG),
                         'desc' => __('Do you want the header to span the full width of the page?', THEME_LANG),
                         "default" => 0,
-                        'on' => 'Enabled',
-                        'off' => 'Disabled',
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'   => 'divide_id',
@@ -369,8 +372,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Search Icon', THEME_LANG),
                         'desc' => __('Enable the search Icon in the header.', THEME_LANG),
                         "default" => 1,
-                        'on' => 'Enabled',
-                        'off' => 'Disabled',
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     // Search: Disable, Header Toolbar, Fullscreen Search
@@ -382,8 +385,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Cart icon', THEME_LANG),
                         'desc' => __('Enable the cart Icon in the header (Only work if you install WooCommerce).', THEME_LANG),
                         "default" => 1,
-                        'on' => 'Enabled',
-                        'off' => 'Disabled',
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id' => 'header_language',
@@ -391,8 +394,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Language switcher', THEME_LANG),
                         'desc' => __('Enable the language switcher in the header (Only work if you install WPML).', THEME_LANG),
                         "default" => 1,
-                        'on' => 'Enabled',
-                        'off' => 'Disabled',
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                 )
             );
@@ -414,6 +417,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Back to top', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     array(
@@ -427,12 +432,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer enable', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'footer_fixed',
                         'type'     => 'switch',
                         'title'    => __( 'Footer Fixed', THEME_LANG ),
                         'default'  => false,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     // Footer Top settings
@@ -447,6 +456,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer top enable', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     // Footer widgets settings
@@ -465,6 +476,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer widgets enable', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     array(
@@ -499,12 +512,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer bottom enable', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'footer_bottom_instagram',
                         'type'     => 'switch',
                         'title'    => __( 'Use instagram background if available', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
 
                     /* Footer copyright */
@@ -519,6 +536,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Footer copyright enable', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'footer_copyright_layout',
@@ -660,7 +679,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'             => 'logo_width',
                         'type'           => 'dimensions',
-                        'units'          => array( 'em', 'px'),
+                        'units'          => array( 'px'),
                         'units_extended' => 'true',
                         'title'          => __( 'Logo width', THEME_LANG ),
                         'height'         => false,
@@ -672,7 +691,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'spacing',
                         'mode'     => 'margin',
                         'output'   => array( '.site-branding .site-logo img' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Logo margin spacing Option', THEME_LANG ),
                         'default'  => array(
@@ -691,8 +710,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'             => 'logo_sticky_width',
                         'type'           => 'dimensions',
-                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
-                        'units'          => array( 'em', 'px'),
+                        'output'   => array( '.header-layout-normal.is-sticky .site-branding .site-logo img'),
+                        'units'          => array( 'px'),
                         'units_extended' => 'true',
                         'title'          => __( 'Logo sticky width', THEME_LANG ),
                         'height'         => false,
@@ -711,7 +730,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'margin-bottom' => '12px',
                             'margin-left'   => '0px'
                         ),
-                        'output'   => array( '.is-sticky .site-branding .site-logo img'),
+                        'output'   => array( '.header-layout-normal.is-sticky .site-branding .site-logo img'),
                     ),
                     array(
                         'id'   => 'divide_id',
@@ -720,7 +739,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'             => 'logo_mobile_width',
                         'type'           => 'dimensions',
-                        'units'          => array( 'em', 'px'),
+                        'units'          => array( 'px'),
                         'units_extended' => 'true',
                         'title'          => __( 'Logo mobile width', THEME_LANG ),
                         'height'         => false,
@@ -730,7 +749,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'logo_mobile_margin_spacing',
                         'type'     => 'spacing',
                         'mode'     => 'margin',
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Logo mobile margin spacing Option', THEME_LANG ),
                         'default'  => array(
@@ -740,10 +759,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'margin-left'   => '0px'
                         )
                     ),
-                    array(
-                        'id'   => 'divide_id',
-                        'type' => 'divide'
-                    ),
+
                 )
             );
             
@@ -755,586 +771,66 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'title'			=> __( 'Header', THEME_LANG ),
 				'subsection' => true,
                 'fields'		=> array(
-                    array(
-                        'id'       => 'header_scheme',
-                        'type'     => 'select',
-                        'title'    => __( 'Header Color Scheme', THEME_LANG ),
-                        'subtitle'     => __( 'Please select your header color scheme here.', THEME_LANG ),
-                        'options'  => array(
-                            'light' => __('Light', THEME_LANG),
-                            'dark' => __('Dark', THEME_LANG ),
-                        ),
-                        'default'  => 'light',
-                        'clear' => false
-                    ),
-                    array(
-                        'id'       => 'header_scheme_fixed',
-                        'type'     => 'select',
-                        'title'    => __( 'Header Color Scheme fixed', THEME_LANG ),
-                        'subtitle'     => __( 'Please select your header color scheme fixed here.', THEME_LANG ),
-                        'options'  => array(
-                            'light' => __('Light', THEME_LANG),
-                            'dark' => __('Dark', THEME_LANG ),
-                        ),
-                        'default'  => 'light',
-                        'clear' => false,
-                        'required' => array('fixed_header','equals','1')
-                    ),
+
 
                     array(
-                        'id'       => 'header_light_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Header Light settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'header_light_background',
+                        'id'       => 'header_background',
                         'type'     => 'background',
-                        'title'    => __( 'Header light background', THEME_LANG ),
-                        'subtitle' => __( 'Header light with image, color, etc.', THEME_LANG ),
+                        'title'    => __( 'Header background', THEME_LANG ),
+                        'subtitle' => __( 'Header with image, color, etc.', THEME_LANG ),
                         'default'   => '',
-                        'output'      => array(
-                            '.header-light.header-layout1 #header',
-                            '.header-light.header-layout2 #header',
-                            '.header-light .header-branding-outer',
+                        'output'      => array( '.header-background' ),
+                    ),
+                    array(
+                        'id'            => 'header_opacity',
+                        'type'          => 'slider',
+                        'title'         => __( 'Background opacity', THEME_LANG ),
+                        'default'       => 1,
+                        'min'           => 0,
+                        'step'          => .1,
+                        'max'           => 1,
+                        'resolution'    => 0.1,
+                        'display_value' => 'text'
+                    ),
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
+                    array(
+                        'id'       => 'header_sticky_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Header sticky background', THEME_LANG ),
+                        'subtitle' => __( 'Header sticky with image, color, etc.', THEME_LANG ),
+                        'default'   => array(
+                            'background-color'      => '#FFFFFF',
                         ),
-
+                        'output'      => array( '.header-container.is-sticky .header-sticky-background' ),
                     ),
 
-                    array(
-                        'id'       => 'header_light_sticky_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Header light sticky background', THEME_LANG ),
-                        'subtitle' => __( 'Header light sticky with image, color, etc.', THEME_LANG ),
-                        'default'   => '',
-                        'output'      => array( '.header-light #header.is-sticky' ),
-                    ),
 
                     array(
-                        'id'       => 'header_dark_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Header Dark settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'header_dark_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Header dark background', THEME_LANG ),
-                        'subtitle' => __( 'Header dark with image, color, etc.', THEME_LANG ),
-                        'default'   => '',
-                        'output'      => array(
-                            '.header-dark.header-layout1 #header',
-                            '.header-dark.header-layout2 #header',
-                            '.header-dark .header-branding-outer',
-                        ),
+                        'id'            => 'header_sticky_opacity',
+                        'type'          => 'slider',
+                        'title'         => __( 'Sticky Background opacity', THEME_LANG ),
+                        'default'       => .8,
+                        'min'           => 0,
+                        'step'          => .1,
+                        'max'           => 1,
+                        'resolution'    => 0.1,
+                        'display_value' => 'text'
                     ),
 
-                    array(
-                        'id'       => 'header_dark_sticky_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Header dark sticky background', THEME_LANG ),
-                        'subtitle' => __( 'Header dark sticky with image, color, etc.', THEME_LANG ),
-                        'default'   => '',
-                        'output'      => array( '.header-dark .sticky-placeholder', '.header-dark #header.is-sticky' ),
-                    ),
+                    //Sticky Header Background Opacity
                 )
             );
 
             /**
-             *	Main Navigation
+             *	Styling Footer
              **/
             $this->sections[] = array(
-                'id'			=> 'styling_navigation',
-                'title'			=> __( 'Main Navigation', THEME_LANG ),
-                'desc'			=> '',
+                'id'			=> 'styling_footer',
+                'title'			=> __( 'Footer', THEME_LANG ),
                 'subsection' => true,
-                'fields'		=> array(
-                    array(
-                        'id'             => 'navigation_height',
-                        'type'           => 'dimensions',
-                        'units'          => array('px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Main Navigation Height', THEME_LANG ),
-                        'subtitle'          => __( 'Change height of main navigation', THEME_LANG ),
-                        'width'         => false,
-                        'default'        => array( 'width'  => 100, 'height' => '100px' ),
-                        'output'   => array(
-                            '#nav > ul > li',
-                            '.nav-container #nav',
-                            //'.site-branding'
-                        ),
-                    ),
-                    array(
-                        'id'             => 'navigation_height_fixed',
-                        'type'           => 'dimensions',
-                        'units'          => array('px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Main Navigation Sticky Height', THEME_LANG ),
-                        'subtitle'          => __( 'Change height of main navigation sticky', THEME_LANG ),
-                        'width'         => false,
-                        'default'        => array( 'width'  => 100, 'height' => '68px' ),
-                        'output'   => array(
-                            '#header.is-sticky #nav > ul > li',
-                            '.nav-container.is-sticky #nav > ul > li',
-                            '.nav-container.is-sticky #nav',
-                            //'#header.is-sticky .site-branding'
-                        ),
-                    ),
-                    /*
-                    array(
-                        'id'       => 'header_scheme_fixed',
-                        'type'     => 'select',
-                        'title'    => __( 'Header Hover Style', THEME_LANG ),
-                        'subtitle'     => __( 'Please select your header color scheme fixed here.', THEME_LANG ),
-                        'options'  => array(
-                            '1' => __('Style 1', THEME_LANG),
-                            '2' => __('Style 2', THEME_LANG ),
-                            '3' => __('Style 3', THEME_LANG ),
-                            '4' => __('Style 4', THEME_LANG ),
-                        ),
-                        'default'  => '1',
-                        'clear' => false,
-                    ),
-                    */
-                    array(
-                        'id'             => 'navigation_dropdown',
-                        'type'           => 'dimensions',
-                        'units'          => array('px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Dropdown width', THEME_LANG ),
-                        'subtitle'          => __( 'Change width of Dropdown', THEME_LANG ),
-                        'height'         => false,
-                        'default'        => array( 'width'  => 200, 'height' => 100 ),
-                        'output'   => array( '#main-nav-tool .kt-wpml-languages ul', '#main-navigation > li ul.sub-menu-dropdown'),
-                    ),
-                    array(
-                        'id'       => 'navigation_bordertop',
-                        'type'     => 'color',
-                        'title'    => __( 'Dropdown & Mega border top color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-
-
-                    /* light Main Navigation */
-                    array(
-                        'id'       => 'navigation_light_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Main Navigation light settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'navigation_light_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Background', THEME_LANG ),
-                        'subtitle' => __( 'Main Navigation with image, color, etc.', THEME_LANG ),
-                        'default'   => array(
-                            'background-color'      => '#FFFFFF',
-                        ),
-                        'output'      => array( '.header-light .nav-container'),
-                    ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-                    array(
-                        'id'       => 'navigation_light_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #nav > ul > li > a',
-                            '.header-light #header-content-mobile a'
-                        ),
-                        'title'    => __( 'Top Level Color', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'navigation_light_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #nav > ul > li > a:hover',
-                            '.header-light #nav > ul > li > a:focus',
-                            '.header-light #nav > ul > li.current-menu-item > a',
-                            '.header-light #nav > ul > li.current-menu-parent > a',
-                            '.header-light #header-content-mobile a:hover'
-                        ),
-                        'title'    => __( 'Top Level hover Color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'navigation_light_box_background',
-                        'type'     => 'Background',
-                        'title'    => __( 'MegaMenu & Dropdown Box background', THEME_LANG ),
-                        'default'   => array(
-                            'background-color'      => '#FFFFFF',
-                        ),
-                        'output'      => array(
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper',
-                            '.header-light .shopping-bag-wrapper',
-                            '.header-light #main-nav-tool .kt-wpml-languages ul',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown'
-                        ),
-                        'transparent'           => false,
-                    ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_light_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Dropdown Background Color', THEME_LANG ),
-                        'default'  => array(
-                            'background-color'      => '#FFFFFF',
-                        ),
-                        'output'   => array(
-                            '.header-light #main-nav-tool .kt-wpml-languages ul li > a',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li > a'
-                        ),
-                        'background-repeat'     => false,
-                        'background-attachment' => false,
-                        'background-position'   => false,
-                        'background-image'      => false,
-                        'background-size'       => false,
-                        'preview'               => false,
-                        'transparent'           => true,
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_light_background_hover',
-                        'type'     => 'background',
-                        'title'    => __( 'Dropdown Background Hover Color', THEME_LANG ),
-                        'default'  => array(
-                            'background-color'      => '#EAEAEA',
-                        ),
-                        'output'   => array(
-                            '.header-light #main-nav-tool .kt-wpml-languages ul li > a:hover',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li:hover > a',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li > a:hover',
-                        ),
-                        'background-repeat'     => false,
-                        'background-attachment' => false,
-                        'background-position'   => false,
-                        'background-image'      => false,
-                        'background-size'       => false,
-                        'preview'               => false,
-                        'transparent'           => true,
-                    ),
-                    array(
-                        'id'       => 'dropdown_light_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-nav-tool .kt-wpml-languages ul li > a',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li > a',
-                        ),
-                        'title'    => __( 'Dropdown Text Color', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_light_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-nav-tool .kt-wpml-languages ul li > a:hover',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li:hover > a',
-                            '.header-light #main-navigation > li ul.sub-menu-dropdown > li > a:hover',
-                        ),
-                        'title'    => __( 'Dropdown Text Hover Color', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-
-                    array(
-                        'id'       => 'mega_light_vertical',
-                        'type'     => 'color',
-                        'title'    => __( 'MegaMenu Border Vertical Divders', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_light_title_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title',
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
-                        ),
-                        'title'    => __( 'MegaMenu Title color', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_light_title_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a:hover',
-                        ),
-                        'title'    => __( 'MegaMenu Title Hover Color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_light_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a',
-                            '.header-light .mini-cart .shopping-bag',
-                            '.header-light .bag-product .bag-product-title a',
-                        ),
-                        'title'    => __( 'MegaMenu Text color', THEME_LANG ),
-                        'default'  => '#282828',
-                        'transparent' => false
-                    ),
-
-                    array(
-                        'id'       => 'mega_light_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-light #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover',
-                            '.header-light .bag-product .bag-product-title a:hover',
-                        ),
-                        'title'    => __( 'MegaMenu Text Hover color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-                    array(
-                        'id'       => 'cart_light_divders',
-                        'type'     => 'color',
-                        'output'   => array( ),
-                        'title'    => __( 'Cart divders color', THEME_LANG ),
-                        'default'  => '#E3E3E3',
-                        'transparent' => false
-                    ),
-
-
-
-
-
-
-                    /* Dark Main Navigation */
-
-                    array(
-                        'id'       => 'navigation_dark_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Main Navigation dark settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-
-                    array(
-                        'id'       => 'navigation_dark_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Background', THEME_LANG ),
-                        'subtitle' => __( 'Main Navigation with image, color, etc.', THEME_LANG ),
-                        'default'   => array(
-                            'background-color'      => '#282828',
-                        ),
-                        'output'      => array( '.header-dark .nav-container'),
-                    ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-                    array(
-                        'id'       => 'navigation_dark_color',
-                        'type'     => 'color',
-                        'output'   => array( '.header-dark #nav > ul > li > a' ),
-                        'title'    => __( 'Top Level Color', THEME_LANG ),
-                        'default'  => '#FFFFFF',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'navigation_dark_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #nav > ul > li > a:hover',
-                            '.header-dark #nav > ul > li > a:focus',
-                            '.header-dark #nav > ul > li.current-menu-item > a',
-                            '.header-dark #nav > ul > li.current-menu-parent > a'
-                        ),
-                        'title'    => __( 'Top Level hover Color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'navigation_dark_box_background',
-                        'type'     => 'background',
-                        'title'    => __( 'MegaMenu & Dropdown Box background', THEME_LANG ),
-                        'default'   => array(
-                            'background-color'      => '#282828',
-                        ),
-                        'output'      => array(
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper',
-                            '.header-dark .shopping-bag-wrapper',
-                            '.header-dark #main-nav-tool .kt-wpml-languages ul',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown'
-                        ),
-                        'transparent'           => false,
-                    ),
-
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_dark_background',
-                        'type'     => 'background',
-                        'title'    => __( 'Dropdown Background Color', THEME_LANG ),
-                        'default'  => array(
-                            'background-color'      => '#282828',
-                        ),
-                        'output'   => array(
-                            '.header-dark #main-nav-tool .kt-wpml-languages ul li > a',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li > a'
-                        ),
-                        'background-repeat'     => false,
-                        'background-attachment' => false,
-                        'background-position'   => false,
-                        'background-image'      => false,
-                        'background-size'       => false,
-                        'preview'               => false,
-                        'transparent'           => true,
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_dark_background_hover',
-                        'type'     => 'background',
-                        'title'    => __( 'Dropdown Background Hover Color', THEME_LANG ),
-                        'default'  => array(
-                            'background-color'      => '#333333',
-                        ),
-                        'output'   => array(
-                            '.header-dark #main-nav-tool .kt-wpml-languages ul li > a:hover',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li:hover > a',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li > a:hover',
-                        ),
-                        'background-repeat'     => false,
-                        'background-attachment' => false,
-                        'background-position'   => false,
-                        'background-image'      => false,
-                        'background-size'       => false,
-                        'preview'               => false,
-                        'transparent'           => true,
-                    ),
-                    array(
-                        'id'       => 'dropdown_dark_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-nav-tool .kt-wpml-languages ul li > a',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li > a',
-                        ),
-                        'title'    => __( 'Dropdown Text Color', THEME_LANG ),
-                        'transparent' => false,
-                        'default'  => '#FFFFFF',
-                    ),
-
-                    array(
-                        'id'       => 'dropdown_dark_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-nav-tool .kt-wpml-languages ul li > a:hover',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li:hover > a',
-                            '.header-dark #main-navigation > li ul.sub-menu-dropdown > li > a:hover',
-                        ),
-                        'title'    => __( 'Dropdown Text Hover Color', THEME_LANG ),
-                        'default'  => '#FFFFFF',
-                        'transparent' => false
-                    ),
-
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-
-                    array(
-                        'id'       => 'mega_dark_vertical',
-                        'type'     => 'color',
-                        'title'    => __( 'MegaMenu Border Vertical Divders', THEME_LANG ),
-                        'default'  => '#FFFFFF',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_dark_title_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title',
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
-                        ),
-                        'title'    => __( 'MegaMenu Title color', THEME_LANG ),
-                        'default'  => '#FFFFFF',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_dark_title_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a:hover',
-                        ),
-                        'title'    => __( 'MegaMenu Text Hover Color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'id'       => 'mega_dark_color',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a',
-                            '.header-dark .mini-cart .shopping-bag',
-                            '.header-dark .bag-product .bag-product-title a',
-                        ),
-                        'title'    => __( 'MegaMenu Text color', THEME_LANG ),
-                        'default'  => '#cbcbcb',
-                        'transparent' => false
-                    ),
-
-                    array(
-                        'id'       => 'mega_dark_color_hover',
-                        'type'     => 'color',
-                        'output'   => array(
-                            '.header-dark #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover',
-                            '.header-dark .bag-product .bag-product-title a:hover',
-                        ),
-                        'title'    => __( 'MegaMenu Text Hover color', THEME_LANG ),
-                        'default'  => '#d0a852',
-                        'transparent' => false
-                    ),
-                    array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-                    array(
-                        'id'       => 'cart_dark_divders',
-                        'type'     => 'color',
-                        'output'   => array( ),
-                        'title'    => __( 'Cart divders color', THEME_LANG ),
-                        'default'  => '#a0a0a0',
-                        'transparent' => false
-                    ),
-
-
-                )
-            );
-
-            /**
-			 *	Styling Footer
-			 **/
-            $this->sections[] = array(
-				'id'			=> 'styling_footer',
-				'title'			=> __( 'Footer', THEME_LANG ),
-				'subsection' => true,
                 'fields'		=> array(
                     array(
                         'id'       => 'footer_heading',
@@ -1375,7 +871,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'bottom'      => false,
                         'default'  => array( )
                     ),
-                    
+
                     // Footer top settings
                     array(
                         'id'       => 'footer_top_heading',
@@ -1413,7 +909,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'right'    => false,
                         'top'      => false,
                         'default'  => array(
-                            
+
                         )
                     ),
                     // Footer widgets settings
@@ -1469,7 +965,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'top'      => false,
                         'default'  => array( )
                     ),
-                    
+
                     //Footer bottom settings
                     array(
                         'id'       => 'footer_bottom_heading',
@@ -1533,6 +1029,449 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer copyright padding', THEME_LANG ),
                         'default'  => array( )
                     ),
+                )
+            );
+
+            /**
+             *	Main Navigation
+             **/
+            $this->sections[] = array(
+                'id'			=> 'styling_navigation',
+                'title'			=> __( 'Main Navigation', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'             => 'navigation_height',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Main Navigation Height', THEME_LANG ),
+                        'subtitle'          => __( 'Change height of main navigation', THEME_LANG ),
+                        'width'         => false,
+                        'default'        => array( 'width'  => 100, 'height' => '100px' ),
+                        'output'   => array(
+                            '#nav > ul > li',
+                            '.header-layout-normal .site-branding'
+                            //'.site-branding'
+                        ),
+                    ),
+                    array(
+                        'id'             => 'navigation_height_fixed',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Main Navigation Sticky Height', THEME_LANG ),
+                        'subtitle'          => __( 'Change height of main navigation sticky', THEME_LANG ),
+                        'width'         => false,
+                        'default'        => array( 'width'  => 100, 'height' => '68px' ),
+                        'output'   => array(
+                            '.header-container.is-sticky #nav > ul > li',
+                            '.header-layout3 #header-content-mobile',
+                            '.header-layout-normal .site-branding'
+                            //'#header.is-sticky .site-branding'
+                        ),
+                    ),
+                    /*
+                    array(
+                        'id'       => 'header_scheme_fixed',
+                        'type'     => 'select',
+                        'title'    => __( 'Header Hover Style', THEME_LANG ),
+                        'subtitle'     => __( 'Please select your header color scheme fixed here.', THEME_LANG ),
+                        'options'  => array(
+                            '1' => __('Style 1', THEME_LANG),
+                            '2' => __('Style 2', THEME_LANG ),
+                            '3' => __('Style 3', THEME_LANG ),
+                            '4' => __('Style 4', THEME_LANG ),
+                        ),
+                        'default'  => '1',
+                        'clear' => false,
+                    ),
+                    */
+                    array(
+                        'id'             => 'navigation_dropdown',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Dropdown width', THEME_LANG ),
+                        'subtitle'          => __( 'Change width of Dropdown', THEME_LANG ),
+                        'height'         => false,
+                        'default'        => array( 'width'  => 200, 'height' => 100 ),
+                        'output'   => array( '#main-nav-tool .kt-wpml-languages ul', '#main-navigation > li ul.sub-menu-dropdown'),
+                    ),
+
+                    array(
+                        'id'       => 'navigation_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Background', THEME_LANG ),
+                        'subtitle' => __( 'Main Navigation with image, color, etc.', THEME_LANG ),
+                        'default'   => array(
+                            'background-color'      => '#FFFFFF',
+                        ),
+                        'output'      => array( '.nav-container'),
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'navigation_bordertop',
+                        'type'     => 'color',
+                        'title'    => __( 'Dropdown & Mega border top color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'navigation_light_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '.header-light #nav > ul > li > a',
+                            '.header-light #header-content-mobile a'
+                        ),
+                        'title'    => __( 'Light - Top Level Color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'navigation_light_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '.header-light #nav > ul > li > a:hover',
+                            '.header-light #nav > ul > li > a:focus',
+                            '.header-light #nav > ul > li.current-menu-item > a',
+                            '.header-light #nav > ul > li.current-menu-parent > a',
+                            '.header-light #header-content-mobile a:hover'
+                        ),
+                        'title'    => __( 'Light - Top Level hover Color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+
+                    array(
+                        'id'       => 'navigation_dark_color',
+                        'type'     => 'color',
+                        'output'   => array( '.header-dark #nav > ul > li > a' ),
+                        'title'    => __( 'Dark - Top Level Color', THEME_LANG ),
+                        'default'  => '#FFFFFF',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'navigation_dark_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '.header-dark #nav > ul > li > a:hover',
+                            '.header-dark #nav > ul > li > a:focus',
+                            '.header-dark #nav > ul > li.current-menu-item > a',
+                            '.header-dark #nav > ul > li.current-menu-parent > a'
+                        ),
+                        'title'    => __( 'Dark - Top Level hover Color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+
+                    array(
+                        'id'       => 'navigation_box_background',
+                        'type'     => 'background',
+                        'title'    => __( 'MegaMenu & Dropdown Box background', THEME_LANG ),
+                        'default'   => array(
+                            'background-color'      => '#FFFFFF',
+                        ),
+                        'output'      => array(
+                            '#main-navigation > li .kt-megamenu-wrapper',
+                            '.shopping-bag-wrapper',
+                            '#main-nav-tool .kt-wpml-languages ul',
+                            '#main-navigation > li ul.sub-menu-dropdown'
+                        ),
+                        'transparent'           => false,
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'dropdown_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Dropdown Background Color', THEME_LANG ),
+                        'default'  => array(
+                            'background-color'      => '#FFFFFF',
+                        ),
+                        'output'   => array(
+                            '#main-nav-tool .kt-wpml-languages ul li > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li > a'
+                        ),
+                        'background-repeat'     => false,
+                        'background-attachment' => false,
+                        'background-position'   => false,
+                        'background-image'      => false,
+                        'background-size'       => false,
+                        'preview'               => false,
+                        'transparent'           => true,
+                    ),
+
+                    array(
+                        'id'       => 'dropdown_background_hover',
+                        'type'     => 'background',
+                        'title'    => __( 'Dropdown Background Hover Color', THEME_LANG ),
+                        'default'  => array(
+                            'background-color'      => '#EAEAEA',
+                        ),
+                        'output'   => array(
+                            '#main-nav-tool .kt-wpml-languages ul li > a:hover',
+                            '#main-navigation > li ul.sub-menu-dropdown > li:hover > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li > a:hover',
+                        ),
+                        'background-repeat'     => false,
+                        'background-attachment' => false,
+                        'background-position'   => false,
+                        'background-image'      => false,
+                        'background-size'       => false,
+                        'preview'               => false,
+                        'transparent'           => true,
+                    ),
+                    array(
+                        'id'       => 'dropdown_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-nav-tool .kt-wpml-languages ul li > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li > a',
+                        ),
+                        'title'    => __( 'Dropdown Text Color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+
+                    array(
+                        'id'       => 'dropdown_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-nav-tool .kt-wpml-languages ul li > a:hover',
+                            '#main-navigation > li ul.sub-menu-dropdown > li:hover > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li > a:hover',
+                        ),
+                        'title'    => __( 'Dropdown Text Hover Color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+
+                    array(
+                        'id'       => 'mega_vertical',
+                        'type'     => 'color',
+                        'title'    => __( 'MegaMenu Border Vertical Divders', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mega_title_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title',
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
+                        ),
+                        'title'    => __( 'MegaMenu Title color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mega_title_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a:hover',
+                        ),
+                        'title'    => __( 'MegaMenu Title Hover Color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mega_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a',
+                            '.mini-cart .shopping-bag',
+                            '.bag-product .bag-product-title a',
+                        ),
+                        'title'    => __( 'MegaMenu Text color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+
+                    array(
+                        'id'       => 'mega_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover',
+                            '.bag-product .bag-product-title a:hover',
+                        ),
+                        'title'    => __( 'MegaMenu Text Hover color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'cart_divders',
+                        'type'     => 'color',
+                        'output'   => array( ),
+                        'title'    => __( 'Cart divders color', THEME_LANG ),
+                        'default'  => '#E3E3E3',
+                        'transparent' => false
+                    ),
+                )
+            );
+
+            /**
+             *	Main Navigation
+             **/
+            $this->sections[] = array(
+                'id'			=> 'styling_mobile_menu',
+                'title'			=> __( 'Mobile Menu', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'mobile_menu_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Background', THEME_LANG ),
+                        'default'   => array(
+                            'background-color'      => '#FFFFFF',
+                        ),
+                        'output'      => array( '#mobile-nav-holder'),
+                        'transparent'           => false,
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+
+                    array(
+                        'id'       => 'mobile_menu_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li > a'
+                        ),
+                        'title'    => __( 'Top Level Color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mobile_menu_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li:hover > a',
+                            'ul.navigation-mobile > li > a:hover',
+                            //'ul.navigation-mobile > li.current-menu-item > a',
+                            //'ul.navigation-mobile > li.active-menu-item > a',
+                        ),
+                        'title'    => __( 'Top Level hover Color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mobile_menu_background',
+                        'type'     => 'background',
+                        'title'    => __( 'Top Level Background Color', THEME_LANG ),
+                        'default'  => array(
+                            'background-color'      => '#FFFFFF',
+                        ),
+                        'output'   => array(
+                            'ul.navigation-mobile > li > a'
+                        ),
+                        'background-repeat'     => false,
+                        'background-attachment' => false,
+                        'background-position'   => false,
+                        'background-image'      => false,
+                        'background-size'       => false,
+                        'preview'               => false,
+                        'transparent'           => false,
+                    ),
+
+                    array(
+                        'id'       => 'mobile_menu_background_hover',
+                        'type'     => 'background',
+                        'title'    => __( 'Top Level Hover Color', THEME_LANG ),
+                        'default'  => array(
+                            'background-color'      => '#F5F5F5',
+                        ),
+                        'output'   => array(
+                            'ul.navigation-mobile > li:hover > a',
+                            'ul.navigation-mobile > li > a:hover',
+                            //'ul.navigation-mobile > li.current-menu-item > a',
+                            //'ul.navigation-mobile > li.active-menu-item > a',
+                        ),
+                        'background-repeat'     => false,
+                        'background-attachment' => false,
+                        'background-position'   => false,
+                        'background-image'      => false,
+                        'background-size'       => false,
+                        'preview'               => false,
+                        'transparent'           => false,
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'mobile_sub_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li .sub-menu-dropdown > li > a',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a',
+                        ),
+                        'title'    => __( 'Text color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+
+                    array(
+                        'id'       => 'mobile_sub_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li .sub-menu-dropdown > li > a:hover',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover',
+                        ),
+                        'title'    => __( 'Text Hover color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'mobile_title_color',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
+                        ),
+                        'title'    => __( 'MegaMenu Title color', THEME_LANG ),
+                        'default'  => '#282828',
+                        'transparent' => false
+                    ),
+                    array(
+                        'id'       => 'mobile_title_color_hover',
+                        'type'     => 'color',
+                        'output'   => array(
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a:hover',
+                        ),
+                        'title'    => __( 'MegaMenu Title Hover Color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false
+                    ),
+
+
                 )
             );
 
@@ -1952,18 +1891,24 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'switch',
                         'title'    => __( 'Show breadcrumbs', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'title_breadcrumbs_mobile',
                         'type'     => 'switch',
                         'title'    => __( 'Breadcrumbs on Mobile Devices', THEME_LANG ),
                         'default'  => false,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'title_separator',
                         'type'     => 'switch',
                         'title'    => __( 'Separator bettwen title and subtitle', THEME_LANG ),
                         'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
                     array(
                         'id'       => 'title_separator_color',

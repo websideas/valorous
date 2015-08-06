@@ -370,36 +370,17 @@ if (!function_exists('kt_get_header_scheme')) {
      * @return string
      *
      */
-    function kt_get_header_scheme()
+    function kt_get_header_scheme($scheme = 'light')
     {
         if (is_page() || is_singular()) {
-            $scheme = array(
-                'scheme' => rwmb_meta('_kt_header_scheme'),
-                'sticky' => rwmb_meta('_kt_header_scheme_fixed')
-            );
+            $scheme = rwmb_meta('_kt_header_scheme');
         }elseif(is_archive()){
             if(kt_is_wc()){
                 if(is_shop()){
                     $page_id = get_option( 'woocommerce_shop_page_id' );
-                    $scheme = array(
-                        'scheme' => rwmb_meta('_kt_header_scheme', array(), $page_id),
-                        'sticky' => rwmb_meta('_kt_header_scheme_fixed', array(), $page_id)
-                    );
-                }else{
-                    $scheme = array('scheme' => '', 'sticky' => '');
+                    $scheme = rwmb_meta('_kt_header_scheme', array(), $page_id);
                 }
-            }else{
-                $scheme = array('scheme' => '', 'sticky' => '');
             }
-        } else {
-            $scheme = array('scheme' => '', 'sticky' => '');
-        }
-
-        if (!$scheme['scheme']) {
-            $scheme['scheme'] = kt_option('header_scheme', 'light');
-        }
-        if (!$scheme['sticky']) {
-            $scheme['sticky'] = kt_option('header_scheme_fixed', 'light');
         }
         return $scheme;
     }

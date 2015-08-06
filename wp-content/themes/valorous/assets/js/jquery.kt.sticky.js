@@ -40,8 +40,6 @@
             
             start = function (_sticky,_placeholder, o) {
 
-                console.log('start now');
-
                 var _body = $('body');
                 /*
                 if(_body.hasClass('tablets') == true && o.tablets == false)
@@ -51,18 +49,20 @@
                     return false;
                  */
                 o.start.call(this);
-                
-                _sticky.trigger("sticky.start");
-                _placeholder.css( 'height', _sticky.outerHeight());
-                _sticky
-                    .addClass(o.className)
-                    .addClass(o.classSticky);
-
                 var $classContainer = $('.'+o.classContainer);
 
+                _sticky.trigger("sticky.start");
+                _placeholder.css( 'height', _sticky.outerHeight());
+
                 $classContainer
+                    .addClass(o.className)
                     .removeClass( 'header-light header-dark header-absolute header-normal' )
-                    .addClass( 'header-' + $classContainer.data('schemesticky') );
+                    .addClass( 'header-light' );
+
+                setTimeout(function(){
+                    $classContainer
+                        .addClass(o.classSticky)
+                }, 300);
 
                 var $offset = _placeholder.offset();
 
@@ -78,7 +78,7 @@
                     .addClass('header-' + $classContainer.data('scheme'))
                     .addClass('header-' + $classContainer.data('position'));
 
-                _sticky
+                $classContainer
                     .removeClass(o.className)
                     .removeClass(o.classSticky);
                 
@@ -117,7 +117,8 @@
 						return false;
 					}
                     var o = $.extend({}, $.fn.ktSticky.defaults, op),
-                        sContent = $this;
+                        sContent = $this,
+                        soffset = o.offset;
 
                     $this.data('sticky-options', o);
 
@@ -133,14 +134,17 @@
                         var $placeholder = sContent.prev('.sticky-placeholder');
                     }
 
-
+                    if($this.hasClass('sticky-header-down')){
+                        soffset += $this.outerHeight();
+                    }
 
                     _window.scroll(function () {
                         
                         var $offset = $placeholder.offset(),
-                            _scrolltop = _window.scrollTop(),
-                            $offset_number = $offset.top + o.offset;
+                            _scrolltop = _window.scrollTop();
 
+
+                        var $offset_number = $offset.top + soffset;
 
                         if ($offset_number <  _scrolltop && !scrolled) {
                             start( sContent, $placeholder, o );
@@ -180,7 +184,7 @@
     
     $.fn.ktSticky.defaults = {
         classContainer: 'header-container',
-        contentSticky : false,
+        contentSticky : '.apply-sticky',
         className: 'is-sticky',
         classSticky: 'sticky',
         offset: 0,

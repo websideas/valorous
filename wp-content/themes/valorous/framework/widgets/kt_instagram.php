@@ -56,7 +56,7 @@ class Widget_KT_Instagram extends WP_Widget {
                     printf(
                         '<p>%s #<a target="_blank" href="%s">%s</a></p>',
                         __('Follow Us', THEME_LANG),
-                        $this->username,
+                        'https://instagram.com/'.$this->username,
                         $this->username
                     );
                 }
@@ -119,8 +119,8 @@ class Widget_KT_Instagram extends WP_Widget {
                     <option <?php selected( $instance['columns'], '4' ); ?> value="4"><?php _e('4',THEME_LANG); ?></option>
                 </select></p>
 
-            <p><input class="checkbox" type="checkbox" <?php checked( $show_follow ); ?> id="<?php echo $this->get_field_id( 'show_follow' ); ?>" name="<?php echo $this->get_field_name( 'show_follow' ); ?>" />
-                <label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php _e( 'Follow link', THEME_LANG ); ?></label></p>
+            <p><input class="checkbox" type="checkbox" <?php checked( $instance['show_follow'] ); ?> id="<?php echo $this->get_field_id( 'show_follow' ); ?>" name="<?php echo $this->get_field_name( 'show_follow' ); ?>" />
+                <label for="<?php echo $this->get_field_id( 'show_follow' ); ?>"><?php _e( 'Follow link', THEME_LANG ); ?></label></p>
 
         <?php }else{ 
             printf(

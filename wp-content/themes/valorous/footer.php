@@ -23,7 +23,6 @@
         	 */
         	do_action( 'theme_before_footer' ); ?>
             <div id="footer">
-                <div class="animate-content-overlay"></div>
                 <?php if(is_active_sidebar( 'footer-top' ) && kt_option('footer_top', true)){ ?>
                     <footer id="footer-top">
                         <div class="container">
@@ -84,7 +83,7 @@
 </div><!-- #page_outter -->
 
 <?php if(kt_option('backtotop', true)){ ?>
-    <a id="backtotop" href="#top"></a>
+    <a id="backtotop" href="#page_outter"></a>
 <?php } ?>
 
 <?php wp_footer(); ?>

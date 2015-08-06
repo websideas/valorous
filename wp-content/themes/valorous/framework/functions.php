@@ -512,7 +512,7 @@ add_filter('kt_main_class', 'kt_main_class_callback', 10, 2);
  *  
  * @return array The filtered body class list.
  */
-function kt_sidebar_class_callback($classes, $layout){
+function kt_sidebar_class_callback( $classes, $layout ){
     if($layout == 'left' || $layout == 'right'){
         $classes .= ' col-md-3 col-sm-4 col-xs-12';
     }
@@ -525,19 +525,44 @@ add_filter('kt_sidebar_class', 'kt_sidebar_class_callback', 10, 2);
 /**
  * Add class sticky to header
  */
-function theme_header_content_class_callback($classes){
-    if(kt_option('fixed_header', 1)){
+function theme_header_class_callback($classes, $layout){
+    $fixed_header = kt_option('fixed_header', 2);
+    if($fixed_header == 2 || $fixed_header == 3 ){
         $classes .= ' sticky-header';
+        if($fixed_header == 3){
+            $classes .= ' sticky-header-down';
+        }
     }
-    if(kt_option('header_full', 1)){
-        $classes .= ' header-fullwidth';
+
+
+
+    if($layout == 'layout1' || $layout == 'layout2'){
+        $classes .= ' header-layout-normal';
     }
 
     return $classes;
 }
 
-add_filter('theme_header_content_class', 'theme_header_content_class_callback');
+add_filter('theme_header_class', 'theme_header_class_callback', 10, 2);
 
+
+/**
+ * Add class sticky to header
+ */
+function theme_header_content_class_callback( $classes, $layout ){
+
+    if(kt_option('header_full', 1)){
+        $classes .= ' header-fullwidth';
+    }
+
+    if($layout == 'layout1' || $layout == 'layout2'){
+        $classes .= ' apply-sticky';
+    }
+
+    return $classes;
+}
+
+add_filter('theme_header_content_class', 'theme_header_content_class_callback', 10, 2);
 
 /**
  * Add slideshow header
@@ -653,7 +678,7 @@ function kt_placeholder_callback( $size = '') {
 }
 
 
-if ( ! function_exists( 'kt_excerpt_more' ) && ! is_admin() ) :
+if ( ! function_exists( 'kt_excerpt_more' ) ) :
     /**
      * Replaces "[...]" (appended to automatically generated excerpts) with ...
      *

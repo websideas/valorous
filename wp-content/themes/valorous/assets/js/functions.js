@@ -101,16 +101,17 @@
         /**==============================
         ***  Sticky header
         ===============================**/
-        if($('#header.sticky-header').length){
-            if($('.header-layout3').length){
-                $('#header.sticky-header').ktSticky({
-                    contentSticky : '.nav-container'
-                });
-            }else{
-                $('#header.sticky-header').ktSticky();
-            }
 
-        }
+        $('.header-container.sticky-header').ktSticky({
+            //contentSticky : '.nav-container'
+        });
+
+
+        /**==============================
+         ***  Disable mobile menu in desktop
+         ===============================**/
+        $('body').removeClass('menu-animate');
+        $('.mobile-nav-bar').removeClass('active');
 
 
         /**==============================
@@ -465,16 +466,15 @@
      Mobile Menu
     --------------------------------------------- */
     function init_MobileMenu(){
-        $('ul.navigation-mobile > li > ul.sub-menu-dropdown').each(function(){
+        $('ul.navigation-mobile > li > ul.sub-menu-dropdown, ul.navigation-mobile > li > .kt-megamenu-wrapper').each(function(){
             $(this).parent().children('a').prepend( '<span class="open-submenu"></span>' );
-            $(this).parent().children('span.title-megamenu').prepend( '<span class="open-submenu"></span>' );
         });
-        
+
         $('.open-submenu').on('click', function(e){
             e.stopPropagation();
             e.preventDefault();
             $( this ).closest('li').toggleClass('active-menu-item');
-            $( this ).closest('li').children( '.sub-menu-dropdown, .menu-widget-container' ).toggle();
+            $( this ).closest('li').children( '.sub-menu-dropdown, .kt-megamenu-wrapper' ).slideToggle();
         });
         
         $('.mobile-nav-bar').on('click', function(e){
@@ -1035,12 +1035,14 @@
     ***  Sticky sidebar
     ===============================**/
     function kt_sidebar_sticky(){
-        var margin_sidebar_sticky;
+        var margin_sidebar_sticky = 20;
         if($('#wpadminbar').length > 0){
-            margin_sidebar_sticky = parseInt( $('#wpadminbar').outerHeight() ) + 100;
-        }else{
-            margin_sidebar_sticky = 100;
+            margin_sidebar_sticky += parseInt( $('#wpadminbar').outerHeight() );
         }
+        if($('.sticky-header.header-container').length > 0){
+            margin_sidebar_sticky += parseInt( ajax_frontend.sticky_height );
+        }
+
         $('.sidebar').theiaStickySidebar({ 
     		additionalMarginTop: margin_sidebar_sticky
     	}); 

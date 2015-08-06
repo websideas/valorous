@@ -641,33 +641,6 @@ function kt_register_meta_boxes( $meta_boxes )
             ),
 
 
-
-            // Header
-            array(
-                'name' => __('Header Color Scheme', THEME_LANG),
-                'id'   => "{$prefix}header_scheme",
-                'type' => 'select',
-                'options' => array(
-                    ''    => __('Default', THEME_LANG),
-                    'light'		=> __('Light', THEME_LANG),
-                    'dark'		=> __('Dark', THEME_LANG),
-                ),
-                'std'  => '',
-                'tab'  => 'header',
-            ),
-
-            array(
-                'name' => __('Header Color Scheme fixed', THEME_LANG),
-                'id'   => "{$prefix}header_scheme_fixed",
-                'type' => 'select',
-                'options' => array(
-                    ''    => __('Default', THEME_LANG),
-                    'light'		=> __('Light', THEME_LANG),
-                    'dark'		=> __('Dark', THEME_LANG),
-                ),
-                'std'  => '',
-                'tab'  => 'header',
-            ),
             array(
                 'name'    => __( 'Header position', THEME_LANG ),
                 'type'     => 'select',
@@ -681,6 +654,19 @@ function kt_register_meta_boxes( $meta_boxes )
                 'std'  => 'default',
                 'tab'  => 'header',
             ),
+
+            array(
+                'name' => __('Transparent header Color Scheme', THEME_LANG),
+                'id'   => "{$prefix}header_scheme",
+                'type' => 'select',
+                'options' => array(
+                    'light'		=> __('Light', THEME_LANG),
+                    'dark'		=> __('Dark', THEME_LANG),
+                ),
+                'std'  => 'light',
+                'tab'  => 'header',
+            ),
+
             /*
             array(
                 'name' => __('Main Navigation Menu', THEME_LANG),

@@ -14,7 +14,7 @@ if ( !defined('ABSPATH')) exit;
             </div><!-- .site-branding -->
         </div><!-- .container -->
     </div>
-    <div class="nav-container">
+    <div class="nav-container apply-sticky">
         <div class="container">
             <nav role="navigation" id="nav" class="nav-main">
                 <?php get_template_part( 'templates/headers/header',  'tool'); ?>

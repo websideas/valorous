@@ -24,7 +24,6 @@
 <body <?php body_class( ); ?>>
     <?php
 
-
     /**
      * @hooked
      */
@@ -34,14 +33,21 @@
     <?php
         $position = kt_get_header();
         $header_layout = kt_get_header_layout();
-        $header_scheme = kt_get_header_scheme();
-        $header_positon = ($position == 'transparent') ? 'absolute' : 'normal';
+        $header_scheme = 'light';
+        if($position == 'transparent'){
+            $header_positon = 'absolute';
+            $header_scheme = kt_get_header_scheme();
+        }else{
+            $header_positon = 'normal';
+        }
+
 
     ?>
 
     <div id="page_outter">
         <div id="page">
             <?php get_template_part( 'templates/headers/header',  'mobilenav'); ?>
+            <div class="animate-content-overlay"></div>
             <div id="wrapper-content">
 
 
@@ -58,14 +64,15 @@
             	 * @hooked 
             	 */
             	do_action( 'theme_before_header' ); ?>
-                <?php  ?>
                 <div
-                    class="<?php echo esc_attr(apply_filters('theme_header_class', 'header-container header-'.$header_layout.' header-'.$header_scheme['scheme'].' header-'.$header_positon.' header-'.$position)); ?>"
-                    data-scheme="<?php echo esc_attr($header_scheme['scheme']) ?>"
-                    data-schemesticky="<?php echo esc_attr($header_scheme['sticky']) ?>"
+                    class="<?php echo esc_attr(apply_filters('theme_header_class', 'header-container header-'.$header_layout.' header-'.$header_scheme.' header-'.$header_positon.' header-'.$position, $header_layout)); ?>"
+                    data-scheme="<?php echo esc_attr($header_scheme) ?>"
                     data-position="<?php echo esc_attr($header_positon) ?>">
 
-                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content') ?>">
+                    <div class="header-background"></div>
+                    <?php //echo $header_layout; ?>
+                    <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content', $header_layout) ?>">
+                        <div class="header-sticky-background"></div>
                         <?php get_template_part( 'templates/headers/header',  $header_layout); ?>
                     </header><!-- #header -->
                 </div><!-- .header-container -->
@@ -85,7 +92,6 @@
                  *
             	 */
             	do_action( 'theme_before_content' , $position); ?>
-                <div class="animate-content-overlay"></div>
                 <div id="content" class="<?php echo apply_filters('kt_content_class', 'site-content') ?>">
 
                     <?php

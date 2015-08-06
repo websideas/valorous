@@ -43,7 +43,13 @@ only screen and (min-resolution: 144dpi) {
     .layout-full .header-layout3 #header.header-fullwidth .nav-container{
         padding: 0 15px;
     }
+
+    .container {
+        width: auto;
+    }
+
 }
+
 /* 5. Styles for devices(>=992px) */
 @media (min-width: 992px) {
     .col-clearfix-md {
@@ -53,13 +59,6 @@ only screen and (min-resolution: 144dpi) {
 /* 6. Styles for devices(<=991px ) */
 @media (max-width: 991px) {
 
-    .container{
-        width: auto;
-    }
-    .nav-container.is-sticky,
-    body.layout-boxed #header.is-sticky{
-        width: 100%;
-    }
 
     #mobile-nav-holder{
         display: block;
@@ -112,8 +111,8 @@ only screen and (min-resolution: 144dpi) {
 }
 /* 8. Styles for devices(<=782px ) */
 @media screen and ( max-width: 782px ) {
-    body.admin-bar .nav-container.is-sticky,
-    body.admin-bar #header.is-sticky.sticky {
+    body.admin-bar .header-container.sticky .apply-sticky,
+    body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-sticky{
         top: 46px;
     }
 
@@ -168,8 +167,8 @@ only screen and (min-resolution: 144dpi) {
 
 /* 10. Styles for devices(<=600px ) */
 @media (max-width: 600px) {
-    body.admin-bar .nav-container.is-sticky,
-    body.admin-bar #header.is-sticky.sticky {
+    body.admin-bar .header-container.sticky .apply-sticky,
+    body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-sticky{
         top: 0;
     }
     body.admin-bar #mobile-nav-content{

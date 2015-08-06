@@ -169,6 +169,10 @@ class KTMenuWalker extends Walker_Nav_Menu{
 		$item_output .= '</a>';
 		$item_output .= $args->after;
 
+        $megamenu_columntitle = get_post_meta( $item->ID, '_menu_item_megamenu_columntitle', true );
+        if($megamenu_columntitle && $depth ==1 )
+            $item_output = '';
+
 		/**
 		 * Filter a menu item's starting output.
 		 *
