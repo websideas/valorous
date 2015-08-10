@@ -8,10 +8,11 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
+            'title' => __( 'D', THEME_LANG ),
             'size' => 'md',
             'font_container' => '',
             'border_radius' => '0',
+            'accent_background' => 'true',
             'custom_background' => '',
             'use_theme_fonts' => '',
             'google_fonts' => '',
@@ -21,6 +22,10 @@ class WPBakeryShortCode_Dropcap extends WPBakeryShortCode_VC_Custom_heading {
         ), $atts );
         extract($atts);
 
+        $accent_background = apply_filters('sanitize_boolean', $accent_background);
+        if($accent_background){
+            $custom_background = kt_option('styling_accent');
+        }
         $style_title = '';
 
         extract( $this->getAttributes( $atts ) );
@@ -73,7 +78,7 @@ vc_map( array(
             "type" => "textfield",
             'heading' => __( 'First Letter', 'js_composer' ),
             'param_name' => 'title',
-            'value' => __( 'P', 'js_composer' ),
+            'value' => __( 'D', THEME_LANG ),
             "admin_label" => true,
         ),
         array(
@@ -87,7 +92,7 @@ vc_map( array(
             'param_name' => 'size',
             'value' => getVcShared( 'sizes' ),
             'std' => 'md',
-            'description' => __( 'Dropcap size.', 'js_composer' ),
+            'description' => __( 'Dropcap size.', THEME_LANG ),
             "admin_label" => true,
         ),
         
@@ -95,7 +100,7 @@ vc_map( array(
         array(
             'type' => 'font_container',
             'param_name' => 'font_container',
-            'value' => '',
+            'value' => 'color:#FFFFFF',
             'settings' => array(
                 'fields' => array(
                     //'tag' => 'h2', // default value h2
@@ -123,11 +128,22 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG ),
         ),
         array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Use Accent Background Color', THEME_LANG ),
+            'param_name' => 'accent_background',
+            'value' => 'true',
+            'group' => __( 'Typography', THEME_LANG ),
+        ),
+        array(
             'type' => 'colorpicker',
             'heading' => __( 'Custom Background', 'js_composer' ),
             'param_name' => 'custom_background',
             'description' => __( 'Select Background color.', 'js_composer' ),
-            'group' => __( 'Typography', THEME_LANG )
+            'group' => __( 'Typography', THEME_LANG ),
+            'dependency' => array(
+                'element' => 'accent_background',
+                'value_not_equal_to' => array( 'true' )
+            ),
         ),
         array(
             'type' => 'checkbox',
@@ -136,6 +152,7 @@ vc_map( array(
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',

@@ -201,17 +201,19 @@ if ( ! function_exists( 'kt_comment_nav' ) ) :
         // Are there comments to navigate through?
         if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
             ?>
-            <nav class="navigation comment-navigation" role="navigation">
+            <nav class="navigation comment-navigation clearfix">
                 <h2 class="screen-reader-text"><?php _e( 'Comment navigation', THEME_LANG ); ?></h2>
                 <div class="nav-links">
                     <?php
-                    if ( $prev_link = get_previous_comments_link( __( 'Older Comments', THEME_LANG ) ) ) :
+
+                    if ( $prev_link = get_previous_comments_link( '<i class="fa fa-angle-double-left"></i> '.__( 'Older Comments', THEME_LANG ) ) ) :
                         printf( '<div class="nav-previous">%s</div>', $prev_link );
                     endif;
 
-                    if ( $next_link = get_next_comments_link( __( 'Newer Comments',  THEME_LANG ) ) ) :
+                    if ( $next_link = get_next_comments_link( '<i class="fa fa-angle-double-right"></i> '.__( 'Newer Comments',  THEME_LANG ) ) ) :
                         printf( '<div class="nav-next">%s</div>', $next_link );
                     endif;
+
                     ?>
                 </div><!-- .nav-links -->
             </nav><!-- .comment-navigation -->
@@ -467,17 +469,27 @@ add_filter( 'wp_video_shortcode', 'responsive_wp_video_shortcode', 10, 5 );
  * @param $depth
  */
 function kt_comments($comment, $args, $depth) {
-    $GLOBALS['comment'] = $comment; ?>
+    $GLOBALS['comment'] = $comment;
+    global $post;
+
+    $is_author_comment  = $post->post_author == $comment->user_id;
+
+    ?>
 
 <li <?php comment_class('comment'); ?> id="li-comment-<?php comment_ID() ?>">
     <div  id="comment-<?php comment_ID(); ?>" class="comment-item">
 
         <div class="comment-avatar">
-            <?php echo get_avatar($comment->comment_author_email, $size='90',$default='' ); ?>
+            <?php echo get_avatar($comment->comment_author_email, $size='100',$default='' ); ?>
         </div>
         <div class="comment-content">
             <div class="comment-meta">
-                <a class="comment-author" href="#"><?php printf(__('<b class="author_name">%s </b>'), get_comment_author_link()) ?></a>
+                <h5 class="author_name">
+                    <?php comment_author_link(); ?>
+                    <?php if($is_author_comment){ ?>
+                        <span class="icon-user"></span>
+                    <?php } ?>
+                </h5>
                 <span class="comment-date"><?php printf( '%1$s' , get_comment_date( 'F j, Y \a\t g:i a' )); ?></span>
             </div>
             <div class="comment-entry entry-content">
@@ -487,11 +499,11 @@ function kt_comments($comment, $args, $depth) {
                 <?php endif; ?>
             </div>
             <div class="comment-actions clear">
-                <?php edit_comment_link(__('(Edit)', THEME_LANG),'  ','') ?>
+                <?php edit_comment_link( '<span class="icon-pencil"></span> '.__('Edit', THEME_LANG),'  ',' |') ?>
                 <?php comment_reply_link( array_merge( $args,
                     array('depth' => $depth,
                         'max_depth' => $args['max_depth'],
-                        'reply_text' =>' '.__('Reply')
+                        'reply_text' =>'<span class="icon-action-undo"></span> '.__('Reply')
                     ))) ?>
             </div>
         </div>
@@ -516,11 +528,11 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
         if ( ! $next && ! $previous ) return;
 
         ?>
-        <nav class="navigation post-navigation clearfix" role="navigation">
+        <nav class="navigation post-navigation clearfix">
             <div class="nav-links">
                 <?php
-                    previous_post_link('<div class="nav-previous">%link</div>', _x( 'Previous Post', 'Previous post link', THEME_LANG ), TRUE);
-                    next_post_link('<div class="nav-next">%link</div>', _x( 'Next Post', 'Next post link', THEME_LANG ), TRUE);
+                    previous_post_link('<div class="nav-previous"><span class="meta-nav">'.__('Previous:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Previous post link', THEME_LANG ), TRUE);
+                    next_post_link('<div class="nav-next"><span class="meta-nav">'.__('Next:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Next post link', THEME_LANG ), TRUE);
                 ?>
             </div><!-- .nav-links -->
         </nav><!-- .navigation -->
@@ -714,15 +726,11 @@ if ( ! function_exists( 'kt_author_box' ) ) :
                 ?>
             </div><!-- .author-avatar -->
             <div class="author-description">
-                <h2 class="author-title"><?php printf( __( 'About %s', THEME_LANG ), get_the_author() ); ?></h2>
-                <div class="author-bio">
-                    <?php if($description = get_the_author_meta('description')){ ?>
-                        <p class="author-description-content"><?php echo $description; ?></p>
-                    <?php } ?>
-                    <a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-                        <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', THEME_LANG ), get_the_author() ); ?>
+                <h2 class="author-title">
+                    <a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" title="<?php echo esc_attr(sprintf( __( 'View all posts by %s', THEME_LANG ), get_the_author() ) ); ?>">
+                        <?php printf( __( 'About %s', THEME_LANG ), get_the_author() ); ?>
                     </a>
-                </div>
+                </h2>
                 <?php
                     $googleplus = get_the_author_meta('googleplus');
                     $url = get_the_author_meta('url');
@@ -732,7 +740,7 @@ if ( ! function_exists( 'kt_author_box' ) ) :
                     $instagram = get_the_author_meta('instagram');
                     $tumblr = get_the_author_meta('tumblr');
                 ?>
-
+                <?php if($facebook || $twitter || $pinterest || $googleplus || $instagram || $tumblr || $url){ ?>
                 <p class="author-social">
                     <?php if($facebook){ ?>
                         <a href="<?php echo $facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -756,6 +764,13 @@ if ( ! function_exists( 'kt_author_box' ) ) :
                         <a href="<?php echo $url; ?>" target="_blank"><i class="fa fa-globe"></i></a>
                     <?php } ?>
                 </p>
+                <?php } ?>
+                <div class="author-bio">
+                    <?php if($description = get_the_author_meta('description')){ ?>
+                        <p class="author-description-content"><?php echo $description; ?></p>
+                    <?php } ?>
+                </div>
+
             </div><!-- .author-description -->
         </div><!-- .author-info -->
 

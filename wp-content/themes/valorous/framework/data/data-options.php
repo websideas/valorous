@@ -2747,6 +2747,18 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'off' =>__('Disabled', THEME_LANG)
                     ),
                     array(
+                        'id' => 'blog_layout',
+                        'type' => 'select',
+                        'title' => __('Post layouts', THEME_LANG),
+                        'desc' => __('Select the format position.', THEME_LANG),
+                        'options' => array(
+                            'content' => __( 'Before Content', THEME_LANG ),
+                            //title' => __( 'Before Title', THEME_LANG ),
+                            'fullwidth' => __( 'Fullwidth', THEME_LANG ),
+                        ),
+                        'default' => 'content'
+                    ),
+                    array(
                         'id'       => 'blog_sidebar',
                         'type'     => 'select',
                         'title'    => __( 'Single Post: Sidebar configuration', THEME_LANG ),
@@ -2780,6 +2792,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'clear' => false
                     ),
                     array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
                         'id' => 'blog_post_format',
                         'type' => 'switch',
                         'title' => __('Show Post format ', THEME_LANG),
@@ -2788,17 +2804,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG)
                     ),
-                    array(
-                        'id' => 'blog_post_format_position',
-                        'type' => 'select',
-                        'title' => __('Post format position', THEME_LANG),
-                        'desc' => __('Select the format position.', THEME_LANG),
-                        'options' => array(
-                            'content' => __( 'Content', THEME_LANG ),
-                            'fullwidth' => __( 'Fullwidth', THEME_LANG ),
-                        ),
-                        'default' => 'content'
-                    ),
+
                     array(
                         'id'   => 'blog_image_size',
                         'type' => 'select',
@@ -2806,6 +2812,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
                         'default' => 'blog_post'
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
                     ),
                     array(
                         'id' => 'blog_share_box',
@@ -2846,8 +2856,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'blog_related_type',
                         'type'     => 'select',
-                        'title'    => __( 'Single Post: Related Query Type', THEME_LANG ),
-                        'subtitle'     => __( "Please choose sidebar for single post", THEME_LANG ),
+                        'title'    => __( 'Related Query Type', THEME_LANG ),
+                        'subtitle'     => __( "", THEME_LANG ),
                         'options'  => array(
                             'categories' => __('Categories', THEME_LANG),
                             'tags' => __('Tags', THEME_LANG),
@@ -2887,9 +2897,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG)
                     ),
-
-
-
                     array(
                         'id' => 'blog_meta_author',
                         'type' => 'switch',
