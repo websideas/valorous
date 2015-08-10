@@ -1550,6 +1550,19 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'color'    => false,
                         'text-align' => false,
                     ),
+
+                    array(
+                        'id'       => 'typography_blockquote',
+                        'type'     => 'typography',
+                        'title'    => __( 'Blockquote', THEME_LANG ),
+                        'subtitle' => __( 'Specify the blockquote font properties.', THEME_LANG ),
+                        'google'   => true,
+                        'output'   => array( 'blockquote' ),
+                        'default'  => array( ),
+                        'color'    => false,
+                        'text-align' => false,
+                    ),
+
                     array(
                         'id'       => 'typography_button',
                         'type'     => 'typography',

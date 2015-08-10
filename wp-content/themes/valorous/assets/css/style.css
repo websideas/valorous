@@ -188,54 +188,20 @@ p{
  * 2.3 Blockquote
  */
 
+blockquote{
+    font-family: Georgia;
+    font-size: 15px;
+    line-height: 28px;
+    padding: 5px 20px;
+    position: relative;
+}
+
 blockquote,
 .blockquote-reverse,
 blockquote.pull-right {
     border-color: #d2a952;
-    color: #9a9a9a;
-    font-size: 16px;
-    font-style: italic;
-    line-height: 28px;
-    position: relative;
 }
 
-blockquote.classic {
-    font-size: 24px;
-    font-style: italic;
-    font-weight: 700;
-    line-height: 29px;
-    margin-left: 50px;
-    padding: 30px 130px 30px 60px;
-}
-
-blockquote.classic:before {
-    color: #f5f7f8;
-    content: "\f10e";
-    font-family: FontAwesome;
-    font-size: 50px;
-    position: absolute;
-    right: 45px;
-    top: 5px;
-}
-
-blockquote.classic .small,
-blockquote.classic footer,
-blockquote.classic small {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-blockquote.classic.blockquote-reverse {
-    padding: 30px 60px 30px 130px;
-    margin-right: 50px;
-    margin-left: 0;
-}
-
-blockquote.classic.blockquote-reverse:before {
-    content: "\f10d";
-    left: 45px;
-    right: auto;
-}
 
 /*
  * 2.4 Highlights
@@ -6493,19 +6459,19 @@ article.post-item {
 /*
  * 17.4. Single Posts - Entry post
  */
-.entry-thumb-fullwidth .entry-thumb {
-    margin-bottom: 25px;
+.entry-thumb-fullwidth .entry-thumb,
+.post-single .entry-thumb{
+    margin-bottom: 35px;
+}
+
+.post-single .entry-header{
+    margin-bottom: 30px;
 }
 
 .post-single .entry-header .entry-title {
     font-size: 20px;
-    font-weight: normal;
-    margin: 0 0 10px;
+    margin: 0;
     text-transform: uppercase;
-}
-
-.post-single .entry-header .entry-meta-data {
-    margin: 0 0 15px;
 }
 
 .post-single > .entry-content-outer {
@@ -6513,19 +6479,17 @@ article.post-item {
     padding-bottom: 30px;
     margin-bottom: 50px;
 }
-
+.post-single > .entry-content-outer > .entry-content{
+    margin-bottom: 20px;
+}
 .post-single > .entry-content-outer > .entry-tool{
-    margin-bottom: -25px;
+    margin-bottom: -15px;
 }
 
 .post-single .tags-links span{
     font-weight: bold;
     padding-right: 5px;
     text-transform: uppercase;
-}
-
-.post-single .tags-links a {
-    color: #d2a952;
 }
 
 .entry-content .edit-link {
@@ -6791,7 +6755,15 @@ article.post-item {
 
 .comment-meta h5:after{
     content: '|';
-    padding: 0 8px 0 10px;
+    padding: 0 10px;
+}
+
+.comment-meta h5 a{
+    color: #282828;
+}
+
+.comment-meta h5 a:hover{
+    color: #d0a852;
 }
 
 .comment-meta .comment-date{

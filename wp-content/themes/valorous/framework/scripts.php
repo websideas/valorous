@@ -79,9 +79,51 @@ function kt_setting_script() {
     ?>
     <style id="kt-theme-custom-css" type="text/css">
 
+        <?php echo $advanced_css; ?>
+
+        <?php if( $accent !='' ){ ?>
+
+            ::-moz-selection{ background:<?php echo $accent; ?>;}
+            ::-webkit-selection{ background:<?php echo $accent; ?>;}
+            ::selection{ background:<?php echo $accent; ?>;}
+
+            #header-content-mobile .mobile-cart-total,
+            #nav > #main-nav-tool > li > a .mini-cart-total,
+            .featured-vertical-item .entry-main-content .cat-links a,
+            .featured-carousel-item .entry-main-content .cat-links a,
+            .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+            #cancel-comment-reply-link:hover{
+                background: <?php echo $accent; ?>;
+            }
+
+            blockquote,
+            .blockquote-reverse,
+            blockquote.pull-right,
+            #form-order-review,
+            .woocommerce-checkout #payment{
+                border-color: <?php echo $accent; ?>;
+            }
+
+            .author-info h2.author-title a:hover,
+            .author-info .author-social a:hover,
+            .comment-meta h5 a:hover{
+                color: <?php echo $accent; ?>;
+            }
+
+            .entry-share-box a:hover{
+                border-color: <?php echo $accent; ?>;
+                background: <?php echo $accent; ?>;
+            }
+
+            .woocommerce .woocommerce-info{
+                border-color: <?php echo $accent; ?>!important;
+            }
+
+        <?php } ?>
+
         <?php
 
-            echo $advanced_css;
+
 
             $header_opacity = kt_option('header_opacity', 1);
             echo '.header-background{opacity:'.$header_opacity.';}';
@@ -170,7 +212,7 @@ function kt_setting_script() {
             echo '.header-container.is-sticky #nav > ul > li{line-height: '.$navigation_height_fixed['height'].'}';
 
             if($navigation_bordertop = kt_option('navigation_bordertop')){
-                echo '#main-nav-tool .kt-wpml-languages ul, #main-navigation > li .kt-megamenu-wrapper, #main-navigation > li ul.sub-menu-dropdown{border-color: '.$navigation_bordertop.';}';
+                echo '#main-nav-tool .kt-wpml-languages ul, #main-navigation > li .kt-megamenu-wrapper, #main-navigation > li ul.sub-menu-dropdown, .shopping-bag-wrapper{border-color: '.$navigation_bordertop.';}';
             }
 
 
@@ -204,6 +246,12 @@ function kt_setting_script() {
             if($mega_color = kt_option('mega_color', '#282828')){
                 echo '.bag-buttons .btn-viewcart{border-color: '.$mega_color.';color:'.$mega_color.';}';
             }
+            if($mega_color_hover = kt_option('mega_color_hover')){
+                echo '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:before{background-color: '.$mega_color_hover.';color:'.$mega_color_hover.';}';
+            }
+
+
+
             if($navigation_box_background = kt_option('navigation_box_background')){
                     echo '.bag-buttons .btn-viewcart:hover{background: '.$mega_color.';border-color: '.$mega_color.';color:'.$navigation_box_background['background-color'].';}';
                 }
@@ -223,19 +271,6 @@ function kt_setting_script() {
 
 
         ?>
-
-
-
-
-        <?php if( $accent !='' ){ ?>
-
-            ::-moz-selection{ background:<?php echo $accent; ?>;}
-            ::-webkit-selection{ background:<?php echo $accent; ?>;}
-            ::selection{ background:<?php echo $accent; ?>;}
-
-
-        <?php } ?>
-
 
 
         @media (max-width: 991px) {
