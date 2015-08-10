@@ -173,6 +173,7 @@ $composer_addons = array(
     'googlemap.php',
     'client_gird.php',
     'gallery-justified.php',
+    'image_banner.php',
 );
 
 foreach ( $composer_addons as $addon ) {

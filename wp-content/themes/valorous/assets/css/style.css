@@ -5299,6 +5299,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt-piechart-wrapper .chart canvas {
     max-width: 100%;
 }
+/*========= Image Banner ===========*/
+.kt_image_banner{
+    position: relative;
+}
 
 /*========== COMING SOON ==========*/
 .wrapper-comingsoon {
