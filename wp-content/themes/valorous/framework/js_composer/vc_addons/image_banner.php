@@ -9,8 +9,8 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
         $atts = shortcode_atts( array(
             'image' => '',
             'image_size' => 'full',
-            'position' => 'center',
-            'align' => 'center',
+            'position' => 'position-center',
+            'align' => 'align-center',
 
             'css' => '',
             'css_animation' => '',
@@ -34,14 +34,12 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'position' => $position,
-            'align' => $align
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output .= '<div class="kt_image_banner '.esc_attr( $elementClass ).'">'.$img['thumbnail'];
+        $output .= '<div class="kt_image_banner '.$position.' '.$align.'">'.$img['thumbnail'];
             if($content){
-                $output .= '<div class="content_banner">'.do_shortcode($content).'</div>';
+                $output .= '<div class="content_banner_wrapper"><div class="content_banner '.esc_attr( $elementClass ).'">'.do_shortcode($content).'</div></div>';
             }
         $output .= '</div>';
         

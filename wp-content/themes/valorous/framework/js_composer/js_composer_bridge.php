@@ -115,10 +115,6 @@ vc_add_param( 'vc_single_image', array(
         
     ),
     'description' => __( "Image effect when hover", THEME_LANG),
-    'dependency' => array(
-        'element' => 'parallax',
-        'value' => array( 'content-moving', 'content-moving-fade' ),
-    ),
 ));
 
 vc_add_params("vc_icon", array(

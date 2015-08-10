@@ -653,7 +653,7 @@
             title_next = $(elem).find('.owl-item.active').next().find('article.post').data('title');
         }
         if(typeof imgurl_next != 'undefined' ){
-            $(elem).find('.owl-next').append('<div class="slide_img_next slide_img">'+title_next+'<span class="img" style="background-image:url('+imgurl_next+')"></span></div>');
+            $(elem).find('.owl-next').append('<div class="slide_img_next slide_img"><span class="slide-nav">Next Story</span><div class="title">'+title_next+'</div><span class="img" style="background-image:url('+imgurl_next+')"></span></div>');
         }
         
         if( $(elem).find('.owl-item.active').prev().length === 0 ){
@@ -664,9 +664,9 @@
             title_prev = $(elem).find('.owl-item.active').prev().find('article.post').data('title');
         }
         if(typeof imgurl_prev != 'undefined' ){
-            $(elem).find('.owl-prev').append('<div class="slide_img_prev slide_img">'+title_prev+'<span class="img" style="background-image:url('+imgurl_prev+')"></span></div>');            
+            $(elem).find('.owl-prev').append('<div class="slide_img_prev slide_img"><span class="slide-nav">Previous Story</span><div class="title">'+title_prev+'</div><span class="img" style="background-image:url('+imgurl_prev+')"></span></div>');            
         }
-     }
+    }
      
 
     /* ---------------------------------------------
