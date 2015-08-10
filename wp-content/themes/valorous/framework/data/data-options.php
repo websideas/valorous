@@ -2169,6 +2169,33 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
 
             /**
+             * General Blog
+             *
+             */
+            $this->sections[] = array(
+                'icon' => 'el-icon-star',
+                'title' => __('Post slider', THEME_LANG),
+                'desc' => __('Post slider Options', THEME_LANG),
+                'subsection' => true,
+                'fields' => array(
+                    array(
+                        'id'       => 'post_slider_vertical',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Vertical Posts general', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+
+                    array(
+                        'id'       => 'post_slider_carousel',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Carousel Posts general', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                )
+            );
+
+
+            /**
              *	Archive settings
              **/
             $this->sections[] = array(

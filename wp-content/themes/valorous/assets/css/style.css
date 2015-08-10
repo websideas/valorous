@@ -2667,13 +2667,13 @@ body.footer_fixed .static-footer {
     line-height: normal;
     position: relative;
     z-index:100;
-    background: #b24e44;
+    background: #d0a852;
     padding: 20px 15px;
     transition: border-width 0.3s ease 0.15s;
     -webkit-transition: border-width 0.3s ease 0.15s;
     -moz-transition: border-width 0.3s ease 0.15s;
     -ms-transition: border-width 0.3s ease 0.15s;
-    border:0 solid #b24e44;
+    border:0 solid #d0a852;
 }
 #main-content-sideshow .carousel-navigation-center .owl-kttheme .owl-buttons > div:hover i{
     border-bottom-width: 40px;
@@ -5888,7 +5888,7 @@ article.post-item {
 
 .entry-thumb {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     position: relative;
 }
 
@@ -5904,22 +5904,6 @@ article.post-item {
     top: 0;
     content: '';
     border: 2px solid #e3e3e3;
-}
-
-.blog-posts .entry-title a {
-    color: #282828;
-}
-
-.blog-posts .entry-title a:hover{
-    color: #d0a852;
-}
-
-.blog-posts .entry-title {
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.5;
-    text-transform: uppercase;
-    margin: 0 0 5px;
 }
 
 .entry-meta-data a:hover,
@@ -5983,7 +5967,7 @@ article.post-item {
 
 .entry-excerpt,
 .entry-more {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .post-quote-wrapper,
@@ -6062,11 +6046,34 @@ article.post-item {
     overflow: hidden;
 }
 
+/* Blog Posts */
 .blog-posts-loadmore {
     text-align: center;
 }
 
+.blog-posts .entry-title a {
+    color: #282828;
+}
+
+.blog-posts .entry-title a:hover{
+    color: #d0a852;
+}
+
+.blog-posts .entry-title {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+}
+
+.blog-posts .entry-meta-data{
+    margin-top: -15px;
+}
 /* Blog Classic */
+.post-layout-classic{
+
+}
 .post-layout-classic .entry-share-box {
     float: right;
     margin-bottom: 20px;
@@ -6076,11 +6083,13 @@ article.post-item {
     margin-bottom: 30px;
 }
 
-.post-layout-classic .entry-more a:hover {
-    color: #FFFFFF;
-    background: #d0a852;
-    border-color: #d0a852;
+.post-layout-classic .entry-share-box{
+    float: right;
+    margin-bottom: 15px;
+    margin-top: -15px;
 }
+
+
 
 /* Blog Layout 1 */
 

@@ -93,6 +93,8 @@ function kt_setting_script() {
             .featured-vertical-item .entry-main-content .cat-links a,
             .featured-carousel-item .entry-main-content .cat-links a,
             .widget_kt_instagram ul li a:after,
+            body .mejs-controls .mejs-time-rail .mejs-time-current,
+            body .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
 
             .woocommerce .product .yith-wcwl-add-to-wishlist .ajax-loading,
             .woocommerce ul.shop-products .added_to_cart,
@@ -117,6 +119,8 @@ function kt_setting_script() {
 
             .search-heading .search-keyword,
             .search-content-error .search-keyword,
+            .post-quote-wrapper .post-quote-author,
+            .post-link-wrapper .post-link-content a,
 
             .readmore-link:hover,
             .blog-posts .entry-title a:hover,
