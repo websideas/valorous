@@ -2169,7 +2169,7 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
 
             /**
-             * General Blog
+             * Post slider
              *
              */
             $this->sections[] = array(
