@@ -32,9 +32,11 @@
                             ?>
                         </div>
                     <?php } ?>
-                    <div class="entry-excerpt">
-                        <?php the_excerpt(); ?>
-                    </div>
+                    <?php if($blog_atts['show_excerpt']){ ?>
+                        <div class="entry-excerpt">
+                            <?php the_excerpt(); ?>
+                        </div><!-- .entry-excerpt -->
+                    <?php } ?>
                     <?php if($blog_atts['readmore']){ ?>
                         <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
                         <div class="entry-more">

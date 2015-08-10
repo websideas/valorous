@@ -802,7 +802,6 @@ select:not([multiple]) {
     display: block;
     border-bottom: 1px solid #333333;
     position: relative;
-    font-family: Montserrat;
     font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
@@ -1537,6 +1536,14 @@ h2.widgettitle a.rsswidget:first-child,
     margin: -3px 0 3px;
     text-transform: uppercase;
 }
+.kt_tabs_content ul li .title a,
+.widget_kt_posts ul li .title a{
+    color: #282828;
+}
+.kt_tabs_content ul li .title a:hover,
+.widget_kt_posts ul li .title a:hover{
+    color: #d0a852;
+}
 .kt_tabs_content ul li .entry-meta-data,
 .widget_kt_posts ul li .entry-meta-data {
     font-size: 12px;
@@ -1546,7 +1553,6 @@ h2.widgettitle a.rsswidget:first-child,
 .kt_tabs_content ul li span.cat-links,
 .widget_kt_posts ul li span.cat-links {
     margin-bottom: 5px;
-    text-transform: uppercase;
     font-size: 12px;
     display: block;
     line-height: normal;
@@ -1742,7 +1748,7 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_nav_menu ul li ul.sub-menu li a,
 .widget_product_categories ul li ul.children li a,
 .widget_categories ul li ul.children li a {
-    padding-left: 50px;
+    padding-left: 40px;
 }
 
 .widget_pages ul li ul.children li a:before,
@@ -1767,7 +1773,7 @@ h2.widgettitle a.rsswidget:first-child,
     content: "";
     background: #9a9a9a;
     position: absolute;
-    left: 10px;
+    left: 0px;
     top: 15px;
     color: #9a9a9a;
 
@@ -1789,7 +1795,7 @@ h2.widgettitle a.rsswidget:first-child,
     font-style: normal;
     font-weight: normal;
     height: auto;
-    left: 30px;
+    left: 20px;
     line-height: normal;
     top: 12px;
     width: auto;
@@ -1805,12 +1811,21 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_product_categories ul li a,
 .widget_categories ul li a,
 .yith-woocompare-widget ul.products-list li a.title {
-    color: #313131;
     display: block;
-    font-size: 13px;
+    padding: 8px 0 8px 20px;
+}
+
+.widget_pages ul li a,
+.widget_nav_menu ul li a,
+.widget_meta ul li a,
+.widget_archive ul li a,
+.widget_product_categories ul li a,
+.widget_categories ul li a,
+.yith-woocompare-widget ul.products-list li a.title{
+    color: #282828;
+    font-size: 12px;
     line-height: normal;
-    padding: 8px 0 8px 30px;
-    font-family: Montserrat;
+    text-transform: uppercase;
 }
 
 .widget_pages ul li a:hover,
@@ -1919,11 +1934,7 @@ h2.widgettitle a.rsswidget:first-child,
 /*
  * 10.1 Header common styles
  */
-#header {
-    -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
-    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
-}
+
 
 .header-container{
     position: relative;
@@ -1995,9 +2006,6 @@ h2.widgettitle a.rsswidget:first-child,
     background: none!important;
 }
 
-.header-container.header-absolute #header {
-    box-shadow: 0 0 0;
-}
 
 #nav,
 #main-navigation,
@@ -2008,14 +2016,30 @@ h2.widgettitle a.rsswidget:first-child,
 /*
  * 10.2. Header sticky
  */
+
+.header-shadow{
+    -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+}
+
+.header-container.header-absolute.header-shadow{
+    -moz-box-shadow: 0 0 0;
+    -webkit-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
+}
+.header-container.is-sticky.header-shadow .apply-sticky{
+    -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
+}
+
 .header-container.is-sticky .apply-sticky{
     position: fixed;
     z-index: 10100;
     top: 0;
     width: 100%;
-    -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
-    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .05) !important;
+
 }
 
 .header-container.is-sticky .header-background{
@@ -5817,11 +5841,11 @@ article.post-item {
 }
 
 .blog-posts .entry-title a {
-    color: #000;
+    color: #282828;
 }
 
 .blog-posts .entry-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: normal;
     line-height: 1.5;
     text-transform: uppercase;
@@ -5848,8 +5872,8 @@ article.post-item {
 
 .entry-meta-data > span:last-child:after {
     content: '';
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .entry-share-box {
@@ -5922,6 +5946,18 @@ article.post-item {
 .post-link-wrapper .entry-thumb-content:after {
     content: '\f0c1';
 }
+
+.post-quote-wrapper .post-quote-link,
+.post-link-wrapper .post-link-link{
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -999px;
+    top: 0;
+    width: 100%;
+}
+
 
 .post-quote-wrapper .post-quote-content,
 .post-link-wrapper .post-link-title {
@@ -6367,35 +6403,35 @@ article.post-item {
     margin-bottom: 25px;
 }
 
-.post-single .entry-title {
+.post-single .entry-header .entry-title {
     font-size: 20px;
     font-weight: normal;
     margin: 0 0 10px;
     text-transform: uppercase;
 }
 
-.post-single .entry-meta-data {
+.post-single .entry-header .entry-meta-data {
     margin: 0 0 15px;
 }
 
-.post-single .entry-content {
+.post-single > .entry-content {
     border-bottom: 1px solid #e3e3e3;
     padding-bottom: 30px;
     margin-bottom: 30px;
 }
 
-.post-single .entry-content + .entry-tool {
+.post-single > .entry-content + .entry-tool {
     margin-top: -30px;
 }
 
-.post-single .entry-tool {
+.post-single > .entry-tool {
     border-bottom: 1px solid #e3e3e3;
     padding: 18px 0;
     margin-bottom: 30px;
     text-transform: uppercase;
 }
 
-.post-single .tags-links a {
+.post-single > .tags-links a {
     color: #d2a952;
 }
 
@@ -6486,6 +6522,10 @@ article.post-item {
     float: right;
 }
 
+#related-article{
+    text-align: center;
+}
+
 #related-article .title-article {
     border-bottom: 1px solid #e3e3e3;
     font-size: 16px;
@@ -6497,7 +6537,7 @@ article.post-item {
 }
 
 #related-article h2.entry-title {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0 0 5px;
     padding: 0;
     text-transform: uppercase;

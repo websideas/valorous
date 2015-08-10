@@ -721,7 +721,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'logo_sticky_margin_spacing',
                         'type'     => 'spacing',
                         'mode'     => 'margin',
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Logo sticky margin spacing Option', THEME_LANG ),
                         'default'  => array(
@@ -772,6 +772,52 @@ if ( ! class_exists( 'KT_config' ) ) {
 				'subsection' => true,
                 'fields'		=> array(
 
+                    array(
+                        'id'       => 'header_shadow',
+                        'type'     => 'switch',
+                        'title'    => __( 'Show shadow', THEME_LANG ),
+                        'subtitle' => __( 'Show header shadow', THEME_LANG ),
+                        'default'  => true,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
+                    ),
+
+                    array(
+                        'id'             => 'navigation_height',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Main Navigation Height', THEME_LANG ),
+                        'subtitle'          => __( 'Change height of main navigation', THEME_LANG ),
+                        'width'         => false,
+                        'default'        => array( 'width'  => 100, 'height' => '100px' ),
+                        'output'   => array(
+                            '#nav > ul > li',
+                            '.header-layout-normal .site-branding'
+                            //'.site-branding'
+                        ),
+                    ),
+                    array(
+                        'id'             => 'navigation_height_fixed',
+                        'type'           => 'dimensions',
+                        'units'          => array('px'),
+                        'units_extended' => 'true',
+                        'title'          => __( 'Main Navigation Sticky Height', THEME_LANG ),
+                        'subtitle'          => __( 'Change height of main navigation sticky', THEME_LANG ),
+                        'width'         => false,
+                        'default'        => array( 'width'  => 100, 'height' => '68px' ),
+                        'output'   => array(
+                            '.header-container.is-sticky #nav > ul > li',
+                            '.header-layout3 #header-content-mobile',
+                            '.header-layout-normal .site-branding'
+                            //'#header.is-sticky .site-branding'
+                        ),
+                    ),
+
+                    array(
+                        'id'   => 'divide_id',
+                        'type' => 'divide'
+                    ),
 
                     array(
                         'id'       => 'header_background',
@@ -854,7 +900,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '#footer' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer padding', THEME_LANG ),
                         'default'  => array( )
@@ -894,7 +940,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '#footer-top' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer top padding', THEME_LANG ),
                         'default'  => array( )
@@ -945,7 +991,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '#footer-area' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer widgets padding', THEME_LANG ),
                         'default'  => array( )
@@ -988,7 +1034,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'mode'     => 'padding',
                         'left'     => false,
                         'right'    => false,
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer bottom padding', THEME_LANG ),
                         'default'  => array( ),
@@ -1024,7 +1070,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '#footer-copyright' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Footer copyright padding', THEME_LANG ),
                         'default'  => array( )
@@ -1041,37 +1087,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'desc'			=> '',
                 'subsection' => true,
                 'fields'		=> array(
-                    array(
-                        'id'             => 'navigation_height',
-                        'type'           => 'dimensions',
-                        'units'          => array('px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Main Navigation Height', THEME_LANG ),
-                        'subtitle'          => __( 'Change height of main navigation', THEME_LANG ),
-                        'width'         => false,
-                        'default'        => array( 'width'  => 100, 'height' => '100px' ),
-                        'output'   => array(
-                            '#nav > ul > li',
-                            '.header-layout-normal .site-branding'
-                            //'.site-branding'
-                        ),
-                    ),
-                    array(
-                        'id'             => 'navigation_height_fixed',
-                        'type'           => 'dimensions',
-                        'units'          => array('px'),
-                        'units_extended' => 'true',
-                        'title'          => __( 'Main Navigation Sticky Height', THEME_LANG ),
-                        'subtitle'          => __( 'Change height of main navigation sticky', THEME_LANG ),
-                        'width'         => false,
-                        'default'        => array( 'width'  => 100, 'height' => '68px' ),
-                        'output'   => array(
-                            '.header-container.is-sticky #nav > ul > li',
-                            '.header-layout3 #header-content-mobile',
-                            '.header-layout-normal .site-branding'
-                            //'#header.is-sticky .site-branding'
-                        ),
-                    ),
+
                     /*
                     array(
                         'id'       => 'header_scheme_fixed',
@@ -1111,16 +1127,30 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'      => array( '.nav-container'),
                     ),
                     array(
-                        'type' => 'divide',
-                        'id' => 'divide_fake',
-                    ),
-                    array(
                         'id'       => 'navigation_bordertop',
                         'type'     => 'color',
                         'title'    => __( 'Dropdown & Mega border top color', THEME_LANG ),
                         'default'  => '#d0a852',
                         'transparent' => false
                     ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+
+                    array(
+                        'id'            => 'navigation_space',
+                        'type'          => 'slider',
+                        'title'         => __( 'Top Level space', THEME_LANG ),
+                        'default'       => 20,
+                        'min'           => 0,
+                        'step'          => 1,
+                        'max'           => 50,
+                        'resolution'    => 1,
+                        'display_value' => 'text',
+                        'subtitle' => __( 'Margin left between top level.', THEME_LANG ),
+                    ),
+
                     array(
                         'id'       => 'navigation_light_color',
                         'type'     => 'color',
@@ -1500,8 +1530,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Body Font', THEME_LANG ),
                         'subtitle' => __( 'Specify the body font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-align' => false,
                         'output'      => array( 'body' ),
-                        'default'  => array( )
+                        'default'  => array(
+                            'font-family'     => 'Raleway',
+                            'font-size'       => '13px',
+                            'line-height'     => '28px',
+                            'color'           => '#555555',
+                        )
                     ),
                     array(
                         'id'       => 'typography_pragraph',
@@ -1511,7 +1547,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'output'   => array( 'p' ),
                         'default'  => array( ),
-                        'color'    => false
+                        'color'    => false,
+                        'text-align' => false,
                     ),
                     array(
                         'id'       => 'typography_button',
@@ -1533,7 +1570,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '.woocommerce input.button.alt',
 
                         ),
-                        'default'  => array( ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                            'font-size'       => '13px',
+                        ),
                         'color'    => false,
                         'text-align'    => false,
                         'font-size'    => false,
@@ -1550,9 +1590,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Heading 1', THEME_LANG ),
                         'subtitle' => __( 'Specify the heading 1 font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-transform' => true,
+                        'text-align' => false,
                         'output'      => array( 'h1', '.h1' ),
                         'default'  => array(
-                            'font-size'   => '36px',
+                            'font-family'     => 'Montserrat',
+                            'text-transform'  => 'uppercase',
                         ),
                     ),
                     array(
@@ -1562,8 +1605,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the heading 2 font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'h2', '.h2' ),
+                        'text-transform' => true,
+                        'text-align' => false,
                         'default'  => array(
-                            'font-size'   => '30px',
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                     array(
@@ -1573,8 +1618,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the heading 3 font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'h3', '.h3' ),
+                        'text-transform' => true,
+                        'text-align' => false,
                         'default'  => array(
-                            'font-size'   => '24px',
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                     array(
@@ -1584,8 +1631,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the heading 4 font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'h4', '.h4' ),
+                        'text-transform' => true,
+                        'text-align' => false,
                         'default'  => array(
-                            'font-size'   => '18px',
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                     array(
@@ -1595,8 +1644,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the heading 5 font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'h5', '.h5' ),
+                        'text-transform' => true,
+                        'text-align' => false,
                         'default'  => array(
-                            'font-size'   => '14px',
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                     array(
@@ -1606,8 +1657,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle' => __( 'Specify the heading 6 font properties.', THEME_LANG ),
                         'google'   => true,
                         'output'      => array( 'h6', '.h6' ),
+                        'text-transform' => true,
+                        'text-align' => false,
                         'default'  => array(
-                            'font-size'   => '12px',
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                 )
@@ -1627,6 +1680,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Header', THEME_LANG ),
                         'subtitle' => __( 'Specify the header title font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-align' => false,
                         'output'      => array( '#header' )
                     )
                 )
@@ -1647,10 +1701,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer top', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer top font properties.', THEME_LANG ),
                         'google'   => true,
-
                         'text-align'      => false,
-                        'color'           => false,
-
                         'output'      => array( '#footer-top' ),
                         'default'  => array(
                             'color'       => '',
@@ -1680,7 +1731,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Footer widgets title', THEME_LANG ),
                         'subtitle' => __( 'Specify the footer widgets title font properties.', THEME_LANG ),
                         'google'   => true,
-                        'text-align'      => false,
+                        'text-align'      => true,
+                        'text-transform' => true,
                         'output'      => array( '#footer-area h3.widget-title' ),
                         'default'  => array( ),
                     ),
@@ -1703,7 +1755,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                     array(
                         'id'       => 'typography_footer_copyright_link',
                         'type'     => 'link_color',
-                        'title'    => __( 'Links Color', THEME_LANG ),
+                        'title'    => __( 'Footer Copyright Links Color', THEME_LANG ),
                         'output'      => array( '#footer-copyright a' ),
                         'default'  => array(  )
                     ),
@@ -1720,28 +1772,45 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
 				'fields'		=> array(
                     array(
+                        'id'       => 'typography_sidebar',
+                        'type'     => 'typography',
+                        'title'    => __( 'Sidebar title', THEME_LANG ),
+                        'subtitle' => __( 'Specify the sidebar title font properties.', THEME_LANG ),
+                        'google'   => true,
+                        'text-transform' => true,
+                        'output'      => array( '.sidebar .widget-title', '.wpb_widgetised_column .widget-title' ),
+                        'default'  => array( ),
+                    ),
+                    array(
                         'id'       => 'typography_sidebar_content',
                         'type'     => 'typography',
                         'title'    => __( 'Sidebar text', THEME_LANG ),
                         'subtitle' => __( 'Specify the sidebar title font properties.', THEME_LANG ),
                         'google'   => true,
+                        'text-algin' => true,
                         'output'      => array( '.sidebar', '.wpb_widgetised_column' ),
                         'default'  => array(
                         
                         ),
                     ),
                     array(
-                        'id'       => 'typography_sidebar',
+                        'id'       => 'typography_sidebar_main',
                         'type'     => 'typography',
-                        'title'    => __( 'Sidebar title', THEME_LANG ),
-                        'subtitle' => __( 'Specify the sidebar title font properties.', THEME_LANG ),
+                        'title'    => __( 'Sidebar Main text', THEME_LANG ),
+                        'subtitle' => __( 'Specify the sidebar main text font properties (EX: Categories, Archives, Product Categories ...).', THEME_LANG ),
                         'google'   => true,
-                        'output'      => array( '.sidebar .widget-title', '.wpb_widgetised_column .widget-title' ),
+                        'text-transform' => true,
+                        'output'      => array(
+                            '.widget_pages ul li a',
+                            '.widget_nav_menu ul li a',
+                            '.widget_meta ul li a',
+                            '.widget_archive ul li a',
+                            '.widget_product_categories ul li a',
+                            '.widget_categories ul li a',
+                            '.yith-woocompare-widget ul.products-list li a.title'
+                        ),
                         'default'  => array(
-                            'color'       => '#ffffff',
-                            'font-size'   => '18px',
-                            'font-weight' => 'Normal',
-                            'line-height' => '30px'
+                            'font-family'     => 'Montserrat',
                         ),
                     ),
                 )
@@ -1764,7 +1833,11 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'text-align'      => false,
                         'color'           => false,
                         'line-height'     => false,
-                        'output'      => array( '#nav > ul > li > a' )
+                        'text-transform' => true,
+                        'output'      => array( '#nav > ul > li > a' ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                        ),
                     ),
                     array(
                         'type' => 'divide',
@@ -1784,10 +1857,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'text-align'      => false,
                         'color'           => false,
                         'line-height'     => false,
+                        'text-transform' => true,
                         'output'      => array(
                             '#main-nav-tool .kt-wpml-languages ul li > a',
                             '#main-navigation > li ul.sub-menu-dropdown > li > a'
-                        )
+                        ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                        ),
                     ),
                     array(
                         'id'       => 'typography_navigation_mega',
@@ -1803,12 +1880,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'text-align'      => false,
                         'color'           => false,
                         'line-height'     => false,
+                        'text-transform' => true,
                         'output'      => array( 
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span',
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title'
                         ),
-                        'default'  => array( ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                        ),
                     ),
                     array(
                         'id'       => 'typography_navigation_mega_link',
@@ -1817,6 +1897,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-align'      => false,
                         'color'           => false,
+                        'text-transform' => true,
                         'line-height'     => false,
                         'output'      => array(
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a'
@@ -1933,7 +2014,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'left'     => false,
                         'right'    => false,
                         'output'   => array( '.page-header' ),
-                        'units'          => array( 'em', 'px' ),
+                        'units'          => array( 'px' ),
                         'units_extended' => 'true',
                         'title'    => __( 'Title padding', THEME_LANG ),
                         'default'  => array( )
@@ -1944,8 +2025,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Background', THEME_LANG ),
                         'subtitle' => __( 'Page header with image, color, etc.', THEME_LANG ),
                         'output'      => array( '.page-header' ),
-                        'default'   => array( ),
+                        'default'   => array(
+                            'background-color' => '#f4f4f4'
+                        ),
                     ),
+
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+
                     array(
                         'id'       => 'title_typography',
                         'type'     => 'typography',
@@ -1953,7 +2042,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-align'      => false,
                         'line-height'     => false,
-                        'output'      => array( '.page-header h1.page-header-title' )
+                        'text-transform' => true,
+                        'output'      => array( '.page-header h1.page-header-title' ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
+                        ),
                     ),
                     array(
                         'id'       => 'title_typography_subtitle',
@@ -1962,6 +2056,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-align'      => false,
                         'line-height'     => false,
+                        'text-transform' => true,
                         'output'      => array( '.page-header .page-header-subtitle' )
                     ),
                     array(

@@ -419,7 +419,11 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                         <a href="<?php echo rwmb_meta('_kt_external_url'); ?>"><?php echo rwmb_meta('_kt_external_url'); ?></a>
                     </div>
                 </div><!-- .entry-thumb-content -->
+                <?php if ( $link ){ ?>
+                    <a href="<?php the_permalink(); ?>" aria-hidden="true" class="post-link-link"><?php the_title(); ?></a>
+                <?php } ?>
             </div><!-- .post-link-wrapper -->
+
         <?php }elseif($format == 'quote'){ ?>
             <div class="entry-thumb post-quote-wrapper">
                 <div class="entry-thumb-content">
@@ -428,6 +432,9 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                     </div>
                     <div class="post-quote-author"><?php echo rwmb_meta('_kt_quote_author'); ?></div>
                 </div><!-- .entry-thumb-content -->
+                <?php if ( $link ){ ?>
+                    <a href="<?php the_permalink(); ?>" aria-hidden="true" class="post-quote-link"><?php the_title(); ?></a>
+                <?php } ?>
             </div><!-- .post-quote-wrapper -->
         <?php }
     }
@@ -906,8 +913,10 @@ if ( ! function_exists( 'kt_related_article' ) ) :
 
                             if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns )
                                 $classes_extra .= ' col-clearfix-sm';
+
                         ?>
                         <div class="article-post-item <?php echo $classes." ".$classes_extra; ?>">
+                            <?php //print_r($blog_atts); ?>
                             <?php kt_get_template_part( 'templates/blog/layout/layout1/content', get_post_format(), $blog_atts); ?>
                         </div><!-- .article-post-item -->
                     <?php $i++; endwhile; ?>

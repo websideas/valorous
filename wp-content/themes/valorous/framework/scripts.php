@@ -190,6 +190,9 @@ function kt_setting_script() {
                 echo '.header-dark #nav > ul > li > a:hover span:after, .header-dark #nav > ul > li > a:focus span:after, .header-dark #nav > ul > li.current-menu-item > a span:after, .header-dark #nav > ul > li.current-menu-parent > a span:after{background: '.$navigation_dark_color_hover.';}';
             }
 
+            if($navigation_space = kt_option('navigation_space', 20)){
+                echo '#nav > ul > li{margin-left: '.$navigation_space.'px;}#main-navigation > li:first-child {margin-left: 0;}';
+            }
 
             $dropdown_background_hover = kt_option('dropdown_background_hover');
             if($dropdown_background_hover['background-color'] != ''){

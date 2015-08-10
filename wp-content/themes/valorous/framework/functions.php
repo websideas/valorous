@@ -534,7 +534,10 @@ function theme_header_class_callback($classes, $layout){
         }
     }
 
-
+    $header_shadow = kt_option('header_shadow', true);
+    if($header_shadow){
+        $classes .= ' header-shadow';
+    }
 
     if($layout == 'layout1' || $layout == 'layout2'){
         $classes .= ' header-layout-normal';
