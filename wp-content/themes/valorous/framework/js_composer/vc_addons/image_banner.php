@@ -12,7 +12,6 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'position' => 'position-center',
             'align' => 'align-center',
             'link' => '',
-            'target_link' => '_self',
 
             'css' => '',
             'css_animation' => '',
@@ -44,7 +43,14 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
                 $output .= '<div class="content_banner_wrapper"><div class="content_banner '.esc_attr( $elementClass ).'">'.do_shortcode($content).'</div></div>';
             }
             if( $link ){
-                $output .= '<a target="'.$target_link.'" class="banner-link" href="'.$link.'"></a>';
+                $link = ( $link == '||' ) ? '' : $link;
+                $link = vc_build_link( $link );
+                $a_href = $link['url'];
+                $a_title = $link['title'];
+                $a_target = $link['target'];
+                $button_link = array('href="'.esc_attr( $a_href ).'"', 'title="'.esc_attr( $a_title ).'"', 'target="'.esc_attr( $a_target ).'"' );
+                
+                $output .= '<a class="banner-link" '.implode(' ', $button_link).'></a>';
             }
         $output .= '</div>';
         
@@ -68,24 +74,14 @@ vc_map( array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
-            "std" => 'full'
+            "std" => 'full',
+            "admin_label" => true,
         ),
         array(
-            "type" => "textfield",
-            'heading' => __( 'Link', 'js_composer' ),
+            'type' => 'vc_link',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
             'param_name' => 'link',
-        ),
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Target Link', THEME_LANG ),
-            'param_name' => 'target_link',
-            'value' => array(
-                __( 'Self', THEME_LANG ) => '_self',
-                __( 'Blank', THEME_LANG ) => '_blank',
-                __( 'Parent', THEME_LANG ) => '_parent',
-                __( 'Top', THEME_LANG ) => '_top',
-            ),
-            'description' => __( 'Select target link.', THEME_LANG ),
+            'description' => __( 'Enter button link.', 'js_composer' )
         ),
         array(
             "type" => "textarea_html",
