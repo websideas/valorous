@@ -11,6 +11,8 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'image_size' => 'full',
             'position' => 'position-center',
             'align' => 'align-center',
+            'link' => '',
+            'target_link' => '_self',
 
             'css' => '',
             'css_animation' => '',
@@ -41,6 +43,9 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             if($content){
                 $output .= '<div class="content_banner_wrapper"><div class="content_banner '.esc_attr( $elementClass ).'">'.do_shortcode($content).'</div></div>';
             }
+            if( $link ){
+                $output .= '<a target="'.$target_link.'" class="banner-link" href="'.$link.'"></a>';
+            }
         $output .= '</div>';
         
     	return $output;
@@ -64,6 +69,23 @@ vc_map( array(
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
             "std" => 'full'
+        ),
+        array(
+            "type" => "textfield",
+            'heading' => __( 'Link', 'js_composer' ),
+            'param_name' => 'link',
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Target Link', THEME_LANG ),
+            'param_name' => 'target_link',
+            'value' => array(
+                __( 'Self', THEME_LANG ) => '_self',
+                __( 'Blank', THEME_LANG ) => '_blank',
+                __( 'Parent', THEME_LANG ) => '_parent',
+                __( 'Top', THEME_LANG ) => '_top',
+            ),
+            'description' => __( 'Select target link.', THEME_LANG ),
         ),
         array(
             "type" => "textarea_html",

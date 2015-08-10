@@ -31,6 +31,7 @@ add_shortcode("kt_highlight", "highlight_shortcode");
 
 /* BLOCKQUOTE SHORTCODE
 ================================================= */
+/*
 function blockquote_shortcode($atts, $content = null) {
     extract(shortcode_atts(array(
 		'style' => '',
@@ -40,4 +41,4 @@ function blockquote_shortcode($atts, $content = null) {
     
 	return '<blockquote class="'.$style.$class.'">'. do_shortcode($content) .'</blockquote>';
 }
-add_shortcode("kt_blockquote", "blockquote_shortcode");
+add_shortcode("kt_blockquote", "blockquote_shortcode");*/

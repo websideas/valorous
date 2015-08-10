@@ -16,7 +16,8 @@ extract( shortcode_atts( array(
 	'style' => '',
 	'border_color' => '',
 	'css' => '',
-    'effect' => ''
+    'effect' => '',
+    'show_social' => '',
 ), $atts ) );
 
 $style = ( $style != '' ) ? $style : '';
@@ -63,10 +64,17 @@ if ( $img_link_large == true ) {
 	}
 }
 //to disable relative links uncomment this..
-
+$social = '';
+if( $show_social == 'yes' ){
+    $social .= '<ul class="share clearfix">';
+        $social .= '<li><a href="http://www.facebook.com/sharer.php?u='.urlencode(get_permalink(get_the_ID())).'&picture='.$img['p_img_large'][0].'" target="_blank"><i class="fa fa-facebook"></i></a></li>';
+        $social .= '<li><a target="_blank" href="http://pinterest.com/pin/create/button/?url='.urlencode(get_permalink(get_the_ID())).'&amp;media='.$img['p_img_large'][0].'&amp;description='.urlencode(get_the_title(get_the_ID())).'"><i class="fa fa-pinterest"></i></a></li>';
+        $social .= '<li><a target="_blank" href="https://plus.google.com/share?url='.urlencode(get_permalink(get_the_ID())).'"><i class="fa fa-google-plus"></i></a></li>';
+    $social .= '</ul>';
+}
 
 $img_output = ( $style == 'vc_box_shadow_3d' ) ? '<span class="vc_box_shadow_3d_wrap">' . $img['thumbnail'] . '</span>' : $img['thumbnail'];
-$image_string = ! empty( $link_to ) ? '<a' . $a_class . ' href="' . $link_to . '"' . ' target="' . $img_link_target . '"' . '><div class="vc_single_image-wrapper ' . $style . ' ' . $effect . ' ' . $border_color . '">' . $img_output . '</div></a>' : '<div class="vc_single_image-wrapper ' . $style . ' ' . $effect . ' ' . $border_color . '">' . $img_output . '</div>';
+$image_string = ! empty( $link_to ) ? '<a' . $a_class . ' href="' . $link_to . '"' . ' target="' . $img_link_target . '"' . '><div class="vc_single_image-wrapper ' . $style . ' ' . $effect . ' ' . $border_color . '">' . $img_output.$social . '</div></a>' : '<div class="vc_single_image-wrapper ' . $style . ' ' . $effect . ' ' . $border_color . '">' . $img_output.$social . '</div>';
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'wpb_single_image wpb_content_element' . $el_class . vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
 $css_class .= $this->getCSSAnimation( $css_animation );
 

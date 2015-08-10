@@ -5326,6 +5326,13 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt_image_banner{
     position: relative;
 }
+.kt_image_banner a.banner-link{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+}
 .kt_image_banner .content_banner_wrapper{
     position: absolute;
     width:100%;
