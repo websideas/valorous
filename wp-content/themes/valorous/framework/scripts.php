@@ -89,10 +89,21 @@ function kt_setting_script() {
 
             #header-content-mobile .mobile-cart-total,
             #nav > #main-nav-tool > li > a .mini-cart-total,
+            .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
             .featured-vertical-item .entry-main-content .cat-links a,
             .featured-carousel-item .entry-main-content .cat-links a,
-            .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
-            #cancel-comment-reply-link:hover{
+            .widget_kt_instagram ul li a:after,
+
+            .woocommerce .product .yith-wcwl-add-to-wishlist .ajax-loading,
+            .woocommerce ul.shop-products .added_to_cart,
+            .woocommerce ul.shop-products .button,
+            .woocommerce ul.shop-products .product-quick-view,
+            .woocommerce.compare-button,
+            .woocommerce .product .yith-wcwl-add-button,
+            .woocommerce .product .yith-wcwl-wishlistaddedbrowse,
+            .woocommerce .product .yith-wcwl-wishlistexistsbrowse,
+
+            #cancel-comment-reply-link:hover {
                 background: <?php echo $accent; ?>;
             }
 
@@ -104,19 +115,62 @@ function kt_setting_script() {
                 border-color: <?php echo $accent; ?>;
             }
 
+            .search-heading .search-keyword,
+            .search-content-error .search-keyword,
+
+            .readmore-link:hover,
+            .blog-posts .entry-title a:hover,
+            .kt_tabs_content ul li .title a:hover,
+            .widget_kt_posts ul li .title a:hover,
+            #related-article h2.entry-title a:hover,
             .author-info h2.author-title a:hover,
             .author-info .author-social a:hover,
-            .comment-meta h5 a:hover{
+            .comment-meta h5 a:hover,
+            .widget_pages ul li a:hover,
+            .widget_nav_menu ul li a:hover,
+            .widget_meta ul li a:hover,
+            .widget_archive ul li a:hover,
+            .widget_product_categories ul li a:hover,
+            .widget_categories ul li a:hover,
+            .yith-woocompare-widget ul.products-list li a.title:hover,
+            .woocommerce ul.product_list_widget li a:hover{
                 color: <?php echo $accent; ?>;
             }
 
+            .woocommerce nav.woocommerce-pagination ul li a:focus,
+            .woocommerce nav.woocommerce-pagination ul li a:hover,
+            .woocommerce nav.woocommerce-pagination ul li span.current,
+            .pagination a.page-numbers:hover,
+            .pagination .page-numbers.current,
+            .widget_product_tag_cloud a:hover,
+            .widget_tag_cloud a:hover,
             .entry-share-box a:hover{
                 border-color: <?php echo $accent; ?>;
                 background: <?php echo $accent; ?>;
             }
-
+            .social-background-empty.social-style-accent a,
+            .social-background-outline.social-style-accent a,
             .woocommerce .woocommerce-info{
                 border-color: <?php echo $accent; ?>!important;
+            }
+
+            .social-background-empty.social-style-accent a,
+            .social-background-outline.social-style-accent a{
+                color: <?php echo $accent; ?>!important;
+            }
+            .social-background-fill.social-style-accent a,
+            .woocommerce.compare-button .blockUI.blockOverlay{
+                background: <?php echo $accent; ?>!important;
+            }
+
+            .widget_nav_menu ul li a:hover:after,
+            .widget_product_categories ul li a:hover:after,
+            .widget_categories ul li a:hover:after,
+            .widget_archive ul li a:hover:after,
+            .widget_meta ul li a:hover:after,
+            .yith-woocompare-widget ul.products-list li a.title:hover:after{
+                background: <?php echo $accent; ?>;
+                color: <?php echo $accent; ?>;
             }
 
         <?php } ?>

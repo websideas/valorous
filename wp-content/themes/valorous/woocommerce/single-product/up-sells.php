@@ -42,7 +42,7 @@ $woocommerce_loop['columns_tablet'] = apply_filters( 'loop_shop_columns_addons_t
 if ( $products->have_posts() ) : ?>
 
 	<div class="upsells-products clearfix carousel-wrapper-top">
-        <h2><?php _e( 'You may also like&hellip;', 'woocommerce' ) ?></h2>
+        <h3><?php _e( 'You may also like&hellip;', 'woocommerce' ) ?></h3>
         <div class="woocommerce-carousel-wrapper" data-theme="style-navigation-top" data-itemscustom="<?php echo apply_filters( 'woocommerce_single_product_carousel', '[[992,4], [768, 3], [480, 1]]'); ?>">
     		<?php woocommerce_product_loop_start(); ?>
     			<?php while ( $products->have_posts() ) : $products->the_post(); ?>

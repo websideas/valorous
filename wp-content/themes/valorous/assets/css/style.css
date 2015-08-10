@@ -1743,8 +1743,8 @@ h2.widgettitle a.rsswidget:first-child,
     content: "";
     background: #9a9a9a;
     position: absolute;
-    left: 0px;
-    top: 15px;
+    left: 0;
+    top: 13px;
     color: #9a9a9a;
 
     -webkit-transition: all 0.3s ease 0s;
@@ -5903,6 +5903,10 @@ article.post-item {
     color: #282828;
 }
 
+.blog-posts .entry-title a:hover{
+    color: #d0a852;
+}
+
 .blog-posts .entry-title {
     font-size: 16px;
     font-weight: normal;
@@ -6669,6 +6673,9 @@ article.post-item {
 }
 #related-article h2.entry-title a{
     color: #282828;
+}
+#related-article h2.entry-title a:hover{
+    color: #d0a852;
 }
 /*
  * 17.5. Comments
