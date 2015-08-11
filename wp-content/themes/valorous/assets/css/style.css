@@ -5325,6 +5325,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 /*========= Image Banner ===========*/
 .kt_image_banner{
     position: relative;
+    margin-bottom:30px;
 }
 .kt_image_banner a.banner-link{
     position: absolute;

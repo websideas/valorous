@@ -20,8 +20,15 @@ class WPBakeryShortCode_Blockquote extends WPBakeryShortCode {
         $output = '';
         
         if( $reverse == 'true' ){ $class = ' blockquote-reverse'; }else{ $class = ''; }
-    
-        $output .= '<blockquote class="'.$style.$class.'"><p>'. do_shortcode($content).'</p>';
+        
+        $elementClass = array(
+            'extra' => $this->getExtraClass( $el_class ),
+            'css_animation' => $this->getCSSAnimation( $css_animation ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+        );
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+        
+        $output .= '<blockquote class="'.$style.$class.' '.esc_attr( $elementClass ).'"><p>'. do_shortcode($content).'</p>';
             if( $author ){
                 $output .= '<footer>'.$author.'</footer>';
             }
@@ -61,14 +68,11 @@ vc_map( array(
             'description' => __( 'Position of content.', THEME_LANG ),
         ),
         array(
-            'type' => 'dropdown',
+            'type' => 'kt_switch',
             'heading' => __( 'Reverse Blockquote', THEME_LANG ),
             'param_name' => 'reverse',
-            'value' => array(
-                __( 'False', THEME_LANG ) => 'false',
-                __( 'True', THEME_LANG ) => 'true',
-            ),
-            'description' => __( 'Position of content.', THEME_LANG ),
+            'value' => 'false',
+            "description" => __("", THEME_LANG),
         ),
         
         array(
