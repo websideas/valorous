@@ -129,7 +129,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
                 "date_format" => $date_format,
-                'thumbnail_type' => $thumbnail_type,
                 "class" => ''
             );
 
@@ -212,9 +211,9 @@ vc_map( array(
             'heading' => __( 'Layout', THEME_LANG ),
             'param_name' => 'blog_layout',
             'value' => array(
-                __( 'Layout 1', 'js_composer' ) => '1',
-                __( 'Layout 2', 'js_composer' ) => '2',
-                __( 'Layout 3', 'js_composer' ) => '3',
+                __( 'Layout 1', THEME_LANG ) => '1',
+                __( 'Layout 2', THEME_LANG ) => '2',
+                __( 'Layout 3', THEME_LANG ) => '3',
             ),
             'description' => __( 'Please select your layout.', THEME_LANG ),
         ),

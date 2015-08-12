@@ -10,7 +10,6 @@ class WPBakeryShortCode_Blockquote extends WPBakeryShortCode {
             'author' => '',
             'style' => '',
             'reverse' => 'false',
-
             'css' => '',
             'css_animation' => '',
             'el_class' => '',
@@ -18,21 +17,25 @@ class WPBakeryShortCode_Blockquote extends WPBakeryShortCode {
 
         extract($atts);
         $output = '';
-        
-        if( $reverse == 'true' ){ $class = ' blockquote-reverse'; }else{ $class = ''; }
-        
+
+        $reverse = apply_filters('sanitize_boolean', $reverse);
+
         $elementClass = array(
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'reverse' => ( $reverse) ? 'blockquote-reverse' : '',
+            'style' => $style
         );
+
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output .= '<blockquote class="'.$style.$class.' '.esc_attr( $elementClass ).'"><p>'. do_shortcode($content).'</p>';
+        $output .= '<blockquote class="'.esc_attr( $elementClass ).'"><div class="blockquote-content">';
+            $output .= '<p>'. do_shortcode($content).'</p>';
             if( $author ){
                 $output .= '<footer>'.$author.'</footer>';
             }
-        $output .= '</blockquote>';
+        $output .= '</div></blockquote>';
         
     	return $output;
     }
@@ -44,18 +47,19 @@ vc_map( array(
     "category" => __('by Theme', THEME_LANG ),
     "wrapper_class" => "clearfix",
     "params" => array(
+
+        array(
+            "type" => "textarea_html",
+            "heading" => __("Content", THEME_LANG),
+            "param_name" => "content",
+            "description" => __("", THEME_LANG),
+            'holder' => 'div',
+        ),
         array(
             "type" => "textfield",
             'heading' => __( 'Author', 'js_composer' ),
             'param_name' => 'author',
             "admin_label" => true,
-        ),
-        array(
-            "type" => "textarea_html",
-            "heading" => __("Content", THEME_LANG),
-            "param_name" => "content",
-            "value" => __("", THEME_LANG),
-            "description" => __("", THEME_LANG),
         ),
         array(
             'type' => 'dropdown',
@@ -64,6 +68,7 @@ vc_map( array(
             'value' => array(
                 __( 'Normal', THEME_LANG ) => '',
                 __( 'Classic', THEME_LANG ) => 'classic',
+                __( 'Simple', THEME_LANG ) => 'simple',
             ),
             'description' => __( 'Position of content.', THEME_LANG ),
         ),

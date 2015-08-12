@@ -25,13 +25,18 @@ jQuery(document).ready(function($) {
             data: data,
             dataType: 'json',
             success: function(response){
-                button.unblock()
-                    .addClass('added')
-                    .attr( 'href', response.table_url )
-                    .text( yith_woocompare.added_label );
+
+                if( typeof woocommerce_params != 'undefined' ) {
+                    button.unblock();
+                    widget_list.unblock()
+                }
+
+                button.addClass('added')
+                        .attr( 'href', response.table_url )
+                        .text( yith_woocompare.added_label );
 
                 // add the product in the widget
-                widget_list.unblock().html( response.widget_table );
+                widget_list.html( response.widget_table );
 
                 if ( yith_woocompare.auto_open == 'yes')
                     $('body').trigger( 'yith_woocompare_open_popup', { response: response.table_url, button: button } );
@@ -80,7 +85,10 @@ jQuery(document).ready(function($) {
                         data: data,
                         success: function(response){
                             // add the product in the widget
-                            widget_list.unblock().html( response );
+                            if( typeof woocommerce_params != 'undefined' ) {
+                                widget_list.unblock().html(response);
+                            }
+                            widget_list.html(response);
                         }
                     });
                 }
@@ -142,7 +150,10 @@ jQuery(document).ready(function($) {
             data: data,
             dataType:'html',
             success: function(response){
-                button.unblock();
+
+                if( typeof woocommerce_params != 'undefined' ) {
+                    button.unblock();
+                }
 
                 // in compare table
                 var table = $(response).filter('table.compare-list');
@@ -208,7 +219,9 @@ jQuery(document).ready(function($) {
                 dataType: 'html',
                 success: function (response) {
                     product_list.html(response);
-                    product_list.unblock();
+                    if( typeof woocommerce_params != 'undefined' ) {
+                        product_list.unblock();
+                    }
                 }
             });
         });

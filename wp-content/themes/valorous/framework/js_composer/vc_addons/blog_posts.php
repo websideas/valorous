@@ -303,7 +303,7 @@ vc_map( array(
             'description' => __( 'Not working for archive style classic', 'js_composer' ),
             'dependency' => array(
                 'element' => 'blog_type',
-                'value' => array( 'classic' )
+                'value_not_equal_to' => array( 'classic' )
             ),
         ),
         array(
@@ -345,6 +345,13 @@ vc_map( array(
             'param_name' => 'show_excerpt',
             'value' => 'true',
             "description" => __("Show or hide the Excerpt.", THEME_LANG),
+        ),
+
+        array(
+            'type' => 'textfield',
+            'heading' => __( 'Excerpt length', 'js_composer' ),
+            'value' => 50,
+            'param_name' => 'excerpt_length',
         ),
 
         /*
@@ -451,13 +458,7 @@ vc_map( array(
             'description' => __( 'Set max limit for items in grid or enter -1 to display all (limited to 1000).', 'js_composer' ),
             'group' => __( 'Data settings', 'js_composer' ),
         ),
-        array(
-            'type' => 'textfield',
-            'heading' => __( 'Excerpt length', 'js_composer' ),
-            'value' => 50,
-            'param_name' => 'excerpt_length',
-            'group' => __( 'Data settings', 'js_composer' ),
-        ),
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'Order by', 'js_composer' ),

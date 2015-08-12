@@ -188,12 +188,16 @@ p{
  * 2.3 Blockquote
  */
 
-blockquote{
+
+blockquote,
+.post-link-outer{
     font-family: Georgia;
     font-size: 15px;
     line-height: 28px;
     padding: 5px 20px;
     position: relative;
+    margin: 0 0 15px;
+    font-style: italic;
 }
 
 blockquote,
@@ -202,6 +206,72 @@ blockquote.pull-right {
     border-color: #d2a952;
 }
 
+blockquote.classic,
+.post-link-outer{
+    background: #ececeb;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+}
+
+blockquote.classic .blockquote-content,
+.post-link-content{
+    background: #eeeeed;
+    border: 1px dashed #d7d7d6;
+    padding: 18px 60px 22px 22px;
+    position: relative;
+}
+
+.post-link-content .post-link-title{
+    margin-bottom: 15px;
+}
+
+blockquote.classic .blockquote-content:after,
+.post-link-content:after{
+    color: #c4c1c1;
+    content: '\f10e';
+    font-family: "FontAwesome";
+    font-size: 35px;
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    right: 12px;
+    top: 25px;
+}
+
+.post-link-content:after{
+    content: '\f0c1';
+}
+
+blockquote.classic footer,
+.post-link-content .post-link-url a{
+    color: #d0a852;
+    font-size: 14px;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+blockquote.simple{
+    border: none;
+    position: relative;
+    padding: 15px 20px 12px;
+}
+
+blockquote.simple:before {
+    color: #ededed;
+    content: '\f10d';
+    font-family: "FontAwesome";
+    font-size: 50px;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    position: absolute;
+    top: 15px;
+}
+blockquote.simple .blockquote-content{
+    position: relative;
+    z-index: 1;
+}
 
 /*
  * 2.4 Highlights
@@ -310,7 +380,7 @@ select:not([multiple]) {
 .wpcf7-submit,
 .btn {
     border-radius: 0;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     display: inline-block;
     line-height: 1.42857;
     padding: 8px 28px;
@@ -5779,11 +5849,13 @@ body.layout-boxed #page {
 .woocommerce nav.woocommerce-pagination ul li a,
 .woocommerce nav.woocommerce-pagination ul li span,
 .pagination .page-numbers {
-    border: 1px solid #d7d7d7;
+    border: 2px solid #d7d7d7;
     display: inline-block;
     line-height: 32px;
-    min-width: 32px;
+    min-width: 36px;
     padding: 0 10px;
+    font-size: 14px;
+    margin: 0 2px;
     color: #d7d7d7;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -5971,38 +6043,6 @@ article.post-item {
     margin-bottom: 20px;
 }
 
-.post-quote-wrapper,
-.post-link-wrapper {
-    background: #ececeb;
-    padding: 15px;
-}
-
-.post-quote-wrapper .entry-thumb-content,
-.post-link-wrapper .entry-thumb-content {
-    background: #eeeeed;
-    border: 1px dashed #d7d7d6;
-    padding: 18px 15px 34px;
-    position: relative;
-    font-family: Georgia;
-    text-align: left;
-}
-
-.post-quote-wrapper .entry-thumb-content:after,
-.post-link-wrapper .entry-thumb-content:after {
-    bottom: 35px;
-    color: #c4c1c1;
-    content: '\f10e';
-    font-family: "FontAwesome";
-    font-size: 35px;
-    font-weight: normal;
-    position: absolute;
-    right: 12px;
-}
-
-.post-link-wrapper .entry-thumb-content:after {
-    content: '\f0c1';
-}
-
 .post-quote-wrapper .post-quote-link,
 .post-link-wrapper .post-link-link{
     height: 100%;
@@ -6012,27 +6052,6 @@ article.post-item {
     text-indent: -999px;
     top: 0;
     width: 100%;
-}
-
-
-.post-quote-wrapper .post-quote-content,
-.post-link-wrapper .post-link-title {
-    color: #5d5d5d;
-    font-size: 18px;
-    font-style: italic;
-    line-height: 30px;
-    margin-bottom: 10px;
-}
-
-.post-quote-wrapper .post-quote-author,
-.post-link-wrapper .post-link-content a {
-    color: #d0a852;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-.post-quote-wrapper .post-quote-author {
-    letter-spacing: 2px;
 }
 
 .post-item.format-audio .entry-thumb-audio {
@@ -6147,7 +6166,7 @@ article.post-item {
 .post-item-carousel .entry-title {
     font-size: 20px;
     line-height: 1;
-    margin: 0 0 8px;
+    margin: 0 0 15px;
     padding: 0;
     font-weight: normal;
 }
@@ -6197,6 +6216,10 @@ article.post-item {
     text-align: center;
     color: #FFFFFF;
     font-size: 16px;
+}
+
+.post-layout-carousel1 .entry-meta-data > span:after{
+    color: #FFFFFF;
 }
 
 .post-layout-carousel1 .entry-more a {
@@ -6399,6 +6422,10 @@ article.post-item {
     transition-delay: 0.8s;
     margin: 0 0 15px;
     text-transform: uppercase;
+}
+
+.featured-vertical-item .entry-main-content .entry-title{
+    font-size: 20px;
 }
 
 .featured-vertical-item .entry-main-content .entry-meta-data,

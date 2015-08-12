@@ -54,7 +54,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		protected $_premium_landing = 'https://yithemes.com/themes/plugins/yith-woocommerce-compare';
 
 		/**
-		 * @var string Quick View panel page
+		 * @var string Compare panel page
 		 */
 		protected $_panel_page = 'yith_woocompare_panel';
 

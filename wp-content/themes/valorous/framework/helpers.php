@@ -460,7 +460,66 @@ if (!function_exists('kt_show_slideshow')) {
             $output .= $blog_vertical_html;
 
         }elseif($slideshow == 'carousel'){
-            $args = get_args_slider_page($post_id);
+
+            $slider_carousel_total = kt_option('slider_carousel_total', 6);
+
+            $args = get_args_slider_page($post_id, $slider_carousel_total);
+            $query = new WP_Query( $args );
+            if ( $query->have_posts() ) {
+                $atts_carousel = array(
+                    'margin' => 0,
+                    'desktop' => 3,
+                    'loop' => 'true',
+                    'tablet' => 2,
+                    'mobile' => 1,
+                    'pagination' => 'false',
+                    'navigation' => 'false',
+                );
+
+                $carousel_ouput = kt_render_carousel(apply_filters( 'kt_render_args', $atts_carousel));
+                $blog_carousel_html = '';
+
+                $blog_atts_posts = array(
+                    'image_size' => 'recent_posts',
+                    'readmore' => false,
+                    'show_meta' =>  true,
+                    "show_author" => true,
+                    "show_category" => true,
+                    "show_comment" => false,
+                    "show_date" => false,
+                    "class" => ''
+                );
+
+                $blog_layout = kt_option('slider_carousel_layout', 1);
+
+                while ( $query->have_posts() ) : $query->the_post();
+                    $blog_atts = $blog_atts_posts;
+
+                    $blog_carousel_html .= '<div class="carousel-posts-item">';
+                    ob_start();
+                    kt_get_template_part( 'templates/blog/carousel/content', $blog_layout, $blog_atts);
+                    $blog_carousel_html .= ob_get_contents();
+                    ob_end_clean();
+
+                    $blog_carousel_html .= '</div><!-- .recent-posts-item -->';
+
+                endwhile;
+
+                $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
+
+            }
+            wp_reset_postdata();
+
+
+
+
+
+
+        }elseif($slideshow == 'slider'){
+
+
+            $slider_slider_total = kt_option('slider_slider_total', 6);
+            $args = get_args_slider_page($post_id, $slider_slider_total);
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) {
                 $atts_carousel = array(
@@ -491,7 +550,6 @@ if (!function_exists('kt_show_slideshow')) {
             }
             wp_reset_postdata();
             $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
-
         }
 
         if($output != ''){
@@ -509,7 +567,7 @@ if (!function_exists('get_args_slider_page')) {
      * @param $post_id
      * @return array
      */
-    function get_args_slider_page($post_id)
+    function get_args_slider_page($post_id, $posts_per_page = 4)
     {
         global $post;
         if (!$post_id) $post_id = $post->ID;
@@ -518,15 +576,14 @@ if (!function_exists('get_args_slider_page')) {
             'source' => rwmb_meta('_kt_data_source', array(), $post_id),
             'orderby' => rwmb_meta('_kt_post_orderby', array(), $post_id),
             'meta_key' => rwmb_meta('_kt_post_meta_key', array(), $post_id),
-            'order' => rwmb_meta('_kt_post_order', array(), $post_id),
-            'max_items' => 10,
+            'order' => rwmb_meta('_kt_post_order', array(), $post_id)
         );
         extract($atts);
 
         $args = array(
             'order' => $order,
             'orderby' => $orderby,
-            'posts_per_page' => 4,
+            'posts_per_page' => $posts_per_page,
             'ignore_sticky_posts' => true
         );
         if ($orderby == 'meta_value' || $orderby == 'meta_value_num') {

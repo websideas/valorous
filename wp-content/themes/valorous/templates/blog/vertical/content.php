@@ -1,6 +1,8 @@
 <?php
 
 $classes = array('featured-vertical-item');
+
+
 ?>
 <article <?php post_class($classes); ?>>
     <div class="featured-vertical-image" style="background-image: url(<?php echo kt_get_post_thumbnail_url('blog_post'); ?>);"></div>

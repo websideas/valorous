@@ -166,7 +166,9 @@ function kt_add_scripts() {
         'security' => wp_create_nonce( 'ajax_frontend' ),
         'current_date' => date_i18n('Y-m-d H:i:s'),
         'query_vars' => json_encode( $wp_query->query ),
-        'sticky_height' => $sticky_height
+        'sticky_height' => $sticky_height,
+        'slide_next' => __('Next Story', THEME_LANG),
+        'slide_prev' => __('Previous Story', THEME_LANG),
     ));
 
     
@@ -406,19 +408,21 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                         echo '</div><!-- .entry-thumb -->';
                     }
                 }
-            }elseif($type == 'soundcloud'){
+            } elseif( $type == 'soundcloud' ){
                 if($soundcloud = rwmb_meta('_kt_audio_soundcloud')){
                     echo '<div class="entry-thumb">';
                     echo do_shortcode($soundcloud);
                     echo '</div><!-- .entry-thumb -->';
                 }
             }
-        }elseif($format == 'link'){ ?>
+        } elseif ( $format == 'link' ){ ?>
             <div class="entry-thumb post-link-wrapper">
-                <div class="entry-thumb-content">
-                    <div class="post-link-title"><?php the_title(); ?></div>
+                <div class="entry-thumb-content post-link-outer">
                     <div class="post-link-content">
-                        <a href="<?php echo rwmb_meta('_kt_external_url'); ?>"><?php echo rwmb_meta('_kt_external_url'); ?></a>
+                        <div class="post-link-title"><?php the_title(); ?></div>
+                        <div class="post-link-url">
+                            <a href="<?php echo rwmb_meta('_kt_external_url'); ?>"><?php echo rwmb_meta('_kt_external_url'); ?></a>
+                        </div>
                     </div>
                 </div><!-- .entry-thumb-content -->
                 <?php if ( $link ){ ?>
@@ -426,14 +430,14 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 <?php } ?>
             </div><!-- .post-link-wrapper -->
 
-        <?php }elseif($format == 'quote'){ ?>
+        <?php } elseif ( $format == 'quote' ){ ?>
             <div class="entry-thumb post-quote-wrapper">
-                <div class="entry-thumb-content">
-                    <div class="post-quote-content">
-                        <?php echo rwmb_meta('_kt_quote_content'); ?>
+                <blockquote class="classic">
+                    <div class="blockquote-content">
+                        <p><?php echo rwmb_meta('_kt_quote_content'); ?></p>
+                        <footer><?php echo rwmb_meta('_kt_quote_author'); ?></footer>
                     </div>
-                    <div class="post-quote-author"><?php echo rwmb_meta('_kt_quote_author'); ?></div>
-                </div><!-- .entry-thumb-content -->
+                </blockquote>
                 <?php if ( $link ){ ?>
                     <a href="<?php the_permalink(); ?>" aria-hidden="true" class="post-quote-link"><?php the_title(); ?></a>
                 <?php } ?>

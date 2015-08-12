@@ -89,7 +89,7 @@ function kt_setting_script() {
 
             #header-content-mobile .mobile-cart-total,
             #nav > #main-nav-tool > li > a .mini-cart-total,
-            .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+            .woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
             .featured-vertical-item .entry-main-content .cat-links a,
             .featured-carousel-item .entry-main-content .cat-links a,
             .widget_kt_instagram ul li a:after,
@@ -119,8 +119,8 @@ function kt_setting_script() {
 
             .search-heading .search-keyword,
             .search-content-error .search-keyword,
-            .post-quote-wrapper .post-quote-author,
-            .post-link-wrapper .post-link-content a,
+            blockquote.classic footer,
+            .post-link-content .post-link-url a,
 
             .readmore-link:hover,
             .blog-posts .entry-title a:hover,
@@ -141,6 +141,8 @@ function kt_setting_script() {
                 color: <?php echo $accent; ?>;
             }
 
+
+            #main-content-sideshow .carousel-navigation-center .owl-kttheme .owl-buttons > div i,
             .woocommerce nav.woocommerce-pagination ul li a:focus,
             .woocommerce nav.woocommerce-pagination ul li a:hover,
             .woocommerce nav.woocommerce-pagination ul li span.current,

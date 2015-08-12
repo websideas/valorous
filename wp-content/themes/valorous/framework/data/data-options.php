@@ -2090,7 +2090,6 @@ if ( ! class_exists( 'KT_config' ) ) {
              *
              */
             $this->sections[] = array(
-                'icon' => 'el-icon-star',
                 'title' => __('Page', THEME_LANG),
                 'desc' => __('General Page Options', THEME_LANG),
                 'icon' => 'icon_document_alt',
@@ -2159,7 +2158,6 @@ if ( ! class_exists( 'KT_config' ) ) {
              *
              */
             $this->sections[] = array(
-                'icon' => 'el-icon-star',
                 'title' => __('Blog', THEME_LANG),
                 'icon' => 'icon_pencil-edit',
                 'desc' => __('General Blog Options', THEME_LANG),
@@ -2173,17 +2171,10 @@ if ( ! class_exists( 'KT_config' ) ) {
              *
              */
             $this->sections[] = array(
-                'icon' => 'el-icon-star',
                 'title' => __('Post slider', THEME_LANG),
                 'desc' => __('Post slider Options', THEME_LANG),
                 'subsection' => true,
                 'fields' => array(
-                    array(
-                        'id'       => 'post_slider_vertical',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Vertical Posts general', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
 
                     array(
                         'id'       => 'post_slider_carousel',
@@ -2191,6 +2182,48 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'content'  => '<div class="section-heading">'.__( 'Carousel Posts general', THEME_LANG ).'</div>',
                         'full_width' => true
                     ),
+
+                    array(
+                        'id'            => 'slider_carousel_total',
+                        'type'          => 'slider',
+                        'title'         => __( 'Carousel Total items', THEME_LANG ),
+                        'default'       => 6,
+                        'min'           => 3,
+                        'step'          => 1,
+                        'max'           => 10,
+                        'display_value' => 'text'
+                    ),
+                    array(
+                        'id'       => 'slider_carousel_layout',
+                        'type'     => 'select',
+                        'title'    => __( 'Carousel layout', THEME_LANG ),
+                        'options'  => array(
+                            '1' => __( 'Layout 1', THEME_LANG ),
+                            '2' => __( 'Layout 2', THEME_LANG ),
+                            '3' => __( 'Layout 3', THEME_LANG ),
+                        ),
+                        'default'  => '1',
+                        'clear' => false
+                    ),
+
+                    array(
+                        'id'       => 'post_slider_slider',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Slider Posts general', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+
+                    array(
+                        'id'            => 'slider_slider_total',
+                        'type'          => 'slider',
+                        'title'         => __( 'Slider Total items', THEME_LANG ),
+                        'default'       => 6,
+                        'min'           => 2,
+                        'step'          => 1,
+                        'max'           => 10,
+                        'display_value' => 'text'
+                    ),
+
                 )
             );
 
