@@ -18,13 +18,13 @@ if ( ! comments_open() ) {
 
 ?>
 <div id="reviews">
-	<div id="comments" class="comments-area">
-		<h3 class="comments-title"><?php
+	<div id="comments">
+		<h2><?php
 			if ( get_option( 'woocommerce_enable_review_rating' ) === 'yes' && ( $count = $product->get_review_count() ) )
 				printf( _n( '%s review for %s', '%s reviews for %s', $count, 'woocommerce' ), $count, get_the_title() );
 			else
 				_e( 'Reviews', 'woocommerce' );
-		?></h3>
+		?></h2>
 
 		<?php if ( have_comments() ) : ?>
 
