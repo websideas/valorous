@@ -25,6 +25,7 @@ About me page
 	http://demo.korra.io/brook/about-me/
 	http://demo.kingkongthemes.com/vaicalon/about/
 	http://leaftree.pt/materialog/about-2.html
+	http://ddthemesdemo.com/lamadone/
 
 Landing for homepage
 	1. Slideshow for blog
