@@ -481,7 +481,7 @@ function kt_comments($comment, $args, $depth) {
     ?>
 
 <li <?php comment_class('comment'); ?> id="li-comment-<?php comment_ID() ?>">
-    <div  id="comment-<?php comment_ID(); ?>" class="comment-item">
+    <div  id="comment-<?php comment_ID(); ?>" class="comment-item clearfix">
 
         <div class="comment-avatar">
             <?php echo get_avatar($comment->comment_author_email, $size='100',$default='' ); ?>
@@ -511,8 +511,6 @@ function kt_comments($comment, $args, $depth) {
                     ))) ?>
             </div>
         </div>
-
-        <div class="clear"></div>
     </div>
 <?php
 }

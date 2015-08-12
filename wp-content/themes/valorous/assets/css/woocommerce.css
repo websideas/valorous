@@ -975,6 +975,11 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 /** =========================
     6. Product Detail
 *** =========================*/
+.product-detail-inner{
+    margin-bottom: 50px;
+}
+
+
 .woocommerce #content div.product div.images,
 .woocommerce div.product div.images,
 .woocommerce-page #content div.product div.images,
@@ -1088,6 +1093,54 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     float: left;
     margin: 0 10px 0 0;
 }
+
+
+.woocommerce div.product .woocommerce-tabs{
+    margin-bottom: 50px;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs{
+    border-bottom: 1px solid #282828;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs:before{
+    display: none;
+    border: none;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li{
+    background: none;
+    border: medium none;
+    margin: 0 10px 0 0;
+    padding: 0;
+    float: left;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li:after,
+.woocommerce div.product .woocommerce-tabs ul.tabs li:before{
+    display: none;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a{
+    padding: 0 10px;
+    line-height: 40px;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 16px;
+    font-family: Montserrat;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a{
+    color: #FFFFFF;
+    background: #d2a952;
+}
+
+
+/*
 .woocommerce div.product .woocommerce-tabs ul.tabs::before{
     border-color: #e3e3e3;
     bottom: 1px;
@@ -1140,14 +1193,23 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     font-weight: bold;
     font-size: 16px;
 }
+*/
+
+
 .woocommerce div.product .woocommerce-tabs .panel{
+    border: medium none;
+    margin: 0;
     box-shadow: 0 0 0;
     -moz-box-shadow: 0 0 0;
     -webkit-box-shadow: 0 0 0;
 }
+
 .woocommerce #reviews h3{
-    font-weight: normal;
-    margin-bottom: 28px;
+    margin: 0 0 20px;
+}
+
+#reviews .comments-area .comments-title{
+    display: none;
 }
 
 /** =========================
