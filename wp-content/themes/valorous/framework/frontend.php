@@ -707,6 +707,49 @@ if ( ! function_exists( 'kt_entry_meta_time' ) ) :
     }
 endif;
 
+/* ---------------------------------------------------------------------------
+ * Posts Views Number
+ * --------------------------------------------------------------------------- */
+if ( ! function_exists( 'kt_set_post_views' ) ){
+    function kt_set_post_views($postID) {
+        $count_key = 'kt_post_views_count';
+        $count = get_post_meta($postID, $count_key, true);
+        if($count==''){
+            $count = 0;
+            delete_post_meta($postID, $count_key);
+            add_post_meta($postID, $count_key, '0');
+        }else{
+            $count++;
+            update_post_meta($postID, $count_key, $count);
+        }
+    }
+}
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+if ( ! function_exists( 'kt_track_post_views' ) ){
+    function kt_track_post_views ($post_id) {
+        if ( !is_single() ) return;
+        if ( empty ( $post_id) ) {
+            global $post;
+            $post_id = $post->ID;   
+        }
+        kt_set_post_views($post_id);
+    }
+}
+add_action( 'wp_head', 'kt_track_post_views');
+
+if ( ! function_exists( 'kt_get_post_views' ) ){
+    function kt_get_post_views($postID){
+        $count_key = 'kt_post_views_count';
+        $count = get_post_meta($postID, $count_key, true);
+        if( $count=='' || $count == 0 ){
+            delete_post_meta($postID, $count_key);
+            add_post_meta($postID, $count_key, '0');
+            return '<span class="post-view">'.__('0 View',THEME_LANG).'</span>';
+        }
+        return '<span class="post-view">'.$count.__(' Views',THEME_LANG).'</span>';
+    }
+}
 
 
 /* ---------------------------------------------------------------------------

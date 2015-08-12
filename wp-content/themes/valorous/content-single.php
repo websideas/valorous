@@ -26,6 +26,7 @@
                 if(kt_option('blog_meta_comments', 1)){
                     kt_entry_meta_comments();
                 }
+                echo kt_get_post_views( get_the_ID() );
                 ?>
             </div>
         <?php } ?>
