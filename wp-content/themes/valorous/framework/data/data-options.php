@@ -1920,6 +1920,33 @@ if ( ! class_exists( 'KT_config' ) ) {
                 )
             );
 
+
+            /**
+             *	Typography Navigation
+             **/
+            $this->sections[] = array(
+                'id'			=> 'typography_woocommerce',
+                'title'			=> __( 'Woocommerce', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'typography_woocommerce_tab',
+                        'type'     => 'typography',
+                        'title'    => __( 'Woocommerce tab', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'text-transform' => true,
+                        'output'      => array( '.woocommerce div.product .woocommerce-tabs ul.tabs li a' ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                        ),
+                    ),
+                )
+            );
+
             /**
              *	Sidebar
              **/

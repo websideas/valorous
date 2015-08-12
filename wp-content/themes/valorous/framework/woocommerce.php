@@ -350,7 +350,7 @@ function kt_woocommerce_add_archive_tool(){
  */
 
 // Remove description heading
-add_filter('woocommerce_product_description_heading', '__return_false');
+//add_filter('woocommerce_product_description_heading', '__return_false');
 
 // Remove compare product
 if(defined( 'YITH_WOOCOMPARE' )){

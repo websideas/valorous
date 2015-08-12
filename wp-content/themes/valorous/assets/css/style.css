@@ -6734,6 +6734,14 @@ article.post-item {
     padding: 0 0 5px;
     text-transform: uppercase;
 }
+.comment-respond .comment-form-fields{
+    margin: 0 -7px;
+}
+.comment-respond .comment_field-column{
+    float: left;
+    width: 33.33%;
+    padding: 0 7px;
+}
 
 .comment-navigation{
     margin-top: 40px;
@@ -6764,10 +6772,6 @@ article.post-item {
 
 .comment-form p label {
     display: block;
-}
-
-#comments {
-    padding-bottom: 10px;
 }
 
 .comment_nav {
@@ -6898,6 +6902,15 @@ article.post-item {
     margin-left: 100px;
 }
 
+.comment-list ul.children ul.children .comment-respond .comment-form-fields{
+    margin: 0;
+}
+
+.comment-list ul.children ul.children .comment-respond .comment_field-column{
+    padding: 0;
+    width: 100%;
+}
+
 .comment-respond {
     padding-top: 30px;
     margin-bottom: 25px;
@@ -6906,10 +6919,6 @@ article.post-item {
 .comment-notes,
 .form-allowed-tags {
     display: none;
-}
-
-#commentform .form-submit {
-    text-align: center;
 }
 
 /* ==============================

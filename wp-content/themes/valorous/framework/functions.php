@@ -16,6 +16,8 @@ function kt_sanitize_boolean( $input = '' ) {
 add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
 
 
+
+
 /**
  * Add class to next button
  *
@@ -583,6 +585,17 @@ function kt_slideshows_position_callback(){
         }
     }
 }
+
+add_action( 'comment_form_before_fields', 'kt_comment_form_before_fields', 1 );
+function kt_comment_form_before_fields(){
+    echo '<div class="comment-form-fields clearfix">';
+}
+
+add_action( 'comment_form_after_fields', 'kt_comment_form_after_fields', 9999 );
+function kt_comment_form_after_fields(){
+    echo '</div>';
+}
+
 
 /**
  * Add favicon to website

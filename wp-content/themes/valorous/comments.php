@@ -55,15 +55,16 @@ if ( post_password_required() ) {
     $commenter = wp_get_current_commenter();
     $req = get_option( 'require_name_email' );
     $aria_req = ( $req ? " aria-required='true'" : '' );
+    $html_req = ( $req ? " required='required'" : '' );
 
-
+    $required = ' '.__('(required)', THEME_LANG);
 
     $new_fields = array(
-        'author' => '<p>' .  ( $req ? '' : '' ) .
-            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"  placeholder="'.__('Name*', THEME_LANG).'"' . $aria_req . ' /></p>',
-        'email'  => '<p>' . ( $req ? '' : '' ) .
-            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder='.__('Email*', THEME_LANG).'"' . $aria_req . ' /></p>',
-        'url'    => '<p>' .
+        'author' => '<p class="comment_field-column">' .
+            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"  placeholder="'.__('Name', THEME_LANG).( $req ? $required : '' ).'"' . $aria_req . $html_req . ' /></p>',
+        'email'  => '<p class="comment_field-column">' .
+            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="'.__('Email', THEME_LANG).( $req ? $required : '' ).'"' . $aria_req . $html_req . ' /></p>',
+        'url'    => '<p class="comment_field-column">' .
             '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="'.__('Website', THEME_LANG).'" /></p>',
     );
 
@@ -71,6 +72,8 @@ if ( post_password_required() ) {
 
     $comments_args = array(
         'fields' => apply_filters( 'comment_form_default_fields', $new_fields ),
+        //'comment_form_before_fields' => '<div>',
+        //'comment_form_after_fields' => '</div>',
         'comment_field' => '<p><textarea id="comment" name="comment" placeholder="'.__('Message*', THEME_LANG).'"  aria-required="true" rows="6"></textarea></p>',
         'class_submit'      => 'btn btn-default',
     );
