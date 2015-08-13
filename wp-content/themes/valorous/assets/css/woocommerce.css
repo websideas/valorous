@@ -1151,6 +1151,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     text-transform: uppercase;
     font-weight: normal;
     font-size: 13px;
+    padding: 6px 0;
 }
 
 .woocommerce div.product .woocommerce-tabs .woocommerce-tabs-content{

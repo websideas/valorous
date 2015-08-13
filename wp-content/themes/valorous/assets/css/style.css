@@ -1906,12 +1906,42 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 .ui-tabs-nav{
+    margin: 0 0 0 1px!important;
+    padding: 0;
+    list-style: none;
+}
+.ui-tabs-nav li{
+    background-color: #eeeeee;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    float: left;
+    margin: 0 0 0 -1px;
+    padding: 0 20px;
+}
+.ui-tabs-nav li.ui-state-active{
+    background: #ffffff;
+    border-bottom-color: #ffffff;
+    z-index: 2;
+}
+
+.ui-tabs-nav li a {
+    font-size: 13px;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: Montserrat;
+    display: inline-block;
+    padding: 6px 0;
+    color: #282828;
+}
+
+.ui-tabs-nav li a:hover,
+.ui-tabs-nav li.ui-state-active a{
 
 }
 
-/* ==============================
-   10. Search Fullwidth
-   ============================== */
+    /* ==============================
+       10. Search Fullwidth
+       ============================== */
 .mfp-close {
     font-family: "Times New Roman", Helvetica, Arial, sans-serif;
 }
