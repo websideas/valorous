@@ -146,3 +146,56 @@ function wp_ajax_fronted_remove_product_callback(){
 }
 add_action( 'wp_ajax_fronted_remove_product', 'wp_ajax_fronted_remove_product_callback' );
 add_action( 'wp_ajax_nopriv_fronted_remove_product', 'wp_ajax_fronted_remove_product_callback' );
+
+/**==============================
+***  Like Post
+===============================**/
+function kt_like_post( $before = '', $after = '', $post_id = null ) {
+    global $post; 
+    if(!$post_id){ $post_id = $post->ID; }
+    
+    $like_count = get_post_meta($post_id, '_like_post', true);
+
+    if( !$like_count ){
+        $like_count = 0;
+        add_post_meta($post_id, '_like_post', $like_count, true);
+    }
+    // Ð?u tiên gán class và tile m?c d?nh là chua like
+    $class = 'kt_likepost';
+    $title = __('Like this post', THEME_LANG);
+    $already =  __('You already like this!', THEME_LANG);
+    // N?u t?n t?i cookie ( dã like) gán l?i class và title
+    if( isset($_COOKIE['like_post_'. $post_id]) ){
+        $class .= ' liked';
+        $title = $already;
+    }
+    // Link c?a like post
+    $output = "<a data-id='".$post_id."' data-already='".$already."' class='".$class."' href='".get_the_permalink($post_id)."#".$post_id."' title='".$title."'>".$like_count."</a>";
+    //Tr? v? k?t qu?
+    echo $before . $output . $after;
+}
+
+add_action( 'wp_ajax_fronted_likepost', 'wp_ajax_fronted_likepost_callback' );
+add_action( 'wp_ajax_nopriv_fronted_likepost', 'wp_ajax_fronted_likepost_callback' );
+function wp_ajax_fronted_likepost_callback() {
+    // Ki?m tra có dúng mã b?o m?t hay không.
+    check_ajax_referer( 'ajax_frontend', 'security' );
+     
+    //N?u không t?n t?i submit c?a $post_id ho?c $post_id có không ph?i là s? thì thoát kh?i function.
+    if(!isset($_POST['post_id']) || !is_numeric($_POST['post_id'])) return;
+     
+    $post_id = $_POST['post_id'];
+     
+    $output = array();    
+    
+    $like_count = get_post_meta($post_id, '_like_post', true);
+
+    if( !isset($_COOKIE['like_post_'. $post_id]) ){
+        $like_count++;
+        update_post_meta($post_id, '_like_post', $like_count);
+        setcookie('like_post_'. $post_id, $post_id, time()*20, '/');    
+    }
+    $output['count'] = $like_count;
+    echo json_encode($output);
+    die();
+}

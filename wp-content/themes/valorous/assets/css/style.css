@@ -6006,6 +6006,15 @@ article.post-item {
     margin-right: 0;
 }
 
+.entry-meta-data > a.kt_likepost:before{
+    font-family:FontAwesome;
+    content:"\f08a";
+    margin-right:5px;
+}
+.entry-meta-data > a.kt_likepost.liked:before{
+    content:"\f004";
+}
+
 .entry-share-box {
 
 }

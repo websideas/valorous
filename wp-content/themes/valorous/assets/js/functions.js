@@ -63,6 +63,7 @@
         kt_gallery();
         kt_popup_gallery();
         kt_sidebar_sticky();
+        kt_likepost();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -1093,6 +1094,28 @@
     		additionalMarginTop: margin_sidebar_sticky
     	}); 
     }
-
+    
+    /**==============================
+    ***  Like Post
+    ===============================**/
+    function kt_likepost(){
+        $('body').on('click','a.kt_likepost',function(e){
+            e.preventDefault();
+            var objPost = $(this);
+            if(objPost.hasClass('liked')) return false;
+            var data = {
+                action: 'fronted_likepost',
+                security : ajax_frontend.security,
+                post_id: objPost.data('id')
+            };
+            $.post(ajax_frontend.ajaxurl, data, function(response) {
+                objPost
+                    .text(response.count)
+                    .addClass('liked')
+                    .attr('title', objPost.data('already'));
+                     
+            }, 'json');
+        });
+    }
 })(jQuery); // End of use strict
 

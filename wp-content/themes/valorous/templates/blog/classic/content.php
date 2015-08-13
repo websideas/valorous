@@ -35,6 +35,8 @@
                                 kt_entry_meta_time($blog_atts['date_format']);
                             }
                             echo kt_get_post_views( get_the_ID() );
+                            
+                            kt_like_post();
                         ?>
                     </div>
                 <?php } ?>
