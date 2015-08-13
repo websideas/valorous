@@ -66,6 +66,8 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 
         if( $select_rand || $select_recent || $select_comments ){
 
+            $rand = rand();
+
             $tabs = array();
             if($select_rand)  $tabs[] = 'rand';
             if($select_recent)  $tabs[] = 'recent';
@@ -74,10 +76,10 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 
             ?>
             <div class="kt_widget_tabs">
-                <ul class="clearfix">
-                    <?php if( $select_rand ){ ?><li><a href="#kt_tab_rand"><?php _e( 'Random', THEME_LANG ); ?></a></li><?php } ?>
-                    <?php if( $select_recent ){ ?><li><a href="#kt_tab_recent"><?php _e( 'Recent', THEME_LANG ); ?></a></li><?php } ?>
-                    <?php if( $select_comments ){ ?><li><a href="#kt_tab_comments"><i class="icon_chat_alt"></i> </a></li><?php } ?>
+                <ul class="clearfix kt-tabs-nav">
+                    <?php if( $select_rand ){ ?><li><a href="#kt_tab_rand<?php echo $rand; ?>"><?php _e( 'Random', THEME_LANG ); ?></a></li><?php } ?>
+                    <?php if( $select_recent ){ ?><li><a href="#kt_tab_recent<?php echo $rand; ?>"><?php _e( 'Recent', THEME_LANG ); ?></a></li><?php } ?>
+                    <?php if( $select_comments ){ ?><li><a href="#kt_tab_comments<?php echo $rand; ?>"><i class="icon_chat_alt"></i> </a></li><?php } ?>
                 </ul>
                 <div class="tabs-container">
                     <?php
@@ -100,7 +102,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                             $query = new WP_Query( apply_filters( 'widget_posts_args', $argsn ) );
 
                             ?>
-                            <div id="kt_tab_<?php echo $tab ?>" class="kt_tabs_content">
+                            <div id="kt_tab_<?php echo $tab ?><?php echo $rand; ?>" class="kt_tabs_content">
                                 <?php if ($query->have_posts()){ ?>
                                     <ul>
                                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
@@ -126,7 +128,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 
 
                     <?php if( $select_comments ){ ?>
-                        <div id="kt_tab_comments" class="kt_tabs_content">
+                        <div id="kt_tab_comments<?php echo $rand; ?>" class="kt_tabs_content">
                         <?php
                             $args_comments = array(
                                 'orderby' => 'date',

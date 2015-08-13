@@ -608,6 +608,7 @@ select:not([multiple]) {
     color: #d0a852;
 }
 
+
 /* ==============================
    5. Breadcrumb
    ============================== */
@@ -1619,11 +1620,22 @@ h2.widgettitle a.rsswidget:first-child,
     margin-left: 0;
 }
 
-.widget_kt_posts ul.kt-artilce-2 li .entry-thumb{
-    
+.widget_kt_posts ul.kt-artilce-2 li{
+    margin-bottom: 30px;
 }
 
-    /*===== Widget Twitter =====*/
+.kt_tabs_content .kt-comment-content{
+    line-height: 1.6;
+}
+
+.kt_widget_tabs .kt-tabs-nav li{
+    width: 33.33%;
+}
+.kt_widget_tabs .kt-tabs-nav li a{
+    padding-left: 0;
+    padding-right: 0;
+}
+/*===== Widget Twitter =====*/
 
 .widget_kt_twitter ul {
     margin: 0;
@@ -1905,6 +1917,11 @@ h2.widgettitle a.rsswidget:first-child,
     font-style: italic;
 }
 
+.widget_rss ul li a.rsswidget{
+    display: inline-block;
+    line-height: 1.5;
+}
+
 .yith-woocompare-widget ul.products-list li a.title {
     width: 100%;
     display: block;
@@ -1915,45 +1932,9 @@ h2.widgettitle a.rsswidget:first-child,
     overflow: hidden;
 }
 
-.ui-tabs-nav{
-    margin: 0 0px 20px 1px !important;
-    padding: 0;
-    list-style: none;
-}
-.ui-tabs-nav li{
-    background-color: #eeeeee;
-    border: 1px solid #e3e3e3;
-    border-radius: 0;
-    float: left;
-    margin: 0 0 0 -1px;
-    padding: 0;
-    text-align: center;
-    width: 33.33%;
-}
-.ui-tabs-nav li.ui-state-active{
-    background: #ffffff;
-    border-bottom-color: #ffffff;
-    z-index: 2;
-}
-
-.ui-tabs-nav li a {
-    font-size: 12px;
-    font-weight: normal;
-    text-transform: uppercase;
-    font-family: Montserrat;
-    display: block;
-    padding: 6px 0;
-    color: #282828;
-}
-
-.ui-tabs-nav li a:hover,
-.ui-tabs-nav li.ui-state-active a{
-
-}
-
-    /* ==============================
-       10. Search Fullwidth
-       ============================== */
+/* ==============================
+   10. Search Fullwidth
+   ============================== */
 .mfp-close {
     font-family: "Times New Roman", Helvetica, Arial, sans-serif;
 }
@@ -2890,12 +2871,43 @@ body.footer_fixed .static-footer {
 }
 
 /* ==============================
-   15. Custom Revolution Slider
+   15. Visual Composer & Shortcode
    ============================== */
 
-/* ==============================
-   15. Visual Composer
-   ============================== */
+.kt-tabs-nav{
+    margin: 0 0 20px 1px;
+    padding: 0;
+    list-style: none;
+}
+
+.kt-tabs-nav li{
+    float: left;
+    padding: 0;
+    text-align: center;
+}
+
+.kt-tabs-nav li a {
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: Montserrat;
+    display: block;
+    padding: 6px 15px;
+    color: #282828;
+    margin: 0 0 0 -1px;
+    background-color: #eeeeee;
+    border: 1px solid #e3e3e3;
+}
+
+.kt-tabs-nav li.ui-state-active a{
+    background: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.kt-tabs-nav li a:hover{
+
+}
+
 .vc_row {
     position: relative;
 }
