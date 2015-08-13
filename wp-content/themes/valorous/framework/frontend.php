@@ -931,6 +931,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         "show_comment" => false,
                         "show_date" => true,
                         'show_meta' => true,
+                        "show_like_post" => false,
                         "date_format" => 'M d Y',
                         'thumbnail_type' => 'image',
                         "class" => '',
