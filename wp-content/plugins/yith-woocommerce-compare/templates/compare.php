@@ -211,7 +211,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
         });
 
         // remove add to cart button after added
-        $('body').on('added_to_cart', function(){
+        $('body').on('added_to_cart', function( ev, fragments, cart_hash, button ){
             button_clicked.hide();
 
             <?php if ( $is_iframe ) : ?>
@@ -219,7 +219,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 
             // Replace fragments
             if ( fragments ) {
-                $.each(fragments, function(key, value) {console.log( key, window.parent.document );
+                $.each(fragments, function(key, value) {
                     $(key, window.parent.document).replaceWith(value);
                 });
             }

@@ -93,7 +93,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 
 			add_action( 'woocommerce_admin_field_woocompare_image_width', array( $this, 'admin_fields_woocompare_image_width' ) );
 			add_action( 'woocommerce_admin_field_woocompare_attributes', array( $this, 'admin_fields_attributes' ), 10, 1 );
-			add_action( 'woocommerce_update_option_woocompare_attributes', array( $this, 'admin_update_custom_option' ), 10, 1 );
+			add_filter( 'woocommerce_admin_settings_sanitize_option_yith_woocompare_fields_attrs', array( $this, 'admin_update_custom_option' ), 10, 3 );
 
 			// YITH WCWL Loaded
 			do_action( 'yith_woocompare_loaded' );
@@ -401,20 +401,24 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		 *
 		 * @access public
 		 * @param mixed $value
-		 * @return void
+		 * @param mixed $option
+		 * @param mixed $raw_value
+		 * @return mixed
 		 * @since 1.0.0
 		 */
-		public function admin_update_custom_option( $value ) {
+		public function admin_update_custom_option( $value, $option, $raw_value ) {
 
 			$val            = array();
-			$checked_fields = isset( $_POST[ $value['id'] ] ) ? $_POST[ $value['id'] ] : array();
-			$fields         = array_map( 'trim', explode( ',', $_POST[ $value['id'] . '_positions' ] ) );
+			$checked_fields = isset( $_POST[ $option['id'] ] ) ? maybe_unserialize( $_POST[ $option['id'] ] ) : array();
+			$fields         = array_map( 'trim', explode( ',', $_POST[ $option['id'] . '_positions' ] ) );
 
 			foreach ( $fields as $field ) {
 				$val[ $field ] = in_array( $field, $checked_fields );
 			}
 
-			update_option( str_replace( '_attrs', '', $value['id'] ), $val );
+			update_option( str_replace( '_attrs', '', $option['id'] ), $val );
+
+			return $value;
 		}
 
 		/**
@@ -435,6 +439,8 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 				wp_enqueue_style( 'yith_woocompare_admin', YITH_WOOCOMPARE_URL . 'assets/css/admin.css' );
 				wp_enqueue_script( 'yith_woocompare', YITH_WOOCOMPARE_URL . 'assets/js/woocompare-admin.js', array( 'jquery', 'jquery-ui-sortable' ) );
 			}
+
+			do_action( 'yith_woocompare_enqueue_styles_scripts' );
 		}
 	}
 }

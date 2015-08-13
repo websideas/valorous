@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: wc, shop, woocommerce, compare, compare products, product compare, widget, comparison, product comparison, compare table
 Requires at least: 3.5.1
 Tested up to: 4.2.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,11 @@ Yes, you can sort the fields in the compare table. You can do it in YIT Plugins 
 3. The settings of plugin
 
 == Changelog ==
+
+= 2.0.2 =
+
+* Added: Compatibility with WooCommerce 2.4
+* Updated: Core plugin
 
 = 2.0.1 =
 
@@ -176,8 +181,7 @@ Full documentation is available [here](http://yithemes.com/docs-plugins/yith-woo
 
 == Upgrade notice ==
 
-= 2.0.1 =
+= 2.0.2 =
 
-* Fixed: Compare table layout
-* Fixed: undefined function unblock() in main js
+* Added: Compatibility with WooCommerce 2.4
 * Updated: Core plugin
