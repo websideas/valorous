@@ -742,12 +742,17 @@ if ( ! function_exists( 'kt_get_post_views' ) ){
     function kt_get_post_views($postID){
         $count_key = 'kt_post_views_count';
         $count = get_post_meta($postID, $count_key, true);
-        if( $count=='' || $count == 0 ){
+
+        if( $count == '' || $count == 0 ){
             delete_post_meta($postID, $count_key);
             add_post_meta($postID, $count_key, '0');
-            return '<span class="post-view">'.__('0 View',THEME_LANG).'</span>';
+            $count = 0;
         }
-        return '<span class="post-view">'.$count.__(' Views',THEME_LANG).'</span>';
+
+        $text = ($count == 0 || $count == 1) ? __('View',THEME_LANG) : __('Views',THEME_LANG);
+
+        return '<span class="post-view">'.$count.' '.$text.'</span>';
+
     }
 }
 

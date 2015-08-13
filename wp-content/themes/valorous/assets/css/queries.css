@@ -133,13 +133,7 @@ only screen and (min-resolution: 144dpi) {
     }
 
     /* Posts */
-    .featured-vertical-item{
-        float: none;
-        width: auto;
-    }
-    .featured-vertical-item .featured-vertical-image{
-        height: 200px;
-    }
+
     /* Footer */
     #footer-bottom .instagram_bg li:nth-child(8) ~ li{
         display: none;
