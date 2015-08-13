@@ -1570,11 +1570,17 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_posts ul li:last-child {
     margin-bottom: 0;
 }
+
+.kt_tabs_content ul li .entry-thumb,
+.widget_kt_posts ul li .entry-thumb {
+    margin-bottom: 15px;
+}
+
 .kt_tabs_content ul li .title,
 .widget_kt_posts ul li .title {
-    font-size: 13px;
-    line-height: normal;
-    margin: -3px 0 3px;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 0 0 7px;
     text-transform: uppercase;
 }
 .kt_tabs_content ul li .title a,
@@ -1613,7 +1619,11 @@ h2.widgettitle a.rsswidget:first-child,
     margin-left: 0;
 }
 
-/*===== Widget Twitter =====*/
+.widget_kt_posts ul.kt-artilce-2 li .entry-thumb{
+    
+}
+
+    /*===== Widget Twitter =====*/
 
 .widget_kt_twitter ul {
     margin: 0;
@@ -1906,7 +1916,7 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 .ui-tabs-nav{
-    margin: 0 0 0 1px!important;
+    margin: 0 0px 20px 1px !important;
     padding: 0;
     list-style: none;
 }
@@ -1916,7 +1926,9 @@ h2.widgettitle a.rsswidget:first-child,
     border-radius: 0;
     float: left;
     margin: 0 0 0 -1px;
-    padding: 0 20px;
+    padding: 0;
+    text-align: center;
+    width: 33.33%;
 }
 .ui-tabs-nav li.ui-state-active{
     background: #ffffff;
@@ -1925,11 +1937,11 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 .ui-tabs-nav li a {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     text-transform: uppercase;
     font-family: Montserrat;
-    display: inline-block;
+    display: block;
     padding: 6px 0;
     color: #282828;
 }

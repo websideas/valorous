@@ -14,7 +14,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 	public function __construct() {
 
         $widget_ops = array('classname' => 'widget_kt_post_tabs', 'description' => __( "Display popular posts, recent posts and comments in tabbed format.") );
-        parent::__construct('kt_posts', __('KT: Post Tabs', THEME_LANG), $widget_ops);
+        parent::__construct('kt_post_tabs', __('KT: Post Tabs', THEME_LANG), $widget_ops);
         $this->alt_option_name = 'widget_kt_post_tabs';
 
         add_action( 'save_post', array($this, 'flush_widget_cache') );
@@ -42,7 +42,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
             return;
         }
 
-        //ob_start();
+        ob_start();
 
 
 
@@ -77,7 +77,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                 <ul class="clearfix">
                     <?php if( $select_rand ){ ?><li><a href="#kt_tab_rand"><?php _e( 'Random', THEME_LANG ); ?></a></li><?php } ?>
                     <?php if( $select_recent ){ ?><li><a href="#kt_tab_recent"><?php _e( 'Recent', THEME_LANG ); ?></a></li><?php } ?>
-                    <?php if( $select_comments ){ ?><li><a href="#kt_tab_comments"><?php _e( 'Comments', THEME_LANG ); ?></a></li><?php } ?>
+                    <?php if( $select_comments ){ ?><li><a href="#kt_tab_comments"><i class="icon_chat_alt"></i> </a></li><?php } ?>
                 </ul>
                 <div class="tabs-container">
                     <?php
@@ -139,7 +139,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                             if ( $comments ) { ?>
                                 <ul>
                                     <?php foreach ( $comments as $comment ) { ?>
-                                        <li>
+                                        <li class="clearfix">
                                             <?php if($show_thumbnail){ ?>
                                                 <a class="entry-thumb" href="<?php echo get_comment_link($comment->comment_ID); ?>">
                                                     <?php echo get_avatar( $comment->comment_author_email, 70 ); ?>
@@ -181,14 +181,13 @@ class WP_Widget_KT_Tabs extends WP_Widget {
         
         echo $args['after_widget'];
 
-        /*
         if ( ! $this->is_preview() ) {
             $cache[ $args['widget_id'] ] = ob_get_flush();
-            wp_cache_set( 'widget_kt_posts', $cache, 'widget' );
+            wp_cache_set( 'widget_kt_post_tabs', $cache, 'widget' );
         } else {
             ob_end_flush();
         }
-*/
+
 	}
 
 	public function update( $new_instance, $old_instance ) {

@@ -90,8 +90,9 @@ class Widget_KT_Posts extends WP_Widget {
             if ( $title ) {
                 echo $args['before_title'] . $title . $args['after_title'];
             }
+            if(!$show_image){ $no_image = 'no-image'; }else{ $no_image = ''; }
             ?>
-            <ul class="kt-artilce-<?php echo esc_attr($layout) ?>">
+            <ul class="kt-artilce-<?php echo esc_attr($layout) ?><?php echo ' '.$no_image; ?>">
                 <?php while ( $r->have_posts() ) : $r->the_post(); ?>
                     <li <?php post_class('article-widget clearfix'); ?>>
                         <?php
