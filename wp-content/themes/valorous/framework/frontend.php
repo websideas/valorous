@@ -60,6 +60,7 @@ function theme_setup() {
         add_image_size( 'small', 170, 170, true );
         add_image_size( 'blog_post', 1140, 450, true );
         add_image_size( 'blog_post_sidebar', 1140, 450, false );
+        add_image_size( 'kt_ads', 125, 125, true );
     }
     
     load_theme_textdomain( THEME_LANG, THEME_DIR . '/languages' );
