@@ -37,6 +37,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'show_comment' => 'true',
             "show_date" => 'true',
             "date_format" => 'd F Y',
+            "show_like_post" => 'true',
 
             'css' => '',
             'css_animation' => '',
@@ -133,6 +134,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 "show_comment" => apply_filters('sanitize_boolean', $show_comment),
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
                 "date_format" => $date_format,
+                "show_like_post" => apply_filters('sanitize_boolean', $show_like_post),
                 'thumbnail_type' => $thumbnail_type,
                 'sharebox' => apply_filters('sanitize_boolean', $sharebox),
                 "class" => ''
@@ -578,7 +580,15 @@ vc_map( array(
                 'value' => array( 'true'),
             ),
         ),
-
+        array(
+            'type' => 'kt_switch',
+            'heading' => __( 'Show Like Post', THEME_LANG ),
+            'param_name' => 'show_like_post',
+            'value' => 'true',
+            "description" => __("Show or hide the like post.", THEME_LANG),
+            'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
+        ),
 
         array(
             'type' => 'css_editor',

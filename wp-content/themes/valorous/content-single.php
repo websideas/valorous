@@ -28,7 +28,9 @@
                 }
                 echo kt_get_post_views( get_the_ID() );
                 
-                kt_like_post();
+                if(kt_option('blog_like_post', 1)){
+                    kt_like_post();
+                }
                 ?>
             </div>
         <?php } ?>

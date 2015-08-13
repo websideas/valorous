@@ -36,7 +36,9 @@
                             }
                             echo kt_get_post_views( get_the_ID() );
                             
-                            kt_like_post();
+                            if($blog_atts['show_like_post']){
+                                kt_like_post();
+                            }
                         ?>
                     </div>
                 <?php } ?>

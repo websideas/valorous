@@ -30,6 +30,9 @@
                         if($blog_atts['show_date']){
                             kt_entry_meta_time($blog_atts['date_format']);
                         }
+                        if($blog_atts['show_like_post']){
+                            kt_like_post();
+                        }
                         ?>
                     </div><!-- .entry-meta-data -->
                 <?php } ?>

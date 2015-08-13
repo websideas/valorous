@@ -1113,7 +1113,6 @@
                     .text(response.count)
                     .addClass('liked')
                     .attr('title', objPost.data('already'));
-                     
             }, 'json');
         });
     }

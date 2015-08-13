@@ -51,6 +51,7 @@ get_header(); ?>
                             "show_date" => apply_filters('sanitize_boolean', $settings['show_date']),
                             "show_excerpt" => apply_filters('sanitize_boolean', $settings['show_excerpt']),
                             "date_format" => $settings['date_format'],
+                            "show_like_post" => apply_filters('sanitize_boolean', $settings['show_like_post']),
                             'thumbnail_type' => $settings['thumbnail_type'],
                             'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
                             "class" => ''

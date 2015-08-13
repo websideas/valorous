@@ -2534,13 +2534,23 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default' => 'd F Y',
                         'required' => array('archive_meta','equals', array( 1 ) ),
                     ),
-
+                    
+                    array(
+                        'id' => 'archive_like_post',
+                        'type' => 'switch',
+                        'title' => __('Like Post', THEME_LANG),
+                        'desc' => __('Show like post in blog posts.', THEME_LANG),
+                        'default' => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('archive_meta','equals', array( 1 ) ),
+                    ),
                 )
             );
 
 
             /**
-             *	Archive settings
+             *	Author settings
              **/
             $this->sections[] = array(
                 'id'			=> 'author_section',
@@ -2818,7 +2828,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default' => 'd F Y',
                         'required' => array('author_meta','equals', array( 1 ) ),
                     ),
-
+                    
+                    array(
+                        'id' => 'author_like_post',
+                        'type' => 'switch',
+                        'title' => __('Like Post', THEME_LANG),
+                        'desc' => __('Show like post in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('author_meta','equals', array( 1 ) ),
+                    ),
                 )
             );
 
@@ -3055,7 +3075,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default' => 'd F Y',
                         'required' => array('blog_meta_date','equals', array( 1 ) ),
                     ),
-
+                    
+                    array(
+                        'id' => 'blog_like_post',
+                        'type' => 'switch',
+                        'title' => __('Like Post', THEME_LANG),
+                        'desc' => __('Show like post in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required'  => array('blog_meta', "=", 1),
+                    ),
                 )
             );
 
@@ -3325,6 +3355,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'time' => __( 'Time ago', 'js_composer' ) ,
                         ),
                         'default' => 'd F Y',
+                        'required' => array('search_meta','equals', array( 1 ) ),
+                    ),
+                    
+                    array(
+                        'id' => 'search_like_post',
+                        'type' => 'switch',
+                        'title' => __('Like Post', THEME_LANG),
+                        'desc' => __('Show like post in blog posts.', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
                         'required' => array('search_meta','equals', array( 1 ) ),
                     ),
                 )
