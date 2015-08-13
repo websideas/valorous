@@ -84,15 +84,14 @@ class Widget_KT_Posts extends WP_Widget {
             $layout = ( ! empty( $instance['layout'] ) ) ? absint( $instance['layout'] ) : 1;
             if ( ! $layout )
                 $layout = 1;
-            ?>
-            <?php echo $args['before_widget']; ?>
-            <?php
+
+            echo $args['before_widget'];
+
             if ( $title ) {
                 echo $args['before_title'] . $title . $args['after_title'];
             }
-            if(!$show_image){ $no_image = 'no-image'; }else{ $no_image = ''; }
             ?>
-            <ul class="kt-artilce-<?php echo esc_attr($layout) ?><?php echo ' '.$no_image; ?>">
+            <ul class="kt-artilce-<?php echo esc_attr($layout) ?>">
                 <?php while ( $r->have_posts() ) : $r->the_post(); ?>
                     <li <?php post_class('article-widget clearfix'); ?>>
                         <?php
@@ -117,8 +116,10 @@ class Widget_KT_Posts extends WP_Widget {
                     </li>
                 <?php endwhile; ?>
             </ul>
-            <?php echo $args['after_widget']; ?>
             <?php
+
+            echo $args['after_widget'];
+
             // Reset the global $the_post as this query will have stomped on it
             wp_reset_postdata();
 

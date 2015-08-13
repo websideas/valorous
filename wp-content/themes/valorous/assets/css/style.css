@@ -303,6 +303,7 @@ blockquote.simple .blockquote-content{
 input[type=email],
 input[type=password],
 input[type=phone],
+input[type=tel],
 input[type=text],
 textarea {
     border-radius: 0;
@@ -580,8 +581,8 @@ select:not([multiple]) {
 .btn.btn-dark-b:hover,
 .btn.btn-dark-b:focus {
     color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
+    border-color: #282828;
+    background: #282828;
 }
 
 /* Border more */
@@ -1902,6 +1903,10 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_facebook,
 .widget_kt_google {
     overflow: hidden;
+}
+
+.ui-tabs-nav{
+
 }
 
 /* ==============================
@@ -5778,6 +5783,10 @@ body.layout-boxed #page {
 .page-header .breadcrumbs,
 .page-header .breadcrumbs a {
     color: #313131;
+}
+
+.page-header .breadcrumbs a:hover{
+    text-decoration: underline;
 }
 
 .page-header-left {

@@ -43,6 +43,34 @@ add_filter( 'previous_posts_link_attributes', 'kt_previous_posts_link_attributes
 
 
 
+if ( ! function_exists( 'kt_track_post_views' ) ){
+    /**
+     * Track post views
+     *
+     * @param $post_id
+     */
+    function kt_track_post_views ($post_id) {
+        if ( empty ( $post_id) ) {
+            global $post;
+            $post_id = $post->ID;
+        }
+
+        if('post' == get_post_type() && is_single()) {
+            $count_key = 'kt_post_views_count';
+            $count = get_post_meta($post_id, $count_key, true);
+            if($count==''){
+                $count = 0;
+                delete_post_meta($post_id, $count_key);
+                add_post_meta($post_id, $count_key, '0');
+            }else{
+                $count++;
+                update_post_meta($post_id, $count_key, $count);
+            }
+        }
+    }
+}
+add_action( 'wp_head', 'kt_track_post_views');
+
 /**
  * Add page header
  *

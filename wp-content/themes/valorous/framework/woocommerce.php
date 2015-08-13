@@ -391,7 +391,7 @@ function woocommerce_shop_loop_item_action_action_product(){
 
 add_action('woocommerce_before_cart_table', 'kt_woocommerce_before_cart_table', 20);
 function kt_woocommerce_before_cart_table( $args ){
-    $html = '<h2>'. sprintf( __( 'Your shopping cart: <span>(%d items)</span>', THEME_LANG ), WC()->cart->cart_contents_count ) . '</h2>';
+    $html = '<h2 class="shopping-cart-title">'. sprintf( __( 'Your shopping cart: <span>(%d items)</span>', THEME_LANG ), WC()->cart->cart_contents_count ) . '</h2>';
 	echo $html;
 }
 

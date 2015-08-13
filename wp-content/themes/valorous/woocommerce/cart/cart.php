@@ -145,7 +145,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         <p>
                             <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" />
                         </p>
-                        <input type="submit" class="btn btn-darkl" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+                        <input type="submit" class="btn btn-darkl btn-block" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
                         <?php do_action( 'woocommerce_cart_coupon' ); ?>
                     </div>
                 </form>

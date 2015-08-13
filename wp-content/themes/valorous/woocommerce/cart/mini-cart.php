@@ -66,10 +66,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<p class="buttons">
         <span>
-		    <a href="<?php echo WC()->cart->get_cart_url(); ?>" class="btn btn-dark wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+		    <a href="<?php echo WC()->cart->get_cart_url(); ?>" class="btn btn-dark-b wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
         </span>
         <span>
-		    <a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="btn btn-default checkout"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+		    <a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="btn btn-default-b checkout"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
         </span>
 	</p>
 

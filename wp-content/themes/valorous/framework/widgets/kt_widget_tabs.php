@@ -7,16 +7,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * KT tabs widget class
  *
- * @since 2.8.0
+ * @since 1.0
  */
 class WP_Widget_KT_Tabs extends WP_Widget {
 
 	public function __construct() {
-		$widget_ops = array('classname' => 'widget_kt_tabs', 'description' => __( 'Display popular posts, recent posts, comments, and tags in tabbed format.', THEME_LANG ) );
-		parent::__construct('kt_tabs', __('KT: Widget Tabs', THEME_LANG ), $widget_ops);
+
+        $widget_ops = array('classname' => 'widget_kt_posts', 'description' => __( "Display popular posts, recent posts and comments in tabbed format.") );
+        parent::__construct('kt_posts', __('KT: Post Tabs', THEME_LANG), $widget_ops);
+        $this->alt_option_name = 'widget_kt_post_tabs';
+
+        add_action( 'save_post', array($this, 'flush_widget_cache') );
+        add_action( 'deleted_post', array($this, 'flush_widget_cache') );
+        add_action( 'switch_theme', array($this, 'flush_widget_cache') );
+
 	}
 
 	public function widget( $args, $instance ) {
+        $cache = array();
+        if ( ! $this->is_preview() ) {
+            $cache = wp_cache_get( 'widget_kt_posts', 'widget' );
+        }
+
+        if ( ! is_array( $cache ) ) {
+            $cache = array();
+        }
+
+        if ( ! isset( $args['widget_id'] ) ) {
+            $args['widget_id'] = $this->id;
+        }
+
+        if ( isset( $cache[ $args['widget_id'] ] ) ) {
+            echo $cache[ $args['widget_id'] ];
+            return;
+        }
+
+        ob_start();
+
+
 
         $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
         
@@ -41,8 +69,7 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                     <?php if( $select_recent ){ ?><li><a href="#kt_tab_recent"><?php _e( 'Recent', THEME_LANG ); ?></a></li><?php } ?>
                     <?php if( $select_comments ){ ?><li><a href="#kt_tab_comments"><?php _e( 'Comments', THEME_LANG ); ?></a></li><?php } ?>
                 </ul>
-                <?php if(!$show_thumbnail){ $no_image = 'class="no-image"'; }else{ $no_image = ''; } ?>
-                
+                <div class="tabs-container">
                 <?php if( $select_rand ){ ?>
                     <?php
                         $args_rand =  array(
@@ -164,10 +191,22 @@ class WP_Widget_KT_Tabs extends WP_Widget {
                         <?php } ?>
                     </div>
                 <?php } ?>
+
+
+                </div>
             </div>
         <?php }
         
-        echo $args['after_widget'];    
+        echo $args['after_widget'];
+
+
+        if ( ! $this->is_preview() ) {
+            $cache[ $args['widget_id'] ] = ob_get_flush();
+            wp_cache_set( 'widget_kt_posts', $cache, 'widget' );
+        } else {
+            ob_end_flush();
+        }
+
 	}
 
 	public function update( $new_instance, $old_instance ) {
@@ -181,9 +220,19 @@ class WP_Widget_KT_Tabs extends WP_Widget {
         $instance['number'] = (int) $new_instance['number'];
         $instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
         $instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
-        
-		return $instance;
+
+        $this->flush_widget_cache();
+
+        $alloptions = wp_cache_get( 'alloptions', 'options' );
+        if ( isset($alloptions['widget_kt_posts']) )
+            delete_option('widget_kt_posts');
+
+        return $instance;
 	}
+
+    public function flush_widget_cache() {
+        wp_cache_delete('widget_kt_post_tabs', 'widget');
+    }
 
 	public function form( $instance ) {
 		$title = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : __( 'Widget Tabs' , THEME_LANG);
@@ -231,4 +280,13 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 <?php
 	}
 }
+
+
+
+/**
+ * Register KT_Tabs widget
+ *
+ *
+ */
+
 register_widget( 'WP_Widget_KT_Tabs' );

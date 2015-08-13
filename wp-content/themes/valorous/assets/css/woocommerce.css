@@ -1125,13 +1125,13 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs:before{
-    border-color: #282828;
+    border-color: #e3e3e3;
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li{
     border-radius: 0;
     margin: 0 10px 0 0;
-    border-color: #282828;
+    border-color: #e3e3e3;
     float: left;
     padding: 0 20px;
     background-color: #eeeeee;
@@ -1154,7 +1154,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 
 .woocommerce div.product .woocommerce-tabs .woocommerce-tabs-content{
-    border: 1px solid #282828;
+    border: 1px solid #e3e3e3;
     margin: -1px 0 0;
     padding: 30px 20px 20px;
 }
@@ -1212,6 +1212,11 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .woocommerce .cart-collaterals .coupon,
 .woocommerce-page .cart-collaterals .coupon{
     margin-bottom: 30px;
+}
+
+.woocommerce-cart .wc-proceed-to-checkout{
+    padding: 0;
+    margin-bottom: 40px;
 }
 
 .woocommerce .cart-collaterals .cross-sells,
@@ -1329,12 +1334,45 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 /** =========================
     9. Page Checkout
 *** =========================*/
+
+.woocommerce-checkout h2,
+.woocommerce-account h2,
+.woocommerce-checkout h3,
+.woocommerce-account h3 {
+    font-size: 17px;
+    margin-bottom: 28px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+#ship-to-different-address label{
+    font-weight: normal;
+}
+
+.woocommerce .shopping-cart-title,
+.woocommerce-page .shopping-cart-title,
+.woocommerce .coupon h3,
+.woocommerce-page .coupon h3,
+.woocommerce div.cart-collaterals h2,
+.woocommerce-page .div.cart-collaterals h2 {
+    font-size: 19px;
+    letter-spacing: 0;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.woocommerce .shopping-cart-title span,
+.woocommerce-page .shopping-cart-title span{
+    font-size: smaller;
+    text-transform: none;
+}
+
 #customer_details{
     margin-bottom: 20px;
 }
 #customer_details .woocommerce-billing-fields,
 #customer_details .woocommerce-shipping-fields{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 #form-order-review{
     border: 2px solid #d0a852;
