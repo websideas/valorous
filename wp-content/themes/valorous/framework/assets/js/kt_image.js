@@ -12,7 +12,7 @@
             e.preventDefault();
 
             var $button = $( this ),
-                $widget = $button.closest('.widget-content'),
+                $widget = $button.closest('.wrapper_kt_image_upload'),
                 $preview = $widget.find('.kt_image_preview'),
                 $preview_img = $preview.find('img'),
                 $attachment = $widget.find('.kt_image_attachment'),

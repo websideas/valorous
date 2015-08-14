@@ -1950,6 +1950,23 @@ h2.widgettitle a.rsswidget:first-child,
 .ui-tabs-nav li.ui-state-active a{
 
 }
+/*===== Widget Ads =====*/
+.kt-ads-content{
+    margin:-10px;
+}
+.kt-ads-content a,
+.kt-ads-content > img{
+    display: block;
+    overflow: hidden;
+    width:50%;
+    float:left;
+}
+.kt-ads-content > img{
+    max-width:125px;
+}
+.kt-ads-content a{
+    padding:10px;
+} 
 
     /* ==============================
        10. Search Fullwidth

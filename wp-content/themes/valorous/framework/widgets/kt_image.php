@@ -80,13 +80,15 @@ class WP_Widget_KT_Image extends WP_Widget {
 	?>
         <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
-        <p style="text-align: center;">
-            <input type="button" style="width: 100%; padding: 10px; height: auto;" class="button kt_image_upload" value="<?php esc_attr_e('Select your image', THEME_LANG) ?>" />
-            <input class="widefat kt_image_attachment" id="<?php echo $this->get_field_id('attachment'); ?>" name="<?php echo $this->get_field_name('attachment'); ?>" type="hidden" value="<?php echo esc_attr($attachment); ?>" />
-        </p>
-        <p class="kt_image_preview" style="<?php if($preview){ echo "display: block;";} ?>">
-            <img src="<?php echo esc_url($img_preview); ?>" alt="" class="kt_image_preview_img" />
-        </p>
+        <div class="wrapper_kt_image_upload">
+            <p style="text-align: center;">
+                <input type="button" style="width: 100%; padding: 10px; height: auto;" class="button kt_image_upload" value="<?php esc_attr_e('Select your image', THEME_LANG) ?>" />
+                <input class="widefat kt_image_attachment" id="<?php echo $this->get_field_id('attachment'); ?>" name="<?php echo $this->get_field_name('attachment'); ?>" type="hidden" value="<?php echo esc_attr($attachment); ?>" />
+            </p>
+            <p class="kt_image_preview" style="<?php if($preview){ echo "display: block;";} ?>">
+                <img src="<?php echo esc_url($img_preview); ?>" alt="" class="kt_image_preview_img" />
+            </p>
+        </div>
         <p style="clear: both;">
             <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link:', THEME_LANG); ?></label> 
             <input class="widefat" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="text" value="<?php echo esc_attr($link); ?>" />
