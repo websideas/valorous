@@ -1983,6 +1983,59 @@ h2.widgettitle a.rsswidget:first-child,
 .kt-ads-content a{
     padding:5px;
 }
+/*===== Flickr =====*/
+.kt_flickr{
+    margin:-5px;
+}
+.kt_flickr a{
+    display: block;
+    width:33.33%;
+    float:left;
+    padding:5px;
+    position: relative;
+}
+.kt_flickr a img{
+    display: block;
+    width:100%;
+    height:auto;
+}
+.kt_flickr a:after{
+    background: #d0a852;
+    content: "";
+    right:5px;
+    left: 5px;
+    top:5px;
+    bottom:5px;
+    position: absolute;
+    transition: opacity 0.2s linear 0s;
+    -webkit-transition: opacity 0.2s linear 0s;
+    -moz-transition: opacity 0.2s linear 0s;
+    -o-transition: opacity 0.2s linear 0s;
+    opacity: 0;
+}
+.kt_flickr a:before{
+    color: #fff;
+    content: "\f16e";
+    font-family: "FontAwesome";
+    font-size: 14px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+}
+.kt_flickr a:hover:before{
+    opacity: 1;
+}
+.kt_flickr a:hover:after{
+    opacity: 0.6;
+}
+
+
 /* ==============================
    10. Search Fullwidth
    ============================== */

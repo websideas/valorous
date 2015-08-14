@@ -159,6 +159,7 @@ $kt_widgets = array(
     'kt_instagram.php',
     'kt_widget_tabs.php',
     'kt_ads.php',
+    'kt_flickr.php',
 );
 
 foreach ( $kt_widgets as $widget ) {
