@@ -93,6 +93,7 @@ function kt_setting_script() {
             .featured-vertical-item .entry-main-content .cat-links a,
             .featured-carousel-item .entry-main-content .cat-links a,
             .widget_kt_instagram ul li a:after,
+            .kt_flickr a:after,
             body .mejs-controls .mejs-time-rail .mejs-time-current,
             body .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
 
