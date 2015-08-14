@@ -104,7 +104,11 @@ function kt_setting_script() {
             .woocommerce .product .yith-wcwl-add-button,
             .woocommerce .product .yith-wcwl-wishlistaddedbrowse,
             .woocommerce .product .yith-wcwl-wishlistexistsbrowse,
-
+            body .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
+            body .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+            body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
+            body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+            
             #cancel-comment-reply-link:hover {
                 background: <?php echo $accent; ?>;
             }

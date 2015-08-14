@@ -6681,7 +6681,7 @@ article.post-item {
 
 #related-article h2.entry-title {
     font-size: 14px;
-    margin: 0 0 5px;
+    margin: 0;
     padding: 0;
     text-transform: uppercase;
 }
