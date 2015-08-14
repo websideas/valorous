@@ -104,6 +104,7 @@ function kt_setting_script() {
             .woocommerce .product .yith-wcwl-add-button,
             .woocommerce .product .yith-wcwl-wishlistaddedbrowse,
             .woocommerce .product .yith-wcwl-wishlistexistsbrowse,
+
             body .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
@@ -125,6 +126,9 @@ function kt_setting_script() {
             .search-content-error .search-keyword,
             blockquote.classic footer,
             .post-link-content .post-link-url a,
+            .woocommerce div.product p.price,
+            .woocommerce div.product span.price,
+            .woocommerce .star-rating span:before,
 
             .readmore-link:hover,
             .blog-posts .entry-title a:hover,
@@ -154,10 +158,37 @@ function kt_setting_script() {
             .pagination .page-numbers.current,
             .widget_product_tag_cloud a:hover,
             .widget_tag_cloud a:hover,
-            .entry-share-box a:hover{
+            .entry-share-box a:hover,
+
+            .wc-single-product .functional-buttons-product .woocommerce.compare-button a:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-add-button a.add_to_wishlist:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistaddedbrowse a:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistexistsbrowse a:hover:before{
                 border-color: <?php echo $accent; ?>;
                 background: <?php echo $accent; ?>;
             }
+
+
+
+            .widget_nav_menu ul li a:hover:after,
+            .widget_product_categories ul li a:hover:after,
+            .widget_categories ul li a:hover:after,
+            .widget_archive ul li a:hover:after,
+            .widget_meta ul li a:hover:after,
+            .yith-woocompare-widget ul.products-list li a.title:hover:after{
+                background: <?php echo $accent; ?>;
+                color: <?php echo $accent; ?>;
+            }
+
+            .woocommerce div.product .cart .single_add_to_cart_button:hover,
+            .wc-single-product .functional-buttons-product .woocommerce.compare-button a:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-add-button a.add_to_wishlist:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistaddedbrowse a:hover:before,
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistexistsbrowse a:hover:before{
+                border-color: <?php echo $accent; ?>;
+                color: <?php echo $accent; ?>;
+            }
+
             .social-background-empty.social-style-accent a,
             .social-background-outline.social-style-accent a,
             .woocommerce .woocommerce-info{
@@ -171,16 +202,6 @@ function kt_setting_script() {
             .social-background-fill.social-style-accent a,
             .woocommerce.compare-button .blockUI.blockOverlay{
                 background: <?php echo $accent; ?>!important;
-            }
-
-            .widget_nav_menu ul li a:hover:after,
-            .widget_product_categories ul li a:hover:after,
-            .widget_categories ul li a:hover:after,
-            .widget_archive ul li a:hover:after,
-            .widget_meta ul li a:hover:after,
-            .yith-woocompare-widget ul.products-list li a.title:hover:after{
-                background: <?php echo $accent; ?>;
-                color: <?php echo $accent; ?>;
             }
 
         <?php } ?>
