@@ -13,17 +13,17 @@ class WP_Widget_KT_Ads extends WP_Widget {
 
 	public function __construct() {
 		$widget_ops = array('classname' => 'widget_kt_ads', 'description' => __( 'Ads for widget.', THEME_LANG ) );
-		parent::__construct('kt_ads', __('KT: Ads', THEME_LANG ), $widget_ops);
+		parent::__construct('kt_ads', __('KT: Ads 125x125', THEME_LANG ), $widget_ops);
 	}
 
 	public function widget( $args, $instance ) {
 
         $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
         
-        if(isset($instance['attachment1'])){ $attachment1 = get_thumbnail_attachment($instance['attachment1'], 'kt_ads'); }
-        if(isset($instance['attachment2'])){ $attachment2 = get_thumbnail_attachment($instance['attachment2'], 'kt_ads'); }
-        if(isset($instance['attachment3'])){ $attachment3 = get_thumbnail_attachment($instance['attachment3'], 'kt_ads'); }
-        if(isset($instance['attachment4'])){ $attachment4 = get_thumbnail_attachment($instance['attachment4'], 'kt_ads'); }
+        if(isset($instance['attachment1'])){ $attachment1 = get_thumbnail_attachment($instance['attachment1'], 'small'); }
+        if(isset($instance['attachment2'])){ $attachment2 = get_thumbnail_attachment($instance['attachment2'], 'small'); }
+        if(isset($instance['attachment3'])){ $attachment3 = get_thumbnail_attachment($instance['attachment3'], 'small'); }
+        if(isset($instance['attachment4'])){ $attachment4 = get_thumbnail_attachment($instance['attachment4'], 'small'); }
         
 		echo $args['before_widget'];
 

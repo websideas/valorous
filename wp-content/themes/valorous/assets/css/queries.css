@@ -119,7 +119,11 @@ only screen and (min-resolution: 144dpi) {
     body.admin-bar #mobile-nav-content{
         padding-top: 46px;
     }
-
+    
+    .kt-ads-content a,
+    .kt-ads-content > img{
+        max-width:125px;
+    }
 }
 
 

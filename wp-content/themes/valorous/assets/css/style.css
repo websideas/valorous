@@ -1970,7 +1970,7 @@ h2.widgettitle a.rsswidget:first-child,
 }
 /*===== Widget Ads =====*/
 .kt-ads-content{
-    margin:-10px;
+    margin:-5px;
 }
 .kt-ads-content a,
 .kt-ads-content > img{
@@ -1979,11 +1979,9 @@ h2.widgettitle a.rsswidget:first-child,
     width:50%;
     float:left;
 }
-.kt-ads-content > img{
-    max-width:125px;
-}
+.kt-ads-content > img,
 .kt-ads-content a{
-    padding:10px;
+    padding:5px;
 }
 /* ==============================
    10. Search Fullwidth
