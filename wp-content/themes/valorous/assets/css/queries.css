@@ -124,6 +124,10 @@ only screen and (min-resolution: 144dpi) {
     .kt-ads-content > img{
         max-width:125px;
     }
+    .kt_flickr a{
+        display: inline-block;
+        width:auto;
+    }
 }
 
 

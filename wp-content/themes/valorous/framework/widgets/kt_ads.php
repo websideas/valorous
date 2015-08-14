@@ -103,7 +103,7 @@ class WP_Widget_KT_Ads extends WP_Widget {
 		$link1 = esc_attr( $instance['link1'] );
         $attachment1 = esc_attr( $instance['attachment1'] );
         if($instance['attachment1']){
-            $file1 = get_thumbnail_attachment($instance['attachment1'], 'full');
+            $file1 = get_thumbnail_attachment($instance['attachment1'], 'small');
             $preview1 = true;
             $img_preview1 = $file1['url'];
         }
@@ -111,7 +111,7 @@ class WP_Widget_KT_Ads extends WP_Widget {
         $link2 = esc_attr( $instance['link2'] );
         $attachment2 = esc_attr( $instance['attachment2'] );
         if($instance['attachment2']){
-            $file2 = get_thumbnail_attachment($instance['attachment2'], 'full');
+            $file2 = get_thumbnail_attachment($instance['attachment2'], 'small');
             $preview2 = true;
             $img_preview2 = $file2['url'];
         }
@@ -119,7 +119,7 @@ class WP_Widget_KT_Ads extends WP_Widget {
         $link3 = esc_attr( $instance['link3'] );
         $attachment3 = esc_attr( $instance['attachment3'] );
         if($instance['attachment3']){
-            $file3 = get_thumbnail_attachment($instance['attachment3'], 'full');
+            $file3 = get_thumbnail_attachment($instance['attachment3'], 'small');
             $preview3 = true;
             $img_preview3 = $file3['url'];
         }
@@ -127,7 +127,7 @@ class WP_Widget_KT_Ads extends WP_Widget {
         $link4 = esc_attr( $instance['link4'] );
         $attachment4 = esc_attr( $instance['attachment4'] );
         if($instance['attachment4']){
-            $file4 = get_thumbnail_attachment($instance['attachment4'], 'full');
+            $file4 = get_thumbnail_attachment($instance['attachment4'], 'small');
             $preview4 = true;
             $img_preview4 = $file4['url'];
         }
@@ -193,7 +193,7 @@ class WP_Widget_KT_Ads extends WP_Widget {
             <label for="<?php echo $this->get_field_id('link4'); ?>"><?php _e('Link Ads 4:', THEME_LANG); ?></label> 
             <input class="widefat" id="<?php echo $this->get_field_id('link4'); ?>" name="<?php echo $this->get_field_name('link4'); ?>" type="text" value="<?php echo esc_attr($link4); ?>" />
         </p>
-        
+        <hr />
         <p>
 			<label for="<?php echo $this->get_field_id('target'); ?>"><?php _e( 'Target:', THEME_LANG); ?></label>
 			<select name="<?php echo $this->get_field_name('target'); ?>" id="<?php echo $this->get_field_id('target'); ?>" class="widefat">
