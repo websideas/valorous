@@ -117,9 +117,7 @@ function kt_setting_script() {
 
             blockquote,
             .blockquote-reverse,
-            blockquote.pull-right,
-            #form-order-review,
-            .woocommerce-checkout #payment{
+            blockquote.pull-right{
                 border-color: <?php echo $accent; ?>;
             }
 
@@ -191,8 +189,7 @@ function kt_setting_script() {
             }
 
             .social-background-empty.social-style-accent a,
-            .social-background-outline.social-style-accent a,
-            .woocommerce .woocommerce-info{
+            .social-background-outline.social-style-accent a{
                 border-color: <?php echo $accent; ?>!important;
             }
 

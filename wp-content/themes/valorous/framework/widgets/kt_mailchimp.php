@@ -47,7 +47,7 @@ class Widget_KT_Mailchimp extends WP_Widget {
                 $output .= ($instance['text_before']) ? '<div class="mailchimp-before">'.$instance['text_before'].'</div>' : '';
 
                 $email = '<div class="mailchimp-input-email"><input name="email" class="mailchimp-email" type="text" placeholder="'.__('E-mail address*', THEME_LANG).'"/></div>';
-                $button = '<div class="mailchimp-input-button"><button class="btn btn-default mailchimp-submit" type="submit">'.__('Subscribe', THEME_LANG).'</button></div>';
+                $button = '<div class="mailchimp-input-button"><button class="btn btn-default-b mailchimp-submit" type="submit">'.__('Subscribe', THEME_LANG).'</button></div>';
 
                 if(!$instance['disable_names']){
                     $name .= '<div class="mailchimp-input-name clearfix">';

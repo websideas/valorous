@@ -366,7 +366,7 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                     foreach($images as $image){
                         $galleries_html .= '<div class="recent-posts-item"><img src="'.$image['url'].'" alt="" /></div>';
                     }
-                    $atts = array( 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'center', 'margin' => 0, 'pagination' => 'false');
+                    $atts = array( 'navigation_always_on' => 'true', 'navigation_background' => "rgba(255,255,255,0.8)", 'navigation_color'=>"#5c5c5c", 'desktop' => 1, 'tablet' => 1, 'mobile' => 1, 'navigation_style' => "square", 'navigation_icon' => "fa fa-angle-left|fa fa-angle-right", 'navigation_position' => 'top_right', 'margin' => 0, 'pagination' => 'false');
                     $carousel_ouput = kt_render_carousel($atts);
                     echo str_replace('%carousel_html%', $galleries_html, $carousel_ouput);
 
@@ -561,7 +561,7 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
             return ;
         }elseif($type == 'loadmore'){
             printf(
-                '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button btn btn-default">%s %s</a></div>',
+                '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button btn btn-default-b">%s %s</a></div>',
                 '<span class="fa fa-refresh button-icon-left"></span>',
                 __('Load more', THEME_LANG)
             );
@@ -619,13 +619,15 @@ if ( ! function_exists( 'kt_entry_meta_categories' ) ) :
             $categories_list = get_the_category_list( _x( $separator, 'Used between list items, there is a space after the comma.', THEME_LANG ) );
             if ( $categories_list ) {
                 if($echo){
-                    printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s %3$s</span>',
                         _x( 'Categories', 'Used before category names.', THEME_LANG ),
+                        __('in', THEME_LANG),
                         $categories_list
                     );
                 }else{
-                    return sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+                    return sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s %3$s</span>',
                         _x( 'Categories', 'Used before category names.', THEME_LANG ),
+                        __('in', THEME_LANG),
                         $categories_list
                     );
                 }
@@ -726,10 +728,40 @@ if ( ! function_exists( 'kt_get_post_views' ) ){
 
         $text = ($count == 0 || $count == 1) ? __('View',THEME_LANG) : __('Views',THEME_LANG);
 
-        return '<span class="post-view">'.$count.' '.$text.'</span>';
+        return '<span class="post-view"><i class="fa fa-eye"></i> '.$count.' '.$text.'</span>';
 
     }
 }
+
+if ( ! function_exists( 'kt_like_post' ) ){
+    function kt_like_post( $before = '', $after = '', $post_id = null ) {
+        global $post;
+        if(!$post_id){ $post_id = $post->ID; }
+
+        $like_count = get_post_meta($post_id, '_like_post', true);
+
+        if( !$like_count ){
+            $like_count = 0;
+            add_post_meta($post_id, '_like_post', $like_count, true);
+        }
+
+        $text = ($like_count == 0 || $like_count == 1) ? __('like',THEME_LANG) : __('likes',THEME_LANG);
+
+        $class = 'kt_likepost';
+        $title = __('Like this post', THEME_LANG);
+        $already =  __('You already like this!', THEME_LANG);
+
+        if( isset($_COOKIE['like_post_'. $post_id]) ){
+            $class .= ' liked';
+            $title = $already;
+        }
+
+        $output = "<a data-id='".$post_id."' data-already='".esc_attr($already)."' class='".esc_attr($class)."' href='".get_the_permalink($post_id)."#".$post_id."' title='".esc_attr($title)."'>".$like_count.' '.$text."</a>";
+
+        echo $before . $output . $after;
+    }
+}
+
 
 
 /* ---------------------------------------------------------------------------

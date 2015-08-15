@@ -38,7 +38,7 @@ if ( $products->have_posts() ) : ?>
 
 	<div class="cross-sells">
 
-		<h2><?php _e( 'You may be interested in&hellip;', 'woocommerce' ) ?></h2>
+		<h3><?php _e( 'You may be interested in&hellip;', 'woocommerce' ) ?></h3>
         <div class="woocommerce-carousel-wrapper" data-theme="style-navigation-top" data-itemscustom="<?php echo apply_filters( 'woocommerce_single_product_carousel', '[[992,4], [768, 3], [480, 1]]'); ?>">
 		<?php woocommerce_product_loop_start(); ?>
 

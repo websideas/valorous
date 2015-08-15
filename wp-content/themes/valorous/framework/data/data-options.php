@@ -1806,26 +1806,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         
                         ),
                     ),
-                    array(
-                        'id'       => 'typography_sidebar_main',
-                        'type'     => 'typography',
-                        'title'    => __( 'Sidebar Main text', THEME_LANG ),
-                        'subtitle' => __( 'Specify the sidebar main text font properties (EX: Categories, Archives, Product Categories ...).', THEME_LANG ),
-                        'google'   => true,
-                        'text-transform' => true,
-                        'output'      => array(
-                            '.widget_pages ul li a',
-                            '.widget_nav_menu ul li a',
-                            '.widget_meta ul li a',
-                            '.widget_archive ul li a',
-                            '.widget_product_categories ul li a',
-                            '.widget_categories ul li a',
-                            '.yith-woocompare-widget ul.products-list li a.title'
-                        ),
-                        'default'  => array(
-                            'font-family'     => 'Montserrat',
-                        ),
-                    ),
                 )
             );
             

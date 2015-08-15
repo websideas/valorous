@@ -25,7 +25,7 @@ add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );
  * @return string
  */
 function kt_next_posts_link_attributes( $attr = '' ) {
-    return "class='btn btn-default'";
+    return "class='btn btn-default-b'";
 }
 add_filter( 'next_posts_link_attributes', 'kt_next_posts_link_attributes', 15 );
 

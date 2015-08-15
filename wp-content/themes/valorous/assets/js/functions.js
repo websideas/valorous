@@ -916,10 +916,11 @@
             singleItem : true,
             slideSpeed : 1000,
             items : 1,
-            navigation: false,
+            navigation: true,
             pagination: false,
             afterAction : syncPosition,
-            responsiveRefreshRate : 200
+            responsiveRefreshRate : 200,
+            navigationText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         });
 
         sync2.owlCarousel({
@@ -949,12 +950,12 @@
             .removeClass("synced")
             .eq(current)
             .addClass("synced")
-        if($("#sync2").data("KTowlCarousel") !== undefined){
+        if($("#sync2").data("owlCarousel") !== undefined){
             center(current)
         }
     }
     function center(number){
-        var sync2visible = sync2.data("KTowlCarousel").owl.visibleItems;
+        var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
 
         var num = number;
         var found = false;
@@ -1038,6 +1039,8 @@
             });
         });
     }
+
+
     function kt_popup_gallery(){
         $('.popup-gallery').each(function(){
             $(this).magnificPopup({

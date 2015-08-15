@@ -33,6 +33,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
     $blog_atts_posts = array(
         'image_size' => $image_size,
         'readmore' => $readmore,
+        "show_like_post" => apply_filters('sanitize_boolean', $show_like_post),
         'show_excerpt' =>  apply_filters('sanitize_boolean', $show_excerpt),
         'show_meta' =>  apply_filters('sanitize_boolean', $show_meta),
         "show_author" => apply_filters('sanitize_boolean', $show_author),
@@ -150,33 +151,12 @@ add_action( 'wp_ajax_nopriv_fronted_remove_product', 'wp_ajax_fronted_remove_pro
 /**==============================
 ***  Like Post
 ===============================**/
-function kt_like_post( $before = '', $after = '', $post_id = null ) {
-    global $post; 
-    if(!$post_id){ $post_id = $post->ID; }
-    
-    $like_count = get_post_meta($post_id, '_like_post', true);
 
-    if( !$like_count ){
-        $like_count = 0;
-        add_post_meta($post_id, '_like_post', $like_count, true);
-    }
-    
-    $class = 'kt_likepost';
-    $title = __('Like this post', THEME_LANG);
-    $already =  __('You already like this!', THEME_LANG);
-    
-    if( isset($_COOKIE['like_post_'. $post_id]) ){
-        $class .= ' liked';
-        $title = $already;
-    }
-    
-    $output = "<a data-id='".$post_id."' data-already='".$already."' class='".$class."' href='".get_the_permalink($post_id)."#".$post_id."' title='".$title."'>".$like_count."</a>";
-    
-    echo $before . $output . $after;
-}
 
 add_action( 'wp_ajax_fronted_likepost', 'wp_ajax_fronted_likepost_callback' );
 add_action( 'wp_ajax_nopriv_fronted_likepost', 'wp_ajax_fronted_likepost_callback' );
+
+
 function wp_ajax_fronted_likepost_callback() {
     check_ajax_referer( 'ajax_frontend', 'security' );
     
@@ -193,7 +173,9 @@ function wp_ajax_fronted_likepost_callback() {
         update_post_meta($post_id, '_like_post', $like_count);
         setcookie('like_post_'. $post_id, $post_id, time()*20, '/');    
     }
-    $output['count'] = $like_count;
+    $text = ($like_count == 0 || $like_count == 1) ? __('like',THEME_LANG) : __('likes',THEME_LANG);
+
+    $output['count'] = $like_count. ' '.$text;
     echo json_encode($output);
     die();
 }
