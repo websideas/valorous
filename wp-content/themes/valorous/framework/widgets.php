@@ -160,6 +160,7 @@ $kt_widgets = array(
     'kt_widget_tabs.php',
     'kt_ads.php',
     'kt_flickr.php',
+    'kt_popular.php',
 );
 
 foreach ( $kt_widgets as $widget ) {
