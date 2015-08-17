@@ -91,26 +91,47 @@ class WP_Widget_KT_Popular extends WP_Widget {
                             'orderby' => 'meta_value_num',
                             'meta_key' => 'kt_post_views_count'
                         );
-                        $today = getdate();
+                        
                         foreach($tabs as $tab){
                             $argsn = $argsp;
                             if($tab == 'week'){
                                 $argsn['date_query'] = array(
-                        			'after' => '1 week ago',
-                            		'before' => 'today',
-                            		'inclusive'         => true,
+                        			array(
+                            			'year' => date( 'Y' ),
+                            			'week' => date( 'w' ),
+                            		),
                             	);
                             }elseif($tab == 'month'){
                                 $argsn['date_query'] = array(
-                        			'after' => '1 month ago',
-                            		'before' => 'today',
-                            		'inclusive'         => true,
+                        			array(
+                            			'after'     => array(
+                                            'year'  => date('Y'),
+                            				'month' => date('m')-1,
+                            				'day'   => date('d'),
+                                        ),
+                            			'before'    => array(
+                            				'year'  => date('Y'),
+                            				'month' => date('m'),
+                            				'day'   => date('d'),
+                            			),
+                            			'inclusive' => true,
+                            		),
                             	);
                             }elseif($tab == 'year'){
                                 $argsn['date_query'] = array(
-                        			'after' => '1 year ago',
-                            		'before' => 'today',
-                            		'inclusive'         => true,
+                        			array(
+                            			'after'     => array(
+                                            'year'  => date('Y'),
+                            				'month' => date('m'),
+                            				'day'   => date('d'),
+                                        ),
+                            			'before'    => array(
+                            				'year'  => date('Y'),
+                            				'month' => date('m'),
+                            				'day'   => date('d'),
+                            			),
+                            			'inclusive' => true,
+                            		),
                             	);
                             }
 

@@ -1,35 +1,17 @@
 <?php
-/**
- * http://websideas.com
- *              ___.          .__    .___                    
- *__  _  __ ____\_ |__   _____|__| __| _/____ _____    ______
- *\ \/ \/ // __ \| __ \ /  ___/  |/ __ |/ __ \\__  \  /  ___/
- * \     /\  ___/| \_\ \\___ \|  / /_/ \  ___/ / __ \_\___ \ 
- *  \/\_/  \___  >___  /____  >__\____ |\___  >____  /____  >
- *             \/    \/     \/        \/    \/     \/     \/ 
- */
+/*
+Plugin Name:  Volorous CP
+Plugin URI:   http://websideas.com/
+Description:  Theme Valorous Custom Post
+Version:      1.1
+Author:       Thang Phung
+Author URI:   http://websideas.com/
 
-// Exit if accessed directly
-if ( !defined('ABSPATH')) exit;
-
-add_action( 'init', 'register_posttype' );
-function register_posttype() {
-
-    register_taxonomy('kt_post_slider',array('post'), array(
-        "label" 						=> __("Post slider", THEME_LANG),
-        "singular_label" 				=> __("Post slider", THEME_LANG),
-        'public'                        => false,
-        'hierarchical'                  => true,
-        'show_ui'                       => true,
-        'show_in_nav_menus'             => false,
-        'args'                          => array( 'orderby' => 'term_order' ),
-        'rewrite'                       => false,
-        'query_var'                     => true,
-        'show_admin_column'             => true
-    ));
-
-
-    /* ================================================ TEAM ================================================*/
+Copyright (C) 2003-2014, by Thang Phung
+All rights reserved.
+*/
+add_action( 'init', 'register_kt_team_init' );
+function register_kt_team_init(){
     $labels = array( 
         'name' => __( 'Team', THEME_LANG),
         'singular_name' => __( 'Team', THEME_LANG),
@@ -68,8 +50,10 @@ function register_posttype() {
         'query_var'                     => true,
         'show_admin_column'             => true
     ));
-   /* ============================================== END TEAM ==============================================*/
-   /* ============================================== PORTFOLIO =============================================*/
+}
+
+add_action( 'init', 'register_kt_portfolio_init' );
+function register_kt_portfolio_init(){
     $labels = array( 
         'name' => __( 'Portfolio', THEME_LANG),
         'singular_name' => __( 'Portfolio', THEME_LANG),
@@ -108,8 +92,10 @@ function register_posttype() {
         'query_var'                     => true,
         'show_admin_column'             => true
     ));
-   /* =========================================== END PORTFOLIO ===========================================*/
-   /* =============================================== CLIENT ==============================================*/
+}
+
+add_action( 'init', 'register_kt_client_init' );
+function register_kt_client_init(){
     $labels = array( 
         'name' => __( 'Client', THEME_LANG),
         'singular_name' => __( 'Client', THEME_LANG),
@@ -148,5 +134,4 @@ function register_posttype() {
         'query_var'                     => true,
         'show_admin_column'             => true
     ));
-   /* ============================================ END CLIENT ============================================*/
 }

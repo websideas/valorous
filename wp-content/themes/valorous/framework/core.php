@@ -92,11 +92,6 @@ require_once ( FW_DIR . 'scripts.php' );
  */
 require_once ( FW_DIR . 'breadcrumbs.php' );
 
-/**
- * include Posttype
- *
- */
-require_once ( FW_DIR .'posttype.php' );
 
 /**
  * get custom walker for wp_nav_menu
