@@ -1330,6 +1330,11 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     padding: 0 0 5px;
     text-transform: uppercase;
 }
+.woocommerce .cross-sells ul.shop-products li.product,
+.woocommerce .related-products ul.shop-products li.product,
+.woocommerce .upsells-products ul.shop-products li.product{
+    width:100%!important;
+}
 
 /** =========================
     8. Page Cart

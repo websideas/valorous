@@ -35,8 +35,8 @@ $args = apply_filters( 'woocommerce_related_products_args', array(
 
 $products = new WP_Query( $args );
 
-$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns_addons', 1 );
-$woocommerce_loop['columns_tablet'] = apply_filters( 'loop_shop_columns_addons_tablet', 1 );
+$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns_addons', 4 );
+$woocommerce_loop['columns_tablet'] = apply_filters( 'loop_shop_columns_addons_tablet', 4 );
 
 if ( $products->have_posts() ) : ?>
 

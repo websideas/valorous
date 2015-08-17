@@ -108,7 +108,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             global $wp_query;
 
             echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-            echo "<div class='blog-posts-content clearfix'>";
+            echo "<div class='blog-posts-content clearfix animation-effect' data-animation='fadeInUp'>";
 
             do_action('before_blog_posts_loop');
 
