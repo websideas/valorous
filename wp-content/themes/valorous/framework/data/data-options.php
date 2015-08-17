@@ -1049,13 +1049,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'full_width' => true
                     ),
                     array(
-                        'id'       => 'footer_copyright_link',
-                        'type'     => 'link_color',
-                        'title'    => __( 'Links Color', THEME_LANG ),
-                        'output'      => array( '#footer-copyright a' ),
-                        'default'  => array(  )
-                    ),
-                    array(
                         'id'       => 'footer_copyright_background',
                         'type'     => 'background',
                         'title'    => __( 'Footer Background', THEME_LANG ),
@@ -1709,6 +1702,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                 'subsection' => true,
 				'fields'		=> array(
                     array(
+                        'id'       => 'typography_footer_top_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Typography Footer top settings', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
                         'id'       => 'typography_footer_top',
                         'type'     => 'typography',
                         'title'    => __( 'Footer top', THEME_LANG ),
@@ -1722,6 +1721,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'font-weight' => '',
                             'line-height' => ''
                         ),
+                    ),
+                    array(
+                        'id'       => 'typography_footer_widgets_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Typography Footer widgets settings', THEME_LANG ).'</div>',
+                        'full_width' => true
                     ),
                     array(
                         'id'       => 'typography_footer_widgets',
@@ -1750,6 +1755,27 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'default'  => array( ),
                     ),
                     array(
+                        'id'       => 'typography_footer_widgets_link',
+                        'type'     => 'link_color',
+                        'title'    => __( 'Footer widgets Links Color', THEME_LANG ),
+                        'output'      => array( '#footer-area a' ),
+                        'default'  => array(  )
+                    ),
+
+                    array(
+                        'id'       => 'typography_footer_copyright_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Typography Footer copyright settings', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id'       => 'typography_footer_copyright_link',
+                        'type'     => 'link_color',
+                        'title'    => __( 'Footer Copyright Links Color', THEME_LANG ),
+                        'output'      => array( '#footer-copyright a' ),
+                        'default'  => array(  )
+                    ),
+                    array(
                         'id'       => 'typography_footer_copyright',
                         'type'     => 'typography',
                         'title'    => __( 'Footer copyright', THEME_LANG ),
@@ -1763,14 +1789,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'font-weight' => '',
                             'line-height' => ''
                         ),
-                    ),
-
-                    array(
-                        'id'       => 'typography_footer_copyright_link',
-                        'type'     => 'link_color',
-                        'title'    => __( 'Footer Copyright Links Color', THEME_LANG ),
-                        'output'      => array( '#footer-copyright a' ),
-                        'default'  => array(  )
                     ),
 
                 )

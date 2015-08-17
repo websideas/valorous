@@ -147,7 +147,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                 $output .= '<div class="bag-buttons">';
                 $output .= '<div class="bag-buttons-content clearfix">';
                     $output .= '<span><a href="'.esc_url( WC()->cart->get_cart_url() ).'" class="btn btn-viewcart">'.__('View cart', THEME_LANG).'</a></span>';
-                    $output .= '<span><a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-default-b">'.__('Checkout', THEME_LANG).'</a></span>';
+                    $output .= '<span><a href="'.esc_url( WC()->cart->get_checkout_url() ).'" class="btn btn-default">'.__('Checkout', THEME_LANG).'</a></span>';
                 $output .= '</div><!-- .bag-buttons -->';
                 $output .= '</div><!-- .bag-buttons -->';
             }

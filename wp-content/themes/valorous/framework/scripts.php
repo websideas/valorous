@@ -67,10 +67,10 @@ add_action('login_head', 'kt_custom_login_logo');
  * @access      public
  */
 function kt_setting_script() {
-    
+
     //$tracking_code = kt_option('advanced_tracking_code');
     //echo $tracking_code;
-    
+
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '');
 
@@ -110,7 +110,7 @@ function kt_setting_script() {
             body .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
-            
+
             #cancel-comment-reply-link:hover {
                 background: <?php echo $accent; ?>;
             }
@@ -148,6 +148,38 @@ function kt_setting_script() {
                 color: <?php echo $accent; ?>;
             }
 
+            .button.alt,
+            .btn.alt,
+            .button:hover,
+            .button:focus,
+            .btn-default.active,
+            .btn-default.focus,
+            .btn-default:active,
+            .btn-default:focus,
+            .btn-default:hover,
+            .wpcf7-submit:hover,
+            .button.btn-light:hover,
+            .button.btn-light:focus,
+            .btn.btn-light:hover,
+            .btn.btn-light:focus,
+            .button.btn-dark:hover,
+            .button.btn-dark:focus,
+            .btn.btn-dark:hover,
+            .btn.btn-dark:focus,
+
+            .woocommerce #respond input#submit.alt,
+            .woocommerce a.button.alt,
+            .woocommerce button.button.alt,
+            .woocommerce input.button.alt,
+            .woocommerce #respond input#submit:hover,
+            .woocommerce a.button:hover,
+            .woocommerce button.button:hover,
+            .woocommerce input.button:hover,
+            .woocommerce #respond input#submit.alt:hover,
+            .woocommerce a.button.alt:hover,
+            .woocommerce button.button.alt:hover,
+            .woocommerce input.button.alt:hover,
+
 
             #main-content-sideshow .carousel-navigation-center .owl-kttheme .owl-buttons > div i,
             .woocommerce nav.woocommerce-pagination ul li a:focus,
@@ -178,6 +210,33 @@ function kt_setting_script() {
                 background: <?php echo $accent; ?>;
                 color: <?php echo $accent; ?>;
             }
+
+
+
+            .button,
+            .wpcf7-submit,
+            .btn-default,
+            .woocommerce #respond input#submit,
+            .woocommerce a.button,
+            .woocommerce button.button,
+            .woocommerce input.button,
+            .woocommerce #respond input#submit.alt,
+            .woocommerce a.button.alt,
+            .woocommerce button.button.alt,
+            .woocommerce input.button.alt,
+
+            .button.btn-gray-b:hover,
+            .button.btn-gray-b:focus,
+            .btn.btn-gray-b:hover,
+            .btn.btn-gray-b:focus,
+            .button.btn-light-b:hover,
+            .button.btn-light-b:focus,
+            .btn.btn-light-b:hover,
+            .btn.btn-light-b:focus,
+            .button.btn-dark-b:hover,
+            .button.btn-dark-b:focus,
+            .btn.btn-dark-b:hover,
+            .btn.btn-dark-b:focus,
 
             .woocommerce div.product .cart .single_add_to_cart_button:hover,
             .wc-single-product .functional-buttons-product .woocommerce.compare-button a:hover:before,
@@ -349,9 +408,18 @@ function kt_setting_script() {
                 echo 'ul.navigation-mobile > li .sub-menu-dropdown > li > a span:before, ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a span:before{background: '.$mobile_sub_color_hover.';}';
             }
 
+            $typography_footer_widgets_link = kt_option('typography_footer_widgets_link');
+            if($widgets_link = $typography_footer_widgets_link['regular']){
+                echo '#footer-area .btn-default, #footer-area .button{border-color: '.$widgets_link.'; color: '.$widgets_link.'}';
+                echo '#footer-area .widget_rss ul li:after, #footer-area .widget_recent_comments ul li:after, #footer-area .widget_recent_entries ul li:after, #footer-area .widget_nav_menu ul li a:after, #footer-area .widget_pages ul li a:after, #footer-area .widget_product_categories ul li a:after, #footer-area .widget_categories ul li a:after, #footer-area .widget_archive ul li a:after, #footer-area .widget_meta ul li a:after, #footer-area .yith-woocompare-widget ul li a.title:after{color: '.$widgets_link.';background: '.$widgets_link.'; }';
 
+            }
+            if($widgets_link_hover = $typography_footer_widgets_link['hover']){
+                echo '#footer-area .btn-default:hover, #footer-area .button:hover{border-color: '.$widgets_link_hover.'; background: '.$widgets_link_hover.';color: #FFF'.'}';
+                echo '#footer-area .widget_nav_menu ul li a:hover:after, #footer-area .widget_product_categories ul li a:hover:after,#footer-area .widget_categories ul li a:hover:after,#footer-area .widget_archive ul li a:hover:after, #footer-area .widget_meta ul li a:hover:after, #footer-area .yith-woocompare-widget ul.products-list li a.title:hover:after{color: '.$widgets_link_hover.';background: '.$widgets_link_hover.'; }';
+                echo '#footer-area .widget_product_tag_cloud a:hover, #footer-area .widget_product_tag_cloud a:focus, #footer-area .widget_tag_cloud a:hover, #footer-area .widget_tag_cloud a:focus{color: #FFF;background: '.$widgets_link_hover.';border-color: '.$widgets_link_hover.';}';
 
-
+            }
 
         ?>
 

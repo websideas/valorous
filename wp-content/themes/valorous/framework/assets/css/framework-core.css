@@ -345,9 +345,10 @@ div#post-body .rwmb-select{
 * END Responsive
 ===================================*/
 .section-heading{
-    background: #000 none repeat scroll 0 0;
+    background: #282828;
     color: #fff;
     margin-bottom: -20px;
+    margin-top: -20px;
     padding: 10px;
     text-transform: uppercase;
 }

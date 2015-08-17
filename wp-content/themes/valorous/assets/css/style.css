@@ -408,42 +408,22 @@ select:not([multiple]) {
 
 .btn-group-lg > .btn,
 .btn-lg {
-    padding: 10px 36px;
+    padding: 10px 40px;
     font-size: 18px;
 }
 
 /* Button shapes */
-.btn.btn-round {
+.btn.btn-round,
+.button.btn-round{
     border-radius: 3px;
 }
 
+.button.btn-circle,
 .btn.btn-circle {
     border-radius: 30px;
 }
 
-/* Button type */
-.tp-caption a.btn-default,
-.button,
-.wpcf7-submit,
-.btn-default {
-    background: #d2a952;
-    color: #FFF;
-    border-color: #d2a952;
-}
-
-.button:hover,
-.button:focus,
-.btn-default.active,
-.btn-default.focus,
-.btn-default:active,
-.btn-default:focus,
-.btn-default:hover,
-.wpcf7-submit:hover {
-    background: #d2a952;
-    border-color: #d2a952;
-    color: #FFF;
-}
-
+/* Button icon */
 .btn .button-icon-left,
 .button .button-icon-left {
     margin-right: 5px;
@@ -454,21 +434,30 @@ select:not([multiple]) {
     margin-left: 5px;
 }
 
+
+/* Button style */
+.button,
+.wpcf7-submit,
+.btn-default {
+    background: none;
+    color: #d2a952;
+    border-color: #d2a952;
+}
+
+/* Alt */
+.button.alt,
+.btn.alt{
+    border: 2px solid #d2a952;
+    color: #FFFFFF;
+    background: #d2a952;
+}
+
 /* White */
-.button.btn-white,
-.btn.btn-white {
+.button.btn-light,
+.btn.btn-light {
     border: 2px solid #FFFFFF;
     color: #282828;
     background: #FFFFFF;
-}
-
-.button.btn-white:hover,
-.button.btn-white:focus,
-.btn.btn-white:hover,
-.btn.btn-white:focus {
-    color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
 }
 
 /* Dark */
@@ -477,32 +466,6 @@ select:not([multiple]) {
     border: 2px solid #282828;
     color: #FFFFFF;
     background: #282828;
-}
-
-.button.btn-dark:hover,
-.button.btn-dark:focus,
-.btn.btn-dark:hover,
-.btn.btn-dark:focus {
-    color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
-}
-
-/* Dark lighter */
-.button.btn-darkl,
-.btn.btn-darkl {
-    border: 2px solid #444;
-    color: #FFFFFF;
-    background: #444;
-}
-
-.button.btn-darkl:hover,
-.button.btn-darkl:focus,
-.btn.btn-darkl:hover,
-.btn.btn-darkl:focus {
-    color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
 }
 
 /* Gray */
@@ -526,65 +489,22 @@ select:not([multiple]) {
 .btn.btn-gray-b {
     border: 2px solid #e5e5e5;
     background: none;
-    color: #282828;
-}
-
-.button.btn-gray-b:hover,
-.button.btn-gray-b:focus,
-.btn.btn-gray-b:hover,
-.btn.btn-gray-b:focus {
-    color: #d0a852;
-    border-color: #d0a852;
-}
-
-/* Border default border */
-.button.btn-default-b,
-.btn.btn-default-b {
-    border: 2px solid #d0a852;
-    color: #d0a852;
-    background: transparent;
-}
-
-.button.btn-default-b:hover,
-.button.btn-default-b:focus,
-.btn.btn-default-b:hover,
-.btn.btn-default-b:focus {
-    color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
+    color: #777;
 }
 
 /* Border white border */
-.button.btn-white-b,
-.btn.btn-white-b {
+.button.btn-light-b,
+.btn.btn-light-b {
     border: 2px solid #FFFFFF;
     color: #FFFFFF;
     background: transparent;
 }
-
-.button.btn-white-b:hover,
-.button.btn-white-b:focus,
-.btn.btn-white-b:hover,
-.btn.btn-white-b:focus {
-    color: #FFFFFF;
-    border-color: #d0a852;
-    background: #d0a852;
-}
-
 /* Border dark border */
 .button.btn-dark-b,
 .btn.btn-dark-b {
     border: 2px solid #282828;
     color: #282828;
     background: transparent;
-}
-
-.button.btn-dark-b:hover,
-.button.btn-dark-b:focus,
-.btn.btn-dark-b:hover,
-.btn.btn-dark-b:focus {
-    color: #d0a852;
-    border-color: #d0a852;
 }
 
 /* Border more */
@@ -606,10 +526,51 @@ select:not([multiple]) {
 
 }
 
-.readmore-link:hover {
-    color: #d0a852;
+/* Border style hover */
+.button:hover,
+.button:focus,
+.btn-default.active,
+.btn-default.focus,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover,
+.wpcf7-submit:hover,
+
+.button.btn-light:hover,
+.button.btn-light:focus,
+.btn.btn-light:hover,
+.btn.btn-light:focus,
+
+.button.btn-dark:hover,
+.button.btn-dark:focus,
+.btn.btn-dark:hover,
+.btn.btn-dark:focus {
+    background: #d2a952;
+    border-color: #d2a952;
+    color: #FFFFFF;
 }
 
+.button.btn-gray-b:hover,
+.button.btn-gray-b:focus,
+.btn.btn-gray-b:hover,
+.btn.btn-gray-b:focus,
+
+.button.btn-light-b:hover,
+.button.btn-light-b:focus,
+.btn.btn-light-b:hover,
+.btn.btn-light-b:focus,
+
+.button.btn-dark-b:hover,
+.button.btn-dark-b:focus,
+.btn.btn-dark-b:hover,
+.btn.btn-dark-b:focus{
+    color: #d0a852;
+    border-color: #d0a852;
+}
+
+.readmore-link:hover {
+    color: #d2a952;
+}
 
 /* ==============================
    5. Breadcrumb
@@ -2491,18 +2452,18 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 }
 
 #footer-area h3.widget-title {
-    border-bottom: 1px solid #e3e3e3;
-    color: #252525;
+    color: #FFFFFF;
     font-weight: normal;
     margin: 0 0 25px;
     padding: 0 0 8px;
     width: 100%;
     font-size: 13px;
+    text-align: left;
+    border: none;
 }
 
 #footer-area .widget-container {
-    background: #FFF;
-    padding: 25px;
+
 }
 
 #footer-copyright {
@@ -3128,7 +3089,7 @@ body.footer_fixed .static-footer {
 
 .mailchimp-input-button .mailchimp-submit.loading:before {
     background: rgba(255, 255, 255, .5);
-    height: 40px;
+    height: 100%;
     position: absolute;
     width: 100%;
     left: 0;

@@ -95,7 +95,7 @@
 .woocommerce button.button.alt,
 .woocommerce input.button.alt{
     background: #d2a952;
-    color: #FFFFFF;
+    color: #FFFFFF!important;
 }
 .woocommerce #respond input#submit:hover,
 .woocommerce a.button:hover,
@@ -1353,16 +1353,6 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .woocommerce-cart .wc-proceed-to-checkout{
     padding: 0;
     margin-bottom: 40px;
-}
-.woocommerce-cart .wc-proceed-to-checkout a.checkout-button{
-    background: #d0a852;
-    color: #fff;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-.woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover{
-    background: #d0a852;
-    border-color: #d0a852;
 }
 
 .woocommerce .cart-collaterals .cross-sells,
