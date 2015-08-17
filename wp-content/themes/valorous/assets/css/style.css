@@ -6113,6 +6113,13 @@ article.post-item {
 .entry-meta-data > a.kt_likepost.liked:before{
     content:"\f004";
 }
+.entry-meta-data > a.kt_likepost.liked{
+    cursor: default;
+}
+.entry-meta-data > a.kt_likepost.liked:hover{
+    color:#8f8f8f;
+}
+
 
 .entry-share-box {
 
