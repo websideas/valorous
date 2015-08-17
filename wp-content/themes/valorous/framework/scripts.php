@@ -39,6 +39,14 @@ if ( !function_exists( 'kt_admin_enqueue_scripts' ) ) {
     } // End kt_admin_enqueue_scripts.
 }
 
+add_action( 'login_head', 'kt_admin_custom_style' );
+function kt_admin_custom_style(){
+    wp_register_style('kt_font', '//fonts.googleapis.com/css?family=Montserrat');
+    wp_register_style('kt_style_admin', THEME_CSS.'login-admin.css');
+    
+    wp_enqueue_style('kt_font');
+    wp_enqueue_style('kt_style_admin');
+}
 
 
 /**
@@ -49,14 +57,30 @@ if ( !function_exists( 'kt_admin_enqueue_scripts' ) ) {
  * @access      public
  */
 function kt_custom_login_logo() {
-    /*
-    $options = get_option('theme_options');
-    if($options['admin_login']){
-	   echo '<style type="text/css">h1 a { background-image:url('.$options['admin_login']['url'].') !important;background-size: auto auto !important;margin-bottom: 10px !important;width: auto!important;}</style>';
+    $logo_admin = kt_option('logo_admin');
+    $bg_admin = kt_option('background_admin');
+    if( $logo_admin['url'] ){
+	   echo '<style type="text/css">h1 a { background-image:url('.$logo_admin['url'].') !important;background-size: auto auto !important;margin-bottom: 10px !important;width:auto!important;}</style>';
     }
-    */
+    if( $bg_admin['background-color'] || $bg_admin['background-image'] ){
+        echo '<style type="text/css">body.login{ background-image:url('.$bg_admin['background-image'].') !important;background-size: '.$bg_admin['background-size'].';background-repeat:'.$bg_admin['background-repeat'].';background-position:'.$bg_admin['background-position'].';background-color:'.$bg_admin['background-color'].';background-attachment:'.$bg_admin['background-attachment'].';}</style>';
+    }
 }
 add_action('login_head', 'kt_custom_login_logo');
+
+function kt_register_account(){
+    $rememberme = ! empty( $_POST['rememberme'] );
+    ?>
+        <p class="forgetmenot kt_forget"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me'); ?></label></p>
+    <?php
+    if ( get_option( 'users_can_register' ) ) :
+		$registration_url = sprintf( '<p class="register"><a class="button button-primary button-large" href="%s">%s</a></p>', esc_url( wp_registration_url() ), __( 'Register' ) );
+
+		/** This filter is documented in wp-includes/general-template.php */
+		echo apply_filters( 'register', $registration_url );
+	endif;
+}
+add_action('login_form', 'kt_register_account');
 
 
 /**

@@ -1,0 +1,97 @@
+body.login{
+    min-height: 100%;
+    height:auto;
+}
+body.login form{
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    -ms-box-shadow:none;
+}
+.login form#loginform p.forgetmenot{
+    float:none;
+    margin-bottom:25px;
+    font-style: italic;
+    text-align: right;
+}
+.login form#loginform p.forgetmenot input{
+    margin:0;
+    vertical-align: text-bottom;
+}
+.login #backtoblog{
+    text-align: center;
+    padding-bottom:30px;
+    margin-top:50px;
+}
+.login #backtoblog a{
+    display: inline-block;
+    padding-bottom:5px;
+    outline: none;
+    border-bottom:1px solid #696866;
+    text-transform: uppercase;
+    color:#696866;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+}
+.login #nav{
+    padding:0;
+}
+p#reg_passmail,
+.login form#registerform label,
+.login form#loginform label,
+.login #nav a{
+    font-family: 'Montserrat', sans-serif;
+    color:#696866;
+}
+.login form#loginform .kt_forget label{
+    color:#3e3e3e;
+}
+.login #nav a{
+    font-size: 12px;
+}
+.login form .input, .login form input[type="checkbox"], .login input[type="text"]{
+    background: none;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    border:1px solid #dfdfdf;
+}
+.login form p.register{
+    float:left;
+    width:45%;
+}
+.login form p.submit{
+    width:45%;
+    overflow: hidden;
+    float:right;
+}
+.login form .forgetmenot{
+    display: none;
+}
+.login form .forgetmenot.kt_forget{
+    display: block;
+}
+.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large,
+.wp-core-ui .button-primary{
+    background: none;
+    color: #d2a952;
+    border:1px solid #d2a952;
+    border-radius:0;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    -ms-box-shadow:none;
+    padding: 8px 20px;
+    text-transform: uppercase;
+    height:auto;
+    line-height: normal;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    width:100%;
+}
+.wp-core-ui .button-primary:focus,
+.wp-core-ui .button-primary:hover{
+    background: #d2a952;
+    border-color: #d2a952;
+    color: #FFF;
+}
