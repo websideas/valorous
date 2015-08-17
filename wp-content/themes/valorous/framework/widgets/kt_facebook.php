@@ -84,7 +84,7 @@ class Widget_KT_Facebook extends WP_Widget {
 
     public function form( $instance ) {
 
-        $defaults = array( 'title' => __( 'Facebook' , THEME_LANG), 'height' => 500, 'small_header' => false, 'adapt_container_width' => true, 'hide_cover' => false, 'show_facepile' => true, 'show_posts' => false);
+        $defaults = array( 'title' => __( 'Facebook' , THEME_LANG), 'height' => 500, 'small_header' => false, 'adapt_container_width' => true, 'hide_cover' => false, 'show_facepile' => true, 'show_posts' => false, 'href' => '');
         $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title = strip_tags($instance['title']);

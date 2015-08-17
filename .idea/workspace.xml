@@ -41,17 +41,47 @@
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/scripts.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-7.6862745">
-              <caret line="419" column="257" selection-start-line="419" selection-start-column="257" selection-end-line="419" selection-end-column="257" />
+              <caret line="443" column="257" selection-start-line="443" selection-start-column="257" selection-end-line="443" selection-end-column="257" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1229508">
+            <state vertical-scroll-proportion="-39.958332">
               <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data-meta-box.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.745098">
+              <caret line="690" column="22" selection-start-line="690" selection-start-column="22" selection-end-line="690" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="note.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/note.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.888889">
+              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kt_facebook.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/widgets/kt_facebook.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.28103045">
+              <caret line="86" column="225" selection-start-line="86" selection-start-column="225" selection-end-line="86" selection-end-column="225" />
               <folding />
             </state>
           </provider>
@@ -62,16 +92,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-28.458334">
               <caret line="71" column="90" selection-start-line="71" selection-start-column="90" selection-end-line="71" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="woocommerce.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.392157">
-              <caret line="149" column="116" selection-start-line="149" selection-start-column="116" selection-end-line="149" selection-end-column="116" />
               <folding />
             </state>
           </provider>
@@ -101,8 +121,12 @@
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-options.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.333333">
-              <caret line="1757" column="69" selection-start-line="1757" selection-start-column="69" selection-end-line="1757" selection-end-column="69" />
-              <folding />
+              <caret line="1789" column="51" selection-start-line="1789" selection-start-column="51" selection-end-line="1789" selection-end-column="51" />
+              <folding>
+                <marker date="1439795189000" expanded="true" signature="108:188938" placeholder="..." />
+                <marker date="1439795189000" expanded="true" signature="129:188865" placeholder="..." />
+                <marker date="1439795189000" expanded="true" signature="8134:188850" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/layout/layout3/content-quote.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/classic/content.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/classic/content-link.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/classic/content-quote.php" />
@@ -135,7 +158,6 @@
         <option value="$PROJECT_DIR$/note.txt" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/helpers.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/queries.css" />
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/woocommerce/checkout/form-coupon.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/widgets/kt_article.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/widgets/kt_widget_tabs.php" />
@@ -163,6 +185,8 @@
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-options.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/scripts.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/widgets/kt_facebook.php" />
       </list>
     </option>
   </component>
@@ -432,84 +456,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="widgets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kt_mailchimp.php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Widget_KT_Mailchimp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="valorous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-options.php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="KT_config" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -710,13 +658,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6147541">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/queries.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35307518">
@@ -731,24 +672,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/note.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46127564">
-          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/vertical/content.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.25">
           <caret line="2" column="40" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.627451">
-          <caret line="713" column="0" selection-start-line="713" selection-start-column="0" selection-end-line="713" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1053,8 +980,12 @@
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-options.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.333333">
-          <caret line="1757" column="69" selection-start-line="1757" selection-start-column="69" selection-end-line="1757" selection-end-column="69" />
-          <folding />
+          <caret line="1789" column="51" selection-start-line="1789" selection-start-column="51" selection-end-line="1789" selection-end-column="51" />
+          <folding>
+            <marker date="1439795189000" expanded="true" signature="108:188938" placeholder="..." />
+            <marker date="1439795189000" expanded="true" signature="129:188865" placeholder="..." />
+            <marker date="1439795189000" expanded="true" signature="8134:188850" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1069,15 +1000,39 @@
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/scripts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.6862745">
-          <caret line="419" column="257" selection-start-line="419" selection-start-column="257" selection-end-line="419" selection-end-column="257" />
+          <caret line="443" column="257" selection-start-line="443" selection-start-column="257" selection-end-line="443" selection-end-column="257" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1229508">
+        <state vertical-scroll-proportion="-39.958332">
           <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.745098">
+          <caret line="690" column="22" selection-start-line="690" selection-start-column="22" selection-end-line="690" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/note.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.888889">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/widgets/kt_facebook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28103045">
+          <caret line="86" column="225" selection-start-line="86" selection-start-column="225" selection-end-line="86" selection-end-column="225" />
           <folding />
         </state>
       </provider>
