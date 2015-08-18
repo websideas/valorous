@@ -5184,7 +5184,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 .kt-timeline-wrapper ul li.item-vertical {
     display: block;
-    padding: 35px 0;
+    padding: 60px 0;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -5370,6 +5370,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt-timeline-wrapper ul li.item-horizontal .icon-timeline {
     margin: 0;
     position: relative;
+    text-align: center;
 }
 
 .kt-timeline-wrapper ul li.item-horizontal .divider-icon {

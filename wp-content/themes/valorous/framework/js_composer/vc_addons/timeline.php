@@ -144,7 +144,7 @@ class WPBakeryShortCode_Timeline extends WPBakeryShortCodesContainer {
         
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        return '<div id="'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.' '.$cl_animate.'">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
+        return '<div id="'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-timeline-'.$timeline_tyle.' '.$column.' kt-'.$background_style.' '.$data_horizontal_style.' '.$cl_animate.' clearfix">' . do_shortcode($content) . '</ul>'.$custom_css.'</div>';
     }
 
     /**
