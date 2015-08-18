@@ -4471,11 +4471,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 .kt-icon-box-wrapper .icon-box-title {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
 }
 
 .kt-icon-box-wrapper .icon-box-content {

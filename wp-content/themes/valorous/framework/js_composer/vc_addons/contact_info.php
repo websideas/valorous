@@ -72,12 +72,6 @@ vc_map( array(
             "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
         ),
         array(
-            "type" => "textfield",
-            "heading" => __( "Extra class name", "js_composer"),
-            "param_name" => "el_class",
-            "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
-        ),
-        array(
 			'type' => 'css_editor',
 			'heading' => __( 'Css', 'js_composer' ),
 			'param_name' => 'css',

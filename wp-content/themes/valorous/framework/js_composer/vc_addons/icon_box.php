@@ -18,7 +18,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'readmore_color' => '',
             'readmore_color_hover' => '',
 
-            'use_theme_fonts' => '',
+            'use_theme_fonts' => 'true',
             'font_container' => '',
             'google_fonts' => '',
             'letter_spacing' => '0',
@@ -40,7 +40,6 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'background_color_hover' => '',
             'size' => 'md',
             'align' => 'center',
-            'link' => '',
 
             'el_class' => '',
             'css_animation' => '',
@@ -108,7 +107,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
 
         }
 
-        $icon_box_title = ($title) ? '<div class="icon-box-title" '.$style_title.'>'.$title.'</div>' : '';
+        $icon_box_title = ($title) ? '<' . $font_container_data['values']['tag'] . ' class="icon-box-title" '.$style_title.'>'.$title.'</' . $font_container_data['values']['tag'] . '>' : '';
         $icon_box_content = '<div class="icon-box-content">'.$content.'</div>';
         $icon_box_icon= do_shortcode('[vc_icon el_class="icon-box-icon" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background_color="'.$custom_background_color.'" size="'.$size.'" align="center"]');
 
@@ -472,7 +471,7 @@ vc_map( array(
             'value' => '',
             'settings' => array(
                 'fields' => array(
-                    //'tag' => 'h2', // default value h2
+                    'tag' => 'h2', // default value h2
                     'font_size',
                     'line_height',
                     'color',
@@ -492,11 +491,12 @@ vc_map( array(
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', 'js_composer' ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
