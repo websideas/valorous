@@ -752,7 +752,6 @@
                     $count = 0;
                 }
                 
-                if( !$time ){ $time = '200'; }
                 console.log($count);
                 var animation_delay = $count * $time;
                 $count++;

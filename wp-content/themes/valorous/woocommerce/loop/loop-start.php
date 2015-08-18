@@ -8,4 +8,4 @@
  */
 ?>
 <div class="row woocommerce-row">
-    <ul data-animation="fadeInUp" class="<?php echo apply_filters('woocommerce_product_loop_start', 'shop-products clearfix animation-effect'); ?>">
+    <ul data-animation="fadeInUp" data-timeeffect="200" class="<?php echo apply_filters('woocommerce_product_loop_start', 'shop-products clearfix animation-effect'); ?>">
