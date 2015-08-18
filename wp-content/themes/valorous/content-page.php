@@ -18,7 +18,7 @@
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
-        <?php edit_post_link( __( 'Edit', THEME_LANG ), '<span class="edit-link">', '</span>' ); ?>
+        <?php //edit_post_link( __( 'Edit', THEME_LANG ), '<span class="edit-link">', '</span>' ); ?>
 	</div><!-- .entry-content -->
 
     <?php

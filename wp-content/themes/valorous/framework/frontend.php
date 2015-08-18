@@ -561,7 +561,7 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
             return ;
         }elseif($type == 'loadmore'){
             printf(
-                '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button btn btn-default-b">%s %s</a></div>',
+                '<div class="blog-posts-loadmore"><a href="#" class="blog-loadmore-button btn btn-default">%s %s</a></div>',
                 '<span class="fa fa-refresh button-icon-left"></span>',
                 __('Load more', THEME_LANG)
             );

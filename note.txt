@@ -26,6 +26,7 @@ About me page
 	http://demo.kingkongthemes.com/vaicalon/about/
 	http://leaftree.pt/materialog/about-2.html
 	http://ddthemesdemo.com/lamadone/
+	https://0.s3.envato.com/files/143544184/20-screenshot20.jpg
 
 Landing for homepage
 	1. Slideshow for blog
@@ -44,6 +45,33 @@ Landing for homepage
 
 	3. Big image with name of blog
 		http://jamesblog.pego-design.com/
+
+
+
+Contact:
+
+http://www.soaptheme.net/wordpress/travelo/standard-pages/contact-us-3/
+https://0.s3.envato.com/files/145383453/Lets%20travel_jpeg/25_2-LetsTravel-ContactUs.jpg
+https://0.s3.envato.com/files/145383453/Lets%20travel_jpeg/25_1-LetsTravel-ContactUs.jpg
+http://templatevisual.com/demo/blue-bird/contact.html
+http://trendingtemplates.com/livepreview/?theme=Trips
+https://0.s3.envato.com/files/145803798/Lena_preview-files/22_ContactUs.jpg
+https://0.s3.envato.com/files/145540254/Zidane_Previews/35_Contact_Us.png
+https://0.s3.envato.com/files/144960132/Mustang-Preview/10-Contact-Us.jpg
+
+
+https://0.s3.envato.com/files/144931887/Preview/30_screenshot31.jpg
+https://0.s3.envato.com/files/143544184/21-screenshot21.jpg
+https://0.s3.envato.com/files/144502777/09_Exa_Contact_2.jpg
+
+
+
+
+Single detail:
+	http://themeforest.net/item/cave-creative-psd-theme/12217274
+	https://0.s3.envato.com/files/141251607/15_contact.jpg
+
+
 
 
         
