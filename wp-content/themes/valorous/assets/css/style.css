@@ -1542,7 +1542,7 @@ h2.widgettitle a.rsswidget:first-child,
 
 .kt_tabs_content ul li .title,
 .widget_kt_posts ul li .title {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 18px;
     margin: 0 0 7px;
     text-transform: uppercase;
@@ -4968,7 +4968,11 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     margin: 10px 0;
 }
 
-/* KT Callout */
+.kt-heading-wrapper .kt-heading-title:first-child{
+    margin-top: 0;
+}
+
+    /* KT Callout */
 .kt-callout-wrapper {
     margin-bottom: 15px;
 }
@@ -6078,19 +6082,18 @@ article.post-item {
 
 
 .entry-meta-data {
-    color: #8f8f8f;
+    color: #d0a852;
     font-size: 13px;
     margin-bottom: 15px;
 }
 
 .entry-meta-data a{
-    color: #8f8f8f;
+    color: #d0a852;
 }
 
 .entry-meta-data a:hover{
     text-decoration: none;
-    border-color: #d0a852;
-
+    color: #282828;
 }
 
 .entry-meta-data > span:after {
@@ -6114,10 +6117,10 @@ article.post-item {
     content:"\f004";
 }
 .entry-meta-data > a.kt_likepost.liked{
-    cursor: default;
+    cursor: text;
 }
 .entry-meta-data > a.kt_likepost.liked:hover{
-    color:#8f8f8f;
+    color: inherit;
 }
 
 
