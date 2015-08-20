@@ -1742,6 +1742,50 @@ $startanims = $operations->getArrAnimations();
 	<!-- THE CURRENT TIMER FOR LAYER -->
 	<div style="direction:ltr !important">
 		<div id="mastertimer-wrapper" class="layer_sortbox">
+				<div id="timline-manual-dialog" style="display:none">
+					<!-- ANIMATION START TIME -->
+					
+						<label style="width:70px"><?php _e("Start Time",REVSLIDER_TEXTDOMAIN); ?></label>
+						<i class="rs-mini-layer-icon rs-icon-clock rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Animation Start Time (ms)",REVSLIDER_TEXTDOMAIN); ?>"></i>
+						<input type="text" style="width:90px;" class="textbox-caption rs-layer-input-field" id="clayer_start_time" name="clayer_start_time" value="0">
+						<span class="over-ms">ms</span>
+					</span>
+					<span class="rs-layer-toolbar-space" style="margin-right:20px"></span>
+
+					<!-- ANIMATION END TIME -->
+					<span>
+						<label style="width:70px"><?php _e("End Time",REVSLIDER_TEXTDOMAIN); ?></label>
+						<i class="rs-mini-layer-icon rs-icon-clock rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Animation End Time (ms)",REVSLIDER_TEXTDOMAIN); ?>"></i>
+						<input type="text" style="width:90px;" class="textbox-caption rs-layer-input-field" id="clayer_end_time" name="clayer_end_time" value="0">
+						<span class="over-ms">ms</span>
+					</span>
+
+					
+					<span class="tp-clearfix"></span>
+					
+					
+
+					<!-- ANIMATION START DURATION -->
+					<span>
+						<label style="width:70px"><?php _e("Start speed",REVSLIDER_TEXTDOMAIN); ?></label>
+						<i class="rs-mini-layer-icon rs-icon-clock rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Animation Start Duration (ms)",REVSLIDER_TEXTDOMAIN); ?>"></i>
+						<input type="text" style="width:90px;" class="textbox-caption rs-layer-input-field" id="clayer_start_speed" name="clayer_start_speed" value="0">
+						<span class="over-ms">ms</span>
+					</span>
+
+					<span class="rs-layer-toolbar-space" style="margin-right:20px"></span>
+
+					<!-- ANIMATION END DURATION -->
+					<span>
+						<label style="width:70px"><?php _e("End Speed",REVSLIDER_TEXTDOMAIN); ?></label>
+						<i class="rs-mini-layer-icon rs-icon-clock rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Animation End Duration (ms)",REVSLIDER_TEXTDOMAIN); ?>"></i>
+						<input type="text" style="width:90px;" class="textbox-caption rs-layer-input-field" id="clayer_end_speed" name="clayer_end_speed" value="0">
+						<span class="over-ms">ms</span>
+					</span>				
+					<div id="timline-manual-closer"><i class="eg-icon-cancel"></i></div>
+				</div>
+
+
 				<div id="master-selectedlayer-t"></div>
 				<div id="master-selectedlayer-b"></div>
 				<div class="master-leftcell">

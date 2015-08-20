@@ -1060,7 +1060,7 @@ li.selected .slidetitleinput,li:hover .slidetitleinput,
 #master-rightheader                                                  { 	position:relative;	height:40px;	width:100%;}
 #master-leftheader                                                   { 	border-bottom:1px solid #d5d5d5;	background:#f1f1f1;	height:39px;}
 .mastertimer                                                         { 	border-bottom:1px solid #d5d5d5;	background:#f1f1f1;	height:39px;	position:relative;	overflow:hidden;	padding-left:15px;}
-#master-timer-time                                                   { 	position:absolute;	right:20px;	top:10px;	font-weight:600;	color:#333;	font-size:13px;}
+#master-timer-time                                                   { 	position:absolute;	right:30px;	top:13px;	font-weight:600;	color:#333;	font-size:13px;}
 
 
 /* MASTER TIMELINE LINEAR TEXTS */
@@ -1073,6 +1073,15 @@ li.selected .slidetitleinput,li:hover .slidetitleinput,
 #mastertimer-linear .linear-texts,
 #mastertimer-linear .linear-texts li                                 { 	list-style:none;}
 
+
+#timline-manual-dialog												{	width:500px;height:100px; background:#f1f1f1; position:absolute;top:-100px;left:250px;z-index:10000; padding:20px; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+#timline-manual-dialog label 										{	display:inline-block; color:#777; font-weight: 600; font-size: 12px}
+
+#timline-manual-closer 												{	cursor: pointer; width:20px;height:20px; display:block; position:absolute; top:0px;right:0px; text-align: center; opacity:0.5; line-height: 20px; color:#000; font-size:15px;}
+#timline-manual-closer i:before										{	color:#000;}
+#timline-manual-closer:hover 										{	opacity: 1}
+
+#timline-manual-dialog .over-ms 									{ margin-left: -30px;font-size: 11px;line-height: 24px;display: inline-block;vertical-align: middle;font-weight: 600;}
 
 /* THE CURRENT TIME POSITION */
 
@@ -1100,12 +1109,12 @@ li.selected .slidetitleinput,li:hover .slidetitleinput,
 /* THE LIST OF LAYERS LEFT SIDE */
 
 #layers-right,
-#layers-left                                                         { 	width:220px;	position:relative;}
+#layers-left                                                         { 	width:250px;	position:relative;}
 #layers-left ul,
 #layers-right ul                                                     { 	margin-top:0;}
 .mastertimer-layer                                                   { 	overflow:hidden;}
 .mastertimer-layer,
-.mastertimer-layer-time                                              { 	border:none;	list-style:none;	margin:0;	padding:0;	background:none;	width:220px;	height:25px;	position:relative;	margin-bottom:-1px;}
+.mastertimer-layer-time                                              { 	border:none;	list-style:none;	margin:0;	padding:0;	background:none;	width:250px;	height:25px;	position:relative;	margin-bottom:-1px;}
 .mastertimer-layer-time                                              { 	width:100%;}
 .layer_sort_layer_text_field                                         { 	overflow:hidden;	width:150px;	white-space:nowrap!important;	box-sizing:border-box;	-moz-box-sizing:border-box;	}
 
@@ -1115,6 +1124,12 @@ li.selected .slidetitleinput,li:hover .slidetitleinput,
 
 .mastertimer-layer .layersortclass,
 .mastertimer-layer .layersortclass:before							{	color:#333;}
+
+
+.timer-manual-edit 													{	border-left:1px solid #d5d5d5; text-align: center; width:30px; cursor:pointer;}
+.timer-manual-edit i 												{	opacity:0.5;}
+.timer-manual-edit:hover i,
+.ui-state-hover .timer-manual-edit i 								{	opacity:1;}
 
 .sortlist li.sortitem-hidden                                  		{ 	opacity:0.5;}
 

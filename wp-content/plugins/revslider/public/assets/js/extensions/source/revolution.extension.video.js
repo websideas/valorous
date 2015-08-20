@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - VIDEO FUNCTIONS
- * @version: 1.0.0 (03.08.2015)
+ * @version: 1.0.1 (11.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -311,6 +311,7 @@ jQuery.extend(true,_R, {
 			 	if (s!=-1) vida=vida+"&start="+s;
 			 	if (e!=-1) vida=vida+"&end="+e;
 			 	
+			 	
 			 	_nc.data('videomarkup','<iframe style="visible:hidden" src="'+httpprefix+'://www.youtube.com/embed/'+vidytid+'?'+vida+'" width="100%" height="100%" style="width:100%;height:100%"></iframe>');
 			break;
 
@@ -427,8 +428,13 @@ var addVideoListener = function(_nc,opt,startnow) {
 							if (event.data == YT.PlayerState.PLAYING) {
 								punchgs.TweenLite.to(_nc.find('.tp-videoposter'),0.3,{autoAlpha:0,force3D:"auto",ease:punchgs.Power3.easeInOut});
 								punchgs.TweenLite.to(_nc.find('iframe'),0.3,{autoAlpha:1,display:"block",ease:punchgs.Power3.easeInOut});							
-								if (_nc.data('volume')=="mute")
+								if (_nc.data('volume')=="mute") {
 									  player.mute();
+								 } else {
+									  player.unMute();
+									  player.setVolume(parseInt(_nc.data('volume'),0) || 75);
+								}
+
 								opt.videoplaying=true;									
 								addVidtoList(_nc,opt);									
 								container.trigger('stoptimer');									
@@ -529,7 +535,10 @@ var addVideoListener = function(_nc,opt,startnow) {
 						if (pforv) 
 							opt.c.trigger('stoptimer');
 						if (_nc.data('volume')=="mute")
-						  f.api('setVolume',"0");
+						  f.api('setVolume',"0")
+						else
+						  f.api('setVolume',(parseInt(_nc.data('volume'),0)/100 || 0.75));
+
 					});
 
 					f.addEvent('playProgress',function(data) {					

@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - CAROUSEL
- * @version: 1.0.0 (08.07.2015)
+ * @version: 1.0.1 (18.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -77,7 +77,8 @@ jQuery.extend(true,_R, {
 		var maxd = 999;
 
 		// SECOND RUN FOR NEGATIVE ADJUSTMENETS
-		jQuery.each(_.slides,function(i,slide) {		
+		if (_.slides)
+		 jQuery.each(_.slides,function(i,slide) {		
 			var pos = slidepositions[i];		
 			if (_.infinity==="on") {	
 

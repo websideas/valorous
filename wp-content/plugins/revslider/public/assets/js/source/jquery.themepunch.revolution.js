@@ -1,7 +1,7 @@
 
 /**************************************************************************
  * jquery.themepunch.revolution.js - jQuery Plugin for Revolution Slider
- * @version: 5.0.2 (07.08.2015)
+ * @version: 5.0.5 (18.08.2015)
  * @requires jQuery v1.7 or later (tested on 1.9)
  * @author ThemePunch
 **************************************************************************/
@@ -186,8 +186,8 @@
 						v_offset:0
 					}
 				},					
-				extensions:"extensions/source/",			//example extensions/ or extensions/source/
-				extensions_suffix:".js",
+				extensions:"extensions/",			//example extensions/ or extensions/source/
+				extensions_suffix:".min.js",
 				debugMode:false
 			};
 				
@@ -195,6 +195,7 @@
 			options = jQuery.extend(true,{},defaults, options);
 			
 			return this.each(function() {
+				
 				
 				var c = jQuery(this);
 				//REMOVE SLIDES IF SLIDER IS HERO
@@ -223,6 +224,31 @@
 
 				waitForScripts(c,options.scriptsneeded);
 			})
+		},
+
+		// Add a New Call Back to some Module
+		revaddcallback: function(callback) {
+			return this.each(function() {						
+				var container=jQuery(this);
+				if (container!=undefined && container.length>0 && jQuery('body').find('#'+container.attr('id')).length>0) {
+					var bt = container.parent().find('.tp-bannertimer'),
+						opt = bt.data('opt');
+					if (opt.callBackArray === undefined)
+						opt.callBackArray = new Array();
+					opt.callBackArray.push(callback);						
+				}
+			})
+		},
+
+		// Get Current Parallax Proc
+		revgetparallaxproc : function() {		
+			var container=jQuery(this);
+			if (container!=undefined && container.length>0 && jQuery('body').find('#'+container.attr('id')).length>0) {
+				var bt = container.parent().find('.tp-bannertimer'),
+					opt = bt.data('opt');
+				return opt.scrollproc;
+			}
+			
 		},
 
 		// ENABLE DEBUG MODE
@@ -491,6 +517,23 @@ jQuery.extend(true, _R, {
 	    return ismobile;		    
 	},
 
+	// -  CALL BACK HANDLINGS - //
+	 callBackHandling : function(opt,type,position) {
+	 	try{
+			if (opt.callBackArray)
+				jQuery.each(opt.callBackArray,function(i,c) {				
+					if (c) {
+						if (c.inmodule && c.inmodule === type)
+							if (c.atposition && c.atposition === position)
+								if (c.callback) 
+									c.callback.call();											
+					}
+				});
+		} catch(e) {
+			console.log("Call Back Failed");
+		}
+	},
+
 	get_browser : function(){
 	    var N=navigator.appName, ua=navigator.userAgent, tem;
 	    var M=ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
@@ -607,9 +650,10 @@ jQuery.extend(true, _R, {
 			if (opt.fullScreenOffsetContainer!=undefined) {
 				try{
 					var offcontainers = opt.fullScreenOffsetContainer.split(",");
-					jQuery.each(offcontainers,function(index,searchedcont) {
-						coh = jQuery(searchedcont).length>0 ? coh - jQuery(searchedcont).outerHeight(true) : coh;										
-					});
+					if (offcontainers)
+						jQuery.each(offcontainers,function(index,searchedcont) {
+							coh = jQuery(searchedcont).length>0 ? coh - jQuery(searchedcont).outerHeight(true) : coh;										
+						});
 				} catch(e) {}
 				try{
 					if (opt.fullScreenOffset.split("%").length>1 && opt.fullScreenOffset!=undefined && opt.fullScreenOffset.length>0) 
@@ -673,9 +717,10 @@ jQuery.extend(true, _R, {
 		opt.c.trigger("stoptimer");		
 		if (opt.playingvideos != undefined && opt.playingvideos.length>0) { 
 			opt.lastplayedvideos = jQuery.extend(true,[],opt.playingvideos);
-			jQuery.each(opt.playingvideos,function(i,_nc) {				
-				if (_R.stopVideo) _R.stopVideo(_nc,opt);
-			});
+			if (opt.playingvideos)
+				jQuery.each(opt.playingvideos,function(i,_nc) {				
+					if (_R.stopVideo) _R.stopVideo(_nc,opt);
+				});
 		}
 	}
 
@@ -764,8 +809,10 @@ var getNeededScripts = function(o,c) {
 		});
 
 		c.find('li').each(function() {
-			if (jQuery(this).data('link') && jQuery(this).data('link')!=undefined)
+			if (jQuery(this).data('link') && jQuery(this).data('link')!=undefined) {
 				n.layeranim = true;
+				n.actions = true;
+			}
 		})
 
 		// VIDEO EXTENSION
@@ -863,15 +910,16 @@ var setCurWinRange = function(opt) {
 		lastmaxid = 0,
 		curid = 0,
 		winw = jQuery(window).width();			
-	    
-	jQuery.each(opt.responsiveLevels,function(index,level) {				
-		if (winw<level) {
-			if (lastmaxlevel==0 || lastmaxlevel>level) {
-				curwidth = level;
-				curid = index;
-				lastmaxlevel = level;
+	  
+	 if (opt.responsiveLevels && opt.responsiveLevels.length)
+		jQuery.each(opt.responsiveLevels,function(index,level) {				
+			if (winw<level) {
+				if (lastmaxlevel==0 || lastmaxlevel>level) {
+					curwidth = level;
+					curid = index;
+					lastmaxlevel = level;
+				}
 			}
-		}
 		
 		if (winw>level && lastmaxlevel<level) {
 			lastmaxlevel = level;
@@ -927,19 +975,19 @@ var initSlider = function (container,opt) {
 	opt.ul = container.find('.tp-revslider-mainul');
 	opt.cid = container.attr('id');
 	opt.ul.css({visibility:"visible"});
-
+    opt.slideamount = opt.ul.find('>li').length;
+	
 	// RANDOMIZE THE SLIDER SHUFFLE MODE
-	if (opt.shuffle=="on") {
+	if (opt.shuffle=="on") {		
 		var fsa = new Object,
 			fli = opt.ul.find('>li:first-child');
-
 		fsa.fstransition = fli.data('fstransition');
 		fsa.fsmasterspeed = fli.data('fsmasterspeed');
 		fsa.fsslotamount = fli.data('fsslotamount');
 
 		for (var u=0;u<opt.slideamount;u++) {
-			var it = Math.round(Math.random()*opt.slideamount);
-			opt.ul.find('>li:eq('+it+')').prependTo(opt.ul);
+			var it = Math.round(Math.random()*opt.slideamount);			
+			opt.ul.find('>li:eq('+it+')').prependTo(opt.ul);			
 		}
 
 		var newfli = opt.ul.find('>li:first-child');
@@ -953,7 +1001,7 @@ var initSlider = function (container,opt) {
 
 	opt.li = opt.ul.find('>li');
 	opt.thumbs = new Array();		
-	opt.slideamount = opt.li.length;
+	
 	opt.slots=4;
 	opt.act=-1;					
 	opt.firststart=1;
@@ -1138,6 +1186,7 @@ var initSlider = function (container,opt) {
 				_nc.wrap('<div class="tp-parallax-wrap" style="'+ec+'position:absolute;visibility:hidden"><div class="tp-loop-wrap" style="'+ec+'position:absolute;"><div class="tp-mask-wrap" style="'+ec+'position:absolute" ></div></div></div>');				
 				var lar = ['pendulum', 'rotate','slideloop','pulse','wave'],
 					_lc = _nc.closest('.tp-loop-wrap');
+				
 				jQuery.each(lar,function(i,k) {	
 					var lw = _nc.find('.rs-'+k),
 						f = lw.data() || "";
@@ -1365,29 +1414,31 @@ var checkHoverDependencies = function(_nc,opt) {
 	if (_nc.data('start')==="sliderenter") {
 		if (opt.layersonhover===undefined) {					
 			opt.c.on('tp-mouseenter',function() {
-				jQuery.each(opt.layersonhover,function(i,tnc) {						
-					tnc.data('animdirection',"in");
-					var otl = tnc.data('timeline_out'),
-						base_offsetx = opt.sliderType==="carousel" ? 0 : opt.width/2 - (opt.gridwidth[opt.curWinRange]*opt.bw)/2,
-						base_offsety=0;																	
-					if (otl!=undefined) {										
-						otl.pause(0);
-						otl.kill();													
-					}							
-					_R.animateSingleCaption(tnc,opt,base_offsetx,base_offsety,0,false,true);	
-					var tl = tnc.data('timeline');
-					tnc.data('triggerstate',"on");																									
-					tl.play(0);													
-				});
+				if (opt.layersonhover)
+					jQuery.each(opt.layersonhover,function(i,tnc) {						
+						tnc.data('animdirection',"in");
+						var otl = tnc.data('timeline_out'),
+							base_offsetx = opt.sliderType==="carousel" ? 0 : opt.width/2 - (opt.gridwidth[opt.curWinRange]*opt.bw)/2,
+							base_offsety=0;																	
+						if (otl!=undefined) {										
+							otl.pause(0);
+							otl.kill();													
+						}							
+						_R.animateSingleCaption(tnc,opt,base_offsetx,base_offsety,0,false,true);	
+						var tl = tnc.data('timeline');
+						tnc.data('triggerstate',"on");																									
+						tl.play(0);													
+					});
 			});
 			opt.c.on('tp-mouseleft',function() {
-				jQuery.each(opt.layersonhover,function(i,tnc) {
-					tnc.data('animdirection',"out");
-					tnc.data('triggered',true);
-					tnc.data('triggerstate',"off");
-					if (_R.stopVideo) _R.stopVideo(tnc,opt);												
-					if (_R.endMoveCaption) _R.endMoveCaption(tnc,null,null,opt);	
-				});
+				if (opt.layersonhover)
+					jQuery.each(opt.layersonhover,function(i,tnc) {
+						tnc.data('animdirection',"out");
+						tnc.data('triggered',true);
+						tnc.data('triggerstate',"off");
+						if (_R.stopVideo) _R.stopVideo(tnc,opt);												
+						if (_R.endMoveCaption) _R.endMoveCaption(tnc,null,null,opt);	
+					});
 			});			
 			opt.layersonhover = new Array;
 		} 				
@@ -1399,11 +1450,11 @@ var checkHoverDependencies = function(_nc,opt) {
 
 var contWidthManager = function(opt) {	
 	if (opt.sliderLayout!="auto") {
-		var loff = opt.c.closest('.forcefullwidth_wrapper_tp_banner').offset().left - _R.getHorizontalOffset(opt.c,"left");																
-		punchgs.TweenLite.set(opt.c.parent(),{'left':(0-loff)+"px",'width':jQuery(window).width()-_R.getHorizontalOffset(opt.c,"both")});
+		var loff = Math.ceil(opt.c.closest('.forcefullwidth_wrapper_tp_banner').offset().left - _R.getHorizontalOffset(opt.c,"left"));																
+		punchgs.TweenLite.set(opt.c.parent(),{'left':(0-loff)+"px",'width':jQuery(window).width()-_R.getHorizontalOffset(opt.c,"both")});		
 	} else {
 		var loff =_R.getHorizontalOffset(opt.c,"left");									
-		punchgs.TweenLite.set(opt.ul,{left:loff,width:opt.c.width()-_R.getHorizontalOffset(opt.c,"both")});
+		punchgs.TweenLite.set(opt.ul,{left:loff,width:opt.c.width()-_R.getHorizontalOffset(opt.c,"both")});		
 	}		
 }
 
@@ -1628,49 +1679,56 @@ var removeSlots = function(container,opt,where,addon) {
 
 // THE IMAGE IS LOADED, WIDTH, HEIGHT CAN BE SAVED
 var imgLoaded = function(img,opt,progress) {
-	opt.syncload--;
-	jQuery.each(opt.loadqueue, function(index,queue) {		
+	opt.syncload--;	
+	if (opt.loadqueue)
+		jQuery.each(opt.loadqueue, function(index,queue) {		
 
-		var mqsrc = queue.src.replace(/\.\.\/\.\.\//gi,"");		
+			var mqsrc = queue.src.replace(/\.\.\/\.\.\//gi,""),
+				fullsrc = self.location.href,
+				origin = document.location.origin;
+			
+			fullsrc = fullsrc.substring(0,fullsrc.length-1)+mqsrc;
+			origin = origin+mqsrc;
 
-		if (queue.src === decodeURIComponent(img.src) || (window.location.origin==="file://" && img.src.match(new RegExp(mqsrc)))) {									
-				queue.progress = progress;
-				queue.width = img.width;
-				queue.height = img.height;
-		}
-	});		
+			if (origin === decodeURIComponent(img.src) || fullsrc===decodeURIComponent(img.src) || queue.src === decodeURIComponent(img.src) || (window.location.origin==="file://" && img.src.match(new RegExp(mqsrc)))) {												
+					queue.progress = progress;
+					queue.width = img.width;
+					queue.height = img.height;
+			} 
+		});		
 	progressImageLoad(opt);
 }
 
 // PRELOAD IMAGES 3 PIECES ON ONE GO, CHECK LOAD PRIORITY
 var progressImageLoad = function(opt) {		
 	if (opt.syncload == 3) return;
-
-	jQuery.each(opt.loadqueue, function(index,queue) {	
-		if (queue.progress.match(/prepared/g)) {				
-		 	 if (opt.syncload<=3) {			 	 	
-				opt.syncload++;					
-				var img = new Image();
-				
-				img.onload = function() {											
-				 	imgLoaded(this,opt,"loaded");					
-				};
-				img.onerror = function() {
-					imgLoaded(this,opt,"failed");					
-				};					 
-				img.src=queue.src;
-				queue.progress="inload";
-			}
-		}				
-	});
+	if (opt.loadqueue)
+		jQuery.each(opt.loadqueue, function(index,queue) {	
+			if (queue.progress.match(/prepared/g)) {				
+			 	 if (opt.syncload<=3) {			 	 	
+					opt.syncload++;					
+					var img = new Image();
+					
+					img.onload = function() {											
+					 	imgLoaded(this,opt,"loaded");					
+					};
+					img.onerror = function() {
+						imgLoaded(this,opt,"failed");					
+					};					 
+					img.src=queue.src;
+					queue.progress="inload";
+				}
+			}				
+		});
 }
 
 // ADD TO QUEUE THE NOT LOADED IMAGES YES
 var addToLoadQueue = function(src,opt,prio) {		
-	var alreadyexist = false;		
-	jQuery.each(opt.loadqueue, function(index,queue) {			
-		if (queue.src === src) alreadyexist = true;
-	});
+	var alreadyexist = false;	
+	if (opt.loadqueue)	
+		jQuery.each(opt.loadqueue, function(index,queue) {			
+			if (queue.src === src) alreadyexist = true;
+		});
 
 
 	if (!alreadyexist) {
@@ -1698,9 +1756,10 @@ var loadImages = function(container,opt,nextli,prio) {
 // FIND SEARCHED IMAGE IN THE LOAD QUEUE
 var getLoadObj = function(opt,src) {	
 	var obj = new Object();
-	jQuery.each(opt.loadqueue, function(index,queue) {			
-		if (queue.src == src) obj = queue;
-	});
+	if (opt.loadqueue)
+		jQuery.each(opt.loadqueue, function(index,queue) {			
+			if (queue.src == src) obj = queue;
+		});
 	return obj;
 }
 
@@ -2288,6 +2347,7 @@ var getUrlVars = function (hashdivider){
 }
 
 	
+
 
 
 })(jQuery);

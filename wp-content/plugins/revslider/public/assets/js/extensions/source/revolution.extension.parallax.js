@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - PARALLAX
- * @version: 1.0.0 (08.07.2015)
+ * @version: 1.0.1 (17.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -10,8 +10,7 @@
 var _R = jQuery.fn.revolution,
 	_ISM = _R.is_mobile();
 
-jQuery.extend(true,_R, {
-
+jQuery.extend(true,_R, {	
 	checkForParallax : function(container,opt) {
 		
 		var _ = opt.parallax;
@@ -145,8 +144,9 @@ jQuery.extend(true,_R, {
 
 	//	-	SET POST OF SCROLL PARALLAX	-
 	scrollHandling : function(opt) {	
-				
 		
+
+
 		opt.lastwindowheight = opt.lastwindowheight || jQuery(window).height();
 
 		var t = opt.c.offset().top,
@@ -163,7 +163,11 @@ jQuery.extend(true,_R, {
 		b.bottom = (t-st) + b.h;
 
 		var proc = b.top<0 ? b.top / b.h : b.bottom>opt.lastwindowheight ? (b.bottom-opt.lastwindowheight) / b.h : 0;
-				
+		opt.scrollproc = proc;
+
+		if (_R.callBackHandling)
+			_R.callBackHandling(opt,"parallax","start");
+
 		var area = 1-Math.abs(proc);
 		area = area<0 ? 0 : area;
 				
@@ -207,6 +211,10 @@ jQuery.extend(true,_R, {
 						pt.add(punchgs.TweenLite.set(t,{position:"absolute",top:"0px",left:"0px",backfaceVisibility:"hidden",force3D:"true",y:offsv+"px",overwrite:"auto"}),0);
 				}
 		});
+
+		if (_R.callBackHandling)
+			_R.callBackHandling(opt,"parallax","end");
+		
 		
 		pt.play(0);
 	}

@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - ACTIONS
- * @version: 1.0.1 (07.08.2015)
+ * @version: 1.0.2 (18.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -22,7 +22,7 @@ jQuery.extend(true,_R, {
 //	-	INITIALISATION OF ACTIONS 	-	//
 //////////////////////////////////////////
 var checkActions_intern = function(_nc,opt,as) {
-if (as && as.length)				
+if (as)				
 	jQuery.each(as,function(i,a) {		
 		a.delay = parseInt(a.delay,0)/1000;
 		_nc.addClass("noSwipe")
@@ -153,10 +153,11 @@ var getOffContH = function(c) {
 	if (c.split(',').length>1) {
 		oc = c.split(",");
 		var a =0;
-		jQuery.each(oc,function(index,sc) {
-			if (jQuery(sc).length>0)
-				a = a + jQuery(sc).outerHeight(true);							
-		});
+		if (oc)
+			jQuery.each(oc,function(index,sc) {
+				if (jQuery(sc).length>0)
+					a = a + jQuery(sc).outerHeight(true);							
+			});
 		return a;
 	} else {
 		return jQuery(c).height();

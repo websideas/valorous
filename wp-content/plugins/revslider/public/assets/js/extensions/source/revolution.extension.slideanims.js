@@ -1,6 +1,6 @@
 /************************************************
  * REVOLUTION 5.0 EXTENSION - SLIDE ANIMATIONS
- * @version: 1.0.0 (08.07.2015)
+ * @version: 1.0.1 (11.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 ************************************************/
@@ -256,6 +256,10 @@ var getSliderTransitionParameters = function(container,opt,comingtransition,next
 							 ['slideoverup', 13, 7,1,0,'horizontal',true,true,13,p3io,p3io,1000,1],
 							 ['slideoverdown', 14, 7,1,0,'horizontal',true,true,14,p3io,p3io,1000,1],
 							 ['slideoverright', 15, 7,1,0,'horizontal',true,true,15,p3io,p3io,1000,1],
+							 ['slideremoveleft', 12, 8,1,0,'horizontal',true,true,12,p3io,p3io,1000,1],
+							 ['slideremoveup', 13, 8,1,0,'horizontal',true,true,13,p3io,p3io,1000,1],
+							 ['slideremovedown', 14, 8,1,0,'horizontal',true,true,14,p3io,p3io,1000,1],
+							 ['slideremoveright', 15, 8,1,0,'horizontal',true,true,15,p3io,p3io,1000,1],
 							 ['papercut', 16, 0,0,600,'',null,null,16,p3io,p3io,1000,2],
 							 ['3dcurtain-horizontal', 17, 0,20,100,'vertical',false,true,17,p1io,p1io,500,7],
 							 ['3dcurtain-vertical', 18, 0,10,100,'horizontal',false,true,18,p1io,p1io,500,5],
@@ -314,6 +318,19 @@ var getSliderTransitionParameters = function(container,opt,comingtransition,next
 				comingtransition = "slideoverup"
 			if (slidedirection==1)
 				comingtransition = "slideoverdown"
+		}
+
+	if (comingtransition=="slideremovehorizontal") {
+				comingtransition = "slideremoveleft"
+			if (slidedirection==1)
+				comingtransition = "slideremoveright"
+		}
+
+
+	if (comingtransition=="slideremovevertical") {
+				comingtransition = "slideremoveup"
+			if (slidedirection==1)
+				comingtransition = "slideremovedown"
 		}
 
 
@@ -841,11 +858,22 @@ var animateSlideIntern = function(nexttrans, comingtransition, container,  opt, 
 					ooh = 0;
 				}
 
-				mtl.add(punchgs.TweenLite.from(ssn,speedy,
-								{left:twx, top:twy, scale:fromscale, opacity:op,rotation:opt.rotate,ease:ei,force3D:"auto"}),0);
+				var inc = nextsh.find('.slotslide'),
+					outc = actsh.find('.slotslide');
 
-				var ssa=actsh.find('.slotslide');
+				mtl.add(punchgs.TweenLite.set(actli,{zIndex:15}),0);
+				mtl.add(punchgs.TweenLite.set(nextli,{zIndex:20}),0);
 
+				if (specials==8) {
+										
+					mtl.add(punchgs.TweenLite.set(actli,{zIndex:20}),0);
+					mtl.add(punchgs.TweenLite.set(nextli,{zIndex:15}),0);					
+					mtl.add(punchgs.TweenLite.set(inc,{left:0, top:0, scale:1, opacity:1,rotation:0,ease:ei,force3D:"auto"}),0);
+				} else {
+
+					mtl.add(punchgs.TweenLite.from(inc,speedy,{left:twx, top:twy, scale:fromscale, opacity:op,rotation:opt.rotate,ease:ei,force3D:"auto"}),0);
+				}
+				
 				if (specials==4 || specials==5) {
 					oow = 0; ooh=0;
 				}
@@ -853,16 +881,16 @@ var animateSlideIntern = function(nexttrans, comingtransition, container,  opt, 
 				if (specials!=1)
 					switch (nexttrans) {
 						case 12:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'left':(0-oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(0-oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 15:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'left':(oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 13:						
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'top':(0-ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'top':(0-ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 14:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'top':(ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'top':(ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 					}
 	}

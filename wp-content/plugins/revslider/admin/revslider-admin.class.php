@@ -318,11 +318,11 @@ class RevSliderAdmin extends RevSliderBaseAdmin{
 	public function add_notices(){
 		$operations = new RevSliderOperations();
 		$general_settings = $operations->getGeneralSettingsValues();
-		$enable_newschannel = '';
 		
-		$enable_newschannel = RevSliderBase::getVar($general_settings, 'enable_newschannel', $enable_newschannel);
 		
-		$enable_newschannel = apply_filters('revslider_set_notifications', 'on');
+		$enable_newschannel = RevSliderBase::getVar($general_settings, 'enable_newschannel', 'on');
+		
+		$enable_newschannel = apply_filters('revslider_set_notifications', $enable_newschannel);
 		
 		if($enable_newschannel == 'on'){
 			

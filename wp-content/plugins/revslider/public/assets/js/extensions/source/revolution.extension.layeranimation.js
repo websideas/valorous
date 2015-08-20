@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - LAYER ANIMATION
- * @version: 1.0.1 (06.08.2015)
+ * @version: 1.0.2 (18.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -57,6 +57,7 @@ jQuery.extend(true,_R, {
 			base_offsety=0,
 			index = nextli.data('index');
 
+
 		opt.layers = opt.layers || new Object();
 		opt.layers[index] = opt.layers[index] || nextli.find('.tp-caption')		
 		opt.layers["static"] = opt.layers["static"] || opt.c.find('.tp-static-layers').find('.tp-caption');
@@ -67,6 +68,8 @@ jQuery.extend(true,_R, {
 		opt.conw = opt.c.width();
 		opt.ulw = opt.ul.width();
 		opt.ulh = opt.ul.height();
+
+
 
 		/* ENABLE DEBUG MODE */
 		if (opt.debugMode) {
@@ -80,21 +83,24 @@ jQuery.extend(true,_R, {
 			hg.append('<div class="tlhg"></div>');
 		}
 
-		jQuery.each(allcaptions,function(i) {
-			var _nc = jQuery(this);
-			punchgs.TweenLite.set(_nc.find('.tp-videoposter'),{autoAlpha:1});
-			punchgs.TweenLite.set(_nc.find('iframe'),{autoAlpha:0});
-		})
+		if (allcaptions)
+			jQuery.each(allcaptions,function(i) {
+				var _nc = jQuery(this);
+				punchgs.TweenLite.set(_nc.find('.tp-videoposter'),{autoAlpha:1});
+				punchgs.TweenLite.set(_nc.find('iframe'),{autoAlpha:0});
+			})
 		
 		// COLLECT ALL CAPTIONS
-		jQuery.each(opt.layers[index], function(i,a) { allcaptions.push(a); });
-		jQuery.each(opt.layers["static"], function(i,a) { allcaptions.push(a); });
+		if (opt.layers[index])
+			jQuery.each(opt.layers[index], function(i,a) { allcaptions.push(a); });
+		if (opt.layers["static"])
+			jQuery.each(opt.layers["static"], function(i,a) { allcaptions.push(a); });
 		
 		// GO THROUGH ALL CAPTIONS, AND MANAGE THEM
-		jQuery.each(allcaptions,function(i) {	
-
-			_R.animateSingleCaption(jQuery(this),opt,base_offsetx,base_offsety,i,recalled)
-		}); 
+		if (allcaptions)
+			jQuery.each(allcaptions,function(i) {	
+				_R.animateSingleCaption(jQuery(this),opt,base_offsetx,base_offsety,i,recalled)
+			}); 
 
 		var bt=jQuery('body').find('#'+opt.c.attr('id')).find('.tp-bannertimer');
 		bt.data('opt',opt);
@@ -119,7 +125,8 @@ jQuery.extend(true,_R, {
 			_respoffset  = _nc.data('responsive_offset') || "on",
 			_ba = _nc.data('basealign') || "grid",				
 			_gw = _ba==="grid" ? opt.width : opt.ulw, //opt.conw,
-			_gh = _ba==="grid" ? opt.height : opt.ulh; //opt.conh;
+			_gh = _ba==="grid" ? opt.height : opt.ulh,  //opt.conh;
+			rtl = jQuery('body').hasClass("rtl"); 
 
 		
 
@@ -145,14 +152,14 @@ jQuery.extend(true,_R, {
 			_nc.on("hover, mouseenter",function() {
 				var ltxt = "",
 					spa = 0;
-				
-				jQuery.each(_nc.data(),function(key,val) {
-					if (typeof val !== "object") {
-						
-							ltxt = ltxt + '<span style="white-space:nowrap"><span style="color:#27ae60">'+key+":</span>"+val+"</span>&nbsp; &nbsp; ";
-						
-					}
-				});
+				if (_nc.data())
+					jQuery.each(_nc.data(),function(key,val) {
+						if (typeof val !== "object") {
+							
+								ltxt = ltxt + '<span style="white-space:nowrap"><span style="color:#27ae60">'+key+":</span>"+val+"</span>&nbsp; &nbsp; ";
+							
+						}
+					});
 				linfo.html(ltxt);
 			});
 		}
@@ -389,11 +396,15 @@ jQuery.extend(true,_R, {
 		}
 			
 		
-		// ALIGN POSITIONED ELEMENTS			
+		// ALIGN POSITIONED ELEMENTS	
+		
+		
 		elx = elx==="center" || elx==="middle" ? (crw/2 - eow/2) +  hofs : elx==="left" ? hofs : elx==="right" ? (crw - eow) - hofs : _respoffset !=="off"  ? elx * opt.bw : elx;
 		ely = ely=="center" || ely=="middle" ? 	(crh/2 - eoh/2) + vofs : ely =="top" ? vofs : ely=="bottom" ? (crh - eoh)-vofs : _respoffset !=="off"  ? ely*opt.bw : ely;			
 		
-
+		if (rtl) 
+			elx = elx + eow;
+		
 		// THE TRANSITIONS OF CAPTIONS
 		// MDELAY AND MSPEED
 												
@@ -736,23 +747,26 @@ jQuery.extend(true,_R, {
 			allcaptions = new Array;
 		
 		// COLLECT ALL CAPTIONS		
-		jQuery.each(opt.layers[index], function(i,a) { allcaptions.push(a); });
-		jQuery.each(opt.layers["static"], function(i,a) { allcaptions.push(a); });
+		if (opt.layers[index])
+			jQuery.each(opt.layers[index], function(i,a) { allcaptions.push(a); });
+		if (opt.layers["static"])
+			jQuery.each(opt.layers["static"], function(i,a) { allcaptions.push(a); });
 		punchgs.TweenLite.killDelayedCallsTo(_R.endMoveCaption);
 
 		// GO THROUGH ALL CAPTIONS, AND MANAGE THEM
-		jQuery.each(allcaptions,function(i) {
-		    var _nc=jQuery(this),
-		    	stat = staticLayerStatus(_nc,opt,"out");				    
-			if (stat != 0 ) {  //0 == ignore		
-				killCaptionLoops(_nc);
-				clearTimeout(_nc.data('videoplaywait'));
-				if (_R.stopVideo) _R.stopVideo(_nc,opt);												
-				_R.endMoveCaption(_nc,null,null,opt)
-				opt.playingvideos = [];
-				opt.lastplayedvideos = [];
-			}
-		});		
+		if (allcaptions)
+			jQuery.each(allcaptions,function(i) {
+			    var _nc=jQuery(this),
+			    	stat = staticLayerStatus(_nc,opt,"out");				    
+				if (stat != 0 ) {  //0 == ignore		
+					killCaptionLoops(_nc);
+					clearTimeout(_nc.data('videoplaywait'));
+					if (_R.stopVideo) _R.stopVideo(_nc,opt);												
+					_R.endMoveCaption(_nc,null,null,opt)
+					opt.playingvideos = [];
+					opt.lastplayedvideos = [];
+				}
+			});		
 	}
 });
 
@@ -858,28 +872,29 @@ var getAnimDatas = function(frm,data) {
 	if (data === undefined) 
 		return o;		
 
-	var customarray = data.split(';');		
-	jQuery.each(customarray,function(index,pa) {
-		var p = pa.split(":")
-		var w = p[0],
-			v = p[1];			
-		if (w=="rotationX" || w=="rX") o.anim.rotationX = animDataTranslator(v,o.anim.rotationX)+"deg";			
-		if (w=="rotationY" || w=="rY") o.anim.rotationY = animDataTranslator(v,o.anim.rotationY)+"deg";
-		if (w=="rotationZ" || w=="rZ") o.anim.rotation = animDataTranslator(v,o.anim.rotationZ)+"deg";					
-		if (w=="scaleX" || w=="sX") o.anim.scaleX = animDataTranslator(v,o.anim.scaleX);
-		if (w=="scaleY" || w=="sY") o.anim.scaleY = animDataTranslator(v,o.anim.scaleY);
-		if (w=="opacity" || w=="o") o.anim.opacity = animDataTranslator(v,o.anim.opacity);
-		if (w=="skewX" || w=="skX") o.anim.skewX = animDataTranslator(v,o.anim.skewX);
-		if (w=="skewY" || w=="skY") o.anim.skewY = animDataTranslator(v,o.anim.skewY);
-		if (w=="x") o.anim.x = animDataTranslator(v,o.anim.x);
-		if (w=="y") o.anim.y = animDataTranslator(v,o.anim.y);
-		if (w=="z") o.anim.z = animDataTranslator(v,o.anim.z);
-		if (w=="transformOrigin" || w=="tO") o.anim.transformOrigin = v.toString();
-		if (w=="transformPerspective" || w=="tP") o.anim.transformPerspective=parseInt(v,0);
-		if (w=="speed" || w=="s") o.speed = parseFloat(v)/1000;									
-		if (w=="ease" || w=="e") o.anim.ease = v;
+	var customarray = data.split(';');	
+	if (customarray)	
+		jQuery.each(customarray,function(index,pa) {
+			var p = pa.split(":")
+			var w = p[0],
+				v = p[1];			
+			if (w=="rotationX" || w=="rX") o.anim.rotationX = animDataTranslator(v,o.anim.rotationX)+"deg";			
+			if (w=="rotationY" || w=="rY") o.anim.rotationY = animDataTranslator(v,o.anim.rotationY)+"deg";
+			if (w=="rotationZ" || w=="rZ") o.anim.rotation = animDataTranslator(v,o.anim.rotationZ)+"deg";					
+			if (w=="scaleX" || w=="sX") o.anim.scaleX = animDataTranslator(v,o.anim.scaleX);
+			if (w=="scaleY" || w=="sY") o.anim.scaleY = animDataTranslator(v,o.anim.scaleY);
+			if (w=="opacity" || w=="o") o.anim.opacity = animDataTranslator(v,o.anim.opacity);
+			if (w=="skewX" || w=="skX") o.anim.skewX = animDataTranslator(v,o.anim.skewX);
+			if (w=="skewY" || w=="skY") o.anim.skewY = animDataTranslator(v,o.anim.skewY);
+			if (w=="x") o.anim.x = animDataTranslator(v,o.anim.x);
+			if (w=="y") o.anim.y = animDataTranslator(v,o.anim.y);
+			if (w=="z") o.anim.z = animDataTranslator(v,o.anim.z);
+			if (w=="transformOrigin" || w=="tO") o.anim.transformOrigin = v.toString();
+			if (w=="transformPerspective" || w=="tP") o.anim.transformPerspective=parseInt(v,0);
+			if (w=="speed" || w=="s") o.speed = parseFloat(v)/1000;									
+			if (w=="ease" || w=="e") o.anim.ease = v;
 
-	})	
+		})	
 	
 	return o;
 }
@@ -893,16 +908,17 @@ var getMaskDatas = function(d) {
 
 	var o = new Object();	
 	o.anim = new Object();
-
-	jQuery.each(d.split(';'),function(index,param) {
-		param = param.split(":")
-		var w = param[0],
-			v = param[1];
-		if (w=="x") o.anim.x = v;
-		if (w=="y") o.anim.y = v;
-		if (w=="s") o.speed = parseFloat(v)/1000;
-		if (w=="e" || w=="ease") o.anim.ease = v;	
-	});
+	var s = d.split(';')
+	if (s)
+		jQuery.each(s,function(index,param) {
+			param = param.split(":")
+			var w = param[0],
+				v = param[1];
+			if (w=="x") o.anim.x = v;
+			if (w=="y") o.anim.y = v;
+			if (w=="s") o.speed = parseFloat(v)/1000;
+			if (w=="e" || w=="ease") o.anim.ease = v;	
+		});
 
 	return o;
 }
@@ -923,11 +939,12 @@ var makeArray = function(obj,opt,show) {
 		obj = obj.replace("]","");
 		var newobj = obj.match(/'/g) ? obj.split("',") : obj.split(",");
 		obj = new Array();
-		jQuery.each(newobj,function(index,element) {
-			element = element.replace("'","");
-			element = element.replace("'","");
-			obj.push(element);
-		})
+		if (newobj)
+			jQuery.each(newobj,function(index,element) {
+				element = element.replace("'","");
+				element = element.replace("'","");
+				obj.push(element);
+			})
 	} else {
 		var tempw = obj;			
 		if (!jQuery.isArray(obj) ) {
@@ -1026,14 +1043,13 @@ var convertHoverStyle = function(t,s) {
 	s = s.replace("br:","borderRadius:");
 	s = s.replace("bs:","border-style:");
 	s = s.replace("td:","text-decoration:");
-	
-	jQuery.each(s.split(";"),function(key,cont){
-		var attr = cont.split(":");
-		if (attr[0].length>0)
-			t.anim[attr[0]] = attr[1];
-
-		
-	})			
+	var sp = s.split(";");
+	if (sp)
+		jQuery.each(sp,function(key,cont){
+			var attr = cont.split(":");
+			if (attr[0].length>0)
+				t.anim[attr[0]] = attr[1];		
+		})			
 
 	return t;
 
@@ -1097,11 +1113,10 @@ var getcssParams = function(nc,level) {
 // READ SINGLE OR ARRAY VALUES OF OBJ CSS ELEMENTS
 var setResponsiveCSSValues = function(obj,opt) {
 	var newobj = new Object();
-
-	jQuery.each(obj,function(key,val){
-		
-		newobj[key] = makeArray(val,opt)[opt.curWinRange] || obj[key];
-	})
+	if (obj)
+		jQuery.each(obj,function(key,val){			
+			newobj[key] = makeArray(val,opt)[opt.curWinRange] || obj[key];
+		})
 	return newobj;
 }
 

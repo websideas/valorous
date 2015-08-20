@@ -157,7 +157,7 @@
 
 			<div class="mb10">
 				<label for="input_video_stopallvideo"><?php _e('Stop Other Videos:', REVSLIDER_TEXTDOMAIN); ?></label>
-				<input type="checkbox" class="checkbox_video_dialog tp-moderncheckbox" id="input_video_stopallvideo" >				
+				<input type="checkbox" class="checkbox_video_dialog tp-moderncheckbox" id="input_video_stopallvideo" >
 			</div>
 
 			<div class="mb10">	
@@ -171,13 +171,18 @@
 			</div>
 
 			<div class="mb10">
-				<label for="input_video_control"><?php _e('Hide Controls:', REVSLIDER_TEXTDOMAIN); ?></label>				
+				<label for="input_video_control"><?php _e('Hide Controls:', REVSLIDER_TEXTDOMAIN); ?></label>
 				<input type="checkbox" class="checkbox_video_dialog tp-moderncheckbox" id="input_video_control" >
 			</div>
 
 			<div class="mb10">
-				<label for="input_video_mute"><?php _e('Mute:', REVSLIDER_TEXTDOMAIN); ?></label>				
+				<label for="input_video_mute"><?php _e('Mute:', REVSLIDER_TEXTDOMAIN); ?></label>
 				<input type="checkbox" class="checkbox_video_dialog tp-moderncheckbox" id="input_video_mute" >
+			</div>
+
+			<div class="mb10 video-volume">
+				<label for="input_video_volume"><?php _e('Volume (0 - 100):', REVSLIDER_TEXTDOMAIN); ?></label>
+				<input type="text" class="input_video_dialog" style="width: 50px;" id="input_video_volume" >
 			</div>
 			
 			<div class="mb10">

@@ -180,6 +180,7 @@ $video_nextslide = RevSliderFunctions::getVal($slideParams, 'video_nextslide', '
 $video_force_rewind = RevSliderFunctions::getVal($slideParams, 'video_force_rewind', 'on');
 $video_speed = RevSliderFunctions::getVal($slideParams, 'video_speed', '1');
 $video_mute = RevSliderFunctions::getVal($slideParams, 'video_mute', 'on');
+$video_volume = RevSliderFunctions::getVal($slideParams, 'video_volume', '100');
 $video_start_at = RevSliderFunctions::getVal($slideParams, 'video_start_at', '');
 $video_end_at = RevSliderFunctions::getVal($slideParams, 'video_end_at', '');
 $video_arguments = RevSliderFunctions::getVal($slideParams, 'video_arguments', RevSliderGlobals::DEFAULT_YOUTUBE_ARGUMENTS);

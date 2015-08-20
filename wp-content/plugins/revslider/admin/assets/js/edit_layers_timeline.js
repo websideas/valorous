@@ -1991,7 +1991,9 @@ var tpLayerTimelinesRev = new function(){
 		
 		setFakeAnim();
 				
-		
+		cur.on('click',function() {
+			jQuery('#timline-manual-dialog').hide();
+		})
 		
 		dragspeedin.resizable({
 			minWidth:0,
@@ -2002,7 +2004,7 @@ var tpLayerTimelinesRev = new function(){
 				dragspeedin.resizable("option","maxWidth",(w));
 				jQuery(this).closest('li').addClass("showstartspeed");
 				dragspeedin.closest('.timeline').addClass("onchange");
-
+				jQuery('#timline-manual-dialog').hide();
 				cur.find('.sortbox_speedin').html(msToSec(spt));
 			},
 			stop:function() {
@@ -2064,7 +2066,7 @@ var tpLayerTimelinesRev = new function(){
 		htmlSortbox += '			<span class="till_slideend '+endslideclass+'" title="Snap to Slide End / Custom End" class="tipsy_enabled_top"><i class="eg-icon-back-in-time"></i><i class="eg-icon-download-2"></i></span>';
 		htmlSortbox += '		</span>';
 		htmlSortbox += '		<span class="sort-hover-part layer_sort_layer_text_field">';
-		htmlSortbox += '			<span class="sortbox_text"><i class="layertypeclass ';
+		htmlSortbox += '			<span class="sortbox_text"><i class="layertypeclass ';		
 
 		quicksb += '<li id="layer_quicksort_'+serial+'" class="quicksortlayer ui-state-default">';
 		quicksb += '<div class="add-layer-button">'		
@@ -2090,6 +2092,7 @@ var tpLayerTimelinesRev = new function(){
 		quicksb += '				<span class="add-layer-txt">'+sortboxText + '</span>';
 		htmlSortbox += '			</span>';
 		htmlSortbox += '		</span>';
+		htmlSortbox += '		<span class="timer-manual-edit"><i class="eg-icon-pencil"></i></span>'
 		htmlSortbox += '	</div>';
 		htmlSortbox += '<div class="timeline" style="display:none">';
 		htmlSortbox += '<div class="tl-fullanim"><div class="tl-startanim"></div><div class="tl-endanim"></div></div>';
@@ -2161,6 +2164,8 @@ var tpLayerTimelinesRev = new function(){
 		jQuery('.layers-wrapper').height(jQuery('#mastertimer-wrapper').height()-40);
 		jQuery('.layers-wrapper').perfectScrollbar("update");
 
+		
+
 		// DRAG LEFT / RIGHT THE FULL ANIMATION
 		dragfull.draggable({
 			containment:"parent",
@@ -2170,6 +2175,7 @@ var tpLayerTimelinesRev = new function(){
 				//dragfull.draggable("option","containment",[215,0,(slidemaxtime/10)+dragspeedout.width()+15,0]);
 				dragfull.closest('.timeline').addClass("onchange");
 				jQuery(this).closest('li').addClass("showstarttoend");
+				jQuery('#timline-manual-dialog').show();
 			},
 			stop:function() {
 
@@ -2224,7 +2230,7 @@ var tpLayerTimelinesRev = new function(){
 					
 				// ADD CLASS ONCHANGE
 				dragfull.closest('.timeline').addClass("onchange");
-				
+				jQuery('#timline-manual-dialog').show();
 				
 
 				var maxtime = (jQuery('#mastertimer-maxtime').position().left)-15,
@@ -2281,6 +2287,7 @@ var tpLayerTimelinesRev = new function(){
 				dragfull.closest('.timeline').addClass("onchange");
 				jQuery(this).closest('li').addClass("showstartspeed");
 				dragfull.closest('.timeline').addClass("onchange");
+				jQuery('#timline-manual-dialog').show();
 			},
 			stop:function() {
 				var dragfull = jQuery(this).closest('li').find('.tl-fullanim');
@@ -2311,6 +2318,7 @@ var tpLayerTimelinesRev = new function(){
 				dragspeedout.resizable("option","maxWidth",(w-speedinw));
 				dragfull.closest('.timeline').addClass("onchange");
 				jQuery(this).closest('li').addClass("showendspeed");
+				jQuery('#timline-manual-dialog').show();
 			},
 			stop:function() {
 				var dragfull = jQuery(this).closest('li').find('.tl-fullanim');
@@ -2421,7 +2429,7 @@ var tpLayerTimelinesRev = new function(){
 		dragend.css({right:"0px",width:(objLayer.endspeed / 10)+"px" });
 		checkTillSlideEnd(serial,objLayer);
 
-
+		
 	}
 
 	
@@ -2517,6 +2525,11 @@ var tpLayerTimelinesRev = new function(){
 		objLayer.endspeed = endspeed;
 		objLayer.time = starttime;
 		objLayer.endtime = endtime;
+
+		jQuery('#clayer_start_time').val(starttime);
+		jQuery('#clayer_end_time').val(endtime);
+		jQuery('#clayer_start_speed').val(startspeed);
+		jQuery('#clayer_end_speed').val(endspeed);
 
 		checkTillSlideEnd(serial,objLayer);
 
@@ -3295,6 +3308,12 @@ var tpLayerTimelinesRev = new function(){
 			if (comingtransition=="slideoververtical") 
 						comingtransition = "slideoverup"
 
+			if (comingtransition=="slideremovehorizontal") 
+						comingtransition = "slideremoveleft"
+			
+			if (comingtransition=="slideremovevertical") 
+						comingtransition = "slideremoveup"
+
 			if (comingtransition=="slidehorizontal") 
 						comingtransition = "slideleft"
 
@@ -3344,6 +3363,10 @@ var tpLayerTimelinesRev = new function(){
 							 ['slideoverup', 13, 7,1,0,'horizontal',true,true,13,p3io,p3io,1000,1],
 							 ['slideoverdown', 14, 7,1,0,'horizontal',true,true,14,p3io,p3io,1000,1],
 							 ['slideoverright', 15, 7,1,0,'horizontal',true,true,15,p3io,p3io,1000,1],
+							 ['slideremoveleft', 12, 8,1,0,'horizontal',true,true,12,p3io,p3io,1000,1],
+							 ['slideremoveup', 13, 8,1,0,'horizontal',true,true,13,p3io,p3io,1000,1],
+							 ['slideremovedown', 14, 8,1,0,'horizontal',true,true,14,p3io,p3io,1000,1],
+							 ['slideremoveright', 15, 8,1,0,'horizontal',true,true,15,p3io,p3io,1000,1],
 							 ['papercut', 16, 0,0,600,'',null,null,16,p3io,p3io,1000,2],
 							 ['3dcurtain-horizontal', 17, 0,20,100,'vertical',false,true,17,p1io,p1io,500,7],
 							 ['3dcurtain-vertical', 18, 0,10,100,'horizontal',false,true,18,p1io,p1io,500,5],
@@ -3849,11 +3872,22 @@ var tpLayerTimelinesRev = new function(){
 					ooh = 0;
 				}
 
-				mtl.add(punchgs.TweenLite.from(ssn,speedy,
-								{left:twx, top:twy, scale:fromscale, opacity:op,rotation:opt.rotate,ease:ei,force3D:"auto"}),0);
+				var inc = nextsh.find('.slotslide'),
+					outc = actsh.find('.slotslide');
 
-				var ssa=actsh.find('.slotslide');
+				mtl.add(punchgs.TweenLite.set(actli,{zIndex:15}),0);
+				mtl.add(punchgs.TweenLite.set(nextli,{zIndex:20}),0);
 
+				if (specials==8) {
+										
+					mtl.add(punchgs.TweenLite.set(actli,{zIndex:20}),0);
+					mtl.add(punchgs.TweenLite.set(nextli,{zIndex:15}),0);					
+					mtl.add(punchgs.TweenLite.set(inc,{left:0, top:0, scale:1, opacity:1,rotation:0,ease:ei,force3D:"auto"}),0);
+				} else {
+
+					mtl.add(punchgs.TweenLite.from(inc,speedy,{left:twx, top:twy, scale:fromscale, opacity:op,rotation:opt.rotate,ease:ei,force3D:"auto"}),0);
+				}
+				
 				if (specials==4 || specials==5) {
 					oow = 0; ooh=0;
 				}
@@ -3861,18 +3895,19 @@ var tpLayerTimelinesRev = new function(){
 				if (specials!=1)
 					switch (nexttrans) {
 						case 12:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'left':(0-oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(0-oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 15:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'left':(oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 13:						
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'top':(0-ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'top':(0-ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 14:
-							mtl.add(punchgs.TweenLite.to(ssa,speedy2,{'top':(ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
+							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'top':(ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 					}
+	
 	}
 
 	//////////////////////////////////////

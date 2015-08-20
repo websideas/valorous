@@ -102,13 +102,15 @@
 							?>
 							<label ><?php _e("Main / Background Image",REVSLIDER_TEXTDOMAIN); ?></label>
 							<input type="radio" name="background_type" value="image" class="bgsrcchanger" data-callid="tp-bgimagewpsrc" data-imgsettings="on" data-bgtype="image" id="radio_back_image" <?php checked($bgType, 'image'); ?>>
-							<!-- THE BG IMAGE CHANGED DIV -->
-							<span id="tp-bgimagewpsrc" class="bgsrcchanger-div" style="display:none;margin-left:20px;">
-								<a href="javascript:void(0)" id="button_change_image" class="button-primary revblue" ><?php _e("Change Image", REVSLIDER_TEXTDOMAIN); ?></a>
-							</span>
+							
 							<?php
 						}
 						?>
+						<!-- THE BG IMAGE CHANGED DIV -->
+						<span id="tp-bgimagewpsrc" class="bgsrcchanger-div" style="display:none;margin-left:20px;">
+							<a href="javascript:void(0)" id="button_change_image" class="button-primary revblue" ><?php _e("Change Image", REVSLIDER_TEXTDOMAIN); ?></a>
+						</span>
+						
 						<div class="tp-clearfix"></div>
 						
 						<!-- IMAGE FROM EXTERNAL -->
@@ -301,6 +303,11 @@
 							<label for="video_mute"><?php _e('Mute Video:', REVSLIDER_TEXTDOMAIN); ?></label>
 							<input type="checkbox" class="tp-moderncheckbox" id="video_mute" name="video_mute" data-unchecked="off" <?php checked($video_mute, 'on'); ?>>
 						</p>
+						
+						<p class="vid-rev-vimeo-youtube video_volume_wrapper">
+							<label for="video_volume"><?php _e('Video Volume:', REVSLIDER_TEXTDOMAIN); ?></label>
+							<input type="text" id="video_volume" name="video_volume" <?php echo esc_attr($video_volume); ?>>
+						</p>
 
 						<span id="vid-rev-youtube-options">
 							<p>
@@ -418,6 +425,7 @@
 							<input style="min-width:54px;width:54px" type="text" name="kb_start_offset_x" value="<?php echo $kbStartOffsetX; ?>" />
 							<label style="min-width:20px"><?php _e('To', REVSLIDER_TEXTDOMAIN)?></label>
 							<input style="min-width:54px;width:54px" type="text" name="kb_end_offset_x" value="<?php echo $kbEndOffsetX; ?>" />
+							<span><i><?php _e('Use Negative and Positive Values to offset from the Center !', REVSLIDER_TEXTDOMAIN); ?></i></span>
 						</p>
 
 						<p>
@@ -426,6 +434,7 @@
 							<input style="min-width:54px;width:54px" type="text" name="kb_start_offset_y" value="<?php echo $kbStartOffsetY; ?>" />
 							<label style="min-width:20px"><?php _e('To', REVSLIDER_TEXTDOMAIN)?></label>
 							<input style="min-width:54px;width:54px" type="text" name="kb_end_offset_y" value="<?php echo $kbEndOffsetY; ?>" />
+							<span><i><?php _e('Use Negative and Positive Values to offset from the Center !', REVSLIDER_TEXTDOMAIN); ?></i></span>
 						</p>
 						
 						<p>
@@ -583,7 +592,17 @@
 						<span class="description"><?php _e("Slide Thumbnail. If not set - it will be taken from the slide image.",REVSLIDER_TEXTDOMAIN); ?></span>
 					</div>
 				</div>
-
+				<?php $thumb_dimension = RevSliderFunctions::getVal($slideParams, 'thumb_dimension', 'slider'); ?>
+				<p>
+					<span style="display:inline-block; vertical-align: top;">
+						<label><?php _e("Thumbnail Dimensions:",REVSLIDER_TEXTDOMAIN); ?></label>
+					</span>
+					<select name="thumb_dimension">
+						<option value="slider" <?php selected($thumb_dimension, 'slider'); ?>><?php _e('From Slider Settings', REVSLIDER_TEXTDOMAIN); ?></option>
+						<option value="orig" <?php selected($thumb_dimension, 'orig'); ?>><?php _e('Original Size', REVSLIDER_TEXTDOMAIN); ?></option>
+					</select>
+					<span class="description"><?php _e("Width and height of thumbnails can be changed in the Slider Settings -> Navigation -> Thumbs tab.",REVSLIDER_TEXTDOMAIN); ?></span>
+				</p>
 				<!-- SLIDE VISIBLE FROM -->
 				<p style="display:none">
 					<?php $save_performance = RevSliderFunctions::getVal($slideParams, 'save_performance','off'); ?>

@@ -1467,10 +1467,17 @@ var UniteLayersRev = new function(){
 		jQuery('#streamvideo_cover').hide();
 		jQuery('#streamvideo_cover_both').hide();
 		
+		jQuery('#button_change_image').show();
+		
+		jQuery('.video_volume_wrapper').hide();
+		
 		switch(jQuery('input[name="background_type"]:checked').data('bgtype')){
 			case "image":
+				jQuery('#button_change_image').hide();
+				
 				switch(gallery_type){
 					case 'gallery':
+						jQuery('#button_change_image').show();
 					break;
 					case 'posts':
 						bgimg = rs_plugin_url+'public/assets/assets/sources/post.png';
@@ -1555,6 +1562,7 @@ var UniteLayersRev = new function(){
 				jQuery('#bg-setting-wrap').hide();
 				jQuery('#vid-rev-vimeo-options').show();
 				jQuery('#vid-rev-youtube-options').show();
+				jQuery('.video_volume_wrapper').show();
 				
 			break;
 			case "streamyoutube":
@@ -1575,6 +1583,7 @@ var UniteLayersRev = new function(){
 				jQuery('#video-settings').show();
 				jQuery('#bg-setting-wrap').hide();
 				jQuery('#vid-rev-youtube-options').show();
+				jQuery('.video_volume_wrapper').show();
 			break;
 			case "streamvimeo":
 			case "streamvimeoboth":
@@ -1594,6 +1603,7 @@ var UniteLayersRev = new function(){
 				jQuery('#video-settings').show();
 				jQuery('#bg-setting-wrap').hide();
 				jQuery('#vid-rev-vimeo-options').show();
+				jQuery('.video_volume_wrapper').show();
 			break;
 			case "streaminstagram":
 			case "streaminstagramboth":
@@ -2079,6 +2089,28 @@ var UniteLayersRev = new function(){
 			
 		});
 
+		jQuery('#clayer_start_time, #clayer_end_time, #clayer_start_speed, #clayer_end_speed').on("change blur", function() {
+			var objLayer = t.getLayer(selectedLayerSerial);
+			
+			objLayer.time = jQuery('#clayer_start_time').val();
+			objLayer.endtime = jQuery('#clayer_end_time').val();
+			objLayer.speed = jQuery('#clayer_start_speed').val();
+			objLayer.endspeed = jQuery('#clayer_end_speed').val();
+			
+			jQuery('#layer_speed').val(objLayer.speed);
+			jQuery('#layer_endspeed').val(objLayer.endspeed);
+			t.updateLayerFromFields();
+		});
+
+
+		jQuery('body').on('click','.timer-manual-edit, #layers-right .sortablelayers',function() {
+			jQuery('#timline-manual-dialog').show();
+		});
+
+		jQuery('#timline-manual-closer').on('click',function() {
+			jQuery('#timline-manual-dialog').hide();
+		});
+
 	}
 
 
@@ -2161,6 +2193,8 @@ var UniteLayersRev = new function(){
 					data.alias = 'Shape';
 					data.type = 'shape';
 					data.style = 'tp-shape tp-shapewrapper';
+					
+					data.internal_class = 'tp-shape tp-shapewrapper';
 					
 					data.autolinebreak = false;
 					
@@ -4699,6 +4733,8 @@ var UniteLayersRev = new function(){
 		objUpdate.animation = jQuery("#layer_animation option:selected").val();
 		objUpdate.speed = jQuery("#layer_speed").val();
 		
+		
+		
 		objUpdate = t.setVal(objUpdate, 'align_hor', jQuery("#layer_align_hor").val());
 		objUpdate = t.setVal(objUpdate, 'align_vert', jQuery("#layer_align_vert").val());
 		
@@ -4772,6 +4808,10 @@ var UniteLayersRev = new function(){
 		objUpdate.endeasing = jQuery("#layer_endeasing").val();
 
 		objUpdate = t.setVal(objUpdate, 'scaleY', jQuery("#layer_scaleY").val());
+
+
+		jQuery('#clayer_start_speed').val(objUpdate.speed);
+		jQuery('#clayer_end_speed').val(objUpdate.endspeed);
 		
 		if(objUpdate['static_styles'] == undefined) objUpdate['static_styles'] = {};
 		objUpdate['static_styles'] = t.setVal(objUpdate['static_styles'], 'font-size', jQuery("#layer_font_size_s").val());
@@ -5535,6 +5575,12 @@ var UniteLayersRev = new function(){
 		jQuery("#layer_pers_end").val(objLayer.pers_end);
 
 		//set advanced params
+
+		// SET CURRENT TIMING HELPERS
+		jQuery('#clayer_start_time').val(objLayer.time);
+		jQuery('#clayer_end_time').val(objLayer.endtime);
+		jQuery('#clayer_start_speed').val(objLayer.speed);
+		jQuery('#clayer_end_speed').val(objLayer.endspeed);
 
 
 		if(objLayer['static_styles'] != undefined){

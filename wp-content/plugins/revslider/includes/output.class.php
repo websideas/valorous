@@ -512,25 +512,42 @@ class RevSliderOutput {
 
 			$htmlThumb = "";
 			if($isThumbsActive == true || $is_special_nav == true){
+				
 				$urlThumb = null;
 
 				if(empty($urlThumb)){
 					$urlThumb = $slide->getParam('slide_thumb', '');
 				}
 				
-				if($source_type == 'youtube' || $source_type == 'vimeo' || 
-					$bgType == 'image' || $bgType == 'vimeo' || $bgType == 'youtube' || $bgType == 'html5' || 
-					$bgType == 'streamvimeo' || $bgType == 'streamyoutube' || $bgType == 'streaminstagram' || $bgType == 'streamtwitter' ||
-					$bgType == 'streamvimeoboth' || $bgType == 'streamyoutubeboth' || $bgType == 'streaminstagramboth' || $bgType == 'streamtwitterboth'){
+				$thumb_do = $slide->getParam('thumb_dimension', 'slider');
+				if($thumb_do == 'slider'){ //use the slider settings for width / height
+					$th_width = intval($this->slider->getParam('thumb_width', 100));
+					$th_height = intval($this->slider->getParam('thumb_height', 50));
+					if($th_width == 0) $th_width = 100;
+					if($th_height == 0) $th_height = 50;
 					
-					if(empty($urlThumb)){	//try to get resized thumb
-						$url_img_link = $slide->getImageUrl();
-
-						$urlThumb = rev_aq_resize($url_img_link, 320, 200, true, true, true);
-					}else{
-						$urlThumb = rev_aq_resize($urlThumb, 320, 200, true, true, true);
+					if($source_type == 'youtube' || $source_type == 'vimeo' || 
+						$bgType == 'image' || $bgType == 'vimeo' || $bgType == 'youtube' || $bgType == 'html5' || 
+						$bgType == 'streamvimeo' || $bgType == 'streamyoutube' || $bgType == 'streaminstagram' || $bgType == 'streamtwitter' ||
+						$bgType == 'streamvimeoboth' || $bgType == 'streamyoutubeboth' || $bgType == 'streaminstagramboth' || $bgType == 'streamtwitterboth'){
+						
+						if(empty($urlThumb)){	//try to get resized thumb
+							$url_img_link = $slide->getImageUrl();
+							$urlThumb = rev_aq_resize($url_img_link, $th_width, $th_height, true, true, true);
+						}else{
+							$urlThumb = rev_aq_resize($urlThumb, $th_width, $th_height, true, true, true);
+							if(empty($urlThumb)){
+								$urlThumb = $slide->getImageUrl();
+								$urlThumb = rev_aq_resize($urlThumb, $th_width, $th_height, true, true, true);
+							}
+							
+						}
+						
+						//if not - put regular image:
+						if(empty($urlThumb))
+							$urlThumb = $slide->getImageUrl();
 					}
-
+				}else{
 					//if not - put regular image:
 					if(empty($urlThumb))
 						$urlThumb = $slide->getImageUrl();
@@ -905,6 +922,7 @@ class RevSliderOutput {
 		$nextslide = $slide->getParam('video_nextslide', 'off');
 		$force_rewind = $slide->getParam('video_force_rewind', 'off');
 		$mute_video = $slide->getParam('video_mute', 'on');
+		$volume_video = $slide->getParam('video_volume', '100');
 		
 		$video_start_at = $slide->getParam('video_start_at', '');
 		$video_end_at = $slide->getParam('video_end_at', '');
@@ -947,6 +965,11 @@ class RevSliderOutput {
 					if(empty($arguments))
 						$arguments = RevSliderGlobals::DEFAULT_YOUTUBE_ARGUMENTS;
 					
+					if($mute_video == 'off'){
+						$add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
+						$arguments = 'volume='.intval($volume_video).'&amp;'.$arguments;
+					}
+					
 					$arguments.=';origin='.$setBase.$_SERVER['SERVER_NAME'].';';
 					$add_data .= '			data-ytid="'.$youtube_id.'"'." \n";
 					$add_data .= '			data-videoattributes="version=3&amp;enablejsapi=1&amp;html5=1&amp;'.$arguments.'"'." \n";
@@ -961,6 +984,10 @@ class RevSliderOutput {
 				
 					if(empty($arguments))
 						$arguments = RevSliderGlobals::DEFAULT_VIMEO_ARGUMENTS;
+					
+					if($mute_video == 'off'){
+						$add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
+					}
 					
 					//check if full URL
 					if(strpos($vimeo_id, 'http') !== false){
@@ -996,6 +1023,11 @@ class RevSliderOutput {
 				if(empty($arguments))
 					$arguments = RevSliderGlobals::DEFAULT_YOUTUBE_ARGUMENTS;
 				
+				if($mute_video == 'off'){
+					$add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
+					$arguments = 'volume='.intval($volume_video).'&amp;'.$arguments;
+				}
+				
 				$youtube_id = $slide->getParam('slide_bg_youtube', '');
 				
 				if($youtube_id == '') return false;
@@ -1025,6 +1057,10 @@ class RevSliderOutput {
 				
 				if(empty($arguments))
 					$arguments = RevSliderGlobals::DEFAULT_VIMEO_ARGUMENTS;
+				
+				if($mute_video == 'off'){
+					$add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
+				}
 				
 				$vimeo_id = $slide->getParam('slide_bg_vimeo', '');
 				
@@ -1635,6 +1671,11 @@ class RevSliderOutput {
 					
 					$videoloop = RevSliderFunctions::getVal($videoData, "videoloop");
 					
+					$mute = RevSliderFunctions::getVal($videoData, "mute");
+					$mute = RevSliderFunctions::strToBool($mute);
+					
+					$htmlMute = ($mute)	? '			data-volume="mute"' : '';
+					
 					switch($videoType){
 						case 'streamyoutube':
 						case 'streamyoutubeboth':
@@ -1645,6 +1686,12 @@ class RevSliderOutput {
 							
 							if(empty($videoArgs))
 								$videoArgs = RevSliderGlobals::DEFAULT_YOUTUBE_ARGUMENTS;
+							
+							if(!$mute){
+								$volume = RevSliderFunctions::getVal($videoData, "volume", '100');
+								$htmlMute = '			data-volume="'.intval($volume).'"';
+								$videoArgs = 'volume='.intval($volume).'&'.$videoArgs;
+							}
 							
 							if($start_at !== ''){
 								$start_raw = explode(':', $start_at);
@@ -1679,6 +1726,7 @@ class RevSliderOutput {
 							$videospeed = RevSliderFunctions::getVal($videoData, 'videospeed', '1');
 							
 							$videoArgs.=';origin='.$setBase.$_SERVER['SERVER_NAME'].';';
+							
 							$add_data = ' data-ytid="'.$videoID.'" data-videoattributes="version=3&amp;enablejsapi=1&amp;html5=1&amp;'.$videoArgs.'" data-videorate="'.$videospeed.'" data-videowidth="'.$videoWidth.'" data-videoheight="'.$videoHeight.'"';
 							$add_data .= ($v_controls) ? ' data-videocontrols="none"' : ' data-videocontrols="controls"';
 							
@@ -1697,6 +1745,11 @@ class RevSliderOutput {
 							if(strpos($videoID, 'http') !== false){
 								//we have full URL, split it to ID
 								$videoID = (int) substr(parse_url($videoID, PHP_URL_PATH), 1);
+							}
+							
+							if(!$mute){
+								$volume = RevSliderFunctions::getVal($videoData, "volume", '100');
+								$htmlMute = '			data-volume="'.intval($volume).'"';
 							}
 							
 							$add_data = ' data-vimeoid="'.$videoID.'" data-videoattributes="'.$videoArgs.'" data-videowidth="'.$videoWidth.'" data-videoheight="'.$videoHeight.'"';
@@ -1781,9 +1834,6 @@ class RevSliderOutput {
 						$htmlVideoAutoplay = '			data-autoplay="off"'." \n";
 					}
 					
-					$mute = RevSliderFunctions::getVal($videoData, "mute");
-					$mute = RevSliderFunctions::strToBool($mute);
-					$htmlMute = ($mute)	? ' data-volume="mute"' : '';
 					
 					$videoNextSlide = RevSliderFunctions::getVal($videoData, "nextslide");
 					$videoNextSlide = RevSliderFunctions::strToBool($videoNextSlide);

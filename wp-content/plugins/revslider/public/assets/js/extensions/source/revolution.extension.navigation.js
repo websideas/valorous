@@ -1,7 +1,7 @@
 
 /********************************************
  * REVOLUTION 5.0 EXTENSION - NAVIGATION
- * @version: 1.0.1 (07.08.2015)
+ * @version: 1.0.2 (18.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -157,11 +157,11 @@ jQuery.extend(true,_R, {
 			
 			var ai = 0,			
 				f = false;
-
-			jQuery.each(opt.thumbs,function(i,obj) {			
-				ai = f === false ? i : ai;
-				f = obj.id === si || i === si ? true : f;
-			});			
+			if (opt.thumbs)
+				jQuery.each(opt.thumbs,function(i,obj) {			
+					ai = f === false ? i : ai;
+					f = obj.id === si || i === si ? true : f;
+				});			
 			
 			
 			var pi = ai>0 ? ai-1 : opt.slideamount-1,
@@ -297,14 +297,15 @@ var rtt = function(f,tws,c,o,lis,wh) {
 	tws.add(punchgs.TweenLite.set(h,anm));
 	tws.add(punchgs.TweenLite.set(ins,{width:iw+"px",height:ih+"px"}));
 	tws.add(punchgs.TweenLite.set(mask,{width:iw+"px",height:ih+"px"}));	
-	
-	jQuery.each(ins.find('.tp-'+wh+''),function(i,el) {
-		if (o.direction === "vertical")
-			tws.add(punchgs.TweenLite.set(el,{top:(i*(ch+parseInt((o.space===undefined? 0:o.space),0))),width:cw+"px",height:ch+"px"}));	
-		else 
-		if (o.direction === "horizontal")
-			tws.add(punchgs.TweenLite.set(el,{left:(i*(cw+parseInt((o.space===undefined? 0:o.space),0))),width:cw+"px",height:ch+"px"}));	
-	});	
+	var fin = ins.find('.tp-'+wh+'');
+	if (fin)
+		jQuery.each(fin,function(i,el) {
+			if (o.direction === "vertical")
+				tws.add(punchgs.TweenLite.set(el,{top:(i*(ch+parseInt((o.space===undefined? 0:o.space),0))),width:cw+"px",height:ch+"px"}));	
+			else 
+			if (o.direction === "horizontal")
+				tws.add(punchgs.TweenLite.set(el,{left:(i*(cw+parseInt((o.space===undefined? 0:o.space),0))),width:cw+"px",height:ch+"px"}));	
+		});	
 	return tws;
 };
 
@@ -439,11 +440,17 @@ var swipeAction = function(container,opt,vertical) {
 
 	pagescroll = vertical == "swipebased" && swipe_wait_dir=="vertical" ? "none" : vertical ? "vertical" : pagescroll;
 	
-	
-	SwipeOn.swipe({			
+	if (!jQuery.fn.swipetp) jQuery.fn.swipetp = jQuery.fn.swipe;
+	if (!jQuery.fn.swipetp.defaults || !jQuery.fn.swipetp.defaults.excludedElements) {
+		if (!jQuery.fn.swipetp.defaults) 
+			jQuery.fn.swipetp.defaults = new Object();
+		jQuery.fn.swipetp.defaults.excludedElements = "label, button, input, select, textarea, a, .noSwipe"
+	}
+
+	SwipeOn.swipetp({			
 		allowPageScroll:pagescroll,			
 		triggerOnTouchLeave:true,					
-		excludeElements:jQuery.fn.swipe.defaults.excludedElements,	
+		excludeElements:jQuery.fn.swipetp.defaults.excludedElements,	
 
 		swipeStatus:function(event,phase,direction,distance,duration,fingerCount,fingerData) {			
 					
