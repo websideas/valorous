@@ -742,17 +742,16 @@
             var window_width = $(window).width(),
                 $animate_wrap = $(this),
                 $class_animate = $animate_wrap.attr('data-animation'),
-                $animate_item = $animate_wrap.find('.animation-effect-item'),
+                //$animate_item = $animate_wrap.find('.animation-effect-item'),
                 $time = $animate_wrap.attr('data-timeeffect'),
                 $count = 0;
-            $animate_item.each(function(i){
+            $animate_wrap.children().each(function(i){
                 var $animate = $(this);
                 
                 if($animate.hasClass('first')){
                     $count = 0;
                 }
-                
-                console.log($count);
+
                 var animation_delay = $count * $time;
                 $count++;
                 if (window_width > 991) {

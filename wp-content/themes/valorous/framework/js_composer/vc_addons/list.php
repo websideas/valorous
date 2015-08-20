@@ -333,9 +333,8 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
         }
         
         if(!$icon_li) $icon_li = $icon_show;
-        $cl_animate = ( $data_animate ) ?  'animation-effect-item' : '';
         
-        return '<li class="kt-list-item '.$cl_animate.' '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
+        return '<li class="kt-list-item '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
         
     }
 }

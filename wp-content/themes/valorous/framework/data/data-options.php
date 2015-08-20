@@ -200,7 +200,15 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'subtitle'     => __( "Placeholder for none image", THEME_LANG ),
                     ),
 
-
+                    array(
+                        'id' => 'page_animation',
+                        'type' => 'switch',
+                        'title' => __('Page Animation', THEME_LANG),
+                        'desc' => __('Enable Animation switcher in the page.', THEME_LANG),
+                        "default" => 1,
+                        'on'		=> __( 'Enabled', THEME_LANG ),
+                        'off'		=> __( 'Disabled', THEME_LANG ),
+                    ),
 
                 )
             );

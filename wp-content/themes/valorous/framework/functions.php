@@ -50,12 +50,13 @@ if ( ! function_exists( 'kt_track_post_views' ) ){
      * @param $post_id
      */
     function kt_track_post_views ($post_id) {
-        if ( empty ( $post_id) ) {
-            global $post;
-            $post_id = $post->ID;
-        }
 
         if('post' == get_post_type() && is_single()) {
+            if ( empty ( $post_id) ) {
+                global $post;
+                $post_id = $post->ID;
+            }
+            
             $count_key = 'kt_post_views_count';
             $count = get_post_meta($post_id, $count_key, true);
             if($count==''){

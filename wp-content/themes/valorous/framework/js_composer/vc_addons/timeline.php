@@ -296,13 +296,11 @@ class WPBakeryShortCode_Timeline_Item extends WPBakeryShortCode {
 
         global $data_icon, $data_type, $style_title, $font_tag, $data_horizontal_style,$data_animate;
         
-        if( $data_animate ){ $cl_animate = 'animation-effect-item'; }else{ $cl_animate = ''; }
-        
         $uniqid = 'kt-timeline-item-'.uniqid();
 
         $icon_box_icon = do_shortcode('[vc_icon el_class="icon-timeline" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" type="'.$icon_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" '.$data_icon.']');
 
-        $output = '<li id="'.$uniqid.'" class="kt-timeline-item '.$cl_animate.' item-'.$data_type.' '.$el_class.'">';
+        $output = '<li id="'.$uniqid.'" class="kt-timeline-item item-'.$data_type.' '.$el_class.'">';
         $output .= $icon_box_icon;
         if( $data_type == 'horizontal' && $data_horizontal_style == 'style_1' ) $output .= '<div class="divider-icon"></div>';
         $output .= '<div class="timeline-info">';

@@ -1,5 +1,5 @@
 <?php
-$classes = array('post-item post-layout-3 animation-effect-item', $blog_atts['class']);
+$classes = array('post-item post-layout-3', $blog_atts['class']);
 ?>
 <article <?php post_class($classes); ?>>
     <?php

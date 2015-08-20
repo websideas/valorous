@@ -55,10 +55,14 @@ get_header(); ?>
                             );
 
                             $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$settings['blog_layout'].'/content';
-
+                            
+                            $page_animation = kt_option( 'page_animation' );
+                            $class_animation = ( $page_animation == 1 ) ? 'animation-effect' : '';
+                            $data_animation = ( $page_animation == 1 ) ? 'data-animation="fadeInUp"' : '';
+                            
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                 echo "<div class='blog-posts-content clearfix' style='text-align: ".$settings['align']."'>";
-                                echo "<div class='row'>";
+                                echo "<div class='row ".$class_animation."' ".$data_animation.">";
                             }
 
                             $i = 1;
