@@ -25,7 +25,12 @@ get_header(); ?>
                        <h3 class="search-heading"><?php printf( __( "Search Results for: <span class='search-keyword'>'%s'</span>", THEME_LANG ), get_search_query() ); ?></h3>
 
                         <?php global $wp_query; ?>
-                        <div class='blog-posts blog-posts-<?php echo esc_attr($settings['blog_type']) ?>' data-settings="<?php echo esc_attr( json_encode( $settings ) ); ?>" data-type='<?php echo esc_attr($settings['blog_type']) ?>' data-total='<?php echo esc_attr($wp_query->max_num_pages); ?>' data-current='1'>
+                        <?php
+                            $page_animation = kt_option( 'page_animation' );
+                            $animate_classic = ( $page_animation == 1 && $settings['blog_type'] == 'classic' ) ? 'animation-effect' : ' ';
+                            $data_animate_classic = ( $page_animation == 1 && $settings['blog_type'] == 'classic' ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
+                        ?>
+                        <div class='blog-posts blog-posts-<?php echo esc_attr($settings['blog_type']); ?> <?php echo $animate_classic; ?>' data-settings="<?php echo esc_attr( json_encode( $settings ) ); ?>" data-type='<?php echo esc_attr($settings['blog_type']) ?>' data-total='<?php echo esc_attr($wp_query->max_num_pages); ?>' data-current='1' <?php echo $data_animate_classic; ?>>
 
                             <?php
                             // Start the Loop.
@@ -56,9 +61,8 @@ get_header(); ?>
 
                             $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$settings['blog_layout'].'/content';
                             
-                            $page_animation = kt_option( 'page_animation' );
-                            $class_animation = ( $page_animation == 1 ) ? 'animation-effect' : '';
-                            $data_animation = ( $page_animation == 1 ) ? 'data-animation="fadeInUp"' : '';
+                            $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';
+                            $data_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'data-animation="fadeInUp"' : '';
                             
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                 echo "<div class='blog-posts-content clearfix' style='text-align: ".$settings['align']."'>";
@@ -74,7 +78,7 @@ get_header(); ?>
                                     $classes_extra = '';
                                     if($settings['blog_type'] == 'grid'){
                                         if (  ( $i - 1 ) % $settings['blog_columns'] == 0 || 1 == $settings['blog_columns'] )
-                                            $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
+                                            $classes_extra .= ' col-clearfix-md col-clearfix-lg first ';
 
                                         if ( ( $i - 1 ) % $settings['blog_columns_tablet'] == 0 || 1 == $settings['blog_columns_tablet'] )
                                             $classes_extra .= ' col-clearfix-sm';

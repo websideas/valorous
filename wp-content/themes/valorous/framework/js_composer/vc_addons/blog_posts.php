@@ -108,16 +108,19 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             global $wp_query;
             
             $page_animation = kt_option( 'page_animation' );
-            $class_animation = ( $page_animation == 1 ) ? 'animation-effect' : '';
-            $data_animation = ( $page_animation == 1 ) ? 'data-animation="fadeInUp"' : '';
-
+            $class_animation = ( $page_animation == 1 && $blog_type == 'grid' ) ? 'animation-effect' : '';
+            $data_animation = ( $page_animation == 1 && $blog_type == 'grid' ) ? 'data-animation="fadeInUp"' : '';
+            
+            $animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'animation-effect' : ' ';
+            $data_animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
+                        
             echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-            echo "<div class='blog-posts-content clearfix ".$class_animation."' ".$data_animation.">";
+            echo "<div class='blog-posts-content clearfix ".$animate_classic."' ".$data_animate_classic.">";
 
             do_action('before_blog_posts_loop');
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
-                echo "<div class='row' style='text-align: ".$blog_align.";'>";
+                echo "<div class='row ".$class_animation."' ".$data_animation." style='text-align: ".$blog_align.";'>";
             }
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
@@ -154,7 +157,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                     $classes_extra = '';
                     if($blog_type == 'grid'){
                         if (  ( $i - 1 ) % $blog_columns == 0 || 1 == $blog_columns )
-                            $classes_extra .= ' col-clearfix-md col-clearfix-lg ';
+                            $classes_extra .= ' col-clearfix-md col-clearfix-lg first ';
 
                         if ( ( $i - 1 ) % $blog_columns_tablet == 0 || 1 == $blog_columns_tablet )
                             $classes_extra .= ' col-clearfix-sm';

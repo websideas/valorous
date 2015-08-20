@@ -751,7 +751,9 @@
                 if($animate.hasClass('first')){
                     $count = 0;
                 }
-
+                
+                if( !$time ){ $time = '200'; }
+                
                 var animation_delay = $count * $time;
                 $count++;
                 if (window_width > 991) {
