@@ -5820,6 +5820,26 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     border-color: #b97ebb;
 }
 
+/*===== Gallery justify =====*/
+.justified-gallery > a > .caption, .justified-gallery > div > .caption{
+    padding:10px 15px;
+    transition: transform 0.3s ease 0s;
+    -webkit-transition: transform 0.3s ease 0s;
+    -moz-transition: transform 0.3s ease 0s;
+    -ms-transition: transform 0.3s ease 0s;
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    font-family: inherit;
+}
+.justified-gallery .jg-entry:hover > .caption{
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+}
+
 /* ==============================
    16. Popup
    ============================== */

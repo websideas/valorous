@@ -137,6 +137,17 @@
         ***  Client
         ===============================**/
         kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
+        
+        /**==============================
+        ***  KT Image Gallery
+        ===============================**/
+        $('.kt_image_gallery').fotorama({
+            width: '100%',
+            maxwidth: '100%',
+            nav: 'thumbs',
+            thumbmargin: $(this).data('thumbmargin')
+        });
+        
     });
     
     /* ---------------------------------------------
@@ -1005,7 +1016,7 @@
                 rowHeight: $(this).data('height'),
                 //maxRowHeight: $(this).data('height'),
                 margins: $(this).data('margin'),
-                captions: false,
+                captions: true,
                 lastRow: 'justify',
             });
         });

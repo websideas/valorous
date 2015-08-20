@@ -183,6 +183,7 @@ $composer_addons = array(
     'gallery-justified.php',
     'image_banner.php',
     'blockquote.php',
+    'kt_image_gallery.php',
 );
 
 foreach ( $composer_addons as $addon ) {
