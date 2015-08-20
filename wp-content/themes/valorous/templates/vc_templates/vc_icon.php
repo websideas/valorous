@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Shortcode attributes
  * @var $atts
@@ -34,22 +33,19 @@ vc_icon_element_fonts_enqueue( $type );
 
 
 
-
-
-
+echo $custom_background_color;
 
 $uniqid = 'vc_icon_element_'.uniqid();
 $custom_css = '';
 
 
 if($background_style == 'hexagonal'){
-    if(!$custom_background_color)
+    if( $background_color == 'custom' && !$custom_background_color){
         $custom_background_color = '#ebebeb';
+        $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:before{border-bottom-color: '.$custom_background_color.';}';
+        $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:after{border-top-color: '.$custom_background_color.';}';
+    }
 
-
-
-    $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:before{border-bottom-color: '.$custom_background_color.';}';
-    $custom_css .= '#'.$uniqid.' .vc_icon_element-inner:after{border-top-color: '.$custom_background_color.';}';
 
     if($background_color_hover){
         if($hover_div){
@@ -98,6 +94,10 @@ if($custom_css){
 
 
 
+
+
+
+
 $url = vc_build_link( $link );
 $has_style = false;
 if ( strlen( $background_style ) > 0 ) {
@@ -114,6 +114,8 @@ $iconClass = isset( ${"icon_" . $type} ) ? esc_attr( ${"icon_" . $type} ) : 'fa 
 if(!$iconClass) return;
 
 
+$iconClass = isset( ${"icon_" . $type} ) ? esc_attr( ${"icon_" . $type} ) : 'fa fa-adjust';
+
 $style = '';
 if ( 'custom' === $background_color ) {
     if ( false !== strpos( $background_style, 'outline' ) ) {
@@ -121,11 +123,8 @@ if ( 'custom' === $background_color ) {
     } else {
         $style = 'background-color:' . $custom_background_color;
     }
-
 }
 $style = $style ? ' style="' . esc_attr( $style ) . '"' : '';
-
-
 
 
 ?>
