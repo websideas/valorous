@@ -54,7 +54,7 @@ class Widget_KT_Instagram extends WP_Widget {
                 echo $kt_instagram->showInstagram($data, $columns);
                 if($show_follow){
                     printf(
-                        '<p>%s #<a target="_blank" href="%s">%s</a></p>',
+                        '<p>%s <a target="_blank" href="%s">@%s</a></p>',
                         __('Follow Us', THEME_LANG),
                         'https://instagram.com/'.$this->username,
                         $this->username

@@ -992,7 +992,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         ?>
                         <div class="article-post-item <?php echo $classes." ".$classes_extra; ?>">
                             <?php //print_r($blog_atts); ?>
-                            <?php kt_get_template_part( 'templates/blog/layout/layout1/content', get_post_format(), $blog_atts); ?>
+                            <?php kt_get_template_part( 'templates/blog/layout/content', get_post_format(), $blog_atts); ?>
                         </div><!-- .article-post-item -->
                     <?php $i++; endwhile; ?>
                     <?php wp_reset_postdata(); ?>

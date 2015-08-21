@@ -1850,7 +1850,6 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_categories ul li a,
 .yith-woocompare-widget ul.products-list li a.title{
     color: #282828;
-    font-size: 12px;
     line-height: normal;
     text-transform: capitalize;
 }
