@@ -13,7 +13,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'blog_pagination' => 'classic',
             'sharebox' => 'true',
             'blog_type' => 'classic',
-            'blog_layout' => 1,
             'blog_columns' => 3,
             'blog_columns_tablet' => 2,
             'thumbnail_type' => 'format',
@@ -125,7 +124,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
             if($blog_type == 'grid' || $blog_type == 'masonry'){
                 $elementClass[] = 'blog-posts-columns-'.$blog_columns;
-                $elementClass[] = 'blog-posts-layout-'.$blog_layout;
                 $bootstrapColumn = round( 12 / $blog_columns );
                 $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
@@ -148,7 +146,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             );
 
             $i = 1 ;
-            $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
+            $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
 
             while ( have_posts() ) : the_post();
                 $blog_atts = $blog_atts_posts;
@@ -285,18 +283,6 @@ vc_map( array(
             ),
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Post Layout', THEME_LANG ),
-            'param_name' => 'blog_layout',
-            'value' => array(
-                __( 'Layout 1', THEME_LANG ) => '1',
-                __( 'Layout 2', THEME_LANG ) => '2',
-                __( 'Layout 3', THEME_LANG ) => '3',
-            ),
-            'description' => __( 'Please select your layout.', THEME_LANG ),
-            "dependency" => array("element" => "blog_type","value" => array('grid', 'masonry')),
-        ),
-        array(
             "type" => "kt_heading",
             "heading" => __("Extra setting", THEME_LANG),
             "param_name" => "extra_settings",
@@ -325,7 +311,6 @@ vc_map( array(
                 __( 'Button Accent', 'js_composer' ) => 'btn-default',
                 __( 'Button White', 'js_composer' ) => 'btn-white',
                 __( 'Button Dark', 'js_composer' ) => 'btn-dark',
-                __( 'Button Dark lighter', 'js_composer' ) => 'btn-darkl',
                 __( 'Button Gray', 'js_composer' ) => 'btn-gray',
                 __( 'Button Accent Border', 'js_composer' ) => 'btn-default-b',
                 __( 'Button White Border', 'js_composer' ) => 'btn-white-b',

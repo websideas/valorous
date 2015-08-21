@@ -24,7 +24,6 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
 
     if($blog_type == 'grid' || $blog_type == 'masonry'){
         $elementClass[] = 'blog-posts-columns-'.$blog_columns;
-        $elementClass[] = 'blog-posts-layout-'.$blog_layout;
         $bootstrapColumn = round( 12 / $blog_columns );
         $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
         $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
@@ -47,7 +46,7 @@ function wp_ajax_fronted_fronted_loadmore_archive_callback(){
     );
 
 
-    $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$blog_layout.'/content';
+    $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
     ob_start();
 
     $i = ( $query_vars['paged'] - 1 ) * $max_items + 1 ;

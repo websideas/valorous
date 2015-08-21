@@ -2230,67 +2230,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                 )
             );
 
-            /**
-             * Post slider
-             *
-             */
-            $this->sections[] = array(
-                'title' => __('Post slider', THEME_LANG),
-                'desc' => __('Post slider Options', THEME_LANG),
-                'subsection' => true,
-                'fields' => array(
-
-                    array(
-                        'id'       => 'post_slider_carousel',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Carousel Posts general', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-
-                    array(
-                        'id'            => 'slider_carousel_total',
-                        'type'          => 'slider',
-                        'title'         => __( 'Carousel Total items', THEME_LANG ),
-                        'default'       => 6,
-                        'min'           => 3,
-                        'step'          => 1,
-                        'max'           => 10,
-                        'display_value' => 'text'
-                    ),
-                    array(
-                        'id'       => 'slider_carousel_layout',
-                        'type'     => 'select',
-                        'title'    => __( 'Carousel layout', THEME_LANG ),
-                        'options'  => array(
-                            '1' => __( 'Layout 1', THEME_LANG ),
-                            '2' => __( 'Layout 2', THEME_LANG ),
-                            '3' => __( 'Layout 3', THEME_LANG ),
-                        ),
-                        'default'  => '1',
-                        'clear' => false
-                    ),
-
-                    array(
-                        'id'       => 'post_slider_slider',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Slider Posts general', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-
-                    array(
-                        'id'            => 'slider_slider_total',
-                        'type'          => 'slider',
-                        'title'         => __( 'Slider Total items', THEME_LANG ),
-                        'default'       => 6,
-                        'min'           => 2,
-                        'step'          => 1,
-                        'max'           => 10,
-                        'display_value' => 'text'
-                    ),
-
-                )
-            );
-
 
             /**
              *	Archive settings
@@ -2393,19 +2332,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
                         'default' => '2',
-                        'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
-                    ),
-                    array(
-                        'id' => 'archive_layout',
-                        'type' => 'select',
-                        'title' => __('Post layout', THEME_LANG),
-                        'desc' => '',
-                        'options' => array(
-                            '1' => __( 'Layout 1', THEME_LANG ) ,
-                            '2' => __( 'Layout 2', THEME_LANG ) ,
-                            '3' => __( 'Layout 3', THEME_LANG ) ,
-                        ),
-                        'default' => '1',
                         'required' => array('archive_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
@@ -2687,19 +2613,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
                         'default' => '2',
-                        'required' => array('author_loop_style','equals', array( 'grid', 'masonry' ) ),
-                    ),
-                    array(
-                        'id' => 'author_layout',
-                        'type' => 'select',
-                        'title' => __('Post layout', THEME_LANG),
-                        'desc' => '',
-                        'options' => array(
-                            '1' => __( 'Layout 1', THEME_LANG ) ,
-                            '2' => __( 'Layout 2', THEME_LANG ) ,
-                            '3' => __( 'Layout 3', THEME_LANG ) ,
-                        ),
-                        'default' => '1',
                         'required' => array('author_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(
@@ -3237,19 +3150,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '6' => __( '6 columns', 'js_composer' ) ,
                         ),
                         'default' => '2',
-                        'required' => array('search_loop_style','equals', array( 'grid', 'masonry' ) ),
-                    ),
-                    array(
-                        'id' => 'search_layout',
-                        'type' => 'select',
-                        'title' => __('Post layout', THEME_LANG),
-                        'desc' => '',
-                        'options' => array(
-                            '1' => __( 'Layout 1', THEME_LANG ) ,
-                            '2' => __( 'Layout 2', THEME_LANG ) ,
-                            '3' => __( 'Layout 3', THEME_LANG ) ,
-                        ),
-                        'default' => '1',
                         'required' => array('search_loop_style','equals', array( 'grid', 'masonry' ) ),
                     ),
                     array(

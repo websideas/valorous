@@ -37,7 +37,6 @@ get_header(); ?>
 
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
                                 $elementClass[] = 'blog-posts-columns-'.$settings['blog_columns'];
-                                $elementClass[] = 'blog-posts-layout-'.$settings['blog_layout'];
                                 $bootstrapColumn = round( 12 / $settings['blog_columns'] );
                                 $bootstrapTabletColumn = round( 12 / $settings['blog_columns_tablet'] );
                                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
@@ -59,7 +58,7 @@ get_header(); ?>
                                 "class" => ''
                             );
 
-                            $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/layout'.$settings['blog_layout'].'/content';
+                            $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
                             
                             $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';
                             $data_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'data-animation="fadeInUp"' : '';

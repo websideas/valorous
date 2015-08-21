@@ -1348,6 +1348,7 @@ ul.navigation-mobile > li > ul.sub-menu-dropdown .sub-menu-dropdown > li > a{
     padding: 0 0 5px;
     text-transform: uppercase;
     text-align: center;
+    letter-spacing: 0.15em;
 }
 
 .searchform {
@@ -6296,48 +6297,6 @@ article.post-item {
     float: right;
     margin-bottom: 15px;
     margin-top: -15px;
-}
-
-
-
-/* Blog Layout 1 */
-
-/* Blog Layout 2 */
-.post-layout-2 {
-    padding: 10px;
-    border: 1px solid #e3e3e3;
-}
-
-.post-layout-2.format-quote,
-.post-layout-2.format-link {
-    padding: 0;
-}
-
-.post-layout-2.format-quote .post-quote-wrapper,
-.post-layout-2.format-link .post-link-wrapper {
-    margin: 0;
-}
-
-/* Blog Layout 3 */
-.post-layout-3 {
-    background: #FFFFFF;
-    padding: 25px;
-}
-
-.post-layout-3 .entry-thumb {
-    margin-top: -25px;
-    margin-left: -25px;
-    margin-right: -25px;
-}
-
-.post-layout-3.format-quote,
-.post-layout-3.format-link {
-    padding-bottom: 0;
-}
-
-.post-layout-2.format-quote .post-quote-wrapper,
-.post-layout-2.format-link .post-link-wrapper {
-    margin-bottom: 0;
 }
 
 /*
