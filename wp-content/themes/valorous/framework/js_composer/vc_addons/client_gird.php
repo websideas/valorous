@@ -15,7 +15,6 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
             'source' => 'all',
             'categories' => '',
             'posts' => '',
-            'authors' => '',
             'orderby' => 'date',
             'meta_key' => '',
             'order' => 'DESC',

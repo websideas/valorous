@@ -5839,6 +5839,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
 }
+/*===== KT Image Gallery =====*/
+.fotorama__thumb-border{
+    border-color:#d0a852;
+}
 
 /* ==============================
    16. Popup

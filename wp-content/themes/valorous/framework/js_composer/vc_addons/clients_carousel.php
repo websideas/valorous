@@ -7,8 +7,15 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'images' => '',
             'img_size' => 'thumbnail',
+            'source' => 'all',
+            'categories' => '',
+            'posts' => '',
+            'orderby' => 'date',
+            'meta_key' => '',
+            'order' => 'DESC',
+            'target_link' => '_self',
+            
             'padding_item' => '',
             'background_item' => '',
 
@@ -51,8 +58,38 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
 
         extract($atts);
         
-        if ( $images == '' ) return;
-        $images = explode( ',', $images );
+        $args = array(
+                    'post_type' => 'kt_client',
+                    'order' => $order,
+                    'orderby' => $orderby,
+                    'posts_per_page' => -1,
+                    'ignore_sticky_posts' => true
+                );
+        
+        if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
+            $args['meta_key'] = $meta_key;
+        }
+        if($source == 'categories'){
+            if($categories){
+                $categories_arr = array_filter(explode( ',', $categories));
+                if(count($categories_arr)){
+                    $args['tax_query'] = array(
+                                    		array(
+                                    			'taxonomy' => 'client-category',
+                                    			'field' => 'id',
+                                    			'terms' => $categories
+                                    		)
+                                    	);
+                }
+            }
+        }elseif($source == 'posts'){
+            if($posts){
+                $posts_arr = array_filter(explode( ',', $posts));
+                if(count($posts_arr)){
+                    $args['post__in'] = $posts_arr;
+                }
+            }
+        }
 
         $styles = array();
         if($padding_item){
@@ -70,22 +107,25 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
         $style_item = 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
 
 
-        $client_carousel_html = '';
-        foreach ( $images as $attach_id ) {
-            if ( $attach_id > 0 ) {
-        		$post_thumbnail = wpb_getImageBySize( array( 'attach_id' => $attach_id, 'thumb_size' => $img_size, 'class' => 'img-responsive' ) );
-        	} else {
-        		$post_thumbnail = array();
-        		$post_thumbnail['thumbnail'] = '<img src="' . vc_asset_url( 'vc/no_image.png' ) . '" />';
-        		
-        	}
-            $client_carousel_html .= sprintf(
-                '<div class="%s" %s >%s</div>',
-                'clients-carousel-item',
-                $style_item,
-                $post_thumbnail['thumbnail']
-            );
-        }
+        $client_carousel_html = $post_thumbnail = '';
+        $query = new WP_Query( $args );
+        if ( $query->have_posts() ) :
+            while ( $query->have_posts() ) : $query->the_post();
+                $link = rwmb_meta('_kt_link_client');
+                if( $link ){
+                    $post_thumbnail = '<a target="'.$target_link.'" href="'.$link.'">'.get_the_post_thumbnail(get_the_ID(),$img_size).'</a>';
+                }else{
+                    $post_thumbnail = get_the_post_thumbnail(get_the_ID(),$img_size);
+                }
+                
+                $client_carousel_html .= sprintf(
+                    '<div class="%s" %s >%s</div>',
+                    'clients-carousel-item',
+                    $style_item,
+                    $post_thumbnail
+                );
+            endwhile; wp_reset_postdata();
+        endif;
         
         $elementClass = array(
         	'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'clients-carousel-wrapper ', $this->settings['base'], $atts ),
@@ -129,20 +169,108 @@ vc_map( array(
             "admin_label" => true,
         ),
         array(
-			'type' => 'attach_images',
-			'heading' => __( 'Images', 'js_composer' ),
-			'param_name' => 'images',
-			'value' => '',
-			'description' => __( 'Select images from media library.', 'js_composer' )
-		),
-        array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "img_size",
             'description' => __( 'Select size of image', THEME_LANG)
         ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Target Link', THEME_LANG ),
+            'param_name' => 'target_link',
+            'value' => array(
+                __( 'Self', THEME_LANG ) => '_self',
+                __( 'Blank', THEME_LANG ) => '_blank',
+                __( 'Parent', THEME_LANG ) => '_parent',
+                __( 'Top', THEME_LANG ) => '_top',
+            ),
+            'description' => __( 'Select target link.', THEME_LANG ),
+        ),
 
-
+        // Data settings
+        array(
+            "type" => "dropdown",
+            "heading" => __("Data source", THEME_LANG),
+            "param_name" => "source",
+            "value" => array(
+                __('All', THEME_LANG) => '',
+                __('Specific Categories', THEME_LANG) => 'categories',
+                __('Specific Client', THEME_LANG) => 'posts',
+            ),
+            "admin_label" => true,
+            'std' => 'all',
+            "description" => __("Select content type for your posts.", THEME_LANG),
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_taxonomy",
+            'taxonomy' => 'client-category',
+            'heading' => __( 'Categories', THEME_LANG ),
+            'param_name' => 'categories',
+            'placeholder' => __( 'Select your categories', THEME_LANG ),
+            "dependency" => array("element" => "source","value" => array('categories')),
+            'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_posts",
+            'args' => array('post_type' => 'kt_client', 'posts_per_page' => -1),
+            'heading' => __( 'Specific Client', 'js_composer' ),
+            'param_name' => 'posts',
+            'placeholder' => __( 'Select your posts', 'js_composer' ),
+            "dependency" => array("element" => "source","value" => array('posts')),
+            'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+    		'type' => 'dropdown',
+    		'heading' => __( 'Order by', 'js_composer' ),
+    		'param_name' => 'orderby',
+    		'value' => array(
+    			__( 'Date', 'js_composer' ) => 'date',
+    			__( 'Order by post ID', 'js_composer' ) => 'ID',
+    			__( 'Author', 'js_composer' ) => 'author',
+    			__( 'Title', 'js_composer' ) => 'title',
+    			__( 'Last modified date', 'js_composer' ) => 'modified',
+    			__( 'Post/page parent ID', 'js_composer' ) => 'parent',
+    			__( 'Number of comments', 'js_composer' ) => 'comment_count',
+    			__( 'Menu order/Page Order', 'js_composer' ) => 'menu_order',
+    			__( 'Meta value', 'js_composer' ) => 'meta_value',
+    			__( 'Meta value number', 'js_composer' ) => 'meta_value_num',
+    			__( 'Random order', 'js_composer' ) => 'rand',
+    		),
+    		'description' => __( 'Select order type. If "Meta value" or "Meta value Number" is chosen then meta key is required.', 'js_composer' ),
+    		'group' => __( 'Data settings', 'js_composer' ),
+    		'param_holder_class' => 'vc_grid-data-type-not-ids',
+            "admin_label" => true,
+    	),
+    	array(
+    		'type' => 'textfield',
+    		'heading' => __( 'Meta key', 'js_composer' ),
+    		'param_name' => 'meta_key',
+    		'description' => __( 'Input meta key for grid ordering.', 'js_composer' ),
+    		'group' => __( 'Data settings', 'js_composer' ),
+    		'param_holder_class' => 'vc_grid-data-type-not-ids',
+    		'dependency' => array(
+    			'element' => 'orderby',
+    			'value' => array( 'meta_value', 'meta_value_num' ),
+    		),
+            "admin_label" => true,
+    	),
+        array(
+    		'type' => 'dropdown',
+    		'heading' => __( 'Sorting', 'js_composer' ),
+    		'param_name' => 'order',
+    		'group' => __( 'Data settings', 'js_composer' ),
+    		'value' => array(
+    			__( 'Descending', 'js_composer' ) => 'DESC',
+    			__( 'Ascending', 'js_composer' ) => 'ASC',
+    		),
+    		'param_holder_class' => 'vc_grid-data-type-not-ids',
+    		'description' => __( 'Select sorting order.', 'js_composer' ),
+            "admin_label" => true,
+    	),
+        
         array(
             "type" => "dropdown",
             "heading" => __("Button Border Style", THEME_LANG),

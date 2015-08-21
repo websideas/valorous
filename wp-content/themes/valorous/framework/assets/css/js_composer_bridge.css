@@ -102,6 +102,7 @@
     display: none;
 }
 
+
 .wpb_kt_gallery_justified ul.attachment-thumbnails,
 .wpb_kt_image_gallery ul.attachment-thumbnails{
     margin:5px 0 0;
@@ -119,9 +120,18 @@
 .wpb_kt_image_gallery ul.attachment-thumbnails li img{
     display: block;
     width:auto;
+    height:20px;
 }
 .wpb_kt_gallery_justified a.column_edit_trigger,
 .wpb_kt_image_gallery a.column_edit_trigger{
+    border-bottom: 1px dotted;
+    font-size: 11px;
+    line-height: 12px;
+    margin-left: 5px;
+    margin-top: 7px;
+    text-decoration: none;
+}
+.wpb_image_banner .column_edit_trigger{
     border-bottom: 1px dotted;
     font-size: 11px;
     line-height: 12px;
