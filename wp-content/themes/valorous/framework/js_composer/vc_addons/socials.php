@@ -15,6 +15,7 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
            'tooltip' =>'top',
            'el_class' => '',
            'background_style' => 'empty',
+           'space_between_item' => 0,
 
             'css' => '',
     	), $atts));
@@ -45,18 +46,22 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         if($tooltip) {
             $tooltiphtml .= ' data-toggle="tooltip" data-placement="'.esc_attr($tooltip).'" ';
         }
-
+        
+        $space_between_item = round($space_between_item/2);
+        
+        $margin = ($space_between_item > 0) ? 'style="margin:0 '.$space_between_item.'px;"' : '';
+        
         if($social){
             $social_type = explode(',', $social);
             foreach ($social_type as $id) {
                 $val = $socials_arr[$id];
                 $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                $social_icons .= '<li><a class="'.esc_attr($id).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
+                $social_icons .= '<li '.$margin.'><a class="'.esc_attr($id).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
             }
         }else{
             foreach($socials_arr as $key => $val){
                 $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                $social_icons .= '<li><a class="'.esc_attr($key).'"  '.$tooltiphtml.' title="'.esc_attr($val['title']).'" href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
+                $social_icons .= '<li '.$margin.'><a class="'.esc_attr($key).'"  '.$tooltiphtml.' title="'.esc_attr($val['title']).'" href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
             }
         }
 
@@ -186,7 +191,18 @@ vc_map( array(
             ),
             "description" => __("",THEME_LANG)
         ),
-
+        
+        array(
+            "type" => "kt_number",
+            "heading" => __("Space Between item", THEME_LANG),
+            "param_name" => "space_between_item",
+            "value" => 0,
+            "min" => 0,
+            "max" => 50,
+            "suffix" => "px",
+            "description" => "",
+        ),
+        
         array(
             "type" => "textfield",
             "heading" => __( "Extra class name", "js_composer" ),

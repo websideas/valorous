@@ -7004,6 +7004,12 @@ SOCIAL
 .socials-icon-wrapper li {
     display: inline-block;
 }
+.socials-icon-wrapper li:last-child{
+    margin-right:0!important;
+}
+.socials-icon-wrapper li:first-child{
+    margin-left:0!important;
+}
 
 .socials-icon-wrapper a {
     display: inline-block;
@@ -7047,7 +7053,8 @@ SOCIAL
 
 .social-background-rounded-less-outline li,
 .social-background-diamond-square li {
-    margin: 6px 14px 6px 0;
+    margin: 0;
+    padding:6px;
 }
 
 .social-background-rounded-less-outline li:last-child,
@@ -7259,7 +7266,8 @@ SOCIAL
 
 .social-icons-small.social-background-rounded-less-outline li,
 .social-icons-small.social-background-diamond-square li {
-    margin: 4px 10px 4px 0;
+    margin: 0;
+    padding:4px;
 }
 
 .social-icons-small.social-background-rounded-less-outline li:last-child,

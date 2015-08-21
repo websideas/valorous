@@ -494,6 +494,10 @@ function kt_register_meta_boxes( $meta_boxes )
                 'label' => __( 'Page layout', THEME_LANG ),
                 'icon'  => 'fa fa-columns',
             ),
+            'page_background' => array(
+                'label' => __( 'Background', THEME_LANG ),
+                'icon'  => 'fa fa-picture-o',
+            ),
             /*
             'extra' => array(
                 'label' => __( 'Extra', THEME_LANG ),
@@ -777,7 +781,54 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
-
+            
+            array(
+                'name' => 'Following options only work in boxed mode:',
+                'id' => $prefix . 'heading_boxed',
+                'type'  => 'heading',
+                'tab'  => 'page_background',
+            ),
+            array(
+                'name' => __( 'Background Image', THEME_LANG ),
+                'id'  => $prefix."page_bg_image_boxed",
+                'type' => 'image_advanced',
+                'max_file_uploads' => 1,
+                'tab'  => 'page_background',
+                'desc' => __( "Choose custom background image for page boxed.", THEME_LANG ),
+            ),
+            array(
+                'name' => __( 'Background Color', THEME_LANG ),
+                'id'  => $prefix."page_bg_color_boxed",
+                'type' => 'color',
+                'tab'  => 'page_background',
+                'desc' => __( "Choose custom background color for page boxed.", THEME_LANG ),
+            ),
+            array(
+                'name' => __('Background Repeat', THEME_LANG),
+                'id' => $prefix . 'bg_repeat_boxed',
+                'type' => 'select',
+                'options' => array(
+                    'no-repeat' => __('No Repeat', THEME_LANG),
+                    'repeat' => __('Repeat All', THEME_LANG),
+                    'repeat-x' => __('Repeat Horizontally', THEME_LANG),
+                    'repeat-y' => __('Repeat Vertically', THEME_LANG),
+                    'inherit' => __('Inherit', THEME_LANG)
+                ),
+                'std' => 'no-repeat',
+                'tab'  => 'page_background',
+            ),
+            array(
+                'name' => __('Background Size', THEME_LANG),
+                'id' => $prefix . 'bg_size_boxed',
+                'type' => 'select',
+                'options' => array(
+                    'inherit' => __('Inherit', THEME_LANG),
+                    'cover' => __('Cover', THEME_LANG),
+                    'contain' => __('Contain', THEME_LANG)
+                ),
+                'std' => 'inherit',
+                'tab'  => 'page_background',
+            ),
         )
     );
 
