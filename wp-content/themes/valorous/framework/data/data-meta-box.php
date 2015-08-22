@@ -775,65 +775,36 @@ function kt_register_meta_boxes( $meta_boxes )
                 'tab'  => 'page_layout',
             ),
             array(
-                'name' => 'Extra page class',
+                'name' => __('Extra page class', THEME_LANG),
                 'id' => $prefix . 'extra_page_class',
-                'desc' => "If you wish to add extra classes to the body class of the page (for custom css use), then please add the class(es) here.",
+                'desc' => __('If you wish to add extra classes to the body class of the page (for custom css use), then please add the class(es) here.', THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
-            
-            array(
-                'name' => 'Following options only work in boxed mode:',
-                'id' => $prefix . 'heading_boxed',
-                'type'  => 'heading',
-                'tab'  => 'page_background',
-            ),
-            array(
-                'name' => __( 'Background Image', THEME_LANG ),
-                'id'  => $prefix."page_bg_image_boxed",
-                'type' => 'image_advanced',
-                'max_file_uploads' => 1,
-                'tab'  => 'page_background',
-                'desc' => __( "Choose custom background image for page boxed.", THEME_LANG ),
-            ),
-            array(
-                'name' => __( 'Background Color', THEME_LANG ),
-                'id'  => $prefix."page_bg_color_boxed",
-                'type' => 'color',
-                'tab'  => 'page_background',
-                'desc' => __( "Choose custom background color for page boxed.", THEME_LANG ),
-            ),
-            array(
-                'name' => __('Background Repeat', THEME_LANG),
-                'id' => $prefix . 'bg_repeat_boxed',
-                'type' => 'select',
-                'options' => array(
-                    'no-repeat' => __('No Repeat', THEME_LANG),
-                    'repeat' => __('Repeat All', THEME_LANG),
-                    'repeat-x' => __('Repeat Horizontally', THEME_LANG),
-                    'repeat-y' => __('Repeat Vertically', THEME_LANG),
-                    'inherit' => __('Inherit', THEME_LANG)
-                ),
-                'std' => 'no-repeat',
-                'tab'  => 'page_background',
-            ),
-            array(
-                'name' => __('Background Size', THEME_LANG),
-                'id' => $prefix . 'bg_size_boxed',
-                'type' => 'select',
-                'options' => array(
-                    'inherit' => __('Inherit', THEME_LANG),
-                    'cover' => __('Cover', THEME_LANG),
-                    'contain' => __('Contain', THEME_LANG)
-                ),
-                'std' => 'inherit',
-                'tab'  => 'page_background',
-            ),
+
+
+
         )
     );
 
-
+    // Meta Box
+    $meta_boxes[] = array(
+        'title'  => __( 'Background', 'rwmb' ),
+        'pages' => array( 'page', 'post', 'portfolio','product' ),
+        'fields' => array(
+            array(
+                'name' => 'Background',
+                'id' => 'background_custom',
+                'desc' => "If you wish to add extra classes to the body class of the page (for custom css use), then please add the class(es) here.",
+                'type'  => 'background',
+            )
+        ),
+    );
 
 
     return $meta_boxes;
 }
+
+
+
+

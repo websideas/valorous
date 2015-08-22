@@ -264,6 +264,15 @@ div#post-body .rwmb-select{
 .rwmb-color-wrapper .wp-picker-holder{
     z-index: 1;
 }
+
+.rwmb-background-wrapper .kt_image_url{
+    width: 100%;
+}
+.rwmb-background-wrapper .kt_image_remove{
+    margin-left: 10px;
+    color: #ef521d;
+}
+
 /*==================================
 * Troubleshooting
 ===================================*/

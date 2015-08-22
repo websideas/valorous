@@ -114,9 +114,12 @@ if ( ! class_exists( 'RWMB_Image_Field' ) )
 				$field['max_file_uploads']
 			);
 
+			if($images){
+
 			foreach ( $images as $image )
 			{
 				$html .= self::img_html( $image );
+			}
 			}
 
 			$html .= '</ul>';

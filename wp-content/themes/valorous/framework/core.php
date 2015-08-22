@@ -127,6 +127,8 @@ if ( class_exists( 'RW_Meta_Box' ) ) {
     // Add plugin meta-box-tabs
     require_once (FW_EXT_DIR . 'meta-box-tabs/meta-box-tabs.php');
 
+	// Add plugin meta-box-group
+	require_once (FW_EXT_DIR . 'meta-box-group/meta-box-group.php');
 
     if (is_admin() ) {
         // Make sure there's no errors when the plugin is deactivated or during upgrade
