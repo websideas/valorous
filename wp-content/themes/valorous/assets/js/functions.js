@@ -29,6 +29,9 @@
         $(window).trigger("scroll");
         $(window).trigger("resize");
         init_ktCustomCss();
+
+        setInterval(init_remove_space, 100);
+
     });
     
     /* ---------------------------------------------
@@ -149,7 +152,18 @@
         });
         
     });
-    
+
+
+    function init_remove_space() {
+
+        $("p:empty").remove();
+        $(".wpb_row:empty").remove();
+        $(".wpb_column:empty").remove();
+        $(".wpb_wrapper:empty").remove();
+
+    }
+
+
     /* ---------------------------------------------
      Woocommercer Quantily
      --------------------------------------------- */

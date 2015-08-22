@@ -7,6 +7,7 @@ if ( !defined('ABSPATH')) exit;
 
 class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 	protected function content($atts, $content = null) {
+
 		extract( shortcode_atts( array(
 			'css_animation' => '',
 			'icon_type' => 'fontawesome',
@@ -61,11 +62,12 @@ class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
 			'icon_entypo' => '',
 			'icon_linecons' => '',
 			'icon_color' => '',
+            'content_here' => __("Put your content here", THEME_LANG),
 			'el_class' => '',
 		), $atts ) );
 		$icon_li = '';
 
-		global $icon_show, $icon_color_show, $data_animate;
+		global $icon_show, $icon_color_show;
 
 		if($icon_type && $custom_icon == 'true'){
 			$icon = 'icon_'.$icon_type;
@@ -222,7 +224,7 @@ vc_map( array(
     "as_child" => array('only' => 'list'), // Use only|except attributes to limit parent (separate multiple values with comma)
     "params" => array(
         array(
-          "type" => "textarea_html",
+          "type" => "textarea",
           "heading" => __("Content", THEME_LANG),
           "param_name" => "content",
           "value" => __("Put your content here", THEME_LANG),

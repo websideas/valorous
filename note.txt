@@ -27,6 +27,8 @@ About me page
 	http://leaftree.pt/materialog/about-2.html
 	http://ddthemesdemo.com/lamadone/
 	https://0.s3.envato.com/files/143544184/20-screenshot20.jpg
+	http://monaco.zooka.io/demo1/about-me/about-me/
+	http://demo.select-themes.com/cabin7/about-me/
 
 Landing for homepage
 	1. Slideshow for blog

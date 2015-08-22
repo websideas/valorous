@@ -3342,6 +3342,11 @@ ul.kt-list-fancy {
 ul.kt-list-fancy > li {
     padding-left: 30px;
     position: relative;
+    line-height: 28px;
+}
+
+ul.kt-list-fancy > li > p:last-child{
+    margin: 0;
 }
 
 ul.kt-list-fancy > li > .vc_icon_element-icon {
@@ -3351,7 +3356,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     line-height: 25px;
     position: absolute;
     text-align: center;
-    top: 0;
+    top: 2px;
     width: 25px;
 }
 
