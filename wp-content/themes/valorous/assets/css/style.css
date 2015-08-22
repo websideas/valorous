@@ -273,6 +273,13 @@ blockquote.simple .blockquote-content{
     z-index: 1;
 }
 
+blockquote.simple.blockquote-reverse:before{
+    right: 0;
+    left: auto;
+    content: '\f10e';
+}
+
+
 /*
  * 2.4 Highlights
  */

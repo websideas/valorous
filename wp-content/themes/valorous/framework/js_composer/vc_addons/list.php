@@ -3,6 +3,89 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
+
+
+class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
+	protected function content($atts, $content = null) {
+		extract( shortcode_atts( array(
+			'css_animation' => '',
+			'icon_type' => 'fontawesome',
+			'icon_fontawesome' => '',
+			'icon_openiconic' => '',
+			'icon_typicons' => '',
+			'icon_entypo' => '',
+			'icon_linecons' => '',
+			'icon_color' => '',
+			'el_class' => '',
+			'css' => ''
+		), $atts ) );
+
+		global $icon_show, $icon_color_show, $data_animate;
+
+		$icon_show = $data_animate = $cl_animate = $icon_color_show = '';
+		if($icon_type){
+			$icon_value = isset( ${"icon_" . $icon_type} ) ? esc_attr( ${"icon_" . $icon_type} ) : '';
+			if($icon_value){
+				vc_icon_element_fonts_enqueue( $icon_type );
+				$icon_color_show = ($icon_color) ? ' style="color: '.esc_attr($icon_color).';"' : '';
+				$icon_show = '<span class="vc_icon_element-icon '.esc_attr($icon_value).'" '.$icon_color_show.'></span> ';
+			}
+		}
+
+		$elementClass = array(
+			'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-wrapper ', $this->settings['base'], $atts ),
+			'extra' => $this->getExtraClass( $el_class ),
+			'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
+		);
+
+		$elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+		if($css_animation !=''){
+			$data_animate = 'data-timeeffect="20" data-animation="'.$css_animation.'"';
+			$cl_animate = ' animation-effect';
+		}
+
+		return '<div class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-list-fancy'.$cl_animate.'">'. do_shortcode($content) . '</ul></div>';
+
+	}
+}
+
+class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
+	protected function content($atts, $content = null) {
+		extract( shortcode_atts( array(
+			'custom_icon' => 'false',
+			'icon_type' => 'fontawesome',
+			'icon_fontawesome' => '',
+			'icon_openiconic' => '',
+			'icon_typicons' => '',
+			'icon_entypo' => '',
+			'icon_linecons' => '',
+			'icon_color' => '',
+			'el_class' => '',
+		), $atts ) );
+		$icon_li = '';
+
+		global $icon_show, $icon_color_show, $data_animate;
+
+		if($icon_type && $custom_icon == 'true'){
+			$icon = 'icon_'.$icon_type;
+			$icon_value = $$icon;
+			if($icon_value){
+				vc_icon_element_fonts_enqueue( $icon_type );
+				$icon_color = $icon_color ? ' style="color: '.esc_attr($icon_color).';"' : $icon_color_show;
+				$icon_li = '<span class="vc_icon_element-icon '.esc_attr($icon_value).'" '.$icon_color.'></span> ';
+			}
+		}
+
+		if(!$icon_li) $icon_li = $icon_show;
+
+		return '<li class="kt-list-item '.$el_class.'">' . $icon_li . $content . '</li>';
+
+	}
+}
+
+
+
 //Register "container" content element. It will hold all your inner (child) content elements
 vc_map( array(
     "name" => __("List", THEME_LANG),
@@ -259,82 +342,3 @@ vc_map( array(
         )
     )
 ) );
-
-class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
-    protected function content($atts, $content = null) {
-        extract( shortcode_atts( array(
-            'css_animation' => '',
-            'icon_type' => 'fontawesome',
-            'icon_fontawesome' => '',
-        	'icon_openiconic' => '',
-        	'icon_typicons' => '',
-        	'icon_entypo' => '',
-        	'icon_linecons' => '',
-            'icon_color' => '',
-            'el_class' => '',
-            'css' => ''
-        ), $atts ) );
-        
-        global $icon_show, $icon_color_show, $data_animate;
-
-        $icon_show = $data_animate = $cl_animate = $icon_color_show = '';
-        if($icon_type){
-            $icon_value = isset( ${"icon_" . $icon_type} ) ? esc_attr( ${"icon_" . $icon_type} ) : '';
-            if($icon_value){
-                vc_icon_element_fonts_enqueue( $icon_type );
-                $icon_color_show = ($icon_color) ? ' style="color: '.esc_attr($icon_color).';"' : '';
-                $icon_show = '<span class="vc_icon_element-icon '.esc_attr($icon_value).'" '.$icon_color_show.'></span> ';
-            }
-        }
-        
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
-        );
-
-        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-        
-        if($css_animation !=''){
-            $data_animate = 'data-timeeffect="20" data-animation="'.$css_animation.'"';
-            $cl_animate = ' animation-effect';
-        }
-        
-        return '<div class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-list-fancy'.$cl_animate.'">' . do_shortcode($content) . '</ul></div>';
-
-    }
-}
-
-class WPBakeryShortCode_List_Item extends WPBakeryShortCode {
-    protected function content($atts, $content = null) {
-        extract( shortcode_atts( array(
-            'custom_icon' => 'false',
-            'icon_type' => 'fontawesome',
-            'icon_fontawesome' => '',
-        	'icon_openiconic' => '',
-        	'icon_typicons' => '',
-        	'icon_entypo' => '',
-        	'icon_linecons' => '',
-            'icon_color' => '',
-            'el_class' => '',
-        ), $atts ) );
-        $icon_li = '';
-        
-        global $icon_show, $icon_color_show, $data_animate;
-        
-        if($icon_type && $custom_icon == 'true'){
-            $icon = 'icon_'.$icon_type;
-            $icon_value = $$icon;
-            if($icon_value){
-                vc_icon_element_fonts_enqueue( $icon_type );
-                $icon_color = $icon_color ? ' style="color: '.esc_attr($icon_color).';"' : $icon_color_show;
-                $icon_li = '<span class="vc_icon_element-icon '.esc_attr($icon_value).'" '.$icon_color.'></span> ';
-            }
-        }
-        
-        if(!$icon_li) $icon_li = $icon_show;
-        
-        return '<li class="kt-list-item '.$el_class.'">' . $icon_li . do_shortcode($content) . '</li>';
-        
-    }
-}
