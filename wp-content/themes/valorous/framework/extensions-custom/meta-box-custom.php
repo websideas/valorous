@@ -13,8 +13,9 @@ if ( !defined('ABSPATH')) exit;
 add_filter('rwmb_image_advanced_select_string', 'kt_rwmb_image_advanced_select_string', 10, 2);
 function kt_rwmb_image_advanced_select_string($string, $field){
 	if($field['max_file_uploads'] == 1){
-		return __('Select your image', THEME_LANG);
+		$string = __('Select your image', THEME_LANG);
 	}
+	return $string;
 }
 
 
@@ -284,18 +285,20 @@ if ( ! class_exists( 'RWMB_Background_Field' )){
 				__( 'No media selected', THEME_LANG )
 			);
 
+			$remove_style = ($meta['media'] != '') ? 'inline-block' : 'none';
+
 			$ouput .= sprintf(
-				'<div class="upload_button_div"><span class="button kt_image_upload">%s</span> <span class="button kt_image_remove">%s</span></div>',
+				'<div class="upload_button_div"><span class="button kt_image_upload">%s</span> <span class="button kt_image_remove" style="display : %s">%s</span></div>',
 				__('Upload', THEME_LANG),
+				$remove_style,
 				__('Remove', THEME_LANG)
 			);
-
-			$ouput .= '<div class="kt_image_preview"></div>';
 
 
 			$ouput .= sprintf(
 				'<input type="hidden" class="kt_image_attachment" name="%s" value="%s"/>',
 				$field['field_name'].'[media]',
+				$remove_style,
 				$meta['media']
 			);
 

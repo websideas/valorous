@@ -831,3 +831,49 @@ if (!function_exists('kt_get_template_part')) {
 
     }
 }
+
+if (!function_exists('kt_render_custom_css')) {
+    /**
+     * Render custom css
+     *
+     * @param $meta
+     * @param $selector
+     * @param null $post_id
+     */
+
+    function kt_render_custom_css($meta , $selector, $post_id = null)
+    {
+        if(!$post_id){
+            global $post;
+            $post_id = $post->ID;
+        }
+        $page_bg = rwmb_meta($meta, array(), $post_id);
+        if(is_array($page_bg)){
+            $page_arr = array();
+
+            $page_color = $page_bg['color'];
+            if( $page_color != '' && $page_color != '#'){
+                $page_arr[] = 'background-color: '.$page_color;
+            }
+            if($page_url = $page_bg['url']){
+                $page_arr[] = 'background-image: url('.$page_url.')';
+            }
+            if($page_repeat = $page_bg['repeat']){
+                $page_arr[] = 'background-repeat: '.$page_repeat;
+            }
+            if($page_size = $page_bg['size']){
+                $page_arr[] = 'background-size: '.$page_size;
+            }
+            if($page_attachment = $page_bg['attachment']){
+                $page_arr[] = 'background-attachment: '.$page_attachment;
+            }
+            if($page_position = $page_bg['position']){
+                $page_arr[] = 'background-position: '.$page_position;
+            }
+            if(count($page_arr)){
+                echo $selector.'{'.implode(';', $page_arr).'}';
+            }
+        }
+    }
+}
+

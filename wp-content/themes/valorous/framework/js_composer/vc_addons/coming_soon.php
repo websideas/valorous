@@ -151,11 +151,11 @@ vc_map( array(
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
@@ -202,11 +202,11 @@ vc_map( array(
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts_value',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),

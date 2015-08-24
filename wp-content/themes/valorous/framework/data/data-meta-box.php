@@ -581,7 +581,11 @@ function kt_register_meta_boxes( $meta_boxes )
             ),
 
 
-
+            array(
+                'id' => 'fakeid_divider',
+                'type'  => 'divider',
+                'tab'  => 'page_header',
+            ),
 
             array(
                 'name' => __('Page header top spacing', THEME_LANG),
@@ -597,23 +601,10 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type'  => 'text',
                 'tab'  => 'page_header',
             ),
-
-
-
             array(
-                'name' => __( 'Background Image', THEME_LANG ),
-                'id'  => "{$prefix}page_header_bg",
-                'type' => 'image_advanced',
-                'max_file_uploads' => 1,
+                'id' => 'fakeid_divider',
+                'type'  => 'divider',
                 'tab'  => 'page_header',
-                'desc' => __( "Choose custom background image for page header.", THEME_LANG ),
-            ),
-            array(
-                'name' => __( 'Background color', THEME_LANG ),
-                'id'   => "{$prefix}page_header_bg_color",
-                'type' => 'color',
-                'tab'  => 'page_header',
-                'desc' => __( "Choose custom background color for page header.", THEME_LANG ),
             ),
             array(
                 'name' => __( 'Separator custom color', THEME_LANG ),
@@ -643,8 +634,19 @@ function kt_register_meta_boxes( $meta_boxes )
                 'tab'  => 'page_header',
                 'desc' => __( "Choose custom color for breadcrumbs.", THEME_LANG ),
             ),
+            array(
+                'id' => 'fakeid_divider',
+                'type'  => 'divider',
+                'tab'  => 'page_header',
+            ),
+            array(
+                'name' => __('Background Options for page header', THEME_LANG),
+                'id' => $prefix.'page_header_bg',
+                'type'  => 'background',
+                'tab'  => 'page_header',
+            ),
 
-
+            //Header
             array(
                 'name'    => __( 'Header position', THEME_LANG ),
                 'type'     => 'select',
@@ -781,24 +783,27 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
-
-
+            array(
+                'name' => __('Background Options for Boxed & Wide Mode', THEME_LANG),
+                'id' => $prefix.'body_background',
+                'type'  => 'background',
+                'tab'  => 'page_background',
+                'desc' => '&nbsp;',
+            ),
+            array(
+                'id' => 'fakeid_divider',
+                'type'  => 'divider',
+                'tab'  => 'page_background',
+            ),
+            array(
+                'name' => __('Background Options for Boxed mod', THEME_LANG),
+                'id' => $prefix.'boxed_background',
+                'type'  => 'background',
+                'tab'  => 'page_background',
+                'desc' => __('', THEME_LANG ),
+            )
 
         )
-    );
-
-    // Meta Box
-    $meta_boxes[] = array(
-        'title'  => __( 'Background', 'rwmb' ),
-        'pages' => array( 'page', 'post', 'portfolio','product' ),
-        'fields' => array(
-            array(
-                'name' => 'Background',
-                'id' => 'background_custom',
-                'desc' => "If you wish to add extra classes to the body class of the page (for custom css use), then please add the class(es) here.",
-                'type'  => 'background',
-            )
-        ),
     );
 
 

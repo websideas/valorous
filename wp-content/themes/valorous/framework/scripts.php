@@ -98,8 +98,6 @@ function kt_setting_script() {
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '');
 
-
-
     ?>
     <style id="kt-theme-custom-css" type="text/css">
 
@@ -120,6 +118,7 @@ function kt_setting_script() {
             .kt_flickr a:after,
             body .mejs-controls .mejs-time-rail .mejs-time-current,
             body .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+            .kt-skill-bg-accent .kt-skill-bar,
 
             .woocommerce .product .yith-wcwl-add-to-wishlist .ajax-loading,
             .woocommerce ul.shop-products .added_to_cart,
@@ -353,15 +352,9 @@ function kt_setting_script() {
                     echo 'div.page-header .breadcrumbs,div.page-header .breadcrumbs a{color:'.$pageh_breadcrumbs_color.';}';
                 }
 
-                $pageh_bg_color = rwmb_meta('_kt_page_header_bg_color', array(), $post_id);
-                if($pageh_bg_color != ''){
-                    echo 'div.page-header{background:'.$pageh_bg_color.';}';
-                }
-
-                $pageh_bg_img = get_link_image_post('_kt_page_header_bg', $post_id, 'full');
-                if($pageh_bg_img){
-                    echo 'div.page-header{background-image:url('.$pageh_bg_img['url'].');}';
-                }
+                kt_render_custom_css('_kt_page_header_bg', 'div.page-header', $post_id);
+                kt_render_custom_css('_kt_body_background', 'body.layout-full, body.layout-boxed #page', $post_id);
+                kt_render_custom_css('_kt_boxed_background', 'body.layout-boxed', $post_id);
 
             }
 
@@ -442,8 +435,11 @@ function kt_setting_script() {
                 echo '#footer-area .btn-default:hover, #footer-area .button:hover{border-color: '.$widgets_link_hover.'; background: '.$widgets_link_hover.';color: #FFF'.'}';
                 echo '#footer-area .widget_nav_menu ul li a:hover:after, #footer-area .widget_product_categories ul li a:hover:after,#footer-area .widget_categories ul li a:hover:after,#footer-area .widget_archive ul li a:hover:after, #footer-area .widget_meta ul li a:hover:after, #footer-area .yith-woocompare-widget ul.products-list li a.title:hover:after{color: '.$widgets_link_hover.';background: '.$widgets_link_hover.'; }';
                 echo '#footer-area .widget_product_tag_cloud a:hover, #footer-area .widget_product_tag_cloud a:focus, #footer-area .widget_tag_cloud a:hover, #footer-area .widget_tag_cloud a:focus{color: #FFF;background: '.$widgets_link_hover.';border-color: '.$widgets_link_hover.';}';
-
             }
+
+
+
+
 
         ?>
 

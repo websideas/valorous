@@ -4,7 +4,28 @@
 if ( !defined('ABSPATH')) exit;
 require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 
-class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
+class WPBakeryShortCode_Skill extends WPBakeryShortCodesContainer {
+    protected function content($atts, $content = null) {
+        $atts = shortcode_atts( array(
+            'el_class' => '',
+            'css' => '',
+        ), $atts );
+
+        extract( $atts );
+
+        $elementClass = array(
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-skill-wrapper ', $this->settings['base'], $atts ),
+            'extra' => $this->getExtraClass( $el_class ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+        );
+
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+        return '<div class="'.esc_attr( $elementClass ).'">'.do_shortcode($content).'</div>';
+    }
+}
+
+class WPBakeryShortCode_Skill_Item extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => __( 'Title', 'js_composer' ),
@@ -37,7 +58,7 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
 
         extract( $atts );
         //if(!$title || $percent) return;
-        
+
         $output = '';
         $style_skill_arr = $style_bar_arr = $style_text_arr = array();
 
@@ -49,7 +70,7 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
         if ( in_array( "striped", $options ) ) {
             $bar_options .= " striped";
         }
-        
+
         if($border_style){
             $style_skill_arr[] = "border: ".$border_size.'px '.$border_style.' '.$border_color;
         }
@@ -62,14 +83,14 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
             $style_skill_arr[] = 'padding: '.$padding_box.'px';
         }
         if($boxbgcolor){
-            $style_skill_arr[] = 'background-color: '.$boxbgcolor;  
+            $style_skill_arr[] = 'background-color: '.$boxbgcolor;
         }
-        
+
         $style_skill = '';
         if ( ! empty( $style_skill_arr ) ) {
-        	$style_skill = 'style="' . esc_attr( implode( ';', $style_skill_arr ) ) . '"';
+            $style_skill = 'style="' . esc_attr( implode( ';', $style_skill_arr ) ) . '"';
         }
-        
+
         if($bgcolor == 'custom'){
             $style_bar_arr[] = 'background-color: '.$custombgcolor;
         }elseif($bgcolor == 'gradient'){
@@ -86,10 +107,10 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
         if($style =='before' || $style =='after'){
             $style_bar_arr[] = 'height: '.$height.'px';
         }
-        
+
         $style_bar = '';
         if ( ! empty( $style_bar_arr ) ) {
-        	$style_bar = 'style="' . esc_attr( implode( ';', $style_bar_arr ) ) . '"';
+            $style_bar = 'style="' . esc_attr( implode( ';', $style_bar_arr ) ) . '"';
         }
 
 
@@ -123,13 +144,13 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
         }
         if($padding_right){
             $style_text_arr[] = 'padding-right: '.$padding_right.'px';
-        } 
-        
+        }
+
         $style_text = '';
         if ( ! empty( $style_text_arr ) ) {
-        	$style_text = 'style="' . esc_attr( implode( ';', $style_text_arr ) ) . '"';
+            $style_text = 'style="' . esc_attr( implode( ';', $style_text_arr ) ) . '"';
         }
-        
+
         $text = "<div class='kt-skill-text' {$style_text}>{$title} <span>$percent%</span></div>";
         $bar = "<div class='kt-skill-bar ".esc_attr($bar_options)."' {$style_bar} data-percent='{$percent}'><span></span></div>";
         //$bar .= "<div class='kt-skill-bar-stripe' data-percent='{$percent}'></div>";
@@ -143,7 +164,7 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
         }
 
         $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-skill-wrapper ', $this->settings['base'], $atts ),
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-skill-item-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
             'style' => 'kt-style-'.$style,
@@ -152,50 +173,73 @@ class WPBakeryShortCode_Skill extends WPBakeryShortCode_VC_Custom_heading {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-    	return '<div class="'.esc_attr( $elementClass ).'"><div class="kt-skill-content">'.$output.'</div></div>';
+        return '<div class="'.esc_attr( $elementClass ).'"><div class="kt-skill-content">'.$output.'</div></div>';
     }
 }
 
 
-
-// Add your Visual Composer logic here
 vc_map( array(
-    "name" => __( "Skill", THEME_LANG),
+    "name" => __("Skill", THEME_LANG),
     "base" => "skill",
     "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Skill", THEME_LANG),
+    "as_parent" => array('only' => 'skill_item'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
+    "content_element" => true,
+    "show_settings_on_create" => false,
     "params" => array(
         array(
-			"type" => "textfield",
-			'heading' => __( 'Title', 'js_composer' ),
-			'param_name' => 'title',
+            "type" => "textfield",
+            "heading" => __("Extra class name", "js_composer"),
+            "param_name" => "el_class",
+            "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer")
+        ),
+        array(
+            'type' => 'css_editor',
+            'heading' => __( 'Css', 'js_composer' ),
+            'param_name' => 'css',
+            // 'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
+            'group' => __( 'Design options', 'js_composer' )
+        ),
+    ),
+    "js_view" => 'VcColumnView'
+) );
+// Add your Visual Composer logic here
+vc_map( array(
+    "name" => __( "Skill Item", THEME_LANG),
+    "base" => "skill_item",
+    "as_child" => array('only' => 'skill'),
+    "content_element" => true,
+    "params" => array(
+        array(
+            "type" => "textfield",
+            'heading' => __( 'Title', 'js_composer' ),
+            'param_name' => 'title',
             'value' => __( 'Title', 'js_composer' ),
-			"admin_label" => true,
-		),
+            "admin_label" => true,
+        ),
         array(
             'type' => 'hidden',
             'heading' => __( 'URL (Link)', 'js_composer' ),
             'param_name' => 'link',
         ),
         array(
-			"type" => "kt_number",
-			"heading" => __("Percent", "js_composer"),
-			"param_name" => "percent",
+            "type" => "kt_number",
+            "heading" => __("Percent", "js_composer"),
+            "param_name" => "percent",
             "admin_label" => true,
             "value" => 88,
-			"min" => 1,
-			"max" => 100,
+            "min" => 1,
+            "max" => 100,
             "suffix" => "%",
-		),
+        ),
         array(
-			'type' => 'checkbox',
-			'heading' => __( 'Options', 'js_composer' ),
-			'param_name' => 'options',
-			'value' => array(
-				__( 'Add Stripes?', 'js_composer' ) => 'striped',
-				__( 'Add animation? Will be visible with striped bars.', 'js_composer' ) => 'animated'
-			),
-		),
+            'type' => 'checkbox',
+            'heading' => __( 'Options', 'js_composer' ),
+            'param_name' => 'options',
+            'value' => array(
+                __( 'Add Stripes?', 'js_composer' ) => 'striped',
+                __( 'Add animation? Will be visible with striped bars.', 'js_composer' ) => 'animated'
+            ),
+        ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Style', 'js_composer' ),
@@ -222,80 +266,80 @@ vc_map( array(
             'group' => __( 'Layout options', 'js_composer' )
         ),
         array(
-			'type' => 'colorpicker',
-			'heading' => __( 'Background color', 'js_composer' ),
-			'param_name' => 'boxbgcolor',
-			'description' => __( 'Select background color for box.', 'js_composer' ),
+            'type' => 'colorpicker',
+            'heading' => __( 'Background color', 'js_composer' ),
+            'param_name' => 'boxbgcolor',
+            'description' => __( 'Select background color for box.', 'js_composer' ),
             "value" => '#F8F8F8',
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
         array(
-			"type" => "dropdown",
-			"class" => "",
-			"heading" => __("Border Style", 'js_composer'),
-			"param_name" => "border_style",
-			"value" => array(
-				"None"=> "",
-				"Solid"=> "solid",
-				"Dashed" => "dashed",
-				"Dotted" => "dotted",
-				"Double" => "double",
-				"Inset" => "inset",
-				"Outset" => "outset",
-			),
-			"description" => "",
-			'group' => __( 'Layout options', 'js_composer' )
-		),
+            "type" => "dropdown",
+            "class" => "",
+            "heading" => __("Border Style", 'js_composer'),
+            "param_name" => "border_style",
+            "value" => array(
+                "None"=> "",
+                "Solid"=> "solid",
+                "Dashed" => "dashed",
+                "Dotted" => "dotted",
+                "Double" => "double",
+                "Inset" => "inset",
+                "Outset" => "outset",
+            ),
+            "description" => "",
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
         array(
-			"type" => "colorpicker",
-			"class" => "",
-			"heading" => __("Border Color", 'js_composer'),
-			"param_name" => "border_color",
-			"value" => "",
-			"description" => "",
-			"dependency" => array("element" => "border_style", "not_empty" => true),
-			'group' => __( 'Layout options', 'js_composer' )
-		),
+            "type" => "colorpicker",
+            "class" => "",
+            "heading" => __("Border Color", 'js_composer'),
+            "param_name" => "border_color",
+            "value" => "",
+            "description" => "",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
 
-		array(
-			"type" => "kt_number",
-			"class" => "",
-			"heading" => __("Border Width", 'js_composer'),
-			"param_name" => "border_size",
-			"value" => 1,
-			"min" => 1,
-			"max" => 10,
-			"suffix" => "px",
-			"description" => "",
-			"dependency" => array("element" => "border_style", "not_empty" => true),
-			'group' => __( 'Layout options', 'js_composer' )
-		),
-		array(
-			"type" => "kt_number",
-			"class" => "",
-			"heading" => __("Border Radius",'js_composer'),
-			"param_name" => "border_radius",
-			"value" => 3,
-			"min" => 0,
-			"max" => 500,
-			"suffix" => "px",
-			"description" => "",
-			"dependency" => array("element" => "border_style", "not_empty" => true),
-			'group' => __( 'Layout options', 'js_composer' )
-	  	),
         array(
-			"type" => "kt_number",
-			"class" => "",
-			"heading" => __("Padding", 'js_composer'),
-			"param_name" => "padding_box",
-			"value" => 2,
-			"min" => 0,
-			"max" => 10,
-			"suffix" => "px",
-			"description" => "Don't use for Title inner box",
-			"dependency" => array("element" => "border_style", "not_empty" => true),
-			'group' => __( 'Layout options', 'js_composer' )
-		),
+            "type" => "kt_number",
+            "class" => "",
+            "heading" => __("Border Width", 'js_composer'),
+            "param_name" => "border_size",
+            "value" => 1,
+            "min" => 1,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
+        array(
+            "type" => "kt_number",
+            "class" => "",
+            "heading" => __("Border Radius",'js_composer'),
+            "param_name" => "border_radius",
+            "value" => 3,
+            "min" => 0,
+            "max" => 500,
+            "suffix" => "px",
+            "description" => "",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
+        array(
+            "type" => "kt_number",
+            "class" => "",
+            "heading" => __("Padding", 'js_composer'),
+            "param_name" => "padding_box",
+            "value" => 2,
+            "min" => 0,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "Don't use for Title inner box",
+            "dependency" => array("element" => "border_style", "not_empty" => true),
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
 
 
 
@@ -306,14 +350,14 @@ vc_map( array(
             'group' => __( 'Layout options', 'js_composer' )
         ),
         array(
-			"type" => "kt_number",
-			"class" => "",
-			"heading" => __("Bar Height", 'js_composer'),
-			"param_name" => "height",
-			"value" => 10,
-			"suffix" => "px",
-			'group' => __( 'Layout options', 'js_composer' )
-		),
+            "type" => "kt_number",
+            "class" => "",
+            "heading" => __("Bar Height", 'js_composer'),
+            "param_name" => "height",
+            "value" => 10,
+            "suffix" => "px",
+            'group' => __( 'Layout options', 'js_composer' )
+        ),
         array(
             "type" => "kt_number",
             "heading" => __("Padding left",'js_composer'),
@@ -336,46 +380,46 @@ vc_map( array(
             'description' => '&nbsp;',
         ),
         array(
-			'type' => 'dropdown',
-			'heading' => __( 'Background', 'js_composer' ),
-			'param_name' => 'bgcolor',
-			'value' => array(
-				__( 'Accent', 'js_composer' ) => 'accent',
-				__( 'Custom Color', 'js_composer' ) => 'custom',
+            'type' => 'dropdown',
+            'heading' => __( 'Background', 'js_composer' ),
+            'param_name' => 'bgcolor',
+            'value' => array(
+                __( 'Accent', 'js_composer' ) => 'accent',
+                __( 'Custom Color', 'js_composer' ) => 'custom',
                 __( 'Custom Gradient', 'js_composer' ) => 'gradient',
-			),
-			'description' => __( 'Select skill background color.', 'js_composer' ),
-			'admin_label' => true,
+            ),
+            'description' => __( 'Select skill background color.', 'js_composer' ),
+            'admin_label' => true,
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
         array(
-			'type' => 'colorpicker',
-			'heading' => __( 'Custom background color', 'js_composer' ),
-			'param_name' => 'custombgcolor',
-			'description' => __( 'Select custom background color for skill.', 'js_composer' ),
-			'dependency' => array( 'element' => 'bgcolor', 'value' => array( 'custom' ) ),
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom background color', 'js_composer' ),
+            'param_name' => 'custombgcolor',
+            'description' => __( 'Select custom background color for skill.', 'js_composer' ),
+            'dependency' => array( 'element' => 'bgcolor', 'value' => array( 'custom' ) ),
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
         array(
-			'type' => 'colorpicker',
-			'heading' => __( 'Background color start', 'js_composer' ),
-			'param_name' => 'gradient_start',
+            'type' => 'colorpicker',
+            'heading' => __( 'Background color start', 'js_composer' ),
+            'param_name' => 'gradient_start',
             'class' => 'gradient_start',
             'description' => __( 'Select custom background color for skill.', 'js_composer' ),
             'dependency' => array( 'element' => 'bgcolor', 'value' => array( 'gradient' ) ),
             'edit_field_class' => 'vc_col-sm-6 vc_column',
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
         array(
-			'type' => 'colorpicker',
-			'heading' => __( 'Background color end', 'js_composer' ),
-			'param_name' => 'gradient_end',
+            'type' => 'colorpicker',
+            'heading' => __( 'Background color end', 'js_composer' ),
+            'param_name' => 'gradient_end',
             'class' => 'gradient_end',
             'dependency' => array( 'element' => 'bgcolor', 'value' => array( 'gradient' ) ),
             'description' => __( 'Select custom background color for skill.', 'js_composer' ),
             'edit_field_class' => 'vc_col-sm-6 vc_column',
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
         array(
             'type' => 'font_container',
             'param_name' => 'font_container',
@@ -408,32 +452,33 @@ vc_map( array(
             'param_name' => 'use_theme_fonts',
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
-            'group' => __( 'Layout options', 'js_composer' )
+            'group' => __( 'Layout options', 'js_composer' ),
+            'std' => 'yes'
         ),
         array(
-			'type' => 'google_fonts',
-			'param_name' => 'google_fonts',
-			'value' => '', // default
-			//'font_family:'.rawurlencode('Abril Fatface:400').'|font_style:'.rawurlencode('400 regular:400:normal')
-			// this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
-			'settings' => array(
-				//'no_font_style' // Method 1: To disable font style
-				//'no_font_style'=>true // Method 2: To disable font style
-				'fields' => array(
-					//'font_family' => 'Abril Fatface:regular',
-					//'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
-					//'font_style' => '400 regular:400:normal',
-					// Default font style. Name:weight:style, example: "800 bold regular:800:normal"
-					'font_family_description' => __( 'Select font family.', 'js_composer' ),
-					'font_style_description' => __( 'Select font styling.', 'js_composer' )
-				)
-			),
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts',
+            'value' => '', // default
+            //'font_family:'.rawurlencode('Abril Fatface:400').'|font_style:'.rawurlencode('400 regular:400:normal')
+            // this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
+            'settings' => array(
+                //'no_font_style' // Method 1: To disable font style
+                //'no_font_style'=>true // Method 2: To disable font style
+                'fields' => array(
+                    //'font_family' => 'Abril Fatface:regular',
+                    //'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
+                    //'font_style' => '400 regular:400:normal',
+                    // Default font style. Name:weight:style, example: "800 bold regular:800:normal"
+                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
+                )
+            ),
             'dependency' => array(
                 'element' => 'use_theme_fonts',
                 'value_not_equal_to' => 'yes',
             ),
             'group' => __( 'Layout options', 'js_composer' )
-		),
+        ),
 
 
         array(
@@ -443,9 +488,9 @@ vc_map( array(
             // 'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
             'group' => __( 'Design options', 'js_composer' )
         ),
-        
-        
-        
-        
+
+
+
+
     ),
 ));

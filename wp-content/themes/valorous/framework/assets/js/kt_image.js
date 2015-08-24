@@ -8,10 +8,22 @@
 (function($){
     $('document').ready(function() {
 
+        $( 'body' ).on( 'click', '.kt_image_remove', function ( e ){
+            e.preventDefault();
+            var $button = $( this ),
+                $widget = $button.closest('.wrapper_kt_image_upload'),
+                $url = $widget.find('.kt_image_url'),
+                $attachment = $widget.find('.kt_image_attachment');
+
+            $url.val('');
+            $attachment.val('');
+            $button.hide();
+        });
+
+
         $( 'body' ).on( 'click', '.kt_image_upload', function ( e ){
             e.preventDefault();
 
-            console.log($(this));
 
             var $button = $( this ),
                 $widget = $button.closest('.wrapper_kt_image_upload'),
@@ -19,6 +31,7 @@
                 $url = $widget.find('.kt_image_url'),
                 $preview_img = $preview.find('img'),
                 $attachment = $widget.find('.kt_image_attachment'),
+                $remove = $widget.find('.kt_image_remove'),
                 frame,
                 frameOptions = {
     				className: 'media-frame rwmb-file-frame',
@@ -48,7 +61,7 @@
                 $url.val(attachment.url);
 
                 $preview.show();
-
+                $remove.show();
 
             });
 

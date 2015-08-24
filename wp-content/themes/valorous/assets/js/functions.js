@@ -239,15 +239,13 @@
     /* ---------------------------------------------
      Google Map Short code
      --------------------------------------------- */
-    function init_VCGoogle() {
+    function init_VCGoogleMap() {
         $(".googlemap").each(function () {
             var mapObj = $(this);
             var scrollwheel = mapObj.data('scrollwheel');
             var vScrollwheel = (scrollwheel == '1') ? false : true;
             mapObj.gmap3({
-                marker: {
-                    values: [{address: mapObj.data('location'), options: {icon: mapObj.data('icon')}}],
-                },
+                marker: {values: [{address: mapObj.data('location'), options: {icon: mapObj.data('iconmap')}}]},
                 map: {
                     options: {
                         zoom: mapObj.data('zoom'),
@@ -262,7 +260,6 @@
     /* -------------------------------------------
      Parallax
      --------------------------------------------- */
-
     function init_parallax(){
 
         if (($(window).width() >= 1024) && (ktmobile == false)) {
@@ -273,7 +270,6 @@
         }
 
     }
-
 
     /* ---------------------------------------------
      Search
@@ -323,16 +319,16 @@
                 $(this).html(
                     event.strftime('<div class="wrap">' +
                     '<div class="value-time">%D</div>' +
-                    '<div class="title">Days</div></div>' +
+                    '<h3 class="title">Days</h3></div>' +
                     '<div class="wrap">' +
                     '<div class="value-time">%H</div>' +
-                    '<div class="title">Hours</div></div>' +
+                    '<h3 class="title">Hours</h3></div>' +
                     '<div class="wrap">' +
                     '<div class="value-time">%M</div>' +
-                    '<div class="title">Minutes</div></div>' +
+                    '<h3 class="title">Minutes</h3></div>' +
                     '<div class="wrap">' +
                     '<div class="value-time">%S</div>' +
-                    '<div class="title">Seconds</div></div>')
+                    '<h3 class="title">Seconds</h3></div>')
                 );
             });
         });
@@ -451,22 +447,19 @@
         
         // Tooltips (bootstrap plugin activated)
         $('[data-toggle="tooltip"]').tooltip();
-        
-        if (typeof jQuery.fn.fitVids !== 'undefined') {
-            // Responsive video
-        }
 
         // Skill bar
         if (typeof jQuery.fn.waypoint !== 'undefined') {
             jQuery('.kt-skill-wrapper').waypoint(function () {
-                var $skill_bar = jQuery(this).find('.kt-skill-bar');
+                jQuery(this).find('.kt-skill-item-wrapper').each(function( i ){
+                    var $skill_bar = jQuery(this).find('.kt-skill-bar');
+                    var time_out = i * 200;
+                    setTimeout(function () {
+                        $skill_bar.css({"width": $skill_bar.data('percent') + '%'});
+                    }, time_out);
 
-                console.log($skill_bar.data('percent') );
-
-                setTimeout(function () {
-                    $skill_bar.css({"width": $skill_bar.data('percent') + '%'});
-                }, 200);
-            }, { offset:'95%' });
+                });
+            }, { offset:'85%' });
         }
 
         // Counter
@@ -476,7 +469,7 @@
 
         init_VCPieChart();
         init_VCComingSoon();
-        init_VCGoogle();
+        init_VCGoogleMap();
     }
 
     /* ---------------------------------------------

@@ -31,10 +31,6 @@ $css_class .= $this->getCSSAnimation( $css_animation );
 // Enqueue needed icon font.
 vc_icon_element_fonts_enqueue( $type );
 
-
-
-echo $custom_background_color;
-
 $uniqid = 'vc_icon_element_'.uniqid();
 $custom_css = '';
 
@@ -129,7 +125,7 @@ $style = $style ? ' style="' . esc_attr( $style ) . '"' : '';
 
 ?>
 <div id="<?php echo $uniqid; ?>"
-    class="vc_icon_element vc_icon_element-outer<?php echo strlen( $css_class ) > 0 ? ' ' . trim( esc_attr( $css_class ) ) : ''; ?> vc_icon_element-align-<?php echo esc_attr( $align ); ?><?php if ( $has_style ): echo ' vc_icon_element-have-style'; endif; ?>">
+    class="vc_icon_element vc_icon_element-outer<?php echo strlen( $css_class ) > 0 ? ' ' . trim( esc_attr( $css_class ) ) : ''; ?> vc_icon_element-align-<?php echo esc_attr( $align ); ?><?php if ( $has_style ): echo ' vc_icon_element-have-style'; else: echo ' vc_icon_element-no-style'; endif; ?>">
     <div
         class="vc_icon_element-inner vc_icon_element-color-<?php echo esc_attr( $color ); ?><?php if ( $has_style ): echo ' vc_icon_element-have-style-inner'; endif; ?> vc_icon_element-size-<?php echo esc_attr( $size ); ?> vc_icon_element-style-<?php echo esc_attr( $background_style ); ?> vc_icon_element-background-color-<?php echo esc_attr( $background_color ); ?>"<?php echo $style ?>><span
             class="vc_icon_element-icon <?php echo $iconClass; ?>" <?php echo( $color === 'custom' ? 'style="color:' . esc_attr( $custom_color ) . ' !important"' : '' ); ?>></span><?php

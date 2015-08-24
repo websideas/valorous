@@ -691,7 +691,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'styling_body_background',
                         'type'     => 'background',
                         'output'   => array( 'body.layout-full', 'body.layout-boxed #page' ),
-                        'title'    => __( 'Body Background for full width mod', THEME_LANG ),
+                        'title'    => __( 'Background Options for Boxed & Wide Mode', THEME_LANG ),
                         'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
                         'default'   => '#FFFFFF'
                     ),
@@ -699,7 +699,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'styling_boxed_background',
                         'type'     => 'background',
                         'output'   => array( 'body.layout-boxed' ),
-                        'title'    => __( 'Boxed Background for boxed mod', THEME_LANG ),
+                        'title'    => __( 'Background Options for Boxed mod', THEME_LANG ),
                         'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
                         'default'   => '#'
                     ),
