@@ -110,8 +110,12 @@ function get_page_header( ){
         if( $show_title == '' ||  $show_title == '-1'){
             if(is_page()){
                 $show_title = kt_option('show_page_header', 1);
+            }elseif(is_singular('post')){
+                $show_title = kt_option('single_page_header', 1);
             }elseif(is_singular('portfolio')){
                 $show_title = kt_option('portfolio_page_header', 1);
+            }elseif(is_singular('product')){
+                $show_title = kt_option('product_page_header', 1);
             }else{
                 if(kt_is_wc()){
                     if(is_product()){

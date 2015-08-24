@@ -9,7 +9,7 @@
 6. Styles for devices(<=991px )
 7. Styles for devices(>=768px and <= 991px)
 8. Styles for devices(<=782px )
-9. 9. Styles for devices(<=767px )
+9. 9. Styles for devices(<=768px )
 10. Styles for devices(<=600px )
 11. Styles for devices(<=480px )
 12. Styles for devices(<=320px )
@@ -69,10 +69,19 @@ only screen and (min-resolution: 144dpi) {
     }
     /* Posts */
     .post-layout-classic .entry-share-box{
-        float: none;
+        display: none;
+    }
+    .author-info .author-social:before{
+        display: none;
+    }
+    .author-info .author-social,
+    .author-info h2.author-title{
+        display: block;
     }
 
-
+    .author-info .author-social a:first-child{
+        padding-left: 0;
+    }
 
 
     /* Header */
@@ -101,12 +110,6 @@ only screen and (min-resolution: 144dpi) {
     }
 
     /* Footer */
-    #footer-bottom .instagram_bg li:nth-child(10) ~ li{
-        display: none;
-    }
-    #footer-bottom .instagram_bg li{
-        width:20%;
-    }
 
 }
 /* 8. Styles for devices(<=782px ) */
@@ -131,8 +134,8 @@ only screen and (min-resolution: 144dpi) {
 }
 
 
-/* 9. Styles for devices(<=767px ) */
-@media (max-width: 767px) {
+/* 9. Styles for devices(<=768px ) */
+@media (max-width: 768px) {
     .col-clearfix-xs {
         clear: both;
     }
@@ -143,12 +146,9 @@ only screen and (min-resolution: 144dpi) {
     /* Posts */
 
     /* Footer */
-    #footer-bottom .instagram_bg li:nth-child(8) ~ li{
-        display: none;
-    }
-    #footer-bottom .instagram_bg li{
-        width:25%;
-    }
+
+
+
     /* Woocommerce */
     .woocommerce #content table.cart td.actions .btn,
     .woocommerce table.cart td.actions .btn,
@@ -161,6 +161,11 @@ only screen and (min-resolution: 144dpi) {
     .woocommerce-page #content table.cart td.actions .btn.update_cart,
     .woocommerce-page table.cart td.actions .btn.update_cart{
         float: right;
+    }
+
+    .woocommerce table.shop_table_responsive.customer_details tr:nth-child(2n) td,
+    .woocommerce-page table.shop_table_responsive.customer_details tr:nth-child(2n) td{
+        background: none;
     }
 
 
@@ -194,30 +199,21 @@ only screen and (min-resolution: 144dpi) {
     /* Posts */
     .author-info .author-avatar{
         text-align: center;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
+        position: static;
     }
+    .author-info .author-social,
     .author-info h2.author-title{
         text-align: center;
-    }
-    .author-info img.avatar{
-        position: static;
     }
     .author-info .author-description{
         padding: 0;
     }
-
+    .author-info .author-bio{
+        margin-top: 25px;
+    }
 
     /* Footer */
-    #footer-area .widget-container{
-        padding: 15px;
-    }
-    #footer-bottom .instagram_bg li:nth-child(4) ~ li{
-        display: none;
-    }
-    #footer-bottom .instagram_bg li{
-        width:50%;
-    }
-
 
     /* Woocommerce */
     .woocommerce ul.shop-products li.product{
@@ -233,6 +229,9 @@ only screen and (min-resolution: 144dpi) {
     .woocommerce-page table.cart .quantity-group{
         width: 41px;
         padding-right: 0;
+    }
+    .woocommerce-page table.cart div.quantity-group .input-text{
+        border: none;
     }
     .woocommerce-page table.cart .quantity-group button{
         display: none;

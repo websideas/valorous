@@ -2822,9 +2822,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Post layouts', THEME_LANG),
                         'desc' => __('Select the format position.', THEME_LANG),
                         'options' => array(
-                            'content' => __( 'Before Content', THEME_LANG ),
-                            //title' => __( 'Before Title', THEME_LANG ),
-                            'fullwidth' => __( 'Fullwidth', THEME_LANG ),
+                            '1' => __( 'Layout 1', THEME_LANG ),
+                            '2' => __( 'Layout 2', THEME_LANG ),
+                            '3' => __( 'Layout 3', THEME_LANG ),
                         ),
                         'default' => 'content'
                     ),

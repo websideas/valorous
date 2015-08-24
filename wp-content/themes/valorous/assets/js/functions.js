@@ -1024,7 +1024,7 @@
                 //maxRowHeight: $(this).data('height'),
                 margins: $(this).data('margin'),
                 captions: true,
-                lastRow: 'justify',
+                lastRow: 'justify'
             });
         });
     }
@@ -1074,17 +1074,20 @@
     ***  Sticky sidebar
     ===============================**/
     function kt_sidebar_sticky(){
-        var margin_sidebar_sticky = 20;
-        if($('#wpadminbar').length > 0){
-            margin_sidebar_sticky += parseInt( $('#wpadminbar').outerHeight() );
-        }
-        if($('.sticky-header.header-container').length > 0){
-            margin_sidebar_sticky += parseInt( ajax_frontend.sticky_height );
+        if(!ktmobile){
+            var margin_sidebar_sticky = 20;
+            if($('#wpadminbar').length > 0){
+                margin_sidebar_sticky += parseInt( $('#wpadminbar').outerHeight() );
+            }
+            if($('.sticky-header.header-container').length > 0){
+                margin_sidebar_sticky += parseInt( ajax_frontend.sticky_height );
+            }
+
+            $('.sidebar').theiaStickySidebar({
+                additionalMarginTop: margin_sidebar_sticky
+            });
         }
 
-        $('.sidebar').theiaStickySidebar({ 
-    		additionalMarginTop: margin_sidebar_sticky
-    	}); 
     }
     
     /**==============================
