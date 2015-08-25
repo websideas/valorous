@@ -2824,9 +2824,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => array(
                             '1' => __( 'Layout 1', THEME_LANG ),
                             '2' => __( 'Layout 2', THEME_LANG ),
-                            '3' => __( 'Layout 3', THEME_LANG ),
                         ),
-                        'default' => 'content'
+                        'default' => '1'
                     ),
                     array(
                         'id'       => 'blog_sidebar',
@@ -2922,6 +2921,10 @@ if ( ! class_exists( 'KT_config' ) ) {
                         "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
                     ),
                     array(
                         'id'       => 'blog_related_type',

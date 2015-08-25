@@ -19,10 +19,10 @@ get_header();
         do_action( 'theme_before_main' ); ?>
         <?php
             $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
-            $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');
+            $post_layout = kt_post_option(null, '_kt_blog_post_layout', 'blog_layout', 1);
         ?>
 
-        <?php if( ! post_password_required( ) && $show_post_format && $post_format_position == 'fullwidth' ){ ?>
+        <?php if( ! post_password_required( ) && $show_post_format && $post_layout == 2 ){ ?>
             <?php $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post'); ?>
             <div class="entry-thumb-fullwidth"><?php kt_post_thumbnail($imagesize, 'img-responsive', false, false); ?></div>
         <?php } ?>

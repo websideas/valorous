@@ -217,13 +217,13 @@ function kt_register_meta_boxes( $meta_boxes )
             ),
             array(
                 'type' => 'select',
-                'name' => __('Post format position', THEME_LANG),
-                'desc' => __('Select the format position.', THEME_LANG),
-                'id'   => "{$prefix}blog_post_format_position",
+                'name' => __('Post layouts', THEME_LANG),
+                'desc' => __('Select the your post layout.', THEME_LANG),
+                'id'   => "{$prefix}blog_post_layout",
                 'options' => array(
                     ''    => __('Default', THEME_LANG),
-                    'content' => __( 'Content', THEME_LANG ),
-                    'fullwidth' => __( 'Fullwidth', THEME_LANG ),
+                    '1' => __( 'Layout 1', THEME_LANG ),
+                    '2' => __( 'layout 2', THEME_LANG ),
                 ),
                 'std' => ''
             ),

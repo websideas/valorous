@@ -1,11 +1,12 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('post-single'); ?>>
+<?php $post_layout = kt_post_option(null, '_kt_blog_post_layout', 'blog_layout', 1); ?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class('post-single post-layout-'.$post_layout ); ?>>
     <?php
         $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
-        $post_format_position = kt_post_option(null, '_kt_blog_post_format_position', 'blog_post_format_position', 'content');;
+        $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post');
     ?>
     <?php
-    if( ! post_password_required( ) && $show_post_format && $post_format_position == 'content' ){
-        $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post');
+    if( ! post_password_required( ) && $show_post_format && $post_layout == 1 ){
         kt_post_thumbnail( $imagesize, 'img-responsive', false );
     }
     ?>
@@ -26,6 +27,7 @@
                 if(kt_option('blog_meta_comments', 1)){
                     kt_entry_meta_comments();
                 }
+
                 echo kt_get_post_views( get_the_ID() );
                 
                 if(kt_option('blog_like_post', 1)){
@@ -36,6 +38,11 @@
         <?php } ?>
     </header><!-- .entry-header -->
     <div class="entry-content-outer">
+        <?php
+            if( ! post_password_required( ) && $show_post_format && $post_layout == 3 ){
+                kt_post_thumbnail( $imagesize, 'img-responsive', false );
+            }
+        ?>
 
         <div class="entry-content clearfix">
             <?php the_content(); ?>
