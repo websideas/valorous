@@ -66,7 +66,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'orderby' => $orderby,
             'posts_per_page' => $max_items,
             'ignore_sticky_posts' => true,
-            'post_type' => 'post'
+            'post_type' => 'kt_testimonial'
         );
 
         if($orderby == 'meta_value' || $orderby == 'meta_value_num'){
@@ -159,7 +159,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
 
             while ( $query->have_posts() ) : $query->the_post();
                 $testimonial_html .= '<div class="testimonial-item testimonial-layout-'.esc_attr($layout).'">';
-                    $testimonial_content = '<div class="testimonial-content">'.get_the_content().'</div>';
+                    $testimonial_content = '<div class="testimonial-content">'.do_shortcode(get_the_content()).'</div>';
                     $testimonial_author = '<div class="testimonial-author" '.$style_title.'>'.get_the_title().'</div>';
                     $testimonial_author .= '<div class="testimonial-info">Testimonial item info</div>';
                     $testimonial_img = (has_post_thumbnail()) ? '<div class="testimonial-img">'.get_the_post_thumbnail( get_the_ID(), 'small', array('class'=>"img-responsive")).'</div>' : '';

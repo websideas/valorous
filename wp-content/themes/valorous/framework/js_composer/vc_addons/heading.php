@@ -13,7 +13,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'align' => 'center',
             'layout' => 'between',
 
-            'use_theme_fonts' => '',
+            'use_theme_fonts' => 'yes',
             'font_type' => '',
             'font_container' => '',
             'google_fonts' => '',
@@ -134,6 +134,7 @@ vc_map( array(
             "param_name" => "content",
             "value" => '',
             "description" => __("", THEME_LANG),
+            'holder' => 'div'
         ),
         array(
             'type' => 'dropdown',
@@ -225,6 +226,7 @@ vc_map( array(
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
             'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
