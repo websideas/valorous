@@ -242,15 +242,14 @@
     function init_VCGoogleMap() {
         $(".googlemap").each(function () {
             var mapObj = $(this);
-            var scrollwheel = mapObj.data('scrollwheel');
-            var vScrollwheel = (scrollwheel == '1') ? false : true;
+            var scrollwheel = (mapObj.data('scrollwheel') == '1') ? false : true;
             mapObj.gmap3({
                 marker: {values: [{address: mapObj.data('location'), options: {icon: mapObj.data('iconmap')}}]},
                 map: {
                     options: {
                         zoom: mapObj.data('zoom'),
                         mapTypeId: mapObj.data('type').toLowerCase(),
-                        scrollwheel: vScrollwheel
+                        scrollwheel: scrollwheel
                     }
                 }
             });

@@ -11,7 +11,7 @@ class WPBakeryShortCode_Googlemap extends WPBakeryShortCode {
             'height' => '300',
             'type' => 'roadmap',
             'scrollwheel' => '',
-            'extra_class' => ''
+            'el_class' => ''
         ), $atts ) );
 
         if(!$location){return false;}
@@ -21,13 +21,19 @@ class WPBakeryShortCode_Googlemap extends WPBakeryShortCode {
     	wp_enqueue_script('gmap3');
         
         $img_id = preg_replace('/[^\d]/', '', $image);
-        $img_array = $img_thumb = '';
+        $img_thumb = '';
         if( $img_id ){
             $img_array = wp_get_attachment_image_src($img_id,'full');
             $img_thumb = $img_array[0];
         }
-        
-        return '<div class="googlemap '.$extra_class.'" data-iconmap="'.$img_thumb.'" data-type="'.$type.'" data-scrollwheel="'.$scrollwheel.'" data-location="'.$location.'" data-zoom="'.$zoom.'" style="height:'.$height.'px"></div>';
+
+        $elementClass = array(
+            'extra' => $this->getExtraClass( $el_class ),
+            'size' => 'googlemap',
+        );
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+        return '<div class=" '.$elementClass.'" data-iconmap="'.esc_attr($img_thumb).'" data-type="'.esc_attr($type).'" data-scrollwheel="'.esc_attr($scrollwheel).'" data-location="'.esc_attr($location).'" data-zoom="'.esc_attr($zoom).'" style="height:'.$height.'px"></div>';
     }    
 }
 
@@ -109,7 +115,7 @@ vc_map( array(
         array(
             "type" => "textfield",
             "heading" => __( "Extra class", "js_composer" ),
-            "param_name" => "extra_class",
+            "param_name" => "el_class",
             "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer" ),
         ),
     ),
