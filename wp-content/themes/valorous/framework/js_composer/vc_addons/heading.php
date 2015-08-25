@@ -55,10 +55,8 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'align' => 'kt-heading-align-'.$align,
-
+            'align' => 'kt-heading-align-'.$align
         );
-
 
         $output = $text = $google_fonts = $font_container = $el_class = $css = $google_fonts_data = $font_container_data = '';
         $styles = array();

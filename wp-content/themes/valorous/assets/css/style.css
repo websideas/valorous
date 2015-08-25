@@ -195,7 +195,7 @@ blockquote,
     line-height: 28px;
     padding: 5px 20px;
     position: relative;
-    margin: 0 0 15px;
+    margin: 0 0 20px;
     font-style: italic;
 }
 
@@ -5001,7 +5001,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 /* KT Heading = */
 .kt-heading-wrapper {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
@@ -5017,8 +5017,8 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     text-align: left;
 }
 
-.kt-heading-wrapper .kt-heading-content,
-.kt-heading-wrapper .kt-heading-title {
+.kt-heading-wrapper .kt-heading-title,
+.kt-heading-wrapper .kt-heading-content {
     margin: 10px 0;
 }
 
@@ -6958,27 +6958,15 @@ article.post-item {
 
 .content-404 h1 {
     font-size: 100px;
-    font-weight: normal;
     line-height: normal;
     margin: 0;
 }
 
 .content-404 h3 {
     font-size: 14px;
-    font-weight: bold;
     line-height: normal;
     margin: 0 0 50px;
     padding: 0;
-    position: relative;
-}
-
-.content-404 h3:after {
-    font-size: 25px;
-    font-weight: bold;
-    line-height: normal;
-    margin: 0 0 50px;
-    padding: 0 0 30px;
-    position: relative;
 }
 
 .content-404 p {

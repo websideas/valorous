@@ -10,6 +10,7 @@ class WPBakeryShortCode_Googlemap extends WPBakeryShortCode {
             'zoom' => '17',
             'height' => '300',
             'type' => 'roadmap',
+            'stype' => '',
             'scrollwheel' => '',
             'el_class' => ''
         ), $atts ) );
@@ -33,7 +34,7 @@ class WPBakeryShortCode_Googlemap extends WPBakeryShortCode {
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div class=" '.$elementClass.'" data-iconmap="'.esc_attr($img_thumb).'" data-type="'.esc_attr($type).'" data-scrollwheel="'.esc_attr($scrollwheel).'" data-location="'.esc_attr($location).'" data-zoom="'.esc_attr($zoom).'" style="height:'.$height.'px"></div>';
+        return '<div class=" '.$elementClass.'" data-style="'.esc_attr($stype).'" data-iconmap="'.esc_attr($img_thumb).'" data-type="'.esc_attr($type).'" data-scrollwheel="'.esc_attr($scrollwheel).'" data-location="'.esc_attr($location).'" data-zoom="'.esc_attr($zoom).'" style="height:'.$height.'px"></div>';
     }    
 }
 
@@ -71,6 +72,26 @@ vc_map( array(
             "admin_label" => true,            
         	"description" => __('',THEME_LANG),
         ),
+
+        array(
+            "type" => "dropdown",
+            "heading" => __("Map stype",THEME_LANG),
+            "param_name" => "stype",
+            'std' => '',
+            "value" => array(
+                __('None', THEME_LANG) => '',
+                __('Simple & Light', THEME_LANG) => '1',
+                __('Light Grey & Blue', THEME_LANG) => '2',
+                __('Dark', THEME_LANG) => '3',
+                __('Pinkish Gray', THEME_LANG) => '4',
+                __('Elevation', THEME_LANG) => '5',
+                __('Mostly Grayscale', THEME_LANG) => '6',
+                __('Red Hat Antwerp', THEME_LANG) => '7',
+            ),
+            "admin_label" => true,
+            "description" => __('',THEME_LANG),
+        ),
+
         array(
             "type" => "checkbox",
         	"heading" => __("",THEME_LANG),
