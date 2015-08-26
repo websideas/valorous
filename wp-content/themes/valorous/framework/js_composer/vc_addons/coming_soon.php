@@ -17,7 +17,7 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
             'use_theme_fonts_value' => '',
             'font_container_value' => '',
             'google_fonts_value' => '',
-            
+
             'css_animation' => '',
             'el_class' => '',
             'css' => '',
@@ -73,7 +73,7 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
 
         
         if($custom_css){
-            $custom_css = '<div class="kt_custom_css" data-css="'.$custom_css.'"></div>';
+            $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
         }
         
         if($css_animation !=''){
@@ -86,11 +86,19 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'wrapper-comingsoon ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'animate' => $cl_animate
+            'animate' => $cl_animate,
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+        $html = '<div class="wrap"><div class="value-time">266</div><div class="title">Days</div></div>
+                 <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div>
+                 <div class="wrap"><div class="value-time">09</div><div class="title">Hours</div></div>
+                 <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div>
+                 <div class="wrap"><div class="value-time">53</div><div class="title">Minutes</div></div>
+                 <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div>
+                 <div class="wrap"><div class="value-time">59</div><div class="title">Seconds</div></div>';
         
-        $output = '<div class="'.esc_attr( $elementClass ).'" '.$data_animate.'><div id="kt_comming_'.$rand.'" class="coming-soon '.$animate_item.'" data-date="'.$date_coming.'"></div>'.$custom_css.'</div>';
+        $output = '<div class="'.esc_attr( $elementClass ).'" '.$data_animate.'><div id="kt_comming_'.$rand.'" class="coming-soon '.$animate_item.'" data-date="'.$date_coming.'">'.$html.'</div>'.$custom_css.'</div>';
         
         return $output;
     }
@@ -220,7 +228,7 @@ vc_map( array(
             ),
             'description' => __( '', 'js_composer' ),
         ),
-        
+
         array(
             'type' => 'kt_animate',
             'heading' => __( 'CSS Animation', 'js_composer' ),

@@ -15,7 +15,7 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
            'tooltip' =>'top',
            'el_class' => '',
            'background_style' => 'empty',
-           'space_between_item' => 0,
+           'space_between_item' => 3,
 
             'css' => '',
     	), $atts));
@@ -46,9 +46,7 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         if($tooltip) {
             $tooltiphtml .= ' data-toggle="tooltip" data-placement="'.esc_attr($tooltip).'" ';
         }
-        
-        $space_between_item = round($space_between_item/2);
-        
+
         $margin = ($space_between_item > 0) ? 'style="margin:0 '.$space_between_item.'px;"' : '';
         
         if($social){
@@ -196,7 +194,7 @@ vc_map( array(
             "type" => "kt_number",
             "heading" => __("Space Between item", THEME_LANG),
             "param_name" => "space_between_item",
-            "value" => 0,
+            "value" => 3,
             "min" => 0,
             "max" => 50,
             "suffix" => "px",

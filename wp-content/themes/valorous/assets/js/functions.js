@@ -92,6 +92,7 @@
         $( '#main-navigation' ).onePageNav({
             currentClass: 'current-menu-item'
         });
+
         $('.button-toggle').click(function(e){
             e.preventDefault();
             $(this).closest('#nav').toggleClass('is-opened');
@@ -324,24 +325,13 @@
      VC Coming Soon
      --------------------------------------------- */
     function init_VCComingSoon() {
+        var coming_html = '<div class="wrap"><div class="value-time">%D</div><div class="title">' + ajax_frontend.days + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%H</div><div class="title">' + ajax_frontend.hours + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%M</div><div class="title">' + ajax_frontend.minutes + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%S</div><div class="title">' + ajax_frontend.seconds + '</div></div>';
         $('.coming-soon').each(function () {
             var date = $(this).data('date');
             $(this).countdown(date, function (event) {
-                $(this).html(
-                    event.strftime('<div class="wrap">' +
-                    '<div class="value-time">%D</div>' +
-                    '<h3 class="title">Days</h3></div>' +
-                    '<div class="wrap">' +
-                    '<div class="value-time">%H</div>' +
-                    '<h3 class="title">Hours</h3></div>' +
-                    '<div class="wrap">' +
-                    '<div class="value-time">%M</div>' +
-                    '<h3 class="title">Minutes</h3></div>' +
-                    '<div class="wrap">' +
-                    '<div class="value-time">%S</div>' +
-                    '<h3 class="title">Seconds</h3></div>')
-                );
+                $(this).html( event.strftime(coming_html) );
             });
+
         });
     }
 

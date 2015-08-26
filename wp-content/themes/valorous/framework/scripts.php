@@ -134,6 +134,7 @@ function kt_setting_script() {
             body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
 
+            #backtotop:hover,
             #cancel-comment-reply-link:hover {
                 background: <?php echo $accent; ?>;
             }

@@ -169,8 +169,10 @@ function kt_add_scripts() {
         'current_date' => date_i18n('Y-m-d H:i:s'),
         'query_vars' => json_encode( $wp_query->query ),
         'sticky_height' => $sticky_height,
-        'slide_next' => __('Next Story', THEME_LANG),
-        'slide_prev' => __('Previous Story', THEME_LANG),
+        'days' => __('Days', THEME_LANG),
+        'hours' => __('Hours', THEME_LANG),
+        'minutes' => __('Minutes', THEME_LANG),
+        'seconds' => __('Seconds', THEME_LANG),
     ));
 
     
