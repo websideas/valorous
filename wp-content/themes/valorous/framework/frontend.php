@@ -102,7 +102,7 @@ function kt_add_scripts() {
     wp_enqueue_style( 'eislideshow', THEME_CSS . 'jquery.eislideshow.css', array());
     wp_enqueue_style( 'easyzoom', THEME_CSS . 'easyzoom.css', array());
     wp_enqueue_style( 'justifiedGallery', THEME_CSS . 'justifiedGallery.min.css', array());
-    wp_enqueue_style( 'fotorama', THEME_CSS . 'fotorama/fotorama.css', array());
+    wp_enqueue_style( 'fotorama', THEME_LIBS . 'fotorama/fotorama.css', array());
     wp_enqueue_style( 'mb.YTPlayer', THEME_LIBS . 'mb.YTPlayer/css/jquery.mb.YTPlayer.min.css', array());
 
     
@@ -147,7 +147,7 @@ function kt_add_scripts() {
     wp_enqueue_script( 'parallax', THEME_JS . 'jquery.parallax-1.1.3.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'eislideshow', THEME_JS . 'jquery.eislideshow.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'justifiedGallery', THEME_JS . 'jquery.justifiedGallery.min.js', array( 'jquery' ), null, true );
-    wp_enqueue_script( 'fotorama', THEME_JS . 'fotorama.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'fotorama', THEME_LIBS . 'fotorama/fotorama.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'sticky-sidebar', THEME_JS . 'theia-sticky-sidebar.js', array( 'jquery' ), null, true );
 
     wp_enqueue_script('jquery-ui-tabs');
