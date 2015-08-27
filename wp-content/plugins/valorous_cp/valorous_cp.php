@@ -164,4 +164,17 @@ function register_kt_testimonial_init(){
         'supports' 	=> array('title', 'editor', 'thumbnail'),
     );
     register_post_type( 'kt_testimonial', $args );
+    
+    register_taxonomy('testimonial-category',array('kt_testimonial'), array(
+        "label" 						=> __("Testimonial Categories", THEME_LANG), 
+        "singular_label" 				=> __("Testimonial Category", THEME_LANG), 
+        'public'                        => false,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => false,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        'rewrite'                       => false,
+        'query_var'                     => true,
+        'show_admin_column'             => true
+    ));
 }

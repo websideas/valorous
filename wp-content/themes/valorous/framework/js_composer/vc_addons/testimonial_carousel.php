@@ -17,11 +17,15 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'font_container' => '',
             'google_fonts' => '',
             'letter_spacing' => '0',
+            
+            'font_type_company' => '',
+            'font_container_company' => '',
+            'google_fonts_company' => '',
+            'letter_spacing_company' => '0',
 
             'source' => 'all',
             'categories' => '',
             'posts' => '',
-            'authors' => '',
             'orderby' => 'date',
             'meta_key' => '',
             'order' => 'DESC',
@@ -78,7 +82,13 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             if($categories){
                 $categories_arr = array_filter(explode( ',', $categories));
                 if(count($categories_arr)){
-                    $args['category__in'] = $categories_arr;
+                    $args['tax_query'] = array(
+                                		array(
+                                			'taxonomy' => 'testimonial-category',
+                                			'field' => 'id',
+                                			'terms' => $categories_arr
+                                		)
+                                	);
                 }
             }
         }elseif($source == 'posts'){
@@ -86,13 +96,6 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
                 $posts_arr = array_filter(explode( ',', $posts));
                 if(count($posts_arr)){
                     $args['post__in'] = $posts_arr;
-                }
-            }
-        }elseif($source == 'authors'){
-            if($authors){
-                $authors_arr = array_filter(explode( ',', $authors));
-                if(count($authors_arr)){
-                    $args['author__in'] = $authors_arr;
                 }
             }
         }
@@ -145,8 +148,35 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
         if ( ! empty( $styles ) ) {
             $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
         }
+        
+        $style_company = '';
+        $atts['font_container'] = $font_container_company;
+        $atts['google_fonts'] = $google_fonts_company;
+        $atts['font_type'] = $font_type_company;
 
-
+        extract($this->getAttributes($atts));
+        unset($font_container_data['values']['text_align']);
+        
+        if($font_type_company != 'google'){
+            $google_fonts_data = array();
+        }
+        
+        extract($this->getStyles($el_class, $css, $google_fonts_data, $font_container_data, $atts));
+        
+        $settings = get_option( 'wpb_js_google_fonts_subsets' );
+        $subsets = '';
+        if ( is_array( $settings ) && ! empty( $settings ) ) {
+            $subsets = '&subset=' . implode( ',', $settings );
+        }
+        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
+            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
+        }
+        if($letter_spacing_company){
+            $styles[] = 'letter-spacing: '.$letter_spacing_company.'px;';
+        }
+        if ( ! empty( $styles ) ) {
+            $style_company .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+        }
 
 
         $query = new WP_Query( $args );
@@ -160,8 +190,13 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             while ( $query->have_posts() ) : $query->the_post();
                 $testimonial_html .= '<div class="testimonial-item testimonial-layout-'.esc_attr($layout).'">';
                     $testimonial_content = '<div class="testimonial-content">'.do_shortcode(get_the_content()).'</div>';
-                    $testimonial_author = '<div class="testimonial-author" '.$style_title.'>'.get_the_title().'</div>';
-                    $testimonial_author .= '<div class="testimonial-info">Testimonial item info</div>';
+                    $link = rwmb_meta('_kt_testimonial_link');
+                    if( $link ){
+                        $testimonial_author = '<h4 class="testimonial-author"><a target="_blank" href="'.$link.'" '.$style_title.'>'.get_the_title().'</a></h4>';
+                    }else{
+                        $testimonial_author = '<h4 class="testimonial-author" '.$style_title.'>'.get_the_title().'</h4>';                        
+                    }
+                    $testimonial_author .= '<div class="testimonial-info" '.$style_company.'>'.rwmb_meta('_kt_testimonial_company').'</div>';
                     $testimonial_img = (has_post_thumbnail()) ? '<div class="testimonial-img">'.get_the_post_thumbnail( get_the_ID(), 'small', array('class'=>"img-responsive")).'</div>' : '';
 
                     if($layout == '2'){
@@ -176,7 +211,6 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             endwhile; wp_reset_postdata();
 
             $output .= str_replace('%carousel_html%', $testimonial_html, $carousel_ouput);
-
 
         endif;
         $output .= '</div><!-- .testimonial-carousel-wrapper -->';
@@ -256,7 +290,6 @@ vc_map( array(
                 __('All', THEME_LANG) => '',
                 __('Specific Categories', THEME_LANG) => 'categories',
                 __('Specific Posts', THEME_LANG) => 'posts',
-                __('Specific Authors', THEME_LANG) => 'authors'
             ),
             "admin_label" => true,
             'std' => 'all',
@@ -265,7 +298,7 @@ vc_map( array(
         ),
         array(
             "type" => "kt_taxonomy",
-            'taxonomy' => 'category',
+            'taxonomy' => 'testimonial-category',
             'heading' => __( 'Categories', THEME_LANG ),
             'param_name' => 'categories',
             'placeholder' => __( 'Select your categories', THEME_LANG ),
@@ -275,23 +308,12 @@ vc_map( array(
         ),
         array(
             "type" => "kt_posts",
-            'args' => array('post_type' => 'post', 'posts_per_page' => -1),
+            'args' => array('post_type' => 'kt_testimonial', 'posts_per_page' => -1),
             'heading' => __( 'Specific Posts', 'js_composer' ),
             'param_name' => 'posts',
             'size' => '5',
             'placeholder' => __( 'Select your posts', 'js_composer' ),
             "dependency" => array("element" => "source","value" => array('posts')),
-            'multiple' => true,
-            'group' => __( 'Data settings', 'js_composer' ),
-        ),
-        array(
-            "type" => "kt_authors",
-            'post_type' => 'post',
-            'heading' => __( 'Specific Authors', 'js_composer' ),
-            'param_name' => 'authors',
-            'size' => '5',
-            'placeholder' => __( 'Select your authors', 'js_composer' ),
-            "dependency" => array("element" => "source","value" => array('authors')),
             'multiple' => true,
             'group' => __( 'Data settings', 'js_composer' ),
         ),
@@ -553,6 +575,12 @@ vc_map( array(
 
         //Typography settings
         array(
+            "type" => "kt_heading",
+            "heading" => __("Author typography", THEME_LANG),
+            "param_name" => "author_typography",
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        array(
             'type' => 'font_container',
             'param_name' => 'font_container',
             'value' => '',
@@ -605,6 +633,67 @@ vc_map( array(
             ),
             'group' => __( 'Typography', THEME_LANG ),
             'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_heading",
+            "heading" => __("Company typography", THEME_LANG),
+            "param_name" => "company_typography",
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        array(
+            'type' => 'font_container',
+            'param_name' => 'font_container_company',
+            'value' => '',
+            'settings' => array(
+                'fields' => array(
+                    //'tag' => 'h2', // default value h2
+                    'font_size',
+                    'line_height',
+                    'color',
+                    'tag_description' => __( 'Select element tag.', 'js_composer' ),
+                    'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
+                    'font_size_description' => __( 'Enter font size.', 'js_composer' ),
+                    'line_height_description' => __( 'Enter line height.', 'js_composer' ),
+                    'color_description' => __( 'Select heading color.', 'js_composer' ),
+                ),
+            ),
+            'group' => __( 'Typography', THEME_LANG )
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Letter spacing", THEME_LANG),
+            "param_name" => "letter_spacing_company",
+            "value" => 0,
+            "min" => 0,
+            "max" => 10,
+            "suffix" => "px",
+            "description" => "",
+            'group' => __( 'Typography', THEME_LANG ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Font type', 'js_composer' ),
+            'param_name' => 'font_type_company',
+            'value' => array(
+                __( 'Normal', 'js_composer' ) => '',
+                __( 'Google font', 'js_composer' ) => 'google',
+            ),
+            'group' => __( 'Typography', 'js_composer' ),
+            'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts_company',
+            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'settings' => array(
+                'fields' => array(
+                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
+                )
+            ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'dependency' => array( 'element' => 'font_type_company', 'value' => array( 'google' ) ),
             'description' => __( '', 'js_composer' ),
         ),
 

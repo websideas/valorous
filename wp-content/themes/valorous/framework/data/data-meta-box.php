@@ -192,6 +192,30 @@ function kt_register_meta_boxes( $meta_boxes )
 
         ),
     );
+    
+    /**
+     * For Testimonial
+     *
+     */
+
+    $meta_boxes[] = array(
+        'title'  => __('Testimonial Settings',THEME_LANG),
+        'pages'  => array( 'kt_testimonial' ),
+        'fields' => array(
+            array(
+                'name' => __( 'Company', THEME_LANG ),
+                'id' => $prefix . 'testimonial_company',
+                'desc' => __( "Please type the text for company here.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+            array(
+                'name' => __( 'Link', THEME_LANG ),
+                'id' => $prefix . 'testimonial_link',
+                'desc' => __( "Please type the text for link here.", THEME_LANG ),
+                'type'  => 'text',
+            ),
+        ),
+    );
 
     /**
      * For Layout option for post
