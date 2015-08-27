@@ -16,7 +16,7 @@ if ( !defined('ABSPATH')) exit;
     </div>
     <div class="nav-container apply-sticky">
         <div class="container">
-            <nav role="navigation" id="nav" class="nav-main">
+            <nav id="nav" class="nav-main">
                 <?php get_template_part( 'templates/headers/header',  'tool'); ?>
                 <?php get_template_part( 'templates/headers/header',  'menu'); ?>
                 <?php get_template_part( 'templates/headers/header',  'mobile'); ?>

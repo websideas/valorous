@@ -49,7 +49,7 @@ if ( function_exists('register_sidebar')) {
                 'name' => __( 'Sidebar '.$i, THEME_LANG),
                 'id' => 'sidebar-column-'.$i,
                 'description' => __( 'The sidebar column '.$i.' widget area', THEME_LANG),
-                'before_widget' => '<section id="%1$s" class="widget-container clearfix %2$s">',
+                'before_widget' => '<section class="widget-container clearfix %2$s">',
                 'after_widget' => '</section>',
                 'before_title' => '<h3 class="widget-title">',
                 'after_title' => '</h3>',
@@ -124,10 +124,14 @@ if ( function_exists('register_sidebar')) {
 
 add_filter('wp_list_categories', 'kt_cat_count_span');
 function kt_cat_count_span($links) {
-    $links = str_replace('</a> (', ' <span>(', $links);
-    $links = str_replace('</a> <', ' <', $links);
-    $links = str_replace(')', ')</span></a>', $links);
-    $links = str_replace('</a></span>', '</a>', $links);
+
+    if (strpos($links, '</a>') !== false) {
+        $links = str_replace('</a> (', ' <span>(', $links);
+        $links = str_replace('</a> <', ' <', $links);
+        $links = str_replace(')', ')</span></a>', $links);
+        $links = str_replace('</a></span>', '</a>', $links);
+    }
+
     
     return $links;
 }
@@ -138,8 +142,10 @@ function kt_cat_count_span($links) {
 
 add_filter('get_archives_link', 'kt_archive_count_span');
 function kt_archive_count_span($links) {
-    $links = str_replace('</a>&nbsp;(', ' <span>(', $links);
-    $links = str_replace(')', ')</span></a>', $links);
+    if ( strpos($links, '</a>') !== false ) {
+        $links = str_replace('</a>&nbsp;(', ' <span>(', $links);
+        $links = str_replace(')', ')</span></a>', $links);
+    }
     return $links;
 }
 

@@ -32,7 +32,7 @@ function kt_woocommerce_sale_price_html( $price, $product ) {
  */
 function kt_woocommerce_image_dimensions() {
 	global $pagenow;
- 
+
 	if ( ! isset( $_GET['activated'] ) || $pagenow != 'themes.php' ) {
 		return;
 	}
@@ -40,7 +40,7 @@ function kt_woocommerce_image_dimensions() {
   	$catalog = array('width' => '500','height' => '600', 'crop' => 1 );
     $thumbnail = array('width' => '200', 'height' => '240', 'crop' => 1 );
 	$single = array( 'width' => '1000','height' => '1200', 'crop' => 1);
-	
+
 	// Image sizes
 	update_option( 'shop_catalog_image_size', $catalog ); 		// Product category thumbs
 	update_option( 'shop_single_image_size', $single ); 		// Single product image
@@ -51,7 +51,7 @@ add_action( 'after_switch_theme', 'kt_woocommerce_image_dimensions', 1 );
 
 /**
  * Change placeholder for woocommerce
- * 
+ *
  */
 add_filter('woocommerce_placeholder_img_src', 'kt_woocommerce_placeholder_img_src');
 
@@ -62,7 +62,7 @@ function kt_woocommerce_placeholder_img_src( $src ) {
 
 /**
  * Enable support for woocommerce after setip theme
- * 
+ *
  */
 add_action( 'after_setup_theme', 'woocommerce_theme_setup' );
 if ( ! function_exists( 'woocommerce_theme_setup' ) ):
@@ -94,7 +94,7 @@ add_action( 'wp_enqueue_scripts', 'kt_wp_enqueue_scripts' );
 
 /**
  * Woocommerce cart in header
- * 
+ *
  * @since 1.0
  */
 function kt_woocommerce_get_cart( $wrapper = true ){
@@ -117,8 +117,8 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                 $output .= '<div class="bag-products mCustomScrollbar">';
                 $output .= '<div class="bag-products-content">';
                 foreach (WC()->cart->cart_contents as $cart_item_key => $cart_item) {
-                    $bag_product = $cart_item['data']; 
-                    
+                    $bag_product = $cart_item['data'];
+
                     if ($bag_product->exists() && $cart_item['quantity']>0) {
                         $output .= '<div class="bag-product clearfix">';
     					$output .= '<figure><a class="bag-product-img" href="'.get_permalink($cart_item['product_id']).'">'.$bag_product->get_image().'</a></figure>';
@@ -129,7 +129,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
 
         					$output .= '<div class="bag-product-price">'.wc_price($bag_product->get_price()).'</div>';
                             $output .= '<div class="bag-product-qty">'.__('Qty: ', THEME_LANG).$cart_item['quantity'].'</div>';
-                            
+
     					$output .= '</div>';
     					$output .= apply_filters( 'woocommerce_cart_item_remove_link', sprintf('<a href="#" data-itemkey="'.$cart_item_key.'" data-id="'.$cart_item['product_id'].'" class="remove" title="%s"></a>', __('Remove this item', 'woocommerce') ), $cart_item_key );
 
@@ -151,7 +151,7 @@ function kt_woocommerce_get_cart( $wrapper = true ){
                 $output .= '</div><!-- .bag-buttons -->';
                 $output .= '</div><!-- .bag-buttons -->';
             }
-        
+
         $output .= '</div><!-- .shopping-bag-content -->';
         $output .= '</div><!-- .shopping-bag-wrapper -->';
         $output .= '</div><!-- .shopping-bag -->';
@@ -189,8 +189,8 @@ function kt_woocommerce_get_cart_mobile( $wrapper = true ){
 
 /**
  * Woocommerce replate cart in header
- * 
- */ 
+ *
+ */
 function woocommerce_header_add_to_cart_fragment( $fragments ) {
     $fragments['.mini-cart'] = kt_woocommerce_get_cart();
     $fragments['.mobile-cart'] = kt_woocommerce_get_cart_mobile();
@@ -205,7 +205,7 @@ add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
 
 /**
  * Woocommerce replace before main content and after main content
- * 
+ *
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
@@ -223,14 +223,14 @@ function kt_wrapper_end() {
 
 /**
  * Add checkout button to cart page
- * 
+ *
  */
 //add_action('woocommerce_cart_actions', 'woocommerce_button_proceed_to_checkout');
 
 
 /**
  * Change columns of shop
- * 
+ *
  */
 
 add_filter( 'loop_shop_columns', 'kt_woo_shop_columns' );
@@ -251,7 +251,7 @@ function kt_woo_shop_columns( $columns ) {
 
 /**
  * Change layout of single product
- * 
+ *
  */
 add_filter( 'single_product_layout', 'kt_single_product_layout' );
 function kt_single_product_layout( $columns ) {
@@ -261,7 +261,7 @@ function kt_single_product_layout( $columns ) {
 
 /**
  * Change layout of carousel single product
- * 
+ *
  */
 add_filter( 'woocommerce_single_product_carousel', 'woocommerce_single_product_carousel_callback' );
 function woocommerce_single_product_carousel_callback( $columns ) {
@@ -316,7 +316,7 @@ function woocommerce_single_product_summary_area_callback(){
 
 /**
  * Change hook of archive-product.php
- * 
+ *
  */
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
@@ -346,7 +346,7 @@ function kt_woocommerce_add_archive_tool(){
 
 /**
  * Change hook of single-product.php
- * 
+ *
  */
 
 // Remove description heading
@@ -460,9 +460,9 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 
 function woocommerce_show_product_loop_new_flash(){
     global $post;
-    
+
     $time_new = kt_option('time_product_new', 30);
-    
+
     $now = strtotime( date("Y-m-d H:i:s") );
 	$post_date = strtotime( $post->post_date );
 	$num_day = (int)(($now - $post_date)/(3600*24));
