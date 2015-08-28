@@ -27,6 +27,7 @@ class Widget_KT_Twitter extends WP_Widget {
         $this->access_secret = kt_option('twitter_access_secret');
         $this->username = kt_option('twitter');
         
+        
     }
 
     public function widget($args, $instance) {
@@ -47,7 +48,9 @@ class Widget_KT_Twitter extends WP_Widget {
             if ( ! $number )
                 $number = 5;
             
-            $connection = new TwitterOAuth($this->consumer_key, $this->consumer_secret, $this->oauth_token, $this->oauth_token_secret);
+            
+            
+            $connection = new TwitterOAuth($this->consumer_key, $this->consumer_secret, $this->access_key, $this->access_secret);
             $query = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='.$this->username.'&count='.$number;
             $content = $connection->get($query);
             
@@ -95,6 +98,7 @@ class Widget_KT_Twitter extends WP_Widget {
                 __('Please config twitter settings in theme option', THEME_LANG) 
             );
         }
+        
         echo $args['after_widget'];
     }
 

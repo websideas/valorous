@@ -43,6 +43,7 @@
         init_shortcodes();
         init_carousel();
         init_eislideshow();
+        init_FotoramaGallery();
         init_backtotop();
         init_parallax();
         init_MainMenu();
@@ -99,6 +100,9 @@
         });
         
         $('.widget-container .kt_widget_tabs').tabs();
+
+
+
     });
     
     $(window).resize(function(){
@@ -119,9 +123,10 @@
         /**==============================
          ***  Disable mobile menu in desktop
          ===============================**/
-        $('body').removeClass('menu-animate');
-        $('.mobile-nav-bar').removeClass('active');
-
+        if ($(window).width() >= 992) {
+            $('body').removeClass('menu-animate');
+            $('.mobile-nav-bar').removeClass('active');
+        }
 
         /**==============================
          ***  Fixed footer
@@ -141,20 +146,26 @@
         ***  Client
         ===============================**/
         kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
-        
-        /**==============================
-        ***  KT Image Gallery
-        ===============================**/
+
+    });
+
+    /**==============================
+     ***  KT Image Gallery
+     ===============================**/
+    function init_FotoramaGallery(){
+
         $('.kt_image_gallery').fotorama({
             width: '100%',
             maxwidth: '100%',
             nav: 'thumbs',
             thumbmargin: $(this).data('thumbmargin')
         });
-        
-    });
+    }
 
 
+    /**==============================
+     ***  Remove all space empty
+     ===============================**/
     function init_remove_space() {
 
         $("p:empty").remove();
@@ -691,6 +702,10 @@
                             $('.single-product-quickview-images').waitForImages(function() {
                                 $(this).owlCarousel({
                                     items: 1,
+                                    itemsDesktop : [1199,1], //1 items between 1000px and 901px
+                                    itemsDesktopSmall : [991,1], // betweem 992px and 769px
+                                    itemsTablet: [768,1], //1 items between 768 and 480
+                                    itemsMobile : [479, 1],
                                     theme: 'carousel-navigation-center',
                                     autoHeight: true,
                                     navigation: true,

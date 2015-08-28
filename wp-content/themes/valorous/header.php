@@ -27,20 +27,19 @@
     /**
      * @hooked
      */
-    do_action( 'theme_body_top' ); ?>
+    do_action( 'theme_body_top' );
 
-    <?php get_template_part( 'searchform',  'full'); ?>
-    <?php
-        $position = kt_get_header();
-        $header_layout = kt_get_header_layout();
-        $header_scheme = 'light';
-        if($position == 'transparent'){
-            $header_positon = 'absolute';
-            $header_scheme = kt_get_header_scheme();
-        }else{
-            $header_positon = 'normal';
-        }
+    get_template_part( 'searchform',  'full');
 
+    $position = kt_get_header();
+    $header_layout = kt_get_header_layout();
+    $header_scheme = 'light';
+    if($position == 'transparent'){
+        $header_positon = 'absolute';
+        $header_scheme = kt_get_header_scheme();
+    }else{
+        $header_positon = 'normal';
+    }
 
     ?>
 
@@ -49,8 +48,6 @@
             <?php get_template_part( 'templates/headers/header',  'mobilenav'); ?>
             <div class="animate-content-overlay"></div>
             <div id="wrapper-content">
-
-
                 <?php 
                     if($position == 'below'){
                         /**
@@ -64,11 +61,7 @@
             	 * @hooked 
             	 */
             	do_action( 'theme_before_header' ); ?>
-                <div
-                    class="<?php echo esc_attr(apply_filters('theme_header_class', 'header-container header-'.$header_layout.' header-'.$header_scheme.' header-'.$header_positon.' header-'.$position, $header_layout)); ?>"
-                    data-scheme="<?php echo esc_attr($header_scheme) ?>"
-                    data-position="<?php echo esc_attr($header_positon) ?>">
-
+                <div class="<?php echo esc_attr(apply_filters('theme_header_class', 'header-container header-'.$header_layout.' header-'.$header_scheme.' header-'.$header_positon.' header-'.$position, $header_layout)); ?>" data-scheme="<?php echo esc_attr($header_scheme) ?>" data-position="<?php echo esc_attr($header_positon) ?>">
                     <div class="header-background"></div>
                     <?php //echo $header_layout; ?>
                     <header id="header" class="<?php echo apply_filters('theme_header_content_class', 'header-content', $header_layout) ?>">
@@ -84,14 +77,12 @@
                     	 */
                     	do_action( 'kt_slideshows_position' );
                     }
+                    /**
+                     * @hooked theme_before_content_add_title 10
+                     *
+                     */
+                    do_action( 'theme_before_content' , $position);
                 ?>
-
-                <?php
-            	/**
-            	 * @hooked theme_before_content_add_title 10
-                 *
-            	 */
-            	do_action( 'theme_before_content' , $position); ?>
                 <div id="content" class="<?php echo apply_filters('kt_content_class', 'site-content') ?>">
 
                     <?php

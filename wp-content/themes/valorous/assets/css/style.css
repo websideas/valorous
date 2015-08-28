@@ -2532,8 +2532,6 @@ body.layout-boxed #footer {
     left: 0;
     right: 0;
     width: 100%;
-    background: #f5f5f5;
-    padding-top: 20px;
     z-index: 0;
 }
 
