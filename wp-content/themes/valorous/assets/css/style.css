@@ -2446,7 +2446,6 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 #footer {
     background: #f5f5f5;
     color: #252525;
-    border-top: 1px solid #d0a852;
 }
 
 #footer-top {
@@ -4115,8 +4114,9 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 .vc_icon_element.vc_icon_element-outer.vc_icon_element-no-style .vc_icon_element-inner{
     height: auto !important;
+    line-height: 1 !important;
+    min-width: 20px !important;
     width: auto !important;
-    line-height: normal !important;
 }
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-xl .vc_icon_element-icon {

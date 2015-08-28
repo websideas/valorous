@@ -56,6 +56,10 @@ Coming soon
 		Enter your email and we will contact you when ready
 
 
+About widget
+	http://teslathemes.com/demo/html/epilog/
+	https://0.s3.envato.com/files/131507329/Preview/B2_07_Style_2_Single_3.png
+
 About me page
 	http://jay.mondotheme.com/about-me/
 	http://demo.korra.io/brook/about-me/
@@ -66,6 +70,10 @@ About me page
 	http://monaco.zooka.io/demo1/about-me/about-me/
 	http://demo.select-themes.com/cabin7/about-me/
 	http://capitol.zooka.io/?page_id=633
+	http://demo.themeton.com/vcard/profile/
+	https://0.s3.envato.com/files/132086767/mr_resume_template_preview/04_mr_resume_home_v1_profile_page.jpg
+
+
 
 Landing for homepage
 	1. Slideshow for blog
@@ -79,11 +87,21 @@ Landing for homepage
     	http://solopine.com/rosemary/
     	http://broadsword.warriorsofcode.com/?fp_style=imaged#
 
-	2. List articles with categories
-		http://chirps.bringthepixel.com/
+	2. Categories
+		https://0.s3.envato.com/files/143399528/theme_preview/06_Blog_4col.jpg
 
 	3. Big image with name of blog
-		http://jamesblog.pego-design.com/
+		https://0.s3.envato.com/files/143544184/13-screenshot13.jpg - Hot
+		https://0.s3.envato.com/files/144158113/Theme_Preview/07_Index_7_resume_demo.jpg
+		https://0.s3.envato.com/files/144158113/Theme_Preview/09_About_2.jpg
+		https://0.s3.envato.com/files/131507329/Preview/B1_01_Style_1_Home_Blog.png
+		https://0.s3.envato.com/files/131507329/Preview/B1_04_Style_1_Auhtor.png
+		https://0.s3.envato.com/files/98408716/01_gippo_homepage.jpg
+
+
+
+		http://demo.themeton.com/vcard/
+
 
 
 
@@ -97,11 +115,13 @@ http://trendingtemplates.com/livepreview/?theme=Trips
 https://0.s3.envato.com/files/145803798/Lena_preview-files/22_ContactUs.jpg
 https://0.s3.envato.com/files/145540254/Zidane_Previews/35_Contact_Us.png
 https://0.s3.envato.com/files/144960132/Mustang-Preview/10-Contact-Us.jpg
+https://0.s3.envato.com/files/132086767/mr_resume_template_preview/08_mr_resume_home_v1_contact_page.jpg
+
 
 
 https://0.s3.envato.com/files/144931887/Preview/30_screenshot31.jpg
 https://0.s3.envato.com/files/143544184/21-screenshot21.jpg
-https://0.s3.envato.com/files/144502777/09_Exa_Contact_2.jpg
+https://0.s3.envato.com/files/144502777/09_Exa_Contact_2.jpg'
 
 
 
