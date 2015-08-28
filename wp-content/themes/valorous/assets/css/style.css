@@ -6303,6 +6303,27 @@ article.post-item {
     margin-top: -15px;
 }
 
+.kt-megamenu-widget .blog-posts-wrapper,
+.kt-megamenu-widget .blog-posts-carousel-wrapper{
+    margin-bottom: 0;
+}
+
+.kt-megamenu-widget .blog-posts .entry-title{
+    font-size: 12px;
+}
+
+.kt-megamenu-widget .blog-posts .entry-meta-data {
+    margin-top: -10px;
+}
+
+.kt-megamenu-widget article.post-item{
+    margin-bottom: 0;
+}
+
+.kt-megamenu-widget .entry-thumb{
+    margin-bottom: 16px;
+}
+
 /* Blog Classic */
 .post-layout-classic {
 
