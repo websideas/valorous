@@ -1849,7 +1849,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-transform' => true,
                         'output'      => array( '.sidebar .widget-title', '.wpb_widgetised_column .widget-title' ),
-                        'default'  => array( ),
+                        'default'  => array(
+                            'text-transform' => 'uppercase',
+                        ),
                     ),
                     array(
                         'id'       => 'typography_sidebar_content',
@@ -1887,6 +1889,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'output'      => array( '#nav > ul > li > a' ),
                         'default'  => array(
                             'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
                         ),
                     ),
                     array(
@@ -1914,6 +1917,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         ),
                         'default'  => array(
                             'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
                         ),
                     ),
                     array(
@@ -1938,6 +1942,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         ),
                         'default'  => array(
                             'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
                         ),
                     ),
                     array(
@@ -1959,7 +1964,72 @@ if ( ! class_exists( 'KT_config' ) ) {
 
 
             /**
-             *	Typography Navigation
+             *	Typography mobile Navigation
+             **/
+            $this->sections[] = array(
+                'id'			=> 'typography_mobile_navigation',
+                'title'			=> __( 'Mobile Navigation', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'typography_mobile_navigation_top',
+                        'type'     => 'typography',
+                        'title'    => __( 'Top Menu Level', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'text-transform' => true,
+                        'output'      => array( 'ul.navigation-mobile > li > a' ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
+                        ),
+                    ),
+                    array(
+                        'type' => 'divide',
+                        'id' => 'divide_fake',
+                    ),
+                    array(
+                        'id'       => 'typography_mobile_navigation_second',
+                        'type'     => 'typography',
+                        'title'    => __( 'Sub Menu Level', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'text-transform' => true,
+                        'output'      => array(
+                            'ul.navigation-mobile > li .sub-menu-dropdown > li > a',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a'
+                        ),
+                    ),
+                    array(
+                        'id'       => 'typography_mobile_navigation_heading',
+                        'type'     => 'typography',
+                        'title'    => __( 'Heading title', THEME_LANG ),
+                        'google'   => true,
+                        'text-align'      => false,
+                        'color'           => false,
+                        'line-height'     => false,
+                        'text-transform' => true,
+                        'output'      => array(
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span',
+                            'ul.navigation-mobile > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title'
+                        ),
+                        'default'  => array(
+                            'font-family'     => 'Montserrat',
+                            'text-transform' => 'uppercase',
+                        ),
+                    ),
+                )
+            );
+
+
+            /**
+             *	Typography Woocommerce
              **/
             $this->sections[] = array(
                 'id'			=> 'typography_woocommerce',
