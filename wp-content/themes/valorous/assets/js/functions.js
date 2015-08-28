@@ -73,7 +73,7 @@
             $('body').addClass('admin-bar');
         }
 
-        setInterval(init_masonry, 100);
+        //setInterval(init_masonry, 100);
 
         $('body').bind('wc_fragments_loaded wc_fragments_refreshed', function (){
             $('.mCustomScrollbar').mCustomScrollbar();

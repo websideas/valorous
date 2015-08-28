@@ -583,7 +583,7 @@ select:not([multiple]) {
 }
 
 /* ==============================
-   6. Scroll top
+   6. Scroll top & Mouse scroll
    ============================== */
 #backtotop {
     background-color: rgba(0, 0, 0, 0.5);
@@ -609,6 +609,62 @@ select:not([multiple]) {
 
 #backtotop:hover {
     background: #d0a852;
+}
+
+.mouse{
+    border:2px solid #fff;
+    border-radius:26px;
+    cursor: pointer;
+    position:absolute;
+    bottom: 15px;
+    left:50%;
+    width:20px;
+    height:35px;
+    -webkit-backface-visibility:hidden;
+    -webkit-transform:translate(-50%, -50%);
+    -moz-transform:translate(-50%, -50%);
+    -ms-transform:translate(-50%, -50%);
+    -o-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+}
+
+.mouse::after{
+    background-color:#fff;
+    border-radius:100%;
+    content:"";
+    position:absolute;
+    top:5px;
+    left:50%;
+    margin-left:-2px;
+    width:4px;
+    height:4px;
+    opacity:1;
+    -webkit-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -moz-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -ms-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -o-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+
+    -webkit-animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    -moz-animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+
+@-webkit-keyframes mousescroll{
+    0%, 20%{-webkit-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px)}
+    10%{-webkit-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);opacity:1}
+    100%{-webkit-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);opacity:0.01}
+}
+@-moz-keyframes mousescroll{
+    0%, 20%{-moz-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px)}
+    10%{-moz-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);opacity:1}
+    100%{-moz-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);opacity:0.01}
+}
+@keyframes mousescroll{
+    0%, 20%{-webkit-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);-moz-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);-ms-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);-o-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px)}
+    10%{-webkit-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);-moz-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);-ms-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);-o-transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);transform:translateY(0px) scaleY(1.2) scaleX(1.2) translateZ(0px);opacity:1}
+    100%{-webkit-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-moz-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-ms-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-o-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);opacity:0.01}
 }
 
 /* ==============================
@@ -2002,9 +2058,7 @@ h2.widgettitle a.rsswidget:first-child,
     background-color: #fff;
     border: 0 none;
     border-radius: 0;
-    color: #b8b8b8;
-    font-size: 35px;
-    font-style: italic;
+    font-size: 26px;
     font-weight: normal;
     height: auto;
     padding: 13px 90px 13px 26px;
