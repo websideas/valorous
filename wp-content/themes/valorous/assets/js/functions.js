@@ -43,7 +43,6 @@
         init_shortcodes();
         init_carousel();
         init_eislideshow();
-        init_FotoramaGallery();
         init_backtotop();
         init_parallax();
         init_MainMenu();
@@ -148,19 +147,6 @@
         kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
 
     });
-
-    /**==============================
-     ***  KT Image Gallery
-     ===============================**/
-    function init_FotoramaGallery(){
-
-        $('.kt_image_gallery').fotorama({
-            width: '100%',
-            maxwidth: '100%',
-            nav: 'thumbs',
-            thumbmargin: $(this).data('thumbmargin')
-        });
-    }
 
 
     /**==============================

@@ -18,7 +18,7 @@ class WPBakeryShortCode_KT_Image_Gallery extends WPBakeryShortCode_VC_Custom_hea
         extract($atts);
         
         $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt_image_gallery ', $this->settings['base'], $atts ),
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt_image_gallery fotorama ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
         );
@@ -29,7 +29,7 @@ class WPBakeryShortCode_KT_Image_Gallery extends WPBakeryShortCode_VC_Custom_hea
         $output = '';
         
         if( count($images) > 0 ){
-            $output .= '<div class="'.esc_attr( $elementClass ).'" data-thumbmargin ="'.$margin_thumbnail.'">';
+            $output .= '<div class="'.esc_attr( $elementClass ).'" data-nav="thumbs" data-thumbmargin ="'.$margin_thumbnail.'">';
                 foreach( $images as $attach_id ){
                     $image = wpb_getImageBySize( array( 'attach_id' => $attach_id, 'thumb_size' => $image_size ) );
                     $output .= $image['thumbnail'];
