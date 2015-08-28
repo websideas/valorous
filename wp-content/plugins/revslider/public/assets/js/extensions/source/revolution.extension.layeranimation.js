@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - LAYER ANIMATION
- * @version: 1.0.2 (18.08.2015)
+ * @version: 1.0.9 (27.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -115,7 +115,7 @@ jQuery.extend(true,_R, {
 		-	ANIMATE THE CAPTIONS   -
 	***************************************/
 	animateSingleCaption : function(_nc,opt,offsetx,offsety,i,recalled,triggerforce) {
-
+		
 		var internrecalled = recalled,
 	    	staticdirection = staticLayerStatus(_nc,opt,"in",true),				
 			_pw = _nc.data('_pw') || _nc.closest('.tp-parallax-wrap'),
@@ -145,6 +145,7 @@ jQuery.extend(true,_R, {
 		if (offsety<0) offsety=0;
 
 
+		
 		// LAYER GRID FOR DEBUGGING
 		if (opt.debugMode) {
 			_nc.closest('li').find('.helpgrid').css({top:offsety+"px", left:offsetx+"px"}); 
@@ -155,7 +156,7 @@ jQuery.extend(true,_R, {
 				if (_nc.data())
 					jQuery.each(_nc.data(),function(key,val) {
 						if (typeof val !== "object") {
-							
+								
 								ltxt = ltxt + '<span style="white-space:nowrap"><span style="color:#27ae60">'+key+":</span>"+val+"</span>&nbsp; &nbsp; ";
 							
 						}
@@ -288,8 +289,10 @@ jQuery.extend(true,_R, {
 									
 			// IE8 FIX FOR AUTO LINEHEIGHT
 			if (ncobj.lineHeight=="auto") ncobj.lineHeight = ncobj.fontSize+4;
-							
+						
+
 			if (!_nc.hasClass('fullscreenvideo') && !yvcover) {
+				
 				punchgs.TweenLite.set(_nc,{							 						 
 					 paddingTop: Math.round((ncobj.paddingTop * opt.bh)) + "px",
 					 paddingBottom: Math.round((ncobj.paddingBottom * opt.bh)) + "px",
@@ -485,18 +488,22 @@ jQuery.extend(true,_R, {
 
 			if (_nc.data('mySplitText') !=undefined) _nc.data('mySplitText').revert();
 
-			if (_nc.data('splitin') && _nc.data('splitin').match(/chars|words|lines/g) || _nc.data('splitout') && _nc.data('splitout').match(/chars|words|lines/g)) {
+			if (_nc.data('splitin')!=undefined && _nc.data('splitin').match(/chars|words|lines/g) || _nc.data('splitout')!=undefined && _nc.data('splitout').match(/chars|words|lines/g)) {
 				var splittarget = _nc.find('a').length>0 ? _nc.find('a') : _nc;
 				_nc.data('mySplitText',new punchgs.SplitText(splittarget,{type:"lines,words,chars",charsClass:"tp-splitted",wordsClass:"tp-splitted",linesClass:"tp-splitted"}));					
 				_nc.addClass("splitted");
 			}
 
-			if ( _nc.data('mySplitText') !==undefined) animobject = _nc.data('mySplitText')[_nc.data('splitin')]
+			if ( _nc.data('mySplitText') !==undefined && _nc.data('splitin') && _nc.data('splitin').match(/chars|words|lines/g)) animobject = _nc.data('mySplitText')[_nc.data('splitin')]
 		
 			var $a = new Object();
+			
+
+
+			var reverseanim = _nc.data('transform_in')!=undefined ? _nc.data('transform_in').match(/\(R\)/gi) : false;
 
 			// BUILD ANIMATION LIBRARY AND HOVER ANIMATION
-			if (!_nc.data('$anims') || triggerforce) {				
+			if (!_nc.data('$anims') || triggerforce || reverseanim) {				
 				var $from = newAnimObject(),
 					$result = newAnimObject(),
 					$hover = newHoverAnimObject(),										
@@ -504,10 +511,14 @@ jQuery.extend(true,_R, {
 			
 				// WHICH ANIMATION TYPE SHOULD BE USED				
 				$result = getAnimDatas($result,_nc.data('transform_idle'));
-				$from = getAnimDatas($result,_nc.data('transform_in'));		
+								
+				$from = getAnimDatas($result,_nc.data('transform_in'),opt.sdir==1);		
+				
 				if (hashover) {
+
 					$hover = getAnimDatas($hover,_nc.data('transform_hover'));
 					$hover = convertHoverStyle($hover,_nc.data('style_hover'));
+
 					_nc.data('hover',$hover);
 				}
 			
@@ -526,7 +537,8 @@ jQuery.extend(true,_R, {
 					 		t = nc.data('hover'),
 					 		intl = nc.data('timeline');
 					 		
-					 	if (intl && intl.progress()==1) {	
+					 	if (intl && intl.progress()==1) {						 		
+
 						 	if (nc.data('newhoveranim')===undefined || 	nc.data('newhoveranim')==="none")						 		
 						 		nc.data('newhoveranim',punchgs.TweenLite.to(nc,t.speed,t.anim));						 	
 						 	else {						 		
@@ -539,8 +551,9 @@ jQuery.extend(true,_R, {
 					 	var nc = jQuery(e.currentTarget),
 					 		intl = nc.data('timeline');
 
-					 	if (intl && intl.progress()==1 && nc.data('newhoveranim')!=undefined)							 	
+					 	if (intl && intl.progress()==1 && nc.data('newhoveranim')!=undefined) {							 						 		
 					 		nc.data('newhoveranim').reverse();
+					 	}
 					 });
 				}
 				$a = new Object();
@@ -567,13 +580,14 @@ jQuery.extend(true,_R, {
 			 
 			  // SPLITED ANIMATION IS IN GAME
 			  if (animobject != _nc) {	
-			  	  var oldease = $a.r.anim.ease;
+			  	  var oldease = $a.r.anim.ease;			  	 
 				  tl.add(punchgs.TweenLite.set(_nc, $a.r.anim));
 				  $a.r = newAnimObject();	
 				  $a.r.anim.ease = oldease;
 			  }
 			 
-			  $a.f.anim.visibility = "hidden";				  				  
+			  $a.f.anim.visibility = "hidden";		
+
 			  
 			  newtl.eventCallback("onStart",function(){			  	
 			  	punchgs.TweenLite.set(_nc,{visibility:"visible"});
@@ -676,11 +690,12 @@ jQuery.extend(true,_R, {
 		
 		_nc.data('timeline').pause();
 
+		
 		var tl = new punchgs.TimelineLite(),
 			subtl = new punchgs.TimelineLite(),
 			newmasktl = new punchgs.TimelineLite(),				
-			$from = getAnimDatas(newAnimObject(),_nc.data('transform_in')),
-			$to = _nc.data('transform_out') ? getAnimDatas(newEndAnimObject(),_nc.data('transform_out')) : getAnimDatas(newEndAnimObject(),_nc.data('transform_in')),			
+			$from = getAnimDatas(newAnimObject(),_nc.data('transform_in'),opt.sdir==1),
+			$to = _nc.data('transform_out') ? getAnimDatas(newEndAnimObject(),_nc.data('transform_out'),opt.sdir==1) : getAnimDatas(newEndAnimObject(),_nc.data('transform_in'),opt.sdir==1),			
 			animobject = _nc.data('splitout') && _nc.data('splitout').match(/words|chars|lines/g) ? _nc.data('mySplitText')[_nc.data('splitout')] : _nc,
 			elemdelay = (_nc.data('endelementdelay') == undefined) ? 0 : _nc.data('endelementdelay'),					
 			iw = _nc.innerWidth(),
@@ -866,7 +881,7 @@ var getBorderDirections = function (x,o,w,h,top,left,direction) {
 ///////////////////////////////////////////////////
 // ANALYSE AND READ OUT DATAS FROM HTML CAPTIONS //
 ///////////////////////////////////////////////////
-var getAnimDatas = function(frm,data) {		
+var getAnimDatas = function(frm,data,reversed) {		
 	var o = new Object();
 	o = jQuery.extend(true,{},o, frm);
 	if (data === undefined) 
@@ -877,27 +892,47 @@ var getAnimDatas = function(frm,data) {
 		jQuery.each(customarray,function(index,pa) {
 			var p = pa.split(":")
 			var w = p[0],
-				v = p[1];			
-			if (w=="rotationX" || w=="rX") o.anim.rotationX = animDataTranslator(v,o.anim.rotationX)+"deg";			
-			if (w=="rotationY" || w=="rY") o.anim.rotationY = animDataTranslator(v,o.anim.rotationY)+"deg";
-			if (w=="rotationZ" || w=="rZ") o.anim.rotation = animDataTranslator(v,o.anim.rotationZ)+"deg";					
-			if (w=="scaleX" || w=="sX") o.anim.scaleX = animDataTranslator(v,o.anim.scaleX);
-			if (w=="scaleY" || w=="sY") o.anim.scaleY = animDataTranslator(v,o.anim.scaleY);
-			if (w=="opacity" || w=="o") o.anim.opacity = animDataTranslator(v,o.anim.opacity);
-			if (w=="skewX" || w=="skX") o.anim.skewX = animDataTranslator(v,o.anim.skewX);
-			if (w=="skewY" || w=="skY") o.anim.skewY = animDataTranslator(v,o.anim.skewY);
-			if (w=="x") o.anim.x = animDataTranslator(v,o.anim.x);
-			if (w=="y") o.anim.y = animDataTranslator(v,o.anim.y);
-			if (w=="z") o.anim.z = animDataTranslator(v,o.anim.z);
-			if (w=="transformOrigin" || w=="tO") o.anim.transformOrigin = v.toString();
-			if (w=="transformPerspective" || w=="tP") o.anim.transformPerspective=parseInt(v,0);
-			if (w=="speed" || w=="s") o.speed = parseFloat(v)/1000;									
-			if (w=="ease" || w=="e") o.anim.ease = v;
+				v = p[1];
+			
+			
+			if (reversed && v!=undefined && v.length>0 && v.match(/\(R\)/)) {							
+				v = v.replace("(R)","");
+				v = v==="right" ? "left" : v==="left" ? "right" : v==="top" ? "bottom" : v==="bottom" ? "top" : v;	
+				if (v[0]==="[" && v[1]==="-") v = v.replace("[-","[");
+				else
+				if (v[0]==="[" && v[1]!=="-") v = v.replace("[","[-");	
+				else
+				if (v[0]==="-") v = v.replace("-","");
+				else
+				if (v[0].match(/[1-9]/)) v="-"+v;
+								
+			}
+			
+			if (v!=undefined) {
+				v = v.replace(/\(R\)/,'');
+				if (w=="rotationX" || w=="rX") o.anim.rotationX = animDataTranslator(v,o.anim.rotationX)+"deg";			
+				if (w=="rotationY" || w=="rY") o.anim.rotationY = animDataTranslator(v,o.anim.rotationY)+"deg";
+				if (w=="rotationZ" || w=="rZ") o.anim.rotation = animDataTranslator(v,o.anim.rotationZ)+"deg";					
+				if (w=="scaleX" || w=="sX") o.anim.scaleX = animDataTranslator(v,o.anim.scaleX);
+				if (w=="scaleY" || w=="sY") o.anim.scaleY = animDataTranslator(v,o.anim.scaleY);
+				if (w=="opacity" || w=="o") o.anim.opacity = animDataTranslator(v,o.anim.opacity);
+				if (w=="skewX" || w=="skX") o.anim.skewX = animDataTranslator(v,o.anim.skewX);
+				if (w=="skewY" || w=="skY") o.anim.skewY = animDataTranslator(v,o.anim.skewY);
+				if (w=="x") o.anim.x = animDataTranslator(v,o.anim.x);
+				if (w=="y") o.anim.y = animDataTranslator(v,o.anim.y);
+				if (w=="z") o.anim.z = animDataTranslator(v,o.anim.z);
+				if (w=="transformOrigin" || w=="tO") o.anim.transformOrigin = v.toString();
+				if (w=="transformPerspective" || w=="tP") o.anim.transformPerspective=parseInt(v,0);
+				if (w=="speed" || w=="s") o.speed = parseFloat(v)/1000;									
+				if (w=="ease" || w=="e") o.anim.ease = v;
+			}
 
 		})	
 	
 	return o;
 }
+
+
 
 /////////////////////////////////
 // BUILD MASK ANIMATION OBJECT //
@@ -1096,17 +1131,45 @@ var getcssParams = function(nc,level) {
 	if (level!="rekursive") {
 		obj.color = nc.data('color')===undefined ? "nopredefinedcolor" : nc.data('color');
 		obj.whiteSpace = gp ? pc.data('whitespace')===undefined ? pc.css('whiteSpace') || "nowrap" : pc.data('whitespace') : nc.data('whitespace')===undefined ? nc.css('whiteSpace') || "nowrap" : nc.data('whitespace');
+		
 		obj.minWidth = nc.data('width')===undefined ? parseInt(nc.css('minWidth'),0) || 0 : nc.data('width');
 		obj.minHeight = nc.data('height')===undefined ? parseInt(nc.css('minHeight'),0) || 0 : nc.data('height');
+
+		if (nc.data('videowidth')!=undefined && nc.data('videoheight')!=undefined) {
+			var vwid = nc.data('videowidth'),
+				vhei = nc.data('videoheight');
+			vwid = vwid==="100%" ? "none" : vwid;
+			vhei = vhei==="100%" ? "none" : vhei;
+			nc.data('width',vwid);
+			nc.data('height',vhei);
+		}
+		
 		obj.maxWidth = nc.data('width')===undefined ? parseInt(nc.css('maxWidth'),0) || "none" : nc.data('width');
 		obj.maxHeight = nc.data('height')===undefined ? parseInt(nc.css('maxHeight'),0) || "none" : nc.data('height');
-
+		
 		obj.wan = nc.data('wan')===undefined ? parseInt(nc.css('-webkit-transition'),0) || "none" : nc.data('wan');
 		obj.moan = nc.data('moan')===undefined ? parseInt(nc.css('-moz-animation-transition'),0) || "none" : nc.data('moan');
 		obj.man = nc.data('man')===undefined ? parseInt(nc.css('-ms-animation-transition'),0) || "none" : nc.data('man');
 		obj.ani = nc.data('ani')===undefined ? parseInt(nc.css('transition'),0) || "none" : nc.data('ani');
 	}
 
+	obj.styleProps = nc.css(["background-color",							 
+							 "border-top-color",
+							 "border-bottom-color",
+							 "border-right-color",
+							 "border-left-color",							
+							 "border-top-style",
+							 "border-bottom-style",
+							 "border-left-style",
+							 "border-right-style",							
+							 "border-left-width",
+							 "border-right-width",
+							 "border-bottom-width",
+							 "border-top-width",							 
+							 "color",							 
+							 "text-decoration",
+							 "font-style",
+							 "border-radius"]);		 
 	return obj;
 }
 
@@ -1160,7 +1223,10 @@ var calcCaptionResponsive = function(nc,opt,level,responsive) {
 	    nc.css("-moz-transition", "none");
 	    nc.css("-ms-transition", "none");
 	    nc.css("transition", "none");
-
+	   
+	    var hashover = nc.data('transform_hover')!==undefined || nc.data('style_hover')!==undefined;
+	    if (hashover) punchgs.TweenLite.set(nc,obj.styleProps);
+		
 		punchgs.TweenLite.set(nc,{
 
 			 fontSize: Math.round((obj.fontSize * bw))+"px",
@@ -1173,7 +1239,7 @@ var calcCaptionResponsive = function(nc,opt,level,responsive) {
 			 marginTop: (obj.marginTop * bh) + "px",
 			 marginBottom: (obj.marginBottom * bh) + "px",
 			 marginLeft: (obj.marginLeft * bw) + "px",
-			 marginRight: (obj.marginRight * bw) + "px",
+			 marginRight: (obj.marginRight * bw) + "px",			 
 			 borderTopWidth: Math.round(obj.borderTopWidth * bh) + "px",
 			 borderBottomWidth: Math.round(obj.borderBottomWidth * bh) + "px",
 			 borderLeftWidth: Math.round(obj.borderLeftWidth * bw) + "px",
@@ -1191,8 +1257,7 @@ var calcCaptionResponsive = function(nc,opt,level,responsive) {
 				maxh = minmaxconvert(obj.maxHeight,bh,"none",winh),
 				minw = minmaxconvert(obj.minWidth,bw,"0px",winw),
 				minh = minmaxconvert(obj.minHeight,bh,"0px",winh);
-			
-			
+										
 			punchgs.TweenLite.set(nc,{
 				 maxWidth:maxw,
 				 maxHeight:maxh,

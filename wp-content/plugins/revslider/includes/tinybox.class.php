@@ -53,11 +53,14 @@ class RevSliderTinyBox {
 	
 	public static function my_add_tinymce_plugin($plugin_array) {
 		$version = get_bloginfo('version'); 
-		if($version<3.9)
-			$plugin_array['revslider'] = plugins_url('../admin/assets/js/tbld.js',__FILE__);
-		else
-			$plugin_array['revslider'] = plugins_url('../admin/assets/js/tbld-3.9.js',__FILE__);
-			
+		if($version<3.9){
+			$plugin_array['revslider'] =  RS_PLUGIN_URL.'admin/assets/js/tbld.js';
+		}elseif($version<4.3){
+			$plugin_array['revslider'] = RS_PLUGIN_URL.'admin/assets/js/tbld-3.9.js';
+		}else{
+			$plugin_array['revslider'] = RS_PLUGIN_URL.'admin/assets/js/tbld-4.3.js';
+		}
+		
 		return $plugin_array;
 	}
 	 

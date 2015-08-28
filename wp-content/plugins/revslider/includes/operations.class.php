@@ -589,33 +589,44 @@ class RevSliderOperations extends RevSliderElementsBase{
 	}
 
 	/**
-	 *
 	 * parse animation params
+	 * 5.0.5: added (R) for reverse
 	 */
 	public static function parseCustomAnimationByArray($animArray, $is = 'start'){
 		$retString = '';
 		
-		if(isset($animArray['x_'.$is]) && $animArray['x_'.$is] !== '' && $animArray['x_'.$is] !== 'inherit') $retString.= 'x:'.$animArray['x_'.$is].';'; //movex
-		if(isset($animArray['y_'.$is]) && $animArray['y_'.$is] !== '' && $animArray['y_'.$is] !== 'inherit') $retString.= 'y:'.$animArray['y_'.$is].';'; //movey
+		$reverse = (isset($animArray['x_'.$is.'_reverse']) && $animArray['x_'.$is.'_reverse'] == true) ? '(R)' : ''; //movex reverse
+		if(isset($animArray['x_'.$is]) && $animArray['x_'.$is] !== '' && $animArray['x_'.$is] !== 'inherit') $retString.= 'x:'.$animArray['x_'.$is].$reverse.';'; //movex
+		$reverse = (isset($animArray['y_'.$is.'_reverse']) && $animArray['y_'.$is.'_reverse'] == true) ? '(R)' : ''; //movey reverse
+		if(isset($animArray['y_'.$is]) && $animArray['y_'.$is] !== '' && $animArray['y_'.$is] !== 'inherit') $retString.= 'y:'.$animArray['y_'.$is].$reverse.';'; //movey
 		if(isset($animArray['z_'.$is]) && $animArray['z_'.$is] !== '' && $animArray['z_'.$is] !== 'inherit') $retString.= 'z:'.$animArray['z_'.$is].';'; //movez
 
-		if(isset($animArray['x_rotate_'.$is]) && $animArray['x_rotate_'.$is] !== '' && $animArray['x_rotate_'.$is] !== 'inherit') $retString.= 'rX:'.$animArray['x_rotate_'.$is].';'; //rotationx
-		if(isset($animArray['y_rotate_'.$is]) && $animArray['y_rotate_'.$is] !== '' && $animArray['y_rotate_'.$is] !== 'inherit') $retString.= 'rY:'.$animArray['y_rotate_'.$is].';'; //rotationy
-		if(isset($animArray['z_rotate_'.$is]) && $animArray['z_rotate_'.$is] !== '' && $animArray['z_rotate_'.$is] !== 'inherit') $retString.= 'rZ:'.$animArray['z_rotate_'.$is].';'; //rotationz
+		$reverse = (isset($animArray['x_rotate_'.$is.'_reverse']) && $animArray['x_rotate_'.$is.'_reverse'] == true) ? '(R)' : ''; //rotationx reverse
+		if(isset($animArray['x_rotate_'.$is]) && $animArray['x_rotate_'.$is] !== '' && $animArray['x_rotate_'.$is] !== 'inherit') $retString.= 'rX:'.$animArray['x_rotate_'.$is].$reverse.';'; //rotationx
+		$reverse = (isset($animArray['y_rotate_'.$is.'_reverse']) && $animArray['y_rotate_'.$is.'_reverse'] == true) ? '(R)' : ''; //rotationy reverse
+		if(isset($animArray['y_rotate_'.$is]) && $animArray['y_rotate_'.$is] !== '' && $animArray['y_rotate_'.$is] !== 'inherit') $retString.= 'rY:'.$animArray['y_rotate_'.$is].$reverse.';'; //rotationy
+		$reverse = (isset($animArray['z_rotate_'.$is.'_reverse']) && $animArray['z_rotate_'.$is.'_reverse'] == true) ? '(R)' : ''; //rotationz reverse
+		if(isset($animArray['z_rotate_'.$is]) && $animArray['z_rotate_'.$is] !== '' && $animArray['z_rotate_'.$is] !== 'inherit') $retString.= 'rZ:'.$animArray['z_rotate_'.$is].$reverse.';'; //rotationz
 
 		if(isset($animArray['scale_x_'.$is]) && $animArray['scale_x_'.$is] !== '' && $animArray['scale_x_'.$is] !== 'inherit'){ //scalex
+			$reverse = (isset($animArray['scale_x_'.$is.'_reverse']) && $animArray['scale_x_'.$is.'_reverse'] == true) ? '(R)' : ''; //scalex reverse
 			$retString.= 'sX:';
 			$retString.= ($animArray['scale_x_'.$is] == 0) ? 0 : $animArray['scale_x_'.$is];
+			$retString.= $reverse;
 			$retString.= ';';
 		}
 		if(isset($animArray['scale_y_'.$is]) && $animArray['scale_y_'.$is] !== '' && $animArray['scale_y_'.$is] !== 'inherit'){ //scaley
+			$reverse = (isset($animArray['scale_y_'.$is.'_reverse']) && $animArray['scale_y_'.$is.'_reverse'] == true) ? '(R)' : ''; //scaley reverse
 			$retString.= 'sY:';
 			$retString.= ($animArray['scale_y_'.$is] == 0) ? 0 : $animArray['scale_y_'.$is];
+			$retString.= $reverse;
 			$retString.= ';';
 		}
-
-		if(isset($animArray['skew_x_'.$is]) && $animArray['skew_x_'.$is] !== '' && $animArray['skew_x_'.$is] !== 'inherit') $retString.= 'skX:'.$animArray['skew_x_'.$is].';'; //skewx
-		if(isset($animArray['skew_y_'.$is]) && $animArray['skew_y_'.$is] !== '' && $animArray['skew_y_'.$is] !== 'inherit') $retString.= 'skY:'.$animArray['skew_y_'.$is].';'; //skewy
+		
+		$reverse = (isset($animArray['skew_x_'.$is.'_reverse']) && $animArray['skew_x_'.$is.'_reverse'] == true) ? '(R)' : ''; //skewx reverse
+		if(isset($animArray['skew_x_'.$is]) && $animArray['skew_x_'.$is] !== '' && $animArray['skew_x_'.$is] !== 'inherit') $retString.= 'skX:'.$animArray['skew_x_'.$is].$reverse.';'; //skewx
+		$reverse = (isset($animArray['skew_y_'.$is.'_reverse']) && $animArray['skew_y_'.$is.'_reverse'] == true) ? '(R)' : ''; //skewy reverse
+		if(isset($animArray['skew_y_'.$is]) && $animArray['skew_y_'.$is] !== '' && $animArray['skew_y_'.$is] !== 'inherit') $retString.= 'skY:'.$animArray['skew_y_'.$is].$reverse.';'; //skewy
 
 		if(isset($animArray['opacity_'.$is]) && $animArray['opacity_'.$is] !== '' && $animArray['opacity_'.$is] !== 'inherit'){ //captionopacity
 			$retString.= 'opacity:';
@@ -651,8 +662,10 @@ class RevSliderOperations extends RevSliderElementsBase{
 	 */
 	public static function parseCustomMaskByArray($animArray, $is = 'start'){
 		$retString = '';
-		if(isset($animArray['mask_x_'.$is]) && $animArray['mask_x_'.$is] !== '') $retString.= 'x:'.$animArray['mask_x_'.$is].';';
-		if(isset($animArray['mask_y_'.$is]) && $animArray['mask_y_'.$is] !== '') $retString.= 'y:'.$animArray['mask_y_'.$is].';';
+		$reverse = (isset($animArray['mask_x_'.$is.'_reverse']) && $animArray['mask_x_'.$is.'_reverse'] == true) ? '(R)' : '';
+		if(isset($animArray['mask_x_'.$is]) && $animArray['mask_x_'.$is] !== '') $retString.= 'x:'.$animArray['mask_x_'.$is].$reverse.';';
+		$reverse = (isset($animArray['mask_y_'.$is.'_reverse']) && $animArray['mask_y_'.$is.'_reverse'] == true) ? '(R)' : '';
+		if(isset($animArray['mask_y_'.$is]) && $animArray['mask_y_'.$is] !== '') $retString.= 'y:'.$animArray['mask_y_'.$is].$reverse.';';
 		if(isset($animArray['mask_speed_'.$is]) && $animArray['mask_speed_'.$is] !== '') $retString.= 's:'.$animArray['mask_speed_'.$is].';';
 		if(isset($animArray['mask_ease_'.$is]) && $animArray['mask_ease_'.$is] !== '') $retString.= 'e:'.$animArray['mask_ease_'.$is].';';
 		
@@ -853,11 +866,16 @@ class RevSliderOperations extends RevSliderElementsBase{
 		$db = new RevSliderDB();
 
 		$handle = $content['handle'];
-
+		
+		if(!isset($content['hover'])) $content['hover'] = '';
+		if(!isset($content['advanced'])) $content['advanced'] = array();
+		if(!isset($content['advanced']['idle'])) $content['advanced']['idle'] = array();
+		if(!isset($content['advanced']['hover'])) $content['advanced']['hover'] = array();
+		
 		$arrInsert = array();
 		$arrInsert["handle"] = '.tp-caption.'.$handle;
 		$arrInsert["params"] = stripslashes(json_encode(str_replace("'", '"', $content['idle'])));
-		$arrInsert["hover"] = stripslashes(json_encode(str_replace("'", '"', @$content['hover'])));
+		$arrInsert["hover"] = stripslashes(json_encode(str_replace("'", '"', $content['hover'])));
 		
 		if(!isset($content['settings'])) $content['settings'] = array();
 		$content['settings']['version'] = 'custom';
@@ -865,8 +883,8 @@ class RevSliderOperations extends RevSliderElementsBase{
 		$arrInsert["settings"] = stripslashes(json_encode(str_replace("'", '"', $content['settings'])));
 		
 		$arrInsert["advanced"] = array();
-		$arrInsert["advanced"]['idle'] = @$content['advanced']['idle'];
-		$arrInsert["advanced"]['hover'] = @$content['advanced']['hover'];
+		$arrInsert["advanced"]['idle'] = $content['advanced']['idle'];
+		$arrInsert["advanced"]['hover'] = $content['advanced']['hover'];
 		$arrInsert["advanced"] = stripslashes(json_encode(str_replace("'", '"', $arrInsert["advanced"])));
 		
 		$result = $db->insert(RevSliderGlobals::$table_css, $arrInsert);
@@ -903,14 +921,20 @@ class RevSliderOperations extends RevSliderElementsBase{
 		
 		$handle = $content['handle'];
 		
+		if(!isset($content['idle'])) $content['idle'] = '';
+		if(!isset($content['hover'])) $content['hover'] = '';
+		if(!isset($content['advanced'])) $content['advanced'] = array();
+		if(!isset($content['advanced']['idle'])) $content['advanced']['idle'] = array();
+		if(!isset($content['advanced']['hover'])) $content['advanced']['hover'] = array();
+		
 		$arrUpdate = array();
-		$arrUpdate["params"] = stripslashes(json_encode(str_replace("'", '"', @$content['idle'])));
-		$arrUpdate["hover"] = stripslashes(json_encode(str_replace("'", '"', @$content['hover'])));
+		$arrUpdate["params"] = stripslashes(json_encode(str_replace("'", '"', $content['idle'])));
+		$arrUpdate["hover"] = stripslashes(json_encode(str_replace("'", '"', $content['hover'])));
 		$arrUpdate["settings"] = stripslashes(json_encode(str_replace("'", '"', $settings)));
 		
 		$arrUpdate["advanced"] = array();
-		$arrUpdate["advanced"]['idle'] = @$content['advanced']['idle'];
-		$arrUpdate["advanced"]['hover'] = @$content['advanced']['hover'];
+		$arrUpdate["advanced"]['idle'] = $content['advanced']['idle'];
+		$arrUpdate["advanced"]['hover'] = $content['advanced']['hover'];
 		$arrUpdate["advanced"] = stripslashes(json_encode(str_replace("'", '"', $arrUpdate["advanced"])));
 		
 		$result = $db->update(RevSliderGlobals::$table_css, $arrUpdate, array('handle' => '.tp-caption.'.$handle));
@@ -1207,6 +1231,8 @@ class RevSliderOperations extends RevSliderElementsBase{
 			<html>
 				<head>
 					<link rel='stylesheet' href='<?php echo $urlPlugin?>css/settings.css?rev=<?php echo RevSliderGlobals::SLIDER_REVISION; ?>' type='text/css' media='all' />
+					<link rel='stylesheet' href='<?php echo $urlPlugin?>fonts/font-awesome/css/font-awesome.css?rev=<?php echo RevSliderGlobals::SLIDER_REVISION; ?>' type='text/css' media='all' />
+					<link rel='stylesheet' href='<?php echo $urlPlugin?>fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css?rev=<?php echo RevSliderGlobals::SLIDER_REVISION; ?>' type='text/css' media='all' />
 					<?php
 					$db = new RevSliderDB();
 
@@ -1228,12 +1254,11 @@ class RevSliderOperations extends RevSliderElementsBase{
 						$font_url = $http.'://fonts.googleapis.com/css?family=';
 					}
 
-
 					$custom_css = RevSliderOperations::getStaticCss();
 					echo '<style type="text/css">'.RevSliderCssParser::compress_css($custom_css).'</style>';
 					?>
 
-					<script type='text/javascript' src='<?php echo $setBase; ?>ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+					<script type='text/javascript' src='<?php echo $setBase; ?>code.jquery.com/jquery-latest.min.js'></script>
 
 					<script type='text/javascript' src='<?php echo $urlPlugin?>js/jquery.themepunch.tools.min.js?rev=<?php echo RevSliderGlobals::SLIDER_REVISION; ?>'></script>
 					<script type='text/javascript' src='<?php echo $urlPlugin?>js/jquery.themepunch.revolution.min.js?rev=<?php echo RevSliderGlobals::SLIDER_REVISION; ?>'></script>
@@ -1408,8 +1433,10 @@ class RevSliderOperations extends RevSliderElementsBase{
 			.rev_cont_title a, .rev_cont_title a:visited { margin-left:25px;font-size:12px;line-height:12px;float:right;background-color:#8e44ad; color:#fff; padding:8px 10px;text-decoration:none;}
 			.rev_cont_title a:hover	  { background-color:#9b59b6;}
 		</style>
-		<p><?php $dir = wp_upload_dir(); ?>
-			<?php _e('Replace image path:', REVSLIDER_TEXTDOMAIN); ?> <?php _e('From:', REVSLIDER_TEXTDOMAIN); ?> <input type="text" name="orig_image_path" value="<?php echo @$dir['baseurl']; ?>" /> <?php _e('To:', REVSLIDER_TEXTDOMAIN); ?> <input type="text" name="replace_image_path" value="" /> <input id="rev_replace_images" type="button" name="replace_images" value="<?php _e('Replace', REVSLIDER_TEXTDOMAIN); ?>" />
+		<p><?php $dir = wp_upload_dir();
+		if(!isset($dir['baseurl'])) $dir['baseurl'] = '';
+			?>
+			<?php _e('Replace image path:', REVSLIDER_TEXTDOMAIN); ?> <?php _e('From:', REVSLIDER_TEXTDOMAIN); ?> <input type="text" name="orig_image_path" value="<?php echo $dir['baseurl']; ?>" /> <?php _e('To:', REVSLIDER_TEXTDOMAIN); ?> <input type="text" name="replace_image_path" value="" /> <input id="rev_replace_images" type="button" name="replace_images" value="<?php _e('Replace', REVSLIDER_TEXTDOMAIN); ?>" />
 		</p>
 
 		<div class="rev_cont_title"><?php _e('Header', REVSLIDER_TEXTDOMAIN); ?> <a class="button-primary revpurple export_slider_standalone copytoclip" data-idt="rev_head_content"  href="javascript:void(0);" original-title=""><?php _e('Mark to Copy', REVSLIDER_TEXTDOMAIN); ?></a><div style="clear:both"></div></div>
@@ -1514,7 +1541,9 @@ class RevSliderOperations extends RevSliderElementsBase{
 			}
 		}
 
-		$arrMain["fullscreen_offset_container"] = @$arrMain["fullscreen_offset_container"];
+		if(!isset($arrMain["fullscreen_offset_container"])) $arrMain["fullscreen_offset_container"] = '';
+		
+		$arrMain["fullscreen_offset_container"] = $arrMain["fullscreen_offset_container"];
 
 		$data["main"] = $arrMain;
 

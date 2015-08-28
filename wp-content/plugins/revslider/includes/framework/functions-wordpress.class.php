@@ -1155,31 +1155,38 @@ class RevSliderFunctionsWP{
 	 */
 	public static function get_image_id_by_url($image_url) {
 		global $wpdb;
-		$attachment_id = false;
-
-		// If there is no url, return.
-		if ( '' == $image_url )
-			return;
-
-		// Get the upload directory paths
-		$upload_dir_paths = wp_upload_dir();
 		
-		// Make sure the upload path base directory exists in the attachment URL, to verify that we're working with a media library image
-		//if ( false === strpos( $image_url, $upload_dir_paths['baseurl'] ) ) {
-		//	$image_url = $upload_dir_paths['baseurl'].'/'.$image_url;
-		//}
+		$attachment_id = 0;
 		
-		// If this is the URL of an auto-generated thumbnail, get the URL of the original image
-		$image_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif|mp4|ogv|webm)$)/i', '', $image_url );
+		if(function_exists('attachment_url_to_postid')){
+			$attachment_id = attachment_url_to_postid($image_url); //0 if failed
+		}
+		if ( 0 == $attachment_id ){ //try to get it old school way
+			//for WP < 4.0.0
+			$attachment_id = false;
 
+			// If there is no url, return.
+			if ( '' == $image_url )
+				return;
+
+			// Get the upload directory paths
+			$upload_dir_paths = wp_upload_dir();
+
+			// Make sure the upload path base directory exists in the attachment URL, to verify that we're working with a media library image
+			if ( false !== strpos( $image_url, $upload_dir_paths['baseurl'] ) ) {
+
+				// If this is the URL of an auto-generated thumbnail, get the URL of the original image
+				$image_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $image_url );
+
+				// Remove the upload path base directory from the attachment URL
+				$image_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $image_url );
+
+				// Finally, run a custom database query to get the attachment ID from the modified attachment URL
+				$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $image_url ) );
+
+			}
+		}
 		
-		// Remove the upload path base directory from the attachment URL
-		$image_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $image_url );
-
-		
-		// Finally, run a custom database query to get the attachment ID from the modified attachment URL
-		$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $image_url ) );
-
 		return $attachment_id;
 	}
 	

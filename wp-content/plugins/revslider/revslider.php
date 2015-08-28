@@ -4,7 +4,7 @@ Plugin Name: Revolution Slider
 Plugin URI: http://www.revolution.themepunch.com/
 Description: Revolution Slider - Premium responsive slider
 Author: ThemePunch
-Version: 5.0.4.1
+Version: 5.0.5
 Author URI: http://themepunch.com
 */
 
@@ -17,7 +17,7 @@ if(class_exists('RevSliderFront')) {
 	die('ERROR: It looks like you have more than one instance of Revolution Slider installed. Please remove additional instances for this plugin to work again.');
 }
 
-$revSliderVersion = "5.0.4.1";
+$revSliderVersion = "5.0.5";
 $revSliderAsTheme = false;
 $revslider_screens = array();
 
@@ -96,7 +96,7 @@ try{
 		// Do not output Slider if we are on mobile
 		$disable_on_mobile = $slider->getParam("disable_on_mobile","off");
 		if($disable_on_mobile == 'on'){
-			$mobile = (strstr($_SERVER['HTTP_USER_AGENT'],'Android') || strstr($_SERVER['HTTP_USER_AGENT'],'webOS') || strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') ||strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad') || wp_is_mobile()) ? true : false;
+			$mobile = (strstr($_SERVER['HTTP_USER_AGENT'],'Android') || strstr($_SERVER['HTTP_USER_AGENT'],'webOS') || strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') ||strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad') || strstr($_SERVER['HTTP_USER_AGENT'],'Windows Phone') || wp_is_mobile()) ? true : false;
 			if($mobile) return false;
 		}
 		
@@ -170,17 +170,19 @@ try{
 				return(false);
 			}
 			
-			// Do not output Slider if we are on mobile
+			
 			ob_start();
 			$slider = RevSliderOutput::putSlider($data,$putIn);
 			$content = ob_get_contents();
 			ob_clean();
 			ob_end_clean();
 			
-			$disable_on_mobile = $slider->getParam("disable_on_mobile","off");
-			if($disable_on_mobile == 'on'){
-				$mobile = (strstr($_SERVER['HTTP_USER_AGENT'],'Android') || strstr($_SERVER['HTTP_USER_AGENT'],'webOS') || strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') ||strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad') || wp_is_mobile()) ? true : false;
-				if($mobile) return false;
+			if(is_object($slider)){
+				$disable_on_mobile = @$slider->getParam("disable_on_mobile","off"); // Do not output Slider if we are on mobile
+				if($disable_on_mobile == 'on'){
+					$mobile = (strstr($_SERVER['HTTP_USER_AGENT'],'Android') || strstr($_SERVER['HTTP_USER_AGENT'],'webOS') || strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') ||strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'Windows Phone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad') || wp_is_mobile()) ? true : false;
+					if($mobile) return false;
+				}
 			}
 			
 			echo $content;

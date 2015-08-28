@@ -1,7 +1,7 @@
 
 /**************************************************************************
  * jquery.themepunch.revolution.js - jQuery Plugin for Revolution Slider
- * @version: 5.0.5 (18.08.2015)
+ * @version: 5.0.5.4 (26.08.2015)
  * @requires jQuery v1.7 or later (tested on 1.9)
  * @author ThemePunch
 **************************************************************************/
@@ -1678,6 +1678,12 @@ var removeSlots = function(container,opt,where,addon) {
 
 
 // THE IMAGE IS LOADED, WIDTH, HEIGHT CAN BE SAVED
+var cutParams = function(a) {
+	var b = a;
+	if (a!=undefined && a.length>0)
+		b = a.split("?")[0];
+	return b;
+}
 var imgLoaded = function(img,opt,progress) {
 	opt.syncload--;	
 	if (opt.loadqueue)
@@ -1689,8 +1695,14 @@ var imgLoaded = function(img,opt,progress) {
 			
 			fullsrc = fullsrc.substring(0,fullsrc.length-1)+mqsrc;
 			origin = origin+mqsrc;
+			
 
-			if (origin === decodeURIComponent(img.src) || fullsrc===decodeURIComponent(img.src) || queue.src === decodeURIComponent(img.src) || (window.location.origin==="file://" && img.src.match(new RegExp(mqsrc)))) {												
+			
+			if (cutParams(origin) === cutParams(decodeURIComponent(img.src)) || 
+				cutParams(fullsrc)=== cutParams(decodeURIComponent(img.src)) || 
+				cutParams(queue.src) === cutParams(decodeURIComponent(img.src)) || 
+				(window.location.origin==="file://" && cutParams(img.src).match(new RegExp(mqsrc)))) {												
+
 					queue.progress = progress;
 					queue.width = img.width;
 					queue.height = img.height;
@@ -1919,7 +1931,19 @@ var swapSlideProgress = function(opt,defimg,container) {
 		opt.delay=opt.origcd;
 
 
+	var ai = actli.index(),
+		ni = nextli.index();
+	opt.sdir = ni<ai ? 1 : 0;
 	
+	if (opt.sc_indicator=="arrow") {	
+		if (ai==0 && ni==opt.slideamount-1) opt.sdir = 1;
+		if (ai==opt.slideamount-1 && ni==0) opt.sdir = 0;	
+	}
+
+	opt.lsdir = opt.lsdir === undefined ? opt.sdir : opt.lsdir; 
+	opt.dirc = opt.lsdir != opt.sdir;
+	opt.lsdir = opt.sdir;
+
 	///////////////////////////
 	//	REMOVE THE CAPTIONS //
 	///////////////////////////
@@ -2019,14 +2043,17 @@ var swapSlideProgress = function(opt,defimg,container) {
 		mtl.pause();
 	}
 
-	// START PARALLAX IF NEEDED	
-	if (opt.parallax.type=="scroll" && opt.parallax.firstgo==undefined && _R.scrollHandling) {
+	// START PARALLAX IF NEEDED		
+	if (opt.parallax.type!="off" && opt.parallax.firstgo==undefined && _R.scrollHandling) {
 		opt.parallax.firstgo = true;
+		opt.lastscrolltop = -999;
 		_R.scrollHandling(opt);
 		setTimeout(function() {
+			opt.lastscrolltop = -999;
 			_R.scrollHandling(opt);
 		},210);
 		setTimeout(function() {
+			opt.lastscrolltop = -999;
 			_R.scrollHandling(opt);
 		},420);
 	}
@@ -2064,14 +2091,17 @@ var letItFree = function(container,opt,nextsh,actsh,nextli,actli,mtl) {
 			}});
 		}
 	}
-		
+
+
 	container.find('.active-revslide').removeClass("active-revslide");	
 	container.find('.processing-revslide').removeClass("processing-revslide").addClass("active-revslide");
 	opt.act=nextli.index();
 			
 	
-	if (opt.parallax.type=="scroll" || opt.parallax.type=="scroll+mouse" || opt.parallax.type=="mouse+scroll") 
+	if (opt.parallax.type=="scroll" || opt.parallax.type=="scroll+mouse" || opt.parallax.type=="mouse+scroll") {
+		opt.lastscrolltop = -999;
 		_R.scrollHandling(opt);
+	}
 	
 	mtl.clear();		
 	
@@ -2271,8 +2301,8 @@ var vis = (function(){
 var restartOnFocus = function(opt) {
 	if (opt==undefined || opt.c==undefined) return false;
     punchgs.TweenLite.delayedCall(0.3,function(){        	
-        // TAB IS ACTIVE, WE CAN START ANY PART OF THE SLIDER
-        if (opt.nextSlideOnWindowFocus=="on") opt.c.revnext();
+        // TAB IS ACTIVE, WE CAN START ANY PART OF THE SLIDER        
+        if (opt.fallbacks.nextSlideOnWindowFocus=="on") opt.c.revnext();
         opt.c.revredraw();
         if (opt.lastsliderstatus=="playing")								
 		opt.c.revresume();
@@ -2345,26 +2375,4 @@ var getUrlVars = function (hashdivider){
 	}
 	return vars;
 }
-
-	
-
-
-
 })(jQuery);
-
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// SOME ERROR MESSAGES IN CASE THE PLUGIN CAN NOT BE LOADED
-//
-/////////////////////////////////////////////////////////////////////////////////
-function revslider_showDoubleJqueryError(sliderID) {
-	var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
-	errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
-	errorMessage += "<br><br> To fix it you can:<br>&nbsp;&nbsp;&nbsp; 1. In the Slider Settings -> Troubleshooting set option:  <strong><b>Put JS Includes To Body</b></strong> option to true.";
-	errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
-	errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>"
-		jQuery(sliderID).show().html(errorMessage);
-}
-
-

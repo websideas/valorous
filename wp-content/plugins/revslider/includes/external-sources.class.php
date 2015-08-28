@@ -112,12 +112,11 @@ class RevSliderFacebook {
 	public function get_photo_set_photos_options($user_url,$current_album,$app_id,$app_secret,$item_count=99){
 		$user_id = $this->get_user_from_url($user_url);
 		$photo_sets = $this->get_photo_sets($user_id,999,$app_id,$app_secret);
+    if(empty($current_album)) $current_album = "";
 		$return = array();
 		if(is_array($photo_sets)){
 			foreach($photo_sets as $photo_set){
-				if(empty($photo_set->description)) $photo_set->description = "";
-				if(empty($photo_set->count))  $photo_set->count = 0;
-				$return[] = '<option title="'.$photo_set->description.'" '.selected( $photo_set->id , $current_album , false ).' value="'.$photo_set->id.'">'.$photo_set->name.' ('.$photo_set->count.' photos)</option>"';
+				$return[] = '<option title="'.$photo_set->name.'" '.selected( $photo_set->id , $current_album , false ).' value="'.$photo_set->id.'">'.$photo_set->name.'</option>"';
 			}
 		}
 		return $return;

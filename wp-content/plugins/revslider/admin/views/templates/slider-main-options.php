@@ -23,14 +23,25 @@ $_width_notebook = (isset($arrValues['width_notebook'])) ? $arrValues['width_not
 $_width_tablet = (isset($arrValues['width_tablet'])) ? $arrValues['width_tablet'] : 778;
 $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'] : 480;
 
+
+if(!isset($is_edit)) $is_edit = false;
+if(!isset($linksEditSlides)) $linksEditSlides = '';
 ?>
 <div class="wrap settings_wrap">
 	<div class="clear_both"></div>
 
-	<div class="title_line">
+	<div class="title_line" style="margin-bottom:0px !important">
 		<div id="icon-options-general" class="icon32"></div>
-		<div class="view_title"><?php echo (@$is_edit) ? __("Edit Slider", REVSLIDER_TEXTDOMAIN) : __("New Slider", REVSLIDER_TEXTDOMAIN);?></div>
-		<a href="<?php echo RevSliderGlobals::LINK_HELP_SLIDER;?>" class="button-secondary float_right mtop_10 mleft_10" target="_blank"><?php _e("Help", REVSLIDER_TEXTDOMAIN);?></a>
+		<div class="view_title"><?php echo ($is_edit) ? __("Edit Slider", REVSLIDER_TEXTDOMAIN) : __("New Slider", REVSLIDER_TEXTDOMAIN); ?></div>
+		<a href="<?php echo RevSliderGlobals::LINK_HELP_SLIDER;?>" class="button-secondary float_right mtop_10 mleft_10" target="_blank"><?php _e("Help", REVSLIDER_TEXTDOMAIN); ?></a>
+		<div class="tp-clearfix"></div>
+	</div>
+
+	<div class="rs_breadcrumbs">
+		<a class='breadcrumb-button' href='<?php echo self::getViewUrl("sliders"); ?>'><i class="eg-icon-th-large"></i><?php _e("All Sliders", REVSLIDER_TEXTDOMAIN); ?></a>
+		<a class='breadcrumb-button selected' href="#"><i class="eg-icon-cog"></i><?php _e('Slider Settings', REVSLIDER_TEXTDOMAIN);?></a>
+		<a class='breadcrumb-button' href="<?php echo $linksEditSlides; ?>"><i class="eg-icon-pencil-2"></i><?php _e('Slide Editor', REVSLIDER_TEXTDOMAIN); ?></a>
+		<div class="tp-clearfix"></div>
 	</div>
 
 
@@ -199,12 +210,13 @@ $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'
 						</p>
 					</div>
 					<div style="width:50%;display:block;float:left;">
-							<span class="rev-new-label"><?php _e('Source', REVSLIDER_TEXTDOMAIN);?></span>
+							<!--<span class="rev-new-label"><?php _e('Source', REVSLIDER_TEXTDOMAIN);?></span>
 							<select  name="facebook-type-source">
 								<option value="album" <?php selected(RevSliderFunctions::getVal($arrFieldsParams, 'facebook-type-source', 'album'), 'album');?>><?php _e('Album', REVSLIDER_TEXTDOMAIN);?></option>
 								<option value="timeline" <?php selected(RevSliderFunctions::getVal($arrFieldsParams, 'facebook-type-source', 'album'), 'timeline');?>><?php _e('Timeline', REVSLIDER_TEXTDOMAIN);?></option>
-							</select>
-							<div id="facebook-album-wrap">
+							</select>-->
+							<input type="hidden" name="facebook-type-source" value="timeline">
+							<!--div id="facebook-album-wrap">
 								<p>
 									<?php $facebook_album = RevSliderFunctions::getVal($arrFieldsParams, 'facebook-album', '');?>
 									<span class="rev-new-label"><?php _e('Select Album', REVSLIDER_TEXTDOMAIN);?></span>
@@ -212,11 +224,11 @@ $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'
 									<select name="facebook-album-select" class="eg-tooltip-wrap" title="<?php _e('Select the album to pull the data from ', REVSLIDER_TEXTDOMAIN);?>">
 									</select>
 								</p>
-							</div>
-							<p>
+							</div-->
+							
 								<span class="rev-new-label"><?php _e('App ID', REVSLIDER_TEXTDOMAIN);?></span>
 								<input type="text" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, 'facebook-app-id', '')?>" name="facebook-app-id" class="eg-tooltip-wrap" title="<?php _e('Put in the Facebook App ID', REVSLIDER_TEXTDOMAIN);?>">
-							</p>
+							
 							<p>
 								<span class="rev-new-label"><?php _e('App Secret', REVSLIDER_TEXTDOMAIN);?></span>
 								<input type="text" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, 'facebook-app-secret', '')?>" name="facebook-app-secret" class="eg-tooltip-wrap" title="<?php _e('Put in the Facebook App secret', REVSLIDER_TEXTDOMAIN);?>">
@@ -777,8 +789,6 @@ $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'
 									
 									var update_preset = {name: revslider_presets[pr_id]['settings']['name'], values: params};
 									
-									console.log(update_preset);
-									
 									UniteAdminRev.ajaxRequest('update_preset', update_preset, function(response){
 										if(response.success == true){
 											//refresh presets
@@ -1153,6 +1163,11 @@ $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'
 										<input placeholder="<?php _e("Min. Height", REVSLIDER_TEXTDOMAIN);?>" type="text" class="text-sidebar" style="padding:11px 45px 11px 15px; line-height:26px" id="min_height" name="min_height" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "min_height", "");?>">
 										<i class="input-edit-icon"></i>
 										<span class="description"><?php _e("The minimum height of the Slider in FullWidth or Auto mode.", REVSLIDER_TEXTDOMAIN);?></span>
+										<span class="rs-show-on-auto">
+											<input placeholder="<?php _e("Max. Width", REVSLIDER_TEXTDOMAIN);?>" type="text" class="text-sidebar" style="padding:11px 45px 11px 15px; margin-top: 20px; line-height:26px" id="max_width" name="max_width" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "max_width", "");?>">
+											<i class="input-edit-icon" style="top: 99px;"></i>
+											<span class="description"><?php _e("The maximum width of the Slider in Auto mode.", REVSLIDER_TEXTDOMAIN);?></span>
+										</span>
 									</span>
 								</div>
 							</div>
@@ -1176,6 +1191,13 @@ $_width_mobile = (isset($arrValues['width_mobile'])) ? $arrValues['width_mobile'
 									} else {
 										jQuery('#normal-advanced-sizing').show();
 										jQuery('#fullscreen-advanced-sizing').hide();
+									}
+									
+									var s_fs = jQuery('#slider_type_1').attr("checked")==="checked";
+									if (s_fs) {
+										jQuery('.rs-show-on-auto').show();
+									}else{
+										jQuery('.rs-show-on-auto').hide();
 									}
 								});
 
@@ -1433,7 +1455,7 @@ if (isset($linksEditSlides)) {
 						<span id="loader_update" class="loader_round" style="display:none;background-color:#27AE60 !important; color:#fff;padding: 4px 5px 5px 25px;margin-right: 5px;"><?php _e("updating...", REVSLIDER_TEXTDOMAIN);?> </span>
 						<span id="update_slider_success" class="success_message"></span>
 						<a style="width:125px" class='button-primary revred' id="button_delete_slider" href='javascript:void(0)' ><i class="revicon-trash"></i><?php _e("Delete Slider", REVSLIDER_TEXTDOMAIN);?></a>
-						<a style="width:125px" class='button-primary revyellow' id="button_close_slider_edit"  href='<?php echo self::getViewUrl("sliders")?>' ><i class="revicon-cancel"></i><?php _e("Close", REVSLIDER_TEXTDOMAIN);?></a>
+						<a style="width:125px" class='button-primary revyellow' id="button_close_slider_edit"  href='<?php echo self::getViewUrl("sliders")?>' ><i class="eg-icon-th-large"></i><?php _e("All Sliders", REVSLIDER_TEXTDOMAIN);?></a>
 						<a style="width:125px" class="button-primary revgray" href="javascript:void(0)"  id="button_preview_slider" title="<?php _e("Preview Slider", REVSLIDER_TEXTDOMAIN);?>"><i class="revicon-search-1"></i><?php _e("Preview", REVSLIDER_TEXTDOMAIN);?></a>
 					</div>
 				</div>
@@ -1582,9 +1604,10 @@ if (isset($linksEditSlides)) {
 
 					function removeClasses(obj,cs) {
 						var classes = cs.split(",");
-						jQuery.each(classes,function(index,c) {
-							obj.removeClass("tbn-"+c);
-						});
+						if (classes)
+							jQuery.each(classes,function(index,c) {
+								obj.removeClass("tbn-"+c);
+							});
 					}
 
 					jQuery('.toolbar-sliderpreview').removeClass("outer-left").removeClass("outer-right").removeClass("outer-top").removeClass("outer-bottom").removeClass("inner");
@@ -1713,10 +1736,10 @@ if (isset($linksEditSlides)) {
 				});
 			</script>
 
-				<form name="form_slider_params" id="form_slider_params" onkeypress="return event.keyCode != 13;">
 
-					<!-- ALL SETTINGS -->
-					<div class="settings_wrapper closeallothers">
+				<!-- ALL SETTINGS -->
+				<div class="settings_wrapper closeallothers" id="form_slider_params_wrap">
+					<form name="form_slider_params" id="form_slider_params" onkeypress="return event.keyCode != 13;">
 
 						<!-- GENERAL SETTINGS -->
 
@@ -1754,6 +1777,13 @@ if (isset($linksEditSlides)) {
 										<!-- NEXT SLIDE ON FOCUS -->
 										<span id="label_next_slide_on_window_focus" class="label" origtitle="<?php _e("Call next slide when inactive browser tab is focused again. Use this for avoid dissorted layers and broken timeouts after bluring the browser tab.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Next Slide on Focus", REVSLIDER_TEXTDOMAIN);?> </span>
 										<input type="checkbox"  class="tp-moderncheckbox withlabel" id="next_slide_on_window_focus" name="next_slide_on_window_focus" data-unchecked="off" <?php checked(RevSliderFunctions::getVal($arrFieldsParams, 'next_slide_on_window_focus', 'off'), "on");?>>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div>
+										<!-- BLUR ON FOCUS -->
+										<span id="label_disable_focus_listener" class="label" origtitle="<?php _e("This will disable the blur/focus behavior of the browser.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Disable Blur/Focus behavior", REVSLIDER_TEXTDOMAIN);?> </span>
+										<input type="checkbox"  class="tp-moderncheckbox withlabel" id="disable_focus_listener" name="disable_focus_listener" data-unchecked="off" <?php checked(RevSliderFunctions::getVal($arrFieldsParams, 'disable_focus_listener', 'off'), "on");?>>
 										<div class="clearfix"></div>
 									</div>
 								</div><!-- end of GENERAL MISC -->
@@ -2430,13 +2460,20 @@ if (isset($linksEditSlides)) {
 									 // TAB CHANGES
 									 jQuery('.main-options-small-tabs').find('li').click(function() {
 									 	var li = jQuery(this),
-									 		ul = li.closest('.main-options-small-tabs');
+									 		ul = li.closest('.main-options-small-tabs'),
+									 		ref = li.data('content');
 
 										jQuery(ul.find('.selected').data('content')).hide();
 									 	ul.find('.selected').removeClass("selected");
 
-									 	jQuery(li.data('content')).show();
+									 	jQuery(ref).show();
 									 	li.addClass("selected");
+
+									 	if (ref=='#navigation-arrows' || ref=='#navigation-bullets' || ref=='#navigation-tabs'|| ref=='#navigation-thumbnails')									 		
+									 		jQuery('#navigation-miniimagedimensions').show();
+									 	else
+									 		if (!jQuery('#navigation-settings-wrapper>h3').hasClass("box_closed")) 
+									 			jQuery('#navigation-miniimagedimensions').hide();
 									 })
 								});
 							</script>
@@ -2767,19 +2804,19 @@ if (isset($linksEditSlides)) {
 										</select>
 										<div class="clear"></div>
 
-										<h4><?php _e("Thumbnail Size", REVSLIDER_TEXTDOMAIN);?></h4>
+										<h4><?php _e("Thumbnail Container Size", REVSLIDER_TEXTDOMAIN);?></h4>
 
-										<span id="label_thumb_width" class="label"  origtitle="<?php _e("The basic Width of one Thumbnail.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Thumb Width", REVSLIDER_TEXTDOMAIN);?></span>
+										<span id="label_thumb_width" class="label"  origtitle="<?php _e("The basic Width of one Thumbnail Container.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Container Width", REVSLIDER_TEXTDOMAIN);?></span>
 										<input type="text" class="text-sidebar withlabel" id="thumb_width" name="thumb_width" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "thumb_width", "100");?>">
 										<span><?php _e("px", REVSLIDER_TEXTDOMAIN);?></span>
 										<div class="clear"></div>
 
-										<span id="label_thumb_height" class="label"  origtitle="<?php _e("The basic Height of one Thumbnail.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Thumb Height", REVSLIDER_TEXTDOMAIN);?></span>
+										<span id="label_thumb_height" class="label"  origtitle="<?php _e("The basic Height of one Thumbnail.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Container Height", REVSLIDER_TEXTDOMAIN);?></span>
 										<input type="text" class="text-sidebar withlabel" id="thumb_height" name="thumb_height" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "thumb_height", "50");?>">
 										<span><?php _e("px", REVSLIDER_TEXTDOMAIN);?></span>
 										<div class="clear"></div>
 
-										<span id="label_thumb_width_min" class="label"  origtitle="<?php _e("The minimum width of the auto resized thumbs. Between Max and Min width the sizes are auto calculated).", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Min Thumb Width", REVSLIDER_TEXTDOMAIN);?></span>
+										<span id="label_thumb_width_min" class="label"  origtitle="<?php _e("The minimum width of the auto resized thumbs. Between Max and Min width the sizes are auto calculated).", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Min Container Width", REVSLIDER_TEXTDOMAIN);?></span>
 										<input type="text" class="text-sidebar withlabel" id="thumb_width_min" name="thumb_width_min" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "thumb_width_min", "100");?>">
 										<span><?php _e("px", REVSLIDER_TEXTDOMAIN);?></span>
 										<div class="clear"></div>
@@ -3087,6 +3124,23 @@ if (isset($linksEditSlides)) {
 									<div class="clear"></div>
 
 								</div><!-- END KEYBOARD NAVIGATION -->
+								
+								<!-- PREVIEW IMAGE SIZES -->									
+								<div id="navigation-miniimagedimensions" style="border-top:1px solid #f1f1f1; margin:20px -20px 0px; padding:0px 20px">
+									<h4><?php _e("Preview Image Size", REVSLIDER_TEXTDOMAIN);?></h4>
+
+									<span id="label_previewimage_width" class="label"  origtitle="<?php _e("The basic Width of one Preview Image.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Preview Image Width", REVSLIDER_TEXTDOMAIN);?></span>
+									<input type="text" class="text-sidebar withlabel" id="previewimage_width" name="previewimage_width" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "previewimage_width", RevSliderFunctions::getVal($arrFieldsParams, "thumb_width", 100));?>">
+									<span><?php _e("px", REVSLIDER_TEXTDOMAIN);?></span>
+									<div class="clear"></div>
+
+									<span id="label_previewimage_height" class="label"  origtitle="<?php _e("The basic Height of one Preview Image.", REVSLIDER_TEXTDOMAIN);?>"><?php _e("Preview Image Height", REVSLIDER_TEXTDOMAIN);?></span>
+									<input type="text" class="text-sidebar withlabel" id="previewimage_height" name="previewimage_height" value="<?php echo RevSliderFunctions::getVal($arrFieldsParams, "previewimage_height", RevSliderFunctions::getVal($arrFieldsParams, "thumb_height", 50));?>">
+									<span><?php _e("px", REVSLIDER_TEXTDOMAIN);?></span>
+									<div class="clear"></div>
+									
+									<div class="clear"></div>
+								</div>
 							</div>
 							<script>
 								jQuery('#navigation-settings-wrapper input, #navigation-settings-wrapper select').on("change",drawToolBarPreview);
@@ -3687,8 +3741,23 @@ if (isset($linksEditSlides)) {
 						</script>
 					</div>
 
+					<div class="setting_box rs-cm-refresh">
+						<h3 class="box_closed"><i class="rs-rp-accordion-icon eg-icon-font"></i>
+							<div class="setting_box-arrow"></div>
+							<span><?php _e('Google Fonts', REVSLIDER_TEXTDOMAIN);?></span>
+						</h3>
+						<div class="inside" style="display:none">
+							<div id="rs-google-fonts">
+							
+							</div>
+							<p><a class="button-primary revblue" id="add_new_google_font" original-title=""><i class="revicon-cog"></i><?php _e('Add New Font', REVSLIDER_TEXTDOMAIN); ?></a></p>
+							<i style="font-size:10px;color:#777"><?php _e('Copy the Google Font Family from <a href="http://www.google.com/fonts" target="_blank">http://www.google.com/fonts</a> like: <strong>Open+Sans:400,700,600</strong>', REVSLIDER_TEXTDOMAIN); ?></i>
+						</div>
+					</div>
 
-					<!-- IMPORT / EXPORT SETTINGS -->
+				</form>
+			
+				<!-- IMPORT / EXPORT SETTINGS -->
 				<?php
 				if ($is_edit) {
 					?>
@@ -3705,10 +3774,10 @@ if (isset($linksEditSlides)) {
 							</ul>
 
 							<div id="import-import">
-								<form action="<?php echo RevSliderBase::$url_ajax?>" enctype="multipart/form-data" method="post">
+								<form name="import_slider_form" id="rs_import_slider_form" action="<?php echo RevSliderBase::$url_ajax; ?>" enctype="multipart/form-data" method="post">
 									<input type="hidden" name="action" value="revslider_ajax_action">
 									<input type="hidden" name="client_action" value="import_slider">
-									<input type="hidden" name="sliderid" value="<?php echo $sliderID;?>">
+									<input type="hidden" name="sliderid" value="<?php echo $sliderID; ?>">
 									<input type="hidden" name="nonce" value="<?php echo wp_create_nonce("revslider_actions");?>">
 									<input type="file" name="import_file" class="input_import_slider" style="width:100%; font-size:12px;">
 									<div style="width:100%;height:25px"></div>
@@ -3725,7 +3794,7 @@ if (isset($linksEditSlides)) {
 									<div class="tp-clearfix"></div>
 
 									<div class="divide5"></div>
-									<input type="submit" style="width:100%" class='button-primary revgreen' value="<?php _e('Import Slider', REVSLIDER_TEXTDOMAIN); ?>">
+									<input type="submit" style="width:100%" class="button-primary revgreen" id="rs-submit-import-form" value="<?php _e('Import Slider', REVSLIDER_TEXTDOMAIN); ?>">
 								</form>
 								<div class="divide20"></div>
 								<div class="revred api-desc" style="padding:8px;color:#fff;font-weight:600;font-size:12px"><?php _e("Note! Style templates will be updated if they exist. Importing slider, will delete all the current slider settings and slides and replacing it with the imported content.", REVSLIDER_TEXTDOMAIN)?></div>
@@ -3733,9 +3802,7 @@ if (isset($linksEditSlides)) {
 							</div>
 
 							<div id="import-export" style="display:none">
-
 								<a id="button_export_slider" class='button-primary revgreen' href='javascript:void(0)' style="width:100%;text-align:center;" ><?php _e("Export Slider", REVSLIDER_TEXTDOMAIN)?></a> <div style="display: none;"><input type="checkbox" name="export_dummy_images"> <?php _e("Export with Dummy Images", REVSLIDER_TEXTDOMAIN)?></div>
-
 							</div>
 
 							<div id="import-replace" style="display:none">
@@ -3916,25 +3983,7 @@ if (isset($linksEditSlides)) {
 						</div>
 						<?php
 }?>	<!-- END OF API SETTINGS -->
-				
-				
-					<div class="setting_box rs-cm-refresh">
-						<h3 class="box_closed"><i class="rs-rp-accordion-icon eg-icon-font"></i>
-							<div class="setting_box-arrow"></div>
-							<span><?php _e('Google Fonts', REVSLIDER_TEXTDOMAIN);?></span>
-						</h3>
-						<div class="inside" style="display:none">
-							<div id="rs-google-fonts">
-							
-							</div>
-							<p><a class="button-primary revblue" id="add_new_google_font" original-title=""><i class="revicon-cog"></i><?php _e('Add New Font', REVSLIDER_TEXTDOMAIN); ?></a></p>
-							<i style="font-size:10px;color:#777"><?php _e('Copy the Google Font Family from <a href="http://www.google.com/fonts" target="_blank">http://www.google.com/fonts</a> like: <strong>Open+Sans:400,700,600</strong>', REVSLIDER_TEXTDOMAIN); ?></i>
-						</div>
-					</div>
-
 				</div>
-
-			</form>
 
 			<!-- THE TOOLBAR FUN -->
 			<div id="form_toolbar">
@@ -4434,12 +4483,7 @@ if (isset($linksEditSlides)) {
 		<span id="loader_update_t" class="loader_round" style="display:none;background-color:#27AE60 !important; color:#fff;padding: 5px 5px 6px 25px;margin-right: 5px;"><?php _e("updating...", REVSLIDER_TEXTDOMAIN);?> </span>
 		<span id="update_slider_success_t" class="success_message"></span>
 	</div>
-	<div class="rs-toolbar-delete">
-		<a class='button-primary revred' id="button_delete_slider_t"  href='javascript:void(0)' ><i class="revicon-trash"></i><?php _e("Delete Slider", REVSLIDER_TEXTDOMAIN);?></a>
-	</div>
-	<div class="rs-toolbar-close">
-		<a class='button-primary revyellow' id="button_close_slider_edit_t" href='<?php echo self::getViewUrl("sliders");?>'><i class="revicon-cancel"></i><?php _e("Close", REVSLIDER_TEXTDOMAIN);?></a>
-	</div>
+	
 	<?php
 if (isset($linksEditSlides)) {
 	?>
@@ -4451,6 +4495,12 @@ if (isset($linksEditSlides)) {
 ?>
 	<div class="rs-toolbar-preview">
 		<a class="button-primary revgray" href="javascript:void(0)"  id="button_preview_slider_t" ><i class="revicon-search-1"></i><?php _e("Preview", REVSLIDER_TEXTDOMAIN);?></a>
+	</div>
+	<div class="rs-toolbar-delete">
+		<a class='button-primary revred' id="button_delete_slider_t"  href='javascript:void(0)' ><i class="revicon-trash"></i><?php _e("Delete Slider", REVSLIDER_TEXTDOMAIN);?></a>
+	</div>
+	<div class="rs-toolbar-close">
+		<a class='button-primary revyellow' id="button_close_slider_edit_t" href='<?php echo self::getViewUrl("sliders");?>'><i class="eg-icon-th-large"></i><?php _e("All Sliders", REVSLIDER_TEXTDOMAIN);?></a>
 	</div>
 </div>
 

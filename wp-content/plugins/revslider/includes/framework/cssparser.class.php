@@ -141,6 +141,14 @@ class RevSliderCssParser{
 			'border-color' => 'border-transparency'
 		);
 		
+		$check_parameters = array(
+			'border-width' => 'px',
+			'border-radius' => 'px',
+			'padding' => 'px',
+			'font-size' => 'px',
+			'line-height' => 'px'
+		);
+		
 		foreach($cssArray as $id => $attr){
 			$stripped = '';
 			if(strpos($attr['handle'], '.tp-caption') !== false){
@@ -165,6 +173,10 @@ class RevSliderCssParser{
 								$style = RevSliderFunctions::hex2rgba($style, $styles[$transparency[$name]] * 100);
 							}
 						}
+						if(!is_array($name) && isset($check_parameters[$name])){
+							$style = RevSliderFunctions::add_missing_val($style, $check_parameters[$name]);
+						}
+						
 						
 						if(is_array($style)) $style = implode(' ', $style);
 						$css.= $name.':'.$style.";".$nl;
@@ -182,7 +194,7 @@ class RevSliderCssParser{
 			
 			//add hover
 			$setting = json_decode($attr['settings'], true);
-			if(@$setting['hover'] == 'true'){
+			if(isset($setting['hover']) && $setting['hover'] == 'true'){
 				$hover = json_decode(str_replace("'", '"', $attr['hover']), true);
 				$hover_adv = $attr['advanced']['hover'];
 				
@@ -198,6 +210,9 @@ class RevSliderCssParser{
 								if(isset($hover[$transparency[$name]]) && $style !== 'transparent'){
 									$style = RevSliderFunctions::hex2rgba($style, $hover[$transparency[$name]] * 100);
 								}
+							}
+							if(!is_array($name) && isset($check_parameters[$name])){
+								$style = RevSliderFunctions::add_missing_val($style, $check_parameters[$name]);
 							}
 							
 							if(is_array($style)) $style = implode(' ', $style);
@@ -253,7 +268,7 @@ class RevSliderCssParser{
 			
 			//add hover
 			$setting = (array)$attr['settings'];
-			if(@$setting['hover'] == 'true'){
+			if(isset($setting['hover']) && $setting['hover'] == 'true'){
 				$hover = (array)$attr['hover'];
 				if($adv && isset($advanced['hover'])){
 					$styles = array_merge($styles, (array)$advanced['hover']);

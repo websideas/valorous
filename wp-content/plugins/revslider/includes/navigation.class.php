@@ -126,6 +126,8 @@ class RevSliderNavigation {
 		
 		if(isset($data['default']) && $data['default'] == true) return false;
 		
+		if(!isset($data['settings'])) $data['settings'] = '';
+		
 		if($nav_id > 0){
 			$response = $wpdb->update($wpdb->prefix.RevSliderGlobals::TABLE_NAVIGATION_NAME,
 				array(
@@ -133,12 +135,13 @@ class RevSliderNavigation {
 					'handle' => sanitize_title($data['name']),
 					'markup' => json_encode($data['markup']),
 					'css' => json_encode($data['css']),
-					'settings' => json_encode(@$data['settings'])
+					'settings' => json_encode($data['settings'])
 				),
 				array('id' => $nav_id)
 			);
 		}else{
-			$response = $wpdb->insert($wpdb->prefix.RevSliderGlobals::TABLE_NAVIGATION_NAME, array('name' => $data['name'], 'handle' => sanitize_title($data['name']), 'css' => json_encode($data['css']), 'markup' => json_encode($data['markup']), 'settings' => json_encode(@$data['settings'])));
+			if(!isset($data['settings'])) $data['settings'] = '';
+			$response = $wpdb->insert($wpdb->prefix.RevSliderGlobals::TABLE_NAVIGATION_NAME, array('name' => $data['name'], 'handle' => sanitize_title($data['name']), 'css' => json_encode($data['css']), 'markup' => json_encode($data['markup']), 'settings' => json_encode($data['settings'])));
 		}
 		
 		return $response;

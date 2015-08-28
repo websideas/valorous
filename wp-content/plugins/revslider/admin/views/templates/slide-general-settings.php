@@ -203,6 +203,12 @@
 					</span>
 				</span>
 				<span id="mainbg-sub-setting" style="display:none">
+					<div class="rs-img-source-url">
+						<div style="float:none; clear:both; margin-bottom: 15px;"></div>
+						<label><?php _e('Image Source:', REVSLIDER_TEXTDOMAIN); ?></label>
+						<span class="text-selectable" id="the_image_source_url" style="margin-right:20px"></span>
+					</div>
+
 					<div class="rs-img-source-size">
 						<div style="float:none; clear:both; margin-bottom: 15px;"></div>
 						<label><?php _e('Image Source Size:', REVSLIDER_TEXTDOMAIN); ?></label>

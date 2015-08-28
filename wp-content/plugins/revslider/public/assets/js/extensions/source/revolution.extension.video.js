@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - VIDEO FUNCTIONS
- * @version: 1.0.1 (11.08.2015)
+ * @version: 1.0.2 (19.08.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -208,7 +208,7 @@ jQuery.extend(true,_R, {
 			var before = document.getElementsByTagName("script")[0],
 				loadit = true;
 			jQuery('head').find('*').each(function(){
-				if (jQuery(this).attr('src') == "htps://www.youtube.com/iframe_api")
+				if (jQuery(this).attr('src') == "https://www.youtube.com/iframe_api")
 				   loadit = false;
 			});
 			if (loadit) before.parentNode.insertBefore(s, before);

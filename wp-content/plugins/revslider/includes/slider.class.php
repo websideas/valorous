@@ -918,16 +918,16 @@ class RevSliderSlider extends RevSliderElementsBase{
 				$zip = new ZipArchive;
 				$importZip = $zip->open($filepath, ZIPARCHIVE::CREATE);
 				
-			}
-			
-			// Added by ThemeFuzz ( Stefan )
-			if ( $importZip === 0 || !$zip->getStream('slider_export.txt') ) {
-				if(!$zip->getStream('slider_export.txt')){
-					$upload_dir = wp_upload_dir();
-					$new_path =  $upload_dir['basedir'].'/'.$_FILES['import_file']['name'];
-					move_uploaded_file( $_FILES["import_file"]["tmp_name"], $new_path);
-					$importZip = $zip->open( $new_path, ZIPARCHIVE::CREATE);
+				// Added by ThemeFuzz ( Stefan )
+				if ( $importZip === 0 || !$zip->getStream('slider_export.txt') ) {
+					if(!$zip->getStream('slider_export.txt')){
+						$upload_dir = wp_upload_dir();
+						$new_path =  $upload_dir['basedir'].'/'.$_FILES['import_file']['name'];
+						move_uploaded_file( $_FILES["import_file"]["tmp_name"], $new_path);
+						$importZip = $zip->open( $new_path, ZIPARCHIVE::CREATE);
+					}
 				}
+				
 			}
 			
 			if($is_template !== false && $importZip !== true){
@@ -1169,7 +1169,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 			foreach($arrSlides as $sl_key => $slide){
 				$params = $slide["params"];
 				$layers = $slide["layers"];
-				$settings = @$slide["settings"];
+				$settings = (isset($slide["settings"])) ? $slide["settings"] : '';
 				
 				//convert params images:
 				if($importZip === true){ //we have a zip, check if exists
@@ -1375,7 +1375,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 					
 					$params = $slide["params"];
 					$layers = $slide["layers"];
-					$settings = @$slide["settings"];
+					$settings = (isset($slide["settings"])) ? $slide["settings"] : '';
 					
 					
 					//convert params images:
@@ -1537,11 +1537,11 @@ class RevSliderSlider extends RevSliderElementsBase{
 			$cus_js = $c_slider->getParam('custom_javascript', '');
 			
 			if(strpos($cus_js, 'revapi') !== false){
-				if(preg_match_all('/revapi[0-9]*./', $cus_js, $results)){
-					
+				if(preg_match_all('/revapi[0-9]*/', $cus_js, $results)){
+
 					if(isset($results[0]) && !empty($results[0])){
 						foreach($results[0] as $replace){
-							$cus_js = str_replace($replace, 'revapi'.$sliderID.'.', $cus_js);
+							$cus_js = str_replace($replace, 'revapi'.$sliderID, $cus_js);
 						}
 					}
 					
@@ -1941,14 +1941,15 @@ class RevSliderSlider extends RevSliderElementsBase{
 		switch($sourceType){
 			case "facebook":
 				$facebook = new RevSliderFacebook($this->getParam('facebook-transient','1200'));
-				if($this->getParam('facebook-type-source','timeline') == "album"){
-					$arrPosts = $facebook->get_photo_set_photos($this->getParam('facebook-album'),$this->getParam('facebook-count',10),$this->getParam('facebook-app-id'),$this->getParam('facebook-app-secret'));
-				}else{
+				//removed due album not working properly, will be added later on again
+				//if($this->getParam('facebook-type-source','timeline') == "album"){
+				//	$arrPosts = $facebook->get_photo_set_photos($this->getParam('facebook-album'),$this->getParam('facebook-count',10),$this->getParam('facebook-app-id'),$this->getParam('facebook-app-secret'));
+				//}else{
 					$user_id = $facebook->get_user_from_url($this->getParam('facebook-page-url'));
 					$arrPosts = $facebook->get_photo_feed($user_id,$this->getParam('facebook-app-id'),$this->getParam('facebook-app-secret'),$this->getParam('facebook-count',10));
-					$additions['fb_type'] = $this->getParam('facebook-type-source','timeline');
+					$additions['fb_type'] = 'timeline'; //SET TEMPORARY TO TIMELINE ALWAYS $this->getParam('facebook-type-source','timeline');
 					$additions['fb_user_id'] = $user_id;
-				}
+				//}
 				if(!empty($arrPosts)){
 					foreach($arrPosts as $k => $p){
 						if(!isset($p->status_type)) continue;
@@ -2167,7 +2168,7 @@ class RevSliderSlider extends RevSliderElementsBase{
 		
 		if(RevSliderWpml::isWpmlExists()){
 			global $sitepress;
-			
+			$cur_lang = ICL_LANGUAGE_CODE;
 			$sitepress->switch_lang($lang);
 		}
 		
@@ -2178,7 +2179,12 @@ class RevSliderSlider extends RevSliderElementsBase{
 		}else{
 			$arrParentSlides = $this->getSlides($publishedOnly);
 		}
-
+		
+		if(RevSliderWpml::isWpmlExists()){ //switch language back
+			global $sitepress;
+			$sitepress->switch_lang($cur_lang);
+		}
+		
 		if($lang == 'all' || $isSlidesFromPosts || $isSlidesFromStream)
 			return($arrParentSlides);
 		
@@ -2448,7 +2454,26 @@ class RevSliderSlider extends RevSliderElementsBase{
 		}
 		
 		return($arrAliases);
-	}		
+	}
+
+	/**
+	 * get array of alias
+	 */
+	public function getAllSliderForAdminMenu(){
+		$arrSliders = $this->getArrSliders();
+		$arrShort = array();
+		if(!empty($arrSliders)){
+			foreach($arrSliders as $slider){
+				$id = $slider->getID();
+				$title = $slider->getTitle();
+				$alias = $slider->getAlias();
+				
+				$arrShort[$id] = array('title' => $title, 'alias' => $alias);
+			}
+		}
+		
+		return($arrShort);
+	}	
 	
 	
 	/**

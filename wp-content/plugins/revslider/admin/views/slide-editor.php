@@ -309,22 +309,19 @@ require self::getPathTemplate('template-selector');
 <div class="wrap settings_wrap">
 	<div class="clear_both"></div>
 
-	<div class="title_line">
-		<div id="icon-options-general" class="icon32"></div>
-		<div class="view_title">
-			<?php _e('Slider:', REVSLIDER_TEXTDOMAIN); echo ' '.$slider->getParam("title",""); ?>,
-			<?php
-			if($sliderTemplate == "true"){
-				_e("Edit Template Slide",REVSLIDER_TEXTDOMAIN);
-			}else{
-				_e("Edit Slide",REVSLIDER_TEXTDOMAIN);
-			}
-			?> <?php echo $slideOrder?>, <?php _e("Title:",REVSLIDER_TEXTDOMAIN); ?> <?php echo $slideTitle; ?>
-		</div>
-
+	<div class="title_line" style="margin-bottom:0px !important;">
+		<div id="icon-options-general" class="icon32"></div>		
 		<a href="<?php echo RevSliderGlobals::LINK_HELP_SLIDE; ?>" class="button-primary float_right revblue mtop_10 mleft_10" target="_blank"><?php _e("Help",REVSLIDER_TEXTDOMAIN); ?></a>
 
 	</div>
+
+	<div class="rs_breadcrumbs">
+		<a class='breadcrumb-button' href='<?php echo self::getViewUrl("sliders");?>'><i class="eg-icon-th-large"></i><?php _e("All Sliders", REVSLIDER_TEXTDOMAIN);?></a>
+		<a class='breadcrumb-button' href="<?php echo self::getViewUrl(RevSliderAdmin::VIEW_SLIDER,"id=$sliderID"); ?>"><i class="eg-icon-cog"></i><?php _e('Slider Settings', REVSLIDER_TEXTDOMAIN);?></a>
+		<a class='breadcrumb-button selected' href="#"><i class="eg-icon-pencil-2"></i><?php _e('Slide Editor ', REVSLIDER_TEXTDOMAIN);?>"<?php echo ' '.$slider->getParam("title",""); ?>"</a>
+		<div class="tp-clearfix"></div>
+	</div>
+
 
 	<?php
 	require self::getPathTemplate('slide-selector');
@@ -725,7 +722,6 @@ require self::getPathTemplate('template-selector');
 
 					border:false,
 				    change:function(event,ui) {
-				    	console.log(jQuery(event.target).attr('name'));
 				    	switch (jQuery(event.target).attr('name')) {
 							case "adbutton-color-1":
 							case "adbutton-color-2":
@@ -740,7 +736,6 @@ require self::getPathTemplate('template-selector');
 							break;
 							case "bg_color":
 								var bgColor = jQuery("#slide_bg_color").val();
-								console.log(bgColor);
 								jQuery("#divbgholder").css("background-color",bgColor);
 								jQuery('.slotholder .tp-bgimg.defaultimg').css({backgroundColor:bgColor});
 							break;
@@ -876,13 +871,15 @@ require self::getPathTemplate('template-selector');
 		$prevbtn = "button_preview_slider-tb";
 	}
 	?>
+	<div class="rs-toolbar-savebtn">
+		<a class='button-primary revgreen' href='javascript:void(0)' id="<?php echo $savebtnid; ?>" ><i class="rs-icon-save-light" style="display: inline-block;vertical-align: middle;width: 18px;height: 20px;background-repeat: no-repeat;"></i><?php _e("Save Slide",REVSLIDER_TEXTDOMAIN); ?></a>
+	</div>
+	
 	<div class="rs-toolbar-cssbtn">
 		<a class='button-primary revpurple' href='javascript:void(0)' id='button_edit_css_global'><i class="">&lt;/&gt;</i><?php _e("CSS Global",REVSLIDER_TEXTDOMAIN); ?></a>
 	</div>
 
-	<div class="rs-toolbar-savebtn">
-		<a class='button-primary revgreen' href='javascript:void(0)' id="<?php echo $savebtnid; ?>" ><i class="rs-icon-save-light" style="display: inline-block;vertical-align: middle;width: 18px;height: 20px;background-repeat: no-repeat;"></i><?php _e("Save Slide",REVSLIDER_TEXTDOMAIN); ?></a>
-	</div>
+
 	<div class="rs-toolbar-slides">
 		<?php
 		$slider_url = ($sliderTemplate == 'true') ? RevSliderAdmin::VIEW_SLIDER_TEMPLATE : RevSliderAdmin::VIEW_SLIDER;

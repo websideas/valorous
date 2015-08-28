@@ -13,6 +13,18 @@ $rsop = new RevSliderOperations();
 $glval = $rsop->getGeneralSettingsValues();
 ?>
 
+<?php
+$waitstyle = '';
+if(isset($_REQUEST['update_shop'])){
+	$waitstyle = 'display:block';
+}
+?>
+
+<div id="waitaminute" style="<?php echo $waitstyle; ?>">
+	<div class="waitaminute-message"><i class="eg-icon-emo-coffee"></i><br><?php _e("Please Wait...",REVSLIDER_TEXTDOMAIN); ?></div>
+</div>
+
+
 <script type="text/javascript">
 	var g_revNonce = "<?php echo $nonce; ?>";
 	var g_uniteDirPlugin = "revslider";
@@ -49,10 +61,22 @@ $glval = $rsop->getGeneralSettingsValues();
 <div class="tp-plugin-version">
 	<span style="margin-right:15px">&copy; All rights reserved, <a href="http://www.themepunch.com" target="_blank">ThemePunch</a>  ver. <?php echo $revSliderVersion; ?></span>
 </div>
-
-
-<div id="waitaminute">
-	<div class="waitaminute-message"><?php _e("Please Wait...",REVSLIDER_TEXTDOMAIN); ?></div>
+<?php
+/*
+<script type="text/javascript">
+	<span class="rs-shop">SHOP</span>
+	jQuery(document).ready(function(){
+		jQuery('.rs-shop').click(function(){
+			
+		});
+	});
+</script>
+*/
+?>
+<div id="rs-shop-overview">
+	<?php
+	$shop_data = get_option('tp-shop');
+	?>
 </div>
 
 <div id="rs-preview-wrapper" style="display: none;">
@@ -91,7 +115,11 @@ $glval = $rsop->getGeneralSettingsValues();
 </div>
 
 <script type="text/javascript">
-    
+    <?php
+	$validated = get_option('revslider-valid', 'false');
+	?>
+	rs_plugin_validated = <?php echo ($validated == 'true') ? 'true' : 'false'; ?>;
+	
     jQuery('body').on('click','.rs-preview-device_selector_prev', function() {
     	var btn = jQuery(this);
     	jQuery('.rs-preview-device_selector_prev.selected').removeClass("selected");    	
@@ -105,12 +133,13 @@ $glval = $rsop->getGeneralSettingsValues();
 
     jQuery(window).resize(function() {
     	var ww = jQuery(window).width();
-    	jQuery.each(global_grid_sizes,function(key,val) {    		
-    		if (ww<=parseInt(val,0)) {
-    			jQuery('.rs-preview-device_selector_prev.selected').removeClass("selected");
-    			jQuery('.rs-preview-device_selector_prev[data-type="'+key+'"]').addClass("selected");
-    		}
-    	})
+    	if (global_grid_sizes)
+	    	jQuery.each(global_grid_sizes,function(key,val) {    		
+	    		if (ww<=parseInt(val,0)) {
+	    			jQuery('.rs-preview-device_selector_prev.selected').removeClass("selected");
+	    			jQuery('.rs-preview-device_selector_prev[data-type="'+key+'"]').addClass("selected");
+	    		}
+	    	})
     })
 
 	/* SHOW A WAIT FOR PROGRESS */

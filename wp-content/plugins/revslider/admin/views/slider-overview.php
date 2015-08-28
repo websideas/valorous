@@ -280,7 +280,7 @@ $stable_version = get_option('revslider-stable-version', '4.1');
 			</tr>
 		</table>
 		<br><br>
-		<input type="submit" class="button-primary revblue tp-be-button" value="<?php _e("Import Slider",REVSLIDER_TEXTDOMAIN); ?>">
+		<input type="submit" class="button-primary revblue tp-be-button rev-import-slider-button" style="display: none;" value="<?php _e("Import Slider",REVSLIDER_TEXTDOMAIN); ?>">
 	</form>
 </div>
 

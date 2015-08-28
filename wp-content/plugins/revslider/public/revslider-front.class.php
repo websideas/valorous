@@ -95,8 +95,10 @@ class RevSliderFront extends RevSliderBaseFront{
 			
 		}else{
 			//put javascript to footer
+
 			add_action('wp_footer', array('RevSliderFront', 'putJavascript'));
 		}
+
 		
 		add_action('wp_head', array('RevSliderFront', 'add_meta_generator'));
 		add_action("wp_footer", array('RevSliderFront',"load_icon_fonts") );
@@ -104,6 +106,86 @@ class RevSliderFront extends RevSliderBaseFront{
 		// Async JS Loading
 		$js_defer = RevSliderBase::getVar($arrValues, 'js_defer', 'off');
 		if($js_defer!='off') add_filter('clean_url', array('RevSliderFront', 'add_defer_forscript'), 11, 1);
+		
+		add_action('wp_before_admin_bar_render', array('RevSliderFront', 'add_admin_menu_nodes'));
+		add_action('wp_footer', array('RevSliderFront', 'putAdminBarMenus'));
+	}
+	
+	/**
+	 * add admin menu points in ToolBar Top
+	 * @since: 5.0.5
+	 */
+	public static function putAdminBarMenus () {
+		if(!is_super_admin() || !is_admin_bar_showing()) return;
+		
+		?>
+		<script>	
+			jQuery(document).ready(function() {			
+				if (jQuery('#wp-admin-bar-revslider-default').length>0 && jQuery('.rev_slider_wrapper').length>0) {					
+					var aliases = new Array();
+					jQuery('.rev_slider_wrapper').each(function() {
+						aliases.push(jQuery(this).data('alias'));
+					});					
+					jQuery('#wp-admin-bar-revslider-default li').each(function() {
+						var li = jQuery(this),
+							t = jQuery.trim(li.find('.ab-item .rs-label').data('alias')); //text()
+							
+						if (jQuery.inArray(t,aliases)!=-1) {							
+						} else {
+							li.remove();							
+						}
+					});					
+					
+				}
+			});
+		</script>
+		<?php 	
+	}
+	
+	/**
+	 * add admin nodes
+	 * @since: 5.0.5
+	 */
+	public static function add_admin_menu_nodes(){
+		if(!is_super_admin() || !is_admin_bar_showing()) return;
+		
+		self::_add_node('<span class="rs-label">Slider Revolution</span>', false, admin_url('admin.php?page=revslider'), array('class' => 'revslider-menu' ), 'revslider'); //<span class="wp-menu-image dashicons-before dashicons-update"></span>
+		
+		//add all nodes of all Slider
+		$sl = new RevSliderSlider();
+		$sliders = $sl->getAllSliderForAdminMenu();
+		
+		if(!empty($sliders)){
+			foreach($sliders as $id => $slider){
+				self::_add_node('<span class="rs-label" data-alias="'.esc_attr($slider['alias']).'">'.esc_attr($slider['title']).'</span>', 'revslider', admin_url('admin.php?page=revslider&view=slide&id=new&slider='.intval($id)), array('class' => 'revslider-sub-menu' ), esc_attr($slider['alias'])); //<span class="wp-menu-image dashicons-before dashicons-update"></span>
+			}
+		}
+		
+	}
+	
+	
+	/**
+	 * add admin node
+	 * @since: 5.0.5
+	 */
+	public static function _add_node($title, $parent = false, $href = '', $custom_meta = array(), $id = ''){
+		global $wp_admin_bar;
+		
+		if(!is_super_admin() || !is_admin_bar_showing()) return;
+		
+		if($id == '') $id = strtolower(str_replace(' ', '-', $title));
+
+		// links from the current host will open in the current window
+		$meta = strpos( $href, site_url() ) !== false ? array() : array( 'target' => '_blank' ); // external links open in new tab/window
+		$meta = array_merge( $meta, $custom_meta );
+
+		$wp_admin_bar->add_node(array(
+			'parent' => $parent,
+			'id'     => $id,
+			'title'  => $title,
+			'href'   => $href,
+			'meta'   => $meta,
+		));
 	}
 	
 	
@@ -389,7 +471,7 @@ class RevSliderFront extends RevSliderBaseFront{
 	 * 
 	 * javascript output to footer
 	 */
-	public function putJavascript(){
+	public static function putJavascript(){
 		$urlPlugin = RS_PLUGIN_URL."public/assets/";
 		
 		$operations = new RevSliderOperations();

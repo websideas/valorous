@@ -72,7 +72,7 @@ if($the_slidertype == 'hero'){
 								foreach($all_slides as $c_slide){
 									$c_params = $c_slide->getParams();
 									?>
-									<option value="<?php echo $c_slide->getID(); ?>"><?php echo RevSliderFunctions::getVal($c_params, 'title', 'Slide').' (ID: '.$c_slide->getID().')'; ?></option>
+									<option value="<?php echo $c_slide->getID(); ?>"><?php echo stripslashes(RevSliderFunctions::getVal($c_params, 'title', 'Slide')).' (ID: '.$c_slide->getID().')'; ?></option>
 									<?php
 								}
 								?>
@@ -217,7 +217,7 @@ if($the_slidertype == 'hero'){
 					<div class="slide-link-content">		
 						<span class="slide-link">
 							<span class="slide-link-nr">#<?php echo $slidecounter; ?></span>
-							<input class="slidetitleinput" name="slidetitle" value="<?php echo $title; ?>" />
+							<input class="slidetitleinput" name="slidetitle" value="<?php echo stripslashes($title); ?>" />
 							<span class="slidelint-edit-button"></span>
 						</span>						
 						<div class="slide-link-toolbar">							
@@ -303,6 +303,26 @@ if($the_slidertype == 'hero'){
 			}
 		});
 		
+		jQuery('.slidetitleinput').on("change",function() {
+			var titleinp = jQuery(this),
+				slide_title = titleinp.val(),
+				slide_id = jQuery(this).closest('li').attr('id').replace('slidelist_item_', '');
+			
+			oldslidetitle = slide_title;
+			titleinp.blur();
+			if(UniteAdminRev.sanitize_input(slide_title) == ''){
+				alert('<?php _e('Slide name should not be empty', REVSLIDER_TEXTDOMAIN); ?>');
+				return false;
+			}
+			
+			var data = {slideID:slide_id,slideTitle:slide_title};
+			
+			UniteAdminRev.ajaxRequest('change_slide_title', data, function(response){});
+			
+			if(jQuery(this).closest('li').hasClass('selected')){ //set input field to new value
+				jQuery('input[name="title"]').val(slide_title);
+			}
+		})
 		
 		jQuery('.slidelint-edit-button').click(function() {
 			var titleinp = jQuery(this).siblings('.slidetitleinput'),
@@ -333,4 +353,6 @@ if($the_slidertype == 'hero'){
 		});
 
 	});
+	
+	
 </script>

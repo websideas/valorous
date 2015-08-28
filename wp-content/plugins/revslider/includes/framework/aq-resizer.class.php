@@ -87,7 +87,7 @@ if(!class_exists('Rev_Aq_Resize')) {
             $img_path = $upload_dir . $rel_path;
 
             // Check if img path exists, and is an image indeed.
-            if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) ) return false;
+            if ( ! file_exists( $img_path ) or ! @getimagesize( $img_path ) ) return false;
 
             // Get image info.
             $info = pathinfo( $img_path );

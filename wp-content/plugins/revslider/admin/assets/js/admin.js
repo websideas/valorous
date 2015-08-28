@@ -526,7 +526,7 @@ var UniteAdminRev = new function(){
             //state:      'insert',
 			title : title,
 			multiple : isMultiple,
-			library : { type : 'video' },
+			library : { }, //type : 'video'
 			button : { text : 'Insert' }
 		});
 
@@ -699,6 +699,7 @@ var UniteAdminRev = new function(){
 	 * youtube callback script, set and store youtube data, and add it to dialog
 	 */
 	t.onYoutubeCallback = function(obj){
+		
 		jQuery("#youtube_loader").hide();
 		var desc_small_size = 200;
 		
@@ -1194,6 +1195,7 @@ var UniteAdminRev = new function(){
 			jQuery("#video-dialog-wrap").removeClass("html5select");
 			jQuery("#fullscreenvideofun").hide();
 			jQuery(".video-volume").show();
+			jQuery('.hide-for-vimeo').hide();
 		});
 		
 		jQuery("#video_radio_youtube").click(function(){
@@ -1207,6 +1209,7 @@ var UniteAdminRev = new function(){
 			jQuery("#video-dialog-wrap").removeClass("html5select");
 			jQuery("#fullscreenvideofun").hide();
 			jQuery(".video-volume").show();
+			jQuery('.hide-for-vimeo').show();
 		});
 		
 		jQuery("#video_radio_html5").click(function(){
@@ -1220,6 +1223,7 @@ var UniteAdminRev = new function(){
 			jQuery("#video-dialog-wrap").addClass("html5select");
 			jQuery("#fullscreenvideofun").show();
 			jQuery(".video-volume").hide();
+			jQuery('.hide-for-vimeo').show();
 		});
 		
 		
@@ -1236,6 +1240,7 @@ var UniteAdminRev = new function(){
 			jQuery('#video_dialog_tabs').removeClass('disabled');
 			jQuery('#button-video-add').show();
 			jQuery(".video-volume").show();
+			jQuery('.hide-for-vimeo').show();
 		});
 		
 		
@@ -1252,6 +1257,7 @@ var UniteAdminRev = new function(){
 			jQuery('#video_dialog_tabs').removeClass('disabled');
 			jQuery('#button-video-add').show();
 			jQuery(".video-volume").show();
+			jQuery('.hide-for-vimeo').hide();
 		});
 		
 		
@@ -1268,6 +1274,7 @@ var UniteAdminRev = new function(){
 			jQuery('#video_dialog_tabs').removeClass('disabled');
 			jQuery('#button-video-add').show();
 			jQuery(".video-volume").hide();
+			jQuery('.hide-for-vimeo').show();
 		});
 		
 		
@@ -1680,7 +1687,10 @@ var UniteAdminRev = new function(){
 
 		});
 	}
+	
+
 }
+
 
 
 //user functions:

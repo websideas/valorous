@@ -336,11 +336,16 @@ var tpLayerTimelinesRev = new function(){
 			inp.parent().append('<div class="inp-deep-list"></div>');
 			var dl = inp.parent().find('.inp-deep-list'),
 				txt = '<span class="inp-deep-listitems">',
-				list = inp.data('selects') != undefined ? inp.data('selects').split("||") : ""
+				rev = inp.data('reverse'),
+				list = inp.data('selects') != undefined ? inp.data('selects').split("||") : "",
 				vals = inp.data('svalues') != undefined ? inp.data('svalues').split("||") : "",
-				icos = inp.data('icons') != undefined ? inp.data('icons').split("||") : "";
+				icos = inp.data('icons') != undefined ? inp.data('icons').split("||") : "",
+				id = inp.attr('id');
 				
-				
+			
+			if (rev=="on") {
+				txt = txt+"<span class='reverse_input_wrapper'><span class='reverse_input_text'>Direction Auto Reverse</span><input class='reverse_input_check tp-moderncheckbox' name='"+id+"_reverse' id='"+id+"_reverse' type='checkbox'></span>";
+			}
 			if (list!==undefined && list!="") {							
 				jQuery.each(list,function(i){
 					var v = vals[i] || "",
@@ -352,6 +357,9 @@ var tpLayerTimelinesRev = new function(){
 			txt = txt + "</span>";
 			
 			dl.append(txt);
+			if (rev=="on") {
+				RevSliderSettings.onoffStatus(jQuery('input[name="'+id+'_reverse"]'));
+			}
 		})
 
 		jQuery('body').on('click','.inp-deep-prebutton',function() {
@@ -414,6 +422,7 @@ var tpLayerTimelinesRev = new function(){
 						di = jQuery('#dialog_insert_icon');
 					di.parent().css({padding:"0px", border:"none", borderRadius:"0px"});
 					di.parent().find('.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle').css({fontSize:"12px", fontWeight:"400",lineHeight:"30px"});
+					if (sheets)
 					jQuery.each(sheets,function(index,sheet) {
 						var found = false,
 							markup = "";	
@@ -2149,7 +2158,7 @@ var tpLayerTimelinesRev = new function(){
 				i = b.find('i'),
 				p = b.closest('.quicksortlayer');
 
-			if (i.hasClass("eg-icon-eye")) {
+			if (p.hasClass("sortitem-hidden")) {
 				i.removeClass("eg-icon-eye").addClass("eg-icon-eye-off");
 			} else {
 				i.removeClass("eg-icon-eye-off").addClass("eg-icon-eye");
@@ -3013,8 +3022,10 @@ var tpLayerTimelinesRev = new function(){
 			sortItem.addClass("sortitem-hidden");
 		if (sortTimeItem)
 			sortTimeItem.addClass("sortitem-hidden");
-		if (quickItem)
+		if (quickItem) {
 			quickItem.addClass("sortitem-hidden");
+			quickItem.find('.eg-icon-eye').addClass("eg-icon-eye-off").removeClass('eg-icon-eye');
+		}
 	}
 
 	/**
@@ -3028,7 +3039,7 @@ var tpLayerTimelinesRev = new function(){
 			sortItem.removeClass("sortitem-hidden");
 		if (sortTimeItem)
 			sortTimeItem.removeClass("sortitem-hidden");
-		if (quickItem)
+		if (quickItem) 
 			quickItem.removeClass("sortitem-hidden");
 	}
 
@@ -3410,6 +3421,7 @@ var tpLayerTimelinesRev = new function(){
 
 			function findTransition() {
 				// FIND THE RIGHT TRANSITION PARAMETERS HERE
+				if (transitionsArray)
 				jQuery.each(transitionsArray,function(inde,trans) {
 					if (trans[0] == comingtransition || trans[8] == comingtransition) {
 						nexttrans = trans[1];

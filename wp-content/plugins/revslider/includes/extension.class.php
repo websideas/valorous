@@ -72,9 +72,9 @@ class RevSliderExtension {
 		
 		if(isset($values['eg_sources_revslider'])){
 			if(isset($values['eg_sources_revslider'][0]))
-				$slider_source = @$values['eg_sources_revslider'][0];
+				$slider_source = (isset($values['eg_sources_revslider'][0])) ? $values['eg_sources_revslider'][0] : '';
 			else
-				$slider_source = @$values['eg_sources_revslider'];
+				$slider_source = (isset($values['eg_sources_revslider'])) ? $values['eg_sources_revslider'] : '';
 		}
 		
 		if($slider_source === ''){

@@ -491,6 +491,7 @@ span.setting_text_3 { 	color:#232323!important;	line-height:30px;	font-size:12px
 .rs-icon-rotation-end                             { 	background-image:url(../images/toolbar/icon-rotation-end.png);	background-size:37px 14px;	min-width:37px;}
 .rs-icon-edit-basic                               { 	background-image:url(../images/toolbar/tools_black.png);	background-size:18px 16px;	min-width:18px;}
 .rs-icon-desktop                                  { 	background-image:url(../images/toolbar/icon-mode-desktop-dark.png);	background-size:18px 18px;	min-width:18px;}
+.rs-icon-laptop                                  { 	background-image:url(../images/toolbar/icon-mode-laptop-dark.png);	background-size:20px 16px;	min-width:18px;}
 .rs-icon-tablet                                   { 	background-image:url(../images/toolbar/icon-mode-tablet-dark.png);	background-size:17px 20px;	min-width:17px;}
 .rs-icon-phone                                    { 	background-image:url(../images/toolbar/icon-mode-phone-dark.png);	background-size:12px 20px;	min-width:12px;}
 .rs-icon-skewx                                    { 	background-image:url(../images/toolbar/icon-skewx.png);	background-size:27px 17px;	min-width:27px;}
@@ -1493,6 +1494,8 @@ input[name="shape_padding[]"]:disabled									{	opacity: 0.5}
 
 
 
+.reverse_input_wrapper					{	border-bottom:1px solid #999;}
+.reverse_input_text						{	font-size:11px;color:#666;font-weight: 400; display: inline-block !important; margin-right:7px;}
 
 
 

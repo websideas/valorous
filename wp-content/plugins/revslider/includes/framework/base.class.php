@@ -295,15 +295,13 @@ class RevSliderBase {
 	public static function get_image_id_by_url($image_url) {
 		global $wpdb;
 		
+		$attachment_id = 0;
+		
 		if(function_exists('attachment_url_to_postid')){
-			$attachment_id = attachment_url_to_postid($image_url);
-			
-			// If there is no url, return.
-			if ( 0 == $attachment_id ){
-				return;
-			}
-			
-		}else{ //for WP < 4.0.0
+			$attachment_id = attachment_url_to_postid($image_url); //0 if failed
+		}
+		if ( 0 == $attachment_id ){ //try to get it old school way
+			//for WP < 4.0.0
 			$attachment_id = false;
 
 			// If there is no url, return.
@@ -461,7 +459,7 @@ class RevSliderBase {
 		if(count($string) >= 2){
 			$string = $string[1];
 			if(strpos($string, '&') !== false){
-				$string = expode('&', $string);
+				$string = explode('&', $string);
 				$string = $string[0];
 			}
 			

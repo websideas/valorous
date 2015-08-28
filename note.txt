@@ -86,6 +86,7 @@ Landing for homepage
     	http://marmalade.pryanik.co/
     	http://solopine.com/rosemary/
     	http://broadsword.warriorsofcode.com/?fp_style=imaged#
+    	http://bourbon.burocrate.com/
 
 	2. Categories
 		https://0.s3.envato.com/files/143399528/theme_preview/06_Blog_4col.jpg
@@ -103,6 +104,11 @@ Landing for homepage
 		http://demo.themeton.com/vcard/
 
 
+Photoshop action
+	http://utut.vn/portfolio/double-exposure-kit/
+	http://utut.vn/portfolio/action-advanced-double-exposure-video-huong-dan/
+	http://utut.vn/portfolio/action-hieu-ung-modernart-1-video-huong-dan/
+	http://utut.vn/portfolio/action-hieu-ung-modernart-1-video-huong-dan/
 
 
 Contact:

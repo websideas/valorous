@@ -910,6 +910,12 @@ var RevSliderAdmin = new function(){
 	 */
 	this.initSlidersListView = function(){
 		
+		jQuery('body').on('click', '.rs-reload-shop', function(){
+			showWaitAMinute({fadeIn:300,text:rev_lang.please_wait_a_moment});
+			
+			location.href = window.location.href+'&update_shop';
+		});
+		
 		/**
 		 * add Template Slider through Import. Check for zip name
 		 **/
@@ -918,21 +924,51 @@ var RevSliderAdmin = new function(){
 			jQuery('.rs-zip-name').text(jQuery(this).data('zipname'));
 			jQuery('.rs-uid').val(jQuery(this).data('uid'));
 			
-			jQuery("#dialog_import_template_slider").dialog({
+			//from server or from local file
+			
+			jQuery("#dialog_import_template_slider_from").dialog({
 				modal:true,
 				resizable:false,
-				width:600,
-				height:350,
-				closeOnEscape:true,
-				dialogClass:"tpdialogs",
 				buttons:{
-					"Close":function(){
+					"Local":function(){
+						jQuery(".input_import_slider").val('');
+						jQuery('.rs-import-slider-button').hide();
+						
+						jQuery("#dialog_import_template_slider").dialog({
+							modal:true,
+							resizable:false,
+							width:600,
+							height:350,
+							closeOnEscape:true,
+							dialogClass:"tpdialogs",
+							buttons:{
+								"Close":function(){
+									jQuery(this).dialog("close");
+								}
+							},
+						});	//dialog end
+						
+			
 						jQuery(this).dialog("close");
+					},
+					"Online":function(){
+						if(rs_plugin_validated){
+							//show please wait
+							showWaitAMinute({fadeIn:300,text:rev_lang.please_wait_a_moment});
+							
+							//get from server
+							jQuery('#rs-import-template-from-server').submit();
+							
+							jQuery(this).dialog("close");
+						}else{
+							alert(rev_lang.this_feature_only_if_activated);
+						}
 					}
-				},
-			});	//dialog end
+				}
+			});
 			
 			jQuery('#close-template').click();
+			
 		});
 		
 		
@@ -941,6 +977,7 @@ var RevSliderAdmin = new function(){
 		 **/
 		jQuery('body').on('click', '.template_slider_item', function(){
 			var slider_id = jQuery(this).data('sliderid');
+			
 			
 			jQuery('#dialog_duplicate_slider').dialog({
 				modal:true,
@@ -965,6 +1002,14 @@ var RevSliderAdmin = new function(){
 			});
 		});
 		
+		jQuery(".input_import_slider").change(function(){
+			if(jQuery(this).val() !== ''){
+				jQuery('.rev-import-slider-button').show();
+			}else{
+				jQuery('.rev-import-slider-button').hide();
+			}
+		});
+		
 		jQuery("#button_import_template_slider").click(function(){
 			jQuery('#template_area').addClass("show");
 			return true;
@@ -972,7 +1017,10 @@ var RevSliderAdmin = new function(){
 		
 		//import slide dialog
 		jQuery("#button_import_slider").click(function(){
-
+			jQuery('.rev-import-slider-button').hide();
+			
+			jQuery(".input_import_slider").val('');
+			
 			jQuery("#dialog_import_slider").dialog({
 				modal:true,
 				resizable:false,
@@ -1484,37 +1532,72 @@ var RevSliderAdmin = new function(){
 	 */
 	this.initEditSlideView = function(slideID,sliderID,is_static){
 		
+		jQuery('body').on('click', '.rs-reload-shop', function(){
+			if(confirm(rev_lang.unsaved_data_will_be_lost_proceed)){
+				showWaitAMinute({fadeIn:300,text:rev_lang.please_wait_a_moment});
+				
+				location.href = window.location.href+'&update_shop';
+			}
+		});
+		
 		/**
 		 * add Template Slider through Import, then add specific slide to current Slider and open it. Check for zip name
 		 **/
 		jQuery('body').on('click', '.template_slide_item_import', function(){
-			
-			//modify the dialog with some informations 
-			jQuery('.rs-zip-name').text(jQuery(this).data('zipname'));
-			jQuery('.rs-uid').val(jQuery(this).data('uid'));
-			jQuery('.rs-slide-number').val(jQuery(this).data('slidenumber'));
-			jQuery('.rs-slider-id').val(sliderID);
-			if(is_static){
-				jQuery('.rs-slide-id').val('static_'+sliderID);
-			}else{
-				jQuery('.rs-slide-id').val(slideID);
-			}
-			
-			jQuery("#dialog_import_template_slide").dialog({
-				modal:true,
-				resizable:false,
-				width:600,
-				height:350,
-				closeOnEscape:true,
-				dialogClass:"tpdialogs",
-				buttons:{
-					"Close":function(){
-						jQuery(this).dialog("close");
+			if(confirm(rev_lang.unsaved_data_will_be_lost_proceed)){
+				var data = jQuery(this).find('.template_slide_item_img');
+				
+				//modify the dialog with some informations 
+				jQuery('.rs-zip-name').text(data.data('zipname'));
+				jQuery('.rs-uid').val(data.data('uid'));
+				jQuery('.rs-slide-number').val(data.data('slidenumber'));
+				jQuery('.rs-slider-id').val(sliderID);
+				if(is_static){
+					jQuery('.rs-slide-id').val('static_'+sliderID);
+				}else{
+					jQuery('.rs-slide-id').val(slideID);
+				}
+				
+				jQuery("#dialog_import_template_slide_from").dialog({
+					modal:true,
+					resizable:false,
+					buttons:{
+						"Local":function(){
+							jQuery(".input_import_slider").val('');
+							jQuery('.rs-import-slider-button').hide();
+							
+							jQuery("#dialog_import_template_slide").dialog({
+								modal:true,
+								resizable:false,
+								width:600,
+								height:350,
+								closeOnEscape:true,
+								dialogClass:"tpdialogs",
+								buttons:{
+									"Close":function(){
+										jQuery(this).dialog("close");
+									}
+								},
+							});	//dialog end
+						},
+						"Online":function(){
+							if(rs_plugin_validated){
+								//show please wait
+								showWaitAMinute({fadeIn:300,text:rev_lang.please_wait_a_moment});
+								
+								//get from server
+								jQuery('#rs-import-slide-template-from-server').submit();
+								
+								jQuery(this).dialog("close");
+							}else{
+								alert(rev_lang.this_feature_only_if_activated);
+							}
+						}
 					}
-				},
-			});	//dialog end
-			
-			jQuery('#close-template').click();
+				});
+				
+				jQuery('#close-template').click();
+			}
 		});
 		
 		
@@ -1577,19 +1660,21 @@ var RevSliderAdmin = new function(){
 			},true);	//allow multiple selection
 		});
 		
-		jQuery('body').on('click', '.template_item', function(){
-			var data = { slider_id:sliderID };
-			
-			data['slide_id'] = jQuery(this).data('slideid');
-			if(is_static){
-				data['redirect_id'] = 'static_'+sliderID;
-			}else{
-				data['redirect_id'] = slideID; //is set in slide.php
+		jQuery('body').on('click', '.template_item', function(){			
+			if(confirm(rev_lang.unsaved_data_will_be_lost_proceed)){
+				var data = { slider_id:sliderID };
+				
+				data['slide_id'] = jQuery(this).data('slideid');
+				if(is_static){
+					data['redirect_id'] = 'static_'+sliderID;
+				}else{
+					data['redirect_id'] = slideID; //is set in slide.php
+				}
+				
+				UniteAdminRev.ajaxRequest('copy_slide_to_slider', data, function(){
+					jQuery('#close-template').click();
+				});
 			}
-			
-			UniteAdminRev.ajaxRequest('copy_slide_to_slider', data, function(){
-				jQuery('#close-template').click();
-			});
 		});
 		
 		//save slide actions
@@ -2069,8 +2154,6 @@ var RevSliderAdmin = new function(){
 			if(operation == 'delete' || operation == 'update') realSlideID = slideID;
 			
 			var data = {sliderid:sliderID,slideid:realSlideID,lang:lang,operation:operation};
-			
-			console.log(data);
 			
 			UniteAdminRev.ajaxRequest("slide_lang_operation", data,function(response){
 

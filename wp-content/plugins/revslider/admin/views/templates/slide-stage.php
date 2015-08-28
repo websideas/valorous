@@ -770,11 +770,11 @@ $startanims = $operations->getArrAnimations();
 								<span class="mask-start-settings">
 									<!-- MASK X OFFSET -->
 									<i class="rs-mini-layer-icon rs-icon-xoffset rs-toolbar-icon "  style="margin-right:8px"></i>								
-									<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_xstart" name="mask_anim_xstart" value="0" data-selects="0||Random||Custom||Stage Left||Stage Right||-100%||100%||-175%||175%" data-svalues ="0||{-50,50}||50||stage_left||stage_right||[-100%]||[100%]||[-175%]||[175%]" data-icons="minus||shuffle||wrench||right||left||filter||filter||filter||filter">
+									<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_xstart" name="mask_anim_xstart" value="0" data-reverse="on" data-selects="0||Random||Custom||Stage Left||Stage Right||-100%||100%||-175%||175%" data-svalues ="0||{-50,50}||50||stage_left||stage_right||[-100%]||[100%]||[-175%]||[175%]" data-icons="minus||shuffle||wrench||right||left||filter||filter||filter||filter">
 									<span class="rs-layer-toolbar-space"></span>
 									<!-- MASK Y OFFSET -->
 									<i class="rs-mini-layer-icon rs-icon-yoffset rs-toolbar-icon "  style="margin-right:4px"></i>
-									<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_ystart" name="mask_anim_ystart" value="0" data-selects="0||Random||Custom||Stage Top||Stage Bottom||-100%||100%||-175%||175%" data-svalues ="0||{-5,50}||50||stage_top||stage_bottom||[-100%]||[100%]||[-175%]||[175%]" data-icons="minus||shuffle||wrench||down||up||filter||filter||filter||filter">
+									<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_ystart" name="mask_anim_ystart" value="0" data-reverse="on" data-selects="0||Random||Custom||Stage Top||Stage Bottom||-100%||100%||-175%||175%" data-svalues ="0||{-5,50}||50||stage_top||stage_bottom||[-100%]||[100%]||[-175%]||[175%]" data-icons="minus||shuffle||wrench||down||up||filter||filter||filter||filter">
 									<span class="rs-layer-toolbar-space"></span>									
 								</span>					
 							</span>
@@ -783,52 +783,52 @@ $startanims = $operations->getArrAnimations();
 							<span id="anim-sub-s-offset" class="rs-layer-toolbar-box" style="border:none;">
 								<!-- X OFFSET -->
 								<i class="rs-mini-layer-icon rs-icon-xoffset rs-toolbar-icon "  style="margin-right:8px"></i>								
-								<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_xstart" name="layer_anim_xstart" value="inherit" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_xstart" name="layer_anim_xstart" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
 								<span class="rs-layer-toolbar-space"></span>
 								<!-- Y OFFSET -->
 								<i class="rs-mini-layer-icon rs-icon-yoffset rs-toolbar-icon "  style="margin-right:4px"></i>
-								<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_ystart" name="layer_anim_ystart" value="inherit" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_ystart" name="layer_anim_ystart" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
 								<span class="rs-layer-toolbar-space"></span>
 								<!-- Z OFFSET -->
 								<i class="rs-mini-layer-icon rs-icon-zoffset rs-toolbar-icon "  style="margin-right:4px"></i>
-								<input type="text" data-suffix="px" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_zstart" name="layer_anim_zstart" value="inherit" id="layer_anim_ystart" name="layer_anim_ystart" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-20,20}||20" data-icons="export||shuffle||wrench">
+								<input type="text" data-suffix="px" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_zstart" name="layer_anim_zstart" value="inherit" id="layer_anim_ystart" name="layer_anim_ystart" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-20,20}||20" data-icons="export||shuffle||wrench">
 							</span>
 
 							<span id="anim-sub-s-skew" class="rs-layer-toolbar-box" style="display:none;border:none;">
 								<!-- SKEW X -->
 								<i class="rs-mini-layer-icon rs-icon-skewx rs-toolbar-icon "  style="margin-right:8px"></i>
-								<input data-suffix="px" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field  "  id="layer_skew_xstart" name="layer_skew_xstart" value="inherit"  value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field  "  id="layer_skew_xstart" name="layer_skew_xstart" value="inherit"  value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
 								<span class="rs-layer-toolbar-space"></span>
 								<!-- SKEW Y -->
 								<i class="rs-mini-layer-icon rs-icon-skewy rs-toolbar-icon "  style="margin-right:8px"></i>
-								<input data-suffix="px" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_skew_ystart" name="layer_skew_ystart" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_skew_ystart" name="layer_skew_ystart" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
 							</span>
 
 							
 							<span id="anim-sub-s-rotation" class="rs-layer-toolbar-box" style="display:none;border:none;">
 								<!--  X  ROTATE -->
 								<i class="rs-mini-layer-icon rs-icon-rotationx rs-toolbar-icon " ></i>
-								<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_xrotate" name="layer_anim_xrotate" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
+								<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_xrotate" name="layer_anim_xrotate" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
 								<span class="rs-layer-toolbar-space"></span>
 								<!--  Y ROTATE -->
 								<i class="rs-mini-layer-icon rs-icon-rotationy rs-toolbar-icon " ></i>
-								<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_yrotate" name="layer_anim_yrotate" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
+								<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_yrotate" name="layer_anim_yrotate" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
 								<span class="rs-layer-toolbar-space"></span>
 								
 								<!--  Z ROTATE -->
 								<i class="rs-mini-layer-icon rs-icon-rotationz rs-toolbar-icon " ></i>
-								<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_zrotate" name="layer_anim_zrotate" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-360,360}||45" data-icons="export||shuffle||wrench">
+								<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_anim_zrotate" name="layer_anim_zrotate" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-360,360}||45" data-icons="export||shuffle||wrench">
 
 							</span>
 
 							<span id="anim-sub-s-scale" class="rs-layer-toolbar-box" style="display:none;border:none;">
 								<!-- SCALE X -->
 								<i class="rs-mini-layer-icon rs-icon-scalex rs-toolbar-icon "  style="margin-right:8px"></i>
-								<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_scale_xstart" name="layer_scale_xstart" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
+								<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_scale_xstart" name="layer_scale_xstart" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
 								<span class="rs-layer-toolbar-space"></span>
 								<!-- SCALE Y -->
 								<i class="rs-mini-layer-icon rs-icon-scaley rs-toolbar-icon " style="margin-right:8px"></i>
-								<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field " id="layer_scale_ystart" name="layer_scale_ystart" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
+								<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field " id="layer_scale_ystart" name="layer_scale_ystart" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
 							</span>
 
 							<span id="anim-sub-s-opacity" class="rs-layer-toolbar-box" style="display:none;border:none;">
@@ -947,11 +947,11 @@ $startanims = $operations->getArrAnimations();
 							<span class="mask-end-settings">
 								<!-- MASK X OFFSET -->
 								<i class="rs-mini-layer-icon rs-icon-xoffset rs-toolbar-icon "  style="margin-right:8px"></i>								
-								<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_xend" name="mask_anim_xend" value="0" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_xend" name="mask_anim_xend" value="0" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
 								<span class="rs-layer-toolbar-space"></span>
 								<!-- MASK Y OFFSET -->
 								<i class="rs-mini-layer-icon rs-icon-yoffset rs-toolbar-icon "  style="margin-right:4px"></i>
-								<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_yend" name="mask_anim_yend" value="0" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
+								<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="mask_anim_yend" name="mask_anim_yend" value="0" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
 								<span class="rs-layer-toolbar-space"></span>
 							</span>					
 						</span>
@@ -960,52 +960,52 @@ $startanims = $operations->getArrAnimations();
 						<span id="anim-sub-e-offset" class="rs-layer-toolbar-box" style="border:none;">
 							<!-- X OFFSET END-->
 							<i class="rs-mini-layer-icon rs-icon-xoffset rs-toolbar-icon"  style="margin-right:8px"></i>								
-							<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_xend" name="layer_anim_xend" value="inherit" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
+							<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_xend" name="layer_anim_xend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Left||Stage Right||Stage Center||-100%||100%||-175%||175%" data-svalues ="inherit||{-50,50}||50||left||right||center||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||right||left||cancel||filter||filter||filter||filter">
 							<span class="rs-layer-toolbar-space"></span>
 							<!-- Y OFFSET END-->
 							<i class="rs-mini-layer-icon rs-icon-yoffset rs-toolbar-icon"  style="margin-right:4px"></i>
-							<input data-suffix="px" type="text" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_yend" name="layer_anim_yend" value="inherit" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
+							<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_yend" name="layer_anim_yend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom||Stage Top||Stage Bottom||Stage Middle||-100%||100%||-175%||175%" data-svalues ="inherit||{-5,50}||50||top||bottom||middle||[-100%]||[100%]||[-175%]||[175%]" data-icons="export||shuffle||wrench||down||up||cancel||filter||filter||filter||filter">
 							<span class="rs-layer-toolbar-space"></span>
 							<!-- Z OFFSET END-->
 							<i class="rs-mini-layer-icon rs-icon-zoffset rs-toolbar-icon"  style="margin-right:4px"></i>
-							<input type="text" data-suffix="px" style="width:150px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_zend" name="layer_anim_zend" value="inherit" value="0" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-20,20}||20" data-icons="export||shuffle||wrench">
+							<input type="text" data-suffix="px" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_zend" name="layer_anim_zend" value="inherit" value="0" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-20,20}||20" data-icons="export||shuffle||wrench">
 						</span>
 
 
 						<span id="anim-sub-e-skew" class="rs-layer-toolbar-box" style="display:none;border:none;">
 							<!-- SKEW X -->
 							<i class="rs-mini-layer-icon rs-icon-skewx rs-toolbar-icon"  style="margin-right:8px"></i>
-							<input data-suffix="px" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_skew_xend" name="layer_skew_xend" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
+							<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_skew_xend" name="layer_skew_xend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
 							<span class="rs-layer-toolbar-space"></span>
 							<!-- SKEW Y -->
 							<i class="rs-mini-layer-icon rs-icon-skewy rs-toolbar-icon"  style="margin-right:8px"></i>
-							<input data-suffix="px" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_skew_yend" name="layer_skew_yend" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
+							<input data-suffix="px" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_skew_yend" name="layer_skew_yend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-25,25}||20" data-icons="export||shuffle||wrench">
 						</span>
 
 			
 						<span id="anim-sub-e-rotation" class="rs-layer-toolbar-box" style="display:none;border:none;">
 							<!--  X  ROTATE -->
 							<i class="rs-mini-layer-icon rs-icon-rotationx rs-toolbar-icon" ></i>
-							<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_xrotate_end" name="layer_anim_xrotate_end" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
+							<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_xrotate_end" name="layer_anim_xrotate_end" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
 							<span class="rs-layer-toolbar-space"></span>
 							<!--  Y ROTATE END -->
 							<i class="rs-mini-layer-icon rs-icon-rotationy rs-toolbar-icon" ></i>
-							<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_yrotate_end" name="layer_anim_yrotate_end" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
+							<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_yrotate_end" name="layer_anim_yrotate_end" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-90,90}||45" data-icons="export||shuffle||wrench">
 							<span class="rs-layer-toolbar-space"></span>
 							
 							<!--  Z ROTATE END -->
 							<i class="rs-mini-layer-icon rs-icon-rotationz rs-toolbar-icon" ></i>
-							<input data-suffix="deg" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_zrotate_end" name="layer_anim_zrotate_end" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-360,360}||45" data-icons="export||shuffle||wrench">
+							<input data-suffix="deg" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field"  id="layer_anim_zrotate_end" name="layer_anim_zrotate_end" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{-360,360}||45" data-icons="export||shuffle||wrench">
 						</span>
 
 						<span id="anim-sub-e-scale" class="rs-layer-toolbar-box" style="display:none;border:none;">
 							<!-- SCALE X -->
 							<i class="rs-mini-layer-icon rs-icon-scalex rs-toolbar-icon "  style="margin-right:8px"></i>
-							<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_scale_xend" name="layer_scale_xend" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
+							<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field "  id="layer_scale_xend" name="layer_scale_xend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
 							<span class="rs-layer-toolbar-space"></span>
 							<!-- SCALE Y -->
 							<i class="rs-mini-layer-icon rs-icon-scaley rs-toolbar-icon " style="margin-right:8px"></i>
-							<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:100px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field " id="layer_scale_yend" name="layer_scale_yend" value="inherit" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
+							<input data-suffix="" data-steps="0.01" data-min="0" type="text" style="width:175px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field " id="layer_scale_yend" name="layer_scale_yend" value="inherit" data-reverse="on" data-selects="Inherit||Random||Custom" data-svalues ="inherit||{0,1}||0.5" data-icons="export||shuffle||wrench">
 						</span>
 
 						<span id="anim-sub-e-opacity" class="rs-layer-toolbar-box" style="display:none;border:none;">
@@ -1307,11 +1307,11 @@ $startanims = $operations->getArrAnimations();
 				<span class="rs-layer-toolbar-box">
 					<span class="rev-visibility-on-sizes">
 						<i class="rs-mini-layer-icon rs-icon-desktop rs-toolbar-icon"></i>
-						<input type="checkbox" name="visible-notebook" class="tp-moderncheckbox"/>
+						<input type="checkbox" name="visible-desktop" class="tp-moderncheckbox"/>
 						<span class="rs-layer-toolbar-space"></span>
 
-						<i class="rs-mini-layer-icon rs-icon-desktop rs-toolbar-icon"></i>
-						<input type="checkbox" name="visible-desktop" class="tp-moderncheckbox"/>
+						<i class="rs-mini-layer-icon rs-icon-laptop rs-toolbar-icon"></i>
+						<input type="checkbox" name="visible-notebook" class="tp-moderncheckbox"/>
 						<span class="rs-layer-toolbar-space"></span>
 
 						<i class="rs-mini-layer-icon rs-icon-tablet rs-toolbar-icon"></i>
@@ -1334,13 +1334,7 @@ $startanims = $operations->getArrAnimations();
 					<span class="rs-layer-toolbar-space"></span>
 					<input type="checkbox" id="layer_on_slider_hover" class="tp-moderncheckbox" name="layer_on_slider_hover">
 				</span>
-					
-				
 			</div>
-			
-			
-			
-			
 		</div>
 
 		<!-- BEHAVIOR SETTINGS -->

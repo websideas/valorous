@@ -405,7 +405,7 @@ class RevSliderPluginUpdate {
 									$anim_values = array();
 									foreach($inAnimations as $handle => $anim){
 										if($handle == $animation){
-											$anim_values = @$anim['params'];
+											$anim_values = (isset($anim['params'])) ? $anim['params'] : '';
 											if(!is_array($anim_values)) $anim_values = json_encode($anim_values);
 											break;
 										}
@@ -414,7 +414,7 @@ class RevSliderPluginUpdate {
 									$anim_endvalues = array();
 									foreach($outAnimations as $handle => $anim){
 										if($handle == $endanimation){
-											$anim_endvalues = @$anim['params'];
+											$anim_endvalues = (isset($anim['params'])) ? $anim['params'] : '';
 											if(!is_array($anim_endvalues)) $anim_endvalues = json_encode($anim_endvalues);
 											break;
 										}
