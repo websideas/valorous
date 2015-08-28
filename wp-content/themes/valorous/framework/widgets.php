@@ -42,7 +42,7 @@ if ( function_exists('register_sidebar')) {
             'after_title' => '</h3>',
         ) );
 
-        $count = 5;
+        $count = 6;
 
         for($i=1; $i<=$count;$i++){
             register_sidebar( array(

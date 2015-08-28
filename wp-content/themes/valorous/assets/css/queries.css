@@ -144,7 +144,22 @@ only screen and (min-resolution: 144dpi) {
     }
 
     /* Posts */
-
+    .comment-meta h5{
+        display: block;
+    }
+    .comment-meta h5::after{
+        display: none;
+    }
+    .post-navigation .nav-links div{
+        width:100%;
+        max-width: 100%;
+        margin-bottom:15px;
+        padding: 0 0 0 40px;
+        text-align: left;
+    }
+    .post-navigation div.nav-next a::after{
+        left:0;
+    }
     /* Footer */
 
 
