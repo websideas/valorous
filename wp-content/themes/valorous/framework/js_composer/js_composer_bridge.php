@@ -21,6 +21,7 @@ vc_add_params("vc_row", array(
         'value' => array(
             __("None", THEME_LANG) => "",
             __("Column", THEME_LANG) => "column",
+            __("Element", THEME_LANG) => "element",
         ),
         'group' => __( 'Extra', 'js_composer' ),
     ),
@@ -88,6 +89,7 @@ vc_add_params("vc_row_inner", array(
         'value' => array(
             __("None", THEME_LANG) => "",
             __("Column", THEME_LANG) => "column",
+            __("Element", THEME_LANG) => "element",
         ),
         'group' => __( 'Extra', 'js_composer' ),
     ),
@@ -154,6 +156,40 @@ vc_add_params("vc_icon", array(
         'param_name' => 'hover_div',
     ),
 ));
+
+$tabs_arr = array(
+    array(
+        'type' => 'checkbox',
+        'heading' => __( 'Use theme default font family?', 'js_composer' ),
+        'param_name' => 'use_theme_fonts',
+        'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+        'description' => __( 'Use font family from the theme.', 'js_composer' ),
+        'group' => __( 'Typography', THEME_LANG ),
+        'std' => 'yes'
+    ),
+    array(
+        'type' => 'google_fonts',
+        'param_name' => 'google_fonts',
+        'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
+        'settings' => array(
+            'fields' => array(
+                'font_family_description' => __( 'Select font family.', 'js_composer' ),
+                'font_style_description' => __( 'Select font styling.', 'js_composer' )
+            )
+        ),
+        'group' => __( 'Typography', THEME_LANG ),
+        'dependency' => array(
+            'element' => 'use_theme_fonts',
+            'value_not_equal_to' => 'yes',
+        ),
+        'description' => __( '', 'js_composer' ),
+    ));
+
+vc_add_params("vc_tta_tabs", $tabs_arr);
+vc_add_params("vc_tta_tour", $tabs_arr);
+
+
+
 
 
 $composer_addons = array(

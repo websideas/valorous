@@ -98,7 +98,7 @@ class WPBakeryShortCode_Comingsoon extends WPBakeryShortCode_VC_Custom_heading {
                  <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div>
                  <div class="wrap"><div class="value-time">59</div><div class="title">Seconds</div></div>';
         
-        $output = '<div class="'.esc_attr( $elementClass ).'" '.$data_animate.'><div id="kt_comming_'.$rand.'" class="coming-soon '.$animate_item.'" data-date="'.$date_coming.'">'.$html.'</div>'.$custom_css.'</div>';
+        $output = '<div class="'.esc_attr( $elementClass ).'" '.$data_animate.'><div id="kt_comming_'.$rand.'" class="coming-soon '.$animate_item.'" data-date="'.$date_coming.'">'.$html.'<div class="clearfix"></div></div>'.$custom_css.'</div>';
         
         return $output;
     }

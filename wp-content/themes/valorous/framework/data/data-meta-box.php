@@ -614,14 +614,14 @@ function kt_register_meta_boxes( $meta_boxes )
             array(
                 'name' => __('Page header top spacing', THEME_LANG),
                 'id' => $prefix . 'page_header_top',
-                'desc' => __("(Example: 30px). Emtpy for use default", THEME_LANG ),
+                'desc' => __("(Example: 60px). Emtpy for use default", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
             ),
             array(
                 'name' => __('Page header bottom spacing', THEME_LANG),
                 'id' => $prefix . 'page_header_bottom',
-                'desc' => __("(Example: 30px). Emtpy for use default", THEME_LANG ),
+                'desc' => __("(Example: 60px). Emtpy for use default", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
             ),

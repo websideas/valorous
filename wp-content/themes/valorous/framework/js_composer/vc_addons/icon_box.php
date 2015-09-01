@@ -48,10 +48,17 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         extract($atts);
         $custom_css = '';
 
+        $elementClass = array(
+            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-icon-box-wrapper ', $this->settings['base'], $atts ),
+            'extra' => $this->getExtraClass( $el_class ),
+            'css_animation' => $this->getCSSAnimation( $css_animation ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'layout' => 'icon-box-layout-'.$icon_box_layout
+        );
 
         $uniqid = 'kt-icon-box-'.uniqid();
         $readmore = apply_filters('sanitize_boolean', $readmore);
-        $style_title = '';
+        $style_title = $background_outer = '';
 
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
@@ -152,20 +159,16 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         }
 
         if($icon_box_layout == '4' || $icon_box_layout == '5' || $icon_box_layout == '6' || $icon_box_layout == '9'){
-            $output = '<div class="icon-box-inner" style="background:'.$icon_box_bg.';">'.$output.'</div>';
+            $output = '<div class="icon-box-inner">'.$output.'</div>';
+            $background_outer = 'style="background:'.$icon_box_bg.';"';
+            $elementClass['inner'] = 'icon-box-outer';
         }
         if($custom_css){
             $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
         }
 
 
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-icon-box-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'layout' => 'icon-box-layout-'.$icon_box_layout
-        );
+
         if( $icon_box_layout == 2 || $icon_box_layout == 3 || $icon_box_layout == 6 ){
             $elementClass[] = 'kt-icon-box-table';
         }elseif( $icon_box_layout == 7 || $icon_box_layout == 8 || $icon_box_layout == 9 ){
@@ -173,7 +176,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         }
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        return '<div id="'.$uniqid.'" class="'.esc_attr( $elementClass ).'">'.$output.$custom_css.'</div>';
+        return '<div id="'.$uniqid.'" class="'.esc_attr( $elementClass ).'" '.$background_outer.'>'.$output.$custom_css.'</div>';
 
     }
 }

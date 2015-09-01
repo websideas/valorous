@@ -380,7 +380,6 @@ select:not([multiple]) {
     padding: 8px 28px;
     font-weight: normal;
     font-size: 13px;
-    text-transform: uppercase;
 }
 
 .wpcf7-submit:focus,
@@ -615,20 +614,24 @@ select:not([multiple]) {
     border:2px solid #fff;
     border-radius:26px;
     cursor: pointer;
+    width:20px;
+    height:35px;
+    margin: 0 auto;
+    display: block;
+    /*
     position:absolute;
     bottom: 15px;
     left:50%;
-    width:20px;
-    height:35px;
     -webkit-backface-visibility:hidden;
     -webkit-transform:translate(-50%, -50%);
     -moz-transform:translate(-50%, -50%);
     -ms-transform:translate(-50%, -50%);
     -o-transform:translate(-50%, -50%);
     transform:translate(-50%, -50%);
+    */
 }
 
-.mouse::after{
+.mouse:after{
     background-color:#fff;
     border-radius:100%;
     content:"";
@@ -650,6 +653,12 @@ select:not([multiple]) {
     animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
 }
 
+.mouse-back{
+    border-color: #282828;
+}
+.mouse-back:after{
+    background-color: #282828;
+}
 
 @-webkit-keyframes mousescroll{
     0%, 20%{-webkit-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px)}
@@ -2970,6 +2979,25 @@ body.footer_fixed .static-footer {
    15. Visual Composer & Shortcode
    ============================== */
 
+/*
+ * General Styles for TTA
+ */
+.vc_tta.vc_general .vc_tta-tab > a{
+    padding: 8px 20px;
+}
+
+.vc_tta.vc_general .vc_tta-title-text:not(:empty):not(:first-child), .vc_tta.vc_general .vc_tta-title-text:not(:empty) ~ * {
+    margin-left: 8px;
+}
+
+.vc_tta-color-grey.vc_tta-style-outline .vc_tta-tab > a,
+.vc_tta-color-grey.vc_tta-style-outline .vc_tta-tab.vc_active > a{
+    color: #666666;
+}
+
+/*
+ * General Tabs nav
+ */
 .kt-tabs-nav {
     margin: 0 0 20px 1px;
     padding: 0;
@@ -3338,9 +3366,49 @@ body.footer_fixed .static-footer {
  * ALERTS
  */
 
+.alert:before{
+    font-family: "FontAwesome";
+    font-variant: normal;
+    font-weight: normal;
+    text-transform: none;
+    left: 0;
+    position: absolute;
+    content: "\f0a1";
+    text-align: center;
+    top: 15px;
+}
+
+.alert h3.alert_title{
+    font-size: 14px;
+    line-height: normal;
+    margin: 5px 0 10px;
+    text-transform: uppercase;
+}
+
 .alert-normal {
     background: #eff5f7;
     border-color: #dcdcdc;
+}
+
+.alert-success:before {
+    content: "\f058";
+}
+
+.alert-info:before {
+    content: "\f05a";
+}
+
+.alert-warning:before {
+    content: "\f071";
+}
+
+.alert-danger:before {
+    content: "\f06a";
+}
+
+.alert-dismissible .close {
+    top: 4px;
+    font-size: 18px;
 }
 
 .alert-style-classic {
@@ -3352,40 +3420,28 @@ body.footer_fixed .static-footer {
 }
 
 .alert-style-classic:before {
-    font-family: "FontAwesome";
-    font-variant: normal;
-    font-weight: normal;
-    text-transform: none;
     font-size: 16px;
-    top: 15px;
-    left: 15px;
-    position: absolute;
+    width: 45px;
 }
 
-.alert-style-classic.alert-normal:before {
-    content: "\f05a";
+.alert-style-modern {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    position: relative;
+    padding-left: 105px;
+}
+.alert-style-modern:before {
+    font-size: 55px;
+    width: 105px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    top: 50%;
 }
 
-.alert-style-classic.alert-success:before {
-    content: "\f058";
-}
 
-.alert-style-classic.alert-info:before {
-    content: "\f05a";
-}
-
-.alert-style-classic.alert-warning:before {
-    content: "\f071";
-}
-
-.alert-style-classic.alert-danger:before {
-    content: "\f06a";
-}
-
-.alert-style-classic.alert-dismissible .close {
-    top: 0;
-    font-size: 18px;
-}
 
 /**
  * List
@@ -4120,7 +4176,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt-counter-wrapper {
     margin-bottom: 15px;
     text-align: center;
-
 }
 
 .kt-counter-wrapper .vc_icon_element {
@@ -4139,7 +4194,8 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 /*
  *  Custom VC icon
  */
-.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner {
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner,
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-icon{
     max-width: 100%;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -4176,7 +4232,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-sm .vc_icon_element-icon {
-    font-size: 1.5em !important;
+    font-size: 1.3em !important;
 }
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-xs .vc_icon_element-icon {
@@ -4635,9 +4691,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 /* Icon box layout 4 */
-.kt-icon-box-wrapper.icon-box-layout-4 .icon-box-inner {
-    padding: 45px 30px 65px;
-    background-color: #f7f7f7;
+.kt-icon-box-wrapper.icon-box-layout-4 .icon-box-inner{
     margin-top: 30px;
 }
 
@@ -4652,18 +4706,15 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     transform: translate(-50%, -50%);
 }
 
-/* Icon box layout 5 */
-.kt-icon-box-wrapper.icon-box-layout-5 .icon-box-inner {
-    padding: 45px 30px 65px;
-    background-color: #f7f7f7;
-    text-align: center;
+/* Icon box layout 4,5,6,9 */
+.kt-icon-box-wrapper.icon-box-outer{
+    background: #f7f7f7;
 }
-
-/* Icon box layout 6,9 */
-.kt-icon-box-wrapper.icon-box-layout-9 .icon-box-inner,
-.kt-icon-box-wrapper.icon-box-layout-6 .icon-box-inner {
+.kt-icon-box-wrapper .icon-box-inner{
     padding: 45px 30px 65px;
-    background-color: #f7f7f7;
+}
+.kt-icon-box-wrapper.icon-box-layout-5 .icon-box-inner{
+    text-align: center;
 }
 
 /* Icon box layout 7 */
@@ -5621,9 +5672,9 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 .coming-soon .wrap .value-time {
-    font-size: 86px;
+    font-size: 78px;
     font-weight: normal;
-    line-height: 88px;
+    line-height: 86px;
     margin-bottom: 0;
 }
 
@@ -5939,7 +5990,7 @@ body.layout-boxed #page {
 }
 
 #content {
-    padding: 50px 0;
+    padding: 60px 0;
 }
 
 .footer_fixed #wrapper-content {

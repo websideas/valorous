@@ -118,18 +118,8 @@ only screen and (min-resolution: 144dpi) {
     body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-sticky{
         top: 46px;
     }
-
     body.admin-bar #mobile-nav-content{
         padding-top: 46px;
-    }
-    
-    .kt-ads-content a,
-    .kt-ads-content > img{
-        max-width:125px;
-    }
-    .kt_flickr a{
-        display: inline-block;
-        width:auto;
     }
 }
 
@@ -139,8 +129,15 @@ only screen and (min-resolution: 144dpi) {
     .col-clearfix-xs {
         clear: both;
     }
+
     .coming-soon .wrap{
-        width:50%;
+        float: left;
+        margin-bottom: 15px;
+        padding: 0;
+        width: 50%;
+    }
+    .coming-soon .wrap.wrap-divider{
+        display: none;
     }
 
     /* Posts */
@@ -150,19 +147,18 @@ only screen and (min-resolution: 144dpi) {
     .comment-meta h5::after{
         display: none;
     }
-    .post-navigation .nav-links div{
-        width:100%;
-        max-width: 100%;
-        margin-bottom:15px;
-        padding: 0 0 0 40px;
-        text-align: left;
-    }
-    .post-navigation div.nav-next a::after{
-        left:0;
-    }
+
     /* Footer */
 
-
+    /* widget */
+    .kt-ads-content a,
+    .kt-ads-content > img{
+        max-width:125px;
+    }
+    .kt_flickr a{
+        display: inline-block;
+        width:auto;
+    }
 
     /* Woocommerce */
     .woocommerce #content table.cart td.actions .btn,
@@ -196,6 +192,25 @@ only screen and (min-resolution: 144dpi) {
     body.admin-bar #mobile-nav-content{
         padding-top: 0;
     }
+    .woocommerce div.product .woocommerce-tabs ul.tabs li{
+        border-bottom: medium none;
+        margin-bottom: 0;
+        margin-right: 0;
+        width: 100%;
+        padding: 0 15px;
+    }
+    .woocommerce div.product .woocommerce-tabs ul.tabs li:last-child{
+        border-bottom: 1px solid #e3e3e3;
+    }
+    .woocommerce div.product .woocommerce-tabs ul.tabs li.active{
+        margin-bottom: 0;
+    }
+    .woocommerce div.product .woocommerce-tabs ul.tabs li a{
+        display: block;
+    }
+    .woocommerce div.product .woocommerce-tabs .woocommerce-tabs-content{
+        padding: 30px 15px 20px;
+    }
 }
 
 
@@ -227,6 +242,46 @@ only screen and (min-resolution: 144dpi) {
     .author-info .author-bio{
         margin-top: 25px;
     }
+
+    .post-navigation .nav-links div{
+        width:100%;
+        max-width: 100%;
+        margin-bottom:15px;
+        padding: 0 0 0 40px;
+        text-align: left;
+    }
+    .post-navigation div.nav-next a::after{
+        left:0;
+    }
+
+    .comment-item .comment-avatar{
+        width: 60px;
+        margin-right: 20px;
+    }
+    .comment-content{
+        margin-left: 80px;
+    }
+    .comment-list .comment-respond,
+    .comment ul.children{
+        margin-left: 80px;
+    }
+    .comment-list ul.children .comment-avatar{
+        width: 40px;
+    }
+    .comment-list ul.children .comment-content{
+        margin-left: 60px;
+    }
+    .comment-list ul.children .comment-respond{
+        margin-left: 0;
+    }
+    .comment-respond .comment-form-fields{
+        margin: 0;
+    }
+    .comment-respond .comment_field-column{
+        padding: 0;
+        width: 100%;
+    }
+
 
     /* Footer */
 
@@ -263,6 +318,14 @@ only screen and (min-resolution: 144dpi) {
     }
     .woocommerce table.my_account_orders {
         font-size: inherit;
+    }
+    .woocommerce p.stars a.star-1,
+    .woocommerce p.stars a.star-2,
+    .woocommerce p.stars a.star-3,
+    .woocommerce p.stars a.star-4,
+    .woocommerce p.stars a.star-5{
+        border-right: none;
+        margin: 0;
     }
 }
 

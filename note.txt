@@ -16,6 +16,14 @@ A Place for Your Digital Stories
 
 Welcome to Ping, a minimal and light HTML Template for creatives. One of the most simple-to-use templates in Themeforest
 
+
+Elegant Themes Blog
+Stay up to date with our most recent news and updates
+
+Fashion, Beauty, Travel & More!
+
+
+
 About me widget
 	http://jay.mondotheme.com/
 
@@ -73,6 +81,8 @@ About me page
 	http://demo.themeton.com/vcard/profile/
 	https://0.s3.envato.com/files/132086767/mr_resume_template_preview/04_mr_resume_home_v1_profile_page.jpg
 
+	http://sincerelyjules.com/about
+
 
 
 Landing for homepage
@@ -113,6 +123,7 @@ Photoshop action
 
 Contact:
 
+http://sincerelyjules.com/agency#email
 http://www.soaptheme.net/wordpress/travelo/standard-pages/contact-us-3/
 https://0.s3.envato.com/files/145383453/Lets%20travel_jpeg/25_2-LetsTravel-ContactUs.jpg
 https://0.s3.envato.com/files/145383453/Lets%20travel_jpeg/25_1-LetsTravel-ContactUs.jpg
@@ -285,3 +296,10 @@ For team
     
     
     http://tympanus.net/Development/StackEffects/
+
+
+
+
+    Fashion
+
+    	http://www.look.co.uk/fashion/looks-top-20-fashion-blogs

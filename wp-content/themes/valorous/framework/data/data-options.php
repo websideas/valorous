@@ -1613,15 +1613,18 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '.woocommerce a.button.alt',
                             '.woocommerce button.button.alt',
                             '.woocommerce input.button.alt',
+                            '.vc_general.vc_btn3'
 
                         ),
                         'default'  => array(
                             'font-family'     => 'Montserrat',
                             'font-size'       => '13px',
+                            'text-transform'  => 'uppercase',
                         ),
                         'color'    => false,
                         'text-align'    => false,
                         'font-size'    => false,
+                        'text-transform' => true,
                     ),
                     array(
                         'id'       => 'typography_heading',

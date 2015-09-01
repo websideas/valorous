@@ -8,6 +8,7 @@ class WPBakeryShortCode_KT_Alert extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
 
         extract(shortcode_atts(array(
+            'title' => '',
             "type" => 'normal',
             "close" => 'false',
             'style' => 'classic',
@@ -32,7 +33,9 @@ class WPBakeryShortCode_KT_Alert extends WPBakeryShortCode {
             $output .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>';
         }
 
-
+        if($title){
+            $output .= '<h3 class="alert_title">'.$title.'</h3>';
+        }
         $output .= $content;
 
         $output .= '</div><!-- .alert -->';
@@ -51,6 +54,12 @@ vc_map( array(
     "description" => __( "Alert", THEME_LANG),
     "wrapper_class" => "clearfix",
     "params" => array(
+        array(
+            "type" => "textfield",
+            'heading' => __( 'Title', 'js_composer' ),
+            'param_name' => 'title',
+            "admin_label" => true,
+        ),
         array(
             'type' => 'textarea_html',
             'holder' => 'div',
@@ -72,12 +81,16 @@ vc_map( array(
             "description" => __("",THEME_LANG),
             "admin_label" => true,
         ),
+
+
+
         array(
             "type" => "dropdown",
             "heading" => __("Style",THEME_LANG),
             "param_name" => "style",
             "value" => array(
-                __('Classic', THEME_LANG) => 'classic'
+                __('Classic', THEME_LANG) => 'classic',
+                __('Modern', THEME_LANG) => 'modern',
             ),
             "admin_label" => true,
             "description" => __("",THEME_LANG)

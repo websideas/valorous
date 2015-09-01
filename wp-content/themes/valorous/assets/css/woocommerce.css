@@ -85,9 +85,9 @@
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
     background: none;
-    border: 2px solid #d2a952;
+    border: 2px solid #d0a852;
     border-radius: 0;
-    color: #d2a952;
+    color: #d0a852;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.42857;
@@ -100,8 +100,8 @@
 .woocommerce a.button.alt,
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
-    background: #d2a952;
-    color: #FFFFFF !important;
+    background: #d0a852;
+    color: #FFFFFF;
 }
 
 .woocommerce #respond input#submit:hover,
@@ -112,8 +112,8 @@
 .woocommerce a.button.alt:hover,
 .woocommerce button.button.alt:hover,
 .woocommerce input.button.alt:hover {
-    background: #d2a952;
-    color: #ffffff;
+    background: #d0a852;
+    color: #ffffff!important;
 }
 
 .woocommerce #respond input#submit.alt.disabled,
@@ -540,7 +540,7 @@
     -moz-box-shadow: 3px 0 5px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 3px 0 5px 0 rgba(0, 0, 0, 0.3);
     background: #1e1e1e;
-    border-top: 2px solid #d2a952;
+    border-top: 2px solid #d0a852;
 }
 
 .shopping-bag-wrapper .cart-title {
@@ -734,7 +734,7 @@ body .mCSB_scrollTools .mCSB_draggerRail {
 }
 
 body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background: #d2a952;
+    background: #d0a852;
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -745,7 +745,7 @@ body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
 body .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
 body .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
 body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar {
-    background: #d2a952;
+    background: #d0a852;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
     opacity: 0.8;

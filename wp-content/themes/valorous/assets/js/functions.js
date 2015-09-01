@@ -136,7 +136,16 @@
         ***  Equal height
         ===============================**/
         $('.equal_height').each(function(){
-            $(this).children('.wpb_column').matchHeight({
+            var equal_height_element;
+            if($(this).hasClass('equal_height_element')){
+                equal_height_element = $(this).children('.wpb_column').children('.wpb_wrapper').children('*');
+            }else{
+                equal_height_element = $(this).children('.wpb_column')
+            }
+
+            console.log(equal_height_element);
+
+            equal_height_element.matchHeight({
                 byRow: true
             });
         });
@@ -322,11 +331,11 @@
      VC Coming Soon
      --------------------------------------------- */
     function init_VCComingSoon() {
-        var coming_html = '<div class="wrap"><div class="value-time">%D</div><div class="title">' + ajax_frontend.days + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%H</div><div class="title">' + ajax_frontend.hours + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%M</div><div class="title">' + ajax_frontend.minutes + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%S</div><div class="title">' + ajax_frontend.seconds + '</div></div>';
+        var coming_html = '<div class="wrap"><div class="value-time">%D</div><div class="title">' + ajax_frontend.days + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%H</div><div class="title">' + ajax_frontend.hours + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%M</div><div class="title">' + ajax_frontend.minutes + '</div></div> <div class="wrap wrap-divider"><div class="value-time">:</div><div class="title">&nbsp;</div></div> <div class="wrap"><div class="value-time">%S</div><div class="title">' + ajax_frontend.seconds + '</div><div class="clearfix"></div></div>';
         $('.coming-soon').each(function () {
             var date = $(this).data('date');
             $(this).countdown(date, function (event) {
-                $(this).html( event.strftime(coming_html) );
+                //$(this).html( event.strftime(coming_html) );
             });
 
         });
