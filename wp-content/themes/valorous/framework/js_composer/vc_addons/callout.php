@@ -14,7 +14,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             'layout' => 1,
 
             'use_theme_fonts' => '',
-            'font_container' => '',
+            'font_container' => 'yes',
             'google_fonts' => '',
             'letter_spacing' => '0',
 
@@ -37,7 +37,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             'custom_color' => '',
             'icon_position' => '',
 
-            'bt_use_theme_fonts' => '',
+            'bt_use_theme_fonts' => 'yes',
             'bt_font_container' => '',
             'bt_google_fonts' => '',
             'bt_letter_spacing' => '0',
@@ -48,8 +48,8 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             'bt_border_size' => 1,
             'bt_radius' => 3,
 
-            'css_animation' => '',
             'el_class' => '',
+            'css_animation' => '',
             'css' => '',
         ), $atts );
         extract($atts);
@@ -58,6 +58,7 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-callout-wrapper ', $this->settings['base'], $atts ),
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
+            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
             'layout' => 'kt-callout-layout-'.$layout
         );
         $output = $style_title = '' ;
@@ -200,11 +201,12 @@ vc_map( array(
             'param_name' => 'use_theme_fonts',
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),

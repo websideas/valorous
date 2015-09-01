@@ -15,10 +15,15 @@ function kt_add_option_to_vc() {
     vc_update_shortcode_param( 'vc_icon', $background_style );
 
 
+    $button_colors = WPBMap::getParam( 'vc_icon', 'color' );
+    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
+    vc_update_shortcode_param( 'vc_btn', $button_colors );
+
+
 }
 
 
-
+/*
 add_filter('vc_google_fonts_get_fonts_filter', 'kt_add_fonts_vc');
 function kt_add_fonts_vc($fonts_list){
 
@@ -32,3 +37,4 @@ function kt_add_fonts_vc($fonts_list){
 
     return $fonts_list;
 }
+*/

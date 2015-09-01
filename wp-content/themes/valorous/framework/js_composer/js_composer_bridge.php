@@ -150,11 +150,6 @@ vc_add_params("vc_icon", array(
             'not_empty' => true,
         ),
     ),
-    array(
-        'type' => 'hidden',
-        'heading' => '',
-        'param_name' => 'hover_div',
-    ),
 ));
 
 $tabs_arr = array(
@@ -183,7 +178,8 @@ $tabs_arr = array(
             'value_not_equal_to' => 'yes',
         ),
         'description' => __( '', 'js_composer' ),
-    ));
+    )
+);
 
 vc_add_params("vc_tta_tabs", $tabs_arr);
 vc_add_params("vc_tta_tour", $tabs_arr);

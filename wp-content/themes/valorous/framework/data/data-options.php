@@ -1613,7 +1613,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '.woocommerce a.button.alt',
                             '.woocommerce button.button.alt',
                             '.woocommerce input.button.alt',
-                            '.vc_general.vc_btn3'
+                            '.vc_general.vc_btn3',
+                            '.kt-button'
 
                         ),
                         'default'  => array(
