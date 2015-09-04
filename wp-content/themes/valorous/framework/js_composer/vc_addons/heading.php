@@ -40,7 +40,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'size' => 'xs',
 
             'divider_margin_top' => 10,
-            'divider_margin_bottom' => 10,
+            'divider_margin_bottom' => 30,
 
 
 
@@ -232,17 +232,8 @@ vc_map( array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
             'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
-            // default
-            //'font_family:'.rawurlencode('Abril Fatface:400').'|font_style:'.rawurlencode('400 regular:400:normal')
-            // this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
             'settings' => array(
-                //'no_font_style' // Method 1: To disable font style
-                //'no_font_style'=>true // Method 2: To disable font style
                 'fields' => array(
-                    //'font_family' => 'Abril Fatface:regular',
-                    //'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
-                    //'font_style' => '400 regular:400:normal',
-                    // Default font style. Name:weight:style, example: "800 bold regular:800:normal"
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
                     'font_style_description' => __( 'Select font styling.', 'js_composer' )
                 )
@@ -316,7 +307,7 @@ vc_map( array(
             "type" => "kt_number",
             "heading" => __("Margin bottom", THEME_LANG),
             "param_name" => "divider_margin_bottom",
-            "value" => "10",
+            "value" => "30",
             "suffix" => __("px", THEME_LANG),
             "description" => '',
             'group' => __( 'Divider', 'js_composer' )

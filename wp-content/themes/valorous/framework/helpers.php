@@ -878,54 +878,83 @@ if (!function_exists('kt_render_custom_css')) {
 }
 
 
+if(!function_exists('kt_colour_brightness')){
+    /**
+     * Convert hexdec color string to darken or lighten
+     *
+     * http://lab.clearpixel.com.au/2008/06/darken-or-lighten-colours-dynamically-using-php/
+     *
+     * $brightness = 0.5; // 50% brighter
+     * $brightness = -0.5; // 50% darker
+     *
+     */
 
-/**
- * Convert hexdec color string to darken or lighten
- *
- * http://lab.clearpixel.com.au/2008/06/darken-or-lighten-colours-dynamically-using-php/
- *
- * $brightness = 0.5; // 50% brighter
- * $brightness = -0.5; // 50% darker
- *
- */
-
-function kt_colour_brightness($hex, $percent) {
-    // Work out if hash given
-    $hash = '';
-    if (stristr($hex,'#')) {
-        $hex = str_replace('#','',$hex);
-        $hash = '#';
-    }
-    /// HEX TO RGB
-    $rgb = array(hexdec(substr($hex,0,2)), hexdec(substr($hex,2,2)), hexdec(substr($hex,4,2)));
-    //// CALCULATE
-    for ($i=0; $i<3; $i++) {
-        // See if brighter or darker
-        if ($percent > 0) {
-            // Lighter
-            $rgb[$i] = round($rgb[$i] * $percent) + round(255 * (1-$percent));
-        } else {
-            // Darker
-            $positivePercent = $percent - ($percent*2);
-            $rgb[$i] = round($rgb[$i] * $positivePercent) + round(0 * (1-$positivePercent));
+    function kt_colour_brightness($hex, $percent) {
+        // Work out if hash given
+        $hash = '';
+        if (stristr($hex,'#')) {
+            $hex = str_replace('#','',$hex);
+            $hash = '#';
         }
-        // In case rounding up causes us to go to 256
-        if ($rgb[$i] > 255) {
-            $rgb[$i] = 255;
+        /// HEX TO RGB
+        $rgb = array(hexdec(substr($hex,0,2)), hexdec(substr($hex,2,2)), hexdec(substr($hex,4,2)));
+        //// CALCULATE
+        for ($i=0; $i<3; $i++) {
+            // See if brighter or darker
+            if ($percent > 0) {
+                // Lighter
+                $rgb[$i] = round($rgb[$i] * $percent) + round(255 * (1-$percent));
+            } else {
+                // Darker
+                $positivePercent = $percent - ($percent*2);
+                $rgb[$i] = round($rgb[$i] * $positivePercent) + round(0 * (1-$positivePercent));
+            }
+            // In case rounding up causes us to go to 256
+            if ($rgb[$i] > 255) {
+                $rgb[$i] = 255;
+            }
         }
-    }
-    //// RBG to Hex
-    $hex = '';
-    for($i=0; $i < 3; $i++) {
-        // Convert the decimal digit to hex
-        $hexDigit = dechex($rgb[$i]);
-        // Add a leading zero if necessary
-        if(strlen($hexDigit) == 1) {
-            $hexDigit = "0" . $hexDigit;
+        //// RBG to Hex
+        $hex = '';
+        for($i=0; $i < 3; $i++) {
+            // Convert the decimal digit to hex
+            $hexDigit = dechex($rgb[$i]);
+            // Add a leading zero if necessary
+            if(strlen($hexDigit) == 1) {
+                $hexDigit = "0" . $hexDigit;
+            }
+            // Append to the hex string
+            $hex .= $hexDigit;
         }
-        // Append to the hex string
-        $hex .= $hexDigit;
+        return $hash.$hex;
     }
-    return $hash.$hex;
 }
 
+if(!function_exists('kt_color2hecxa')){
+    /**
+     * Convert color to hex
+     *
+     * @param $color
+     * @return string
+     */
+    function kt_color2Hex($color){
+        switch ($color) {
+            case 'mulled_wine': $color = '#50485b'; break;
+            case 'vista_blue': $color = '#75d69c'; break;
+            case 'juicy_pink': $color = '#f4524d'; break;
+            case 'sandy_brown': $color = '#f79468'; break;
+            case 'purple': $color = '#b97ebb'; break;
+            case 'pink': $color = '#fe6c61'; break;
+            case 'violet': $color = '#8d6dc4'; break;
+            case 'peacoc': $color = '#4cadc9'; break;
+            case 'chino': $color = '#cec2ab'; break;
+            case 'grey': $color = '#ebebeb'; break;
+            case 'orange': $color = '#f7be68'; break;
+            case 'sky': $color = '#5aa1e3'; break;
+            case 'green': $color = '#6dab3c'; break;
+            case 'accent': $color = kt_option('styling_accent', '#d0a852'); break;
+
+        }
+        return $color;
+    }
+}

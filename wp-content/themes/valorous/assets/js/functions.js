@@ -310,18 +310,30 @@
     function init_VCPieChart(){
         $('.kt-piechart-wrapper').waypoint(function() {
             $(".chart").each(function() {
-                var $chart = $(this);
-                $(this).easyPieChart({
+                var $chart = $(this),
+                    $chart_label = $chart.data('label'),
+                    $label_value;
+
+                if($chart_label == '' ) $chart_label = $chart.data('percent');
+
+                $chart.easyPieChart({
                     easing: 'easeInOutQuad',
-                    barColor: $chart.attr('data-fgcolor'),
+                    barColor: $chart.data('fgcolor'),
                     animate: 2000,
-                    trackColor: $chart.attr('data-bgcolor'),
-                    lineWidth: $chart.attr('data-linewidth'),
-                    lineCap: $chart.attr('data-linecap'),
-                    size: $chart.attr('data-size'),
+                    trackColor: $chart.data('bgcolor'),
+                    lineWidth: $chart.data('linewidth'),
+                    lineCap: $chart.data('linecap'),
+                    size: $chart.data('size'),
                     scaleColor: false,
                     onStep: function(from, to, percent) {
-                        $(this.el).find('.percent').text(Math.round(percent)+'%');
+                        console.log(isNaN($chart_label));
+                        if(isNaN($chart_label)){
+                            $label_value = $chart_label;
+                        }else{
+                            $label_value = Math.round(percent / to * $chart_label);
+                        }
+                        $(this.el).find('.percent span').text($label_value);
+
                     }
                 });
             });
