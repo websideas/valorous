@@ -1420,11 +1420,7 @@ var UniteLayersRev = new function(){
 			t.changeSlotBGs();
 		})
 
-		
-		jQuery('body').on("click",'.timer-layer-text',function() {
-			jQuery(this).focus();
-		})
-
+				
 		jQuery('body').on('blur','.timer-layer-text',function() {
 			t.updateLayerFromFields(); 			
 		});
@@ -4761,6 +4757,7 @@ var UniteLayersRev = new function(){
 						jQuery('#layer_max_height').attr('disabled', 'disabled');
 					break;
 					case 'cover':
+					case 'cover-proportional':
 						jQuery('#layer_scaleX').attr('disabled', 'disabled');
 						jQuery('#layer_scaleY').attr('disabled', 'disabled');
 						jQuery('#layer_max_width').attr('disabled', 'disabled');

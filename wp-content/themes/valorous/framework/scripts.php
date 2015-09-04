@@ -96,7 +96,9 @@ function kt_setting_script() {
     //echo $tracking_code;
 
     $advanced_css = kt_option('advanced_editor_css');
-    $accent = kt_option('styling_accent', '');
+    $accent = kt_option('styling_accent', '#d0a852');
+
+    $accent_darker = kt_colour_brightness($accent, -0.8);
 
     ?>
     <style id="kt-theme-custom-css" type="text/css">
@@ -133,6 +135,11 @@ function kt_setting_script() {
             body .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
             body .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+
+            .vc_btn3.vc_btn3-color-accent,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-modern,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d,
 
             #backtotop:hover,
             #cancel-comment-reply-link:hover {
@@ -204,6 +211,9 @@ function kt_setting_script() {
             .woocommerce button.button.alt:hover,
             .woocommerce input.button.alt:hover,
 
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline:hover,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline:focus,
+
 
             #main-content-sideshow .carousel-navigation-center .owl-kttheme .owl-buttons > div i,
             .woocommerce nav.woocommerce-pagination ul li a:focus,
@@ -249,6 +259,8 @@ function kt_setting_script() {
             .woocommerce button.button.alt,
             .woocommerce input.button.alt,
 
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline,
+
             .button.btn-gray-b:hover,
             .button.btn-gray-b:focus,
             .btn.btn-gray-b:hover,
@@ -283,6 +295,21 @@ function kt_setting_script() {
             .social-background-fill.social-style-accent a,
             .woocommerce.compare-button .blockUI.blockOverlay{
                 background: <?php echo $accent; ?>!important;
+            }
+
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d{
+                box-shadow: 0 5px 0 <?php echo $accent_darker; ?>;
+            }
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d:hover,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d:focus {
+                box-shadow: 0 2px 0 <?php echo $accent_darker; ?>;
+            }
+
+            .vc_btn3.vc_btn3-color-accent:hover,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat:hover,
+            .vc_btn3.vc_btn3-color-accent:focus,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat:focus{
+                background-color: <?php echo $accent_darker; ?>;
             }
 
         <?php } ?>

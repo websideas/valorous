@@ -44,7 +44,7 @@ if($background_style == 'hexagonal'){
 
 
     if($background_color_hover){
-        if($hover_div){
+        if(isset($hover_div)){
             $custom_css .= '#'.$hover_div.':hover .vc_icon_element-inner:before{border-bottom-color: '.$background_color_hover.';}';
             $custom_css .= '#'.$hover_div.':hover .vc_icon_element-inner:after{border-top-color: '.$background_color_hover.';}';
         }else{
@@ -56,7 +56,7 @@ if($background_style == 'hexagonal'){
 }
 
 if($color_hover){
-    if($hover_div) {
+    if(isset($hover_div)) {
         $custom_css .= '#' . $hover_div . ':hover .vc_icon_element .vc_icon_element-icon{color:' . $color_hover . '!important;}';
     }else{
         $custom_css .= '#' . $uniqid . '.vc_icon_element .vc_icon_element-inner:hover .vc_icon_element-icon{color:' . $color_hover . '!important;}';
@@ -67,7 +67,7 @@ if($color_hover){
 if ( strlen( $background_style ) > 0 ) {
     if ( strpos( $background_style, 'outline' ) !== false ) {
         if($background_color_hover){
-            if($hover_div){
+            if(isset($hover_div)){
                 $custom_css .= '#'.$hover_div.':hover .vc_icon_element .vc_icon_element-inner{border-color:'.$background_color_hover.'!important;}';
             }else{
                 $custom_css .= '#'.$uniqid.'.vc_icon_element .vc_icon_element-inner:hover{border-color:'.$background_color_hover.'!important;}';
@@ -75,7 +75,7 @@ if ( strlen( $background_style ) > 0 ) {
         }
     } else {
         if($background_color_hover){
-            if($hover_div) {
+            if(isset($hover_div)) {
                 $custom_css .= '#' . $hover_div . ':hover .vc_icon_element .vc_icon_element-inner{background:' . $background_color_hover . '!important;}';
             }else{
                 $custom_css .= '#' . $uniqid . '.vc_icon_element .vc_icon_element-inner:hover{background:' . $background_color_hover . '!important;}';

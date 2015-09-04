@@ -568,7 +568,7 @@ class RevSliderAdmin extends RevSliderBaseAdmin{
 			
 			$filepath = $tmp->_download_template($uid);
 			
-			if($filepath !== false){
+			if($filepath !== false && !is_array($filepath)){
 				//check if Slider Template was already imported. If yes, remove the old Slider Template as we now do an "update" (in reality we delete and insert again)
 				//get all template sliders
 				$tmp_slider = $tmp->getThemePunchTemplateSliders();
@@ -615,7 +615,11 @@ class RevSliderAdmin extends RevSliderBaseAdmin{
 				}
 				
 			}else{
-				dmp(__("Could not download from server. Please try again later!", REVSLIDER_TEXTDOMAIN));
+				if(is_array($filepath)){
+					dmp($filepath['error']);
+				}else{
+					dmp(__("Could not download from server. Please try again later!", REVSLIDER_TEXTDOMAIN));
+				}
 				echo RevSliderFunctions::getHtmlLink($viewBack, __("Go Back",REVSLIDER_TEXTDOMAIN));
 				exit;
 			}

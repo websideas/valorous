@@ -139,3 +139,31 @@
     margin-top: 7px;
     text-decoration: none;
 }
+
+
+.vc_colored-dropdown .accent{
+    background-color: #d0a852!important;
+    color: #FFF!important;
+}
+.vc_general.vc_btn3.vc_btn3-color-accent,
+.vc_general.vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat,
+.vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d,
+.vc_btn3.vc_btn3-color-accent.vc_btn3-style-modern{
+    background-color: #d0a852;
+    color: #ffffff;
+}
+
+.vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline{
+    border-color: #d0a852;
+    background-color: transparent;
+    color: #d0a852;
+}
+
+.vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline:hover{
+    background-color: #d0a852;
+    color: #FFF;
+}
+
+.vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d.vc_btn3-size-sm{
+    box-shadow: 0 4px 0 #b28c45;
+}

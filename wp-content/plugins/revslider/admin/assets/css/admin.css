@@ -418,7 +418,7 @@ input[type=text].ads-input:focus	{	background:#ccc;}
 .limitedtablebox								{	max-width: 600px; margin:0px auto;}
 
 
-#viewWrapper .slidertitlebox input 				{	margin-bottom:15px;line-height: 40px;width: 100%;max-height: 40px;padding: 13px 45px 13px 15px; background: #e5e5e5; color:#777; font-size:14px; font-weight:600;}
+#viewWrapper .slidertitlebox input 				{	margin-bottom:15px;line-height: 40px;width: 100%;max-height: 41px;padding: 13px 45px 13px 15px; background: #e5e5e5; color:#777; font-size:14px; font-weight:600;}
 .input-shortcode-icon,
 .input-edit-icon								{	
 													position: absolute;

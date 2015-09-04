@@ -34,6 +34,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 		parent::__construct();
 	}
 	
+	
 	/**
 	 * 
 	 * init slide by db record
@@ -147,7 +148,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 	 * 
 	 * init by another slide
 	 */
-	private function initBySlide(RevSlide $slide){
+	public function initBySlide(RevSliderSlide $slide){
 		
 		$this->id = "template";
 		$this->templateID = $slide->getID();
@@ -1063,7 +1064,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 	 * 
 	 * init slide by post data
 	 */
-	public function initByPostData($postData, RevSlide $slideTemplate, $sliderID){
+	public function initByPostData($postData, RevSliderSlide $slideTemplate, $sliderID){
 		
 		$this->postData = $postData;
 		
@@ -1076,7 +1077,7 @@ class RevSliderSlide extends RevSliderElementsBase{
 				//init by local template, if fail, init by global (slider) template
 			try{
 				
-				$slideTemplateLocal = new RevSlide();
+				$slideTemplateLocal = new RevSliderSlide();
 				$slideTemplateLocal->initByID($slideTemplateID);
 				$this->initBySlide($slideTemplateLocal);
 			}

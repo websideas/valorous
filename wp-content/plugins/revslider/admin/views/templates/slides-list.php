@@ -98,7 +98,7 @@
 							}
 							?>
 
-							<div class="icon_slide_preview" title="<?php _e('Preview Slide' REVSLIDER_TEXTDOMAIN); ?>" data-slideid="<?php echo $slideid; ?>"></div>
+							<div class="icon_slide_preview" title="<?php _e('Preview Slide', REVSLIDER_TEXTDOMAIN); ?>" data-slideid="<?php echo $slideid; ?>"></div>
 
 						</span>
 

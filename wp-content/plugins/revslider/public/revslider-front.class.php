@@ -68,6 +68,9 @@ class RevSliderFront extends RevSliderBaseFront{
 		
 		$custom_css = RevSliderOperations::getStaticCss();
 		$custom_css = RevSliderCssParser::compress_css($custom_css);
+		
+		if(trim($custom_css) == '') $custom_css = '#rs-demo-id {}';
+		
 		wp_add_inline_style( 'rs-plugin-settings', $style_pre.$custom_css.$style_post );
 		
 		$setBase = (is_ssl()) ? "https://" : "http://";

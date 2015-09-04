@@ -51,29 +51,32 @@ class RevSliderTemplate {
 			'uid' => urlencode($uid)
 		);
 		
-		$request = wp_remote_post($this->templates_url.$this->templates_download, array(
-			'user-agent' => 'WordPress/'.$wp_version.'; '.get_bloginfo('url'),
-			'body' => $rattr
-		));
-		
-		if(!is_wp_error($request)) {
-			if($response = $request['body']) {
-				if($response !== 'invalid'){
-					//add stream as a zip file
-					$upload_dir = wp_upload_dir(); // Set upload folder
-					
-					// Check folder permission and define file location
-					if( wp_mkdir_p( $upload_dir['basedir'].$this->templates_path ) ) {
+		$upload_dir = wp_upload_dir(); // Set upload folder
+		// Check folder permission and define file location
+		if(wp_mkdir_p( $upload_dir['basedir'].$this->templates_path ) ) { //check here to not flood the server
+			$request = wp_remote_post($this->templates_url.$this->templates_download, array(
+				'user-agent' => 'WordPress/'.$wp_version.'; '.get_bloginfo('url'),
+				'body' => $rattr
+			));
+			
+			if(!is_wp_error($request)) {
+				if($response = $request['body']) {
+					if($response !== 'invalid'){
+						//add stream as a zip file
 						$file = $upload_dir['basedir']. $this->templates_path . '/' . $uid.'.zip';
 						@mkdir(dirname($file));
 						$ret = @file_put_contents( $file, $response );
 						if($ret !== false){
 							//return $file so it can be processed. We have now downloaded it into a zip file
 							return $file;
+						}else{//else, print that file could not be written
+							return array('error' => __('Can\'t write the file into the uploads folder of WordPress, please change permissions and try again!', REVSLIDER_TEXTDOMAIN));
 						}
 					}
 				}
-			}
+			}//else, check for error and print it to customer
+		}else{
+			return array('error' => __('Can\'t write into the uploads folder of WordPress, please change permissions and try again!', REVSLIDER_TEXTDOMAIN));
 		}
 		
 		return false;

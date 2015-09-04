@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - VIDEO FUNCTIONS
- * @version: 1.0.2 (19.08.2015)
+ * @version: 1.0.3 (01.09.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -200,9 +200,11 @@ jQuery.extend(true,_R, {
 	checkVideoApis : function(_nc,opt,addedApis) {		
 		var httpprefix = location.protocol === 'https:' ? "https" : "http";
 
+
 		if ((_nc.data('ytid')!=undefined  || _nc.find('iframe').length>0 && _nc.find('iframe').attr('src').toLowerCase().indexOf('youtube')>0)) opt.youtubeapineeded = true;
 		if ((_nc.data('ytid')!=undefined  || _nc.find('iframe').length>0 &&  _nc.find('iframe').attr('src').toLowerCase().indexOf('youtube')>0) && addedApis.addedyt==0) {
 			addedApis.addedyt=1;
+
 			var s = document.createElement("script");								
 			s.src = "https://www.youtube.com/iframe_api"; /* Load Player API*/
 			var before = document.getElementsByTagName("script")[0],
@@ -212,7 +214,10 @@ jQuery.extend(true,_R, {
 				   loadit = false;
 			});
 			if (loadit) before.parentNode.insertBefore(s, before);
+
 		}
+
+
 
 		if ((_nc.data('vimeoid')!=undefined || _nc.find('iframe').length>0 && _nc.find('iframe').attr('src').toLowerCase().indexOf('vimeo')>0)) opt.vimeoapineeded = true;	
 	  	if ((_nc.data('vimeoid')!=undefined || _nc.find('iframe').length>0 && _nc.find('iframe').attr('src').toLowerCase().indexOf('vimeo')>0) && addedApis.addedvim==0) {
@@ -298,7 +303,9 @@ jQuery.extend(true,_R, {
 				});			
 			break;
 			case "youtube":
-				httpprefix = "http";				
+				httpprefix = "http";	
+				if (location.protocol === 'https:')	
+					httpprefix = "https";		
 				if (videocontrols=="none") {					
 			 		vida = vida.replace("controls=1","controls=0");
 			 		if (vida.toLowerCase().indexOf('controls')==-1)

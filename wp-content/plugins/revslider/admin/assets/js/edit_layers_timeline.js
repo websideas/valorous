@@ -961,19 +961,21 @@ var tpLayerTimelinesRev = new function(){
 		if(mwidth == undefined) mwidth = '';
 		if(mheight == undefined) mheight = '';
 
+		
+
 		mwidth = cmode===undefined || cmode==="custom" ?  
 				jQuery.isNumeric(mwidth) ? 
 					mwidth+"px" : mwidth.match(/px/g) ? 
 						parseInt(mwidth,0)+"px" : mwidth.match(/%/g) ? 
 							parseInt(mwidth,0)+"%" : mwidth :
-								cmode === "fullwidth" || cmode ==="cover" ? "100%" : mwidth;
+								cmode === "fullwidth" || cmode ==="cover"  || cmode ==="cover-proportional" ? "100%" : mwidth;
 
 		mheight = cmode===undefined || cmode==="custom" ?  
 				jQuery.isNumeric(mheight) ? 
 					mheight+"px" : mheight.match(/px/g) ? 
 						parseInt(mheight,0)+"px" : mheight.match(/%/g) ? 
 							parseInt(mheight,0)+"%" : mheight :
-								cmode === "fullheight" || cmode ==="cover" ? "100%" : mheight;
+								cmode === "fullheight" || cmode ==="cover" || cmode ==="cover-proportional"  ? "100%" : mheight;
 
 		
 
@@ -2074,11 +2076,11 @@ var tpLayerTimelinesRev = new function(){
 		htmlSortbox += '		<span style="width:25px;border-right:1px solid #f1f1f1">';
 		htmlSortbox += '			<span class="till_slideend '+endslideclass+'" title="Snap to Slide End / Custom End" class="tipsy_enabled_top"><i class="eg-icon-back-in-time"></i><i class="eg-icon-download-2"></i></span>';
 		htmlSortbox += '		</span>';
-		htmlSortbox += '		<span class="sort-hover-part layer_sort_layer_text_field">';
-		htmlSortbox += '			<span class="sortbox_text"><i class="layertypeclass ';		
+		htmlSortbox += '		<span class="text-selectable sort-hover-part layer_sort_layer_text_field">';
+		htmlSortbox += '			<span class="text-selectable sortbox_text"><i class="layertypeclass ';		
 
 		quicksb += '<li id="layer_quicksort_'+serial+'" class="quicksortlayer ui-state-default">';
-		quicksb += '<div class="add-layer-button">'		
+		quicksb += '<div class="add-layer-button text-selectable">'		
 		quicksb += '<i class="';
 		switch (objLayer.type) {
 			case "text":
@@ -2097,7 +2099,7 @@ var tpLayerTimelinesRev = new function(){
 
 		htmlSortbox += '"></i>';
 		quicksb += '"></i>';
-		htmlSortbox += '				<input class="timer-layer-text" style="margin-top:-1px !important" type="text" enabled value="'+sortboxText + '">';
+		htmlSortbox += '				<input class="text-selectable timer-layer-text" style="margin-top:-1px !important" type="text" enabled value="'+sortboxText + '">';
 		quicksb += '				<span class="add-layer-txt">'+sortboxText + '</span>';
 		htmlSortbox += '			</span>';
 		htmlSortbox += '		</span>';
@@ -2715,10 +2717,11 @@ var tpLayerTimelinesRev = new function(){
 	var initSortbox = function(){
 
 		t.redrawSortbox();
+
 		//set the sortlist sortable
 		jQuery( ".sortlist ul" ).sortable({
 			axis:'y',
-			cancel:"#slide_in_sort",
+			cancel:"#slide_in_sort, input",
 			items:".sortablelayers",
 			connectWith:"#layers-right ul",
 			update: function(){
@@ -2728,13 +2731,15 @@ var tpLayerTimelinesRev = new function(){
 
 		//set click event
 		jQuery(".sortlist, #layers-right, .quick-layers-list").delegate("li","mousedown",function(){
-			if (jQuery(this).hasClass("ui-state-hover")) return false;
+			
+			if (jQuery(this).hasClass("ui-state-hover")) return true;
 			if (jQuery(this).hasClass("mastertimer-slide")) {
 				// SELECT THE SLIDE IN SORTS
 			} else {
 				var serial = u.getSerialFromSortID(this.id);
 				u.setLayerSelected(serial);
 			}
+			
 		});
 
 
@@ -2838,6 +2843,7 @@ var tpLayerTimelinesRev = new function(){
 			}
 
 		});
+
 	}
 
 

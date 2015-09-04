@@ -1902,15 +1902,16 @@ class RevSliderSlider extends RevSliderElementsBase{
 		$templateKey = 0;
 		$numTemplates = count($slideTemplates);
 		
-		
 		foreach($arrPosts as $postData){
-			
-			$slideTemplate = $slideTemplates[$templateKey];
+			$slideTemplate = clone($slideTemplates[$templateKey]);
 			
 			//advance the templates
 			$templateKey++;
-			if($templateKey == $numTemplates)
+			if($templateKey == $numTemplates){
 				$templateKey = 0;
+				$slideTemplates = $this->getSlidesFromGallery($publishedOnly); //reset as clone did not work properly
+				$slideTemplates = RevSliderFunctions::assocToArray($slideTemplates);
+			}
 
 			$slide = new RevSlide();
 			$slide->initByPostData($postData, $slideTemplate, $this->id);

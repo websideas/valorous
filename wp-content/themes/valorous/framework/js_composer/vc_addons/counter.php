@@ -8,18 +8,18 @@ require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
-            'title' => '',
+            'title' => __( 'Title', 'js_composer' ),
             'from' => '0',
             'to' => '100',
-            'speed' => '5000',
+            'speed' => '2000',
             'prefix' => '',
             'suffix' => '',
 
-            'use_theme_fonts' => '',
+            'use_theme_fonts' => 'yes',
             'font_container' => '',
             'google_fonts' => '',
 
-            'use_theme_fonts_value' => '',
+            'use_theme_fonts_value' => 'yes',
             'font_container_value' => '',
             'google_fonts_value' => '',
 
@@ -36,7 +36,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
             'color' => '',
             'custom_color' => '',
             'background_style' => '',
-            'background_color' => '',
+            'background_color' => 'grey',
             'custom_background' => '',
             'size' => 'md',
             'align' => 'center',
@@ -102,7 +102,7 @@ class WPBakeryShortCode_Counter extends WPBakeryShortCode_VC_Custom_heading {
         $from = ($from) ? 'data-from="'.$from.'"' : '';
 
 
-        $counter_content = '<div class="counter-content" '.$style_title.'>'.$suffix.'<span class="counter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</div>';
+        $counter_content = '<h3 class="counter-content" '.$style_title.'>'.$suffix.'<span class="counter" '.$from.' data-speed="'.intval($speed).'"  '.$decimals_html.' data-to="'.esc_attr($to).'">'.$to.'</span>'.$prefix.'</h3>';
         $counter_text = '<div class="counter-text" '.$style_value.'>'.$title.'</div>';
 
         $counter_icon = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'"  custom_background ="'.$custom_background.'" size="'.$size.'" align="center"]');
@@ -185,7 +185,7 @@ vc_map( array(
             "type" => "kt_number",
             "heading" => __("Speed", THEME_LANG),
             "param_name" => "speed",
-            "value" => "5000",
+            "value" => "2000",
             "suffix" => __("milliseconds", THEME_LANG),
             "description" => __( "The number of milliseconds it should take to finish counting", THEME_LANG ),
         ),
@@ -302,7 +302,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'group' => __( 'Icon', THEME_LANG )
@@ -411,12 +411,13 @@ vc_map( array(
             'param_name' => 'use_theme_fonts',
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
-            'group' => __( 'Typography', THEME_LANG )
+            'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
@@ -462,12 +463,13 @@ vc_map( array(
             'param_name' => 'use_theme_fonts_value',
             'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
             'description' => __( 'Use font family from the theme.', 'js_composer' ),
-            'group' => __( 'Typography', THEME_LANG )
+            'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts_value',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),

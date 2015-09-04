@@ -1,6 +1,6 @@
 /********************************************
  * REVOLUTION 5.0 EXTENSION - LAYER ANIMATION
- * @version: 1.0.9 (27.08.2015)
+ * @version: 1.1.0 (09.01.2015)
  * @requires jquery.themepunch.revolution.js
  * @author ThemePunch
 *********************************************/
@@ -223,16 +223,39 @@ jQuery.extend(true,_R, {
 			
 			ww =  makeArray(im.data('ww'),opt)[opt.curWinRange] || makeArray(im.data('ww'),opt) || "auto",
 			hh =  makeArray(im.data('hh'),opt)[opt.curWinRange] || makeArray(im.data('hh'),opt) || "auto";
+			
+			var wful = ww==="full" || ww === "full-proportional",
+				hful = hh==="full" || hh === "full-proportional";
 
-			ww = ww === "full" ? fuw : parseFloat(ww);
-			hh = hh === "full" ? fuh : parseFloat(hh);
+			if (ww==="full-proportional") {
+				var ow = im.data('owidth'),
+					oh = im.data('oheight');				
+				if (ow/fuw < oh/fuh) {
+					ww = fuw;
+					hh = oh*(fuw/ow);
+				} else {
+					hh = fuh;
+					ww = ow*(fuh/oh);
+				}				
+			} else {
+				ww = wful ? fuw : parseFloat(ww);
+				hh = hful ? fuh : parseFloat(hh);	
+			}
+			
 
 			if (ww==undefined) ww=0;
 			if (hh==undefined) hh=0;
 
-			if (_responsive!=="off") {
-				im.width(ww*opt.bw);
-				im.height(hh*opt.bh);					
+			if (_responsive!=="off") {			
+				
+				if (_ba!="grid" && wful) 
+					im.width(ww);
+				else
+					im.width(ww*opt.bw);
+				if (_ba!="grid" && hful) 
+					im.height(hh);					
+				else
+					im.height(hh*opt.bh);					
 			} else {
 				im.width(ww);
 				im.height(hh);					

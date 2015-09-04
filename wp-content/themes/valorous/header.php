@@ -90,9 +90,3 @@
             		 * @hooked
             		 */
             		do_action( 'theme_content_top' ); ?>
-                    <p>
-                        <a href="#" class="btn btn-xs btn-default">Button</a>
-                        <a href="#" class="btn btn-sm btn-default">Button</a>
-                        <a href="#" class="btn btn-default">Button</a>
-                        <a href="#" class="btn btn-lg btn-default">Button</a>
-                    </p>

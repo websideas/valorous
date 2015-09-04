@@ -206,10 +206,11 @@ $startanims = $operations->getArrAnimations();
 					<span id="layer-covermode-wrapper" class="tipsy_enabled_top" title="<?php _e("Cover Mode",REVSLIDER_TEXTDOMAIN); ?>">
 						<i class="rs-mini-layer-icon eg-icon-resize-normal rs-toolbar-icon"></i>
 						<select class="rs-layer-input-field"  style="width:75px" id="layer_cover_mode" name="layer_cover_mode">
-							<option value="custom">Custom</option>
-							<option value="fullwidth">Full Width</option>
-							<option value="fullheight">Full Height</option>
-							<option value="cover">Cover</option>
+							<option value="custom"><?php _e('Custom', REVSLIDER_TEXTDOMAIN); ?></option>
+							<option value="fullwidth"><?php _e('Full Width', REVSLIDER_TEXTDOMAIN); ?></option>
+							<option value="fullheight"><?php _e('Full Height', REVSLIDER_TEXTDOMAIN); ?></option>
+							<option value="cover"><?php _e('Stretch', REVSLIDER_TEXTDOMAIN); ?></option>
+							<option value="cover-proportional"><?php _e('Cover', REVSLIDER_TEXTDOMAIN); ?></option>
 						</select>
 					</span>
 					<span class="rs-layer-toolbar-space" style="margin-right:11px"></span>

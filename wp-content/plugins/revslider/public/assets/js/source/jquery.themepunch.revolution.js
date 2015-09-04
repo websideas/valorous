@@ -1,7 +1,7 @@
 
 /**************************************************************************
  * jquery.themepunch.revolution.js - jQuery Plugin for Revolution Slider
- * @version: 5.0.5.4 (26.08.2015)
+ * @version: 5.0.6 (01.09.2015)
  * @requires jQuery v1.7 or later (tested on 1.9)
  * @author ThemePunch
 **************************************************************************/
@@ -578,7 +578,7 @@ jQuery.extend(true, _R, {
 	
 		container.find('.next-revslide').removeClass("next-revslide");
 
-		
+
 		// SET NEXT DIRECTION
 		if (direction && jQuery.isNumeric(direction) || direction.match(/to/g)) {			
 			if (direction===1 || direction === -1) {
@@ -586,7 +586,7 @@ jQuery.extend(true, _R, {
 				nindex = nindex<0 ? opt.slideamount-1 : nindex>=opt.slideamount ? 0 : nindex;						
 			} else {							
 
-				direction=parseInt(direction.split("to")[1],0);
+				direction=jQuery.isNumeric(direction) ? direction : parseInt(direction.split("to")[1],0);
 				nindex = direction<0 ? 0 : direction>opt.slideamount-1 ? opt.slideamount-1 : direction;						
 			}
 			container.find('.tp-revslider-slidesli:eq('+nindex+')').addClass("next-revslide");
@@ -1803,8 +1803,12 @@ var waitForCurrentImages = function(nextli,opt,callback) {
 				var w = element.data('ww'),
 					h = element.data('hh');
 				
+				element.data('owidth',loadobj.width);
+				element.data('oheight',loadobj.height);
+
 				w = w==undefined || w =="auto" || w=="" ? loadobj.width : w;
 				h = h==undefined || h =="auto" || h=="" ? loadobj.height : h;
+				
 				
 				element.data('ww',w);
 				element.data('hh',h);

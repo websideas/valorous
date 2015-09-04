@@ -4,9 +4,24 @@ http://demo.mekshq.com/?theme=sidewalk
 
 http://fotorama.io/
 
+https://cms-assets.tutsplus.com/uploads/users/581/posts/22922/image/My-Notes---SAAS-Ecom-Sample.jpg
+
+
+========================================================================================================================
+Blog example
+
+http://blog.piotrkwiatkowski.co.uk/
+http://timothyachumba.com/
+
+
+========================================================================================================================
+
+
 My fave moments
 MOST POPULAR
 
+
+========================================================================================================================
 
 Welcome To Jay
 Elegant, inspirational & clean WordPress blog theme with e-commerce capability
@@ -21,6 +36,35 @@ Elegant Themes Blog
 Stay up to date with our most recent news and updates
 
 Fashion, Beauty, Travel & More!
+
+New and Interesting Posts
+We're Happy to do this stuff. Welcome and enjoy!
+
+Blog
+Follow Our Daily Life and Receive Valuable Insights
+
+
+welcome
+I am a designer & amateur photographer based in London, UK.
+On this website you can find some photographs which I've taken during my travels.
+
+
+Hi there, I’m Timothy and I really love designing things that make a difference.
+I’m a Product Designer at Wunderlist, we help people get stuff done. I also enjoy capturing moments with my Olympus OM-D E-M10 and discovering new music.
+
+The most stylish things, For man
+
+
+
+========================================================================================================================
+
+Counter Tralvel blog
+
+8 - Destinations
+66,512 - Miles Traveled
+69 - Photos
+
+
 
 
 
@@ -80,6 +124,7 @@ About me page
 	http://capitol.zooka.io/?page_id=633
 	http://demo.themeton.com/vcard/profile/
 	https://0.s3.envato.com/files/132086767/mr_resume_template_preview/04_mr_resume_home_v1_profile_page.jpg
+	https://d13yacurqjgara.cloudfront.net/users/1044/screenshots/1487560/encourage_others_1x.jpg
 
 	http://sincerelyjules.com/about
 
@@ -110,8 +155,14 @@ Landing for homepage
 		https://0.s3.envato.com/files/98408716/01_gippo_homepage.jpg
 
 
-
+		http://helentran.com/
 		http://demo.themeton.com/vcard/
+		https://d13yacurqjgara.cloudfront.net/users/581199/screenshots/2020599/attachments/357275/Blog-Hero-Exploration-Hi-Res.jpg
+
+	4. Featured article
+	 	https://d13yacurqjgara.cloudfront.net/users/168777/screenshots/2170679/attachments/399246/pixels.jpg
+
+
 
 
 Photoshop action
@@ -138,21 +189,55 @@ https://0.s3.envato.com/files/132086767/mr_resume_template_preview/08_mr_resume_
 
 https://0.s3.envato.com/files/144931887/Preview/30_screenshot31.jpg
 https://0.s3.envato.com/files/143544184/21-screenshot21.jpg
-https://0.s3.envato.com/files/144502777/09_Exa_Contact_2.jpg'
+https://0.s3.envato.com/files/144502777/09_Exa_Contact_2.jpg
+https://0.s3.envato.com/files/139603979/Screenshots/10-CONTACT.jpg
+https://0.s3.envato.com/files/135880430/Preview/04_CONTACT_page_STYLE_03.jpg
+https://0.s3.envato.com/files/141251607/15_contact.jpg
+https://0.s3.envato.com/files/142582062/24_cave_contact_us.jpg
+
+
+
+Single post detail:
+	https://0.s3.envato.com/files/135880430/Preview/08_09_blog_BLOG_DETAIL.jpg
+	https://0.s3.envato.com/files/102982086/Theme_previews/06.blog_ueneo_singer.png
+	https://d13yacurqjgara.cloudfront.net/users/139604/screenshots/1621784/attachments/252562/blog-ideas.jpg
+
+
+Product layout
+	https://0.s3.envato.com/files/135880430/Preview/02_07_shop_DETAIL_01.jpg
+	https://0.s3.envato.com/files/135880430/Preview/02_08_shop_DETAIL_02.jpg
+	https://0.s3.envato.com/files/131210046/21_product_page_03.jpg
+	http://www.farfetch.com/vn/shopping/men/sacai-cable-knit-front-hoodie-item-11163483.aspx?storeid=9352&ffref=lp_2_0_
+
+Shop Banner
+	https://0.s3.envato.com/files/131210046/11_homepage_10.jpg
+	https://0.s3.envato.com/files/131210046/12_homepage_11.jpg
+
+Checkout page
+	https://0.s3.envato.com/files/135880430/Preview/03_02_PAY_checkout.jpg
+
+FAQ page:
+	https://0.s3.envato.com/files/133601025/Preview/21_FAQ.jpg
+
+
+Coming soon
+	https://0.s3.envato.com/files/131210046/50_comming_soon_02.jpg
 
 
 
 
-Single detail:
-	http://themeforest.net/item/cave-creative-psd-theme/12217274
-	https://0.s3.envato.com/files/141251607/15_contact.jpg
 
 
 
 
-        
-    section separator and Icon
-        http://demo.tardigradestudio.com/themes/element/index.html
+
+
+
+
+
+
+section separator and Icon
+	http://demo.tardigradestudio.com/themes/element/index.html
 
 For info box
     http://tympanus.net/Development/IconHoverEffects/#set-3

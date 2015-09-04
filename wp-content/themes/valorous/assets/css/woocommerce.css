@@ -1727,6 +1727,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 
 .woocommerce-checkout #place_order {
     width: 100%;
+    color: #FFFFFF;
 }
 
 .woocommerce-checkout #payment div.payment_box::after {
