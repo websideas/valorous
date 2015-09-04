@@ -3563,7 +3563,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 .kt-skill-item-wrapper {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .kt-skill-wrapper .kt-skill-item-wrapper:last-child {
@@ -3579,12 +3579,18 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     position: relative;
 }
 
+.kt-skill-bg{
+    background-color: #e3e3e3;
+}
+
 .kt-skill-bar {
     width: 0;
     transition: width 1s linear;
     -moz-transition: width 1s linear;
     -webkit-transition: width 1s linear;
     -o-transition: width 1s linear;
+    overflow: hidden;
+    position: relative;
 }
 
 .kt-style-inner .kt-skill-bar {
@@ -3631,7 +3637,8 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 .kt-style-before .kt-skill-text {
-    margin-bottom: 5px;
+    margin: 0 0 5px;
+    padding: 0;
 }
 
 .kt-style-after .kt-skill-text {
@@ -3640,6 +3647,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 .kt-style-inner .kt-skill-text {
     padding: 0 5px;
+    margin: 0;
 }
 
 .kt-style-before .kt-skill-text span,
