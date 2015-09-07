@@ -347,7 +347,7 @@
         $('.coming-soon').each(function () {
             var date = $(this).data('date');
             $(this).countdown(date, function (event) {
-                //$(this).html( event.strftime(coming_html) );
+                $(this).html( event.strftime(coming_html) );
             });
 
         });

@@ -201,6 +201,7 @@ Single post detail:
 	https://0.s3.envato.com/files/135880430/Preview/08_09_blog_BLOG_DETAIL.jpg
 	https://0.s3.envato.com/files/102982086/Theme_previews/06.blog_ueneo_singer.png
 	https://d13yacurqjgara.cloudfront.net/users/139604/screenshots/1621784/attachments/252562/blog-ideas.jpg
+	http://thoughtcatalog.com/ryan-holiday/2015/09/stop-working-for-free-time-is-running-out/
 
 
 Product layout

@@ -13,9 +13,8 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'align' => 'center',
             'layout' => 'between',
 
-            'use_theme_fonts' => 'yes',
-            'font_type' => '',
             'font_container' => '',
+            'use_theme_fonts' => 'yes',
             'google_fonts' => '',
             'letter_spacing' => '0',
 
@@ -58,7 +57,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
             'align' => 'kt-heading-align-'.$align
         );
 
-        $output = $text = $google_fonts = $font_container = $el_class = $css = $google_fonts_data = $font_container_data = '';
+        $output = $text = $google_fonts = $font_container = $el_class = $css = $google_fonts_data = $font_container_data = $style = '';
         $styles = array();
 
         extract( $this->getAttributes( $atts ) );
@@ -72,7 +71,7 @@ class WPBakeryShortCode_KT_Heading extends WPBakeryShortCode_VC_Custom_heading {
         if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
             wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
         }
-        $style = '';
+
         if($letter_spacing){
             $styles[] = 'letter-spacing: '.$letter_spacing.'px;';
         }
@@ -198,26 +197,18 @@ vc_map( array(
             'value' => '',
             'settings' => array(
                 'fields' => array(
-                    'tag' => 'h2', // default value h2
-                    //'text_align',
+                    'tag' => 'h4',
                     'font_size',
                     'line_height',
                     'color',
-                    //'font_style_italic'
-                    //'font_style_bold'
-                    //'font_family'
-
                     'tag_description' => __( 'Select element tag.', 'js_composer' ),
                     'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
                     'font_size_description' => __( 'Enter font size.', 'js_composer' ),
                     'line_height_description' => __( 'Enter line height.', 'js_composer' ),
                     'color_description' => __( 'Select heading color.', 'js_composer' ),
-                    //'font_style_description' => __('Put your description here','js_composer'),
-                    //'font_family_description' => __('Put your description here','js_composer'),
                 ),
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            // 'description' => __( '', 'js_composer' ),
         ),
         array(
             'type' => 'checkbox',
@@ -423,7 +414,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => '' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'group' => __( 'Divider', THEME_LANG )

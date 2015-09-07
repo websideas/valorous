@@ -143,7 +143,7 @@ function register_kt_testimonial_init(){
         'name' => __( 'Testimonial', THEME_LANG),
         'singular_name' => __( 'Testimonial', THEME_LANG),
         'add_new' => __( 'Add New', THEME_LANG),
-        'all_items' => __( 'All testimonial', THEME_LANG),
+        'all_items' => __( 'Testimonials', THEME_LANG),
         'add_new_item' => __( 'Add New testimonial', THEME_LANG),
         'edit_item' => __( 'Edit testimonial', THEME_LANG),
         'new_item' => __( 'New testimonial', THEME_LANG),
@@ -152,7 +152,7 @@ function register_kt_testimonial_init(){
         'not_found' => __( 'No testimonial found', THEME_LANG),
         'not_found_in_trash' => __( 'No testimonial found in Trash', THEME_LANG),
         'parent_item_colon' => __( 'Parent testimonial', THEME_LANG),
-        'menu_name' => __( 'Testimonial', THEME_LANG)
+        'menu_name' => __( 'Testimonials', THEME_LANG)
     );
     $args = array(
         'labels' => $labels,

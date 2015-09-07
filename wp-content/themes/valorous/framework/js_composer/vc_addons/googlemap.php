@@ -126,6 +126,7 @@ vc_map( array(
                 '19' => '19'
         	),
         	"description" => __("1 is the smallest zoom level, 19 the greatest",THEME_LANG),
+            "admin_label" => true,
         ),
         array(
             "type" => "attach_image",

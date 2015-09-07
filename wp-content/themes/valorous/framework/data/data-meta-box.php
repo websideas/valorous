@@ -203,13 +203,13 @@ function kt_register_meta_boxes( $meta_boxes )
         'pages'  => array( 'kt_testimonial' ),
         'fields' => array(
             array(
-                'name' => __( 'Company', THEME_LANG ),
+                'name' => __( 'Company Name / Job Title', THEME_LANG ),
                 'id' => $prefix . 'testimonial_company',
-                'desc' => __( "Please type the text for company here.", THEME_LANG ),
+                'desc' => __( "Please type the text for Company Name / Job Title here.", THEME_LANG ),
                 'type'  => 'text',
             ),
             array(
-                'name' => __( 'Link', THEME_LANG ),
+                'name' => __( "URL to Author's Website", THEME_LANG ),
                 'id' => $prefix . 'testimonial_link',
                 'desc' => __( "Please type the text for link here.", THEME_LANG ),
                 'type'  => 'text',

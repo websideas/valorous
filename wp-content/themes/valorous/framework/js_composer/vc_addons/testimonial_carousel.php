@@ -6,20 +6,19 @@ if ( !defined('ABSPATH')) exit;
 require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 
 class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom_heading {
-    var $excerpt_length;
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'title' => '',
-            'border_heading' => '',
             'layout' => 1,
 
-            'font_type' => '',
             'font_container' => '',
+            'use_theme_fonts' => 'yes',
             'google_fonts' => '',
             'letter_spacing' => '0',
-            
-            'font_type_company' => '',
+
+
             'font_container_company' => '',
+            'use_theme_fonts_company' => 'yes',
             'google_fonts_company' => '',
             'letter_spacing_company' => '0',
 
@@ -30,7 +29,6 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'meta_key' => '',
             'order' => 'DESC',
             'max_items' => 10,
-            "excerpt_length" => 50,
 
             'margin' => 0,
             'loop' => 'false',
@@ -83,12 +81,12 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
                 $categories_arr = array_filter(explode( ',', $categories));
                 if(count($categories_arr)){
                     $args['tax_query'] = array(
-                                		array(
-                                			'taxonomy' => 'testimonial-category',
-                                			'field' => 'id',
-                                			'terms' => $categories_arr
-                                		)
-                                	);
+                        array(
+                            'taxonomy' => 'testimonial-category',
+                            'field' => 'id',
+                            'terms' => $categories_arr
+                        )
+                    );
                 }
             }
         }elseif($source == 'posts'){
@@ -100,8 +98,6 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             }
         }
 
-        // The Query
-        $the_query = new WP_Query( $args );
 
         $elementClass = array(
             'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'testimonial-carousel-wrapper ', $this->settings['base'], $atts ),
@@ -111,10 +107,8 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'layout' => 'testimonial-carousel-layout-'.$layout
         );
 
-        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        $output = '';
-        $output .= '<div class="'.esc_attr( $elementClass ).'">';
+        $output = $style_title = $style_company = '';
 
         if($title){
             $output .= '<div class="block-heading">';
@@ -122,18 +116,11 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             $output .= '</div>';
         }
 
-        $styles = array();
-        $style_title = '';
 
+        $styles = array();
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-
-
-        if($font_type != 'google'){
-            $google_fonts_data = array();
-        }
         extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
-
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
         $subsets = '';
         if ( is_array( $settings ) && ! empty( $settings ) ) {
@@ -142,27 +129,24 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
         if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
             wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
         }
+
         if($letter_spacing){
             $styles[] = 'letter-spacing: '.$letter_spacing.'px;';
         }
         if ( ! empty( $styles ) ) {
-            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+            $style_title = 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
         }
-        
-        $style_company = '';
+
+
+
+
         $atts['font_container'] = $font_container_company;
         $atts['google_fonts'] = $google_fonts_company;
-        $atts['font_type'] = $font_type_company;
-
-        extract($this->getAttributes($atts));
+        $atts['use_theme_fonts'] = $use_theme_fonts_company;
+        $styles = array();
+        extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
-        
-        if($font_type_company != 'google'){
-            $google_fonts_data = array();
-        }
-        
-        extract($this->getStyles($el_class, $css, $google_fonts_data, $font_container_data, $atts));
-        
+        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
         $settings = get_option( 'wpb_js_google_fonts_subsets' );
         $subsets = '';
         if ( is_array( $settings ) && ! empty( $settings ) ) {
@@ -171,11 +155,12 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
         if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
             wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
         }
+
         if($letter_spacing_company){
             $styles[] = 'letter-spacing: '.$letter_spacing_company.'px;';
         }
         if ( ! empty( $styles ) ) {
-            $style_company .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
+            $style_company = 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
         }
 
 
@@ -189,23 +174,23 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
 
             while ( $query->have_posts() ) : $query->the_post();
                 $testimonial_html .= '<div class="testimonial-item testimonial-layout-'.esc_attr($layout).'">';
-                    $testimonial_content = '<div class="testimonial-content">'.do_shortcode(get_the_content()).'</div>';
-                    $link = rwmb_meta('_kt_testimonial_link');
-                    if( $link ){
-                        $testimonial_author = '<h4 class="testimonial-author"><a target="_blank" href="'.$link.'" '.$style_title.'>'.get_the_title().'</a></h4>';
-                    }else{
-                        $testimonial_author = '<h4 class="testimonial-author" '.$style_title.'>'.get_the_title().'</h4>';                        
-                    }
-                    $testimonial_author .= '<div class="testimonial-info" '.$style_company.'>'.rwmb_meta('_kt_testimonial_company').'</div>';
-                    $testimonial_img = (has_post_thumbnail()) ? '<div class="testimonial-img">'.get_the_post_thumbnail( get_the_ID(), 'small', array('class'=>"img-responsive")).'</div>' : '';
+                $testimonial_content = '<div class="testimonial-content">'.do_shortcode(get_the_content()).'</div>';
+                $link = rwmb_meta('_kt_testimonial_link');
+                if( $link ){
+                    $testimonial_author = '<h4 class="testimonial-author"><a target="_blank" href="'.$link.'" '.$style_title.'>'.get_the_title().'</a></h4>';
+                }else{
+                    $testimonial_author = '<h4 class="testimonial-author" '.$style_title.'>'.get_the_title().'</h4>';
+                }
+                $testimonial_author .= '<div class="testimonial-info" '.$style_company.'>'.rwmb_meta('_kt_testimonial_company').'</div>';
+                $testimonial_img = (has_post_thumbnail()) ? '<div class="testimonial-img">'.get_the_post_thumbnail( get_the_ID(), 'small', array('class'=>"img-responsive")).'</div>' : '';
 
-                    if($layout == '2'){
-                        $testimonial_html .= sprintf('<div class="testimonial-author-infos">%s %s</div>%s', $testimonial_img, $testimonial_author, $testimonial_content);
-                    }elseif($layout == '3'){
-                        $testimonial_html .= sprintf('<div class="testimonial-left display-cell">%s</div><div class="testimonial-right display-td"><div class="testimonial-author-infos">%s</div>%s</div>',$testimonial_img , $testimonial_author, $testimonial_content);
-                    }else{
-                        $testimonial_html .= sprintf('%s <div class="testimonial-author-infos">%s %s</div>', $testimonial_content, $testimonial_img, $testimonial_author );
-                    }
+                if($layout == '2'){
+                    $testimonial_html .= sprintf('<div class="testimonial-author-infos">%s %s</div>%s', $testimonial_img, $testimonial_author, $testimonial_content);
+                }elseif($layout == '3'){
+                    $testimonial_html .= sprintf('<div class="testimonial-left display-cell">%s</div><div class="testimonial-right display-td"><div class="testimonial-author-infos">%s</div>%s</div>',$testimonial_img , $testimonial_author, $testimonial_content);
+                }else{
+                    $testimonial_html .= sprintf('%s <div class="testimonial-author-infos">%s %s</div>', $testimonial_content, $testimonial_img, $testimonial_author );
+                }
 
                 $testimonial_html .= '</div><!-- .testimonial-posts-item -->';
             endwhile; wp_reset_postdata();
@@ -213,14 +198,10 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             $output .= str_replace('%carousel_html%', $testimonial_html, $carousel_ouput);
 
         endif;
-        $output .= '</div><!-- .testimonial-carousel-wrapper -->';
 
+        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+        return '<div class="'.esc_attr( $elementClass ).'">'.$output.'</div>';
 
-
-        return $output;
-    }
-    function custom_excerpt_length( $length ) {
-        return $this->excerpt_length;
     }
 }
 
@@ -241,14 +222,6 @@ vc_map( array(
             'heading' => __( 'URL (Link)', 'js_composer' ),
             'param_name' => 'link',
         ),
-        array(
-            'type' => 'kt_switch',
-            'heading' => __( 'Border in heading', THEME_LANG ),
-            'param_name' => 'border_heading',
-            'value' => 'true',
-            "description" => __("Enable border in heading", THEME_LANG)
-        ),
-
         array(
             'type' => 'dropdown',
             'heading' => __( 'Layout', THEME_LANG ),
@@ -611,20 +584,18 @@ vc_map( array(
             'group' => __( 'Typography', THEME_LANG ),
         ),
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
@@ -632,8 +603,10 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type', 'value' => array( 'google' ) ),
-            'description' => __( '', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts',
+                'value_not_equal_to' => 'yes',
+            ),
         ),
         array(
             "type" => "kt_heading",
@@ -671,21 +644,20 @@ vc_map( array(
             "description" => "",
             'group' => __( 'Typography', THEME_LANG ),
         ),
+
         array(
-            'type' => 'dropdown',
-            'heading' => __( 'Font type', 'js_composer' ),
-            'param_name' => 'font_type_company',
-            'value' => array(
-                __( 'Normal', 'js_composer' ) => '',
-                __( 'Google font', 'js_composer' ) => 'google',
-            ),
-            'group' => __( 'Typography', 'js_composer' ),
-            'description' => __( '', 'js_composer' ),
+            'type' => 'checkbox',
+            'heading' => __( 'Use theme default font family?', 'js_composer' ),
+            'param_name' => 'use_theme_fonts_company',
+            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
+            'description' => __( 'Use font family from the theme.', 'js_composer' ),
+            'group' => __( 'Typography', THEME_LANG ),
+            'std' => 'yes'
         ),
         array(
             'type' => 'google_fonts',
             'param_name' => 'google_fonts_company',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
+            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
             'settings' => array(
                 'fields' => array(
                     'font_family_description' => __( 'Select font family.', 'js_composer' ),
@@ -693,9 +665,12 @@ vc_map( array(
                 )
             ),
             'group' => __( 'Typography', THEME_LANG ),
-            'dependency' => array( 'element' => 'font_type_company', 'value' => array( 'google' ) ),
-            'description' => __( '', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'use_theme_fonts_company',
+                'value_not_equal_to' => 'yes',
+            ),
         ),
+
 
         array(
             'type' => 'css_editor',

@@ -205,7 +205,6 @@ $composer_addons = array(
     'button.php',
     'skill.php',
     'socials.php',
-    'team.php',
     'timeline.php',
     'dropcap.php',
     'lightbox.php',
