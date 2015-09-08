@@ -21,10 +21,10 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             'icon_entypoicons' => '',
             'icon_linecons' => '',
             'icon_entypo' => '',
-            'color' => '',
+            'color' => 'blue',
             'custom_color' => '',
             'background_style' => '',
-            'background_color' => '',
+            'background_color' => 'grey',
             'custom_background_color' => '',
             'size' => 'xs',
 
@@ -82,7 +82,6 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             }else{
                 $elementClass[] = 'kt-divider-box';
             }
-
             $icon_html = do_shortcode('[vc_icon addon="1" type="'.$type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background_color ="'.$custom_background_color.'" size="xs" align="'.$align.'"]');
 
             if($align != 'left' && $align != 'right'){
