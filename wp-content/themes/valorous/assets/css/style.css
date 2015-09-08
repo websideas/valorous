@@ -3157,6 +3157,71 @@ body.footer_fixed .static-footer {
 /*
  * General Tabs nav
  */
+.vc_tta-tabs .vc_tta-tab > a i{
+    margin-right:5px;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a{
+    background-color: #d0a852;
+    border-color: #d0a852;
+    color:#fff;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a:hover,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a:focus,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a:hover,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a:focus,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a {
+    background-color: #f8f8f8;
+    border-color: #f0f0f0;
+    color: inherit;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:hover, 
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:focus{
+    background-color: #daad4d;
+}
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a{
+    background-color: #daad4d;
+    color:#fff;
+}
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a:hover,
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a:focus,
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab.vc_active > a{
+    background-color: #d0a852;
+    color:#fff;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a {
+    background-color: transparent;
+    border-color: #d0a852;
+    color: #d0a852;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:hover,
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:focus,
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    color: #d0a852;
+}
+.vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels .vc_tta-panel-body{
+    background-color: transparent;
+    border-color: transparent;
+}
+.vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels, 
+.vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels::before, 
+.vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels::after{
+    border-color:#d0a852;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:hover, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:focus{
+    background-color: #d0a852;
+    color:#fff;
+}
+.vc_tta-tabs.vc_tta-tabs-position-top:not([class*="vc_tta-gap"]):not(.vc_tta-o-no-fill) .vc_tta-tab.vc_active > a{
+    border-bottom-color: transparent;
+}
+
 .kt-tabs-nav {
     margin: 0 0 20px 1px;
     padding: 0;
