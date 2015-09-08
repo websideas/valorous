@@ -15,11 +15,14 @@ function kt_add_option_to_vc() {
     vc_update_shortcode_param( 'vc_icon', $background_style );
 
 
-    $button_colors = WPBMap::getParam( 'vc_icon', 'color' );
+    $button_colors = WPBMap::getParam( 'vc_btn', 'color' );
     $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
     vc_update_shortcode_param( 'vc_btn', $button_colors );
 
 
+    $button_colors = WPBMap::getParam( 'vc_tta_accordion', 'color' );
+    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
+    vc_update_shortcode_param( 'vc_tta_accordion', $button_colors );
 }
 
 

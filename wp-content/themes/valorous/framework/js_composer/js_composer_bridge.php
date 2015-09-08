@@ -184,6 +184,7 @@ $tabs_arr = array(
 vc_add_params("vc_tta_tabs", $tabs_arr);
 vc_add_params("vc_tta_tour", $tabs_arr);
 vc_add_params("vc_tta_accordion", $tabs_arr);
+vc_add_params("vc_tta_pageable", $tabs_arr);
 
 
 

@@ -90,6 +90,8 @@ if(count($styles)){
     }
 
     $custom_css = '#'.$uniqid.' .vc_tta-tab > a{'.implode( ';', $styles ).'}';
+    $custom_css .= '#'.$uniqid.' .vc_tta-panel-title > a{'.implode( ';', $styles ).'}';
+
     $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
 
     $output .= $custom_css;

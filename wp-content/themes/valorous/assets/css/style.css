@@ -3076,6 +3076,17 @@ body.footer_fixed .static-footer {
     right: 8px;
 }
 
+
+/**
+ * Accordion and Toggles
+ */
+.vc_tta.vc_general .vc_tta-panel-title,
+.vc_toggle_title > h4{
+    font-size: 13px;
+}
+
+
+
 /*
  * General Tabs nav
  */
