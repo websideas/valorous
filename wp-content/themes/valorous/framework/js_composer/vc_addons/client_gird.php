@@ -18,14 +18,14 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
             'orderby' => 'date',
             'meta_key' => '',
             'order' => 'DESC',
+            'max_items' => 10,
             
             'border_width' => '',
             'border_type' => '',
-            'border_color' => 'custom',
-            'border_custom_color' => '#e5e5e5',
+            'border_color' => '#e5e5e5',
 
-            'desktop' => 3,
-            'tablet' => 2,
+            'desktop' => 4,
+            'tablet' => 3,
             'mobile' => 1,
 
             'css' => '',
@@ -39,7 +39,7 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
                     'post_type' => 'kt_client',
                     'order' => $order,
                     'orderby' => $orderby,
-                    'posts_per_page' => -1,
+                    'posts_per_page' => $max_items,
                     'ignore_sticky_posts' => true
                 );
         
@@ -99,29 +99,19 @@ class WPBakeryShortCode_Clients_Gird extends WPBakeryShortCode {
         
         if($border_type ){
             if( $client_style == 'style1' ){
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{
-                    border-style: '.$border_type.' none none '.$border_type.';
-                }';
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1 .kt_client_col{
-                    border-style: none '.$border_type.' '.$border_type.' none;
-                }';
-            }else{
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .style2 .kt_client_col{
-                    border-style: none '.$border_type.' '.$border_type.' none;
-                }';
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{border-style: '.$border_type.' none none '.$border_type.';}';
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1 .kt_client_col{border-style: none '.$border_type.' '.$border_type.' none;}';
+            }elseif($client_style == 'style2'){
+                $custom_css .= '#kt_client_'.$rand.'.kt_client .style2 .kt_client_col{border-style: none '.$border_type.' '.$border_type.' none;}';
             }
         }
-        
-        if( $border_color == 'custom' ){
-            if( $client_style == 'style1' ){
-                $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{
-                    border-color: '.$border_custom_color.';
-                }';
-            }
-            $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{
-                border-color: '.$border_custom_color.';
-            }';
+
+        if( $client_style == 'style1' ){
+            $custom_css .= '#kt_client_'.$rand.'.kt_client .style1{border-color: '.$border_color.';}';
+        }elseif($client_style == 'style2'){
+            $custom_css .= '#kt_client_'.$rand.'.kt_client .kt_client_col{border-color: '.$border_color.';}';
         }
+
         
         if($custom_css){
             $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
@@ -177,7 +167,6 @@ vc_map( array(
                 __( 'Self', THEME_LANG ) => '_self',
                 __( 'Blank', THEME_LANG ) => '_blank',
                 __( 'Parent', THEME_LANG ) => '_parent',
-                __( 'Top', THEME_LANG ) => '_top',
             ),
             'description' => __( 'Select target link.', THEME_LANG ),
         ),
@@ -248,6 +237,15 @@ vc_map( array(
             'placeholder' => __( 'Select your posts', 'js_composer' ),
             "dependency" => array("element" => "source","value" => array('posts')),
             'multiple' => true,
+            'group' => __( 'Data settings', 'js_composer' ),
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => __( 'Total items', 'js_composer' ),
+            'param_name' => 'max_items',
+            'value' => 8, // default value
+            'param_holder_class' => 'vc_not-for-custom',
+            'description' => __( 'Set max limit for items in grid or enter -1 to display all (limited to 1000).', 'js_composer' ),
             'group' => __( 'Data settings', 'js_composer' ),
         ),
         array(
@@ -378,25 +376,11 @@ vc_map( array(
             'group' => __( 'Border', THEME_LANG )
         ),
         array(
-            'type' => 'dropdown',
+            'type' => 'colorpicker',
             'heading' => __( 'Border Color', 'js_composer' ),
             'param_name' => 'border_color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
-            'std' => 'custom',
-            'description' => __( 'Border Color.', 'js_composer' ),
-            'param_holder_class' => 'vc_colored-dropdown',
-            'group' => __( 'Border', THEME_LANG )
-        ),
-        array(
-            'type' => 'colorpicker',
-            'heading' => __( 'Custom Border Color', 'js_composer' ),
-            'param_name' => 'border_custom_color',
             'description' => __( 'Select custom border color.', 'js_composer' ),
             'value' => '#e5e5e5',
-            'dependency' => array(
-                'element' => 'border_color',
-                'value' => 'custom',
-            ),
             'group' => __( 'Border', THEME_LANG )
         ),
         

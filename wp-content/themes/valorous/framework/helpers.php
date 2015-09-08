@@ -709,7 +709,7 @@ function kt_render_carousel($data, $class = ''){
         }
         if(($navigation_style == 'circle' || $navigation_style == 'square' || $navigation_style == 'round') && $navigation_background){
             $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{background:'.$navigation_background.';}';
-        }elseif(($navigation_style == 'border_circle' || $navigation_style == 'border_square' || $navigation_style == 'border_round') && $navigation_border_width){
+        }elseif(($navigation_style == 'circle_border' || $navigation_style == 'square_border' || $navigation_style == 'round_border') && $navigation_border_width){
             $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{border:'.$navigation_border_width.'px solid;}';
             if($navigation_border_color){
                 $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{border-color:'.$navigation_border_color.';}';

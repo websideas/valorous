@@ -348,6 +348,9 @@ For Carousel
             http://www.jqueryscript.net/rotator/jQuery-Text-Rotator-Plugin-with-CSS3-Animations-Words-Rotator.html
 		
 For Testimonials
+
+	What others say about us
+
 	http://artbees.net/themes/jupiter/shortcodes/testimonials/
 	http://the7.dream-demo.com/shortcodes/5-shortcodes/testimonials-shortcode/
 		Masonry

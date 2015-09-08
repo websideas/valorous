@@ -233,7 +233,7 @@ vc_map( array(
             'param_name' => 'layout',
             'value' => array(
                 __( 'Content + Avatar + Title aligned center', THEME_LANG ) => '1',
-                __( 'Content in Boxed And Avatar + Title center', THEME_LANG ) => '2',
+                __( 'Avatar + Title + Content aligned center', THEME_LANG ) => '2',
                 __( 'Avatar beside Title and Content aligned with Title', THEME_LANG ) => '3',
             ),
             'description' => __( 'Select your layout.', THEME_LANG ),

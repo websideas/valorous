@@ -15,8 +15,7 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
             'meta_key' => '',
             'order' => 'DESC',
             'target_link' => '_self',
-            
-            'padding_item' => '',
+
             'background_item' => '',
 
             'border_style' => '',
@@ -91,12 +90,9 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
             }
         }
 
-        $styles = array();
-        if($padding_item){
-            $styles['padding'] = 'padding: '.$padding_item;
-        }
         if($background_item){
             $styles['background'] = 'background: '.$background_item;
+            $styles['padding'] = 'padding: 10px';
         }
         if($border_style){
             $styles[] = 'border-width:'.$border_size.'px';
@@ -314,12 +310,6 @@ vc_map( array(
             "description" => "",
         ),
 
-        array(
-            "type" => "textfield",
-            "heading" => __( "Padding", THEME_LANG ),
-            "param_name" => "padding_item",
-            "description" => __( "In pixels, top right bottom left, ex: 10px 10px 10px 10px", THEME_LANG ),
-        ),
         array(
             'type' => 'colorpicker',
             'heading' => __( 'Background', 'js_composer' ),
