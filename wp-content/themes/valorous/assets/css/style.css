@@ -3084,8 +3084,75 @@ body.footer_fixed .static-footer {
 .vc_toggle_title > h4{
     font-size: 13px;
 }
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading{
+    background-color: #d0a852;
+    border-color: #d0a852;
+    color:#fff;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:hover,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:focus,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:focus{
+    background-color: #daad4d;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel.vc_active .vc_tta-panel-heading,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel.vc_active .vc_tta-panel-heading {
+    background-color: #f8f8f8;
+    border-color: #f0f0f0;
+    color:inherit;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body, 
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body::before, 
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body::after,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body, 
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body::before, 
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body::after{
+    border-color: #f0f0f0;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
+    background-color: #f8f8f8;
+}
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-body,
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-heading{
+    background-color: #d0a852;
+    color:#fff;
+}
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-heading:focus{
+    background-color: #daad4d;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body::before, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body::after,
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading{
+    background-color: transparent;
+    border-color: #d0a852;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading{
+    color:#d0a852;
+}
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:hover, 
+.vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:focus{
+    background-color: #d0a852;
+    color:#fff;
+}
+.vc_tta.vc_general .vc_tta-title-text:not(:empty):not(:first-child), .vc_tta.vc_general .vc_tta-title-text:not(:empty) ~ *{
+    margin-left:0;
+}
 
-
+.vc_tta.vc_tta-o-no-fill .vc_tta-panels .vc_tta-panel-body {
+    background-color: transparent;
+    border-color: transparent;
+    color:inherit;
+}
 
 /*
  * General Tabs nav
