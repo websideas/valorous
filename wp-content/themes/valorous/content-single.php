@@ -4,13 +4,14 @@
     <?php
         $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
         $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post');
+        $title_meta_center = kt_post_option(null,'_kt_title_and_meta_center','title_meta_center',1);
     ?>
     <?php
-    if( ! post_password_required( ) && $show_post_format && $post_layout == 1 ){
-        kt_post_thumbnail( $imagesize, 'img-responsive', false );
-    }
+        if( ! post_password_required( ) && $show_post_format && $post_layout == 1 ){
+            kt_post_thumbnail( $imagesize, 'img-responsive', false );
+        }
     ?>
-    <header class="entry-header">
+    <header class="entry-header<?php if( $title_meta_center == 1 ){ echo ' text-center'; } ?>">
         <h2 class="entry-title"><?php the_title(); ?></h2>
         <?php if(kt_post_option(null, '_kt_meta_info', 'blog_meta', 1)){ ?>
             <div class="entry-meta-data">

@@ -105,21 +105,6 @@ vc_add_params("vc_row_inner", array(
 
 vc_add_params( 'vc_single_image', array(
     array(
-        'type' => 'dropdown',
-        'heading' => __("Image effect", THEME_LANG),    
-        'param_name' => 'effect',
-        'value' => array( 
-            __("None", THEME_LANG) => "",
-            __("Creative", THEME_LANG) => "creative",
-            __("Simple Fade", THEME_LANG) => "simple",
-            __("Zoom in", THEME_LANG) => "zoomin", 
-            __('Zoom out', THEME_LANG) => "zoomout",
-            __('Mask Side to center', THEME_LANG) => "sidetocenter",
-            
-        ),
-        'description' => __( "Image effect when hover", THEME_LANG),
-    ),
-    array(
         'type' => 'dropdown',    
         'heading' => __("Show Social", THEME_LANG),    
         'param_name' => 'show_social',

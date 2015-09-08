@@ -240,6 +240,17 @@ function kt_register_meta_boxes( $meta_boxes )
                 'std'  => -1
             ),
             array(
+                'name' => __('Title and meta center', THEME_LANG),
+                'id'   => "{$prefix}title_and_meta_center",
+                'type' => 'select',
+                'options' => array(
+                    -1    => __('Default', THEME_LANG),
+                    0		=> __('No', THEME_LANG),
+                    1		=> __('Yes', THEME_LANG),
+                ),
+                'std'  => -1
+            ),
+            array(
                 'type' => 'select',
                 'name' => __('Post layouts', THEME_LANG),
                 'desc' => __('Select the your post layout.', THEME_LANG),

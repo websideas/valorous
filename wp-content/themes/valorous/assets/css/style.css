@@ -3451,6 +3451,47 @@ body.footer_fixed .static-footer {
     width: 100%;
 }
 
+.vc_single_image-wrapper{
+    position: relative;
+}
+.vc_single_image-wrapper ul.share{
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: absolute;
+    bottom:10px;
+    right:10px;
+}
+.vc_single_image-wrapper ul.share li{
+    display: inline-block;
+    margin:0 5px;
+}
+.vc_single_image-wrapper ul.share li a{
+    width:20px;
+    height:20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    border-radius:100%;
+    color:#fff;
+    font-size: 12px;
+}
+.vc_single_image-wrapper ul.share li a.facebook{
+    background:#3e5b97;
+}
+.vc_single_image-wrapper ul.share li a.pinterest{
+    background:#c3282d;
+}
+.vc_single_image-wrapper ul.share li a.googleplus{
+    background:#cf4832;
+}
+.wpb_single_image .vc_figure{
+    display: block;
+}
+.wpb_single_image .vc_figure-caption{
+    margin-top:10px;
+}
+
 /*
  * ALERTS
  */

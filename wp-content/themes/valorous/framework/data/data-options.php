@@ -2938,6 +2938,16 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'divide',
                         'id' => 'divide_fake',
                     ),
+                    
+                    array(
+                        'id' => 'title_meta_center',
+                        'type' => 'switch',
+                        'title' => __('Title and meta center ', THEME_LANG),
+                        'desc' => __('', THEME_LANG),
+                        "default" => 0,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
                     array(
                         'id' => 'blog_post_format',
                         'type' => 'switch',
