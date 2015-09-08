@@ -15,6 +15,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'use_theme_fonts' => 'yes',
             'google_fonts' => '',
             'letter_spacing' => '0',
+            'skin' => '',
 
 
             'font_container_company' => '',
@@ -104,8 +105,12 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'layout' => 'testimonial-carousel-layout-'.$layout
+            'layout' => 'testimonial-carousel-layout-'.$layout,
         );
+
+        if($skin){
+            $elementClass['skin'] = 'testimonial-carousel-skin-'.$skin;
+        }
 
 
         $output = $style_title = $style_company = '';
@@ -232,6 +237,18 @@ vc_map( array(
                 __( 'Avatar beside Title and Content aligned with Title', THEME_LANG ) => '3',
             ),
             'description' => __( 'Select your layout.', THEME_LANG ),
+            "admin_label" => true,
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Skin', THEME_LANG ),
+            'param_name' => 'skin',
+            'value' => array(
+                __( 'Dark', THEME_LANG ) => '',
+                __( 'Light', THEME_LANG ) => 'light',
+            ),
+            'description' => __( 'Select your layout.', THEME_LANG ),
+            "admin_label" => true,
         ),
         array(
             'type' => 'dropdown',
