@@ -148,7 +148,14 @@
         ***  Client
         ===============================**/
         kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
-
+        
+        
+        $('.gallery-grid').each(function(){
+            $(this).photosetGrid({
+                highresLinks: $(this).data('popup'),
+                gutter: $(this).data('margin')+'px',
+            });
+        });
     });
     /**==============================
      ***  Smooth Scrolling

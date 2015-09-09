@@ -202,6 +202,7 @@ $composer_addons = array(
     'image_banner.php',
     'blockquote.php',
     'kt_image_gallery.php',
+    'gallery-grid.php',
 );
 
 foreach ( $composer_addons as $addon ) {
