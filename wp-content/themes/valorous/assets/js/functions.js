@@ -238,10 +238,10 @@
                 type: $type,
                 mainClass: $effect,
                 iframe: {
-                    markup: '<div class="mfp-iframe-scaler" style="max-width:'+$iframe_width+'px;margin:0 auto;">'+
+                    markup: '<div style="max-width:'+$iframe_width+'px;margin:0 auto;"><div class="mfp-iframe-scaler">'+
                                 '<div class="mfp-close"></div>'+
                                 '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-                              '</div>',
+                              '</div></div>',
                 },
                 removalDelay: $removalDelay,
                 midClick: true,
