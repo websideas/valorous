@@ -227,7 +227,14 @@
 
             var $type = $(this).data('type'),
                 $effect = $(this).data('effect'),
+                $iframe_width = $(this).data('contentwidth'),
                 $removalDelay = 500;
+                
+            if( !$iframe_width ){
+                $iframe_width = '100%';
+            }else{
+                $iframe_width = $iframe_width+'px';
+            }
             if(typeof $effect === "undefined" || $effect == ''){
                 $effect = '';
                 $removalDelay = 0;
@@ -235,6 +242,12 @@
             $(this).find('.vc_icon_element-link').magnificPopup({
                 type: $type,
                 mainClass: $effect,
+                iframe: {
+                    markup: '<div class="mfp-iframe-scaler" style="max-width:'+$iframe_width+';margin:0 auto;">'+
+                                '<div class="mfp-close"></div>'+
+                                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+                              '</div>',
+                },
                 removalDelay: $removalDelay,
                 midClick: true,
                 callbacks: {
