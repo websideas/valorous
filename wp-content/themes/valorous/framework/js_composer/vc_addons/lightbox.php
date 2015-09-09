@@ -31,7 +31,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'image_size_lightbox' => '',
             'image_lightbox' => '',
             'video_link' => '',
-            'content_width' => '',
+            'content_width' => '900',
             'lightbox_effect' => '',
 
             'css' => '',
@@ -364,7 +364,7 @@ vc_map( array(
     		'param_name' => 'type_lightbox',
     		'value' => array(
                 __( 'Single Image Lightbox', 'js_composer' ) => 'lightbox-image',
-    			__( 'Video Lightbox', 'js_composer' ) => 'lightbox-video',
+    			__( 'Video / Iframe Lightbox', 'js_composer' ) => 'lightbox-video',
     			__( 'Content Lightbox', 'js_composer' ) => 'lightbox-content'
     		),
     		'description' => __( 'Select type lightbox.', THEME_LANG ),
@@ -392,9 +392,9 @@ vc_map( array(
         ),
         array(
     		'type' => 'textfield',
-    		'heading' => __( 'Video Link', THEME_LANG ),
+    		'heading' => __( 'Video / Iframe Link', THEME_LANG ),
     		'param_name' => 'video_link',
-    		'description' => __( 'Enter your link video.', THEME_LANG ),
+    		'description' => __( 'Enter your link video / iframe.', THEME_LANG ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-video' ),
@@ -412,15 +412,17 @@ vc_map( array(
             "description" => __("", THEME_LANG),
         ),
         array(
-    		'type' => 'textfield',
-    		'heading' => __( 'Content width', THEME_LANG ),
-    		'param_name' => 'content_width',
-    		'description' => __( 'Enter your max width of content lightbox.(px)', THEME_LANG ),
-    		'dependency' => array(
+            "type" => "kt_number",
+            "heading" => __("Content width", THEME_LANG),
+            "param_name" => "content_width",
+            "value" => "900",
+            "suffix" => __("px", THEME_LANG),
+            "description" => __( 'Enter your max width of content lightbox.(px)', THEME_LANG ),
+            'dependency' => array(
     			'element' => 'type_lightbox',
-    			'value' => array( 'lightbox-content' ),
+    			'value' => array( 'lightbox-content','lightbox-video' ),
     		),
-    	),
+        ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Lightbox Effect', 'js_composer' ),
