@@ -21,7 +21,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'color_hover' => '',
             'custom_color' => '',
             'background_style' => '',
-            'background_color' => '',
+            'background_color' => 'grey',
             'custom_background' => '',
             'background_color_hover' => '',
             'size' => 'md',
@@ -91,17 +91,18 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'align' => 'lightbox-'.$lightbox_align
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-        
-        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-effect="'.$lightbox_effect.'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
-        
-        $style_content = '';
-        if( $content_width != '' ){
-            $style_content = 'style="max-width:'.$content_width.'px"';
-        }
-        
+
+
         if( $content != '' && $type_lightbox == 'inline' ){
-            $output .= '<div id="lightbox'.$rand.'" class="mfp-hide mfp-with-anim kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
+            $style_content = '';
+            if( $content_width != '' ){
+                $style_content = 'style="max-width:'.$content_width.'px"';
+            }
+            $lightbox .= '<div id="lightbox'.$rand.'" class="mfp-hide mfp-with-anim kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
         }
+
+        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-effect="'.$lightbox_effect.'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
+
 
     	return $output;
     }
@@ -247,16 +248,6 @@ vc_map( array(
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => __( 'Icon color on Hover', 'js_composer' ),
-            'param_name' => 'color_hover',
-            'description' => __( 'Select icon color on hover.', 'js_composer' ),
-            'dependency' => array(
-                'element' => 'kt_type',
-                'value' => 'icon',
-            ),
-        ),
-        array(
-            'type' => 'colorpicker',
             'heading' => __( 'Custom Icon Color', 'js_composer' ),
             'param_name' => 'custom_color',
             'description' => __( 'Select custom icon color.', 'js_composer' ),
@@ -265,6 +256,17 @@ vc_map( array(
                 'value' => 'custom',
             ),
         ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Icon color on Hover', 'js_composer' ),
+            'param_name' => 'color_hover',
+            'description' => __( 'Select icon color on hover.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'kt_type',
+                'value' => 'icon',
+            ),
+        ),
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'Background shape', 'js_composer' ),
@@ -389,6 +391,7 @@ vc_map( array(
                 'element' => 'type_lightbox',
                 'value' => array( 'lightbox-image' ),
             ),
+            'std' => 'full'
         ),
         array(
     		'type' => 'textfield',
