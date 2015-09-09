@@ -54,7 +54,7 @@
         init_loadmore();
         init_VCLightBox();
         init_mailchimp();
-        init_smooth_scrolling();
+        //init_smooth_scrolling();
 
         init_ProductQuickView();
         init_productcarouselwoo();
@@ -158,7 +158,7 @@
             if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length && !target.hasClass('vc_tta-panel')) {
+                if (target.length && !target.hasClass('vc_tta-panel') && !target.hasClass('vc_icon_element-link')) {
                     $('html,body').animate({
                         scrollTop: target.offset().top
                     }, 2000);

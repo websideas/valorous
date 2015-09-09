@@ -17,11 +17,11 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'icon_entypoicons' => '',
             'icon_linecons' => '',
             'icon_entypo' => '',
-            'color' => 'blue',
+            'color' => '',
             'color_hover' => '',
             'custom_color' => '',
             'background_style' => '',
-            'background_color' => '',
+            'background_color' => 'grey',
             'custom_background' => '',
             'background_color_hover' => '',
             'size' => 'md',
@@ -33,7 +33,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             'video_link' => '',
             'content_width' => '',
             'lightbox_effect' => '',
-            
+
             'css' => '',
             'css_animation' => '',
             'el_class' => '',
@@ -50,7 +50,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
             
             $img_lightbox_id = preg_replace( '/[^\d]/', '', $image_lightbox );
             $img_lightbox = wp_get_attachment_image_src( $img_lightbox_id, $image_size_lightbox );
-
+            
             $link = $img_lightbox['0'];
         }elseif( $type_lightbox == 'lightbox-video' ){
             $type_lightbox = 'iframe';
@@ -64,7 +64,7 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         
         $lightbox = '';
         
-        $icon_lightbox = do_shortcode('[vc_icon el_class="kt_lightbox_item" link="url:'.urlencode($link).'" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$font_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background="'.$custom_background.'" size="'.$size.'" align="'.$lightbox_align.'"]');
+        $icon_lightbox = do_shortcode('[vc_icon el_class="kt_lightbox_item" link="url:'.urlencode($link).'" hover_div="'.$uniqid.'" addon="1" uniqid="'.$uniqid.'" color_hover="'.$color_hover.'" background_color_hover="'.$background_color_hover.'" type="'.$font_type.'" icon_fontawesome="'.$icon_fontawesome.'" icon_openiconic="'.$icon_openiconic.'" icon_typicons="'.$icon_typicons.'" icon_entypo="'.$icon_entypo.'" icon_linecons="'.$icon_linecons.'" color="'.$color.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'" background_color="'.$background_color.'" custom_background_color="'.$custom_background.'" size="'.$size.'" align="'.$lightbox_align.'"]');
         
         if( $kt_type == 'icon' ){
             $lightbox = $icon_lightbox;
@@ -89,16 +89,17 @@ class WPBakeryShortCode_Lightbox extends WPBakeryShortCode {
         );
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-contentwidth="'.esc_attr( $content_width ).'" data-effect="'.$lightbox_effect.'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
-        
-        $style_content = '';
-        if( $content_width != '' ){
-            $style_content = 'style="max-width:'.$content_width.'px"';
-        }
-        
+
         if( $content != '' && $type_lightbox == 'inline' ){
-            $output .= '<div id="lightbox'.$rand.'" class="mfp-hide mfp-with-anim kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
+            $style_content = '';
+            if( $content_width != '' ){
+                $style_content = 'style="max-width:'.$content_width.'px"';
+            }
+            $lightbox .= '<div id="lightbox'.$rand.'" class="mfp-hide mfp-with-anim kt-content-lightbox" '.$style_content.'>'.do_shortcode($content).'</div>';
         }
+
+        $output = '<div class="kt_lightbox '.esc_attr( $elementClass ).'" data-contentwidth="'.esc_attr( $content_width ).'" data-effect="'.$lightbox_effect.'" data-type="'.$type_lightbox.'">'.$lightbox.'</div>';
+
 
     	return $output;
     }
@@ -234,20 +235,9 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
-            'std' => 'blue',
             'param_holder_class' => 'vc_colored-dropdown',
-            'dependency' => array(
-                'element' => 'kt_type',
-                'value' => 'icon',
-            ),
-        ),
-        array(
-            'type' => 'colorpicker',
-            'heading' => __( 'Icon color on Hover', 'js_composer' ),
-            'param_name' => 'color_hover',
-            'description' => __( 'Select icon color on hover.', 'js_composer' ),
             'dependency' => array(
                 'element' => 'kt_type',
                 'value' => 'icon',
@@ -263,6 +253,17 @@ vc_map( array(
                 'value' => 'custom',
             ),
         ),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Icon color on Hover', 'js_composer' ),
+            'param_name' => 'color_hover',
+            'description' => __( 'Select icon color on hover.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'kt_type',
+                'value' => 'icon',
+            ),
+        ),
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'Background shape', 'js_composer' ),
@@ -363,7 +364,7 @@ vc_map( array(
     		'param_name' => 'type_lightbox',
     		'value' => array(
                 __( 'Single Image Lightbox', 'js_composer' ) => 'lightbox-image',
-    			__( 'Video / Iframe Lightbox', 'js_composer' ) => 'lightbox-video',
+    			__( 'Video Lightbox', 'js_composer' ) => 'lightbox-video',
     			__( 'Content Lightbox', 'js_composer' ) => 'lightbox-content'
     		),
     		'description' => __( 'Select type lightbox.', THEME_LANG ),
@@ -387,12 +388,13 @@ vc_map( array(
                 'element' => 'type_lightbox',
                 'value' => array( 'lightbox-image' ),
             ),
+            'std' => 'full'
         ),
         array(
     		'type' => 'textfield',
-    		'heading' => __( 'Video / Iframe Link', THEME_LANG ),
+    		'heading' => __( 'Video Link', THEME_LANG ),
     		'param_name' => 'video_link',
-    		'description' => __( 'Enter your link video / iframe.', THEME_LANG ),
+    		'description' => __( 'Enter your link video.', THEME_LANG ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
     			'value' => array( 'lightbox-video' ),
@@ -416,7 +418,7 @@ vc_map( array(
     		'description' => __( 'Enter your max width of content lightbox.(px)', THEME_LANG ),
     		'dependency' => array(
     			'element' => 'type_lightbox',
-    			'value' => array( 'lightbox-content', 'lightbox-video' ),
+    			'value' => array( 'lightbox-content' ),
     		),
     	),
         array(
