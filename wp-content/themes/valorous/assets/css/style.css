@@ -5068,7 +5068,11 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 /*========= Lightbox ===========*/
 .kt_lightbox {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.kt_lightbox .vc_icon_element{
+    margin-bottom: 0;
 }
 
 .kt_lightbox.lightbox-center {
@@ -5340,48 +5344,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .fotorama__thumb-border {
     border-color: #d0a852;
 }
-
-/* ==============================
-   16. Popup
-   ============================== */
-
-#popup-wrap {
-    background: #fff;
-    min-height: 100px;
-    margin: 40px auto;
-    max-width: 500px;
-    padding: 25px;
-    position: relative;
-    text-align: left;
-}
-
-.mfp-close-btn-in #popup-wrap .mfp-close {
-    background: #000;
-    color: #fff;
-    width: 26px;
-    height: 26px;
-    line-height: 26px;
-    opacity: 1;
-    filter: alpha(opacity=100);
-}
-
-#popup-wrap h3.title-top {
-    font-size: 13px;
-    font-family: Arial;
-    margin: 0 0 25px;
-    color: #666;
-}
-
-#popup-wrap .mailchimp-before {
-    color: #666;
-    font-size: 13px;
-    margin: 0 0 25px;
-}
-
-#popup-wrap .mfp-close:active {
-    top: 0;
-}
-
 /* ==============================
    17. Main content
    ============================== */
