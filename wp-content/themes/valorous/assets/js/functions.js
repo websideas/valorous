@@ -254,6 +254,9 @@
                             this.st.iframe.markup = this.st.iframe.markup.replace('mfp-iframe-scaler', 'mfp-iframe-scaler mfp-with-anim');
                             this.st.mainClass = $effect;
                         }
+                    },
+                    open: function() {
+                        $('.mfp-iframe-holder .mfp-content').css('max-width', '500px');
                     }
                 }
             });
