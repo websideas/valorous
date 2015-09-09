@@ -237,12 +237,6 @@
             $(this).find('.vc_icon_element-link').magnificPopup({
                 type: $type,
                 mainClass: $effect,
-                iframe: {
-                    markup: '<div style="max-width:'+$iframe_width+'px;margin:0 auto;"><div class="mfp-iframe-scaler">'+
-                                '<div class="mfp-close"></div>'+
-                                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-                              '</div></div>',
-                },
                 removalDelay: $removalDelay,
                 midClick: true,
                 callbacks: {
@@ -256,7 +250,9 @@
                         }
                     },
                     open: function() {
-                        $('.mfp-iframe-holder .mfp-content').css('max-width', '500px');
+                        if($type == 'iframe'){
+                            $('.mfp-iframe-holder .mfp-content').css('max-width', $iframe_width);
+                        }
                     }
                 }
             });
