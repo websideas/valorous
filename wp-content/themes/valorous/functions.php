@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
