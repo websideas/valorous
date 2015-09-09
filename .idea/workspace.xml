@@ -25,60 +25,7 @@
     <favorites_list name="valorous" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="lightbox.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/lightbox.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.627451">
-              <caret line="261" column="42" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
-              <folding>
-                <marker date="1441773003000" expanded="true" signature="6736:6761" placeholder="Select icon ..library...." />
-                <marker date="1441773003000" expanded="true" signature="7303:7328" placeholder="Select icon ..library...." />
-                <marker date="1441773003000" expanded="true" signature="8004:8029" placeholder="Select icon ..library...." />
-                <marker date="1441773003000" expanded="true" signature="9366:9391" placeholder="Select icon ..library...." />
-                <marker date="1441773003000" expanded="true" signature="13963:13995" placeholder="Select image..media..." />
-                <marker date="1441773003000" expanded="true" signature="15168:15200" placeholder="Select image..media..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="counter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/counter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.45098">
-              <caret line="352" column="10" selection-start-line="352" selection-start-column="10" selection-end-line="352" selection-end-column="10" />
-              <folding>
-                <marker date="1441272134000" expanded="true" signature="8858:8883" placeholder="Select icon ..library...." />
-                <marker date="1441272134000" expanded="true" signature="9468:9493" placeholder="Select icon ..library...." />
-                <marker date="1441272134000" expanded="true" signature="10212:10237" placeholder="Select icon ..library...." />
-                <marker date="1441272134000" expanded="true" signature="11660:11685" placeholder="Select icon ..library...." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="functions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/functions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.592592">
-              <caret line="235" column="28" selection-start-line="235" selection-start-column="28" selection-end-line="235" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23006834">
-              <caret line="6632" column="25" selection-start-line="6632" selection-start-column="19" selection-end-line="6632" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -580,7 +527,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="23" width="1709" height="1001" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -977,7 +924,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.592592">
+        <state vertical-scroll-proportion="0.5264395">
           <caret line="235" column="28" selection-start-line="235" selection-start-column="28" selection-end-line="235" selection-end-column="28" />
           <folding />
         </state>
@@ -1011,37 +958,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/counter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.45098">
+        <state vertical-scroll-proportion="0.3361548">
           <caret line="352" column="10" selection-start-line="352" selection-start-column="10" selection-end-line="352" selection-end-column="10" />
           <folding>
-            <marker date="1441272134000" expanded="true" signature="8858:8883" placeholder="Select icon ..library...." />
-            <marker date="1441272134000" expanded="true" signature="9468:9493" placeholder="Select icon ..library...." />
-            <marker date="1441272134000" expanded="true" signature="10212:10237" placeholder="Select icon ..library...." />
-            <marker date="1441272134000" expanded="true" signature="11660:11685" placeholder="Select icon ..library...." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/lightbox.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.627451">
-          <caret line="261" column="42" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
-          <folding>
-            <marker date="1441773003000" expanded="true" signature="6736:6761" placeholder="Select icon ..library...." />
-            <marker date="1441773003000" expanded="true" signature="7303:7328" placeholder="Select icon ..library...." />
-            <marker date="1441773003000" expanded="true" signature="8004:8029" placeholder="Select icon ..library...." />
-            <marker date="1441773003000" expanded="true" signature="9366:9391" placeholder="Select icon ..library...." />
-            <marker date="1441773003000" expanded="true" signature="13963:13995" placeholder="Select image..media..." />
-            <marker date="1441773003000" expanded="true" signature="15168:15200" placeholder="Select image..media..." />
+            <marker date="1441272134000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441272134000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441272134000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441272134000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23006834">
-          <caret line="6632" column="25" selection-start-line="6632" selection-start-column="19" selection-end-line="6632" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.12756264">
+          <caret line="6626" column="18" selection-start-line="6626" selection-start-column="18" selection-end-line="6626" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/lightbox.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18742442">
+          <caret line="242" column="58" selection-start-line="242" selection-start-column="58" selection-end-line="242" selection-end-column="58" />
+          <folding>
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select icon ..library...." />
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select image..media..." />
+            <marker date="1441773003000" expanded="true" signature="-1:-1" placeholder="Select image..media..." />
+          </folding>
         </state>
       </provider>
     </entry>
