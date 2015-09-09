@@ -1082,7 +1082,6 @@
             $(this).magnificPopup({
         		delegate: 'a',
         		type: 'image',
-        		tLoading: 'Loading...',
         		mainClass: 'mfp-zoom-in',
                 removalDelay: 500,
         		gallery: {
