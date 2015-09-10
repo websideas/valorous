@@ -12,6 +12,8 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'position' => 'position-center',
             'align' => 'align-center',
             'link' => '',
+            'hover_effect' => '',
+            'skin' => '',
 
             'css' => '',
             'css_animation' => '',
@@ -35,15 +37,27 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
+            'position' => $position,
+            'align' => $align,
         );
+        if($hover_effect){
+            $elementClass['hover'] = 'hover-effect-'.$hover_effect;
+        }
+
+        if($skin){
+            $elementClass['skin'] = 'skin-'.$skin;
+        }
+
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        $output .= '<div class="kt_image_banner '.$position.' '.$align.'">'.$img['thumbnail'];
+        $output .= '<div class="kt_image_banner '.esc_attr( $elementClass ).'">'.$img['thumbnail'];
             if($content){
-                $output .= '<div class="content_banner_wrapper"><div class="content_banner '.esc_attr( $elementClass ).'">'.do_shortcode($content).'</div></div>';
+                $output .= '<div class="content_banner_wrapper"><div class="content_banner">'.do_shortcode($content).'</div></div>';
             }
+
+            $link = ( $link == '||' ) ? '' : $link;
+
             if( $link ){
-                $link = ( $link == '||' ) ? '' : $link;
                 $link = vc_build_link( $link );
                 $a_href = $link['url'];
                 $a_title = $link['title'];
@@ -151,6 +165,27 @@ vc_map( array(
             ),
             'std' => 'align-center',
             'description' => __( 'Align of text.', THEME_LANG ),
+        ),
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Hover Effect', THEME_LANG ),
+            'param_name' => 'hover_effect',
+            'value' => array(
+                __( 'No', 'js_composer' ) => '',
+                __( 'Dark Overlay', THEME_LANG ) => 'dark',
+                __( 'Light Overlay', THEME_LANG ) => 'light'
+            ),
+        ),
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Skin', THEME_LANG ),
+            'param_name' => 'skin',
+            'value' => array(
+                __( 'Default', 'js_composer' ) => '',
+                __( 'Light', THEME_LANG ) => 'light'
+            ),
         ),
         
         array(

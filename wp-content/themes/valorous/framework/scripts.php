@@ -161,6 +161,7 @@ function kt_setting_script() {
             .woocommerce .star-rating span:before,
 
             .readmore-link:hover,
+            .readmore-link-white:hover,
             .blog-posts .entry-title a:hover,
             .kt_tabs_content ul li .title a:hover,
             .widget_kt_posts ul li .title a:hover,

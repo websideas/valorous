@@ -662,7 +662,7 @@ function kt_render_carousel($data, $class = ''){
         'navigation' => 'true',
         'navigation_always_on' => 'false',
         'navigation_position' => 'center_outside',
-        'navigation_style' => '',
+        'navigation_style' => 'circle_border',
         'navigation_border_width' => '1',
         'navigation_border_color' => '',
         'navigation_background' => '',
@@ -707,6 +707,7 @@ function kt_render_carousel($data, $class = ''){
         if($navigation_color){
             $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{color:'.$navigation_color.';}';
         }
+
         if(($navigation_style == 'circle' || $navigation_style == 'square' || $navigation_style == 'round') && $navigation_background){
             $custom_css .= '#'.$uniqid.' .kt-owl-carousel .owl-buttons div{background:'.$navigation_background.';}';
         }elseif(($navigation_style == 'circle_border' || $navigation_style == 'square_border' || $navigation_style == 'round_border') && $navigation_border_width){

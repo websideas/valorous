@@ -45,7 +45,7 @@ class WPBakeryShortCode_Testimonial_Carousel extends WPBakeryShortCode_VC_Custom
             'navigation' => 'true',
             'navigation_always_on' => 'false',
             'navigation_position' => 'center_outside',
-            'navigation_style' => '',
+            'navigation_style' => 'circle_border',
             'navigation_border_width' => '1',
             'navigation_border_color' => '',
             'navigation_background' => '',
