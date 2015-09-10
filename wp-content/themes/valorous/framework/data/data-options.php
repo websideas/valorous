@@ -2290,7 +2290,60 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                 )
             );
-
+            /**
+             * Page Loader
+             *
+             */
+            $this->sections[] = array(
+                'title' => __('Page Loader', THEME_LANG),
+                'desc' => __('Page Loader Options', THEME_LANG),
+                'icon' => 'icon_document_alt',
+                'fields' => array(
+                    array(
+                        'id' => 'use_page_loader',
+                        'type' => 'switch',
+                        'title' => __('Use Page Loader?', THEME_LANG),
+                        'desc' => __('', THEME_LANG),
+                        "default" => 1,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG)
+                    ),
+                    array(
+                        'id'       => 'layout_loader',
+                        'type'     => 'image_select',
+                        'compiler' => true,
+                        'title'    => __( 'Loader layout', THEME_LANG ),
+                        'subtitle' => __( 'Please choose loader layout', THEME_LANG ),
+                        'options'  => array(
+                            'style-1' => array( 'alt' => __( 'Style 1', THEME_LANG ), 'img' => FW_IMG . 'loader/loader_layout_1.png' ),
+                            'style-2' => array( 'alt' => __( 'Style 2', THEME_LANG ), 'img' => FW_IMG . 'loader/loader_layout_2.png' ),
+                            'style-3' => array( 'alt' => __( 'Style 3', THEME_LANG ), 'img' => FW_IMG . 'loader/loader_layout_3.png' ),
+                            'style-4' => array( 'alt' => __( 'Style 4', THEME_LANG ), 'img' => FW_IMG . 'loader/loader_layout_4.png' ),
+                        ),
+                        'default'  => 'style-1',
+                        'required' => array('use_page_loader','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id' => 'show_logo_page_loader',
+                        'type' => 'switch',
+                        'title' => __('Show Logo on page Loader?', THEME_LANG),
+                        'desc' => __('Show or hide the logo of page loader.', THEME_LANG),
+                        "default" => 0,
+                        'on' => __('Enabled', THEME_LANG),
+                        'off' =>__('Disabled', THEME_LANG),
+                        'required' => array('use_page_loader','equals', array( 1 ) ),
+                    ),
+                    array(
+                        'id'       => 'logo_page_loader',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'compiler' => true,
+                        'title'    => __( 'Logo Page Loader', THEME_LANG ),
+                        'required' => array('show_logo_page_loader','equals', array( 1 ) ),
+                    ),
+                )
+            );
+            
             /**
              * General Blog
              *

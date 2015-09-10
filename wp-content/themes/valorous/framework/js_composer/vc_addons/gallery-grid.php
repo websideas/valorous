@@ -105,7 +105,7 @@ vc_map( array(
             "type" => "textfield",
             "heading" => __("Layout", THEME_LANG),
             "param_name" => "layout",
-            "description" => __( "Manually set a string of numbers to specify the number of images each row contains. Default: null generates a stacked layout of one image per row", THEME_LANG ),
+            "description" => __( "Manually set a string of numbers to specify the number of images each row contains. Default: null generates a stacked layout of one image per row. Example: 131, 1212", THEME_LANG ),
         ),
         array(
             "type" => "kt_number",
@@ -115,7 +115,7 @@ vc_map( array(
             "min" => 0,
             "max" => 50,
             "suffix" => "px",
-            "description" => __( "Set the pixel width between the columns and rows. Default: 0px", THEME_LANG ),
+            "description" => __( "Set the pixel width between the columns and rows. Default: 10px", THEME_LANG ),
         ),
         array(
             'type' => 'kt_switch',

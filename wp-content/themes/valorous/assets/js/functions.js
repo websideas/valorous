@@ -22,10 +22,6 @@
     
     $(window).load(function(){
         
-        // Page loader
-        $(".page-loader div").delay(0).fadeOut();
-        $(".page-loader").delay(200).fadeOut("slow");
-        
         $(window).trigger("scroll");
         $(window).trigger("resize");
         init_ktCustomCss();
@@ -38,6 +34,11 @@
      Scripts ready
      --------------------------------------------- */
     $(document).ready(function() {
+        
+        // Page Loader
+        $("body").waitForImages(function(){
+            $(".kt_page_loader").delay(200).fadeOut('slow');
+        });
         
         $(window).trigger("resize");
         init_shortcodes();
@@ -136,8 +137,6 @@
             }else{
                 equal_height_element = $(this).children('.wpb_column')
             }
-
-            console.log(equal_height_element);
 
             equal_height_element.matchHeight({
                 byRow: true

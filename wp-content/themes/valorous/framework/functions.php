@@ -739,3 +739,22 @@ if ( ! function_exists( 'kt_excerpt_more' ) ) :
     }
     add_filter( 'excerpt_more', 'kt_excerpt_more' );
 endif;
+
+
+add_filter( 'theme_body_top', 'kt_page_loader');
+function kt_page_loader(){
+    $use_loader = kt_option( 'use_page_loader' );
+    $layout_loader = kt_option( 'layout_loader' );
+    $enable_logo = kt_option( 'show_logo_page_loader' );
+    $logo_loader = kt_option( 'logo_page_loader' );
+    if( $use_loader == 1 ){ ?>
+        <div class="kt_page_loader <?php echo $layout_loader; ?>">
+            <div class="page_loader_inner">
+                <?php if( $logo_loader['url'] && $enable_logo == 1 ){ ?>
+                    <h1 class="logo-loader"><img alt="Valorous" class="logo-dark" src="<?php echo $logo_loader['url']; ?>" /></h1>
+                <?php } ?>
+                <div class="kt_spinner"></div>
+            </div>
+        </div>
+    <?php }
+}

@@ -6464,6 +6464,107 @@ article.post-item {
     font-weight: bold;
     color: #d0a852;
 }
+/*
+ * 18.3. Page Loader
+ */
+.kt_page_loader{
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background: #fff;
+    z-index: 999999999;
+}
+.kt_page_loader .kt_spinner{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin:0 auto;
+}
+.kt_page_loader .page_loader_inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.kt_page_loader.style-1 .kt_spinner {
+    border: 1px solid #d0a852;
+    -webkit-animation: rotate 1.3s linear 0s infinite;
+    animation: rotate 1.3s linear 0s infinite;
+}
+.kt_page_loader.style-1 .kt_spinner:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #daad4d;
+    border-radius: 100%;
+    -webkit-animation: 3s linear 0s infinite;
+    animation: 3s linear 0s infinite;
+    left: -5px;
+    top: 18px;
+}
+.kt_page_loader.style-2 .kt_spinner {
+    border: 5px solid #d0a852;
+    border-bottom-color: #dd3333;
+    -webkit-animation: rotate 2s linear 0s infinite;
+    animation: rotate 2s linear 0s infinite;
+}
+.kt_page_loader.style-3 .kt_spinner {
+    border: 5px solid transparent;
+    border-bottom-color: #d0a852;
+    border-top-color: #d0a852;
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
+}
+.kt_page_loader.style-4 .kt_spinner {
+    -webkit-animation: rotate 1.3s linear 0s infinite;
+    animation: rotate 1.3s linear 0s infinite;
+}
+.kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #d0a852;
+    border-radius: 100%;
+    left: 0px;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+}
+.kt_page_loader.style-4 .kt_spinner:before {
+    left: auto;
+    right: 0;
+}
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
 
 /** ================================================
 SOCIAL
