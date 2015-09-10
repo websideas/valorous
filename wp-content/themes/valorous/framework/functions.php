@@ -743,9 +743,9 @@ endif;
 
 add_filter( 'theme_body_top', 'kt_page_loader');
 function kt_page_loader(){
-    $use_loader = kt_option( 'use_page_loader' );
+    $use_loader = kt_option( 'use_page_loader',1 );
     $layout_loader = kt_option( 'layout_loader' );
-    $enable_logo = kt_option( 'show_logo_page_loader' );
+    $enable_logo = kt_option( 'show_logo_page_loader',0 );
     $logo_loader = kt_option( 'logo_page_loader' );
     if( $use_loader == 1 ){ ?>
         <div class="kt_page_loader <?php echo $layout_loader; ?>">
