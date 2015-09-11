@@ -6328,7 +6328,6 @@ article.post-item {
 /*
  * 17.5. Comments
  */
-
 .comment-respond .comment-reply-title,
 .comments-area .comments-title {
     border-bottom: 1px solid #e3e3e3;
@@ -6594,6 +6593,8 @@ article.post-item {
 /*
  * 18.3. Page Loader
  */
+
+
 .kt_page_loader{
     position: fixed;
     width:100%;
@@ -6629,7 +6630,7 @@ article.post-item {
     position: absolute;
     width: 15px;
     height: 15px;
-    background: #daad4d;
+    background: #888888;
     border-radius: 100%;
     -webkit-animation: 3s linear 0s infinite;
     animation: 3s linear 0s infinite;
@@ -6637,8 +6638,8 @@ article.post-item {
     top: 18px;
 }
 .kt_page_loader.style-2 .kt_spinner {
-    border: 5px solid #d0a852;
-    border-bottom-color: #dd3333;
+    border: 5px solid #888888;
+    border-bottom-color: #d0a852;
     -webkit-animation: rotate 2s linear 0s infinite;
     animation: rotate 2s linear 0s infinite;
 }
@@ -6660,15 +6661,12 @@ article.post-item {
     height: 15px;
     background: #d0a852;
     border-radius: 100%;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     bottom: 0;
     margin: auto;
 }
-.kt_page_loader.style-4 .kt_spinner:before {
-    left: auto;
-    right: 0;
-}
+
 @-webkit-keyframes rotate {
     from {
         -webkit-transform: rotate(0deg);
@@ -6691,5 +6689,6 @@ article.post-item {
         transform: rotate(360deg);
     }
 }
+
 
 
