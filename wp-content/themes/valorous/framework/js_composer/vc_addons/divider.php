@@ -21,7 +21,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             'icon_entypoicons' => '',
             'icon_linecons' => '',
             'icon_entypo' => '',
-            'color' => 'blue',
+            'color' => '',
             'custom_color' => '',
             'background_style' => '',
             'background_color' => 'grey',
@@ -29,7 +29,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             'size' => 'xs',
 
             'margin_top' => 0,
-            'margin_bottom' => 50,
+            'margin_bottom' => 35,
             'el_class' => '',
         ), $atts));
 
@@ -136,6 +136,37 @@ vc_map( array(
             "description" => "",
         ),
 
+        //Design options
+        array(
+            "type" => "textfield",
+            "heading" => __("Divider width", THEME_LANG),
+            "param_name" => "width",
+            "value" => "100%",
+            "description" => __("Please enter width of divider", THEME_LANG),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Divider height', 'js_composer' ),
+            'param_name' => 'height',
+            'value' => getVcShared( 'separator border widths' ),
+            'description' => __( 'Select height width (pixels).', 'js_composer' ),
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Margin top", THEME_LANG),
+            "param_name" => "margin_top",
+            "value" => "0",
+            "suffix" => __("px", THEME_LANG),
+            "description" => '',
+        ),
+        array(
+            "type" => "kt_number",
+            "heading" => __("Margin bottom", THEME_LANG),
+            "param_name" => "margin_bottom",
+            "value" => 35,
+            "suffix" => __("px", THEME_LANG),
+            "description" => '',
+        ),
 
         //Icon settings
         array(
@@ -207,7 +238,7 @@ vc_map( array(
             'type' => 'iconpicker',
             'heading' => __( 'Icon', 'js_composer' ),
             'param_name' => 'icon_entypo',
-            'value' => 'entypo-icon entypo-icon-note', // default value to backend editor admin_label
+            'value' => '', // default value to backend editor admin_label
             'settings' => array(
                 'emptyIcon' => true, // default true, display an "EMPTY" icon?
                 'type' => 'entypo',
@@ -223,7 +254,7 @@ vc_map( array(
             'type' => 'iconpicker',
             'heading' => __( 'Icon', 'js_composer' ),
             'param_name' => 'icon_linecons',
-            'value' => 'vc_li vc_li-heart', // default value to backend editor admin_label
+            'value' => '', // default value to backend editor admin_label
             'settings' => array(
                 'emptyIcon' => true, // default true, display an "EMPTY" icon?
                 'type' => 'linecons',
@@ -240,7 +271,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'group' => __( 'Icon', THEME_LANG )
@@ -307,41 +338,7 @@ vc_map( array(
             'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' )
         ),
 
-        //Design options
-        array(
-            "type" => "textfield",
-            "heading" => __("Divider width", THEME_LANG),
-            "param_name" => "width",
-            "value" => "100%",
-            "description" => __("Please enter width of divider", THEME_LANG),
-            'group' => __( 'Design options', 'js_composer' )
-        ),
-        array(
-            'type' => 'dropdown',
-            'heading' => __( 'Divider height', 'js_composer' ),
-            'param_name' => 'height',
-            'value' => getVcShared( 'separator border widths' ),
-            'description' => __( 'Select height width (pixels).', 'js_composer' ),
-            'group' => __( 'Design options', 'js_composer' )
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Margin top", THEME_LANG),
-            "param_name" => "margin_top",
-            "value" => "0",
-            "suffix" => __("px", THEME_LANG),
-            "description" => '',
-            'group' => __( 'Design options', 'js_composer' )
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Margin bottom", THEME_LANG),
-            "param_name" => "margin_bottom",
-            "value" => "50",
-            "suffix" => __("px", THEME_LANG),
-            "description" => '',
-            'group' => __( 'Design options', 'js_composer' )
-        ),
+
 
 
 

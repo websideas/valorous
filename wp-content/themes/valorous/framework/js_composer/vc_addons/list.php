@@ -10,11 +10,11 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 
 		extract( shortcode_atts( array(
 			'css_animation' => '',
-			'icon_type' => 'fontawesome',
+			'icon_type' => 'entypo',
 			'icon_fontawesome' => '',
 			'icon_openiconic' => '',
 			'icon_typicons' => '',
-			'icon_entypo' => '',
+			'icon_entypo' => 'entypo-icon entypo-icon-minus',
 			'icon_linecons' => '',
 			'icon_color' => '',
 			'el_class' => '',
