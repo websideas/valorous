@@ -4183,6 +4183,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     margin-bottom: 20px;
     position: relative;
 }
+.kt-icon-box-wrapper.icon-box-skin-light,
+.kt-icon-box-wrapper.icon-box-skin-light a{
+    color: #FFF;
+}
 
 .kt-icon-box-wrapper .icon-box-icon {
     margin-bottom: 20px;
@@ -4319,12 +4323,12 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 /* Icon box layout 4,5,6,9 */
 .kt-icon-box-wrapper.icon-box-outer{
-    background: #f7f7f7;
+    background: #F8F8F8;
 }
-.kt-icon-box-wrapper .icon-box-inner{
+.kt-icon-box-wrapper.icon-box-outer{
     padding: 45px 30px 65px;
 }
-.kt-icon-box-wrapper.icon-box-layout-5 .icon-box-inner{
+.kt-icon-box-wrapper.icon-box-outer.icon-box-layout-5{
     text-align: center;
 }
 

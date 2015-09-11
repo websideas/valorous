@@ -244,7 +244,7 @@ vc_map( array(
             'heading' => __( 'Skin', THEME_LANG ),
             'param_name' => 'skin',
             'value' => array(
-                __( 'Dark', THEME_LANG ) => '',
+                __( 'Default', THEME_LANG ) => '',
                 __( 'Light', THEME_LANG ) => 'light',
             ),
             'description' => __( 'Select your layout.', THEME_LANG ),

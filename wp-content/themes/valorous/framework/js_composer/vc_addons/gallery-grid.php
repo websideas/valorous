@@ -3,9 +3,8 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 
-class WPBakeryShortCode_KT_Gallery_Grid extends WPBakeryShortCode_VC_Custom_heading {
+class WPBakeryShortCode_KT_Gallery_Grid extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'image_gallery' => '',

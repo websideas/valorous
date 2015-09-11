@@ -10,11 +10,12 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         $atts = shortcode_atts( array(
             'title' => __( 'Title', 'js_composer' ),
             'icon_box_layout' => '1',
-            'icon_box_bg' => '#f7f7f7',
+            'icon_box_bg' => '#F8F8F8',
             'link' => '',
+            'skin' => '',
 
             'readmore' => 'false',
-            'readmore_text' => '',
+            'readmore_text' => __( 'Learn More', THEME_LANG ),
             'readmore_color' => '',
             'readmore_color_hover' => '',
 
@@ -56,9 +57,13 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             'layout' => 'icon-box-layout-'.$icon_box_layout
         );
 
+        if($skin){
+            $elementClass['skin'] = 'icon-box-skin-'.$skin;
+        }
+
         $uniqid = 'kt-icon-box-'.uniqid();
-        $readmore = apply_filters('sanitize_boolean', $readmore);
-        $style_title = $background_outer = '';
+
+        $style_title = $background_outer = $icon_box_linkmore = $icon_box_link = '';
 
         extract( $this->getAttributes( $atts ) );
         unset($font_container_data['values']['text_align']);
@@ -81,9 +86,11 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
             $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
         }
 
-        $icon_box_linkmore = $icon_box_link = '';
+        $readmore = apply_filters('sanitize_boolean', $readmore);
+
+        $link = ( $link == '||' ) ? '' : $link;
+
         if($link){
-            $link = ( $link == '||' ) ? '' : $link;
             $link = vc_build_link( $link );
             $a_href = $link['url'];
             $a_title = $link['title'];
@@ -111,7 +118,6 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
                 }
                 $title = '<a '.implode(' ', $icon_box_link).$style_link.'>'.$title.'</a>';
             }
-
         }
 
         $icon_box_title = ($title) ? '<' . $font_container_data['values']['tag'] . ' class="icon-box-title" '.$style_title.'>'.$title.'</' . $font_container_data['values']['tag'] . '>' : '';
@@ -159,7 +165,7 @@ class WPBakeryShortCode_Icon_Box extends WPBakeryShortCode_VC_Custom_heading {
         }
 
         if($icon_box_layout == '4' || $icon_box_layout == '5' || $icon_box_layout == '6' || $icon_box_layout == '9'){
-            $output = '<div class="icon-box-inner">'.$output.'</div>';
+            //$output = '<div class="icon-box-inner">'.$output.'</div>';
             $background_outer = 'style="background:'.$icon_box_bg.';"';
             $elementClass['inner'] = 'icon-box-outer';
         }
@@ -227,6 +233,7 @@ vc_map( array(
                 __( 'Icon Boxed - Icon beside Title and Content aligned with Title - Icon Right', THEME_LANG ) => '9'
             ),
             'description' => __( 'Select your layout.', THEME_LANG ),
+            "admin_label" => true,
         ),
         array(
             'type' => 'colorpicker',
@@ -234,8 +241,20 @@ vc_map( array(
             'param_name' => 'icon_box_bg',
             'description' => __( 'Select background for icon box.', THEME_LANG ),
             'dependency' => array("element" => "icon_box_layout","value" => array('4', '5', '6')),
-            'value' => '#f7f7f7',
+            'value' => '#F8F8F8',
         ),
+
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Skin', THEME_LANG ),
+            'param_name' => 'skin',
+            'value' => array(
+                __( 'Defalut', THEME_LANG ) => '',
+                __( 'Light', THEME_LANG ) => 'light',
+            ),
+            'description' => __( 'Select your layout.', THEME_LANG ),
+        ),
+
         array(
             'type' => 'dropdown',
             'heading' => __( 'CSS Animation', 'js_composer' ),
