@@ -6390,7 +6390,7 @@ article.post-item {
     position: absolute;
     width: 15px;
     height: 15px;
-    background: #daad4d;
+    background: #888888;
     border-radius: 100%;
     -webkit-animation: 3s linear 0s infinite;
     animation: 3s linear 0s infinite;
@@ -6398,8 +6398,8 @@ article.post-item {
     top: 18px;
 }
 .kt_page_loader.style-2 .kt_spinner {
-    border: 5px solid #d0a852;
-    border-bottom-color: #dd3333;
+    border: 5px solid #888888;
+    border-bottom-color: #d0a852;
     -webkit-animation: rotate 2s linear 0s infinite;
     animation: rotate 2s linear 0s infinite;
 }
