@@ -15,22 +15,22 @@ function kt_add_option_to_vc() {
     vc_update_shortcode_param( 'vc_icon', $background_style );
 
 
-    $button_colors = WPBMap::getParam( 'vc_btn', 'color' );
-    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
-    vc_update_shortcode_param( 'vc_btn', $button_colors );
+
+    $color_arr = array('vc_btn', 'vc_icon', 'vc_tta_accordion', 'vc_tta_tabs', 'vc_tta_tour');
+    foreach($color_arr as $item){
+        $button_colors = WPBMap::getParam( $item, 'color' );
+        $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
+        vc_update_shortcode_param( $item, $button_colors );
+    }
+
+    $background_arr = array('vc_icon');
+    foreach($background_arr as $item){
+        $button_colors = WPBMap::getParam( $item, 'background_color' );
+        $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
+        vc_update_shortcode_param( $item, $button_colors );
+    }
 
 
-    $button_colors = WPBMap::getParam( 'vc_tta_accordion', 'color' );
-    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
-    vc_update_shortcode_param( 'vc_tta_accordion', $button_colors );
-
-    $button_colors = WPBMap::getParam( 'vc_tta_tabs', 'color' );
-    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
-    vc_update_shortcode_param( 'vc_tta_tabs', $button_colors );
-
-    $button_colors = WPBMap::getParam( 'vc_tta_tour', 'color' );
-    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
-    vc_update_shortcode_param( 'vc_tta_tour', $button_colors );
 }
 
 

@@ -382,7 +382,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ),  array( __( 'Accent color', THEME_LANG ) => 'accent' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'group' => __( 'Icon', THEME_LANG )
@@ -428,7 +428,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Background color', 'js_composer' ),
             'param_name' => 'background_color',
-            'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Accent color', THEME_LANG ) => 'accent' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'std' => 'grey',
             'description' => __( 'Select background color for icon.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',

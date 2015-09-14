@@ -122,6 +122,8 @@ function kt_setting_script() {
             body .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
             .kt-skill-bg-accent .kt-skill-bar,
 
+            .highlight,
+
             .woocommerce .product .yith-wcwl-add-to-wishlist .ajax-loading,
             .woocommerce ul.shop-products .added_to_cart,
             .woocommerce ul.shop-products .button,
@@ -162,7 +164,8 @@ function kt_setting_script() {
             .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:focus,
             .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a,
             .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:hover,
-            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:focus
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:focus,
+            .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-background-color-accent.vc_icon_element-background
             {
                 background: <?php echo $accent; ?>;
             }
@@ -184,6 +187,8 @@ function kt_setting_script() {
                 border-color: <?php echo $accent; ?>;
             }
 
+            .entry-meta-data,
+            .entry-meta-data a,
             .search-heading .search-keyword,
             .search-content-error .search-keyword,
             blockquote.classic footer,
@@ -191,6 +196,9 @@ function kt_setting_script() {
             .woocommerce div.product p.price,
             .woocommerce div.product span.price,
             .woocommerce .star-rating span:before,
+            .woocommerce ul.shop-products h3 a:hover,
+            .woocommerce .woocommerce-message .button.wc-forward:hover,
+            .woocommerce p.stars a:hover,
 
             .readmore-link:hover,
             .readmore-link-white:hover,
@@ -218,6 +226,7 @@ function kt_setting_script() {
             .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:hover,
             .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:focus,
             .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a
+
             {
                 color: <?php echo $accent; ?>;
             }
@@ -301,6 +310,7 @@ function kt_setting_script() {
             .woocommerce a.button.alt,
             .woocommerce button.button.alt,
             .woocommerce input.button.alt,
+            .woocommerce .single-product-main-images.owl-theme .owl-controls .owl-buttons div:hover,
 
             .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline,
 
@@ -326,6 +336,14 @@ function kt_setting_script() {
             {
                 border-color: <?php echo $accent; ?>;
                 color: <?php echo $accent; ?>;
+            }
+
+            .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-hexagonal.vc_icon_element-background-color-accent.vc_icon_element-background:before {
+                border-bottom-color: <?php echo $accent; ?>;
+            }
+
+            .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-hexagonal.vc_icon_element-background-color-accent.vc_icon_element-background:after {
+                border-top-color: <?php echo $accent; ?>;
             }
 
             .social-background-empty.social-style-accent a,
@@ -357,6 +375,8 @@ function kt_setting_script() {
             {
                 border-color: <?php echo $accent_darker; ?>;
             }
+
+
 
 
             .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d{
@@ -519,17 +539,15 @@ function kt_setting_script() {
 
             $typography_footer_widgets_link = kt_option('typography_footer_widgets_link');
             if($widgets_link = $typography_footer_widgets_link['regular']){
-                echo '#footer-area .btn-default, #footer-area .button{border-color: '.$widgets_link.'; color: '.$widgets_link.'}';
+                echo '#footer-area .btn-default, #footer-area .button{border-color: '.$widgets_link.'; color: '.$widgets_link.';}';
                 echo '#footer-area .widget_rss ul li:after, #footer-area .widget_recent_comments ul li:after, #footer-area .widget_recent_entries ul li:after, #footer-area .widget_nav_menu ul li a:after, #footer-area .widget_pages ul li a:after, #footer-area .widget_product_categories ul li a:after, #footer-area .widget_categories ul li a:after, #footer-area .widget_archive ul li a:after, #footer-area .widget_meta ul li a:after, #footer-area .yith-woocompare-widget ul li a.title:after{color: '.$widgets_link.';background: '.$widgets_link.'; }';
-
+                echo '#footer-area .entry-meta-data{color: '.$widgets_link.';}';
             }
             if($widgets_link_hover = $typography_footer_widgets_link['hover']){
                 echo '#footer-area .btn-default:hover, #footer-area .button:hover{border-color: '.$widgets_link_hover.'; background: '.$widgets_link_hover.';color: #FFF'.'}';
                 echo '#footer-area .widget_nav_menu ul li a:hover:after, #footer-area .widget_product_categories ul li a:hover:after,#footer-area .widget_categories ul li a:hover:after,#footer-area .widget_archive ul li a:hover:after, #footer-area .widget_meta ul li a:hover:after, #footer-area .yith-woocompare-widget ul.products-list li a.title:hover:after{color: '.$widgets_link_hover.';background: '.$widgets_link_hover.'; }';
                 echo '#footer-area .widget_product_tag_cloud a:hover, #footer-area .widget_product_tag_cloud a:focus, #footer-area .widget_tag_cloud a:hover, #footer-area .widget_tag_cloud a:focus{color: #FFF;background: '.$widgets_link_hover.';border-color: '.$widgets_link_hover.';}';
             }
-
-
 
             if($use_page_loader = kt_option( 'use_page_loader', 1 )){
                 $bg_page_loader = kt_option( 'background_page_loader', '#ffffff' );
@@ -580,13 +598,10 @@ function kt_setting_script() {
             if($style_logo_mobile){
                 echo '.site-branding .site-logo img{'.$style_logo_mobile.'}';
             }
-
             ?>
         }
-
     </style>
     <?php
-
 }
 add_action('wp_head', 'kt_setting_script');
 

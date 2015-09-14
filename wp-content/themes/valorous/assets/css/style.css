@@ -217,7 +217,7 @@ blockquote.classic .blockquote-content,
 .post-link-content {
     background: #eeeeed;
     border: 1px dashed #d7d7d6;
-    padding: 18px 60px 22px 22px;
+    padding: 18px 22px 22px;
     position: relative;
 }
 
@@ -225,17 +225,18 @@ blockquote.classic .blockquote-content,
     margin-bottom: 15px;
 }
 
-blockquote.classic .blockquote-content:after,
-.post-link-content:after {
+blockquote.classic .blockquote-content:before,
+.post-link-content:before {
     color: #c4c1c1;
     content: '\f10e';
     font-family: "FontAwesome";
     font-size: 35px;
     font-style: normal;
     font-weight: normal;
-    position: absolute;
-    right: 12px;
-    top: 25px;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
 }
 
 .post-link-content:after {
@@ -898,8 +899,8 @@ select:not([multiple]) {
     margin-left: 3px;
 }
 
-/*#main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a,
-#main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a,*/
+#main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a,
+#main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a,
 #main-nav-tool .kt-wpml-languages ul li > a:hover,
 #main-navigation > li ul.sub-menu-dropdown > li:hover > a,
 #main-navigation > li ul.sub-menu-dropdown > li > a:hover {
@@ -1001,7 +1002,7 @@ select:not([multiple]) {
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > a,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > span.megamenu-title,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title {
-    border-bottom: 1px solid #282828;
+    border-bottom: 1px solid #CCCCCC;
     color: #282828;
     display: block;
     font-size: 13px;
@@ -1051,14 +1052,14 @@ select:not([multiple]) {
     -o-transition: all 0.2s ease-in-out 0s;
 }
 
-/*#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a,*/
+#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li:hover > a,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover {
     color: #d0a852;
     text-decoration: none;
 }
 
-/*#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a:before,*/
+#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a:before,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li:hover > a:before,
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover:before {
     width: 25px;
@@ -3829,6 +3830,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     color: #d0a852;
 }
 
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-background-color-accent.vc_icon_element-background {
+    background-color: #d0a852;
+}
+
 /* Diamond square */
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-diamond_square {
     -webkit-transform: rotate(-45deg);
@@ -4139,6 +4144,14 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-hexagonal.vc_icon_element-background-color-white.vc_icon_element-background:after {
     border-top-color: #ffffff;
+}
+
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-hexagonal.vc_icon_element-background-color-accent.vc_icon_element-background:before {
+    border-bottom-color: #d0a852;
+}
+
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-style-hexagonal.vc_icon_element-background-color-accent.vc_icon_element-background:after {
+    border-top-color: #d0a852;
 }
 
 /* Icon box */

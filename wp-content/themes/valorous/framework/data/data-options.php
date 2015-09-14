@@ -1236,6 +1236,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'background-color'      => '#EAEAEA',
                         ),
                         'output'   => array(
+                            '#main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a',
                             '#main-nav-tool .kt-wpml-languages ul li > a:hover',
                             '#main-navigation > li ul.sub-menu-dropdown > li:hover > a',
                             '#main-navigation > li ul.sub-menu-dropdown > li > a:hover',
@@ -1264,6 +1266,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'dropdown_color_hover',
                         'type'     => 'color',
                         'output'   => array(
+                            '#main-navigation > li ul.sub-menu-dropdown > li.current-menu-item > a',
+                            '#main-navigation > li ul.sub-menu-dropdown > li.current-menu-parent > a',
                             '#main-nav-tool .kt-wpml-languages ul li > a:hover',
                             '#main-navigation > li ul.sub-menu-dropdown > li:hover > a',
                             '#main-navigation > li ul.sub-menu-dropdown > li > a:hover',
@@ -1294,7 +1298,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
                         ),
                         'title'    => __( 'MegaMenu Title color', THEME_LANG ),
-                        'default'  => '#282828',
+                        'default'  => '#CCCCCC',
                         'transparent' => false
                     ),
                     array(
@@ -1324,6 +1328,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'mega_color_hover',
                         'type'     => 'color',
                         'output'   => array(
+                            '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li.current-menu-item > a',
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a:hover',
                             '.bag-product .bag-product-title a:hover',
                         ),

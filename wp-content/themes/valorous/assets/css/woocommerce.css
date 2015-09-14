@@ -62,8 +62,12 @@
     text-transform: uppercase;
     top: 10px;
     z-index: 1;
-    font-family: Montserrat;
     letter-spacing: 1px;
+}
+
+.woocommerce div.product p.price ins,
+.woocommerce div.product span.price ins{
+    font-weight: normal;
 }
 
 .woocommerce .product-detail-thumbarea > span:nth-child(2),
@@ -113,7 +117,7 @@
 .woocommerce button.button.alt:hover,
 .woocommerce input.button.alt:hover {
     background: #d0a852;
-    color: #ffffff!important;
+    color: #ffffff;
 }
 
 .woocommerce #respond input#submit.alt.disabled,
@@ -799,7 +803,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     3. Woocommerce product quickview
 *** ================================================*/
 .woocommerce.kt-product-popup {
-    background: #f7f7f7;
+    background: #FFFFFF;
     margin: auto;
     max-width: 900px;
     padding: 20px;
@@ -921,6 +925,13 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     padding-right: 0;
     text-align: center;
     width: 100%;
+}
+
+.woocommerce .widget_shopping_cart .buttons .btn.btn-dark-b:hover,
+.woocommerce.widget_shopping_cart .buttons .btn.btn-dark-b:hover{
+    background: #282828;
+    border-color: #282828;
+    color: #FFFFFF;
 }
 
 .woocommerce .widget_shopping_cart .total .amount,
@@ -1336,6 +1347,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .woocommerce div.product .cart .single_add_to_cart_button:hover {
     color: #d0a852;
     border-color: #d0a852;
+    background: transparent;
 }
 
 .woocommerce div.product.wc-single-product .functional-buttons-product {
@@ -1617,6 +1629,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     font-weight: normal;
 }
 
+.woocommerce .wishlist-title h2,
 .woocommerce .shopping-cart-title,
 .woocommerce-page .shopping-cart-title,
 .woocommerce .coupon h3,
@@ -1627,6 +1640,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     letter-spacing: 0;
     margin-bottom: 25px;
     text-transform: uppercase;
+    padding: 0;
 }
 
 .woocommerce .shopping-cart-title span,
@@ -1765,6 +1779,33 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     padding: 0;
 }
 
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button{
+    color: #FFFFFF!important;
+}
+
 /** =========================
-    9. My Account
+    9. WISTLISH
 *** =========================*/
+
+.woocommerce table.wishlist_table thead th,
+.woocommerce table.wishlist_table tbody td {
+    border-width: 2px;
+}
+
+.wishlist_table .add_to_cart.button,
+.yith-wcwl-add-button a.add_to_wishlist,
+.yith-wcwl-popup-button a.add_to_wishlist,
+.wishlist_table a.ask-an-estimate-button,
+.wishlist-title a.show-title-form,
+.hidden-title-form a.hide-title-form,
+.woocommerce .yith-wcwl-wishlist-new button,
+.wishlist_manage_table a.create-new-wishlist,
+.wishlist_manage_table button.submit-wishlist-changes,
+.yith-wcwl-wishlist-search-form button.wishlist-search-button{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.woocommerce .wishlist_table td.product-add-to-cart a{
+    background: transparent;
+}
