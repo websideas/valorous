@@ -219,6 +219,14 @@ only screen and (min-resolution: 144dpi) {
     .kt-callout-wrapper .callout-content .display-cell:first-child{
         margin-bottom:20px;
     }
+    .testimonial-item.testimonial-layout-3 .display-cell,
+    .testimonial-item.testimonial-layout-3 .display-td{
+        display: block;
+    }
+    .testimonial-layout-3 .testimonial-img{
+        width:100px;
+        height:100px;
+    }
 }
 
 
