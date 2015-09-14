@@ -6621,8 +6621,10 @@ article.post-item {
     text-align: center;
 }
 .kt_page_loader.style-1 .kt_spinner {
-    border: 1px solid #d0a852;
+    border: 1px solid #888888;
     -webkit-animation: rotate 1.3s linear 0s infinite;
+    -moz-animation: rotate 1.3s linear 0s infinite;
+    -ms-animation: rotate 1.3s linear 0s infinite;
     animation: rotate 1.3s linear 0s infinite;
 }
 .kt_page_loader.style-1 .kt_spinner:after {
@@ -6630,9 +6632,11 @@ article.post-item {
     position: absolute;
     width: 15px;
     height: 15px;
-    background: #888888;
+    background: #d0a852;
     border-radius: 100%;
     -webkit-animation: 3s linear 0s infinite;
+    -moz-animation: 3s linear 0s infinite;
+    -ms-animation: 3s linear 0s infinite;
     animation: 3s linear 0s infinite;
     left: -5px;
     top: 18px;
@@ -6641,6 +6645,8 @@ article.post-item {
     border: 5px solid #888888;
     border-bottom-color: #d0a852;
     -webkit-animation: rotate 2s linear 0s infinite;
+    -moz-animation: rotate 2s linear 0s infinite;
+    -ms-animation: rotate 2s linear 0s infinite;
     animation: rotate 2s linear 0s infinite;
 }
 .kt_page_loader.style-3 .kt_spinner {
@@ -6648,10 +6654,14 @@ article.post-item {
     border-bottom-color: #d0a852;
     border-top-color: #d0a852;
     -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
     animation: rotate 1.5s linear 0s infinite;
 }
 .kt_page_loader.style-4 .kt_spinner {
     -webkit-animation: rotate 1.3s linear 0s infinite;
+    -moz-animation: rotate 1.3s linear 0s infinite;
+    -ms-animation: rotate 1.3s linear 0s infinite;
     animation: rotate 1.3s linear 0s infinite;
 }
 .kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before {

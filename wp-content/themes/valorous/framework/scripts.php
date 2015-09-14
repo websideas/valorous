@@ -506,11 +506,11 @@ function kt_setting_script() {
             .kt_page_loader{ background: <?php echo $bg_page_loader; ?>; }
         <?php } ?>
         <?php if( $color_second_loader ){ ?>
-            .kt_page_loader.style-1 .kt_spinner:after{ background: <?php echo $color_second_loader; ?>; }
+            .kt_page_loader.style-1 .kt_spinner{ border-color: <?php echo $color_second_loader; ?>; }
             .kt_page_loader.style-2 .kt_spinner{ border-color: <?php echo $color_second_loader; ?>; }
         <?php } ?>
         <?php if( $color_loader ){ ?>
-            .kt_page_loader.style-1 .kt_spinner{ border-color: <?php echo $color_loader; ?>; }
+            .kt_page_loader.style-1 .kt_spinner:after{ background: <?php echo $color_loader; ?>; }
             .kt_page_loader.style-2 .kt_spinner,.kt_page_loader.style-3 .kt_spinner{ border-bottom-color: <?php echo $color_loader; ?>; }
             .kt_page_loader.style-3 .kt_spinner{ border-top-color: <?php echo $color_loader; ?>; }
             .kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before{ background: <?php echo $color_loader; ?>; }
