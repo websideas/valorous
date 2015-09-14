@@ -1,6 +1,6 @@
 <?php $classes = array('post-item post-layout-1', $blog_atts['class']); ?>
 <?php //print_r($blog_atts); ?>
-<article <?php post_class($classes); ?>>
+<div <?php post_class($classes); ?>>
     <?php
         if($blog_atts['thumbnail_type'] == 'image'){
             kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive');
@@ -52,4 +52,4 @@
         </div>
     <?php } ?>
 
-</article>
+</div>

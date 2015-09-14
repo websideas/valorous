@@ -18,7 +18,7 @@ $parent_product_post = $post;
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 <form class="cart" method="post" enctype='multipart/form-data'>
-	<table cellspacing="0" class="group_table">
+	<table class="group_table">
 		<tbody>
 			<?php
 				foreach ( $grouped_products as $product_id ) :

@@ -10,7 +10,7 @@
  */
 ?>
 
-<section class="no-results not-found">
+<div class="no-results not-found">
     <div class="page-content">
 
         <?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
@@ -33,4 +33,4 @@
         <?php endif; ?>
 
     </div><!-- .page-content -->
-</section><!-- .no-results -->
+</div><!-- .no-results -->

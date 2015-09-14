@@ -1,6 +1,6 @@
 <?php $post_layout = kt_post_option(null, '_kt_blog_post_layout', 'blog_layout', 1); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('post-single post-layout-'.$post_layout ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class('post-single post-layout-'.$post_layout ); ?>>
     <?php
         $show_post_format = kt_post_option(null, '_kt_post_format', 'blog_post_format', 1);
         $imagesize = kt_post_option(null, '_kt_blog_image_size', 'blog_image_size', 'blog_post');
@@ -89,7 +89,7 @@
 
     ?>
 
-</article><!-- #post-## -->
+</div><!-- #post-## -->
 
 <?php
     if(kt_post_option(null, '_kt_related_acticles', 'blog_related', 1)){

@@ -572,7 +572,7 @@ if ( ! function_exists( 'kt_paging_nav' ) ) :
             );
         }elseif($type == 'normal'){ ?>
 
-            <nav class="navigation paging-navigation clearfix" role="navigation">
+            <nav class="navigation paging-navigation clearfix">
                 <h1 class="screen-reader-text"><?php _e( 'Posts navigation', THEME_LANG ); ?></h1>
                 <div class="nav-links">
 

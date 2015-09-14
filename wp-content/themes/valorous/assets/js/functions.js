@@ -436,8 +436,6 @@
 
                 $content.find('.post-item').removeClass('loadmore-item');
 
-                console.log(response);
-
             }, 'json');
         });
     }
