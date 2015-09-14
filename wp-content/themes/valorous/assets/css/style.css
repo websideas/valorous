@@ -2865,6 +2865,10 @@ body.footer_fixed .static-footer {
  * Button 3
  */
 
+.vc_btn3-container.vc_btn3-inline + .vc_btn3-container.vc_btn3-inline{
+    margin-left: 10px;
+}
+
 .vc_btn3.vc_btn3-size-xs,
 .vc_btn3.vc_btn3-size-xs.vc_btn3-style-outline-custom,
 .vc_btn3.vc_btn3-size-xs.vc_btn3-style-outline{
@@ -2964,7 +2968,7 @@ body.footer_fixed .static-footer {
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading,
 .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading{
     color:inherit;
-    background-color: #f8f8f8;
+    background-color: transparent;
     border-color: #e3e3e3;
 }
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:hover,
@@ -2978,22 +2982,21 @@ body.footer_fixed .static-footer {
     color:#fff;
 }
 
-
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
 .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
     border-color: #e3e3e3;
 }
 
-.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
-.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body:before,
-.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
+.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
+.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body:before,
+.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
     border-top-color: #b28c45;
 }
 
 
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
 .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
-    background-color: #f8f8f8;
+    background-color: transparent;
 }
 .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:hover, 
 .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
@@ -3033,24 +3036,41 @@ body.footer_fixed .static-footer {
 }
 
 /*
- * General Tabs nav
+ * TAB & TOUR
  */
+.vc_tta-color-white.vc_tta-style-classic .vc_tta-tab.vc_active > a,
+.vc_tta-color-white.vc_tta-style-classic .vc_tta-tab > a,
+.vc_tta-color-white.vc_tta-style-classic.vc_tta-tabs .vc_tta-panels,
+.vc_tta-color-white.vc_tta-style-classic.vc_tta-tabs .vc_tta-panels::before,
+.vc_tta-color-white.vc_tta-style-classic.vc_tta-tabs .vc_tta-panels::after{
+    border-color: #e3e3e3;
+}
+
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a,
 .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a{
+    background-color: transparent;
+    border-color: #e3e3e3;
+    color: inherit;
+}
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
+.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:hover,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:focus,
+.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a {
     background-color: #d0a852;
     border-color: #d0a852;
     color:#fff;
 }
-.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a:hover,
-.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a:focus,
-.vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
-.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a:hover,
-.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a:focus,
-.vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a {
-    background-color: #f8f8f8;
-    border-color: #f0f0f0;
-    color: inherit;
+
+.vc_tta-style-modern.vc_tta-tabs.vc_tta-color-accent.vc_tta.vc_general .vc_tta-tab.vc_active > a:before,
+.vc_tta-style-modern.vc_tta-tabs.vc_tta-color-accent.vc_tta.vc_general .vc_tta-tab.vc_active > a:after,
+.vc_tta-style-classic.vc_tta-tabs.vc_tta-color-accent.vc_tta.vc_general .vc_tta-tab.vc_active > a:before,
+.vc_tta-style-classic.vc_tta-tabs.vc_tta-color-accent.vc_tta.vc_general .vc_tta-tab.vc_active > a:after{
+    border-color: #e3e3e3;
+    z-index: -1;
 }
+
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
 .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:hover, 
@@ -3076,7 +3096,6 @@ body.footer_fixed .static-footer {
 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:focus,
 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a {
     background-color: transparent;
-    border-bottom-color: transparent;
     color: #d0a852;
 }
 .vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels .vc_tta-panel-body{
@@ -3095,6 +3114,10 @@ body.footer_fixed .static-footer {
 }
 .vc_tta-tabs.vc_tta-tabs-position-top:not([class*="vc_tta-gap"]):not(.vc_tta-o-no-fill) .vc_tta-tab.vc_active > a{
     border-bottom-color: transparent;
+}
+
+.vc_tta.vc_tta-o-no-fill.vc_tta-tabs .vc_tta-panels{
+    border-color: transparent !important;
 }
 
 /*
@@ -4516,6 +4539,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     position: relative;
     overflow: hidden;
     text-align: center;
+    max-width: 100%;
 }
 
 .kt-divider-wrapper .vc_icon_element {
@@ -4622,11 +4646,15 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 }
 
 /* KT Callout */
-.kt-callout-wrapper {
+.kt-callout-wrapper{
     margin-bottom: 20px;
 }
 
-.kt-callout-wrapper .kt-button-wrapper {
+.kt-callout-wrapper.kt-callout-light{
+    color: #FFFFFF;
+}
+
+.kt-callout-wrapper .vc_btn3-container {
     margin-bottom: 0;
 }
 
@@ -4636,6 +4664,8 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 
 .kt-callout-wrapper .kt-callout-title {
     margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .kt-callout-wrapper .kt-callout-inner {

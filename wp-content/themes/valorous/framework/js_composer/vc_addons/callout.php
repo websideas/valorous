@@ -3,106 +3,35 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-custom-heading.php' );
 
-class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
+class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode {
+    protected $template_vars = array();
+
     protected function content($atts, $content = null) {
+        $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+        $this->buildTemplate( $atts, $content );
 
+        $output = '';
 
-        $atts = shortcode_atts( array(
-            'title' => __( 'Call to Action', THEME_LANG ),
-            'layout' => 1,
-
-            'use_theme_fonts' => '',
-            'font_container' => 'yes',
-            'google_fonts' => '',
-            'letter_spacing' => '0',
-
-
-            'bt_title' => '',
-            'link' => '',
-            'bt_title_color' => '',
-            'bt_bg_color' => '',
-            'bt_title_color_hover' => '',
-            'bt_bg_color_hover' => '',
-
-            'type' => 'fontawesome',
-            'icon_fontawesome' => '',
-            'icon_openiconic' => '',
-            'icon_typicons' => '',
-            'icon_entypoicons' => '',
-            'icon_linecons' => '',
-            'icon_entypo' => '',
-            'color' => '',
-            'custom_color' => '',
-            'icon_position' => '',
-
-            'bt_use_theme_fonts' => 'yes',
-            'bt_font_container' => '',
-            'bt_google_fonts' => '',
-            'bt_letter_spacing' => '0',
-
-            'bt_border_style' => '',
-            'bt_color_border' => '',
-            'bt_color_border_hover' => '',
-            'bt_border_size' => 1,
-            'bt_radius' => 3,
-
-            'el_class' => '',
-            'css_animation' => '',
-            'css' => '',
-        ), $atts );
-        extract($atts);
-
-        $elementClass = array(
-            'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-callout-wrapper ', $this->settings['base'], $atts ),
-            'extra' => $this->getExtraClass( $el_class ),
-            'css_animation' => $this->getCSSAnimation( $css_animation ),
-            'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
-            'layout' => 'kt-callout-layout-'.$layout
-        );
-        $output = $style_title = '' ;
-
-        $styles = array();
-        extract( $this->getAttributes( $atts ) );
-        unset($font_container_data['values']['text_align']);
-        extract( $this->getStyles( $el_class, $css, $google_fonts_data, $font_container_data, $atts ) );
-
-        $settings = get_option( 'wpb_js_google_fonts_subsets' );
-        $subsets = '';
-        if ( is_array( $settings ) && ! empty( $settings ) ) {
-            $subsets = '&subset=' . implode( ',', $settings );
-        }
-        if ( ! empty( $google_fonts_data ) && isset( $google_fonts_data['values']['font_family'] ) ) {
-            wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $google_fonts_data['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $google_fonts_data['values']['font_family'] . $subsets );
-        }
-        $styles[] = 'letter-spacing:'.$letter_spacing.'px';
-        if ( ! empty( $styles ) ) {
-            $style_title .= 'style="' . esc_attr( implode( ';', $styles ) ) . '"';
-        }
-
-
-
-
-
-
-        $callout_content = '<' . $font_container_data['values']['tag'] . ' class="kt-callout-title" '.$style_title.'>'.$title.'</' . $font_container_data['values']['tag'] . '>';
+        $callout_content = $this->getTemplateVariable( 'heading1' );
         if($content){
-            $callout_content .= '<div class="kt-callout-content">'.$content.'</div>';
+            $callout_content .= '<div class="kt-callout-content">'.$this->getTemplateVariable( 'content' ).'</div>';
         }
 
-        $callout_button = do_shortcode('[kt_button title="'.$bt_title.'" link="'.$link.'"  bt_title_color="'.$bt_title_color.'" bt_title_color_hover="'.$bt_title_color_hover.'" bt_bg_color="'.$bt_bg_color.'" bt_bg_color_hover="'.$bt_bg_color_hover.'" bt_align="inline" bt_border_style="'.$bt_border_style.'" bt_color_border="'.$bt_color_border.'" bt_color_border_hover="'.$bt_color_border_hover.'" bt_border_size="'.$bt_border_size.'" bt_radius="'.$bt_radius.'" font_container="'.$bt_font_container.'" letter_spacing="'.$bt_letter_spacing.'" use_theme_fonts="'.$bt_use_theme_fonts.'" google_fonts="'.$bt_google_fonts.'"]');
 
-        if($layout == 2){
+        $callout_button = $this->getTemplateVariable( 'actions' );
+        if($callout_button && $atts['layout'] != 3){
+            $callout_button = '<div class="callout-action display-cell">'.$callout_button.'</div>';
+        }
+
+
+        if($atts['layout'] == 2){
             $output .= sprintf(
-                '<div class="callout-content display-table">
-                    <div class="callout-action display-cell">%s</div>
-                    <div class="callout-text display-cell">%s</div>
-                </div>',
+                '<div class="callout-content display-table">%s<div class="callout-text display-cell">%s</div></div>',
                 $callout_button,
                 $callout_content
             );
-        }elseif($layout == 3){
+        }elseif($atts['layout'] == 3){
             $output .= sprintf(
                 '<div class="kt-callout-inner">%s</div>%s',
                 $callout_content,
@@ -110,37 +39,146 @@ class WPBakeryShortCode_KT_Callout extends WPBakeryShortCode_VC_Custom_heading {
             );
         }else{
             $output .= sprintf(
-                '<div class="callout-content display-table">
-                    <div class="callout-text display-cell">%s</div>
-                    <div class="callout-action display-cell">%s</div>
-                </div>',
+                '<div class="callout-content display-table"><div class="callout-text display-cell">%s</div>%s</div>',
                 $callout_content,
                 $callout_button
             );
         }
 
 
-        $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-        return '<div class="'.esc_attr( $elementClass ).'">'.$output.'</div>';
+        return '<div class="'.esc_attr( implode( ' ', $this->getTemplateVariable( 'css-class' ) ) ).'">'.$output.'</div>';
+
+    }
+
+    public function buildTemplate( $atts, $content ) {
+
+        $output = array();
+
+        $main_wrapper_classes = array( 'kt-callout-wrapper', 'kt-callout-layout-'.$atts['layout'] );
+
+        if ( ! empty( $atts['css_animation'] ) ) {
+            $main_wrapper_classes[] = $this->getCSSAnimation( $atts['css_animation'] );
+        }
+
+        if ( ! empty( $atts['css'] ) ) {
+            $main_wrapper_classes[] = vc_shortcode_custom_css_class( $atts['css'] );
+        }
+
+        if ( ! empty( $atts['el_class'] ) ) {
+            $main_wrapper_classes[] = $atts['el_class'];
+        }
+
+        if ( ! empty( $atts['skin'] ) ) {
+            $main_wrapper_classes[] = 'kt-callout-'.$atts['skin'];
+        }
+
+
+        if ( ! empty( $atts['add_button'] ) ) {
+            $output[ 'actions' ] = $this->getButton( $atts );
+        }
+
+
+        $output['content'] = wpb_js_remove_wpautop( $content, true );
+        $output['heading1'] = $this->getHeading( 'h3', $atts );
+        $output['css-class'] = $main_wrapper_classes;
+        $this->template_vars = $output;
+
+
+    }
+    public function getHeading( $tag, $atts ) {
+
+        if ( isset( $atts[ $tag ] ) && trim( $atts[ $tag ] ) !== '' ) {
+
+            $custom_heading = visual_composer()->getShortCode( 'vc_custom_heading' );
+            $data = vc_map_integrate_parse_atts( $this->shortcode, 'vc_custom_heading', $atts, $tag . '_' );
+            $data['el_class'] = 'kt-callout-title';
+            $data['font_container'] = implode( '|', array_filter( array(
+                'tag:' . $tag,
+                $data['font_container']
+            ) ) );
+            $data['text'] = $atts[ $tag ]; // provide text to shortcode
+
+            return $custom_heading->render( array_filter( $data ) );
+
+        }
+
+        return '';
+    }
+
+    public function getButton( $atts ) {
+        $data = vc_map_integrate_parse_atts( $this->shortcode, 'vc_btn', $atts, 'btn_' );
+        if ( $data ) {
+            $btn = visual_composer()->getShortCode( 'vc_btn' );
+            if ( is_object( $btn ) ) {
+                return $btn->render( array_filter( $data ) );
+            }
+        }
+
+        return "";
+    }
+
+    public function getTemplateVariable( $string ) {
+        if ( is_array( $this->template_vars ) && isset( $this->template_vars[ $string ] ) ) {
+
+            return $this->template_vars[ $string ];
+        }
+
+        return "";
+    }
+
+
+
+}
+
+
+
+$h3_custom_heading = vc_map_integrate_shortcode( 'vc_custom_heading', 'h3_', __( 'Heading', 'js_composer' ),
+    array( 'exclude' => array( 'source', 'link', 'text', 'css',  'el_class' ) )
+);
+
+// This is needed to remove custom heading _tag and _align options.
+if ( is_array( $h3_custom_heading ) && ! empty( $h3_custom_heading ) ) {
+    foreach ( $h3_custom_heading as $key => $param ) {
+
+        if ( is_array( $param ) && isset( $param['type'] ) && $param['type'] === 'font_container' ) {
+            $h3_custom_heading[ $key ]['value'] = '';
+            if ( isset( $param['settings'] ) && is_array( $param['settings'] ) && isset( $param['settings']['fields'] ) ) {
+                $sub_key = array_search( 'tag', $param['settings']['fields'] );
+                if ( false !== $sub_key ) {
+                    unset( $h3_custom_heading[ $key ]['settings']['fields'][ $sub_key ] );
+                } else if ( isset( $param['settings']['fields']['tag'] ) ) {
+                    unset( $h3_custom_heading[ $key ]['settings']['fields']['tag'] );
+                }
+                $sub_key = array_search( 'text_align', $param['settings']['fields'] );
+                if ( false !== $sub_key ) {
+                    unset( $h3_custom_heading[ $key ]['settings']['fields'][ $sub_key ] );
+                } else if ( isset( $param['settings']['fields']['text_align'] ) ) {
+                    unset( $h3_custom_heading[ $key ]['settings']['fields']['text_align'] );
+                }
+            }
+        }elseif ( is_array( $param ) && isset( $param['type'] ) && $param['param_name'] === 'h3_use_theme_fonts' ) {
+            $h3_custom_heading[ $key ]['std'] = 'yes';
+        }
 
     }
 }
 
-vc_map( array(
-    "name" => __( " Call to Action", THEME_LANG),
-    "base" => "kt_callout",
-    "category" => __('by Theme', THEME_LANG ),
-    "description" => __( "Catch visitors attention with CTA block", THEME_LANG),
-    "wrapper_class" => "clearfix",
-    "params" => array(
 
+$params = array_merge(
+    array(
         array(
             'type' => 'textfield',
-            'heading' => __( 'Text', 'js_composer' ),
-            'param_name' => 'title',
+            'heading' => __( 'Heading', 'js_composer' ),
             'admin_label' => true,
-            'value' => __( 'Call to Action', THEME_LANG ),
-            'description' => __( 'Note: If you are using non-latin characters be sure to activate them under Settings/Visual Composer/General Settings.', 'js_composer' ),
+            'param_name' => 'h3',
+            'value' => __( 'Hey! I am first heading line feel free to change me', 'js_composer' ),
+            'description' => __( 'Enter text for heading line.', 'js_composer' ),
+        ),
+
+        array(
+            'type' => 'hidden',
+            'heading' => __( 'URL (Link)', 'js_composer' ),
+            'param_name' => 'link',
         ),
         array(
             "type" => "textarea_html",
@@ -161,67 +199,31 @@ vc_map( array(
             'admin_label' => true,
             'description' => '',
         ),
-        //Typography settings
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Add button', 'js_composer' ) . '?',
+            'description' => __( 'Add button for call to action.', 'js_composer' ),
+            'param_name' => 'add_button',
+            'value' => array(
+                __( 'No', 'js_composer' ) => '',
+                __( 'Yes', 'js_composer' ) => 'Yes',
+            ),
+        ),
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Skin', THEME_LANG ),
+            'param_name' => 'skin',
+            'value' => array(
+                __( 'Default', THEME_LANG ) => '',
+                __( 'Light', THEME_LANG ) => 'light',
+            ),
+            'description' => __( 'Select your layout.', THEME_LANG ),
+            "admin_label" => true,
+        ),
+
         array(
             "type" => "kt_heading",
-            "heading" => __("Typography setting", THEME_LANG),
-            "param_name" => "callout_typography_setting",
-        ),
-        array(
-            'type' => 'font_container',
-            'param_name' => 'font_container',
-            'value' => '',
-            'settings' => array(
-                'fields' => array(
-                    'tag' => 'h2', // default value h2
-                    'font_size',
-                    'line_height',
-                    'color',
-                    'tag_description' => __( 'Select element tag.', 'js_composer' ),
-                    'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
-                    'font_size_description' => __( 'Enter font size.', 'js_composer' ),
-                    'line_height_description' => __( 'Enter line height.', 'js_composer' ),
-                    'color_description' => __( 'Select heading color.', 'js_composer' ),
-                ),
-            ),
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Letter spacing", THEME_LANG),
-            "param_name" => "letter_spacing",
-            "value" => 0,
-            "min" => 0,
-            "max" => 10,
-            "suffix" => "px",
-            "description" => "",
-        ),
-        array(
-            'type' => 'checkbox',
-            'heading' => __( 'Use theme default font family?', 'js_composer' ),
-            'param_name' => 'use_theme_fonts',
-            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
-            'description' => __( 'Use font family from the theme.', 'js_composer' ),
-            'std' => 'yes'
-        ),
-        array(
-            'type' => 'google_fonts',
-            'param_name' => 'google_fonts',
-            'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
-            'settings' => array(
-                'fields' => array(
-                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
-                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
-                )
-            ),
-            'dependency' => array(
-                'element' => 'use_theme_fonts',
-                'value_not_equal_to' => 'yes',
-            ),
-            'description' => __( '', 'js_composer' ),
-        ),
-        array(
-            "type" => "kt_heading",
-            "heading" => __("Other setting", THEME_LANG),
+            "heading" => __("Others setting", THEME_LANG),
             "param_name" => "callout_other_setting",
         ),
         array(
@@ -245,189 +247,21 @@ vc_map( array(
             'param_name' => 'el_class',
             'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' )
         ),
+    ),
 
-        array(
-            'type' => 'vc_link',
-            'heading' => __( 'URL (Link)', 'js_composer' ),
-            'param_name' => 'link',
-            'description' => __( 'Enter button link.', 'js_composer' ),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "textfield",
-            'heading' => __( 'Button Title', 'js_composer' ),
-            'param_name' => 'bt_title',
-            'value' => '',
-            'group' => __( 'Button', THEME_LANG )
-        ),
+    //Typography settings
+    $h3_custom_heading,
 
+    vc_map_integrate_shortcode( 'vc_btn', 'btn_', __( 'Button', 'js_composer' ),
         array(
-            "type" => "colorpicker",
-            "heading" => __("Button Title Color", THEME_LANG),
-            "param_name" => "bt_title_color",
-            "edit_field_class" => "vc_col-sm-6 kt_margin_bottom",
-            "value" => "",
-            "description" => "",
-            'group' => __( 'Button', THEME_LANG ),
+            'exclude' => array( 'css', 'align', 'button_block', 'css_animation', 'el_class' )
         ),
         array(
-            "type" => "colorpicker",
-            "heading" => __("Button Title Color on Hover", THEME_LANG),
-            "param_name" => "bt_title_color_hover",
-            "edit_field_class" => "vc_col-sm-6 kt_margin_bottom",
-            "value" => "",
-            "description" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-
-
-        array(
-            "type" => "colorpicker",
-            "heading" => __("Background Color", THEME_LANG),
-            "param_name" => "bt_bg_color",
-            "edit_field_class" => "vc_col-sm-6 kt_margin_bottom",
-            "value" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "colorpicker",
-            "heading" => __("Background Color on Hover", THEME_LANG),
-            "param_name" => "bt_bg_color_hover",
-            "edit_field_class" => "vc_col-sm-6 kt_margin_bottom",
-            "value" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-
-
-
-
-        // Border setting
-        array(
-            "type" => "kt_heading",
-            "heading" => __("Border setting", THEME_LANG),
-            "param_name" => "bt_border_setting",
-            'group' => __( 'Button', THEME_LANG )
-        ),
-        array(
-            "type" => "dropdown",
-            "heading" => __("Button Border Style", THEME_LANG),
-            "param_name" => "bt_border_style",
-            "value" => array(
-                __("None", THEME_LANG)=> "",
-                __("Solid", THEME_LANG)=> "solid",
-                __("Dashed", THEME_LANG) => "dashed",
-                __("Dotted", THEME_LANG) => "dotted",
-                __("Double", THEME_LANG) => "double",
-            ),
-            "description" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "colorpicker",
-            "heading" => __("Border Color", THEME_LANG),
-            "param_name" => "bt_color_border",
-            "value" => "",
-            "description" => "",
-            "dependency" => array("element" => "bt_border_style", "not_empty" => true),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "colorpicker",
-            "heading" => __("Border Color on Hover", THEME_LANG),
-            "param_name" => "bt_color_border_hover",
-            "value" => "",
-            "description" => "",
-            "dependency" => array("element" => "bt_border_style", "not_empty" => true),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Border Width", THEME_LANG),
-            "param_name" => "bt_border_size",
-            "value" => 1,
-            "min" => 1,
-            "max" => 10,
-            "suffix" => "px",
-            "description" => "",
-            "dependency" => array("element" => "bt_border_style", "not_empty" => true),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Border Radius", THEME_LANG),
-            "param_name" => "bt_radius",
-            "value" => 3,
-            "min" => 0,
-            "max" => 500,
-            "suffix" => "px",
-            "description" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-
-
-
-        //Typography settings
-        array(
-            "type" => "kt_heading",
-            "heading" => __("Typography setting", THEME_LANG),
-            "param_name" => "bt_typography_setting",
-            'group' => __( 'Button', THEME_LANG )
-        ),
-        array(
-            'type' => 'font_container',
-            'param_name' => 'bt_font_container',
-            'value' => '',
-            'settings' => array(
-                'fields' => array(
-                    //'tag' => 'h2', // default value h2
-                    'font_size',
-                    'line_height',
-                    'tag_description' => __( 'Select element tag.', 'js_composer' ),
-                    'text_align_description' => __( 'Select text alignment.', 'js_composer' ),
-                    'font_size_description' => __( 'Enter font size.', 'js_composer' ),
-                    'line_height_description' => __( 'Enter line height.', 'js_composer' ),
-                    'color_description' => __( 'Select heading color.', 'js_composer' ),
-                ),
-            ),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            "type" => "kt_number",
-            "heading" => __("Letter spacing", THEME_LANG),
-            "param_name" => "bt_letter_spacing",
-            "value" => 0,
-            "min" => 0,
-            "max" => 10,
-            "suffix" => "px",
-            "description" => "",
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            'type' => 'checkbox',
-            'heading' => __( 'Use theme default font family?', 'js_composer' ),
-            'param_name' => 'bt_use_theme_fonts',
-            'value' => array( __( 'Yes', 'js_composer' ) => 'yes' ),
-            'description' => __( 'Use font family from the theme.', 'js_composer' ),
-            'group' => __( 'Button', THEME_LANG ),
-        ),
-        array(
-            'type' => 'google_fonts',
-            'param_name' => 'bt_google_fonts',
-            'value' => 'font_family:Abril%20Fatface%3A400|font_style:400%20regular%3A400%3Anormal',
-            'settings' => array(
-                'fields' => array(
-                    'font_family_description' => __( 'Select font family.', 'js_composer' ),
-                    'font_style_description' => __( 'Select font styling.', 'js_composer' )
-                )
-            ),
-            'group' => __( 'Button', THEME_LANG ),
-            'dependency' => array(
-                'element' => 'bt_use_theme_fonts',
-                'value_not_equal_to' => 'yes',
-            ),
-            'description' => __( '', 'js_composer' ),
-        ),
-
+            'element' => 'add_button',
+            'not_empty' => true,
+        )
+    ),
+    array(
         array(
             'type' => 'css_editor',
             'heading' => __( 'CSS box', 'js_composer' ),
@@ -435,7 +269,17 @@ vc_map( array(
             // 'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' ),
             'group' => __( 'Design Options', 'js_composer' )
         )
+    )
+);
 
-    ),
+
+
+vc_map( array(
+    "name" => __( "KT Call to Action", THEME_LANG),
+    "base" => "kt_callout",
+    "category" => __('by Theme', THEME_LANG ),
+    "description" => __( "Catch visitors attention with CTA block", THEME_LANG),
+    "wrapper_class" => "clearfix",
+    "params" => $params,
 ));
 

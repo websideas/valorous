@@ -29,7 +29,7 @@ $this->buildTemplate( $atts, $content );
 				</header>
 				<?php echo $this->getTemplateVariable( 'content' ); ?>
 			</div>
-			<?php echo $this->getTemplateVariable( 'actions-bottom' ); ?>
+			<?php //echo $this->getTemplateVariable( 'actions-bottom' ); ?>
 			<?php echo $this->getTemplateVariable( 'actions-right' ); ?>
 		</div>
 		<?php echo $this->getTemplateVariable( 'icons-bottom' ); ?>

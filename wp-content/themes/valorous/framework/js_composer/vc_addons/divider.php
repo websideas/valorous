@@ -45,6 +45,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
             'align' => 'kt-divider-'.$align,
         );
 
+
         $styles = array(
             'border-color' => 'border-color:'. $color_border,
         );
@@ -88,6 +89,7 @@ class WPBakeryShortCode_KT_Divider extends WPBakeryShortCode {
                 $divider_html .= $divider_html;
             }
         }
+
 
         $output = '<div class="kt-divider-content" style="width:'.$width.';">'.$icon_html.$divider_html.'</div>';
 

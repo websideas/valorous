@@ -27,6 +27,10 @@ function kt_add_option_to_vc() {
     $button_colors = WPBMap::getParam( 'vc_tta_tabs', 'color' );
     $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
     vc_update_shortcode_param( 'vc_tta_tabs', $button_colors );
+
+    $button_colors = WPBMap::getParam( 'vc_tta_tour', 'color' );
+    $button_colors['value'][__( 'Accent color', THEME_LANG )] = 'accent';
+    vc_update_shortcode_param( 'vc_tta_tour', $button_colors );
 }
 
 
