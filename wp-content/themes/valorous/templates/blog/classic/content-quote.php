@@ -1,7 +1,7 @@
 <?php
     $classes = array('post-item post-layout-classic', $blog_atts['class']);
 ?>
-<article <?php post_class($classes); ?>>
+<div <?php post_class($classes); ?>>
 
     <?php
     if($blog_atts['thumbnail_type'] == 'image'){
@@ -53,4 +53,4 @@
             </div>
         </div>
     <?php } ?>
-</article>
+</div>
