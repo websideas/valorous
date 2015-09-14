@@ -249,52 +249,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'compiler' => true,
                         'title'    => __( 'Logo Footer', THEME_LANG ),
                     ),
-                    array(
-                        'id'       => 'favicon_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Favicon settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'custom_favicon',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Custom Favicon', THEME_LANG ),
-                        'subtitle' => __( 'Using this option, You can upload your own custom favicon (16px x 16px)', THEME_LANG),
-                    ),
-                    array(
-                        'id'       => 'custom_favicon_iphone',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Apple iPhone Favicon', THEME_LANG ),
-                        'subtitle' => __( 'Favicon for Apple iPhone (57px x 57px)', THEME_LANG),
-                    ),
-                    array(
-                        'id'       => 'custom_favicon_iphone_retina',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Apple iPhone Retina Favicon', THEME_LANG ),
-                        'subtitle' => __( 'Favicon for Apple iPhone Retina Version (114px x 114px)', THEME_LANG),
-                    ),
-                    array(
-                        'id'       => 'custom_favicon_ipad',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Apple iPad Favicon Upload', THEME_LANG ),
-                        'subtitle' => __( 'Favicon for Apple iPad (72px x 72px)', THEME_LANG),
-                    ),
-                    array(
-                        'id'       => 'custom_favicon_ipad_retina',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Apple iPad Retina Icon Upload', THEME_LANG ),
-                        'subtitle' => __( 'Favicon for Apple iPad Retina Version (144px x 144px)', THEME_LANG),
-                    ),
                 )
             );
             
@@ -1614,7 +1568,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '.woocommerce button.button.alt',
                             '.woocommerce input.button.alt',
                             '.vc_general.vc_btn3',
-                            '.kt-button'
+                            '.kt-button',
+                            '.readmore-link',
+                            '.readmore-link-white'
 
                         ),
                         'default'  => array(
@@ -2353,7 +2309,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'color_second_loader',
                         'type'     => 'color',
                         'title'    => __( 'Color Second Loader', THEME_LANG ),
-                        'default'  => '#888888',
+                        'default'  => '#cccccc',
                         'transparent' => false,
                         'required' => array('use_page_loader','equals', array( 1 ) ),
                     ),

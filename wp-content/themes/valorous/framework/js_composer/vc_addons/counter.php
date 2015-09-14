@@ -302,7 +302,7 @@ vc_map( array(
             'type' => 'dropdown',
             'heading' => __( 'Icon color', 'js_composer' ),
             'param_name' => 'color',
-            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
+            'value' => array_merge( array( __( 'Default', 'js_composer' ) => 'default' ), getVcShared( 'colors' ),  array( __( 'Accent color', THEME_LANG ) => 'accent' ),array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
             'description' => __( 'Select icon color.', 'js_composer' ),
             'param_holder_class' => 'vc_colored-dropdown',
             'group' => __( 'Icon', THEME_LANG )

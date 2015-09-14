@@ -225,6 +225,14 @@ only screen and (min-resolution: 144dpi) {
         width:100%;
     }
 
+    .alert-style-modern{
+        padding-left: 15px;
+    }
+
+    .alert-style-modern::before{
+        display: none;
+    }
+
 
     /* Posts */
     .author-info .author-avatar{

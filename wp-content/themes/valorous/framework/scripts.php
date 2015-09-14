@@ -97,11 +97,8 @@ function kt_setting_script() {
 
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '#d0a852');
-
     $accent_darker = kt_colour_brightness($accent, -0.8);
-    $bg_page_loader = kt_option( 'background_page_loader' );
-    $color_loader = kt_option( 'color_first_loader' );
-    $color_second_loader = kt_option( 'color_second_loader' );
+
 
     ?>
     <style id="kt-theme-custom-css" type="text/css">
@@ -145,13 +142,45 @@ function kt_setting_script() {
             .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d,
 
             #backtotop:hover,
-            #cancel-comment-reply-link:hover {
+            #cancel-comment-reply-link:hover,
+
+
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel.vc_active .vc_tta-panel-heading,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel.vc_active .vc_tta-panel-heading,
+
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:focus,
+
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:hover,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:focus,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:hover,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:focus
+            {
                 background: <?php echo $accent; ?>;
             }
 
             blockquote,
             .blockquote-reverse,
-            blockquote.pull-right{
+            blockquote.pull-right,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body:before,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body:after,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading,
+
+            .vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels,
+            .vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels:before,
+            .vc_tta-color-accent.vc_tta-style-outline.vc_tta-tabs .vc_tta-panels:after
+            {
                 border-color: <?php echo $accent; ?>;
             }
 
@@ -179,7 +208,17 @@ function kt_setting_script() {
             .widget_product_categories ul li a:hover,
             .widget_categories ul li a:hover,
             .yith-woocompare-widget ul.products-list li a.title:hover,
-            .woocommerce ul.product_list_widget li a:hover{
+            .woocommerce ul.product_list_widget li a:hover,
+            .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-color-accent .vc_icon_element-icon,
+
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading,
+
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:hover,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:focus,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a
+            {
                 color: <?php echo $accent; ?>;
             }
 
@@ -282,7 +321,9 @@ function kt_setting_script() {
             .wc-single-product .functional-buttons-product .woocommerce.compare-button a:hover:before,
             .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-add-button a.add_to_wishlist:hover:before,
             .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistaddedbrowse a:hover:before,
-            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistexistsbrowse a:hover:before{
+            .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-wishlistexistsbrowse a:hover:before,
+            .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a
+            {
                 border-color: <?php echo $accent; ?>;
                 color: <?php echo $accent; ?>;
             }
@@ -301,6 +342,23 @@ function kt_setting_script() {
                 background: <?php echo $accent; ?>!important;
             }
 
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:hover,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading:focus,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel.vc_active .vc_tta-panel-heading,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel.vc_active .vc_tta-panel-heading,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
+            .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:hover,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab > a:focus,
+            .vc_tta-color-accent.vc_tta-style-classic .vc_tta-tab.vc_active > a
+            {
+                border-color: <?php echo $accent_darker; ?>;
+            }
+
+
             .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d{
                 box-shadow: 0 5px 0 <?php echo $accent_darker; ?>;
             }
@@ -316,8 +374,10 @@ function kt_setting_script() {
                 background-color: <?php echo $accent_darker; ?>;
             }
 
-        <?php } ?>
 
+
+
+        <?php } ?>
         <?php
 
 
@@ -471,8 +531,29 @@ function kt_setting_script() {
 
 
 
+            if($use_page_loader = kt_option( 'use_page_loader', 1 )){
+                $bg_page_loader = kt_option( 'background_page_loader', '#ffffff' );
+                $color_loader = kt_option( 'color_first_loader' , '#d0a852');
+                $color_second_loader = kt_option( 'color_second_loader', '#cccccc' );
 
 
+                if( $bg_page_loader ){
+                    echo '.kt_page_loader{ background: '.$bg_page_loader.'; }';
+                }
+                if( $color_second_loader ){
+                    echo '.kt_page_loader.style-1 .kt_spinner{ border-color: '.$color_second_loader.'}';
+                    echo '.kt_page_loader.style-2 .kt_spinner{ border-color: '.$color_second_loader.'}';
+                }
+
+
+
+                if( $color_loader ){
+                    echo '.kt_page_loader.style-1 .kt_spinner:after{ background:'.$color_loader.'; }';
+                    echo '.kt_page_loader.style-2 .kt_spinner,.kt_page_loader.style-3 .kt_spinner{ border-bottom-color: '.$color_loader.'; }';
+                    echo '.kt_page_loader.style-3 .kt_spinner{ border-top-color: '.$color_loader.'; }';
+                    echo '.kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before{ background: '.$color_loader.'; }';
+                }
+            }
         ?>
 
 
@@ -502,19 +583,7 @@ function kt_setting_script() {
 
             ?>
         }
-        <?php if( $bg_page_loader ){ ?>
-            .kt_page_loader{ background: <?php echo $bg_page_loader; ?>; }
-        <?php } ?>
-        <?php if( $color_second_loader ){ ?>
-            .kt_page_loader.style-1 .kt_spinner{ border-color: <?php echo $color_second_loader; ?>; }
-            .kt_page_loader.style-2 .kt_spinner{ border-color: <?php echo $color_second_loader; ?>; }
-        <?php } ?>
-        <?php if( $color_loader ){ ?>
-            .kt_page_loader.style-1 .kt_spinner:after{ background: <?php echo $color_loader; ?>; }
-            .kt_page_loader.style-2 .kt_spinner,.kt_page_loader.style-3 .kt_spinner{ border-bottom-color: <?php echo $color_loader; ?>; }
-            .kt_page_loader.style-3 .kt_spinner{ border-top-color: <?php echo $color_loader; ?>; }
-            .kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before{ background: <?php echo $color_loader; ?>; }
-        <?php } ?>
+
     </style>
     <?php
 

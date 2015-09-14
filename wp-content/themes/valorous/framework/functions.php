@@ -629,41 +629,6 @@ function kt_comment_form_after_fields(){
     echo '</div>';
 }
 
-
-/**
- * Add favicon to website
- *
- */
-
-function kt_blog_favicon() { 
-    $custom_favicon = kt_option( 'custom_favicon' );
-    $custom_favicon_iphone = kt_option( 'custom_favicon_iphone' );
-    $custom_favicon_iphone_retina = kt_option( 'custom_favicon_iphone_retina' );
-    $custom_favicon_ipad = kt_option( 'custom_favicon_ipad' );
-    $custom_favicon_ipad_retina = kt_option( 'custom_favicon_ipad_retina' );
-    
-    ?>
-    <!-- Favicons -->
-    <?php if($custom_favicon['url']){ ?>
-        <link rel="shortcut icon" href="<?php echo esc_url($custom_favicon['url']); ?>" />
-    <?php } ?>
-	<?php if($custom_favicon_iphone['url']){ ?>
-        <link rel="apple-touch-icon" href="<?php echo esc_url($custom_favicon_iphone['url']); ?>" />
-    <?php } ?>
-    <?php if($custom_favicon_iphone_retina['url']){ ?>
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo esc_url($custom_favicon_iphone_retina['url']); ?>" />    
-    <?php } ?>
-    <?php if($custom_favicon_ipad['url']){ ?>
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo esc_url($custom_favicon_ipad['url']); ?>" />    
-    <?php } ?>
-    <?php if($custom_favicon_ipad_retina['url']){ ?>
-        <link rel="apple-touch-icon" sizes="144x144" href="<?php echo esc_url($custom_favicon_ipad_retina['url']); ?>" />    
-    <?php } ?>
-<?php }
-
-add_action('wp_head', 'kt_blog_favicon');
-
-
 /**
  * Change separator of breadcrumb
  * 
@@ -744,14 +709,15 @@ endif;
 add_filter( 'theme_body_top', 'kt_page_loader');
 function kt_page_loader(){
     $use_loader = kt_option( 'use_page_loader',1 );
-    $layout_loader = kt_option( 'layout_loader' );
-    $enable_logo = kt_option( 'show_logo_page_loader',0 );
-    $logo_loader = kt_option( 'logo_page_loader' );
-    if( $use_loader == 1 ){ ?>
-        <div class="kt_page_loader <?php echo $layout_loader; ?>">
+    if( $use_loader ){
+        $layout_loader = kt_option( 'layout_loader', 'style-1' );
+        $enable_logo = kt_option( 'show_logo_page_loader', 0 );
+        $logo_loader = kt_option( 'logo_page_loader' );
+        ?>
+        <div class="kt_page_loader <?php echo esc_attr($layout_loader); ?>">
             <div class="page_loader_inner">
                 <?php if( $logo_loader['url'] && $enable_logo == 1 ){ ?>
-                    <h1 class="logo-loader"><img alt="Valorous" class="logo-dark" src="<?php echo $logo_loader['url']; ?>" /></h1>
+                    <div class="logo-loader"><img alt="<?php bloginfo( 'name' ); ?>" class="logo-dark" src="<?php echo esc_url($logo_loader['url']); ?>" /></div>
                 <?php } ?>
                 <div class="kt_spinner"></div>
             </div>

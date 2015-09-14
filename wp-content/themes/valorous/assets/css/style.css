@@ -2218,7 +2218,7 @@ h2.widgettitle a.rsswidget:first-child,
 
 body.layout-boxed .header-container.is-sticky #header.apply-sticky,
 body.layout-boxed .header-container.is-sticky .apply-sticky {
-    max-width: 1170px;
+    max-width: 1200px;
 }
 
 .header-container.is-sticky .header-sticky-background {
@@ -2591,7 +2591,7 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 }
 
 body.layout-boxed #footer {
-    max-width: 1170px;
+    max-width: 1200px;
 }
 
 .footer_fixed #footer {
@@ -2989,8 +2989,10 @@ body.footer_fixed .static-footer {
 
 .vc_tta-accordion.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body,
 .vc_tta-accordion.vc_tta-color-accent.vc_tta-style-modern .vc_tta-panel .vc_tta-panel-body:before,
-.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body{
+.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body,
+.vc_tta-accordion.vc_tta-color-accent.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-body:before{
     border-top-color: #b28c45;
+    z-index: -1;
 }
 
 
@@ -3821,6 +3823,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
     position: static;
+}
+
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-color-accent .vc_icon_element-icon{
+    color: #d0a852;
 }
 
 /* Diamond square */
@@ -5578,7 +5584,7 @@ body.layout-boxed {
 
 body.layout-boxed #page_outter {
     margin: 0 auto;
-    max-width: 1170px;
+    max-width: 1200px;
 }
 
 body.layout-boxed #page {
@@ -6651,7 +6657,7 @@ article.post-item {
     text-align: center;
 }
 .kt_page_loader.style-1 .kt_spinner {
-    border: 1px solid #888888;
+    border: 1px solid #cccccc;
     -webkit-animation: rotate 1.3s linear 0s infinite;
     -moz-animation: rotate 1.3s linear 0s infinite;
     -ms-animation: rotate 1.3s linear 0s infinite;
@@ -6672,12 +6678,12 @@ article.post-item {
     top: 18px;
 }
 .kt_page_loader.style-2 .kt_spinner {
-    border: 5px solid #888888;
+    border: 2px solid #cccccc;
     border-bottom-color: #d0a852;
-    -webkit-animation: rotate 2s linear 0s infinite;
-    -moz-animation: rotate 2s linear 0s infinite;
-    -ms-animation: rotate 2s linear 0s infinite;
-    animation: rotate 2s linear 0s infinite;
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
 }
 .kt_page_loader.style-3 .kt_spinner {
     border: 5px solid transparent;
@@ -6689,12 +6695,13 @@ article.post-item {
     animation: rotate 1.5s linear 0s infinite;
 }
 .kt_page_loader.style-4 .kt_spinner {
-    -webkit-animation: rotate 1.3s linear 0s infinite;
-    -moz-animation: rotate 1.3s linear 0s infinite;
-    -ms-animation: rotate 1.3s linear 0s infinite;
-    animation: rotate 1.3s linear 0s infinite;
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
 }
-.kt_page_loader.style-4 .kt_spinner:after, .kt_page_loader.style-4 .kt_spinner:before {
+.kt_page_loader.style-4 .kt_spinner:after,
+.kt_page_loader.style-4 .kt_spinner:before {
     content: '';
     position: absolute;
     width: 15px;
