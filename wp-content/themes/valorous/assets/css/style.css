@@ -6706,6 +6706,10 @@ article.post-item {
     bottom: 0;
     margin: auto;
 }
+.kt_page_loader.style-4 .kt_spinner:before{
+    left:auto;
+    right:0;
+}
 
 @-webkit-keyframes rotate {
     from {
