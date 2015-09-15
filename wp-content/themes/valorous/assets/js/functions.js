@@ -63,7 +63,6 @@
         init_carouselwoo();
         
         woo_quantily();
-        kt_changeSize('.kt_client .style2');//Add class client
         kt_gallery();
         kt_popup_gallery();
         kt_sidebar_sticky();
@@ -93,9 +92,9 @@
         
         $('.widget-container .kt_widget_tabs').tabs();
 
-
+        
         /***************** Smooth Scrolling ******************/
-
+        $('.kt_client .style2').kt_client();
 
     });
     
@@ -142,11 +141,6 @@
                 byRow: true
             });
         });
-        
-        /**==============================
-        ***  Client
-        ===============================**/
-        kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
         
         
         $('.gallery-grid').each(function(){

@@ -150,6 +150,7 @@ function kt_add_scripts() {
     wp_enqueue_script( 'fotorama', THEME_LIBS . 'fotorama/fotorama.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'sticky-sidebar', THEME_JS . 'theia-sticky-sidebar.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'photoset', THEME_JS . 'jquery.photoset-grid.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'kt_client', THEME_JS . 'kt_client.js', array( 'jquery' ), null, true );
 
     wp_enqueue_script('jquery-ui-tabs');
     wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
