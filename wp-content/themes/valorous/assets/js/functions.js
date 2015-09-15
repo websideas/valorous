@@ -77,12 +77,7 @@
         
         $('.widget-container .kt_widget_tabs').tabs();
 
-        $('.gallery-grid').each(function(){
-            $(this).photosetGrid({
-                highresLinks: $(this).data('popup'),
-                gutter: $(this).data('margin')+'px'
-            });
-        });
+
 
 
         $('.kt_client .style2').kt_client();
@@ -442,6 +437,13 @@
         init_VCPieChart();
         init_VCComingSoon();
         init_VCGoogleMap();
+
+        $('.gallery-grid').each(function(){
+            $(this).photosetGrid({
+                highresLinks: $(this).data('popup'),
+                gutter: $(this).data('margin')+'px'
+            });
+        });
     }
 
     /* ---------------------------------------------

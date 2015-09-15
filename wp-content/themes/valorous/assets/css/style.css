@@ -239,7 +239,7 @@ blockquote.classic .blockquote-content:before,
 
 }
 
-.post-link-content:after {
+.post-link-content:before {
     content: '\f0c1';
 }
 
