@@ -58,7 +58,6 @@
         //init_smooth_scrolling();
         //init_eislideshow();
 
-        kt_changeSize('.kt_client .style2');//Add class client
         kt_gallery();
         kt_popup_gallery();
         kt_sidebar_sticky();
@@ -84,6 +83,9 @@
                 gutter: $(this).data('margin')+'px'
             });
         });
+
+
+        $('.kt_client .style2').kt_client();
 
     });
     
@@ -133,11 +135,6 @@
             }
             equal_height_element.matchHeight({ byRow: true });
         });
-        
-        /**==============================
-        ***  Client
-        ===============================**/
-        kt_changeSize('.kt_client .style2','.kt_client .style2 .kt_client_col');
         
         
 
