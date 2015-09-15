@@ -1,5 +1,9 @@
-.spinner.is-active {
-    display: inline-block;
+.spinner {
+    visibility: hidden;
+    display: block;
+}
+.spinner.is-active{
+    visibility: visible;
 }
 
 .redux-main .description {
@@ -32,48 +36,6 @@
         &:focus {
             box-shadow: none;
         }
-    }
-
-    .hr {
-        height: 20px;
-        line-height: 20px;
-        float: none;
-        border-color: #E7E7E7;
-        display: block;
-        width: 100%;
-        height: 35px !important;
-        line-height: 35px !important;
-        position: relative;
-        margin: 15px 0 10px 0;
-
-        .inner span {
-            background-color: #FCFCFC;
-            border-color: #E7E7E7;
-            height: 5px;
-            width: 5px;
-            border-width: 2px;
-            border-style: solid;
-            display: block;
-            position: absolute;
-            left: 50%;
-            margin-left: -5px;
-            margin-top: -5px;
-        }
-    }
-
-    .inner {
-        width: 42% !important;
-        left: 40% !important;
-        margin-left: -6%;
-        background-color: #FCFCFC;
-        border-color: #E7E7E7;
-        position: absolute;
-        height: 1px;
-        top: 50%;
-        width: 100%;
-        margin-top: -1px;
-        border-top-width: 1px;
-        border-top-style: solid;
     }
 
     #redux-header,
@@ -527,7 +489,7 @@
         margin-left: -2px;
         padding-top: 4px !important;
         padding-bottom: 2px !important;
-        float: left;
+        //float: left;
     }
     .input-prepend input {
         border-left: 0;
@@ -720,7 +682,8 @@
 
 /* sidebar */
 
-.form-table th, .form-table td {
+.form-table th,
+.form-table td {
     margin: 0;
     padding: 0;
     width: auto;
@@ -788,7 +751,7 @@
     margin-top: 0;
 }
 
-@media screen and (max-width: 1124px) {
+@media screen and (max-width: 600px) {
     .redux-sidebar {
         width: 44px;
 
@@ -861,7 +824,13 @@
 }
 
 //mp6 fixes
-@media screen and (max-width: 783px) {
+@media screen and (max-width: 782px) {
+    .form-table>tbody>tr>th {
+        width: 100%;
+    }
+    .redux_field_th {
+        padding-bottom:0;
+    }
     .mp6 {
         .redux-container {
             #info_bar {
@@ -874,6 +843,17 @@
             }
         }
     }
+    .redux-container-switch label {
+        padding: 5px 10px !important;
+
+    }
+    .redux-container-button_set label {
+        padding: 12px 10px;
+    }
+    .redux-container #redux-footer #redux-share {
+        line-height: 34px;
+    }
+
 }
 
 pre {
@@ -956,7 +936,7 @@ pre {
         border-color: #767676 !important;
     }
     .redux-container-switch .cb-enable.selected,
-    .redux-container .ui-buttonset .ui-state-active {
+    .redux-field-container .ui-buttonset .ui-state-active {
         @include backgroundGradient($accentColor);
         border-color: darken($accentColor, 15%) !important;
         border-color: darken($accentColor, 10%) !important;
@@ -1222,21 +1202,29 @@ pre {
     @include adminThemeColorOverrides(#f0c8c6, #dd823b, #b43c38, #cc6c23);
 }
 
-@media screen and (max-width: 1124px) {
+@media screen and (max-width: 600px) {
     // .redux-group-tab-link-a span { margin-top: -2px; }
-    .redux-group-tab-link-a span {
-        //background: #222;
-        //color: white;
-        padding: 11px 12px;
-        color: #555;
-        -webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        transition: all 0.3s;
-        &:hover {
-            //color: #2ea2cc;
-            //background: black;
-            background: #e5e5e5;
+    .redux-group-tab-link-a {
+        min-height: 15px;
+        span {
+            //background: #222;
+            //color: white;
+            padding: 11px 12px;
+            color: #555;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+            &:hover {
+                //color: #2ea2cc;
+                //background: black;
+                background: #e5e5e5;
+            }
+            text-shadow: none !important;
         }
+    }
+
+    .redux-sidebar a {
+
     }
 }
 
@@ -1261,7 +1249,7 @@ pre {
 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px) {
     #redux-footer #redux-share,
     .redux-hint-qtip {
         display: none;
@@ -1269,16 +1257,6 @@ pre {
 
     .redux-container .redux-action_bar {
         float: none;
-    }
-}
-
-@media screen and (max-width: 476px) {
-    .redux-container .expand_options {
-        display: none;
-    }
-
-    #redux-footer, .redux-container #info_bar {
-        text-align: center;
     }
 }
 
@@ -1305,8 +1283,26 @@ pre {
         display: block;
     }
 }
+@media screen and (max-width: 640px) {
+    #redux-defaults-section {
+        display: none;
+    }
+}
+@media screen and (max-width: 730px) {
+    #redux-share {
+        display:none;
+    }
+}
+@media screen and (max-width: 730px) {
+    #redux-defaults-section2 {
+        display: none;
+    }
+    #redux-share {
+        display:none;
+    }
+}
 
-@media screen and (max-width: 1124px) {
+@media screen and (max-width: 600px) {
     .form-table > tbody > tr > th {
         padding-bottom: 0 !important;
     }
@@ -1320,6 +1316,9 @@ pre {
         .redux-field-container {
             padding-top: 0;
             padding-bottom: 0;
+        }
+        .subsection a {
+            min-height: 15px;
         }
     }
 }
@@ -1376,6 +1375,9 @@ pre {
 
         .redux-hint-qtip {
             float: left !important;
+        }
+        .redux-action_bar .button {
+            margin-top: -1px;
         }
     }
 }
@@ -1500,4 +1502,16 @@ pre {
         margin-right: -20px;
         margin-bottom: -10px;
     }
+}
+.redux-qtip {
+    z-index: 999999 !important;
+
+}
+
+.redux-main pre {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }

@@ -627,7 +627,6 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'link_color',
                         'title'    => __( 'Links Color', THEME_LANG ),
                         'output'      => array( 'a' ),
-                        'default'  => array( )
                     ),
                 )
             );
@@ -676,7 +675,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'units_extended' => 'true',
                         'title'          => __( 'Logo width', THEME_LANG ),
                         'height'         => false,
-                        'default'        => array( 'width'  => 120, 'height' => 100 ),
+                        'default'        => array( 'width'  => 246, 'height' => 100 ),
                         'output'   => array( '.site-branding .site-logo img' ),
                     ),
                     array(
@@ -688,9 +687,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'units_extended' => 'true',
                         'title'    => __( 'Logo margin spacing Option', THEME_LANG ),
                         'default'  => array(
-                            'margin-top'    => '25px',
+                            'margin-top'    => '27px',
                             'margin-right'  => '0px',
-                            'margin-bottom' => '25px',
+                            'margin-bottom' => '30px',
                             'margin-left'   => '0px'
                         )
                     ),
@@ -718,9 +717,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'units_extended' => 'true',
                         'title'    => __( 'Logo sticky margin spacing Option', THEME_LANG ),
                         'default'  => array(
-                            'margin-top'    => '12px',
+                            'margin-top'    => '15px',
                             'margin-right'  => '0px',
-                            'margin-bottom' => '12px',
+                            'margin-bottom' => '15px',
                             'margin-left'   => '0px'
                         ),
                         'output'   => array( '.header-layout-normal.is-sticky .site-branding .site-logo img'),
@@ -736,7 +735,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'units_extended' => 'true',
                         'title'          => __( 'Logo mobile width', THEME_LANG ),
                         'height'         => false,
-                        'default'        => array( 'width'  => 120, 'height' => 100 ),
+                        'default'        => array( 'width'  => 190, 'height' => 100 ),
                     ),
                     array(
                         'id'       => 'logo_mobile_margin_spacing',
@@ -746,9 +745,9 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'units_extended' => 'true',
                         'title'    => __( 'Logo mobile margin spacing Option', THEME_LANG ),
                         'default'  => array(
-                            'margin-top'    => '25px',
+                            'margin-top'    => '16px',
                             'margin-right'  => '0px',
-                            'margin-bottom' => '25px',
+                            'margin-bottom' => '17px',
                             'margin-left'   => '0px'
                         )
                     ),
@@ -2410,7 +2409,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Loop Style', THEME_LANG),
                         'desc' => '',
                         'options' => array(
-                            'classic' => __( 'Classic', 'js_composer' ),
+                            'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
@@ -2464,7 +2463,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'archive_align',
                         'type' => 'select',
                         'title' => __('Text align', THEME_LANG),
-                        'desc' => __('Not working for archive style classic', THEME_LANG),
+                        'desc' => __('Not working for archive style standand', THEME_LANG),
                         'options' => array(
                             'left' => __( 'Left', THEME_LANG ) ,
                             'center' => __( 'Center', THEME_LANG ) ,
@@ -2532,7 +2531,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Pagination Type', THEME_LANG),
                         'desc' => __('Select the pagination type.', THEME_LANG),
                         'options' => array(
-                            'classic' => __( 'Classic pagination', THEME_LANG ),
+                            'classic' => __( 'Standand pagination', THEME_LANG ),
                             'loadmore' => __( 'Load More button', THEME_LANG ),
                             'normal' => __( 'Normal pagination', THEME_LANG ),
                         ),
@@ -2691,7 +2690,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Loop Style', THEME_LANG),
                         'desc' => '',
                         'options' => array(
-                            'classic' => __( 'Classic', 'js_composer' ),
+                            'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
@@ -2745,7 +2744,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id' => 'author_align',
                         'type' => 'select',
                         'title' => __('Text align', THEME_LANG),
-                        'desc' => __('Not working for archive style classic', THEME_LANG),
+                        'desc' => __('Not working for archive style standand', THEME_LANG),
                         'options' => array(
                             'left' => __( 'Left', THEME_LANG ) ,
                             'center' => __( 'Center', THEME_LANG ) ,
@@ -2813,7 +2812,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Pagination Type', THEME_LANG),
                         'desc' => __('Select the pagination type.', THEME_LANG),
                         'options' => array(
-                            'classic' => __( 'Classic pagination', THEME_LANG ),
+                            'classic' => __( 'Standand pagination', THEME_LANG ),
                             'loadmore' => __( 'Load More button', THEME_LANG ),
                             'normal' => __( 'Normal pagination', THEME_LANG ),
                         ),
@@ -3231,7 +3230,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Search Loop Style', THEME_LANG),
                         'desc' => '',
                         'options' => array(
-                            'classic' => __( 'Classic', 'js_composer' ),
+                            'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),

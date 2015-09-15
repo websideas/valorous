@@ -91,19 +91,19 @@ add_action('login_form', 'kt_register_account');
  * @access      public
  */
 function kt_setting_script() {
-
-    //$tracking_code = kt_option('advanced_tracking_code');
-    //echo $tracking_code;
-
     $advanced_css = kt_option('advanced_editor_css');
     $accent = kt_option('styling_accent', '#d0a852');
     $accent_darker = kt_colour_brightness($accent, -0.8);
-
+    $styling_link = kt_option('styling_link');
 
     ?>
     <style id="kt-theme-custom-css" type="text/css">
-
-        <?php echo $advanced_css; ?>
+        <?php
+            echo $advanced_css;
+            if($styling_link['active']){
+                echo 'a:focus{color: '.$styling_link['active'].';}';
+            }
+        ?>
 
         <?php if( $accent !='' ){ ?>
 

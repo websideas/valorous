@@ -219,7 +219,7 @@ vc_map( array(
             'heading' => __( 'Loop Style', THEME_LANG ),
             'param_name' => 'blog_type',
             'value' => array(
-                __( 'Classic', 'js_composer' ) => 'classic',
+                __( 'Standand', 'js_composer' ) => 'classic',
                 __( 'Grid', 'js_composer' ) => 'grid',
                 __( 'Masonry', 'js_composer' ) => 'masonry',
             ),

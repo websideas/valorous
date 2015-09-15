@@ -84,6 +84,17 @@
              * @return      void
              */
             public function render() {
+                if ( !empty( $this->field['data'] ) && empty( $this->field['options'] ) ) {
+                    if ( empty( $this->field['args'] ) ) {
+                        $this->field['args'] = array();
+                    }
+
+                    $this->field['options'] = $this->parent->get_wordpress_data( $this->field['data'], $this->field['args'] );
+
+                    if ( empty( $this->field['options'] ) ) {
+                        return;
+                    }
+                }
 
                 // multi => true renders the field multi-selectable (checkbox vs radio)
                 echo '<div class="buttonset ui-buttonset">';
@@ -106,7 +117,10 @@
                     } else {
                         $multi_suffix = "";
                         $type         = "radio";
-                        $selected     = checked( $this->value, $k, false );
+
+                        if ( is_scalar( $this->value ) ) {
+                            $selected = checked( $this->value, $k, false );
+                        }
                     }
 
                     echo '<input data-id="' . $this->field['id'] . '" type="' . $type . '" id="' . $this->field['id'] . '-buttonset' . $k . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $multi_suffix . '" class="buttonset-item ' . $this->field['class'] . '" value="' . $k . '" ' . $selected . '/>';

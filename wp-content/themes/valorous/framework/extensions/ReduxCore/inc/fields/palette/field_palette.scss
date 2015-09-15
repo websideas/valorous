@@ -1,6 +1,11 @@
 .redux-container-palette {
     label {
         border: 3px solid transparent;
+        border-color: transparent !important;
+        border-radius: 0;
+        //border: 0;
+        width: 100% !important;
+        display: block;
         &.ui-button.ui-widget {
             width: 95%;
             background: none;
@@ -38,11 +43,13 @@
         }
         
         &.ui-state-active {
-            &.ui-button.ui-widget {
-                span.ui-button-text {
-                    border: 3px solid #333;
-                }
-            }
+            border: 3px solid #333 !important;
         }
+    }
+}
+
+.wp-customizer {
+    .redux-main .redux-container-palette label {
+        margin-bottom: 3px;
     }
 }

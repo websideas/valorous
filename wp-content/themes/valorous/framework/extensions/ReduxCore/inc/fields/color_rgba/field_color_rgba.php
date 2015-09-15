@@ -97,7 +97,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
             
             // Color picker container
             echo '<div 
-                      class="redux-color-rgba-container' . $this->field['class'] . '" 
+                      class="redux-color-rgba-container ' . $this->field['class'] . '" 
                       data-id="'                        . $field_id . '"
                       data-show-input="'                . $this->field['options']['show_input'] . '"
                       data-show-initial="'              . $this->field['options']['show_initial'] . '"
@@ -129,7 +129,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
             }
             
             echo '<input
-                        name="' . $opt_name . '[' . $field_id . '][color]"
+                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[color]"
                         id="' . $field_id . '-color"
                         class="redux-color-rgba"
                         type="text"
@@ -154,7 +154,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
                         type="hidden"
                         class="redux-hidden-alpha"
                         data-id="' . $field_id . '-alpha"
-                        name="' . $opt_name . '[' . $field_id . '][alpha]' .  '"
+                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[alpha]' .  '"
                         id="' . $field_id . '-alpha"
                         value="' . $this->value['alpha'] . '"
                       />';
@@ -164,7 +164,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
                         type="hidden"
                         class="redux-hidden-rgba"
                         data-id="' . $field_id . '-rgba"
-                        name="' . $opt_name . '[' . $field_id . '][rgba]' .  '"
+                        name="' . $this->field['name'] . $this->field['name_suffix'] . '[rgba]' .  '"
                         id="' . $field_id . '-rgba"
                         value="' . $this->value['rgba'] . '"
                       />';             
