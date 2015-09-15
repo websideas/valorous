@@ -37,12 +37,6 @@ require_once ( FW_DIR . 'ajax.php' );
 
 
 /**
- * Get plugin require for theme
- *
- */
-require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
-
-/**
  * Include Mailchim API.
  *
  */
@@ -54,12 +48,6 @@ require_once ( FW_CLASS . 'MCAPI.class.php' );
  */
 
 require_once ( FW_CLASS . 'instagram-api.php' );
-
-/**
- * Include Instagram Setting.
- *
- */
-require_once ( FW_CLASS . 'instagram-settings.php' );
 
 /**
  * Get all functions for frontend
@@ -185,8 +173,15 @@ function  kt_admin_options_init(){
 }
 
 if (is_admin() ) {
-    
-    /**
+
+	/**
+	 * Get plugin require for theme
+	 *
+	 */
+	require_once ( FW_CLASS . 'class-tgm-plugin-activation.php' );
+
+
+	/**
 	 * Install Plugins
      * 
 	 */ 
@@ -197,7 +192,20 @@ if (is_admin() ) {
      *
      */
     require_once ( FW_EXT_DIR . 'nav/nav.php' );
-    
+
+
+	/**
+	 * Add importer
+	 *
+	 */
+	require_once ( FW_DIR . 'importer.php' );
+
+
+	/**
+	 * Include Instagram Setting.
+	 *
+	 */
+	require_once ( FW_CLASS . 'instagram-settings.php' );
 
 }
   
@@ -257,11 +265,6 @@ if(kt_is_wc()){
 }
 
 
-/**
- * Add importer
- *
- */
-require_once ( FW_DIR . 'importer.php' );
 
 
 /**

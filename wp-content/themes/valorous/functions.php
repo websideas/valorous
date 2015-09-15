@@ -29,9 +29,3 @@ require_once ( THEME_DIR .'framework/core.php');
 if ( class_exists( 'KT_Meta_Box' ) ) {
 	require_once (THEME_FW_DATA . 'data-metaboxes.php');
 }
-
-// Get All meta box for all post type.
-if ( class_exists( 'KT_SHORTCODES' ) ) {
-	require_once (THEME_FW_DATA . 'data-shortcodes.php');
-}
-

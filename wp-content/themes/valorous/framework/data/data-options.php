@@ -546,7 +546,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'footer_copyright_text',
                         'type'     => 'editor',
                         'title'    => __( 'Footer Copyright Text', THEME_LANG ),
-                        'default'  => 'Copyright &copy; 2015 - <a href="#">Dancing Flower</a> - All Right Reserver '
+                        'default'  => 'Copyright &copy; 2015 - <a href="#">Valorous</a> - All Right Reserver.'
                     ),
 
 

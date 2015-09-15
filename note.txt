@@ -209,6 +209,7 @@ Product layout
 	https://0.s3.envato.com/files/135880430/Preview/02_08_shop_DETAIL_02.jpg
 	https://0.s3.envato.com/files/131210046/21_product_page_03.jpg
 	http://www.farfetch.com/vn/shopping/men/sacai-cable-knit-front-hoodie-item-11163483.aspx?storeid=9352&ffref=lp_2_0_
+	http://envato.megadrupal.com/html/hosoren/product-fullwidth.html
 
 Shop Banner
 	https://0.s3.envato.com/files/131210046/11_homepage_10.jpg
@@ -229,8 +230,8 @@ Coming soon
 
 
 
-
-
+Image banner
+	http://envato.megadrupal.com/html/hosoren/index3.html
 
 
 
