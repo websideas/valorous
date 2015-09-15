@@ -144,7 +144,7 @@ function kt_add_scripts() {
     wp_enqueue_script( 'fotorama', THEME_LIBS . 'fotorama/fotorama.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'sticky-sidebar', THEME_JS . 'theia-sticky-sidebar.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'photoset', THEME_JS . 'jquery.photoset-grid.js', array( 'jquery' ), null, true );
-    wp_enqueue_script( 'kt_client', THEME_JS . 'kt_client.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'kt_client', THEME_JS . 'jquery.kt.client.js', array( 'jquery' ), null, true );
 
     if(kt_option('fixed_header', 2) != 1){
         wp_enqueue_script( 'ktSticky-script', THEME_JS . 'jquery.kt.sticky.js', array( 'jquery' ), null, true );
