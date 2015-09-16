@@ -61,7 +61,7 @@ get_header(); ?>
                             'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
                             "class" => ''
                         );
-
+                        
                         $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
                         
                         $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';

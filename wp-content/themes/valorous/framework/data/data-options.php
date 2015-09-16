@@ -613,7 +613,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'styling_accent',
                         'type'     => 'color',
                         'title'    => __( 'Main Color', THEME_LANG ),
-                        'default'  => '',
+                        'default'  => '#d0a852',
                         'transparent' => false,
                     ),
                     /*
@@ -626,7 +626,12 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'styling_link',
                         'type'     => 'link_color',
                         'title'    => __( 'Links Color', THEME_LANG ),
-                        'output'      => array( 'a' ),
+                        'output'   => array( 'a' ),
+                        'default'  => array(
+                            'regular' => '#d0a852',
+                            'hover' => '#b28c45',
+                            'active' => '#b28c45'
+                        )
                     ),
                 )
             );
@@ -1045,7 +1050,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'background',
                         'title'    => __( 'Footer Background', THEME_LANG ),
                         'subtitle' => __( 'Footer Background with image, color, etc.', THEME_LANG ),
-                        'default'   => array( ),
+                        'default'   => array( 'background-color' => '#252525' ),
                         'output'      => array( '#footer-copyright' ),
                     ),
                     array(
@@ -2948,7 +2953,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'left' => __('Left Sidebar', THEME_LANG),
                             'right' => __('Right Layout', THEME_LANG)
                         ),
-                        'default'  => 'full',
+                        'default'  => 'right',
                         'clear' => false
                     ),
                     array(
@@ -2957,7 +2962,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Single post: Sidebar left area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('blog_sidebar','equals','left'),
                         'clear' => false
                     ),
@@ -2967,7 +2972,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Single post: Sidebar right area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('blog_sidebar','equals','right'),
                         'clear' => false
                     ),
