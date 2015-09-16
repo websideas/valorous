@@ -52,12 +52,12 @@ if ( !function_exists( 'kt_wbc_extended_imported' ) ) {
             *************************************************************************/
 
             $main_menu = get_term_by( 'name', __('Main menu', THEME_LANG), 'nav_menu' );
-            $top_menu = get_term_by( 'name', __('Top menu', THEME_LANG), 'nav_menu' );
+            //$top_menu = get_term_by( 'name', __('Top menu', THEME_LANG), 'nav_menu' );
             $footer_menu = get_term_by( 'name', __('Footer menu', THEME_LANG), 'nav_menu' );
 
             set_theme_mod( 'nav_menu_locations', array(
                     'primary' => $main_menu->term_id,
-                    'top'  => $top_menu->term_id,
+                    //'top'  => $top_menu->term_id,
                     'bottom'  => $footer_menu->term_id
                 )
             );
@@ -68,11 +68,7 @@ if ( !function_exists( 'kt_wbc_extended_imported' ) ) {
 
             // array of demos/homepages to check/select from
             $wbc_home_pages = array(
-                'demo1' => 'Home',
-                'demo2' => 'Home v2',
-                'demo3' => 'Home v3',
-                'demo4' => 'Home v4',
-                'demo5' => 'Home v5'
+                'demo1' => 'Home Standard Slider'
             );
 
             if ( isset( $demo_active_import[$current_key]['directory'] ) && !empty( $demo_active_import[$current_key]['directory'] ) && array_key_exists( $demo_active_import[$current_key]['directory'], $wbc_home_pages ) ) {
