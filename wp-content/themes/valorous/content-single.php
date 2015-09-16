@@ -8,7 +8,7 @@
     ?>
     <?php
         if( ! post_password_required( ) && $show_post_format && $post_layout == 1 ){
-            kt_post_thumbnail( $imagesize, 'img-responsive', false );
+            kt_post_thumbnail( $imagesize, 'img-responsive', false , false);
         }
     ?>
     <header class="entry-header<?php if( $title_meta_center == 1 ){ echo ' text-center'; } ?>">

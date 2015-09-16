@@ -11,6 +11,7 @@ if ( !defined('ABSPATH')) exit;
  * @return boolean
  */
 function kt_sanitize_boolean( $input = '' ) {
+    $input = (string)$input;
     return in_array($input, array('1', 'true', 'y', 'on'));
 }
 add_filter( 'sanitize_boolean', 'kt_sanitize_boolean', 15 );

@@ -254,20 +254,22 @@ if (!function_exists('kt_get_archive_sidebar')) {
      */
     function kt_get_archive_sidebar()
     {
-        if(is_home()){
+        $sidebar = array( 'sidebar' => '', 'sidebar_area' => '' );
+
+
+        if(is_front_page()){
             $post_id = get_option( 'page_for_posts' );
             $sidebar = array(
                 'sidebar' => rwmb_meta('_kt_sidebar', array(), $post_id),
                 'sidebar_area' => '',
             );
-        }else{
+        }
+
+        if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default'){
             $sidebar = array(
                 'sidebar' => kt_option('archive_sidebar', 'right'),
                 'sidebar_area' => '',
             );
-        }
-        if( $sidebar['sidebar'] == '' ){
-            $sidebar['sidebar'] = 'right';
         }
 
         if($sidebar['sidebar'] == 'left' ){
