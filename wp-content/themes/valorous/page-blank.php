@@ -1,4 +1,4 @@
-<?php /* Template Name: Coming soon */ ?>
+<?php /* Template Name: Blank */ ?>
 
 <?php get_header( 'blank' ); ?>
 <div class="container">

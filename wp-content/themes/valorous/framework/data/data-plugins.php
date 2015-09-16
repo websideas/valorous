@@ -23,6 +23,15 @@ function kt_register_plugins() {
      */
     $plugins = array(
         array(
+            'name'          => 'Valorous Custom Post', // The plugin name
+            'slug'          => 'valorous_cp', // The plugin slug (typically the folder name)
+            'source'            => THEME_DIR . 'recommend-plugins/valorous_cp.zip', // The plugin source
+            'required'          => true, // If false, the plugin is only 'recommended' instead of required
+            'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+            'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+            'external_url'      => '', // If set, overrides default API URL and points to an external URL
+        ),
+        array(
             'name'          => 'WPBakery Visual Composer', // The plugin name
             'slug'          => 'js_composer', // The plugin slug (typically the folder name)
             'source'            => THEME_DIR . 'recommend-plugins/js_composer.zip', // The plugin source

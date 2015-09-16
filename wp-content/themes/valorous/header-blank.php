@@ -22,4 +22,11 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class( ); ?>>
+    <?php
+
+        /**
+         * @hooked
+         */
+        do_action( 'theme_body_top' );
+    ?>
     <div id="content" class="<?php echo apply_filters('kt_content_class', 'site-content') ?>">

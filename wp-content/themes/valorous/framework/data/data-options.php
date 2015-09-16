@@ -558,41 +558,6 @@ if ( ! class_exists( 'KT_config' ) ) {
             );
 
             /**
-			 *	Admin
-			 **/
-			$this->sections[] = array(
-				'id'			=> 'logos_admin',
-				'title'			=> __( 'Logos Admin', THEME_LANG ),
-				'desc'			=> '',
-				'subsection' => true,
-				'fields'		=> array(
-                    array(
-                        'id'       => 'logos_heading',
-                        'type'     => 'raw',
-                        'content'  => '<div class="section-heading">'.__( 'Admin settings', THEME_LANG ).'</div>',
-                        'full_width' => true
-                    ),
-                    array(
-                        'id'       => 'logo_admin',
-                        'type'     => 'media',
-                        'url'      => true,
-                        'compiler' => true,
-                        'title'    => __( 'Logo Admin', THEME_LANG ),
-                    ),
-                    array(
-                        'id'       => 'background_admin',
-                        'type'     => 'background',
-                        'output'   => array( 'body.login' ),
-                        'title'    => __( 'Body Background for admin', THEME_LANG ),
-                        'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG ),
-                        'default'   => '#f1f1f1'
-                    ),
-                )
-            );
-
-            
-
-            /**
 			 *	Styling
 			 **/
 			$this->sections[] = array(
@@ -1499,7 +1464,36 @@ if ( ! class_exists( 'KT_config' ) ) {
 
                 )
             );
-
+            /**
+             *	Custom login
+             **/
+            $this->sections[] = array(
+                'id'			=> 'logos_admin',
+                'title'			=> __( 'Custom login', THEME_LANG ),
+                'desc'			=> '',
+                'subsection' => true,
+                'fields'		=> array(
+                    array(
+                        'id'       => 'logos_heading',
+                        'type'     => 'raw',
+                        'content'  => '<div class="section-heading">'.__( 'Custom login', THEME_LANG ).'</div>',
+                        'full_width' => true
+                    ),
+                    array(
+                        'id'       => 'logo_admin',
+                        'type'     => 'media',
+                        'url'      => true,
+                        'compiler' => true,
+                        'title'    => __( 'Logo Admin', THEME_LANG ),
+                    ),
+                    array(
+                        'id'       => 'background_admin',
+                        'type'     => 'background',
+                        'title'    => __( 'Body Background for admin', THEME_LANG ),
+                        'subtitle' => __( 'Body background with image, color, etc.', THEME_LANG )
+                    ),
+                )
+            );
             
             /**
 			 *	Typography
