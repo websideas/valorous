@@ -16,7 +16,7 @@
         <?php if(kt_post_option(null, '_kt_meta_info', 'blog_meta', 1)){ ?>
             <div class="entry-meta-data">
                 <?php
-                if(kt_option('blog_meta_author', 1)){
+                if(kt_option('blog_meta_author', 0)){
                     kt_entry_meta_author();
                 }
                 if(kt_option('blog_meta_categories', 1)) {
@@ -28,10 +28,10 @@
                 if(kt_option('blog_meta_comments', 1)){
                     kt_entry_meta_comments();
                 }
-
-                echo kt_get_post_views( get_the_ID() );
-                
-                if(kt_option('blog_like_post', 1)){
+                if(kt_option('blog_view_number', 0)){
+                    echo kt_get_post_views( get_the_ID() );
+                }
+                if(kt_option('blog_like_post', 0)){
                     kt_like_post();
                 }
                 ?>

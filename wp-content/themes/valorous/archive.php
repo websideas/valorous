@@ -45,7 +45,6 @@ get_header(); ?>
                             $bootstrapTabletColumn = round( 12 / $settings['blog_columns_tablet'] );
                             $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
                         }
-
                         $blog_atts_posts = array(
                             'image_size' => $settings['image_size'],
                             'readmore' => $settings['readmore'],
@@ -57,11 +56,11 @@ get_header(); ?>
                             "show_excerpt" => apply_filters('sanitize_boolean', $settings['show_excerpt']),
                             "date_format" => $settings['date_format'],
                             "show_like_post" => apply_filters('sanitize_boolean', $settings['show_like_post']),
+                            "show_view_number" => apply_filters('sanitize_boolean', $settings['show_view_number']),
                             'thumbnail_type' => $settings['thumbnail_type'],
                             'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
                             "class" => ''
                         );
-                        
                         $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
                         
                         $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';
