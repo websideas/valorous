@@ -403,6 +403,7 @@ function kt_get_settings_archive(){
             'show_date' => kt_option('author_meta_date', 1),
             'date_format' => kt_option('author_date_format', 1),
             'show_like_post' => kt_option('author_like_post', 0),
+            'show_view_number' => kt_option('author_view_number', 0),
             'image_size' => kt_option('author_image_size', 'recent_posts'),
             'max_items' => get_option('posts_per_page')
         );
@@ -425,6 +426,7 @@ function kt_get_settings_archive(){
             'show_date' => kt_option('archive_meta_date', 1),
             'date_format' => kt_option('archive_date_format', 1),
             'show_like_post' => kt_option('archive_like_post', 0),
+            'show_view_number' => kt_option('archive_view_number', 0),
             'image_size' => kt_option('archive_image_size', 'recent_posts'),
             'max_items' => get_option('posts_per_page')
         );
@@ -450,12 +452,13 @@ function kt_get_settings_search(){
         'show_excerpt' => kt_option('search_excerpt', 1),
         'excerpt_length' => kt_option('search_excerpt_length', 30),
         'show_meta' => kt_option('search_meta', 1),
-        'show_author' => kt_option('search_meta_author', 1),
+        'show_author' => kt_option('search_meta_author', 0),
         'show_category' => kt_option('search_meta_categories', 1),
         'show_comment' => kt_option('search_meta_comments', 1),
         'show_date' => kt_option('search_meta_date', 1),
         'date_format' => kt_option('search_date_format', 1),
-        'show_like_post' => kt_option('search_like_post', 1),
+        'show_like_post' => kt_option('search_like_post', 0),
+        'show_view_number' => kt_option('search_view_number', 0),
         'image_size' => kt_option('search_image_size', 'blog_post'),
         'max_items' => get_option('posts_per_page'),
 

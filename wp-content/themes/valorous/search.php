@@ -52,6 +52,7 @@ get_header(); ?>
                                 "show_date" => apply_filters('sanitize_boolean', $settings['show_date']),
                                 "date_format" => $settings['date_format'],
                                 "show_like_post" => apply_filters('sanitize_boolean', $settings['show_like_post']),
+                                "show_view_number" => apply_filters('sanitize_boolean', $settings['show_view_number']),
                                 'thumbnail_type' => $settings['thumbnail_type'],
                                 'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
                                 "show_excerpt" => apply_filters('sanitize_boolean', $settings['show_excerpt']),
