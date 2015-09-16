@@ -477,9 +477,9 @@ function kt_get_settings_search(){
 function theme_body_classes( $classes ) {
     global $post;
     
-	if ( is_multi_author() ) {
-		$classes[] = 'group-blog';
-	}
+    if ( is_multi_author() ) {
+        $classes[] = 'group-blog';
+    }
     
     if( is_page() || is_singular('post')){
         $classes[] = 'layout-'.kt_getlayout($post->ID);
@@ -508,7 +508,7 @@ function theme_body_classes( $classes ) {
     }
     
 
-	return $classes;
+    return $classes;
 }
 add_filter( 'body_class', 'theme_body_classes' );
 
@@ -710,21 +710,65 @@ if ( ! function_exists( 'kt_excerpt_more' ) ) :
 endif;
 
 
-add_filter( 'theme_body_top', 'kt_page_loader');
-function kt_page_loader(){
-    $use_loader = kt_option( 'use_page_loader',1 );
-    if( $use_loader ){
-        $layout_loader = kt_option( 'layout_loader', 'style-1' );
-        $enable_logo = kt_option( 'show_logo_page_loader', 0 );
-        $logo_loader = kt_option( 'logo_page_loader' );
-        ?>
-        <div class="kt_page_loader <?php echo esc_attr($layout_loader); ?>">
-            <div class="page_loader_inner">
-                <?php if( $logo_loader['url'] && $enable_logo == 1 ){ ?>
-                    <div class="logo-loader"><img alt="<?php bloginfo( 'name' ); ?>" class="logo-dark" src="<?php echo esc_url($logo_loader['url']); ?>" /></div>
-                <?php } ?>
-                <div class="kt_spinner"></div>
+if ( ! function_exists( 'kt_page_loader' ) ) :
+    /**
+     * Add page loader to frontend
+     *
+     */
+    function kt_page_loader(){
+        $use_loader = kt_option( 'use_page_loader',1 );
+        if( $use_loader ){
+            $layout_loader = kt_option( 'layout_loader', 'style-1' );
+            $enable_logo = kt_option( 'show_logo_page_loader', 0 );
+            $logo_loader = kt_option( 'logo_page_loader' );
+            ?>
+            <div class="kt_page_loader <?php echo esc_attr($layout_loader); ?>">
+                <div class="page_loader_inner">
+                    <?php if( $logo_loader['url'] && $enable_logo == 1 ){ ?>
+                        <div class="logo-loader"><img alt="<?php bloginfo( 'name' ); ?>" class="logo-dark" src="<?php echo esc_url($logo_loader['url']); ?>" /></div>
+                    <?php } ?>
+                    <div class="kt_spinner"></div>
+                </div>
             </div>
-        </div>
-    <?php }
-}
+        <?php }
+    }
+    add_action( 'theme_body_top', 'kt_page_loader');
+endif;
+
+
+if ( ! function_exists( 'kt_login_body_class' ) ) :
+    /**
+     * Add class regsiter to body
+     *
+     */
+    function kt_login_body_class($classes, $action){
+        if ( get_option( 'users_can_register' ) ) {
+            $classes[] = 'register-allow';
+        }
+        return $classes;
+    }
+    add_filter( 'login_body_class', 'kt_login_body_class', 10, 2);
+endif;
+
+
+if ( ! function_exists( 'kt_register_account' ) ) :
+    /**
+     * Change register account
+     *
+     */
+    function kt_register_account(){
+        $rememberme = ! empty( $_POST['rememberme'] );
+        ?>
+        <p class="forgetmenot kt_forget"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me'); ?></label></p>
+        <?php
+        if ( get_option( 'users_can_register' ) ) {
+            $registration_url = sprintf( '<p class="register"><a class="button button-primary button-large" href="%s">%s</a></p>', esc_url( wp_registration_url() ), __( 'Register' ) );
+
+            /** This filter is documented in wp-includes/general-template.php */
+            echo apply_filters( 'register', $registration_url );
+        }
+    }
+    add_action('login_form', 'kt_register_account');
+endif;
+
+

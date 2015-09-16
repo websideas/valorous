@@ -973,6 +973,7 @@ if ( ! function_exists( 'kt_related_article' ) ) :
                         "date_format" => 'M d Y',
                         'thumbnail_type' => 'image',
                         "class" => '',
+                        'show_view_number' => false,
                         'show_excerpt' => false
                     );
 

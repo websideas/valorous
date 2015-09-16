@@ -776,7 +776,7 @@ function kt_register_meta_boxes( $meta_boxes )
                     'default' => __('Default', THEME_LANG),
                     'full' => __('No sidebars', THEME_LANG),
                     'left' => __('Left Sidebar', THEME_LANG),
-                    'right' => __('Right Layout', THEME_LANG)
+                    'right' => __('Right Sidebar', THEME_LANG)
                 ),
                 'std' => 'default',
                 'tab'  => 'page_layout',
@@ -800,14 +800,14 @@ function kt_register_meta_boxes( $meta_boxes )
             array(
                 'name' => __('Page top spacing', THEME_LANG),
                 'id' => $prefix . 'page_top_spacing',
-                'desc' => __("Enter your page top spacing (Example: 30px).", THEME_LANG ),
+                'desc' => __("Enter your page top spacing (Example: 100px).", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
             array(
                 'name' => __('Page bottom spacing', THEME_LANG),
                 'id' => $prefix . 'page_bottom_spacing',
-                'desc' => __("Enter your page bottom spacing (Example: 30px).", THEME_LANG ),
+                'desc' => __("Enter your page bottom spacing (Example: 100px).", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_layout',
             ),
