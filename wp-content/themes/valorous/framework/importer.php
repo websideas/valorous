@@ -23,9 +23,20 @@ if ( !function_exists( 'kt_wbc_extended_imported' ) ) {
 
 			//If it's demo3 or demo5
 			$wbc_sliders_array = array(
-				'demo1' => 'slider1.zip',
-				'demo2' => 'slider2.zip',
-				'demo3' => 'slider3.zip'
+                'hero' => 'hero-scene.zip',
+                'hero2' => 'hero-scene-2.zip',
+                'carousel' => 'home-carousel-slider.zip',
+                'carousel2' => 'home-carousel-slider-2.zip',
+                'carousel3' => 'home-carousel-slider-3.zip',
+                'standand' => 'home-standand-slider.zip',
+                'standard2' => 'home-standard-slider-2.zip',
+                'standard3' => 'home-standard-slider-3.zip',
+                'html5' => 'html5-video.zip',
+                'post' => 'post_slider.zip',
+                'vimeo' => 'vimeo-background.zip',
+                'youtube' => 'youtube-background.zip',
+
+
 			);
 
             foreach( $wbc_sliders_array as $k => $wbc_slider_import ){
