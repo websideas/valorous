@@ -205,7 +205,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Page Animation', THEME_LANG),
                         'desc' => __('Enable Animation switcher in the page.', THEME_LANG),
-                        "default" => 1,
+                        "default" => 0,
                         'on'		=> __( 'Enabled', THEME_LANG ),
                         'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
@@ -2506,7 +2506,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => $image_sizes,
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
-                        'default' => 'recent_posts'
+                        'default' => 'blog_post'
                     ),
                     array(
                         'id' => 'archive_excerpt',
@@ -2797,7 +2797,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => $image_sizes,
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
-                        'default' => 'recent_posts'
+                        'default' => 'blog_post'
                     ),
                     array(
                         'id' => 'author_excerpt',
