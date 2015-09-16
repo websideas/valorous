@@ -262,15 +262,18 @@ if (!function_exists('kt_get_archive_sidebar')) {
             );
         }else{
             $sidebar = array(
-                'sidebar' => kt_option('archive_sidebar', 'full'),
+                'sidebar' => kt_option('archive_sidebar', 'right'),
                 'sidebar_area' => '',
             );
         }
+        if( $sidebar['sidebar'] == '' ){
+            $sidebar['sidebar'] = 'right';
+        }
 
         if($sidebar['sidebar'] == 'left' ){
-            $sidebar['sidebar_area'] = kt_option('archive_sidebar_left', 'blog-widget-area');
+            $sidebar['sidebar_area'] = kt_option('archive_sidebar_left', 'primary-widget-area');
         }elseif($sidebar['sidebar'] == 'right'){
-            $sidebar['sidebar_area'] = kt_option('archive_sidebar_right', 'blog-widget-area');
+            $sidebar['sidebar_area'] = kt_option('archive_sidebar_right', 'primary-widget-area');
         }
 
         return apply_filters('archive_sidebar', $sidebar);

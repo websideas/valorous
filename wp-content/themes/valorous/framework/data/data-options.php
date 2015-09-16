@@ -459,7 +459,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '3-6-3' => array( 'alt' => __( 'Layout 8', THEME_LANG ), 'img' => FW_IMG . 'footer/footer-8.png' ),
                             '12' => array( 'alt' => __( 'Layout 9', THEME_LANG ), 'img' => FW_IMG . 'footer/footer-9.png' ),
                         ),
-                        'default'  => '4-4-4'
+                        'default'  => '3-3-3-3'
                     ),
                     
                     /* Footer bottom */
@@ -473,7 +473,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'id'       => 'footer_bottom',
                         'type'     => 'switch',
                         'title'    => __( 'Footer bottom enable', THEME_LANG ),
-                        'default'  => true,
+                        'default'  => false,
                         'on'		=> __( 'Enabled', THEME_LANG ),
                         'off'		=> __( 'Disabled', THEME_LANG ),
                     ),
@@ -523,7 +523,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'socials' => __('Socials', THEME_LANG ),
                             'copyright' => __('Copyright', THEME_LANG ),
                         ),
-                        'default'  => 'socials'
+                        'default'  => ''
                     ),
                     array(
                         'id'       => 'footer_copyright_right',
@@ -962,7 +962,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'background',
                         'title'    => __( 'Footer widgets Background', THEME_LANG ),
                         'subtitle' => __( 'Footer widgets Background with image, color, etc.', THEME_LANG ),
-                        'default'   => array( ),
+                        'default'   => array( 'background-color' => '#2e2e2e' ),
                         'output'      => array( '#footer-area' ),
                     ),
                     array(
@@ -2385,7 +2385,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Sidebar left area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('archive_sidebar','equals','left'),
                         'clear' => false
                     ),
@@ -2395,7 +2395,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Sidebar right area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('archive_sidebar','equals','right'),
                         'clear' => false
                     ),
@@ -2413,7 +2413,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
-                        'default' => 'masonry'
+                        'default' => 'classic'
                     ),
                     array(
                         'id' => 'archive_columns',
@@ -2450,7 +2450,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Share box', THEME_LANG),
                         'desc' => __('Show or hide share box.', THEME_LANG),
-                        "default" => 1,
+                        "default" => 0,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('archive_loop_style','equals', array( 'classic' ) ),
@@ -2556,7 +2556,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Post Meta Author', THEME_LANG),
                         'desc' => __('Show meta author in blog posts.', THEME_LANG),
-                        "default" => 1,
+                        "default" => 0,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('archive_meta','equals', array( 1 ) ),
@@ -2614,7 +2614,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Like Post', THEME_LANG),
                         'desc' => __('Show like post in blog posts.', THEME_LANG),
-                        'default' => 1,
+                        'default' => 0,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('archive_meta','equals', array( 1 ) ),

@@ -61,6 +61,7 @@ get_header(); ?>
                             'sharebox' => apply_filters('sanitize_boolean', $settings['sharebox']),
                             "class" => ''
                         );
+
                         $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
                         
                         $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';
@@ -85,7 +86,7 @@ get_header(); ?>
                                 }
                                 echo "<div class='article-post-item ".$classes." ".$classes_extra." ".$i."'>";
                             }
-
+                                
                             kt_get_template_part( $path, get_post_format(), $blog_atts);
 
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){

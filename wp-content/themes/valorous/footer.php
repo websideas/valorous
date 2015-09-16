@@ -58,7 +58,7 @@
                     </footer><!-- #footer-area -->
                 <?php } ?>
 
-                <?php if(kt_option('footer_bottom', true)){ ?>
+                <?php if(kt_option('footer_bottom', false)){ ?>
                     <?php get_template_part( 'templates/footers/footer', 'bottom' ); ?>
                 <?php } ?>
 
