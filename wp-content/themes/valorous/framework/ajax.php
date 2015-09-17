@@ -40,6 +40,8 @@ function wp_ajax_fronted_loadmore_archive_callback(){
         "show_comment" => apply_filters('sanitize_boolean', $show_comment),
         "show_date" => apply_filters('sanitize_boolean', $show_date),
         "date_format" => $date_format,
+        "show_like_post" => apply_filters('sanitize_boolean', $show_like_post),
+        "show_view_number" => apply_filters('sanitize_boolean', $show_view_number),
         'thumbnail_type' => $thumbnail_type,
         'sharebox' => apply_filters('sanitize_boolean', $sharebox),
         "class" => 'loadmore-item'
