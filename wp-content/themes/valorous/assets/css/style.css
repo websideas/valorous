@@ -7,15 +7,13 @@
     2.2. Alert
     2.3. Blockquote
     2.4. Highlights
-    2.5. Dropcap
-    2.6. List
 3. Forms fields
 4. Buttons
-5. Breadcrumb
-6. Scroll top
-7. Main menu
-8. Mobile menu
-9. Widgets
+5. Scroll top & Mouse scroll & Breadcrumb
+6. Main menu
+7. Mobile menu
+8. Widgets
+9. Search Fullwidth
 10. Header
     10.1. Header common styles
     10.2. Header nav
@@ -25,19 +23,22 @@
     10.6. Header layout1
     10.7. Header layout 2 & 3
 11. Footer
-12. Sidebar
-13. Owl carousel Theme
-14. Custom Revolution Slider
-15. Visual Composer
-16. Popup
-17. Main content
-    17.1. Main common styles
-    17.2. Media element
-    17.3. Blog Posts
-    17.4. Single Posts - Entry post
-    17.5. Comments
-18. Page Content
-    18.1. 404 Page
+12. Owl carousel Theme
+13. Visual Composer & Shortcode
+14. Main content
+    14.1. Main common styles
+    14.2. Page header
+    14.3. Page loader
+    14.4. Pagination
+    14.5. Media element
+    14.6. Blog Posts
+    14.7. Blog Posts Carousel
+    14.8. Single Posts - Entry post
+    14.9. Comments
+15. Page Content
+    15.1. 404 Page
+    15.2. Search Page
+
 
 -------------------------------------------------------------------*/
 
@@ -59,12 +60,6 @@
     background: #d0a852;
 }
 
-/*
-html {
-    overflow-y: scroll;
-    -ms-overflow-style: scrollbar;
-}
-*/
 html, body {
     height: 100%;
     -webkit-font-smoothing: antialiased;
@@ -579,17 +574,7 @@ select:not([multiple]) {
 }
 
 /* ==============================
-   5. Breadcrumb
-   ============================== */
-
-.woocommerce-breadcrumb .navigation-pipe:after,
-.breadcrumbs .navigation-pipe:after {
-    content: ">";
-    padding: 0 5px;
-}
-
-/* ==============================
-   6. Scroll top & Mouse scroll
+   5. Scroll top & Mouse scroll & Breadcrumb
    ============================== */
 #backtotop {
     background-color: rgba(0, 0, 0, 0.5);
@@ -625,17 +610,6 @@ select:not([multiple]) {
     height:35px;
     margin: 0 auto;
     display: block;
-    /*
-    position:absolute;
-    bottom: 15px;
-    left:50%;
-    -webkit-backface-visibility:hidden;
-    -webkit-transform:translate(-50%, -50%);
-    -moz-transform:translate(-50%, -50%);
-    -ms-transform:translate(-50%, -50%);
-    -o-transform:translate(-50%, -50%);
-    transform:translate(-50%, -50%);
-    */
 }
 
 .mouse:after{
@@ -683,8 +657,15 @@ select:not([multiple]) {
     100%{-webkit-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-moz-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-ms-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);-o-transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);transform:translateY(20px) scaleY(2.5) scaleX(0.5) translateZ(0px);opacity:0.01}
 }
 
+
+.woocommerce-breadcrumb .navigation-pipe:after,
+.breadcrumbs .navigation-pipe:after {
+    content: ">";
+    padding: 0 5px;
+}
+
 /* ==============================
-   7. Main menu
+   6. Main menu
    ============================== */
 #nav > div > ul,
 #nav > ul {
@@ -1066,7 +1047,7 @@ select:not([multiple]) {
 }
 
 /* ==============================
-   8. Mobile menu
+   7. Mobile menu
    ============================== */
 #header-content-mobile a {
     display: inline-block;
@@ -1388,7 +1369,7 @@ ul.navigation-mobile > li > ul.sub-menu-dropdown .sub-menu-dropdown > li > a {
 }
 
 /* ==============================
-   9. Widgets
+   8. Widgets
    ============================== */
 .widget-container {
     margin-bottom: 40px;
@@ -2036,7 +2017,7 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 /* ==============================
-   10. Search Fullwidth
+   9. Search Fullwidth
    ============================== */
 
 .mfp-close {
@@ -2099,7 +2080,7 @@ h2.widgettitle a.rsswidget:first-child,
 }
 
 /* ==============================
-   11. Header
+   10. Header
    ============================== */
 /*
  * 10.1 Header common styles
@@ -2502,7 +2483,7 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 }
 
 /** ================================================
-    12. Footer
+    11. Footer
 *** ================================================*/
 #footer {
     background: #f5f5f5;
@@ -2657,7 +2638,7 @@ body.footer_fixed .static-footer {
 }
 
 /* ==============================
-   14. Owl carousel Theme
+   12. Owl carousel Theme
    ============================== */
 /*
  * Visiable navigation
@@ -2846,7 +2827,7 @@ body.footer_fixed .static-footer {
 }
 
 /* ==============================
-   15. Visual Composer & Shortcode
+   13. Visual Composer & Shortcode
    ============================== */
 
 /*
@@ -5579,10 +5560,10 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     border-color: #d0a852;
 }
 /* ==============================
-   17. Main content
+   14. Main content
    ============================== */
 /*
- * 17.1. Main common styles
+ * 14.1. Main common styles
  */
 #page {
     overflow: hidden;
@@ -5620,7 +5601,7 @@ body.layout-boxed #page {
 }
 
 /*
- * 17.2. Page header
+ * 14.2. Page header
  */
 .page-header {
     margin: 0;
@@ -5685,7 +5666,122 @@ body.layout-boxed #page {
 }
 
 /*
- * 17.2. Pagination
+ * 14.3. Page Loader
+ */
+.kt_page_loader{
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background: #fff;
+    z-index: 999999999;
+}
+.kt_page_loader .kt_spinner{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin:0 auto;
+}
+.kt_page_loader .page_loader_inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.kt_page_loader.style-1 .kt_spinner {
+    border: 1px solid #cccccc;
+    -webkit-animation: rotate 1.3s linear 0s infinite;
+    -moz-animation: rotate 1.3s linear 0s infinite;
+    -ms-animation: rotate 1.3s linear 0s infinite;
+    animation: rotate 1.3s linear 0s infinite;
+}
+.kt_page_loader.style-1 .kt_spinner:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #d0a852;
+    border-radius: 100%;
+    -webkit-animation: 3s linear 0s infinite;
+    -moz-animation: 3s linear 0s infinite;
+    -ms-animation: 3s linear 0s infinite;
+    animation: 3s linear 0s infinite;
+    left: -5px;
+    top: 18px;
+}
+.kt_page_loader.style-2 .kt_spinner {
+    border: 2px solid #cccccc;
+    border-bottom-color: #d0a852;
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
+}
+.kt_page_loader.style-3 .kt_spinner {
+    border: 5px solid transparent;
+    border-bottom-color: #d0a852;
+    border-top-color: #d0a852;
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
+}
+.kt_page_loader.style-4 .kt_spinner {
+    -webkit-animation: rotate 1.5s linear 0s infinite;
+    -moz-animation: rotate 1.5s linear 0s infinite;
+    -ms-animation: rotate 1.5s linear 0s infinite;
+    animation: rotate 1.5s linear 0s infinite;
+}
+.kt_page_loader.style-4 .kt_spinner:after,
+.kt_page_loader.style-4 .kt_spinner:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #d0a852;
+    border-radius: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.kt_page_loader.style-4 .kt_spinner:before{
+    left:auto;
+    right:0;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/*
+ * 14.4. Pagination
  */
 .woocommerce nav.woocommerce-pagination ul.page-numbers {
     margin: 0;
@@ -5769,7 +5865,7 @@ body.layout-boxed #page {
 }
 
 /*
- * 17.2. Media element
+ * 14.5. Media element
  */
 .wp-video {
     width: 100% !important;
@@ -5807,7 +5903,7 @@ body .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-curre
 }
 
 /*
- * 17.3. Blog Posts
+ * 14.6 Blog Posts
  */
 article.post-item {
     margin-bottom: 50px;
@@ -6016,7 +6112,7 @@ article.post-item {
 }
 
 /*
-* 17.4. Blog Posts Carousel
+* 14.7. Blog Posts Carousel
 */
 .post-item-carousel {
     position: relative;
@@ -6153,7 +6249,7 @@ article.post-item {
 
 
 /*
- * 17.4. Single Posts - Entry post
+ * 14.8. Single Posts - Entry post
  */
 .entry-thumb-fullwidth .entry-thumb,
 .post-single .entry-thumb {
@@ -6376,7 +6472,7 @@ article.post-item {
 }
 
 /*
- * 17.5. Comments
+ * 14.9. Comments
  */
 .comment-respond .comment-reply-title,
 .comments-area .comments-title {
@@ -6576,10 +6672,10 @@ article.post-item {
 }
 
 /* ==============================
-   18. Page Content
+   15. Page Content
    ============================== */
 /*
- * 18.1. 404 Page
+ * 15.1. 404 Page
  */
 .content-404 {
     margin: 0 auto 50px;
@@ -6611,7 +6707,7 @@ article.post-item {
 }
 
 /*
- * 18.2. Search Page
+ * 15.2. Search Page
  */
 .search-content-error {
     text-align: center;
@@ -6640,120 +6736,7 @@ article.post-item {
     font-weight: bold;
     color: #d0a852;
 }
-/*
- * 18.3. Page Loader
- */
 
-
-.kt_page_loader{
-    position: fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    background: #fff;
-    z-index: 999999999;
-}
-.kt_page_loader .kt_spinner{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    margin:0 auto;
-}
-.kt_page_loader .page_loader_inner{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.kt_page_loader.style-1 .kt_spinner {
-    border: 1px solid #cccccc;
-    -webkit-animation: rotate 1.3s linear 0s infinite;
-    -moz-animation: rotate 1.3s linear 0s infinite;
-    -ms-animation: rotate 1.3s linear 0s infinite;
-    animation: rotate 1.3s linear 0s infinite;
-}
-.kt_page_loader.style-1 .kt_spinner:after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #d0a852;
-    border-radius: 100%;
-    -webkit-animation: 3s linear 0s infinite;
-    -moz-animation: 3s linear 0s infinite;
-    -ms-animation: 3s linear 0s infinite;
-    animation: 3s linear 0s infinite;
-    left: -5px;
-    top: 18px;
-}
-.kt_page_loader.style-2 .kt_spinner {
-    border: 2px solid #cccccc;
-    border-bottom-color: #d0a852;
-    -webkit-animation: rotate 1.5s linear 0s infinite;
-    -moz-animation: rotate 1.5s linear 0s infinite;
-    -ms-animation: rotate 1.5s linear 0s infinite;
-    animation: rotate 1.5s linear 0s infinite;
-}
-.kt_page_loader.style-3 .kt_spinner {
-    border: 5px solid transparent;
-    border-bottom-color: #d0a852;
-    border-top-color: #d0a852;
-    -webkit-animation: rotate 1.5s linear 0s infinite;
-    -moz-animation: rotate 1.5s linear 0s infinite;
-    -ms-animation: rotate 1.5s linear 0s infinite;
-    animation: rotate 1.5s linear 0s infinite;
-}
-.kt_page_loader.style-4 .kt_spinner {
-    -webkit-animation: rotate 1.5s linear 0s infinite;
-    -moz-animation: rotate 1.5s linear 0s infinite;
-    -ms-animation: rotate 1.5s linear 0s infinite;
-    animation: rotate 1.5s linear 0s infinite;
-}
-.kt_page_loader.style-4 .kt_spinner:after,
-.kt_page_loader.style-4 .kt_spinner:before {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #d0a852;
-    border-radius: 100%;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-}
-.kt_page_loader.style-4 .kt_spinner:before{
-    left:auto;
-    right:0;
-}
-
-@-webkit-keyframes rotate {
-    from {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-@keyframes rotate {
-    from {
-        -ms-transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    to {
-        -ms-transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
 
 
 

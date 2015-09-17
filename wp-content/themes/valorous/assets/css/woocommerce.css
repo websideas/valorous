@@ -1,24 +1,16 @@
 /*------------------------------------------------------------------
 [Table of contents]
 
-1. Woocommerce shopping cart
-3. Woocommerce Common
-4. Woocommerce widget
-    4.1. Product categories
-    4.2. Price filter
-    4.3. Cart and Product list widget
-5. Products
+1. Woocommerce Common
+2. Woocommerce shopping cart
+3. Woocommerce product quickview
+4. woocommerce widgets
+5. Woocommerce shop products
 6. Product Detail
-7. Pagination & Ordering & Result count
-8. Product popup
-9. Product Comment
-10. Product Cart
-11. Product Checkout
-12. Woocommerce carousel
-13. Sales Countdown
-14. Shopping cart
-15. Custom Yith Woocommerce Compare
-16. Other
+7. Upsells, Related, Cross-sells
+8. Page Cart
+9. Page Checkout
+10. Page Wist list
 
 /** ================================================
     1. Woocommerce Common
@@ -1583,20 +1575,6 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     margin: 0;
 }
 
-/** =========================
-    9. Page Wist list
-*** =========================*/
-.woocommerce table.wishlist_table {
-    font-size: 100%;
-}
-
-.woocommerce table.wishlist_table th.product-name {
-    min-width: 45%;
-}
-
-.woocommerce #content table.wishlist_table.cart a.remove:hover {
-    background: none;
-}
 
 /** =========================
     9. Page Checkout
@@ -1783,9 +1761,21 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     color: #FFFFFF!important;
 }
 
+
 /** =========================
-    9. WISTLISH
+    10. Page Wist list
 *** =========================*/
+.woocommerce table.wishlist_table {
+    font-size: 100%;
+}
+
+.woocommerce table.wishlist_table th.product-name {
+    min-width: 45%;
+}
+
+.woocommerce #content table.wishlist_table.cart a.remove:hover {
+    background: none;
+}
 
 .woocommerce table.wishlist_table thead th,
 .woocommerce table.wishlist_table tbody td {
