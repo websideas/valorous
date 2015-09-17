@@ -377,3 +377,49 @@ div#post-body .rwmb-select{
 #page_meta_boxes .rwmb-meta-box{
     margin-top: 0;
 }
+
+/*==================================
+* Mouse
+===================================*/
+.mouse{
+    border:2px solid #fff;
+    border-radius:26px;
+    cursor: pointer;
+    width:20px;
+    height:35px;
+    margin: 0 auto;
+    display: block;
+}
+
+.mouse:after{
+    background-color:#fff;
+    border-radius:100%;
+    content:"";
+    position:absolute;
+    top:5px;
+    left:50%;
+    margin-left:-2px;
+    width:4px;
+    height:4px;
+    opacity:1;
+    -webkit-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -moz-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -ms-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    -o-transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+    transform:translateY(0px) scaleY(1) scaleX(1) translateZ(0px);
+
+    -webkit-animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    -moz-animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    animation:mousescroll 1.5s -1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.mouse-back{
+    border-color: #282828;
+}
+.mouse-back:after{
+    background-color: #282828;
+}
+
+.Fashion-BigDisplay span{
+    color: #d0a852;
+}
