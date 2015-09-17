@@ -3719,21 +3719,21 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'type' => 'text',
 						'title' => __('Twitter', THEME_LANG),
 						'subtitle' => __("Your Twitter username (no @).", THEME_LANG),
-						'default' => 'envato'
+						'default' => '#'
                     ),
                     array(
 						'id' => 'facebook',
 						'type' => 'text',
 						'title' => __('Facebook', THEME_LANG),
 						'subtitle' => __("Your Facebook page/profile url", THEME_LANG),
-						'default' => ''
+						'default' => '#'
                     ),
                     array(
 						'id' => 'pinterest',
 						'type' => 'text',
 						'title' => __('Pinterest', THEME_LANG),
 						'subtitle' => __("Your Pinterest username", THEME_LANG),
-						'default' => ''
+						'default' => '#'
                     ),
                     array(
 						'id' => 'dribbble',
@@ -3749,7 +3749,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'title' => __('Vimeo', THEME_LANG),
 						'subtitle' => __("Your Vimeo username", THEME_LANG),
 						'desc' => '',
-						'default' => ''
+						'default' => '#'
                     ),
                     array(
 						'id' => 'tumblr',
@@ -3757,7 +3757,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'title' => __('Tumblr', THEME_LANG),
 						'subtitle' => __("Your Tumblr username", THEME_LANG),
 						'desc' => '',
-						'default' => ''
+						'default' => '#'
 				    ),
                     array(
 						'id' => 'skype',
@@ -3781,7 +3781,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'title' => __('Google+', THEME_LANG),
 						'subtitle' => __("Your Google+ page/profile URL", THEME_LANG),
 						'desc' => '',
-						'default' => ''
+						'default' => '#'
 					),
 					array(
 						'id' => 'youtube',
