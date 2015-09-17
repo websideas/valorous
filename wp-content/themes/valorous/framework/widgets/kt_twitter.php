@@ -67,7 +67,7 @@ class Widget_KT_Twitter extends WP_Widget {
                     <<?php echo $tag ?> class="kt-twitter-wrapper">
                         <div class="kt-twitter-content">
                             <div class="kt-twitter-status"><?php echo $tweet->text ?></div>
-                            <p class="timestamp tw_timestamp"><?php echo date('d M / H:i',strtotime($tweet->created_at)); ?></p>
+                            <div class="timestamp tw_timestamp"><?php echo date('d M / H:i',strtotime($tweet->created_at)); ?></div>
                         </div>
                         <div class="kt-twitter-tool">
                             <span><a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $tweet->id; ?>">

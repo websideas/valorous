@@ -3719,7 +3719,7 @@ if ( ! class_exists( 'KT_config' ) ) {
 						'type' => 'text',
 						'title' => __('Twitter', THEME_LANG),
 						'subtitle' => __("Your Twitter username (no @).", THEME_LANG),
-						'default' => ''
+						'default' => 'envato'
                     ),
                     array(
 						'id' => 'facebook',
@@ -3904,28 +3904,28 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Twitter Consumer Key', THEME_LANG),
                         'subtitle' => __('Your twitter Consumer Key', THEME_LANG),
                         'desc' => sprintf( __( '%sClick Here%s to learn about these keys.', THEME_LANG ), '<a href="#" target="_blank">', '</a>'),
-                        'default' => ''
+                        'default' => 'geINSa0v1hZsHnp9Tj7Km2bgl'
                     ),
                     array(
                         'id' => 'twitter_consumer_secret',
                         'type' => 'text',
                         'title' => __('Twitter Consumer Secret', THEME_LANG),
                         'subtitle' => __("Your twitter Consumer Secret.", THEME_LANG),
-                        'default' => ''
+                        'default' => 'ms0lQ6i4nWuIWA0yvByEq97sK72wFAEJWHCdUBDOQog6Yp50cj'
                     ),
                     array(
                         'id' => 'twitter_access_key',
                         'type' => 'text',
                         'title' => __('Twitter Access Token', THEME_LANG),
                         'subtitle' => __("Your twitter Access Token.", THEME_LANG),
-                        'default' => ''
+                        'default' => '2309625042-h1NgGNpzMPYYXfLdlCCcvdBVhZPzjUeo9br7GrZ'
                     ),
                     array(
                         'id' => 'twitter_access_secret',
                         'type' => 'text',
                         'title' => __('Twitter Access Token Secret', THEME_LANG),
                         'subtitle' => __("Your twitter Access Token Secret.", THEME_LANG),
-                        'default' => ''
+                        'default' => '9jzZ2MxHnbyxuGyGs75DuBT1ZF3GtW4JU7oaFO6k91SDR'
                     ),
                     array(
                         'id'       => 'facebook_app_heading',
