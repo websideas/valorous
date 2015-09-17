@@ -363,11 +363,10 @@
                     var $row = $content.children('.row');
                     if($type == 'masonry'){
                         var $elems = $(response.html);
-                        $row.append($elems);
-                        loadmore_append();
                         $row.waitForImages(function() {
-                            $row.masonry( 'appended', $elems, true );
+                            $row.append($elems).masonry( 'appended', $elems, true );
                         });
+                        loadmore_append();
                     }else{
                         $row.append(response.html);
                         loadmore_append();
