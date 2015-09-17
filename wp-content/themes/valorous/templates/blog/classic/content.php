@@ -4,9 +4,9 @@
 <article <?php post_class($classes); ?>>
     <?php 
         if($blog_atts['thumbnail_type'] == 'image'){
-            kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true);
+            kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true, false);
         }else{
-            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true);
+            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true, false);
         }
     ?>
 
