@@ -37,6 +37,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             "show_date" => 'true',
             "date_format" => 'd F Y',
             "show_like_post" => 'true',
+            'show_view_number' => 'false',
 
             'css' => '',
             'css_animation' => '',
@@ -581,7 +582,15 @@ vc_map( array(
             'group' => __( 'Meta', 'js_composer' ),
             "dependency" => array("element" => "show_meta","value" => array('true')),
         ),
-
+        array(
+            'param_name' => 'show_view_number',
+            'type' => 'kt_switch',
+            'heading' => __('Show View Number', THEME_LANG),
+            'description' => __('Show view number in blog posts.', THEME_LANG),
+            'value' => 'false',
+            'group' => __( 'Meta', 'js_composer' ),
+            "dependency" => array("element" => "show_meta","value" => array('true')),
+        ),
         array(
             'type' => 'css_editor',
             'heading' => __( 'Css', 'js_composer' ),

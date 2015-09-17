@@ -1267,7 +1267,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '#main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li .widget-title',
                         ),
                         'title'    => __( 'MegaMenu Title color', THEME_LANG ),
-                        'default'  => '#CCCCCC',
+                        'default'  => '#282828',
                         'transparent' => false
                     ),
                     array(
@@ -1739,7 +1739,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'text-align'      => false,
                         'output'      => array( '#footer-area' ),
                         'default'  => array(
-                            'color'       => '',
+                            'color'       => '#979797',
                             'font-size'   => '',
                             'font-weight' => '',
                             'line-height' => ''
@@ -1761,7 +1761,11 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'link_color',
                         'title'    => __( 'Footer widgets Links Color', THEME_LANG ),
                         'output'      => array( '#footer-area a' ),
-                        'default'  => array(  )
+                        'default'  => array(
+                            'regular' => '#ffffff',
+                            'hover'   => '#d0a852',
+                            'active'  => '#d0a852'
+                        )
                     ),
 
                     array(
@@ -1775,7 +1779,11 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'link_color',
                         'title'    => __( 'Footer Copyright Links Color', THEME_LANG ),
                         'output'      => array( '#footer-copyright a' ),
-                        'default'  => array(  )
+                        'default'  => array(
+                            'regular' => '#ffffff',
+                            'hover'   => '#d0a852',
+                            'active'  => '#d0a852'
+                        )
                     ),
                     array(
                         'id'       => 'typography_footer_copyright',
