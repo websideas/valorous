@@ -31,12 +31,9 @@ if ( !function_exists( 'kt_wbc_extended_imported' ) ) {
                 'standand' => 'home-standand-slider.zip',
                 'standard2' => 'home-standard-slider-2.zip',
                 'standard3' => 'home-standard-slider-3.zip',
-                'html5' => 'html5-video.zip',
-                'post' => 'post_slider.zip',
+                'standard4' => 'home-standard-slider-4.zip',
                 'vimeo' => 'vimeo-background.zip',
                 'youtube' => 'youtube-background.zip',
-
-
 			);
 
             foreach( $wbc_sliders_array as $k => $wbc_slider_import ){
