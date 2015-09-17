@@ -2,11 +2,11 @@
     $classes = array('post-item post-layout-classic', $blog_atts['class']);
 ?>
 <article <?php post_class($classes); ?>>
-    <?php
+    <?php 
         if($blog_atts['thumbnail_type'] == 'image'){
-            kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true, false);
+            kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true);
         }else{
-            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true, false);
+            kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true);
         }
     ?>
 

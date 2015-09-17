@@ -2563,7 +2563,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Post Meta Author', THEME_LANG),
                         'desc' => __('Show meta author in blog posts.', THEME_LANG),
-                        "default" => 0,
+                        "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('archive_meta','equals', array( 1 ) ),
@@ -2711,7 +2711,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
-                        'default' => 'masonry'
+                        'default' => 'classic'
                     ),
                     array(
                         'id' => 'author_columns',
@@ -2748,7 +2748,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Share box', THEME_LANG),
                         'desc' => __('Show or hide share box.', THEME_LANG),
-                        "default" => 1,
+                        "default" => 0,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('author_loop_style','equals', array( 'classic' ) ),
@@ -2854,7 +2854,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Post Meta Author', THEME_LANG),
                         'desc' => __('Show meta author in blog posts.', THEME_LANG),
-                        "default" => 0,
+                        "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('author_meta','equals', array( 1 ) ),
@@ -3123,7 +3123,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Post Meta Author', THEME_LANG),
                         'desc' => __('Show meta author in blog posts.', THEME_LANG),
-                        "default" => 0,
+                        "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required'  => array('blog_meta', "=", 1),
@@ -3234,7 +3234,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'left' => __('Left Sidebar', THEME_LANG),
                             'right' => __('Right Layout', THEME_LANG)
                         ),
-                        'default'  => 'full',
+                        'default'  => 'right',
                         'clear' => false
                     ),
                     array(
@@ -3243,7 +3243,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Sidebar left area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('search_sidebar','equals','left'),
                         'clear' => false
                     ),
@@ -3253,7 +3253,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title'    => __( 'Search: Sidebar right area', THEME_LANG ),
                         'subtitle'     => __( "Please choose left sidebar ", THEME_LANG ),
                         'options'  => $sidebars,
-                        'default'  => 'blog-widget-area',
+                        'default'  => 'primary-widget-area',
                         'required' => array('search_sidebar','equals','right'),
                         'clear' => false
                     ),
@@ -3271,14 +3271,14 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
                         ),
-                        'default' => 'masonry'
+                        'default' => 'classic'
                     ),
                     array(
                         'id' => 'search_sharebox',
                         'type' => 'switch',
                         'title' => __('Share box', THEME_LANG),
                         'desc' => __('Show or hide share box.', THEME_LANG),
-                        "default" => 1,
+                        "default" => 0,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('search_loop_style','equals', array( 'classic' ) ),
@@ -3381,7 +3381,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => $image_sizes,
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
-                        'default' => 'recent_posts'
+                        'default' => 'blog_post'
                     ),
 
                     array(
@@ -3403,7 +3403,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Post Meta Author', THEME_LANG),
                         'desc' => __('Show meta author in blog posts.', THEME_LANG),
-                        "default" => 0,
+                        "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required' => array('search_meta','equals', array( 1 ) ),

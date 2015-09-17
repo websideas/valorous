@@ -386,7 +386,7 @@ function kt_get_breadcrumb($breadcrumb = ''){
 function kt_get_settings_archive(){
     if(is_author()){
         $settings = array(
-            'blog_type' => kt_option('author_loop_style', 'masonry'),
+            'blog_type' => kt_option('author_loop_style', 'classic'),
             'blog_columns' => kt_option('author_columns', 2),
             'blog_columns_tablet' => kt_option('author_columns_tablet', 2),
             'readmore' => kt_option('author_readmore', 'link'),
@@ -397,19 +397,19 @@ function kt_get_settings_archive(){
             'show_excerpt' => kt_option('author_excerpt', 1),
             'excerpt_length' => kt_option('author_excerpt_length', 30),
             'show_meta' => kt_option('author_meta', 1),
-            'show_author' => kt_option('author_meta_author', 0),
+            'show_author' => kt_option('author_meta_author', 1),
             'show_category' => kt_option('author_meta_categories', 1),
             'show_comment' => kt_option('author_meta_comments', 1),
             'show_date' => kt_option('author_meta_date', 1),
             'date_format' => kt_option('author_date_format', 1),
             'show_like_post' => kt_option('author_like_post', 0),
             'show_view_number' => kt_option('author_view_number', 0),
-            'image_size' => kt_option('author_image_size', 'recent_posts'),
+            'image_size' => kt_option('author_image_size', 'blog_post'),
             'max_items' => get_option('posts_per_page')
         );
     }else{
         $settings = array(
-            'blog_type' => kt_option('archive_loop_style', 'masonry'),
+            'blog_type' => kt_option('archive_loop_style', 'classic'),
             'blog_columns' => kt_option('archive_columns', 2),
             'blog_columns_tablet' => kt_option('archive_columns_tablet', 2),
             'readmore' => kt_option('archive_readmore', 'link'),
@@ -420,14 +420,14 @@ function kt_get_settings_archive(){
             'show_excerpt' => kt_option('archive_excerpt', 1),
             'excerpt_length' => kt_option('archive_excerpt_length', 30),
             'show_meta' => kt_option('archive_meta', 1),
-            'show_author' => kt_option('archive_meta_author', 0),
+            'show_author' => kt_option('archive_meta_author', 1),
             'show_category' => kt_option('archive_meta_categories', 1),
             'show_comment' => kt_option('archive_meta_comments', 1),
             'show_date' => kt_option('archive_meta_date', 1),
             'date_format' => kt_option('archive_date_format', 1),
             'show_like_post' => kt_option('archive_like_post', 0),
             'show_view_number' => kt_option('archive_view_number', 0),
-            'image_size' => kt_option('archive_image_size', 'recent_posts'),
+            'image_size' => kt_option('archive_image_size', 'blog_post'),
             'max_items' => get_option('posts_per_page')
         );
     }
@@ -441,18 +441,18 @@ function kt_get_settings_archive(){
  */
 function kt_get_settings_search(){
     return array(
-        'blog_type' => kt_option('search_loop_style', 'masonry'),
+        'blog_type' => kt_option('search_loop_style', 'classic'),
         'blog_columns' => kt_option('search_columns', 3),
         'blog_columns_tablet' => kt_option('search_columns_tablet', 2),
         'align' => kt_option('archive_align', 'left'),
         'readmore' => kt_option('search_readmore', 'link'),
         'blog_pagination' => kt_option('search_pagination', 'classic'),
         'thumbnail_type' => kt_option('search_thumbnail_type', 'image'),
-        'sharebox' => kt_option('search_sharebox', 1),
+        'sharebox' => kt_option('search_sharebox', 0),
         'show_excerpt' => kt_option('search_excerpt', 1),
         'excerpt_length' => kt_option('search_excerpt_length', 30),
         'show_meta' => kt_option('search_meta', 1),
-        'show_author' => kt_option('search_meta_author', 0),
+        'show_author' => kt_option('search_meta_author', 1),
         'show_category' => kt_option('search_meta_categories', 1),
         'show_comment' => kt_option('search_meta_comments', 1),
         'show_date' => kt_option('search_meta_date', 1),
@@ -682,8 +682,12 @@ add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
 
 add_filter( 'kt_placeholder', 'kt_placeholder_callback');
 function kt_placeholder_callback( $size = '') {
-
-    $imgage = THEME_IMG . 'placeholder-post.png';
+    
+    if( $size == 'blog_post' || $size == 'blog_post_sidebar' ){
+        $imgage = THEME_IMG . 'placeholder-blogpost.png';
+    }else{
+        $imgage = THEME_IMG . 'placeholder-post.png';
+    }
 
     $placeholder = kt_option('archive_placeholder');
 

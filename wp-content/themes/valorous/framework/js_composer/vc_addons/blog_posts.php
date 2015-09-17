@@ -141,6 +141,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 "show_date" => apply_filters('sanitize_boolean', $show_date),
                 "date_format" => $date_format,
                 "show_like_post" => apply_filters('sanitize_boolean', $show_like_post),
+                "show_view_number" => apply_filters('sanitize_boolean', $show_view_number),
                 'thumbnail_type' => $thumbnail_type,
                 'sharebox' => apply_filters('sanitize_boolean', $sharebox),
                 "class" => ''

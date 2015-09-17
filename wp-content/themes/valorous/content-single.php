@@ -16,7 +16,7 @@
         <?php if(kt_post_option(null, '_kt_meta_info', 'blog_meta', 1)){ ?>
             <div class="entry-meta-data">
                 <?php
-                if(kt_option('blog_meta_author', 0)){
+                if(kt_option('blog_meta_author', 1)){
                     kt_entry_meta_author();
                 }
                 if(kt_option('blog_meta_categories', 1)) {
