@@ -291,7 +291,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             '2' => __('Fixed Sticky', THEME_LANG),
                             '3' => __('Slide Down', THEME_LANG),
                         ),
-                        'default'  => '2',
+                        'default'  => '3',
                         'desc' => __('Choose your sticky effect.', THEME_LANG)
                     ),
 
