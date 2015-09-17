@@ -2658,7 +2658,7 @@ body.footer_fixed .static-footer {
 }
 
 /* ==============================
-   14. Owl carousel Theme
+   13. Owl carousel Theme
    ============================== */
 /*
  * Visiable navigation
@@ -2844,6 +2844,14 @@ body.footer_fixed .static-footer {
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     left: 50%;
+}
+
+
+/* ==============================
+   14. Custom Revolution Slider
+   ============================== */
+.Fashion-BigDisplay span{
+    color: #d0a852;
 }
 
 /* ==============================
