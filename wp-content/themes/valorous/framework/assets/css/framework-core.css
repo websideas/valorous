@@ -423,3 +423,9 @@ div#post-body .rwmb-select{
 .Fashion-BigDisplay span{
     color: #d0a852;
 }
+
+
+#valorous_option-header.redux-container-image_select ul.redux-image-select li,
+#valorous_option-header.redux-container-image_select ul.redux-image-select li label{
+    display: block;
+}

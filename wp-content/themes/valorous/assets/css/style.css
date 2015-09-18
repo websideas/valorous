@@ -6735,6 +6735,7 @@ article.post-item {
     line-height: 24px;
     margin: 10px 0 40px;
     padding: 0;
+    text-transform: uppercase;
 }
 
 .search-heading .search-keyword,
