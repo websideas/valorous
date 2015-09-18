@@ -1442,7 +1442,7 @@ h2.widgettitle a.rsswidget:first-child,
 
 .widget_product_tag_cloud a,
 .widget_tag_cloud a {
-    font-size: 14px !important;
+    font-size: 13px !important;
     line-height: normal !important;
     display: inline-block;
     float: left;
@@ -5615,13 +5615,13 @@ body.layout-boxed #page {
     margin: 0;
     padding: 60px 0;
     border: none;
-    background: #f4f4f4;
-    color: #313131;
+    background: #282828;
+    color: #FFFFFF;
 }
 
 .page-header .breadcrumbs,
 .page-header .breadcrumbs a {
-    color: #313131;
+    color: #FFFFFF;
 }
 
 .page-header .breadcrumbs a:hover {
@@ -5645,12 +5645,12 @@ body.layout-boxed #page {
 }
 
 .page-header .page-header-subtitle {
-    color: #7e7e7e;
+    color: #FFFFFF;
     position: relative;
 }
 
 .page-header .page-header-separator {
-    background: #7e7e7e;
+    background: #FFFFFF;
     height: 2px;
     margin: 10px 0 15px;
     width: 38px;
@@ -6732,16 +6732,13 @@ article.post-item {
 
 .search-heading {
     font-size: 18px;
-    font-weight: normal;
     line-height: 24px;
     margin: 10px 0 40px;
     padding: 0;
-    text-align: center;
 }
 
 .search-heading .search-keyword,
 .search-content-error .search-keyword {
-    font-weight: bold;
     color: #d0a852;
 }
 

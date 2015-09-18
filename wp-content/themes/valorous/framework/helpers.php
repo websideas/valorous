@@ -132,7 +132,7 @@ if (!function_exists('kt_get_woo_sidebar')) {
             );
 
             if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
-                $sidebar['sidebar'] = kt_option('product_sidebar', 'full');
+                $sidebar['sidebar'] = kt_option('product_sidebar', 'right');
                 if($sidebar['sidebar'] == 'left' ){
                     $sidebar['sidebar_area'] = kt_option('product_sidebar_left', 'shop-widget-area');
                 }elseif($sidebar['sidebar'] == 'right'){
@@ -145,7 +145,7 @@ if (!function_exists('kt_get_woo_sidebar')) {
             }
         }elseif( is_product_taxonomy() || is_product_tag()){
             $sidebar = array(
-                'sidebar' => kt_option('shop_sidebar', 'full'),
+                'sidebar' => kt_option('shop_sidebar', 'right'),
                 'sidebar_area' => '',
             );
             if($sidebar['sidebar'] == 'left' ){
@@ -228,7 +228,7 @@ if (!function_exists('kt_get_single_sidebar')) {
             'sidebar_area' => '',
         );
         if($sidebar['sidebar'] == '' || $sidebar['sidebar'] == 'default' ){
-            $sidebar['sidebar'] = kt_option('blog_sidebar', 'full');
+            $sidebar['sidebar'] = kt_option('blog_sidebar', 'right');
             if($sidebar['sidebar'] == 'left' ){
                 $sidebar['sidebar_area'] = kt_option('blog_sidebar_left', 'blog-widget-area');
             }elseif($sidebar['sidebar'] == 'right'){
@@ -292,7 +292,7 @@ if (!function_exists('kt_get_search_sidebar')) {
     function kt_get_search_sidebar()
     {
         $sidebar = array(
-            'sidebar' => kt_option('search_sidebar', 'full'),
+            'sidebar' => kt_option('search_sidebar', 'right'),
             'sidebar_area' => '',
         );
         if($sidebar['sidebar'] == 'left' ){
@@ -749,10 +749,10 @@ function kt_render_carousel($data, $class = ''){
     $output .= '</div>';
 
     if($custom_css){
-        $custom_css = '<div class="kt_custom_css" data-css="'.$custom_css.'"></div>';
+        $output .= '<div class="kt_custom_css" data-css="'.$custom_css.'"></div>';
     }
 
-    return $output.$custom_css;
+    return $output;
 }
 
 

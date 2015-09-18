@@ -2142,10 +2142,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type'     => 'background',
                         'title'    => __( 'Background', THEME_LANG ),
                         'subtitle' => __( 'Page header with image, color, etc.', THEME_LANG ),
-                        'output'      => array( '.page-header' ),
-                        'default'   => array(
-                            'background-color' => '#f4f4f4'
-                        ),
+                        'output'      => array( '.page-header' )
                     ),
 
                     array(
@@ -3094,7 +3091,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Related number for full width', THEME_LANG),
                         'subtitle' => '',
                         'desc' => '',
-                        'default' => '3',
+                        'default' => '4',
                     ),
                     array(
                         'id' => 'blog_related_sidebar',
@@ -3102,7 +3099,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'title' => __('Related number for sidebar', THEME_LANG),
                         'subtitle' => '',
                         'desc' => '',
-                        'default' => '2'
+                        'default' => '3'
                     ),
 
                     array(
@@ -3182,7 +3179,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'type' => 'switch',
                         'title' => __('Like Post', THEME_LANG),
                         'desc' => __('Show like post in blog posts.', THEME_LANG),
-                        "default" => 0,
+                        "default" => 1,
                         'on' => __('Enabled', THEME_LANG),
                         'off' =>__('Disabled', THEME_LANG),
                         'required'  => array('blog_meta', "=", 1),
@@ -3563,7 +3560,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'left' => __('Left Sidebar', THEME_LANG),
                             'right' => __('Right Layout', THEME_LANG)
                         ),
-                        'default'  => 'full',
+                        'default'  => 'right',
                         'clear' => false
                     ),
                     array(
@@ -3658,7 +3655,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'left' => __('Left Sidebar', THEME_LANG),
                             'right' => __('Right Layout', THEME_LANG)
                         ),
-                        'default'  => 'full',
+                        'default'  => 'right',
                         'clear' => false
                     ),
                     array(

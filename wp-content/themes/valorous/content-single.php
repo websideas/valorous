@@ -31,7 +31,7 @@
                 if(kt_option('blog_view_number', 0)){
                     echo kt_get_post_views( get_the_ID() );
                 }
-                if(kt_option('blog_like_post', 0)){
+                if(kt_option('blog_like_post', 1)){
                     kt_like_post();
                 }
                 ?>

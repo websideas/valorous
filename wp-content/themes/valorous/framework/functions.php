@@ -501,12 +501,9 @@ function theme_body_classes( $classes ) {
         $classes[] = 'layout-'.kt_option('layout');
     }
 
-
-    
     if( kt_option( 'footer_fixed' ) == 1 ){
         $classes[] = 'footer_fixed';
     }
-    
 
     return $classes;
 }
@@ -628,6 +625,8 @@ function kt_comment_form_before_fields(){
     echo '<div class="comment-form-fields clearfix">';
 }
 
+
+
 add_action( 'comment_form_after_fields', 'kt_comment_form_after_fields', 9999 );
 function kt_comment_form_after_fields(){
     echo '</div>';
@@ -664,39 +663,28 @@ function kt_contactmethods( $contactmethods ) {
 add_filter( 'user_contactmethods','kt_contactmethods', 10, 1 );
 
 
-/**
- * Change the path to the directory that contains demo data folders.
- *
- * @param [string] $demo_directory_path
- *
- * @return [string]
- */
+if(!function_exists('kt_placeholder_callback')) {
+    /**
+     * Return PlaceHolder Image
+     * @param string $size
+     * @return string
+     */
+    function kt_placeholder_callback($size = '')
+    {
 
-function wbc_change_demo_directory_path( $demo_directory_path ) {
-    $demo_directory_path = THEME_DIR.'dummy-data/';
-    return $demo_directory_path;
-}
-add_filter('wbc_importer_dir_path', 'wbc_change_demo_directory_path' );
+        $placeholder = kt_option('archive_placeholder');
+        if(is_array($placeholder) && $placeholder['id'] != '' ){
+            $obj = get_thumbnail_attachment($placeholder['id'], $size);
+            $imgage = $obj['url'];
+        }elseif($size == 'blog_post' || $size == 'blog_post_sidebar'){
+            $imgage = THEME_IMG . 'placeholder-blogpost.png';
+        }else{
+            $imgage = THEME_IMG . 'placeholder-post.png';
+        }
 
-
-
-add_filter( 'kt_placeholder', 'kt_placeholder_callback');
-function kt_placeholder_callback( $size = '') {
-    
-    if( $size == 'blog_post' || $size == 'blog_post_sidebar' ){
-        $imgage = THEME_IMG . 'placeholder-blogpost.png';
-    }else{
-        $imgage = THEME_IMG . 'placeholder-post.png';
+        return $imgage;
     }
-
-    $placeholder = kt_option('archive_placeholder');
-
-    if(is_array($placeholder) && $placeholder['id'] != '' ){
-        $obj = get_thumbnail_attachment($placeholder['id'], $size);
-        $imgage = $obj['url'];
-    }
-
-    return $imgage;
+    add_filter('kt_placeholder', 'kt_placeholder_callback');
 }
 
 
