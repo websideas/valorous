@@ -2016,7 +2016,7 @@ h2.widgettitle a.rsswidget:first-child,
     opacity: 0.6;
 }
 
-/*===== ABout me =====*/
+/*===== About me =====*/
 .kt-aboutwidget-img{
     margin-bottom: 20px;
 }
@@ -2027,7 +2027,10 @@ h2.widgettitle a.rsswidget:first-child,
     letter-spacing: 1px;
     color: #d0a852;
 }
-
+/*===== About me =====*/
+.widget_kt_socials .socials-icon-wrapper{
+    margin-bottom: 0;
+}
 
 /* ==============================
    9. Search Fullwidth
@@ -3616,6 +3619,14 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 /*
  * Contact Info
  */
+.contact-info-wrapper{
+    margin-bottom: 20px;
+}
+
+.widget_kt_contactinfo .contact-info-wrapper{
+    margin-bottom: 0;
+}
+
 .contact-info-wrapper > .contact-info-ul {
     margin: 0;
     padding: 0;

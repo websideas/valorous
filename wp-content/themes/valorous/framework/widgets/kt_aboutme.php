@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * KT AboutMe widget class
  *
- * @since 2.8.0
+ * @since 1.0
  */
 class WP_Widget_KT_AboutMe extends WP_Widget {
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * KT image widget class
  *
- * @since 2.8.0
+ * @since 1.0
  */
 class WP_Widget_KT_Image extends WP_Widget {
 

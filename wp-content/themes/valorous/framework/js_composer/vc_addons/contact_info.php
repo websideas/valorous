@@ -22,8 +22,8 @@ class WPBakeryShortCode_Contact_Info extends WPBakeryShortCode {
             $output .= ($title) ? '<h3 class="title_block">'.$title.'</h3>' : '';
             $output .= '<ul class="contact-info-ul">';
             	$output .= ($address) ? '<li><i class="fa fa-map-marker"></i>'.$address.'</li>' : '';
-                $output .= ($phone) ? '<li><i class="fa fa-mobile"></i>'.$phone.'</li>' : '';
-                $output .= ($email) ? '<li><i class="fa fa-envelope"></i>'.__('Email: ', THEME_LANG).$email.'</li>' : '';
+                $output .= ($phone) ? '<li><i class="fa fa-phone"></i>'.$phone.'</li>' : '';
+                $output .= ($email) ? '<li><i class="fa fa-envelope"></i>'.$email.'</li>' : '';
             $output .= '</ul>';
         $output .= '</div>';
         
@@ -41,7 +41,7 @@ vc_map( array(
             "type" => "textfield",
             "heading" => __( "Title", THEME_LANG ),
             "param_name" => "title",
-            "description" => __( "Mailchimp title", THEME_LANG ),
+            "description" => '',
             "admin_label" => true,
         ),
         array(

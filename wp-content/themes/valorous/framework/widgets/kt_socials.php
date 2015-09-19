@@ -5,9 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * KT Ads widget class
+ * KT Socials widget class
  *
- * @since 2.8.0
+ * @since 1.0
  */
 class WP_Widget_KT_Socials extends WP_Widget {
 
@@ -24,6 +24,10 @@ class WP_Widget_KT_Socials extends WP_Widget {
         $style = isset( $instance['style'] ) ? $instance['style'] : 'accent';
         $size = isset( $instance['size'] ) ? $instance['size'] : 'standard';
         $tooltip = isset( $instance['tooltip'] ) ? $instance['tooltip'] : '';
+        $background_style = isset( $instance['background_style'] ) ? $instance['background_style'] : '';
+        $align = isset( $instance['align'] ) ? $instance['align'] : '';
+
+
         $space_between_item    = isset( $instance['space_between_item'] ) ? absint( $instance['space_between_item'] ) : 3;
         
 		echo $args['before_widget'];
@@ -72,8 +76,30 @@ class WP_Widget_KT_Socials extends WP_Widget {
                     $social_icons .= '<li '.$margin.'><a class="'.esc_attr($key).'"  '.$tooltiphtml.' title="'.esc_attr($val['title']).'" href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
                 }
             }
-            
-            echo "<div class='socials-icon-wrapper social-style-".$style." social-icons-".$size." clearfix'>";
+
+            $elementClass = array(
+                'base' => 'socials-icon-wrapper',
+                'style' => 'social-style-'.$style,
+                'size' => 'social-icons-'.$size,
+                'shape' => 'social-background-'.$background_style,
+                'clearfix' => 'clearfix'
+            );
+
+            if($background_style == 'empty'){
+                $elementClass[] = 'social-background-empty';
+            }elseif ( strpos( $background_style, 'outline' ) !== false ) {
+                $elementClass[] = 'social-background-outline';
+            }else{
+                $elementClass[] = 'social-background-fill';
+            }
+
+            if($align){
+                $elementClass['align'] = 'social-icons-'.$align;
+            }
+
+            $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
+
+            echo '<div class="'.esc_attr($elementClass).'">';
                 echo '<ul class="social-nav clearfix">';
                     echo $social_icons;
                 echo '</ul>';
@@ -220,6 +246,26 @@ class WP_Widget_KT_Socials extends WP_Widget {
         </p>
         <p><label for="<?php echo $this->get_field_id( 'space_between_item' ); ?>"><?php _e( 'Space Between item:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'space_between_item' ); ?>" name="<?php echo $this->get_field_name( 'space_between_item' ); ?>" type="text" value="<?php echo $space_between_item; ?>" /></p>
+        <script type="text/javascript">
+            (function($){
+                $('document').ready(function() {
+                    $( ".kt-socials-profiles" ).sortable({
+                        placeholder: "ui-socials-highlight",
+                        update: function( event, ui ) {
+                            var $parrent_ui = ui.item.closest('.kt-socials-options'),
+                                $profiles_ui = $parrent_ui.find('.kt-socials-profiles'),
+                                $value_ui = $parrent_ui.find('.kt-socials-value');
+
+                            $profiles_val_ui = [];
+                            $profiles_ui.find('li').each(function(){
+                                $profiles_val_ui.push($(this).data('type'));
+                            });
+                            $value_ui.val($profiles_val_ui.join());
+                        }
+                    });
+                });
+            })(jQuery);
+        </script>
 <?php
 	}
 
