@@ -159,7 +159,7 @@ class Widget_KT_Mailchimp extends WP_Widget {
         $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title = strip_tags($instance['title']);
-        $lists_arr = array(0 => __('— Select —', THEME_LANG));
+        $lists_arr = array(0 => __('Select option', THEME_LANG));
 
 
 
