@@ -696,10 +696,28 @@ if ( ! function_exists( 'kt_excerpt_more' ) ) :
      * @return string Filtered Read More excerpt link.
      */
     function kt_excerpt_more( $more ) {
-        return ' &hellip; ' ;
+        return ' &hellip; ';
     }
     add_filter( 'excerpt_more', 'kt_excerpt_more' );
 endif;
+
+
+add_filter( 'the_content_more_link', 'kt_modify_read_more_link', 10, 2 );
+function kt_modify_read_more_link( $link, $more_link_text ) {
+    global $post;
+
+    $moreclass = '';
+    if(is_author()){
+        $moreclass = kt_option('author_readmore', 'link');
+    }elseif(is_archive()){
+        $moreclass = kt_option('author_readmore', 'link');
+    }
+
+    $moreclass = ( $moreclass == 'link' || !$moreclass ) ? 'readmore-link' : 'btn '.$moreclass;
+    $output = ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link $moreclass\">$more_link_text</a>";
+
+    return $output;
+}
 
 
 if ( ! function_exists( 'kt_page_loader' ) ) :

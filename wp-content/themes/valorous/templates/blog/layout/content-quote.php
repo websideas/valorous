@@ -43,7 +43,13 @@
                     <?php if($blog_atts['readmore']){ ?>
                         <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
                         <div class="entry-more">
-                            <a href="<?php the_permalink() ?>" class="<?php echo $moreclass ?>"><?php _e('Read more', THEME_LANG ); ?></a>
+                            <?php
+                            printf( '<a href="%1$s" class="%2$s">%3$s</a>',
+                                esc_url( get_permalink( get_the_ID() ) ),
+                                $moreclass,
+                                sprintf( __( 'Read more %s', THEME_LANG ), '<span class="screen-reader-text">' . get_the_title( get_the_ID() ) . '</span>' )
+                            );
+                            ?>
                         </div>
                     <?php } ?>
                 </div>

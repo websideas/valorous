@@ -41,14 +41,13 @@ $classes = array('post-item post-layout-classic', $blog_atts['class']);
                     <?php } ?>
                     <?php if($blog_atts['show_excerpt']){ ?>
                         <div class="entry-excerpt">
-                            <?php the_excerpt(); ?>
+                            <?php
+                            the_content( sprintf(
+                                __( 'Read more %s', THEME_LANG ),
+                                the_title( '<span class="screen-reader-text">', '</span>', false )
+                            ) );
+                            ?>
                         </div><!-- .entry-excerpt -->
-                    <?php } ?>
-                    <?php if($blog_atts['readmore']){ ?>
-                        <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
-                        <div class="entry-more">
-                            <a href="<?php the_permalink() ?>" class="<?php echo $moreclass ?>"><?php _e('Read more', THEME_LANG ); ?></a>
-                        </div>
                     <?php } ?>
                 </div>
 

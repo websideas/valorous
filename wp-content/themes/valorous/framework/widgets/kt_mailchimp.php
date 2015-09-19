@@ -198,7 +198,7 @@ class Widget_KT_Mailchimp extends WP_Widget {
             <br><small><?php _e('Disable the First and Last Name fields?', THEME_LANG) ?></small></p>
 
         <p>
-            <label for="<?php echo $this->get_field_id( 'message' ); ?>"><?php _e( 'Success message:' ); ?></label>
+            <label for="<?php echo $this->get_field_id( 'message' ); ?>"><?php _e( 'Success message:', THEME_LANG ); ?></label>
             <textarea class="widefat" rows="5" cols="20" id="<?php echo $this->get_field_id('message'); ?>" name="<?php echo $this->get_field_name('message'); ?>"><?php echo $instance['message'] ?></textarea></p>
 
         <p><label for="<?php echo $this->get_field_id('layout'); ?>"><?php _e('Layout:',THEME_LANG); ?></label>

@@ -178,6 +178,7 @@ function kt_setting_script() {
             .search-heading .search-keyword,
             .search-content-error .search-keyword,
             blockquote.classic footer,
+            .kt-aboutwidget-title,
             .post-link-content .post-link-url a,
             .woocommerce div.product p.price,
             .woocommerce div.product span.price,

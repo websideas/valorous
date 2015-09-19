@@ -692,7 +692,7 @@ select:not([multiple]) {
     color: #ffffff;
     display: inline-block;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 13px;
     padding: 8px 10px;
     position: relative;
     vertical-align: middle;
@@ -1009,7 +1009,7 @@ select:not([multiple]) {
 #main-navigation > li .kt-megamenu-wrapper > ul.kt-megamenu-ul > li > .sub-menu-megamenu > li > a {
     color: #cbcbcb;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     padding: 8px 0;
     position: relative;
@@ -1383,7 +1383,7 @@ ul.navigation-mobile > li > ul.sub-menu-dropdown .sub-menu-dropdown > li > a {
     font-size: 13px;
     padding: 0 0 5px;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 1px;
 }
 
 .searchform {
@@ -2016,6 +2016,19 @@ h2.widgettitle a.rsswidget:first-child,
     opacity: 0.6;
 }
 
+/*===== ABout me =====*/
+.kt-aboutwidget-img{
+    margin-bottom: 20px;
+}
+
+.kt-aboutwidget-title{
+    font-size: 13px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    color: #d0a852;
+}
+
+
 /* ==============================
    9. Search Fullwidth
    ============================== */
@@ -2501,12 +2514,9 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 
 #footer-area h3.widget-title {
     color: #FFFFFF;
-    font-weight: normal;
     margin: 0 0 25px;
     padding: 0 0 8px;
     width: 100%;
-    font-size: 13px;
-    text-align: left;
     border: none;
 }
 
