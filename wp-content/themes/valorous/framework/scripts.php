@@ -36,11 +36,11 @@ if(is_admin()){
             wp_enqueue_script('framework-core');
             wp_enqueue_media();
 
-
-
             $accent = kt_option('styling_accent', '#d0a852');
-            $accent_darker = kt_colour_brightness($accent, -0.8);
-            $css = '
+
+            if( $accent !='' ) {
+                $accent_darker = kt_colour_brightness($accent, -0.8);
+                $css = '
                 .vc_btn3.vc_btn3-color-accent,
                 .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat,
                 .vc_btn3.vc_btn3-color-accent.vc_btn3-style-modern,
@@ -52,8 +52,8 @@ if(is_admin()){
                 .vc_colored-dropdown .accent {background-color: %1$s !important;}
                 ';
 
-            wp_add_inline_style( 'admin-style', sprintf($css, $accent, $accent_darker) );
-
+                wp_add_inline_style('admin-style', sprintf($css, $accent, $accent_darker));
+            }
 
         } // End kt_admin_enqueue_scripts.
         add_action( 'admin_enqueue_scripts', 'kt_admin_enqueue_scripts' );
