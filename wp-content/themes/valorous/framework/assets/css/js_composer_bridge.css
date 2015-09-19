@@ -170,3 +170,8 @@
 .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d.vc_btn3-size-sm{
     box-shadow: 0 4px 0 #b28c45;
 }
+
+.vc_general.vc_btn3.vc_btn3-color-accent:hover,
+.vc_general.vc_btn3.vc_btn3-color-accent:focus{
+    color: #FFF;
+}

@@ -176,7 +176,6 @@ function kt_add_scripts() {
         'minutes' => __('Minutes', THEME_LANG),
         'seconds' => __('Seconds', THEME_LANG),
     ));
-
     
 }
 add_action( 'wp_enqueue_scripts', 'kt_add_scripts' , 69 );
