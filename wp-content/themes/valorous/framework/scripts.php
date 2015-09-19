@@ -591,6 +591,29 @@ function kt_setting_script() {
 }
 add_action('wp_head', 'kt_setting_script');
 
+function kt_setting_script_backend(){
+    $accent = kt_option('styling_accent', '#d0a852');
+    ?>
+    <?php if( $accent !='' ){ ?>
+        <style>
+            .vc_btn3.vc_btn3-color-accent,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-modern,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-3d{
+                background: <?php echo $accent; ?>!important;
+            }
+            
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline:hover,
+            .vc_btn3.vc_btn3-color-accent.vc_btn3-style-outline:focus{
+                border-color: <?php echo $accent; ?>!important;
+                background: <?php echo $accent; ?>!important;
+            }
+        </style>
+    <?php }
+}
+add_action('admin_head', 'kt_setting_script_backend');
+
 /**
  * Add advanced js to footer
  * 
