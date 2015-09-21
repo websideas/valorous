@@ -165,8 +165,8 @@ a:hover, a:focus {
     font-weight: 900;
 }
 
-p {
-    margin: 0 0 15px;
+p, ul, ol {
+    margin-bottom: 15px;
 }
 
 /*
@@ -3493,8 +3493,8 @@ body.footer_fixed .static-footer {
 
 ul.kt-list-fancy {
     list-style: none;
-    margin-bottom: 30px;
     padding: 0;
+    margin: 0 0 15px;
 }
 
 ul.kt-list-fancy > li {
@@ -5278,6 +5278,14 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
 }
+/*
+ * Gallery image
+ */
+.kt_image_gallery,
+.wrapper-gallery-grid{
+    margin-bottom: 20px;
+}
+
 /*
  * SOCIAL
  */

@@ -629,7 +629,7 @@ if(!function_exists('kt_admin_custom_style')){
         $accent = kt_option('styling_accent', '#d0a852');
         $ouput .= '.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large, .wp-core-ui .button-primary{border-color: '.$accent.'!important;color: '.$accent.'!important;}';
         $ouput .= '.wp-core-ui .button-primary:focus, .wp-core-ui .button-primary:hover{background-color: '.$accent.'!important;color: #FFFFFF!important;}';
-
+        $ouput .= '.login #backtoblog a:hover, .login #nav a:hover{color: '.$accent.'!important;}';
         echo '<style type="text/css">'.$ouput.'</style>';
     }
     add_action( 'login_head', 'kt_admin_custom_style' );

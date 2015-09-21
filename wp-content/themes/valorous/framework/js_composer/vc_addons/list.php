@@ -34,7 +34,7 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 		}
 
 		$elementClass = array(
-			'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-wrapper ', $this->settings['base'], $atts ),
+			'base' => apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'kt-list-fancy ', $this->settings['base'], $atts ),
 			'extra' => $this->getExtraClass( $el_class ),
 			'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' )
 		);
@@ -43,10 +43,10 @@ class WPBakeryShortCode_List extends WPBakeryShortCodesContainer {
 
 		if($css_animation !=''){
 			$data_animate = 'data-timeeffect="20" data-animation="'.$css_animation.'"';
-			$cl_animate = ' animation-effect';
+			$elementClass['animation'] = ' animation-effect';
 		}
 
-		return '<div class="'.esc_attr( $elementClass ).'"><ul '.$data_animate.' class="kt-list-fancy'.$cl_animate.'">'. do_shortcode($content) . '</ul></div>';
+		return '<ul '.$data_animate.' class="'.esc_attr( $elementClass ).'">'. do_shortcode($content) . '</ul>';
 
 	}
 }
@@ -95,7 +95,7 @@ vc_map( array(
     "category" => __('by Theme', THEME_LANG ),
     "as_parent" => array('only' => 'list_item'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
     "content_element" => true,
-    "show_settings_on_create" => true,
+    "show_settings_on_create" => false,
     "params" => array(
         array(
         	'type' => 'dropdown',
@@ -108,6 +108,7 @@ vc_map( array(
         		__( 'Linecons', 'js_composer' ) => 'linecons',
         	),
         	'param_name' => 'icon_type',
+			'std' => 'entypo',
         	'description' => __( 'Select icon library.', 'js_composer' ),
         ),
         array(
@@ -168,6 +169,7 @@ vc_map( array(
     			'element' => 'icon_type',
     			'value' => 'entypo',
     		),
+			'std' => 'entypo-icon entypo-icon-minus'
     	),
     	array(
     		'type' => 'iconpicker',
@@ -233,7 +235,8 @@ vc_map( array(
             'group' => __( 'Design options', 'js_composer' )
         ),
     ),
-    "js_view" => 'VcColumnView'
+    "js_view" => 'VcColumnView',
+	'default_content' => '[list_item]'.__("Put your content here", THEME_LANG).'[/list_item][list_item]'.__("Put your content here", THEME_LANG).'[/list_item][list_item]'.__("Put your content here", THEME_LANG).'[/list_item]',
 ) );
 
 

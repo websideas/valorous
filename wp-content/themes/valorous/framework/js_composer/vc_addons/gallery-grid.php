@@ -8,7 +8,7 @@ class WPBakeryShortCode_KT_Gallery_Grid extends WPBakeryShortCode {
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
             'image_gallery' => '',
-            'image_size' => 'thumbnail',
+            'image_size' => 'full',
             'layout' => '',
             'margin_image' => 10,
             'gallery_popup' => 'true',
@@ -99,6 +99,7 @@ vc_map( array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
             "param_name" => "image_size",
+            'std' => 'full'
         ),
         array(
             "type" => "textfield",

@@ -27,21 +27,16 @@ body.login form {
 }
 
 .login #backtoblog {
+    background: #ffffff none repeat scroll 0 0;
+    margin: 0;
+    padding: 40px 24px 25px;
     text-align: center;
-    padding-bottom: 30px;
-    margin-top: 50px;
+    text-transform: uppercase;
 }
 
 .login #backtoblog a {
-    display: inline-block;
-    padding-bottom: 5px;
-    outline: none;
-    border-bottom: 1px solid #696866;
-    text-transform: uppercase;
-    color: #696866;
     font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 1px;
+    color: #696866;
 }
 
 .login #backtoblog a:hover {
@@ -50,9 +45,11 @@ body.login form {
 }
 
 .login #nav {
-    padding: 0;
+    padding: 0 24px;
+    background: #FFF;
+    margin: 0;
 }
-
+.login form#loginform .kt_forget label,
 p#reg_passmail,
 .login form#registerform label,
 .login form#loginform label,
@@ -62,10 +59,6 @@ p#reg_passmail,
 
 .login #nav a:hover {
     color: #d2a952;
-}
-
-.login form#loginform .kt_forget label {
-    color: #3e3e3e;
 }
 
 .login #nav a {

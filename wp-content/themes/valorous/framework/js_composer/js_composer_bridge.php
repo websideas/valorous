@@ -176,33 +176,35 @@ vc_add_params("vc_tta_pageable", $tabs_arr);
 
 
 $composer_addons = array(
-    'alert.php',
+    'dropcap.php',
+    'blockquote.php',
+    'divider.php',
     'list.php',
+    'heading.php',
+    'lightbox.php',
+
+    'blog_posts.php',
+    'blog_posts_carousel.php',
+    'gallery-justified.php',
+    'kt_image_gallery.php',
+    'gallery-grid.php',
+
+    'alert.php',
     'icon_box.php',
     'counter.php',
-    'heading.php',
     'callout.php',
-    'divider.php',
     'contact_info.php',
     'clients_carousel.php',
     'testimonial_carousel.php',
-    'blog_posts.php',
-    'blog_posts_carousel.php',
+    'image_banner.php',
     //'button.php',
     'skill.php',
     'socials.php',
-    'timeline.php',
-    'dropcap.php',
-    'lightbox.php',
+    //'timeline.php',
     'piechart.php',
     'coming_soon.php',
     'googlemap.php',
     'client_gird.php',
-    'gallery-justified.php',
-    'image_banner.php',
-    'blockquote.php',
-    'kt_image_gallery.php',
-    'gallery-grid.php',
 );
 
 foreach ( $composer_addons as $addon ) {
