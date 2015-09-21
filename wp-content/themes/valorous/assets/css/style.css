@@ -2850,7 +2850,9 @@ body.footer_fixed .static-footer {
 /* ==============================
    13. Visual Composer & Shortcode
    ============================== */
-
+.wpb_content_element{
+    margin-bottom: 15px;
+}
 /*
  * General Styles for TTA
  */
@@ -5836,14 +5838,14 @@ body.layout-boxed #page {
 .woocommerce nav.woocommerce-pagination ul li a,
 .woocommerce nav.woocommerce-pagination ul li span,
 .pagination .page-numbers {
-    border: 2px solid #d7d7d7;
+    border: 2px solid #e3e3e3;
     display: inline-block;
     line-height: 32px;
     min-width: 36px;
     padding: 0 10px;
     font-size: 14px;
     margin: 0 2px;
-    color: #d7d7d7;
+    color: #8f8f8f;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -5968,7 +5970,6 @@ article.post-item {
 
 .entry-meta-data {
     color: #d0a852;
-    font-size: 13px;
     margin-bottom: 15px;
 }
 

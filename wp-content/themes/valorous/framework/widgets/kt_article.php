@@ -41,8 +41,7 @@ class Widget_KT_Posts extends WP_Widget {
 
         ob_start();
 
-        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' , THEME_LANG);
-        $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+        $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
         $number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
         if ( ! $number )

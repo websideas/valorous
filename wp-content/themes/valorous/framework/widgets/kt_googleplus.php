@@ -33,8 +33,7 @@ class Widget_KT_Goolge extends WP_Widget {
 
     public function widget($args, $instance) {
 
-        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Google Plus' , THEME_LANG);
-        $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+        $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
         $href = esc_url($instance['href']);
         if($href){

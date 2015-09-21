@@ -36,7 +36,7 @@ class Widget_KT_Facebook extends WP_Widget {
 
     public function widget($args, $instance) {
 
-        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Facebook' , THEME_LANG);
+        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : '';
         $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
         $href = esc_url($instance['href']);

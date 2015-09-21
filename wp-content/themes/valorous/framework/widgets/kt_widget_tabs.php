@@ -44,8 +44,6 @@ class WP_Widget_KT_Tabs extends WP_Widget {
 
         ob_start();
 
-
-
         $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
         
         $select_rand = isset( $instance['select_rand'] ) ? $instance['select_rand'] : true;

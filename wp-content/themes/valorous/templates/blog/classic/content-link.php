@@ -42,10 +42,10 @@ $classes = array('post-item post-layout-classic', $blog_atts['class']);
                     <?php if($blog_atts['show_excerpt']){ ?>
                         <div class="entry-excerpt">
                             <?php
-                            the_content( sprintf(
-                                __( 'Read more %s', THEME_LANG ),
-                                the_title( '<span class="screen-reader-text">', '</span>', false )
-                            ) );
+                            the_content(sprintf(
+                                __('Read more %s', THEME_LANG),
+                                the_title('<span class="screen-reader-text">', '</span>', false)
+                            ));
                             ?>
                         </div><!-- .entry-excerpt -->
                     <?php } ?>

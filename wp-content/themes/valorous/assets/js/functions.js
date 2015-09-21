@@ -26,7 +26,7 @@
         $(window).trigger("resize");
         init_ktCustomCss();
 
-        setInterval(init_remove_space, 1000);
+
 
     });
     
@@ -34,13 +34,16 @@
      Scripts ready
      --------------------------------------------- */
     $(document).ready(function() {
-        
+
+        $(window).trigger("resize");
+
+        setInterval(init_remove_space, 100);
+
         // Page Loader
         $("body").waitForImages(function(){
             $(".kt_page_loader").delay(200).fadeOut('slow');
         });
-        
-        $(window).trigger("resize");
+
         init_shortcodes();
         init_carousel();
 
@@ -157,9 +160,10 @@
     function init_remove_space() {
 
         $("p:empty").remove();
-        $(".wpb_row:empty").remove();
-        $(".wpb_column:empty").remove();
+        $(".wpb_text_column:empty").remove();
         $(".wpb_wrapper:empty").remove();
+        $(".wpb_column:empty").remove();
+        $(".wpb_row:empty").remove();
 
     }
 
