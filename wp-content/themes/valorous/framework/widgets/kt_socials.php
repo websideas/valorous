@@ -24,7 +24,7 @@ class WP_Widget_KT_Socials extends WP_Widget {
         $style = isset( $instance['style'] ) ? $instance['style'] : 'accent';
         $size = isset( $instance['size'] ) ? $instance['size'] : 'standard';
         $tooltip = isset( $instance['tooltip'] ) ? $instance['tooltip'] : '';
-        $background_style = isset( $instance['background_style'] ) ? $instance['background_style'] : '';
+        $background_style = isset( $instance['background_style'] ) ? $instance['background_style'] : 'empty';
         $align = isset( $instance['align'] ) ? $instance['align'] : '';
 
 
@@ -85,7 +85,8 @@ class WP_Widget_KT_Socials extends WP_Widget {
                 'clearfix' => 'clearfix'
             );
 
-            if($background_style == 'empty'){
+
+            if($background_style == 'empty' || $background_style == '' ){
                 $elementClass[] = 'social-background-empty';
             }elseif ( strpos( $background_style, 'outline' ) !== false ) {
                 $elementClass[] = 'social-background-outline';
