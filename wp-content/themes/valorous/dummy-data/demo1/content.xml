@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<!-- generator="WordPress/4.3.1" created="2015-09-21 04:30" -->
+<!-- generator="WordPress/4.3.1" created="2015-09-22 04:20" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>Valorous</title>
 	<link>http://kitethemes.com/valorous/demo1</link>
 	<description>Responsive Blog &#38; WooCommerce WordPress Theme</description>
-	<pubDate>Mon, 21 Sep 2015 04:30:49 +0000</pubDate>
+	<pubDate>Tue, 22 Sep 2015 04:20:21 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://kitethemes.com/valorous/demo1</wp:base_site_url>
@@ -43,7 +43,6 @@
 	<wp:category><wp:term_id>2</wp:term_id><wp:category_nicename>life-style</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Life Style]]></wp:cat_name></wp:category>
 	<wp:category><wp:term_id>11</wp:term_id><wp:category_nicename>music</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Music]]></wp:cat_name></wp:category>
 	<wp:category><wp:term_id>7</wp:term_id><wp:category_nicename>travel</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Travel]]></wp:cat_name></wp:category>
-	<wp:category><wp:term_id>1</wp:term_id><wp:category_nicename>uncategorized</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Uncategorized]]></wp:cat_name></wp:category>
 	<wp:tag><wp:term_id>18</wp:term_id><wp:tag_slug>english</wp:tag_slug><wp:tag_name><![CDATA[English]]></wp:tag_name></wp:tag>
 	<wp:tag><wp:term_id>5</wp:term_id><wp:tag_slug>foodie</wp:tag_slug><wp:tag_name><![CDATA[Foodie]]></wp:tag_name></wp:tag>
 	<wp:tag><wp:term_id>19</wp:term_id><wp:tag_slug>london</wp:tag_slug><wp:tag_name><![CDATA[London]]></wp:tag_name></wp:tag>
@@ -2920,113 +2919,6 @@
 		</wp:postmeta>
 	</item>
 	<item>
-		<title>Home</title>
-		<link>http://kitethemes.com/valorous/demo1/home-2/</link>
-		<pubDate>Thu, 17 Sep 2015 02:02:04 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://kitethemes.com/valorous/demo1/?p=3293</guid>
-		<description></description>
-		<content:encoded><![CDATA[]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>3293</wp:post_id>
-		<wp:post_date>2015-09-17 02:02:04</wp:post_date>
-		<wp:post_date_gmt>2015-09-17 02:02:04</wp:post_date_gmt>
-		<wp:comment_status>closed</wp:comment_status>
-		<wp:ping_status>closed</wp:ping_status>
-		<wp:post_name>home-2</wp:post_name>
-		<wp:status>publish</wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>1</wp:menu_order>
-		<wp:post_type>nav_menu_item</wp:post_type>
-		<wp:post_password></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-		<category domain="nav_menu" nicename="main-menu"><![CDATA[Main menu]]></category>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_type</wp:meta_key>
-			<wp:meta_value><![CDATA[custom]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_object_id</wp:meta_key>
-			<wp:meta_value><![CDATA[3293]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_object</wp:meta_key>
-			<wp:meta_value><![CDATA[custom]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_target</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_classes</wp:meta_key>
-			<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_xfn</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_url</wp:meta_key>
-			<wp:meta_value><![CDATA[http://kitethemes.com/valorous/demo1/]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_vc_post_settings</wp:meta_key>
-			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_icon</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_enable</wp:meta_key>
-			<wp:meta_value><![CDATA[enabled]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_width</wp:meta_key>
-			<wp:meta_value><![CDATA[three]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columntitle</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columnlink</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_position</wp:meta_key>
-			<wp:meta_value><![CDATA[left-parent]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columns</wp:meta_key>
-			<wp:meta_value><![CDATA[3]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_widget</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_clwidth</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_endrow</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_layout</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_image</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-	</item>
-	<item>
 		<title></title>
 		<link>http://kitethemes.com/valorous/demo1/3294/</link>
 		<pubDate>Thu, 17 Sep 2015 02:02:04 +0000</pubDate>
@@ -4124,7 +4016,7 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
-			<wp:meta_value><![CDATA[3293]]></wp:meta_value>
+			<wp:meta_value><![CDATA[3499]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_object_id</wp:meta_key>
@@ -4231,7 +4123,7 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
-			<wp:meta_value><![CDATA[3293]]></wp:meta_value>
+			<wp:meta_value><![CDATA[3499]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_object_id</wp:meta_key>
@@ -4338,7 +4230,7 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
-			<wp:meta_value><![CDATA[3293]]></wp:meta_value>
+			<wp:meta_value><![CDATA[3499]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_object_id</wp:meta_key>
@@ -9070,7 +8962,7 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_url</wp:meta_key>
-			<wp:meta_value><![CDATA[http://kitethemes.com/valorous/demo1/404]]></wp:meta_value>
+			<wp:meta_value><![CDATA[/404]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_vc_post_settings</wp:meta_key>
@@ -10517,6 +10409,113 @@
 		</wp:postmeta>
 	</item>
 	<item>
+		<title></title>
+		<link>http://kitethemes.com/valorous/demo1/3365/</link>
+		<pubDate>Thu, 17 Sep 2015 02:24:13 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://kitethemes.com/valorous/demo1/?p=3365</guid>
+		<description></description>
+		<content:encoded><![CDATA[ ]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>3365</wp:post_id>
+		<wp:post_date>2015-09-17 02:24:13</wp:post_date>
+		<wp:post_date_gmt>2015-09-17 02:24:13</wp:post_date_gmt>
+		<wp:comment_status>closed</wp:comment_status>
+		<wp:ping_status>closed</wp:ping_status>
+		<wp:post_name>3365</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>892</wp:post_parent>
+		<wp:menu_order>77</wp:menu_order>
+		<wp:post_type>nav_menu_item</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="main-menu"><![CDATA[Main menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_type</wp:meta_key>
+			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
+			<wp:meta_value><![CDATA[3376]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_object_id</wp:meta_key>
+			<wp:meta_value><![CDATA[2238]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_object</wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_target</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_classes</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_xfn</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_url</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_vc_post_settings</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_icon</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_enable</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_width</wp:meta_key>
+			<wp:meta_value><![CDATA[full]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columntitle</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columnlink</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_position</wp:meta_key>
+			<wp:meta_value><![CDATA[center]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columns</wp:meta_key>
+			<wp:meta_value><![CDATA[4]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_widget</wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_clwidth</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_endrow</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_layout</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_image</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
 		<title>Shortcode 01</title>
 		<link>http://kitethemes.com/valorous/demo1/shortcode-01/</link>
 		<pubDate>Thu, 17 Sep 2015 02:24:12 +0000</pubDate>
@@ -10815,113 +10814,6 @@
 		<wp:postmeta>
 			<wp:meta_key>_kt_boxed_background</wp:meta_key>
 			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
-		</wp:postmeta>
-	</item>
-	<item>
-		<title></title>
-		<link>http://kitethemes.com/valorous/demo1/3365/</link>
-		<pubDate>Thu, 17 Sep 2015 02:24:13 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://kitethemes.com/valorous/demo1/?p=3365</guid>
-		<description></description>
-		<content:encoded><![CDATA[ ]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>3365</wp:post_id>
-		<wp:post_date>2015-09-17 02:24:13</wp:post_date>
-		<wp:post_date_gmt>2015-09-17 02:24:13</wp:post_date_gmt>
-		<wp:comment_status>closed</wp:comment_status>
-		<wp:ping_status>closed</wp:ping_status>
-		<wp:post_name>3365</wp:post_name>
-		<wp:status>publish</wp:status>
-		<wp:post_parent>892</wp:post_parent>
-		<wp:menu_order>77</wp:menu_order>
-		<wp:post_type>nav_menu_item</wp:post_type>
-		<wp:post_password></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-		<category domain="nav_menu" nicename="main-menu"><![CDATA[Main menu]]></category>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_type</wp:meta_key>
-			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
-			<wp:meta_value><![CDATA[3376]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_object_id</wp:meta_key>
-			<wp:meta_value><![CDATA[2238]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_object</wp:meta_key>
-			<wp:meta_value><![CDATA[page]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_target</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_classes</wp:meta_key>
-			<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_xfn</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_url</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_vc_post_settings</wp:meta_key>
-			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_icon</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_enable</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_width</wp:meta_key>
-			<wp:meta_value><![CDATA[full]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columntitle</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columnlink</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_position</wp:meta_key>
-			<wp:meta_value><![CDATA[center]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_columns</wp:meta_key>
-			<wp:meta_value><![CDATA[4]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_widget</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_clwidth</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_endrow</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_layout</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_menu_item_megamenu_image</wp:meta_key>
-			<wp:meta_value><![CDATA[]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
 	<item>
@@ -12847,6 +12739,113 @@
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_menu_item_megamenu_image</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Home</title>
+		<link>http://kitethemes.com/valorous/demo1/3499/</link>
+		<pubDate>Tue, 22 Sep 2015 04:14:34 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://kitethemes.com/valorous/demo1/?p=3499</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>3499</wp:post_id>
+		<wp:post_date>2015-09-22 04:14:34</wp:post_date>
+		<wp:post_date_gmt>2015-09-22 04:14:34</wp:post_date_gmt>
+		<wp:comment_status>closed</wp:comment_status>
+		<wp:ping_status>closed</wp:ping_status>
+		<wp:post_name>3499</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type>nav_menu_item</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="main-menu"><![CDATA[Main menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_position</wp:meta_key>
+			<wp:meta_value><![CDATA[left-parent]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_widget</wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columns</wp:meta_key>
+			<wp:meta_value><![CDATA[3]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_enable</wp:meta_key>
+			<wp:meta_value><![CDATA[enabled]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_width</wp:meta_key>
+			<wp:meta_value><![CDATA[three]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_icon</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_vc_post_settings</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_url</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_xfn</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_classes</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_target</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_object</wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_object_id</wp:meta_key>
+			<wp:meta_value><![CDATA[1113]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_menu_item_parent</wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_type</wp:meta_key>
+			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_clwidth</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_endrow</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_layout</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_image</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columnlink</wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_menu_item_megamenu_columntitle</wp:meta_key>
 			<wp:meta_value><![CDATA[]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
@@ -18860,76 +18859,6 @@ Nullam rutrum gravida metus, vitae placerat magna porttitor sed. Cras at dictum 
 			<wp:meta_key>_kt_blog_image_size</wp:meta_key>
 			<wp:meta_value><![CDATA[blog_post]]></wp:meta_value>
 		</wp:postmeta>
-		<wp:comment>
-			<wp:comment_id>3</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:31:27</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:31:27</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>4</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:31:54</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:31:54</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>5</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:32:15</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:32:15</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>3</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>6</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:32:38</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:32:38</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>3</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>7</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:33:06</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:33:06</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>4</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
 	</item>
 	<item>
 		<title>Boots and Pets</title>
@@ -19981,48 +19910,6 @@ Donec sit amet ipsum vel enim posuere bibendum. Suspendisse nec libero at metus 
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
-		<wp:comment>
-			<wp:comment_id>16</wp:comment_id>
-			<wp:comment_author><![CDATA[admin]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-06-05 06:55:46</wp:comment_date>
-			<wp:comment_date_gmt>2015-06-05 06:55:46</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pharetra eros. Vivamus eu nisi ut dui bibendum ornare vitae a enim. Sed sit amet tellus sagittis, iaculis mi nec, auctor purus.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>17</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:50:28</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:50:28</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pharetra eros. Vivamus eu nisi ut dui bibendum ornare vitae a enim. Sed sit amet tellus sagittis, iaculis mi nec, auctor purus. Maecenas feugiat nisl quis felis dignissim, sit amet tristique lectus viverra.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>18</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 03:51:51</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 03:51:51</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Maecenas feugiat nisl quis felis dignissim, sit amet tristique lectus viverra. Quisque luctus nulla ac lectus malesuada, convallis varius mi accumsan. Pellentesque at nulla ac diam mollis vestibulum at a nulla.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
 	</item>
 	<item>
 		<title>A Wonderful Life</title>
@@ -20272,88 +20159,6 @@ Duis interdum vel sapien sit amet convallis. Praesent auctor et nunc id finibus.
 		<wp:postmeta>
 			<wp:meta_key>_kt_audio_mp3</wp:meta_key>
 			<wp:meta_value><![CDATA[3425]]></wp:meta_value>
-		</wp:postmeta>
-	</item>
-	<item>
-		<title>Wishlist</title>
-		<link>http://kitethemes.com/valorous/demo1/wishlist/</link>
-		<pubDate>Fri, 10 Jul 2015 04:41:43 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://kitethemes.com/valorous/main/wishlist/</guid>
-		<description></description>
-		<content:encoded><![CDATA[[yith_wcwl_wishlist]]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>1750</wp:post_id>
-		<wp:post_date>2015-07-10 04:41:43</wp:post_date>
-		<wp:post_date_gmt>2015-07-10 04:41:43</wp:post_date_gmt>
-		<wp:comment_status>closed</wp:comment_status>
-		<wp:ping_status>open</wp:ping_status>
-		<wp:post_name>wishlist</wp:post_name>
-		<wp:status>trash</wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type>page</wp:post_type>
-		<wp:post_password></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-		<wp:postmeta>
-			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wpb_vc_js_status</wp:meta_key>
-			<wp:meta_value><![CDATA[false]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_vc_post_settings</wp:meta_key>
-			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>slide_template</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_page_header</wp:meta_key>
-			<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_show_breadcrumb</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_header_position</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_layout</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_left_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_right_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_remove_top</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_remove_bottom</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wp_trash_meta_status</wp:meta_key>
-			<wp:meta_value><![CDATA[publish]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wp_trash_meta_time</wp:meta_key>
-			<wp:meta_value><![CDATA[1442419153]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
 	<item>
@@ -20636,6 +20441,143 @@ Praesent massa nunc, pellentesque at varius et, consectetur id leo. Proin vel sa
 		<wp:postmeta>
 			<wp:meta_key>_thumbnail_id</wp:meta_key>
 			<wp:meta_value><![CDATA[3166]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Music for Life</title>
+		<link>http://kitethemes.com/valorous/demo1/music-for-life/</link>
+		<pubDate>Tue, 11 Aug 2015 02:21:49 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://kitethemes.com/valorous/main/?p=2658</guid>
+		<description></description>
+		<content:encoded><![CDATA[Donec sed ullamcorper quam. Mauris sit amet molestie nibh. Vivamus scelerisque velit ut imperdiet facilisis. Phasellus urna magna, lobortis et libero tempus, facilisis euismod nulla. Cras massa diam, ultrices non rhoncus sed, finibus eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce ac sollicitudin justo, id consectetur libero. Quisque rhoncus mollis rutrum. Nullam pretium libero at felis maximus vulputate. Cras ut diam eu nulla ultrices mollis et non dui. Sed posuere elit in dictum suscipit. Duis ultricies sagittis viverra. Praesent et est vulputate, imperdiet nisi id, molestie neque. Donec tristique quis leo at vehicula.
+
+<!--more-->
+
+Aliquam pharetra nibh in nunc tempor, non euismod dui efficitur. Quisque lacinia fermentum consequat. Curabitur lobortis ipsum id orci condimentum, ut semper odio finibus. Sed elementum malesuada mi in dictum. Integer dictum sollicitudin consectetur. Duis ac ullamcorper nunc. Aliquam faucibus in purus vel sollicitudin. Integer lorem sem, mollis sed congue eget, scelerisque ut magna.
+
+Donec et maximus velit. Cras non sem id mauris aliquam vestibulum. Pellentesque suscipit tristique leo a dapibus. Suspendisse potenti. Fusce dignissim urna dui, quis placerat risus elementum quis. Nullam viverra magna sed lectus venenatis luctus. Morbi non luctus lorem, et aliquam risus. Nulla pellentesque augue sapien, sit amet commodo leo ultrices ac. Integer ac quam eget ipsum finibus scelerisque.
+
+Nam porta euismod mollis. Mauris cursus lacus ac mi tempus, id blandit mi venenatis. Fusce accumsan, nisi et sodales auctor, tellus quam tincidunt nisl, id congue ipsum dui non lectus. Aliquam facilisis dapibus eros et euismod. Integer eget tincidunt arcu, id pellentesque metus. In hendrerit tellus non sem vehicula ullamcorper. Donec sit amet lacinia magna, ut tincidunt nisi. Vivamus et tellus nunc. Praesent neque tortor, placerat nec blandit non, tristique quis odio. Etiam aliquet congue augue ac gravida.
+
+Nam mattis lacus at laoreet aliquam. Nullam fringilla feugiat risus, at faucibus mi efficitur non. Donec iaculis faucibus purus, in hendrerit augue viverra nec. Etiam non iaculis risus. In eget diam in nisi rhoncus maximus a id enim. Pellentesque vestibulum est non leo auctor, nec rutrum turpis placerat. Sed dapibus cursus orci non dignissim. Suspendisse ultricies est purus, eu pulvinar mi pharetra vitae. Mauris sodales porttitor lorem at sagittis. Sed posuere ante a maximus fringilla.]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>2658</wp:post_id>
+		<wp:post_date>2015-08-11 02:21:49</wp:post_date>
+		<wp:post_date_gmt>2015-08-11 02:21:49</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>music-for-life</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="music"><![CDATA[Music]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_thumbnail_id</wp:meta_key>
+			<wp:meta_value><![CDATA[3171]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpb_vc_js_status</wp:meta_key>
+			<wp:meta_value><![CDATA[false]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_vc_post_settings</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>slide_template</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_post_format</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_meta_info</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_prev_next</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_author_info</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_social_sharing</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_related_acticles</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_page_header</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_show_breadcrumb</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_page_header_separator</wp:meta_key>
+			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_page_header_bg</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_header_position</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_header_scheme</wp:meta_key>
+			<wp:meta_value><![CDATA[light]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_layout</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_sidebar</wp:meta_key>
+			<wp:meta_value><![CDATA[default]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_left_sidebar</wp:meta_key>
+			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_right_sidebar</wp:meta_key>
+			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_body_background</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_boxed_background</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_like_post</wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>kt_post_views_count</wp:meta_key>
+			<wp:meta_value><![CDATA[6]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
 	<item>
@@ -21784,21 +21726,6 @@ Duis dapibus fermentum orci, nec malesuada libero vehicula ut. Integer sodales, 
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
-		<wp:comment>
-			<wp:comment_id>2</wp:comment_id>
-			<wp:comment_author><![CDATA[Mr WordPress]]></wp:comment_author>
-			<wp:comment_author_email></wp:comment_author_email>
-			<wp:comment_author_url>https://wordpress.org/</wp:comment_author_url>
-			<wp:comment_author_IP></wp:comment_author_IP>
-			<wp:comment_date>2015-05-13 02:02:12</wp:comment_date>
-			<wp:comment_date_gmt>2015-05-13 02:02:12</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Hi, this is a comment.
-To delete a comment, just log in and view the post&#039;s comments. There you will have the option to edit or delete them.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>0</wp:comment_user_id>
-		</wp:comment>
 	</item>
 	<item>
 		<title>Colorful Wide Angle Lenses</title>
@@ -21946,7 +21873,7 @@ Nullam vitae est et lorem dignissim euismod eget quis enim. Nullam vel sollicitu
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>kt_post_views_count</wp:meta_key>
-			<wp:meta_value><![CDATA[147]]></wp:meta_value>
+			<wp:meta_value><![CDATA[151]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_like_post</wp:meta_key>
@@ -21981,102 +21908,32 @@ Nullam vitae est et lorem dignissim euismod eget quis enim. Nullam vel sollicitu
 			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:comment>
-			<wp:comment_id>19</wp:comment_id>
+			<wp:comment_id>31</wp:comment_id>
 			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
 			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 14:58:33</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 14:58:33</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur. Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 04:00:36</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 04:00:36</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Proin dignissim, ex feugiat tincidunt consequat, ex turpis posuere enim, vel fermentum nunc justo a nunc. Donec interdum nisl elit, eget consequat elit volutpat sed.]]></wp:comment_content>
 			<wp:comment_approved>1</wp:comment_approved>
 			<wp:comment_type></wp:comment_type>
 			<wp:comment_parent>0</wp:comment_parent>
 			<wp:comment_user_id>1</wp:comment_user_id>
 		</wp:comment>
 		<wp:comment>
-			<wp:comment_id>20</wp:comment_id>
+			<wp:comment_id>28</wp:comment_id>
 			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
 			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 14:58:49</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 14:58:49</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur.]]></wp:comment_content>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 03:59:36</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 03:59:36</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Donec varius, orci quis consectetur eleifend, augue velit posuere tortor, vitae dapibus urna dui vitae nisl. Phasellus mollis ornare elit, in malesuada lorem pharetra id. In consectetur, orci vitae efficitur blandit.]]></wp:comment_content>
 			<wp:comment_approved>1</wp:comment_approved>
 			<wp:comment_type></wp:comment_type>
 			<wp:comment_parent>0</wp:comment_parent>
 			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>21</wp:comment_id>
-			<wp:comment_author><![CDATA[Ngo Nguyen]]></wp:comment_author>
-			<wp:comment_author_email>ngohongnguyen88@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 15:24:22</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 15:24:22</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>19</wp:comment_parent>
-			<wp:comment_user_id>2</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>22</wp:comment_id>
-			<wp:comment_author><![CDATA[Ngo Nguyen]]></wp:comment_author>
-			<wp:comment_author_email>ngohongnguyen88@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 15:24:41</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 15:24:41</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>20</wp:comment_parent>
-			<wp:comment_user_id>2</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>23</wp:comment_id>
-			<wp:comment_author><![CDATA[Ngo Nguyen]]></wp:comment_author>
-			<wp:comment_author_email>ngohongnguyen88@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 15:25:40</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 15:25:40</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>19</wp:comment_parent>
-			<wp:comment_user_id>2</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>24</wp:comment_id>
-			<wp:comment_author><![CDATA[Ngo Nguyen]]></wp:comment_author>
-			<wp:comment_author_email>ngohongnguyen88@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-10 03:18:47</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-10 03:18:47</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Quisque aliquet neque vitae lectus tempus consectetur. Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>2</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>25</wp:comment_id>
-			<wp:comment_author><![CDATA[Thang]]></wp:comment_author>
-			<wp:comment_author_email>tienthangk43@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://eastofnormal.com/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-10 06:22:21</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-10 06:22:21</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Nam at velit nisl. Nam at velit nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>0</wp:comment_user_id>
 		</wp:comment>
 	</item>
 	<item>
@@ -22756,76 +22613,6 @@ Nullam vitae est et lorem dignissim euismod eget quis enim. Nullam vel sollicitu
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
 		</wp:postmeta>
-		<wp:comment>
-			<wp:comment_id>8</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-06-25 07:40:54</wp:comment_date>
-			<wp:comment_date_gmt>2015-06-25 07:40:54</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur. Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>9</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-06-25 07:41:07</wp:comment_date>
-			<wp:comment_date_gmt>2015-06-25 07:41:07</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur. Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>8</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>10</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-06-25 07:41:36</wp:comment_date>
-			<wp:comment_date_gmt>2015-06-25 07:41:36</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non enim ut enim fringilla adipiscing id in lorem. Quisque aliquet neque vitae lectus tempus consectetur.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>11</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-06-25 07:41:50</wp:comment_date>
-			<wp:comment_date_gmt>2015-06-25 07:41:50</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Quisque aliquet neque vitae lectus tempus consectetur. Aliquam erat volutpat. Nunc eu nibh nulla, id cursus arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam at velit nisl.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>12</wp:comment_id>
-			<wp:comment_author><![CDATA[Nguyen]]></wp:comment_author>
-			<wp:comment_author_email>ngohongnguyen88@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url></wp:comment_author_url>
-			<wp:comment_author_IP>::1</wp:comment_author_IP>
-			<wp:comment_date>2015-08-07 02:49:32</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-07 02:49:32</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Thanks you!]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>8</wp:comment_parent>
-			<wp:comment_user_id>0</wp:comment_user_id>
-		</wp:comment>
 	</item>
 	<item>
 		<title>Spain - Church door</title>
@@ -23281,34 +23068,6 @@ Etiam placerat lorem id erat vehicula varius eget sit amet eros. Praesent ac nul
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
 		</wp:postmeta>
-		<wp:comment>
-			<wp:comment_id>13</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>116.111.30.223</wp:comment_author_IP>
-			<wp:comment_date>2015-08-24 13:31:15</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-24 13:31:15</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Nam elit purus, laoreet ut nunc varius, feugiat viverra risus. Fusce suscipit nisl id eros ultrices eleifend. Duis ac auctor velit, at gravida mi.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
-		<wp:comment>
-			<wp:comment_id>14</wp:comment_id>
-			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
-			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
-			<wp:comment_author_url>http://www.onimodglobal.com/demo/</wp:comment_author_url>
-			<wp:comment_author_IP>116.111.30.223</wp:comment_author_IP>
-			<wp:comment_date>2015-08-24 13:31:26</wp:comment_date>
-			<wp:comment_date_gmt>2015-08-24 13:31:26</wp:comment_date_gmt>
-			<wp:comment_content><![CDATA[Nam gravida ipsum et ligula interdum, fringilla lacinia mi laoreet. Suspendisse potenti. Sed hendrerit quam at volutpat mollis. Mauris in pretium massa.]]></wp:comment_content>
-			<wp:comment_approved>1</wp:comment_approved>
-			<wp:comment_type></wp:comment_type>
-			<wp:comment_parent>0</wp:comment_parent>
-			<wp:comment_user_id>1</wp:comment_user_id>
-		</wp:comment>
 	</item>
 	<item>
 		<title>Remember to breathe</title>
@@ -24344,7 +24103,7 @@ Duis ut nibh et sapien aliquet accumsan. Maecenas ut diam elementum, blandit jus
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>kt_post_views_count</wp:meta_key>
-			<wp:meta_value><![CDATA[44]]></wp:meta_value>
+			<wp:meta_value><![CDATA[48]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_kt_page_header_bg</wp:meta_key>
@@ -24366,6 +24125,34 @@ Duis ut nibh et sapien aliquet accumsan. Maecenas ut diam elementum, blandit jus
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>29</wp:comment_id>
+			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
+			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 04:00:15</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 04:00:15</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Donec varius, orci quis consectetur eleifend, augue velit posuere tortor, vitae dapibus urna dui vitae nisl. Phasellus mollis ornare elit, in malesuada lorem pharetra id. In consectetur, orci vitae efficitur blandit.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>1</wp:comment_user_id>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>32</wp:comment_id>
+			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
+			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 04:00:39</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 04:00:39</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Proin dignissim, ex feugiat tincidunt consequat, ex turpis posuere enim, vel fermentum nunc justo a nunc. Donec interdum nisl elit, eget consequat elit volutpat sed.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>1</wp:comment_user_id>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Cycling in Moab</title>
@@ -24526,6 +24313,37 @@ Etiam a auctor leo. Aenean blandit, lorem in cursus facilisis, ex risus malesuad
 		</wp:postmeta>
 	</item>
 	<item>
+		<title>Relax Working on the Garden</title>
+		<link>http://kitethemes.com/valorous/demo1/relax-working-on-the-garden/</link>
+		<pubDate>Fri, 21 Aug 2015 02:05:37 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://kitethemes.com/valorous/main/?p=2449</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>2449</wp:post_id>
+		<wp:post_date>2015-08-21 02:05:37</wp:post_date>
+		<wp:post_date_gmt>2015-08-21 02:05:37</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>relax-working-on-the-garden</wp:post_name>
+		<wp:status>trash</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="travel"><![CDATA[Travel]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_vc_post_settings</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
 		<title>Cycling with the pet</title>
 		<link>http://kitethemes.com/valorous/demo1/cycling-with-the-pet/</link>
 		<pubDate>Fri, 21 Aug 2015 02:59:56 +0000</pubDate>
@@ -24539,7 +24357,7 @@ Etiam a auctor leo. Aenean blandit, lorem in cursus facilisis, ex risus malesuad
 Duis interdum vel sapien sit amet convallis. Praesent auctor et nunc id finibus. Donec a viverra magna. Integer sodales pharetra est at sodales. Nunc eu luctus sem, a commodo mauris. Nullam molestie euismod aliquam. Fusce nec odio non purus semper tincidunt imperdiet sed sapien. Aenean in imperdiet ex, sed pulvinar felis. Aenean mollis arcu quam, nec tincidunt dui condimentum at.[/vc_column_text][kt_gallery_justified row_height="200" margin_image="10" image_gallery="3171,3172,3170" image_size="recent_posts"][vc_column_text]Nullam vitae est et lorem dignissim euismod eget quis enim. Nullam vel sollicitudin nibh, at consequat tortor. Praesent venenatis sem feugiat pretium aliquam. Maecenas venenatis nibh nec enim congue commodo. Vestibulum dictum ultrices faucibus. Vestibulum non quam consectetur, bibendum lectus quis, mollis sem. Etiam venenatis blandit massa, quis faucibus nunc ornare id. Sed velit metus, volutpat sed nunc laoreet, cursus blandit leo. Maecenas hendrerit mauris sed felis imperdiet, finibus porttitor nisi iaculis. Suspendisse sit amet volutpat dolor.
 
 Nullam rutrum gravida metus, vitae placerat magna porttitor sed. Cras at dictum turpis, sed varius ligula. Praesent eleifend mauris a magna eleifend molestie. Ut vel varius eros. Sed sit amet dapibus lorem. Sed elementum sapien mauris, vel facilisis enim egestas ac. Etiam eget scelerisque ipsum. Aliquam sit amet faucibus turpis, at hendrerit purus. Pellentesque efficitur, ipsum at egestas convallis, nisi enim tristique dui, sed volutpat dui metus quis risus. Donec fringilla, sem id pharetra lacinia, ipsum velit finibus magna, in commodo urna magna sit amet tellus. Nulla felis erat, finibus sed pretium imperdiet, ullamcorper nec urna. Donec sapien orci, suscipit at posuere in, mattis quis felis.[/vc_column_text][/vc_column][/vc_row]]]></content:encoded>
-		<excerpt:encoded><![CDATA[Phasellus nulla sapien, ultrices quis eleifend eu, egestas a justo. Integer vel bibendum urna. Sed sagittis dui sed urna porta, lobortis vestibulum ex dapibus. Cras non vehicula nulla, eu volutpat urna. Donec non malesuada dui, sit amet accumsan mauris. Nam aliquet iaculis cursus. Praesent bibendum eros eget finibus imperdiet. Quisque consectetur tortor at urna mollis, vitae volutpat nibh rutrum. Etiam rutrum ipsum eu pulvinar laoreet. Maecenas ac finibus erat. Duis tincidunt lacus a cursus congue. In malesuada est nec arcu bibendum, ac consectetur elit pretium. Nunc ultricies tincidunt augue, sed scelerisque eros cursus et. In dignissim lacinia turpis, vel consequat arcu porttitor eu.]]></excerpt:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>2455</wp:post_id>
 		<wp:post_date>2015-08-21 02:59:56</wp:post_date>
 		<wp:post_date_gmt>2015-08-21 02:59:56</wp:post_date_gmt>
@@ -24814,7 +24632,7 @@ Duis dapibus fermentum orci, nec malesuada libero vehicula ut. Integer sodales, 
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>kt_post_views_count</wp:meta_key>
-			<wp:meta_value><![CDATA[26]]></wp:meta_value>
+			<wp:meta_value><![CDATA[28]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
@@ -25104,7 +24922,7 @@ Etiam egestas lacinia massa at gravida. Nulla vitae tincidunt augue, et ultrices
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>kt_post_views_count</wp:meta_key>
-			<wp:meta_value><![CDATA[39]]></wp:meta_value>
+			<wp:meta_value><![CDATA[42]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_like_post</wp:meta_key>
@@ -25118,6 +24936,34 @@ Etiam egestas lacinia massa at gravida. Nulla vitae tincidunt augue, et ultrices
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>30</wp:comment_id>
+			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
+			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 04:00:23</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 04:00:23</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Donec varius, orci quis consectetur eleifend, augue velit posuere tortor, vitae dapibus urna dui vitae nisl. Phasellus mollis ornare elit, in malesuada lorem pharetra id. In consectetur, orci vitae efficitur blandit.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>1</wp:comment_user_id>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>33</wp:comment_id>
+			<wp:comment_author><![CDATA[Cuong Dao]]></wp:comment_author>
+			<wp:comment_author_email>websideas.corp@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>116.111.26.51</wp:comment_author_IP>
+			<wp:comment_date>2015-09-22 04:00:49</wp:comment_date>
+			<wp:comment_date_gmt>2015-09-22 04:00:49</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Proin dignissim, ex feugiat tincidunt consequat, ex turpis posuere enim, vel fermentum nunc justo a nunc. Donec interdum nisl elit, eget consequat elit volutpat sed.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>1</wp:comment_user_id>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Black jacket and style man</title>
@@ -25261,143 +25107,6 @@ Etiam placerat lorem id erat vehicula varius eget sit amet eros. Praesent ac nul
 		<wp:postmeta>
 			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
 			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-	</item>
-	<item>
-		<title>Music for Life</title>
-		<link>http://kitethemes.com/valorous/demo1/music-for-life/</link>
-		<pubDate>Tue, 11 Aug 2015 02:21:49 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://kitethemes.com/valorous/main/?p=2658</guid>
-		<description></description>
-		<content:encoded><![CDATA[Donec sed ullamcorper quam. Mauris sit amet molestie nibh. Vivamus scelerisque velit ut imperdiet facilisis. Phasellus urna magna, lobortis et libero tempus, facilisis euismod nulla. Cras massa diam, ultrices non rhoncus sed, finibus eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce ac sollicitudin justo, id consectetur libero. Quisque rhoncus mollis rutrum. Nullam pretium libero at felis maximus vulputate. Cras ut diam eu nulla ultrices mollis et non dui. Sed posuere elit in dictum suscipit. Duis ultricies sagittis viverra. Praesent et est vulputate, imperdiet nisi id, molestie neque. Donec tristique quis leo at vehicula.
-
-<!--more-->
-
-Aliquam pharetra nibh in nunc tempor, non euismod dui efficitur. Quisque lacinia fermentum consequat. Curabitur lobortis ipsum id orci condimentum, ut semper odio finibus. Sed elementum malesuada mi in dictum. Integer dictum sollicitudin consectetur. Duis ac ullamcorper nunc. Aliquam faucibus in purus vel sollicitudin. Integer lorem sem, mollis sed congue eget, scelerisque ut magna.
-
-Donec et maximus velit. Cras non sem id mauris aliquam vestibulum. Pellentesque suscipit tristique leo a dapibus. Suspendisse potenti. Fusce dignissim urna dui, quis placerat risus elementum quis. Nullam viverra magna sed lectus venenatis luctus. Morbi non luctus lorem, et aliquam risus. Nulla pellentesque augue sapien, sit amet commodo leo ultrices ac. Integer ac quam eget ipsum finibus scelerisque.
-
-Nam porta euismod mollis. Mauris cursus lacus ac mi tempus, id blandit mi venenatis. Fusce accumsan, nisi et sodales auctor, tellus quam tincidunt nisl, id congue ipsum dui non lectus. Aliquam facilisis dapibus eros et euismod. Integer eget tincidunt arcu, id pellentesque metus. In hendrerit tellus non sem vehicula ullamcorper. Donec sit amet lacinia magna, ut tincidunt nisi. Vivamus et tellus nunc. Praesent neque tortor, placerat nec blandit non, tristique quis odio. Etiam aliquet congue augue ac gravida.
-
-Nam mattis lacus at laoreet aliquam. Nullam fringilla feugiat risus, at faucibus mi efficitur non. Donec iaculis faucibus purus, in hendrerit augue viverra nec. Etiam non iaculis risus. In eget diam in nisi rhoncus maximus a id enim. Pellentesque vestibulum est non leo auctor, nec rutrum turpis placerat. Sed dapibus cursus orci non dignissim. Suspendisse ultricies est purus, eu pulvinar mi pharetra vitae. Mauris sodales porttitor lorem at sagittis. Sed posuere ante a maximus fringilla.]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>2658</wp:post_id>
-		<wp:post_date>2015-08-11 02:21:49</wp:post_date>
-		<wp:post_date_gmt>2015-08-11 02:21:49</wp:post_date_gmt>
-		<wp:comment_status>open</wp:comment_status>
-		<wp:ping_status>open</wp:ping_status>
-		<wp:post_name>music-for-life</wp:post_name>
-		<wp:status>publish</wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type>post</wp:post_type>
-		<wp:post_password></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-		<category domain="category" nicename="music"><![CDATA[Music]]></category>
-		<wp:postmeta>
-			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_thumbnail_id</wp:meta_key>
-			<wp:meta_value><![CDATA[3171]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wpb_vc_js_status</wp:meta_key>
-			<wp:meta_value><![CDATA[false]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_vc_post_settings</wp:meta_key>
-			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>slide_template</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_post_format</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_meta_info</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_prev_next</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_author_info</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_social_sharing</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_related_acticles</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_page_header</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_show_breadcrumb</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_page_header_separator</wp:meta_key>
-			<wp:meta_value><![CDATA[-1]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_page_header_bg</wp:meta_key>
-			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_header_position</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_header_scheme</wp:meta_key>
-			<wp:meta_value><![CDATA[light]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_layout</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_left_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_right_sidebar</wp:meta_key>
-			<wp:meta_value><![CDATA[primary-widget-area]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_body_background</wp:meta_key>
-			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_boxed_background</wp:meta_key>
-			<wp:meta_value><![CDATA[a:7:{s:5:"color";s:1:"#";s:6:"repeat";s:0:"";s:4:"size";s:0:"";s:10:"attachment";s:0:"";s:8:"position";s:0:"";s:3:"url";s:0:"";s:5:"media";s:12:"inline-block";}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_like_post</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>kt_post_views_count</wp:meta_key>
-			<wp:meta_value><![CDATA[6]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_kt_title_and_meta_center</wp:meta_key>
-			<wp:meta_value><![CDATA[0]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
 	<item>
@@ -25558,7 +25267,7 @@ Donec sit amet ipsum vel enim posuere bibendum. Suspendisse nec libero at metus 
 		<wp:post_type>post</wp:post_type>
 		<wp:post_password></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
-		<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
+		<category domain="category" nicename="travel"><![CDATA[Travel]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_wp_trash_meta_comments_status</wp:meta_key>
 			<wp:meta_value><![CDATA[a:1:{i:1;s:1:"1";}]]></wp:meta_value>
@@ -25566,14 +25275,6 @@ Donec sit amet ipsum vel enim posuere bibendum. Suspendisse nec libero at metus 
 		<wp:postmeta>
 			<wp:meta_key>_vc_post_settings</wp:meta_key>
 			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wp_trash_meta_time</wp:meta_key>
-			<wp:meta_value><![CDATA[1442386815]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_wp_trash_meta_status</wp:meta_key>
-			<wp:meta_value><![CDATA[publish]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>kt_post_views_count</wp:meta_key>
@@ -25721,37 +25422,6 @@ This e-mail was sent from a contact form on Valorous (http://kitethemes.com/valo
 		<wp:postmeta>
 			<wp:meta_key>_locale</wp:meta_key>
 			<wp:meta_value><![CDATA[en_US]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>_vc_post_settings</wp:meta_key>
-			<wp:meta_value><![CDATA[a:2:{s:7:"vc_grid";a:0:{}s:10:"vc_grid_id";a:0:{}}]]></wp:meta_value>
-		</wp:postmeta>
-	</item>
-	<item>
-		<title>Relax Working on the Garden</title>
-		<link>http://kitethemes.com/valorous/demo1/relax-working-on-the-garden/</link>
-		<pubDate>Fri, 21 Aug 2015 02:05:37 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://kitethemes.com/valorous/main/?p=2449</guid>
-		<description></description>
-		<content:encoded><![CDATA[]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>2449</wp:post_id>
-		<wp:post_date>2015-08-21 02:05:37</wp:post_date>
-		<wp:post_date_gmt>2015-08-21 02:05:37</wp:post_date_gmt>
-		<wp:comment_status>open</wp:comment_status>
-		<wp:ping_status>open</wp:ping_status>
-		<wp:post_name>relax-working-on-the-garden</wp:post_name>
-		<wp:status>trash</wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type>post</wp:post_type>
-		<wp:post_password></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-		<category domain="category" nicename="travel"><![CDATA[Travel]]></category>
-		<wp:postmeta>
-			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_vc_post_settings</wp:meta_key>
