@@ -58,8 +58,10 @@
                     </footer><!-- #footer-area -->
                 <?php } ?>
 
-                <?php if(kt_option('footer_bottom', false)){ ?>
-                    <?php get_template_part( 'templates/footers/footer', 'bottom' ); ?>
+                <?php if(is_active_sidebar( 'footer-bottom' ) && kt_option('footer_bottom', true)){ ?>
+                    <footer id="footer-bottom">
+                        <?php dynamic_sidebar('footer-bottom') ?>
+                    </footer><!-- #footer-bottom -->
                 <?php } ?>
 
                 <?php if(kt_option('footer_copyright', true)){ ?>

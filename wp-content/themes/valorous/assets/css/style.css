@@ -2608,48 +2608,6 @@ body.footer_fixed .static-footer {
 #footer-bottom {
     padding: 40px 0;
 }
-
-#footer-bottom.bottom-instagram {
-    position: relative;
-    padding: 0;
-}
-
-#footer-bottom .instagram_bg {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#footer-bottom .instagram_bg:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    display: block;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-}
-
-#footer-bottom .instagram_bg li {
-    float: left;
-    width: 12.5%;
-    padding: 0;
-}
-
-#footer-bottom.bottom-instagram .kt-image-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-
 /* ==============================
    12. Owl carousel Theme
    ============================== */
