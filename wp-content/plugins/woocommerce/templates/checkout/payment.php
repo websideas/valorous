@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.3.0
+ * @version     2.4.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-		<?php echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '" />' ); ?>
+		<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button alt button-icon-right_animate" name="woocommerce_checkout_place_order" id="place_order" data-value="' . esc_attr( $order_button_text ) . '" ><span>' . esc_attr( $order_button_text ) . ' <i class="button-icon arrow_right"></i></span></button>' ); ?>
 
 		<?php if ( wc_get_page_id( 'terms' ) > 0 && apply_filters( 'woocommerce_checkout_show_terms', true ) ) : ?>
 			<p class="form-row terms">
@@ -60,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<div class="clear"></div>
+
 </div>
 
 <?php if ( ! is_ajax() ) : ?>

@@ -3798,21 +3798,53 @@ if ( ! class_exists( 'KT_config' ) ) {
 					)
                 )
             );
-            
+
+
+
+            $importer_errors = array();
+            $max_execution_time  = ini_get("max_execution_time");
+            $max_input_time      = ini_get("max_input_time");
+            $upload_max_filesize = ini_get("upload_max_filesize");
+
+            if ($max_execution_time < 120) {
+                $importer_errors[] = '<li><strong>Maximum Execution Time (max_execution_time) : </strong>' . $max_execution_time . ' seconds. <span style="color:red"> Recommended max_execution_time should be at least 120 Seconds.</span></li>';
+            }
+            if ($max_input_time < 120)
+                $importer_errors[] = '<li><strong>Maximum Input Time (max_input_time) : </strong>' . $max_input_time . ' seconds. <span style="color:red"> Recommended max_input_time should be at least 120 Seconds.</span></li>';
+
+            if(intval(WP_MEMORY_LIMIT) < 40){
+                $importer_errors[] = '<li><strong>WordPress Memory Limit (WP_MEMORY_LIMIT) : </strong>' . WP_MEMORY_LIMIT . ' <span style="color:red"> Recommended memory limit should be at least 40MB.</span></li>';
+            }
+            if (intval($upload_max_filesize) < 15) {
+                $importer_errors[] = '<li><strong>Maximum Upload File Size (upload_max_filesize) : </strong>' . $upload_max_filesize . ' <span style="color:red"> Recommended Maximum Upload Filesize should be at least 15MB.</li>';
+            }
+
+
+            $importer = array();
+            if(count($importer_errors)){
+                $importer[] = array(
+                    'id'    => 'demo_importer_critical',
+                    'type'  => 'info',
+                    'style' => 'critical',
+                    'icon'  => 'el el-info-circle',
+                    'title' => __( 'Server Requirements (Please resolve these issues before installing template.)', THEME_LANG ),
+                    'desc'  => '<ul>'.implode('', $importer_errors).'</ul>'
+                );
+            }
+            $importer[] = array(
+                'id'   => 'wbc_demo_importer',
+                'type' => 'wbc_importer'
+            );
+
             /**
 			 *	Import Demo
 			 **/
             $this->sections[] = array(
                  'id' => 'wbc_importer_section',
-                 'title'  => esc_html__( 'Demo Content', 'framework' ),
-                 'desc'   => esc_html__( 'Chose a demo to import', 'framework' ),
+                 'title'  => esc_html__( 'Demo Content', THEME_LANG ),
+                 'desc'   => esc_html__( 'Chose a demo to import', THEME_LANG ),
                  'icon'   => 'el-icon-website',
-                 'fields' => array(
-                     array(
-                         'id'   => 'wbc_demo_importer',
-                         'type' => 'wbc_importer'
-                     )
-                 )
+                 'fields' => $importer
             );
 
             /**
@@ -4059,3 +4091,4 @@ if ( ! class_exists( 'KT_config' ) ) {
 } else {
     echo "The class named Redux_Framework_sample_config has already been called. <strong>Developers, you need to prefix this class with your company name or you'll run into problems!</strong>";
 }
+

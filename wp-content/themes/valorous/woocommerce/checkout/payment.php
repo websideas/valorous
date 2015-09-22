@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.3.0
+ * @version     2.4.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="payment" class="woocommerce-checkout-payment">
 	<?php if ( WC()->cart->needs_payment() ) : ?>
-	<ul class="payment_methods methods">
-		<?php
+		<ul class="payment_methods methods">
+			<?php
 			if ( ! empty( $available_gateways ) ) {
 				foreach ( $available_gateways as $gateway ) {
 					wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
@@ -34,8 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				echo '<li>' . apply_filters( 'woocommerce_no_available_payment_methods_message', $no_gateways_message ) . '</li>';
 			}
-		?>
-	</ul>
+			?>
+		</ul>
 	<?php endif; ?>
 
 	<div class="form-row place-order">
@@ -60,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<div class="clear"></div>
+
 </div>
 
 <?php if ( ! is_ajax() ) : ?>

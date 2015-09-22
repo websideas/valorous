@@ -35,6 +35,8 @@ define('DB_COLLATE', '');
 
 define('WP_POST_REVISIONS', false );
 
+define('WP_MEMORY_LIMIT', '96M');
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
