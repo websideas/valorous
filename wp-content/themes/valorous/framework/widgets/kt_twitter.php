@@ -60,29 +60,29 @@ class Widget_KT_Twitter extends WP_Widget {
 
                 $tag = ($instance['layout'] =='list') ? 'li' : 'div';
                 $content_twitter = '';
-                
-                foreach($content as $tweet){ ?>
-                    <?php ob_start(); ?>
-                    <<?php echo $tag ?> class="kt-twitter-wrapper">
-                        <div class="kt-twitter-content">
-                            <div class="kt-twitter-status"><?php echo $tweet->text ?></div>
-                            <div class="timestamp tw_timestamp"><?php echo date('d M / H:i',strtotime($tweet->created_at)); ?></div>
-                        </div>
-                        <div class="kt-twitter-tool">
-                            <span><a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $tweet->id; ?>">
-                                <?php _e('Reply', THEME_LANG); ?></a></span>
-                            <span><a target="_blank" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $tweet->id; ?>">
-                                <?php _e('Retweet', THEME_LANG); ?></a></span>
-                            <span><a target="_blank" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $tweet->id; ?>">
-                                <?php _e('Favorite', THEME_LANG); ?></a></span>
-                        </div>
-                    </<?php echo $tag ?>>
-                    <?php 
-                        $content_twitter .= ob_get_contents();
-                        ob_end_clean();
-                    ?>
-                <?php }
-                
+                if(is_array($content)){
+                    foreach($content as $tweet){ ?>
+                        <?php ob_start(); ?>
+                        <<?php echo $tag ?> class="kt-twitter-wrapper">
+                            <div class="kt-twitter-content">
+                                <div class="kt-twitter-status"><?php echo $tweet->text ?></div>
+                                <div class="timestamp tw_timestamp"><?php echo date('d M / H:i',strtotime($tweet->created_at)); ?></div>
+                            </div>
+                            <div class="kt-twitter-tool">
+                                <span><a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $tweet->id; ?>">
+                                    <?php _e('Reply', THEME_LANG); ?></a></span>
+                                <span><a target="_blank" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $tweet->id; ?>">
+                                    <?php _e('Retweet', THEME_LANG); ?></a></span>
+                                <span><a target="_blank" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $tweet->id; ?>">
+                                    <?php _e('Favorite', THEME_LANG); ?></a></span>
+                            </div>
+                        </<?php echo $tag ?>>
+                        <?php
+                            $content_twitter .= ob_get_contents();
+                            ob_end_clean();
+                        ?>
+                    <?php }
+                }
                 if(($instance['layout'] =='list')){
                     echo '<ul class="kt-twitter-'.$instance['layout'].'">'.$content_twitter.'</ul>';    
                 }else{
