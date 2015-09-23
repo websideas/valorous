@@ -28,8 +28,7 @@ class Widget_KT_Mailchimp extends WP_Widget {
 
     public function widget($args, $instance) {
         $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
-
-
+        
         if($instance['list']){
             echo $args['before_widget'];
             if ( $title ) {
@@ -71,10 +70,9 @@ class Widget_KT_Mailchimp extends WP_Widget {
             }else{
                 echo '<p>'.__("Please enter your mailchimp API key in theme option", THEME_LANG).'</p>';
             }
+            
+            echo $args['after_widget'];
         }
-
-        echo $args['after_widget'];
-
     }
 
     /**
