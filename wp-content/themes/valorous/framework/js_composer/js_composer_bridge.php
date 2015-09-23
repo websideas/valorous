@@ -138,7 +138,7 @@ vc_add_params("vc_icon", array(
 ));
 
 $tabs_arr = array(
-    array(
+    'use_theme_fonts' => array(
         'type' => 'checkbox',
         'heading' => __( 'Use theme default font family?', 'js_composer' ),
         'param_name' => 'use_theme_fonts',
@@ -147,7 +147,7 @@ $tabs_arr = array(
         'group' => __( 'Typography', THEME_LANG ),
         'std' => 'yes'
     ),
-    array(
+    'google_fonts' => array(
         'type' => 'google_fonts',
         'param_name' => 'google_fonts',
         'value' => 'font_family:Montserrat|font_style:400%20regular%3A400%3Anormal',
@@ -166,11 +166,13 @@ $tabs_arr = array(
     )
 );
 
-vc_add_params("vc_tta_tabs", $tabs_arr);
-vc_add_params("vc_tta_tour", $tabs_arr);
+
 vc_add_params("vc_tta_accordion", $tabs_arr);
 vc_add_params("vc_tta_pageable", $tabs_arr);
 
+$tabs_arr['use_theme_fonts']['std'] = false;
+vc_add_params("vc_tta_tour", $tabs_arr);
+vc_add_params("vc_tta_tabs", $tabs_arr);
 
 
 
@@ -195,6 +197,7 @@ $composer_addons = array(
     'callout.php',
     'contact_info.php',
     'clients_carousel.php',
+    'client_gird.php',
     'testimonial_carousel.php',
     'image_banner.php',
     //'button.php',
@@ -204,7 +207,7 @@ $composer_addons = array(
     'piechart.php',
     'coming_soon.php',
     'googlemap.php',
-    'client_gird.php',
+
 );
 
 foreach ( $composer_addons as $addon ) {

@@ -2912,6 +2912,10 @@ body.footer_fixed .static-footer {
 /**
  * Accordion and Toggles
  */
+.vc_tta.vc_general .vc_tta-panel-body{
+    padding: 20px;
+}
+
 .vc_tta.vc_general .vc_tta-panel-title,
 .vc_toggle_title > h4{
     font-size: 13px;

@@ -92,7 +92,7 @@ function kt_wp_enqueue_scripts(){
     wp_enqueue_script( 'easyzoom', THEME_JS . 'easyzoom.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'variations-plugin-script', THEME_JS . 'woo-variations-plugin.js', array( 'jquery' ), null, true );
     wp_enqueue_script( 'mCustomScrollbar-script', THEME_JS . 'jquery.mCustomScrollbar.min.js', array( 'jquery' ), null, true );
-    wp_enqueue_script( 'easyzoom', THEME_JS . 'woocommerce.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'kt-woocommerce', THEME_JS . 'woocommerce.js', array( 'jquery' ), null, true );
 
 }
 add_action( 'wp_enqueue_scripts', 'kt_wp_enqueue_scripts' );

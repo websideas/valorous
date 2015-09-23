@@ -1081,8 +1081,22 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .woocommerce ul.shop-products .price {
     display: block;
     color: #282828;
-    font-size: 14px;
+    font-size: 15px;
     line-height: normal;
+}
+
+.woocommerce div.product ul.shop-products p.price del,
+.woocommerce div.product ul.shop-products span.price del,
+.woocommerce ul.shop-products .price del{
+    font-size: 13px;
+    text-decoration: line-through;
+    color: #999999;
+}
+
+.woocommerce div.product ul.shop-products p.price ins,
+.woocommerce div.product ul.shop-products span.price ins,
+.woocommerce ul.shop-products .price ins{
+    text-decoration: none;
 }
 
 .woocommerce ul.shop-products .added_to_cart,

@@ -149,6 +149,14 @@ if(is_admin()){
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:hover,
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:focus,
 
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a:hover,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a:focus,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab.vc_active > a,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:hover,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-body,
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-panel .vc_tta-panel-heading,
+
                 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:hover,
                 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab > a:focus,
                 .vc_tta-color-accent.vc_tta-style-modern .vc_tta-tab.vc_active > a,
@@ -159,7 +167,7 @@ if(is_admin()){
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab > a:focus,
                 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-background-color-accent.vc_icon_element-background
                 {
-                    background: <?php echo $accent; ?>;
+                    background-color: <?php echo $accent; ?>;
                 }
 
                 blockquote,
@@ -380,6 +388,7 @@ if(is_admin()){
                     box-shadow: 0 2px 0 <?php echo $accent_darker; ?>;
                 }
 
+                .vc_tta-color-accent.vc_tta-style-flat .vc_tta-tab > a,
                 .vc_btn3.vc_btn3-color-accent:hover,
                 .vc_btn3.vc_btn3-color-accent.vc_btn3-style-flat:hover,
                 .vc_btn3.vc_btn3-color-accent:focus,

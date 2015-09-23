@@ -248,7 +248,18 @@ div#post-body .rwmb-select{
     height: 35px;
     width: 330px;
     box-shadow: none;
+    max-width: 100%;
 }
+
+div#post-body .rwmb-text{
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    height: 35px;
+    width: 330px;
+    box-shadow: none;
+    max-width: 100%;
+}
+
 .rwmb-radio_image-wrapper .rwmb-input label{
     float:left;
     text-align:center;
