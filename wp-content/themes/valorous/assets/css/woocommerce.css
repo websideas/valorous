@@ -1784,7 +1784,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 
 .woocommerce table.wishlist_table th.product-name {
-    min-width: 45%;
+    min-width: 35%;
 }
 
 .woocommerce #content table.wishlist_table.cart a.remove:hover {

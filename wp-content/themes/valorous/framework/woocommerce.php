@@ -333,15 +333,15 @@ add_action( 'woocommerce_shop_loop_item_before_image', 'woocommerce_template_loo
 add_action( 'woocommerce_shop_loop_item_after_image', 'kt_woocommerce_add_archive_tool', 10);
 function kt_woocommerce_add_archive_tool(){
     printf(
-        '<div class="tool-inner"><a href="#" class="product-quick-view" data-id="%s">%s</a></div>',
+        '<div class="tool-inner"><div data-toggle="tooltip" title="'.__( 'Quick view',THEME_LANG ).'"><a href="#" class="product-quick-view" data-id="%s">%s</a></div></div>',
         get_the_ID(),
         __('Quick view', THEME_LANG)
     );
     if(class_exists('YITH_WCWL_UI')){
-        echo do_shortcode('<div class="tool-inner">[yith_wcwl_add_to_wishlist]</div>');
+        echo do_shortcode('<div class="tool-inner"><div data-toggle="tooltip" title="'.__( 'Add to Widhlist',THEME_LANG ).'">[yith_wcwl_add_to_wishlist]</div></div>');
     }
     if(defined( 'YITH_WOOCOMPARE' )){
-        echo do_shortcode('<div class="tool-inner">[yith_compare_button]</div>');
+        echo do_shortcode('<div class="tool-inner"><div data-toggle="tooltip" title="'.__( 'Compare',THEME_LANG ).'">[yith_compare_button]</div></div>');
     }
 }
 
