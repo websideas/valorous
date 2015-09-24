@@ -1821,3 +1821,8 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     font-size:30px;
     margin-left:10px;
 }
+.kt_woo_pagination a.disable{
+    cursor: default;
+    color:#f4f4f4;
+    pointer-events: none;
+}
