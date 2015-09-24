@@ -1021,7 +1021,6 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 
 .woocommerce ul.shop-products .product-image-content {
     position: relative;
-    overflow: hidden;
 }
 
 .woocommerce ul.shop-products .product-image-container a.product-thumbnail {
@@ -1813,4 +1812,12 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 }
 .woocommerce .wishlist_table td.product-add-to-cart a{
     background: transparent;
+}
+
+.kt_woo_pagination{
+    float:right;
+}
+.kt_woo_pagination a{
+    font-size:30px;
+    margin-left:10px;
 }
