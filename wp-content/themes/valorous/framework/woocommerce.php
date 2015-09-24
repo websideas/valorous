@@ -491,7 +491,7 @@ function woo_product_pagination(){ ?>
                 endwhile; wp_reset_postdata();
             }
             if( $id_prev == get_the_ID() ){
-                echo '<a class="disable" rel="prev" href="#"><i class="fa fa-angle-left"></i></a>';
+                echo '<span><i class="fa fa-angle-left"></i></span>';
             }else{
                 previous_post_link('%link','<i class="fa fa-angle-left"></i>');
             }
@@ -510,7 +510,7 @@ function woo_product_pagination(){ ?>
                 endwhile; wp_reset_postdata();
             }
             if( $id_next == get_the_ID() ){
-                echo '<a class="disable" rel="next" href="#"><i class="fa fa-angle-right"></i></a>';
+                echo '<span><i class="fa fa-angle-right"></i></span>';
             }else{
                 next_post_link('%link','<i class="fa fa-angle-right"></i>');
             }

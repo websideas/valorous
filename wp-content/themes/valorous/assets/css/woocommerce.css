@@ -1817,12 +1817,12 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 .kt_woo_pagination{
     float:right;
 }
+.kt_woo_pagination span,
 .kt_woo_pagination a{
     font-size:30px;
     margin-left:10px;
 }
-.kt_woo_pagination a.disable{
-    cursor: default;
+.kt_woo_pagination span{
+    cursor: no-drop;
     color:#f4f4f4;
-    pointer-events: none;
 }
