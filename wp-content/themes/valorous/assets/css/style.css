@@ -5087,6 +5087,12 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     color: #FFFFFF;
 }
 
+.content_banner_wrapper .content_banner > *:last-child {
+    margin-bottom: 0;
+}
+
+
+
 /*========== COMING SOON ==========*/
 .page-template-page-comingsoon #content {
     padding: 0;
