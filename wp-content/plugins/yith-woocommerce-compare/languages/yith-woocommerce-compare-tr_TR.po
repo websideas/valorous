@@ -1,48 +1,49 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH Woocommerce Compare\n"
-"POT-Creation-Date: 2015-07-14 15:33+0200\n"
-"PO-Revision-Date: 2015-07-14 15:33+0200\n"
-"Last-Translator: Khalil Delavaran <khalil.delavaran@gmail.com>\n"
-"Language-Team: Qooqnos <khalil.delavaran@gmail.com>\n"
-"Language: fa\n"
+"POT-Creation-Date: 2015-09-22 09:39+0200\n"
+"PO-Revision-Date: 2015-09-22 09:39+0200\n"
+"Last-Translator: Caner Öncel <caneroncel@gmail.com>\n"
+"Language-Team: Caner Öncel <caneroncel@gmail.com>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.2\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: plugin-fw\n"
 
 #: includes/class.yith-woocompare-admin.php:117
-#: includes/class.yith-woocompare-admin.php:139
+#: includes/class.yith-woocompare-admin.php:141
 msgid "Settings"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:118
-#: includes/class.yith-woocompare-admin.php:143
+#: includes/class.yith-woocompare-admin.php:119
+#: includes/class.yith-woocompare-admin.php:145
 msgid "Premium Version"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:149
-#: includes/class.yith-woocompare-admin.php:150
+#: includes/class.yith-woocompare-admin.php:151
+#: includes/class.yith-woocompare-admin.php:152
 #: includes/class.yith-woocompare-frontend.php:353
 #: plugin-options/general-options.php:40
 #: widgets/class.yith-woocompare-widget.php:50
 msgid "Compare"
-msgstr "سنجش"
+msgstr "Karşılaştır"
 
-#: includes/class.yith-woocompare-admin.php:213
+#: includes/class.yith-woocompare-admin.php:215
 msgid "Plugin Documentation"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:232
+#: includes/class.yith-woocompare-admin.php:235
 msgid "YITH WooCommerce Compare Activated"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:233
+#: includes/class.yith-woocompare-admin.php:236
 #, php-format
 msgid ""
 "In the YIT Plugin tab you can find the YITH WooCommerce Compare options. "
@@ -51,11 +52,11 @@ msgid ""
 "PREMIUM version with many new options, <a href=\"%s\">discover it now</a>."
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:244
+#: includes/class.yith-woocompare-admin.php:247
 msgid "YITH WooCommerce Compare Updated"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:245
+#: includes/class.yith-woocompare-admin.php:248
 #, php-format
 msgid ""
 "From now on, you can find all the options of YITH WooCommerce Compare under "
@@ -65,54 +66,54 @@ msgid ""
 "available options, <a href=\"%s\">discover the PREMIUM version.</a>"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:390
+#: includes/class.yith-woocompare-admin.php:393
 msgid "Do you want to hard crop the image?"
 msgstr ""
 
 #: includes/class.yith-woocompare-frontend.php:142
 msgid "Added"
-msgstr "اضافه شد"
+msgstr "Eklendi"
 
 #: includes/class.yith-woocompare-frontend.php:143 templates/compare.php:51
 msgid "Product Comparison"
-msgstr "سنجش محصولات"
+msgstr "Ürün Karşılaştırma"
 
 #: includes/class.yith-woocompare-frontend.php:265
 msgid "In stock"
-msgstr "داشتن در انبار"
+msgstr "Stokta"
 
 #: includes/class.yith-woocompare-frontend.php:548
 msgid "No products to compare"
-msgstr "محصولاتی برای سنجش نیست"
+msgstr "Karşılaştırma listeniz boş"
 
 #: includes/class.yith-woocompare-frontend.php:559 templates/compare.php:111
 msgid "Remove"
-msgstr "پاک"
+msgstr "Kaldır"
 
 #: includes/class.yith-woocompare-helper.php:45
 msgid "Image"
-msgstr "نگاره"
+msgstr "Resim"
 
 #: includes/class.yith-woocompare-helper.php:46
 #: widgets/class.yith-woocompare-widget.php:67
 msgid "Title"
-msgstr "جستار"
+msgstr "Başlık"
 
 #: includes/class.yith-woocompare-helper.php:47
 msgid "Price"
-msgstr "قیمت"
+msgstr "Fiyat"
 
 #: includes/class.yith-woocompare-helper.php:48
 msgid "Add to cart"
-msgstr "افزودن به سبد خرید"
+msgstr "Sepete Ekle"
 
 #: includes/class.yith-woocompare-helper.php:49
 msgid "Description"
-msgstr "روشنگری"
+msgstr "Açıklama"
 
 #: includes/class.yith-woocompare-helper.php:50
 msgid "Availability"
-msgstr "دسترس پذیری"
+msgstr "Durum"
 
 #: init.php:40
 msgid ""
@@ -128,83 +129,84 @@ msgstr ""
 
 #: plugin-options/general-options.php:17
 msgid "General Settings"
-msgstr "پیکربندی همگانی"
+msgstr "Genel Ayarlar"
 
 #: plugin-options/general-options.php:24
 msgid "Link or Button"
-msgstr "لینک یا دکمه"
+msgstr "Link veya Buton"
 
 #: plugin-options/general-options.php:25
 msgid "Choose if you want to use a link or a button for the action button."
-msgstr "گزینش بکار بردن لینک و یا دکمه برای واکنش دکمه"
+msgstr ""
+"Eylem için kullanmak üzere link veya buton seçeneklerinden birini belirleyin."
 
 #: plugin-options/general-options.php:31
 msgid "Link"
-msgstr "لینک"
+msgstr "Link"
 
 #: plugin-options/general-options.php:32
 msgid "Button"
-msgstr "دکمه"
+msgstr "Buton"
 
 #: plugin-options/general-options.php:37
 msgid "Link/Button text"
-msgstr "لینک یا دکمه"
+msgstr "Link/Buton Metni"
 
 #: plugin-options/general-options.php:38
 msgid "Type the text to use for the button or the link of the compare."
-msgstr "نوشته ای برای بکار بردن دکمه یا لینک مقایسه بنویسید"
+msgstr "Karşılaştırma butonu veya bağlantısı için kullanılacak metni yazın."
 
 #: plugin-options/general-options.php:45
 msgid "Show button in single product page"
-msgstr "نمایش دکمه در برگه محصول"
+msgstr "Tekli ürün sayfasında buton göster"
 
 #: plugin-options/general-options.php:46
 msgid "Say if you want to show the button in the single product page."
-msgstr "اگر می خواهید  دکمه در برگه محصول نمایش داده شود"
+msgstr "Tekli ürün sayfasında buton göstermek isteyip istemediğinizi belirtin."
 
 #: plugin-options/general-options.php:54
 msgid "Show button in products list"
-msgstr "نمایش دکمه در لیست محصولات"
+msgstr "Ürün listesinde buton göster"
 
 #: plugin-options/general-options.php:55
 msgid "Say if you want to show the button in the products list."
-msgstr "اگر می خواهید  دکمه در لیست محصول نمایش داده شود"
+msgstr "Ürün listesinde buton göstermek isteyip istemediğinizi belirtin."
 
 #: plugin-options/general-options.php:63
 msgid "Open automatically lightbox"
-msgstr "باز کردن اتوماتیک جعبه نور"
+msgstr "Otomatik lightbox aç"
 
 #: plugin-options/general-options.php:64
 msgid "Open link after click into \"Compare\" button\"."
-msgstr " باز کردن پیوند پس از  \"سنجش\" دکمه\"کلیک کنید"
+msgstr "\"Karşılaştır\" butonuna tıklandıktan sonra bağlantıyı aç."
 
 #: plugin-options/general-options.php:77
 msgid "Table Settings"
-msgstr "پیکربندی جدول"
+msgstr "Tablo Ayarları"
 
 #: plugin-options/general-options.php:84
 msgid "Table title"
-msgstr ""
+msgstr "Tablo Başlığı"
 
 #: plugin-options/general-options.php:85
 msgid "Type the text to use for the table title."
-msgstr ""
+msgstr "Tablo başlığı metnini buraya yazın."
 
 #: plugin-options/general-options.php:87
 msgid "Compare products"
-msgstr "سنجش محصولات"
+msgstr "Ürünleri Karşılaştır"
 
 #: plugin-options/general-options.php:92
 msgid "Fields to show"
-msgstr "فیلدهای نمایش"
+msgstr "Gösterilecek alanlar"
 
 #: plugin-options/general-options.php:93
 msgid ""
 "Select the fields to show in the comparison table and order them by "
 "drag&drop (are included also the woocommerce attributes)"
 msgstr ""
-"انتخاب این گزینه برای نشان دادن در جدول سنجش و سفارش سازی آنها با کشیدن و "
-"رها کردن دکمه ماوس (ویژگی های ووکامرس را شامل می شود)"
+"Karşılaştırma tablosunda gösterilecek alanları seçin ve sürükle-bırak "
+"yöntemi ile sıralayın (ayrıca Woocommerce özellikleri dahildir)"
 
 #: plugin-options/general-options.php:101
 msgid "Repeat \"Price\" field"
@@ -224,11 +226,11 @@ msgstr ""
 
 #: plugin-options/general-options.php:119
 msgid "Image size"
-msgstr "اندازه نگاره"
+msgstr "Resim Boyutu"
 
 #: plugin-options/general-options.php:120
 msgid "Set the size for the images"
-msgstr "تعیین اندازه برای نگاره"
+msgstr "Resimlerin boyutlarını belirtin"
 
 #: templates/admin/premium.php:228 templates/admin/premium.php:370
 #, php-format
@@ -359,62 +361,74 @@ msgstr ""
 
 #: templates/compare.php:76
 msgid "Close window [X]"
-msgstr "بستن پنجره [X]"
+msgstr "Pencereyi Kapat [X]"
 
 #: templates/compare.php:103
 msgid "No products added in the compare table."
-msgstr "هیچ محصولی افزوده نشده است برای جدول سنجش"
+msgstr "Karşılaştırma tablosuna herhangi bir ürün eklenmedi."
 
 #: widgets/class.yith-woocompare-widget.php:23
 msgid "The widget show the list of products added in the compare table."
-msgstr "ویجت نشان می دهد لیستی از محصولات افزوده شده در جدول سنجش"
+msgstr "Widget karşılaştırma tablosuna eklenen ürünlerin listesini gösterir."
 
 #: widgets/class.yith-woocompare-widget.php:27
 msgid "YITH Woocommerce Compare Widget"
-msgstr "ویجت سنجش ووکاکرس YITH"
+msgstr "YITH Woocommerce Karşılaştırma Widgetı"
 
 #: widgets/class.yith-woocompare-widget.php:49
 msgid "Clear all"
-msgstr "پاک کردن همه"
+msgstr "Hepsini Kaldır"
 
 #~ msgid "Products Compare"
-#~ msgstr "سنجش محصولات"
+#~ msgstr "Ürün Karşılaştırma"
 
 #~ msgid "Repeat \"Price\" field at the end of the table"
-#~ msgstr "تکرار گزینه \"قیمت\" در پایان جدول"
+#~ msgstr "\"Ücret\" alanını tablonun sonuna kadar tekrarla"
 
 #~ msgid "Repeat \"Add to cart\" field at the end of the table"
-#~ msgstr "تکرار گزینه \"افزودن به سبد خرید\" در پایان جدول"
+#~ msgstr "\"Sepete ekle\" alanını tablonun sonuna kadar tekrarla"
 
 #~ msgid "Select a date"
-#~ msgstr "انتخاب روز"
+#~ msgstr "Bir tarih seçin"
 
 #~ msgid "Hours"
-#~ msgstr "ساعتها"
+#~ msgstr "Saat"
 
 #~ msgid "Minutes"
-#~ msgstr "دقیقه ها"
+#~ msgstr "Dakika"
 
 #~ msgid "Upload"
-#~ msgstr "بارگذاری"
+#~ msgstr "Yükle"
+
+#~ msgid "px"
+#~ msgstr "px"
+
+#~ msgid "em"
+#~ msgstr "em"
+
+#~ msgid "pt"
+#~ msgstr "pt"
+
+#~ msgid "rem"
+#~ msgstr "rem"
 
 #~ msgid "Select a font family"
-#~ msgstr "گزینش قلم"
+#~ msgstr "Bir font ailesi seçin"
 
 #~ msgid "Regular"
-#~ msgstr "معمولی"
+#~ msgstr "Normal"
 
 #~ msgid "Bold"
-#~ msgstr "کلفت"
+#~ msgstr "Kalın"
 
 #~ msgid "Extra bold"
-#~ msgstr "خیلی کلفت"
+#~ msgstr "Ekstra kalın"
 
 #~ msgid "Italic"
-#~ msgstr "کج"
+#~ msgstr "İtalik"
 
 #~ msgid "Italic bold"
-#~ msgstr "کلفت کج"
+#~ msgstr "İtalik kalın"
 
 #~ msgid "Click to preview"
-#~ msgstr "کلیک برای پیش نمایش"
+#~ msgstr "Önizleme için tıklayın"

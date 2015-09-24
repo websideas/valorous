@@ -207,6 +207,7 @@
             navigation: true,
             pagination: false,
             afterAction : syncPosition,
+            autoHeight: true,
             responsiveRefreshRate : 200,
             navigationText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         });

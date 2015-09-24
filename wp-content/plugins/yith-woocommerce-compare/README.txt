@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: wc, shop, woocommerce, compare, compare products, product compare, widget, comparison, product comparison, compare table
 Requires at least: 3.5.1
 Tested up to: 4.3
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,14 @@ Yes, you can choose what fields to show in the compare table. You can do it in Y
 = Can I order the fields in the compare table? =
 Yes, you can sort the fields in the compare table. You can do it in YIT Plugins -> Compare.
 
+= What are the main changes in plugin translation? =
+Recently YITH WooCommerce Compare has been selected to be included in the "translate.wordpress.org" translate programme.
+In order to import correctly the plugin strings in the new system, we had to change the text domain form 'yit' to 'yith-woocommerce-compare'.
+Once the plugin will be imported in the translate.wordpress.org system, the translations of other languages will be downloaded directly from WordPress, without using any .po and .mo files. Moreover, users will be able to participate in a more direct way to plugin translations, suggesting texts in their languages in the dedicated tab on translate.wordpress.org.
+During this transition step, .po and .mo files will be used as always, but in order to be recognized by WordPress, they will need to have a new nomenclature, renaming them in:
+yith-woocommerce-compare-<WORDPRESS LOCALE>.po
+yith-woocommerce-compare-<WORDPRESS LOCALE >.mo
+
 == Screenshots ==
 
 1. The popup with compare table.
@@ -63,6 +71,12 @@ Yes, you can sort the fields in the compare table. You can do it in YIT Plugins 
 3. The settings of plugin
 
 == Changelog ==
+
+= 2.0.4 =
+
+* Fixed: JS error when loading compare window
+* Updated: Changed Text Domain from 'yith-wcmp' to 'yith-woocommerce-compare'
+* Updated: Plugin Core Framework
 
 = 2.0.3 =
 
@@ -185,7 +199,8 @@ Full documentation is available [here](http://yithemes.com/docs-plugins/yith-woo
 
 == Upgrade notice ==
 
-= 2.0.2 =
+= 2.0.4 =
 
-* Added: Compatibility with WooCommerce 2.4
-* Updated: Core plugin
+* Fixed: JS error when loading compare window
+* Updated: Changed Text Domain from 'yith-wcmp' to 'yith-woocommerce-compare'
+* Updated: Plugin Core Framework

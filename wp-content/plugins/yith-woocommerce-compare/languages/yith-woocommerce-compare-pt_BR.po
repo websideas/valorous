@@ -1,49 +1,49 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH Woocommerce Compare\n"
-"POT-Creation-Date: 2015-07-14 15:32+0200\n"
-"PO-Revision-Date: 2015-07-14 15:32+0200\n"
-"Last-Translator: Radi Angelov <fullmetalradi@hotmail.com>\n"
+"POT-Creation-Date: 2015-09-22 09:40+0200\n"
+"PO-Revision-Date: 2015-09-22 09:40+0200\n"
+"Last-Translator: Nicola Mustone <mail@nicolamustone.it>\n"
 "Language-Team: Your Inspiration Themes <support@yithemes.com>\n"
-"Language: es_ES\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.2\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: plugin-fw\n"
 
 #: includes/class.yith-woocompare-admin.php:117
-#: includes/class.yith-woocompare-admin.php:139
+#: includes/class.yith-woocompare-admin.php:141
 msgid "Settings"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:118
-#: includes/class.yith-woocompare-admin.php:143
+#: includes/class.yith-woocompare-admin.php:119
+#: includes/class.yith-woocompare-admin.php:145
 msgid "Premium Version"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:149
-#: includes/class.yith-woocompare-admin.php:150
+#: includes/class.yith-woocompare-admin.php:151
+#: includes/class.yith-woocompare-admin.php:152
 #: includes/class.yith-woocompare-frontend.php:353
 #: plugin-options/general-options.php:40
 #: widgets/class.yith-woocompare-widget.php:50
 msgid "Compare"
 msgstr "Comparar"
 
-#: includes/class.yith-woocompare-admin.php:213
+#: includes/class.yith-woocompare-admin.php:215
 msgid "Plugin Documentation"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:232
+#: includes/class.yith-woocompare-admin.php:235
 msgid "YITH WooCommerce Compare Activated"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:233
+#: includes/class.yith-woocompare-admin.php:236
 #, php-format
 msgid ""
 "In the YIT Plugin tab you can find the YITH WooCommerce Compare options. "
@@ -52,11 +52,11 @@ msgid ""
 "PREMIUM version with many new options, <a href=\"%s\">discover it now</a>."
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:244
+#: includes/class.yith-woocompare-admin.php:247
 msgid "YITH WooCommerce Compare Updated"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:245
+#: includes/class.yith-woocompare-admin.php:248
 #, php-format
 msgid ""
 "From now on, you can find all the options of YITH WooCommerce Compare under "
@@ -66,54 +66,54 @@ msgid ""
 "available options, <a href=\"%s\">discover the PREMIUM version.</a>"
 msgstr ""
 
-#: includes/class.yith-woocompare-admin.php:390
+#: includes/class.yith-woocompare-admin.php:393
 msgid "Do you want to hard crop the image?"
 msgstr ""
 
 #: includes/class.yith-woocompare-frontend.php:142
 msgid "Added"
-msgstr "Añadido"
+msgstr "Adicionado"
 
 #: includes/class.yith-woocompare-frontend.php:143 templates/compare.php:51
 msgid "Product Comparison"
-msgstr "Comparacion de producto"
+msgstr "Comparação de Produtos"
 
 #: includes/class.yith-woocompare-frontend.php:265
 msgid "In stock"
-msgstr "En stock"
+msgstr "No estoque"
 
 #: includes/class.yith-woocompare-frontend.php:548
 msgid "No products to compare"
-msgstr "Comparador de productos vacio"
+msgstr "Não há produtos à comparar"
 
 #: includes/class.yith-woocompare-frontend.php:559 templates/compare.php:111
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Remover"
 
 #: includes/class.yith-woocompare-helper.php:45
 msgid "Image"
-msgstr "Imagen"
+msgstr "Imagem"
 
 #: includes/class.yith-woocompare-helper.php:46
 #: widgets/class.yith-woocompare-widget.php:67
 msgid "Title"
-msgstr "Titulo"
+msgstr "Título"
 
 #: includes/class.yith-woocompare-helper.php:47
 msgid "Price"
-msgstr "Precio"
+msgstr "Preço"
 
 #: includes/class.yith-woocompare-helper.php:48
 msgid "Add to cart"
-msgstr "Añadir al carrito"
+msgstr "Adicionar ao carrinho"
 
 #: includes/class.yith-woocompare-helper.php:49
 msgid "Description"
-msgstr "Descripcion"
+msgstr "Descrição"
 
 #: includes/class.yith-woocompare-helper.php:50
 msgid "Availability"
-msgstr "Disponibilidad"
+msgstr "Disponibilidade"
 
 #: init.php:40
 msgid ""
@@ -129,86 +129,83 @@ msgstr ""
 
 #: plugin-options/general-options.php:17
 msgid "General Settings"
-msgstr "Obciones generales"
+msgstr "Opções Gerais"
 
 #: plugin-options/general-options.php:24
 msgid "Link or Button"
-msgstr "Link o Boton"
+msgstr "Link ou Botão"
 
 #: plugin-options/general-options.php:25
 msgid "Choose if you want to use a link or a button for the action button."
-msgstr "Elige si deseas usar boton o link"
+msgstr "Seleciona se deseja usar link ou botão para a ação do botão"
 
 #: plugin-options/general-options.php:31
 msgid "Link"
-msgstr "Enlace"
+msgstr "Link"
 
 #: plugin-options/general-options.php:32
 msgid "Button"
-msgstr "Boton"
+msgstr "Botão"
 
 #: plugin-options/general-options.php:37
 msgid "Link/Button text"
-msgstr "Texto del boton/link"
+msgstr "Texto Link/Botão"
 
 #: plugin-options/general-options.php:38
 msgid "Type the text to use for the button or the link of the compare."
-msgstr "Escribe el texto del boton/link comparar."
+msgstr "Insira o texto usado no botão de comparação."
 
 #: plugin-options/general-options.php:45
 msgid "Show button in single product page"
-msgstr "Mostrar boton en pagina de producto individual"
+msgstr "Mostrar na página de produto único"
 
 #: plugin-options/general-options.php:46
 msgid "Say if you want to show the button in the single product page."
-msgstr ""
-"¿Quieres mostrar el boton de comparar en la pagina individual de cada "
-"producto?"
+msgstr "Marque para mostrar na página de produto único"
 
 #: plugin-options/general-options.php:54
 msgid "Show button in products list"
-msgstr "Mostrar boton en la lista de productos"
+msgstr "Mostrar na lista de produtos"
 
 #: plugin-options/general-options.php:55
 msgid "Say if you want to show the button in the products list."
-msgstr "¿Quieres mostrar el boton de comparar en la lista de productos?"
+msgstr "Marque para mostrar na lista de produtos"
 
 #: plugin-options/general-options.php:63
 msgid "Open automatically lightbox"
-msgstr "Abrir lightbox (mensaje emergente) automaticamente"
+msgstr "Abrir lightbox automaticamente"
 
 #: plugin-options/general-options.php:64
 msgid "Open link after click into \"Compare\" button\"."
-msgstr "Abrir link despues de hacer click en \"Comparar\""
+msgstr "Abre link após clicar no botão de comparação."
 
 #: plugin-options/general-options.php:77
 msgid "Table Settings"
-msgstr "Opciones de tabla"
+msgstr "Opções de tabela"
 
 #: plugin-options/general-options.php:84
 msgid "Table title"
-msgstr "Titulo de tabla"
+msgstr ""
 
 #: plugin-options/general-options.php:85
 msgid "Type the text to use for the table title."
-msgstr "Escribe el texto del boton/link comparar."
+msgstr ""
 
 #: plugin-options/general-options.php:87
 msgid "Compare products"
-msgstr "Comparador de productos"
+msgstr "Comparar produtos"
 
 #: plugin-options/general-options.php:92
 msgid "Fields to show"
-msgstr "Mostrar boton en la lista de productos"
+msgstr "Campos a mostrar"
 
 #: plugin-options/general-options.php:93
 msgid ""
 "Select the fields to show in the comparison table and order them by "
 "drag&drop (are included also the woocommerce attributes)"
 msgstr ""
-"Elige que campos quieres mostrar en la tabla del comparador y ordenalos "
-"simplemente arrastrandolos (estan incluidos los atributos de productos de "
-"woocommerce)"
+"Selecione os campos a mostrar na tabela de comparação e organize-os "
+"arrastando e soltando (atributos do Woocommerce também são incluídos)"
 
 #: plugin-options/general-options.php:101
 msgid "Repeat \"Price\" field"
@@ -228,11 +225,11 @@ msgstr ""
 
 #: plugin-options/general-options.php:119
 msgid "Image size"
-msgstr "Imagen"
+msgstr "Tamanho da imagem"
 
 #: plugin-options/general-options.php:120
 msgid "Set the size for the images"
-msgstr "Fijar el tamaño de la imagen"
+msgstr "Especifique um tamanho para as imagens"
 
 #: templates/admin/premium.php:228 templates/admin/premium.php:370
 #, php-format
@@ -363,39 +360,36 @@ msgstr ""
 
 #: templates/compare.php:76
 msgid "Close window [X]"
-msgstr "Cerrar ventana [X]"
+msgstr "Fechar janela [X]"
 
 #: templates/compare.php:103
 msgid "No products added in the compare table."
-msgstr "Comparador de productos"
+msgstr "Não foram adicionados produtos na tabela de comparação"
 
 #: widgets/class.yith-woocompare-widget.php:23
 msgid "The widget show the list of products added in the compare table."
 msgstr ""
-"El widget muestra la lista de productos añadidos en la tabla de comparacion"
+"O widget mostra a lista de produtos adicionados na tabela de comparação."
 
 #: widgets/class.yith-woocompare-widget.php:27
 msgid "YITH Woocommerce Compare Widget"
-msgstr "YITH Woocommerce widget de comparador"
+msgstr "Widget de Comparação"
 
 #: widgets/class.yith-woocompare-widget.php:49
 msgid "Clear all"
-msgstr "Eliminar todos"
+msgstr "Limpar tudo"
 
 #~ msgid "Products Compare"
-#~ msgstr "Comparador de productos"
-
-#~ msgid "Hard Crop?"
-#~ msgstr "Hard Crop?"
+#~ msgstr "Comparar Produtos"
 
 #~ msgid "Repeat \"Price\" field at the end of the table"
-#~ msgstr "Repetir campo \"Precio\" al final de la tabla"
+#~ msgstr "Repetir campo \"Preço\" no final da tabela"
 
 #~ msgid "Repeat \"Add to cart\" field at the end of the table"
-#~ msgstr "Repetir campo \"Añadir al carrito\" al final de la tabla"
+#~ msgstr "Repetir campo \"Adicionar ao carrinho\" no final da tabela"
 
 #~ msgid "Select a date"
-#~ msgstr "Seleccionar fecha"
+#~ msgstr "Selecione uma data"
 
 #~ msgid "Hours"
 #~ msgstr "Horas"
@@ -404,7 +398,7 @@ msgstr "Eliminar todos"
 #~ msgstr "Minutos"
 
 #~ msgid "Upload"
-#~ msgstr "Cargar"
+#~ msgstr "Enviar"
 
 #~ msgid "px"
 #~ msgstr "px"
@@ -419,22 +413,22 @@ msgstr "Eliminar todos"
 #~ msgstr "rem"
 
 #~ msgid "Select a font family"
-#~ msgstr "Seleccionar fuente"
+#~ msgstr "Seleciona uma família de fontes"
 
 #~ msgid "Regular"
 #~ msgstr "Normal"
 
 #~ msgid "Bold"
-#~ msgstr "Negrita"
+#~ msgstr "Negrito"
 
 #~ msgid "Extra bold"
-#~ msgstr "Extra negrita"
+#~ msgstr "Extra-negrito"
 
 #~ msgid "Italic"
-#~ msgstr "Cursiva"
+#~ msgstr "Itálico"
 
 #~ msgid "Italic bold"
-#~ msgstr "Cursiva negrita"
+#~ msgstr "Negrito itálico"
 
 #~ msgid "Click to preview"
-#~ msgstr "Click para previsualizar"
+#~ msgstr "Clique para pré-visualizar"

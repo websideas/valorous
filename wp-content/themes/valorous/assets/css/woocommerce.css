@@ -1273,6 +1273,7 @@ body .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
 
 .woocommerce div.product form.cart .variations {
     margin-bottom: 30px;
+    width: 90%;
 }
 
 .woocommerce div.product form.cart .variations td.variations-label {

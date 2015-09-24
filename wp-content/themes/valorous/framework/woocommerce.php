@@ -292,7 +292,7 @@ function woocommerce_single_product_thumb_area_callback(){
     if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
         return 'col-sm-12 col-md-5';
     }else{
-        return 'col-sm-5 col-md-5';
+        return 'col-sm-6 col-md-6';
     }
 }
 
@@ -310,7 +310,7 @@ function woocommerce_single_product_summary_area_callback(){
     if($sidebar['sidebar'] == 'left' || $sidebar['sidebar'] == 'right'){
         return 'col-sm-12 col-md-7';
     }else{
-        return 'col-sm-7 col-md-7';
+        return 'col-sm-6 col-md-6';
     }
 }
 
