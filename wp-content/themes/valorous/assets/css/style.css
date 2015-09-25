@@ -2520,6 +2520,10 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
     background: #f5f5f5;
 }
 
+#footer-area .footer-area-one{
+    text-align: center;
+}
+
 #footer-area h3.widget-title {
     color: #FFFFFF;
     margin: 0 0 25px;
@@ -5040,7 +5044,7 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     left: 0;
     max-height: 100%;
     overflow: auto;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .kt_image_banner.position-top .content_banner_wrapper {
