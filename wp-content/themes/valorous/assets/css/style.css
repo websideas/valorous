@@ -703,6 +703,10 @@ select:not([multiple]) {
     transition: all 0.25s ease 0s;
 }
 
+#nav > ul > li > a:first-child{
+    padding-left: 0;
+}
+
 #nav > ul > li > a:hover,
 #nav > ul > li > a:focus,
 #nav > ul > li.current-menu-item > a,
@@ -1846,7 +1850,7 @@ h2.widgettitle a.rsswidget:first-child,
     background: #9a9a9a;
     position: absolute;
     left: 0;
-    top: 13px;
+    top: 16px;
     color: #9a9a9a;
 
     -webkit-transition: all 0.3s ease 0s;
@@ -1895,8 +1899,9 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_categories ul li a,
 .yith-woocompare-widget ul.products-list li a.title {
     color: #282828;
-    line-height: normal;
     text-transform: capitalize;
+    line-height: 18px;
+    font-size: 13px;
 }
 
 .widget_pages ul li a:hover,
@@ -2581,6 +2586,10 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 .footer-centered #bottom-nav,
 .footer-centered .footer-copyright {
     margin-bottom: 5px;
+}
+
+.footer-centered > *:last-child{
+    margin-bottom: 0;
 }
 
 body.layout-boxed #footer {
@@ -5087,6 +5096,12 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     color: #FFFFFF;
 }
 
+.content_banner_wrapper .content_banner > *:last-child {
+    margin-bottom: 0;
+}
+
+
+
 /*========== COMING SOON ==========*/
 .page-template-page-comingsoon #content {
     padding: 0;
@@ -6054,20 +6069,21 @@ article.post-item {
     text-align: center;
 }
 
-.blog-posts .entry-title a {
-    color: #282828;
-}
-
-.blog-posts .entry-title a:hover {
-    color: #d0a852;
-}
-
 .blog-posts .entry-title {
     font-size: 16px;
     font-weight: normal;
     line-height: 1.5;
     text-transform: uppercase;
     margin: 0 0 15px;
+    letter-spacing: 1px;
+}
+
+.blog-posts .entry-title a {
+    color: #282828;
+}
+
+.blog-posts .entry-title a:hover {
+    color: #d0a852;
 }
 
 .blog-posts .entry-meta-data {
@@ -6096,8 +6112,8 @@ article.post-item {
 }
 
 /* Blog Classic */
-.post-layout-classic {
-
+article.post-item.post-layout-classic {
+    margin-bottom: 90px;
 }
 
 .post-layout-classic .entry-share-box {
@@ -6105,8 +6121,12 @@ article.post-item {
     margin-bottom: 20px;
 }
 
-.post-layout-classic .entry-excerpt {
+.post-layout-classic .entry-excerpt{
     margin-bottom: 30px;
+}
+
+.post-layout-classic .entry-excerpt a.more-link{
+    margin-top: 10px;
 }
 
 .post-layout-classic .entry-share-box {
@@ -6128,11 +6148,17 @@ article.post-item {
 }
 
 .post-item-carousel .entry-title {
-    font-size: 20px;
-    line-height: 1;
-    margin: 0 0 15px;
-    padding: 0;
+    font-size: 16px;
     font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 24px;
+    margin: 0 0 10px;
+    padding: 0 10px;
+}
+
+.post-item-carousel .entry-title a {
+    color: #FFF;
+    text-transform: uppercase;
 }
 
 .post-item-carousel .entry-meta-data {
@@ -6140,15 +6166,11 @@ article.post-item {
     font-size: 12px;
     line-height: 16px;
     margin: 0;
+    padding: 0 10px;
 }
 
 .post-item-carousel .entry-meta-data a {
     color: #FFF;
-}
-
-.post-item-carousel .entry-title a {
-    color: #FFF;
-    text-transform: uppercase;
 }
 
 
