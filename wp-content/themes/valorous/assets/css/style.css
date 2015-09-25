@@ -6134,11 +6134,12 @@ article.post-item {
 }
 
 .post-item-carousel .entry-title {
-    font-size: 20px;
-    line-height: 1;
-    margin: 0 0 15px;
-    padding: 0;
+    font-size: 18px;
     font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 25px;
+    margin: 0 0 15px;
+    padding: 0 10px;
 }
 
 .post-item-carousel .entry-meta-data {
@@ -6146,6 +6147,7 @@ article.post-item {
     font-size: 12px;
     line-height: 16px;
     margin: 0;
+    padding: 0 10px;
 }
 
 .post-item-carousel .entry-meta-data a {
