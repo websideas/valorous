@@ -341,6 +341,11 @@
     position: relative;
     width: 100px;
 }
+.woocommerce div.product .cart .single_add_to_cart_button,
+.woocommerce form.cart div.quantity-group,
+.woocommerce-page form.cart div.quantity-group{
+    margin-bottom:10px;
+}
 
 .woocommerce div.quantity-group .input-text,
 .woocommerce-page .quantity-group .input-text {

@@ -5,11 +5,6 @@ if ( !defined('ABSPATH')) exit;
 
 
 class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
-    var $excerpt_length;
-
-    function custom_excerpt_length( ) {
-        return $this->excerpt_length;
-    }
 
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
@@ -27,7 +22,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
             'meta_key' => '',
             'order' => 'DESC',
             'max_items' => 10,
-            "excerpt_length" => 50,
 
             "show_meta" => 'true',
             "show_author" => 'true',
@@ -78,7 +72,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
         );
 
         $output = $settings = '';
-        $this->excerpt_length = $excerpt_length;
 
         $args = array(
             'order' => $order,
@@ -134,7 +127,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                 "class" => ''
             );
 
-            add_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
                 $blog_atts = $blog_atts_posts;
 
@@ -147,7 +139,6 @@ class WPBakeryShortCode_Blog_Posts_Carousel extends WPBakeryShortCode {
                 $blog_carousel_html .= '</div><!-- .recent-posts-item -->';
 
             endwhile;
-            remove_filter( 'excerpt_length', array($this, 'custom_excerpt_length'), 999 );
 
             $output .= str_replace('%carousel_html%', $blog_carousel_html, $carousel_ouput);
 
@@ -305,13 +296,6 @@ vc_map( array(
             'value' => 10, // default value
             'param_holder_class' => 'vc_not-for-custom',
             'description' => __( 'Set max limit for items in grid or enter -1 to display all (limited to 1000).', 'js_composer' ),
-            'group' => __( 'Data settings', 'js_composer' ),
-        ),
-        array(
-            'type' => 'textfield',
-            'heading' => __( 'Excerpt length', 'js_composer' ),
-            'value' => 50,
-            'param_name' => 'excerpt_length',
             'group' => __( 'Data settings', 'js_composer' ),
         ),
         array(
