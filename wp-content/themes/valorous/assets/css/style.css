@@ -2678,7 +2678,7 @@ body.footer_fixed .static-footer {
     opacity: 1;
 }
 
-.carousel-navigation-border_circle .owl-kttheme .owl-buttons div,
+.carousel-navigation-circle_border .owl-kttheme .owl-buttons div,
 .carousel-navigation-circle .owl-kttheme .owl-buttons div {
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -2686,7 +2686,7 @@ body.footer_fixed .static-footer {
     -o-border-radius: 50%;
 }
 
-.carousel-navigation-border_round .owl-kttheme .owl-buttons div,
+.carousel-navigation-round_border .owl-kttheme .owl-buttons div,
 .carousel-navigation-round .owl-kttheme .owl-buttons div {
     border-radius: 3px;
     -moz-border-radius: 3px;
