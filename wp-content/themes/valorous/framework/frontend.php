@@ -155,7 +155,7 @@ function kt_add_scripts() {
         wp_enqueue_script( 'kt_footer', THEME_JS . 'jquery.kt.footer.js', array( 'jquery' ), null, true );
     }
 
-    wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'wp-mediaelement' ), null, true );
+    wp_enqueue_script( 'main-script', THEME_JS . 'functions.js', array( 'jquery', 'mediaelement', 'wp-mediaelement' ), null, true );
 
     $navigation_height_fixed = kt_option('navigation_height_fixed');
     if(!$navigation_height_fixed['height'] || $navigation_height_fixed['height'] == 'px'){

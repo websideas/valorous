@@ -117,7 +117,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'animation-effect' : ' ';
             $data_animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
                         
-            echo "<div class='blog-posts blog-posts-".$blog_type."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
+            echo "<div class='blog-posts blog-posts-".esc_attr($blog_type)." blog-posts-".esc_attr($thumbnail_type)."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
             echo "<div class='blog-posts-content clearfix ".$animate_classic."' ".$data_animate_classic.">";
 
             do_action('before_blog_posts_loop');

@@ -369,8 +369,8 @@
                         var $elems = $(response.html);
                         $row.waitForImages(function() {
                             $row.append($elems).masonry( 'appended', $elems, true );
+                            loadmore_append();
                         });
-                        loadmore_append();
                     }else{
                         $row.append(response.html);
                         loadmore_append();
@@ -379,9 +379,7 @@
                     $content.append(response.html);
                     loadmore_append();
                 }
-
                 $content.find('.post-item').removeClass('loadmore-item');
-
             }, 'json');
         });
     }
