@@ -1588,6 +1588,7 @@ h2.widgettitle a.rsswidget:first-child,
     line-height: 18px;
     margin: 0 0 7px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .kt_tabs_content ul li .title a,
@@ -1619,12 +1620,12 @@ h2.widgettitle a.rsswidget:first-child,
 .widget_kt_posts ul.kt-artilce-1 li .entry-thumb {
     float: left;
     margin: 0;
-    width: 68px;
+    width: 70px;
 }
 
 .kt_tabs_content ul li .article-attr,
 .widget_kt_posts ul.kt-artilce-1 li .article-attr {
-    margin-left: 78px;
+    margin-left: 85px;
 }
 
 .kt_tabs_content ul.no-image li .article-attr,
@@ -2538,7 +2539,7 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 }
 
 #footer-area .widget-container {
-
+    margin-bottom: 25px;
 }
 
 #footer-copyright {
