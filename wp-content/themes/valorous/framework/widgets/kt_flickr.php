@@ -100,8 +100,8 @@ class Widget_KT_Flickr extends WP_Widget {
         </p>
         <p><label for="<?php echo $this->get_field_id( 'column' ); ?>"><?php _e( 'Column of images:', THEME_LANG ); ?></label>
             <select class="widefat" id="<?php echo $this->get_field_id('column'); ?>" name="<?php echo $this->get_field_name('column'); ?>">
-                <option <?php selected( $instance['column'], '3' ); ?> value="3"><?php _e('3',THEME_LANG); ?></option>
                 <option <?php selected( $instance['column'], '2' ); ?> value="2"><?php _e('2',THEME_LANG); ?></option>
+                <option <?php selected( $instance['column'], '3' ); ?> value="3"><?php _e('3',THEME_LANG); ?></option>
                 <option <?php selected( $instance['column'], '4' ); ?> value="4"><?php _e('4',THEME_LANG); ?></option>
             </select>
             <small><?php _e('Select column of image.',THEME_LANG); ?></small>
