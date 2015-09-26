@@ -530,16 +530,57 @@ if ( ! class_exists( 'KT_config' ) ) {
                          'title'    => __( 'Select your socials', THEME_LANG ),
                     ),
                     array(
+                        'id'       => 'footer_socials_style',
+                        'type'     => 'select',
+                        'title'    => __( 'Footer socials style', THEME_LANG ),
+                        'options'  => array(
+                            'accent' => __('Accent', THEME_LANG ),
+                            'dark'   => __('Dark', THEME_LANG ),
+                            'light'  => __('Light', THEME_LANG ),
+                            'color'  => __('Color', THEME_LANG ),
+                        ),
+                        'default'  => 'accent'
+                    ),
+                    array(
+                        'id'       => 'footer_socials_background',
+                        'type'     => 'select',
+                        'title'    => __( 'Footer socials background', THEME_LANG ),
+                        'options'  => array(
+                            'empty'       => __('None', THEME_LANG ),
+                            'rounded'   => __('Circle', THEME_LANG ),
+                            'boxed'  => __('Square', THEME_LANG ),
+                            'rounded-less'  => __('Rounded', THEME_LANG ),
+                            'diamond-square'  => __('Diamond Square', THEME_LANG ),
+                            'rounded-outline'  => __('Outline Circle', THEME_LANG ),
+                            'boxed-outline'  => __('Outline Square', THEME_LANG ),
+                            'rounded-less-outline'  => __('Outline Rounded', THEME_LANG ),
+                            'diamond-square-outline'  => __('Outline Diamond Square', THEME_LANG ),
+                        ),
+                        'subtitle'     => __( 'Select background shape and style for social.', THEME_LANG ),
+                        'default'  => 'empty'
+                    ),
+                    array(
+                        'id'       => 'footer_socials_size',
+                        'type'     => 'select',
+                        'title'    => __( 'Footer socials size', THEME_LANG ),
+                        'options'  => array(
+                            'small'       => __('Small', THEME_LANG ),
+                            'standard'   => __('Standard', THEME_LANG ),
+                        ),
+                        'default'  => 'small'
+                    ),
+                    array(
+                        'id'       => 'footer_socials_space_between_item',
+                        'type'     => 'text',
+                        'title'    => __( 'Footer socials space between item', THEME_LANG ),
+                        'default'  => '3'
+                    ),
+                    array(
                         'id'       => 'footer_copyright_text',
                         'type'     => 'editor',
                         'title'    => __( 'Footer Copyright Text', THEME_LANG ),
                         'default'  => 'Copyright &copy; 2015 - <a href="#">Valorous</a> - All Right Reserver.'
                     ),
-
-
-
-
-
                     
                 )
             );
