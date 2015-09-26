@@ -21,6 +21,7 @@ class Widget_KT_Flickr extends WP_Widget {
         $user_id = $instance['user_id'];
         $number = $instance['number'];
         $ordering = $instance['ordering'];
+        $column = $instance['column'];
         $type = $instance['type'];
         
         echo $args['before_widget'];
@@ -30,7 +31,7 @@ class Widget_KT_Flickr extends WP_Widget {
             
         ?>
             <?php if( $user_id && $number ){ ?>
-                <div class="kt_flickr clearfix">
+                <div class="kt_flickr clearfix column-<?php echo $column; ?>">
                     <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=<?php echo $number; ?>&amp;display=<?php echo $ordering; ?>&amp;size=s&amp;source=<?php echo $type; ?>&amp;<?php echo $type; ?>=<?php echo $user_id; ?>"></script>
                 </div>
             <?php } ?>
@@ -51,6 +52,10 @@ class Widget_KT_Flickr extends WP_Widget {
             $instance['number'] = 9;
         }
         $instance['ordering'] = $new_instance['ordering'];
+        $instance['column'] = $new_instance['column'];
+        if(!$instance['column']){
+            $instance['column'] = 3;
+        }
 
         return $instance;
     }
@@ -58,7 +63,7 @@ class Widget_KT_Flickr extends WP_Widget {
 
     public function form( $instance ) {
 
-        $defaults = array( 'title' => __( 'Flickr' , THEME_LANG), 'type' => '', 'user_id' => '', 'number' => 9, 'ordering' => '' );
+        $defaults = array( 'title' => __( 'Flickr' , THEME_LANG), 'type' => '', 'user_id' => '', 'number' => 9, 'ordering' => '', 'column' => 3 );
         $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title = strip_tags($instance['title']);
@@ -93,7 +98,14 @@ class Widget_KT_Flickr extends WP_Widget {
             </select>
             <small><?php _e('Select photo display order.',THEME_LANG); ?></small>
         </p>
-        
+        <p><label for="<?php echo $this->get_field_id( 'column' ); ?>"><?php _e( 'Column of images:', THEME_LANG ); ?></label>
+            <select class="widefat" id="<?php echo $this->get_field_id('column'); ?>" name="<?php echo $this->get_field_name('column'); ?>">
+                <option <?php selected( $instance['column'], '3' ); ?> value="3"><?php _e('3',THEME_LANG); ?></option>
+                <option <?php selected( $instance['column'], '2' ); ?> value="2"><?php _e('2',THEME_LANG); ?></option>
+                <option <?php selected( $instance['column'], '4' ); ?> value="4"><?php _e('4',THEME_LANG); ?></option>
+            </select>
+            <small><?php _e('Select column of image.',THEME_LANG); ?></small>
+        </p>
     <?php
     }
 }

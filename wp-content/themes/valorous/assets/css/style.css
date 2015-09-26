@@ -1975,7 +1975,12 @@ h2.widgettitle a.rsswidget:first-child,
     padding: 5px;
     position: relative;
 }
-
+.kt_flickr.column-4 a{
+    width:25%;
+}
+.kt_flickr.column-2 a{
+    width:50%;
+}
 .kt_flickr a img {
     display: block;
     width: 100%;
