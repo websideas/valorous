@@ -392,9 +392,8 @@ if ( ! function_exists( 'kt_post_thumbnail' ) ) :
                 }
 
             }elseif($type == 'external'){
-                if($video_link = rwmb_meta('_kt_video_link')){
-                    global $wp_embed;
-                    $embed = $wp_embed->run_shortcode( '[embed]' . $video_link . '[/embed]' );
+                if($video_link = rwmb_meta('_kt_video_id')){
+                    $embed = video_embed( $video_link );
                     echo '<div class="entry-thumb"><div class="embed-responsive embed-responsive-16by9">'.do_shortcode($embed).'</div></div><!-- .entry-thumb -->';
                 }
             }

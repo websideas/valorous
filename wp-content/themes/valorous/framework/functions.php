@@ -782,3 +782,21 @@ if ( ! function_exists( 'kt_register_account' ) ) :
 endif;
 
 
+/* VIDEO EMBED FUNCTIONS
+================================================== */
+
+function video_youtube($video_id){
+    return '<iframe itemprop="video" src="http://www.youtube.com/embed/'. $video_id .'?wmode=transparent" ></iframe>';
+}
+
+function video_vimeo($video_id){
+    return '<iframe itemprop="video" src="http://player.vimeo.com/video/'. $video_id .'?title=0&amp;byline=0&amp;portrait=0?wmode=transparent"></iframe>';    
+}
+
+function video_embed($video_id) {
+	if ( rwmb_meta('_kt_choose_video') == 'youtube' ){
+		return video_youtube($video_id);
+	} else {
+		return video_vimeo($video_id);
+	}
+}
