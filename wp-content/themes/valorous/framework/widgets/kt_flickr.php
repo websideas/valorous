@@ -55,7 +55,7 @@ class Widget_KT_Flickr extends WP_Widget {
                 				p_url = "http://www.flickr.com/photos/" +
                 				photo.owner + "/" + photo.id;
                 
-                				s +=  '<a href="' + p_url + '">' + '<img alt="'+
+                				s +=  '<a target="_blank" href="' + p_url + '">' + '<img alt="'+
                 				photo.title + '"src="' + t_url + '"/>' + '</a>';
                 			}
                 
