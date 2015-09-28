@@ -251,6 +251,11 @@ if(is_admin()){
                 .btn.btn-dark:hover,
                 .btn.btn-dark:focus,
 
+                .kt_image_banner:hover .btn-default,
+                .kt_image_banner:hover .btn-light,
+                .kt_image_banner:hover .btn-dark,
+
+
                 .woocommerce #respond input#submit.alt,
                 .woocommerce a.button.alt,
                 .woocommerce button.button.alt,

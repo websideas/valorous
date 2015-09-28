@@ -13,9 +13,31 @@ Blog example
 http://blog.piotrkwiatkowski.co.uk/
 http://timothyachumba.com/
 
+Men fashion
+	http://www.fashionbeans.com/
+	http://www.gq.com/style
+	http://www.gq-magazine.co.uk/style
+	http://www.esquire.com/style/mens-fashion/
+
+Wedding
+	http://blog.clicksposi.com/
 
 ========================================================================================================================
 
+
+Shop example:
+http://oldnavy.gap.com/#close
+http://www.thebay.com/webapp/wcs/stores/servlet/en/thebay#!/
+http://www.topman.com/?geoip=home
+http://www.fashionandyou.com/men
+http://www.zando.co.za/men/
+http://www.zappos.com/mens
+http://www.zalora.sg/men/
+http://bananarepublic.gap.com/browse/division.do?cid=5343&mlink=8049655,topNavM&clink=8049655&redirect=true
+http://www.boohoo.com/restofworld/mens-clothing/icat/mens-clothing
+http://www.esquire.co.uk/style/
+
+========================================================================================================================
 
 My fave moments
 MOST POPULAR
