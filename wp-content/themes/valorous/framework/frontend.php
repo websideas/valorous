@@ -537,8 +537,19 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
         <nav class="navigation post-navigation clearfix">
             <div class="nav-links">
                 <?php
-                    previous_post_link('<div class="nav-previous"><span class="meta-nav">'.__('Previous:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Previous post link', THEME_LANG ), TRUE);
-                    next_post_link('<div class="nav-next"><span class="meta-nav">'.__('Next:', THEME_LANG).'</span>%link</div>', _x( ' %title', 'Next post link', THEME_LANG ), TRUE);
+                    $link_blog = '';
+                    if( get_option( 'page_for_posts' ) ){
+                        $link_blog = get_permalink( get_option( 'page_for_posts' ) );
+                    }else{
+                        $link_blog = get_site_url();
+                    }
+                    echo '<div class="nav-blog meta-nav"><a href="'.$link_blog.'"><span>
+							<i class="b1 c1"></i><i class="b1 c2"></i><i class="b1 c3"></i>
+							<i class="b2 c1"></i><i class="b2 c2"></i><i class="b2 c3"></i>
+							<i class="b3 c1"></i><i class="b3 c2"></i><i class="b3 c3"></i>
+						</span></a></div>';
+                    previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE);
+                    next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE);
                 ?>
             </div><!-- .nav-links -->
         </nav><!-- .navigation -->

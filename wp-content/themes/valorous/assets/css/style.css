@@ -6481,77 +6481,187 @@ article.post-item.post-layout-classic {
     display: inline-block;
 }
 
-.post-navigation {
-    margin-bottom: 55px;
-    margin-top: -30px;
-    line-height: 1;
-}
 
-.post-navigation .nav-links div {
-    color: #999;
-    display: block;
-    font-size: 14px;
-    text-align: left;
+.post-navigation{
     position: relative;
-    max-width: 275px;
+    margin-bottom:50px;
 }
-
-.post-navigation .nav-links span {
-
-}
-
-.post-navigation .nav-links span {
-    color: #dddddd;
-    display: block;
-    font-size: 11px;
-    margin-bottom: 7px;
-    text-transform: uppercase;
-}
-
-.post-navigation .nav-links a {
-    display: block;
-    line-height: normal;
-}
-
-.post-navigation div.nav-previous {
-    float: left;
-    padding-left: 40px;
-}
-
-.post-navigation div.nav-next {
+.post-navigation .nav-next{
     float: right;
-    text-align: right;
-    padding-right: 40px;
 }
-
-.post-navigation div a:after {
-    font-family: 'FontAwesome';
+.post-navigation .meta-nav a{
+    border: 2px solid #b5b8bb;
+    height: 56px;
+    opacity: 0.5;
+    text-align: center;
+    transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    width: 56px;
+    display: block;
+    position: relative;
+}
+.post-navigation .meta-nav.nav-previous a span,
+.post-navigation .meta-nav.nav-next a span{
     position: absolute;
-    color: #dddddd;
-    font-size: 56px;
-    font-weight: normal;
-    margin-top: -11px;
-    height: 22px;
-    line-height: 22px;
+    transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    width: 100px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.post-navigation .meta-nav.nav-previous a span{
+    left: 60px;
     top: 50%;
+    text-align: left;
 }
+.post-navigation .meta-nav.nav-next a span{
+    right: 60px;
+    top: 50%;
+    text-align: right;
+}
+.post-navigation .meta-nav.nav-previous a:before,
+.post-navigation .meta-nav.nav-previous a:after,
+.post-navigation .meta-nav.nav-next a:before,
+.post-navigation .meta-nav.nav-next a:after{
+    background-color: #171717;
+    border-radius: 1px;
+    content: "";
+    height: 2px;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    top: 50%;
+    transform-origin: 50% 50% 0;
+    -webkit-transform-origin: 50% 50% 0;
+    -moz-transform-origin: 50% 50% 0;
+    -ms-transform-origin: 50% 50% 0;
+    transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -webkit-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -moz-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -ms-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    width: 10px;
+}
+.post-navigation .meta-nav.nav-next a:after{
+    margin-top: 2px;
+    transform: rotate(-45deg);
+    -webkir-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+.post-navigation .meta-nav.nav-next a:hover:after{
+    transform: rotate(135deg);
+    -webkir-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+}
+.post-navigation .meta-nav.nav-next a:before{
+    margin-top: -4px;
+    transform: rotate(45deg);
+    -webkir-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.post-navigation .meta-nav.nav-next a:hover:before{
+    transform: rotate(-135deg);
+    -webkir-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+}
+.post-navigation .meta-nav.nav-previous a:before{
+    margin-top: 2px;
+    transform: rotate(45deg);
+    -webkir-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.post-navigation .meta-nav.nav-previous a:hover:before{
+    transform: rotate(-135deg);
+    -webkir-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+}
+.post-navigation .meta-nav.nav-previous a:after{
+    margin-top: -4px;
+    transform: rotate(-45deg);
+    -webkir-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+.post-navigation .meta-nav.nav-previous a:hover:after{
+    transform: rotate(135deg);
+    -webkir-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+}
+.post-navigation .nav-blog a{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.post-navigation .nav-previous{
+    float:left;
+}
+.post-navigation .meta-nav.nav-blog a span{
+    overflow: hidden;
+    position: relative;
+    height:32px;
+    display: block;
+    margin:10px;
+}
+.post-navigation .meta-nav.nav-blog a span i{
+    display:block;
+	position:absolute;
+	background-color:#000;
+	width:10px;
+	height:0;
+	-webkit-transition-property: height, -webkit-transform;
+	   -moz-transition-property: height, -moz-transform;
+	     -o-transition-property: height, -o-transform;
+	        transition-property: height, transform;
+	-webkit-transition-duration: 0.5s;
+	   -moz-transition-duration: 0.5s;
+	     -o-transition-duration: 0.5s;
+	        transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(.75,0,.3,1);
+	   -moz-transition-timing-function: cubic-bezier(.75,0,.3,1);
+	     -o-transition-timing-function: cubic-bezier(.75,0,.3,1);
+	        transition-timing-function: cubic-bezier(.75,0,.3,1);
+}
+.post-navigation .meta-nav.nav-blog a span i.c1{ left:0px; }
+.post-navigation .meta-nav.nav-blog a span i.c2{ left:11px; }
+.post-navigation .meta-nav.nav-blog a span i.c3{ left:22px; }
 
-.post-navigation div.nav-previous a:after {
-    content: "\f100";
-    left: 0;
-}
+.post-navigation .meta-nav.nav-blog a i.c1.b1{ height:11px; 	-webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	-o-transform: translate(0, 0); 		transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a i.c1.b2{ height:11px; 	-webkit-transform: translate(0, 12px); 	-moz-transform: translate(0, 12px); 	-o-transform: translate(0, 12px); 	transform: translate(0, 12px); }
+.post-navigation .meta-nav.nav-blog a i.c1.b3{ height:11px; 	-webkit-transform: translate(0, 44px); 	-moz-transform: translate(0, 44px); -o-transform: translate(0, 44px); 	transform: translate(0, 44px); }
+.post-navigation .meta-nav.nav-blog a i.c2.b1{ height:14px; -webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	-o-transform: translate(0, 0); 		transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a i.c2.b2{ height:11px; 	-webkit-transform: translate(0, 15px); 	-moz-transform: translate(0, 15px); -o-transform: translate(0, 15px); 	transform: translate(0, 15px); }
+.post-navigation .meta-nav.nav-blog a i.c2.b3{ height:11px; 	-webkit-transform: translate(0, 39px); 	-moz-transform: translate(0, 39px); -o-transform: translate(0, 39px); 	transform: translate(0, 39px); }
+.post-navigation .meta-nav.nav-blog a i.c3.b1{ height:9px; 	-webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	-o-transform: translate(0, 0); 		transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a i.c3.b2{ height:11px; 	-webkit-transform: translate(0, 10px); 	-moz-transform: translate(0, 10px); 	-o-transform: translate(0, 10px); 	transform: translate(0, 10px); }
+.post-navigation .meta-nav.nav-blog a i.c3.b3{ height:11px; 	-webkit-transform: translate(0, 37px); 	-moz-transform: translate(0, 37px); -o-transform: translate(0, 37px); 	transform: translate(0, 37px); }
 
-.post-navigation div.nav-next a:after {
-    content: "\f101";
-    right: 0;
-}
-
-.post-navigation .nav-links div:hover a,
-.post-navigation .nav-links a:hover,
-.post-navigation .nav-links div:hover a:after {
-    color: #393f43;
-    text-decoration: none;
-}
+.post-navigation .meta-nav.nav-blog a:hover i.c1.b1{ height:11px; 	-webkit-transform: translate(0, -12px); 	-moz-transform: translate(0, -12px);	 -o-transform: translate(0, -12px); 	transform: translate(0, -12px); }
+.post-navigation .meta-nav.nav-blog a:hover i.c1.b2{ height:11px; 	-webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	 -o-transform: translate(0, 0); 	transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a:hover i.c1.b3{ height:11px; 	-webkit-transform: translate(0, 12px); 	-moz-transform: translate(0, 12px); 	 -o-transform: translate(0, 12px); 	transform: translate(0, 12px); }
+.post-navigation .meta-nav.nav-blog a:hover i.c2.b1{ height:14px; 	-webkit-transform: translate(0, -15px); -moz-transform: translate(0, -15px); -o-transform: translate(0, -15px); transform: translate(0, -15px); }
+.post-navigation .meta-nav.nav-blog a:hover i.c2.b2{ height:14px; 	-webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	 -o-transform: translate(0, 0); 	transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a:hover i.c2.b3{ height:11px; 	-webkit-transform: translate(0, 15px); 	-moz-transform: translate(0, 15px);  -o-transform: translate(0, 15px); 	transform: translate(0, 15px); }
+.post-navigation .meta-nav.nav-blog a:hover i.c3.b1{ height:9px; 	-webkit-transform: translate(0, -10px); 	-moz-transform: translate(0, -10px);  -o-transform: translate(0, -10px); 	transform: translate(0, -10px); }
+.post-navigation .meta-nav.nav-blog a:hover i.c3.b2{ height:9px; 	-webkit-transform: translate(0, 0); 	-moz-transform: translate(0, 0); 	 -o-transform: translate(0, 0); 	transform: translate(0, 0); }
+.post-navigation .meta-nav.nav-blog a:hover i.c3.b3{ height:11px; 	-webkit-transform: translate(0, 10px); 	-moz-transform: translate(0, 10px); 	 -o-transform: translate(0, 2px); 	transform: translate(0, 10px); }
 
 #related-article .title-article {
     border-bottom: 1px solid #e3e3e3;
