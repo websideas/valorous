@@ -964,3 +964,48 @@ if(!function_exists('kt_color2hecxa')){
         return $color;
     }
 }
+
+if(!function_exists('video_youtube')) {
+    /**
+     * Video youtube Embed
+     *
+     * @param $video_id
+     * @return string
+     */
+    function video_youtube($video_id)
+    {
+        return '<iframe itemprop="video" src="http://www.youtube.com/embed/' . $video_id . '?wmode=transparent" ></iframe>';
+    }
+}
+
+
+if(!function_exists('video_vimeo')) {
+    /**
+     * Video Vimeo Embed
+     *
+     * @param $video_id
+     * @return string
+     */
+    function video_vimeo($video_id)
+    {
+        return '<iframe itemprop="video" src="http://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0?wmode=transparent"></iframe>';
+    }
+}
+
+
+if(!function_exists('video_embed')) {
+    /**
+     * Video Embed
+     *
+     * @param $video_id
+     * @return string
+     */
+    function video_embed($video_id)
+    {
+        if (rwmb_meta('_kt_choose_video') == 'youtube') {
+            return video_youtube($video_id);
+        } else {
+            return video_vimeo($video_id);
+        }
+    }
+}

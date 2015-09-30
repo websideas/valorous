@@ -85,9 +85,18 @@ function kt_register_meta_boxes( $meta_boxes )
                 ),
             ),
             array(
-                'name' => __( 'Video link', THEME_LANG ),
-                'id' => $prefix . 'video_link',
-                'desc' => sprintf( __( 'Enter link to video (Note: read more about available formats at WordPress <a href="%s" target="_blank">codex page</a>).', THEME_LANG ), 'http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F' ),
+                'name' => __('Choose Video', THEME_LANG),
+                'id' => $prefix . 'choose_video',
+                'type'     => 'select',
+                'options'  => array(
+                    'youtube' => __('Youtube', THEME_LANG),
+                    'vimeo' => __('Vimeo', THEME_LANG),
+                ),
+            ),
+            array(
+                'name' => __( 'Video id', THEME_LANG ),
+                'id' => $prefix . 'video_id',
+                'desc' => sprintf( __( 'Enter id of video .Example: <br />- Link video youtube: https://www.youtube.com/watch?v=nPOO1Coe2DI id of video: nPOO1Coe2DI <br /> -Link vimeo: https://vimeo.com/70296428 id video: 70296428.', THEME_LANG ) ),
                 'type'  => 'text',
             ),
         ),

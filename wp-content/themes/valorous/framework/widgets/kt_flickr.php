@@ -55,7 +55,7 @@ class Widget_KT_Flickr extends WP_Widget {
                 				p_url = "http://www.flickr.com/photos/" +
                 				photo.owner + "/" + photo.id;
                 
-                				s +=  '<a href="' + p_url + '">' + '<img alt="'+
+                				s +=  '<a target="_blank" href="' + p_url + '">' + '<img alt="'+
                 				photo.title + '"src="' + t_url + '"/>' + '</a>';
                 			}
                 
@@ -93,7 +93,7 @@ class Widget_KT_Flickr extends WP_Widget {
 
     public function form( $instance ) {
 
-        $defaults = array( 'title' => __( 'Flickr' , THEME_LANG), 'type' => '', 'user_id' => '', 'number' => 9, 'ordering' => '', 'column' => 3, 'api' => 'c9d2c2fda03a2ff487cb4769dc0781ea' );
+        $defaults = array( 'title' => __( 'Flickr' , THEME_LANG), 'type' => '', 'user_id' => '', 'number' => 9, 'ordering' => '', 'column' => 3, 'api' => '6346cf3fc74387e93b84f0d22c78939a' );
         $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title = strip_tags($instance['title']);
@@ -125,7 +125,7 @@ class Widget_KT_Flickr extends WP_Widget {
         <p>
 			<label for="<?php echo $this->get_field_id('api'); ?>">API key (Use default or get your own from <a href="http://www.flickr.com/services/apps/create/apply">Flickr APP Garden</a>):</label>
 			<input class="widefat" type="text" id="<?php echo $this->get_field_id('api'); ?>" name="<?php echo $this->get_field_name('api'); ?>" value="<?php echo $instance['api']; ?>" />
-			<small>Default key is: c9d2c2fda03a2ff487cb4769dc0781ea</small>
+			<small>Default key is: 6346cf3fc74387e93b84f0d22c78939a</small>
 		</p>
     <?php
     }
