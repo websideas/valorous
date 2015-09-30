@@ -2033,6 +2033,31 @@ h2.widgettitle a.rsswidget:first-child,
 /*===== About me =====*/
 .kt-aboutwidget-img{
     margin-bottom: 20px;
+    position: relative;
+}
+
+.kt-aboutwidget-socials{
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    line-height: 30px;
+    list-style: outside none none;
+    margin: 0;
+    padding: 10px 0 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 40px;
+}
+
+.kt-aboutwidget-socials a{
+    display: block;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+.kt-aboutwidget-socials a:hover{
+    color: #d0a852;
 }
 
 .kt-aboutwidget-title{
@@ -2041,6 +2066,7 @@ h2.widgettitle a.rsswidget:first-child,
     letter-spacing: 1px;
     color: #d0a852;
 }
+
 /*===== About me =====*/
 .widget_kt_socials .socials-icon-wrapper{
     margin-bottom: 0;
@@ -2557,10 +2583,6 @@ body.admin-bar .sticky-header-down.header-container.is-sticky.sticky .apply-stic
 
 #footer-copyright .socials-icon-wrapper {
     margin: 0;
-}
-
-#footer-copyright .socials-icon-wrapper a {
-    color: #787878 !important;
 }
 
 #bottom-nav > ul {

@@ -188,6 +188,7 @@ if(is_admin()){
                     border-color: <?php echo $accent; ?>;
                 }
 
+                .kt-aboutwidget-socials a:hover,
                 .entry-meta-data,
                 .entry-meta-data a,
                 .search-heading .search-keyword,

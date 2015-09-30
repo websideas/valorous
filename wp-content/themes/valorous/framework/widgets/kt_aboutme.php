@@ -29,9 +29,17 @@ class WP_Widget_KT_AboutMe extends WP_Widget {
         echo "<div class='kt-aboutwidget-content'>";
         $attachment = get_thumbnail_attachment($instance['attachment'], $instance['size']);
         if($attachment){
-            echo "<p class='kt-aboutwidget-img'>";
+            echo "<div class='kt-aboutwidget-img'>";
             echo "<img src='".$attachment['url']."' alt='".esc_attr($attachment['alt'])."' class='img-responsive' title='".esc_attr($attachment['title'])."'/>";
-            echo "</p>";
+            ?>
+            <ul class="kt-aboutwidget-socials">
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+            <?php
+            echo "</div>";
         }
         if($instance['name']) {
             echo '<h4 class="kt-aboutwidget-title">'.$instance['name'].'</h4>';
