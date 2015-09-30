@@ -29,82 +29,15 @@ class WP_Widget_KT_Socials extends WP_Widget {
 
 
         $space_between_item    = isset( $instance['space_between_item'] ) ? absint( $instance['space_between_item'] ) : 3;
+        $custom_color    = isset( $instance['custom_color'] ) ? $instance['custom_color'] : '#d0a852';
         
 		echo $args['before_widget'];
         
         if ( $title ) {
             echo $args['before_title'] . $title . $args['after_title'];
-        }
-            $social_icons = '';
+        }   
+            echo do_shortcode('[socials social="'.$value.'" align="'.$align.'" tooltip="'.$tooltip.'" space_between_item="'.$space_between_item.'" size="'.$size.'" style="'.$style.'" custom_color="'.$custom_color.'" background_style="'.$background_style.'"]');
             
-            $socials_arr = array(
-                'facebook' => array('title' => __('Facebook', THEME_LANG), 'icon' => 'fa fa-facebook', 'link' => '%s'),
-                'twitter' => array('title' => __('Twitter', THEME_LANG), 'icon' => 'fa fa-twitter', 'link' => 'http://www.twitter.com/%s'),
-                'dribbble' => array('title' => __('Dribbble', THEME_LANG), 'icon' => 'fa fa-dribbble', 'link' => 'http://www.dribbble.com/%s'),
-                'vimeo' => array('title' => __('Vimeo', THEME_LANG), 'icon' => 'fa fa-vimeo-square', 'link' => 'http://www.vimeo.com/%s'),
-                'tumblr' => array('title' => __('Tumblr', THEME_LANG), 'icon' => 'fa fa-tumblr', 'link' => 'http://%s.tumblr.com/'),
-                'skype' => array('title' => __('Skype', THEME_LANG), 'icon' => 'fa fa-skype', 'link' => 'skype:%s'),
-                'linkedin' => array('title' => __('LinkedIn', THEME_LANG), 'icon' => 'fa fa-linkedin', 'link' => '%s'),
-                'googleplus' => array('title' => __('Google Plus', THEME_LANG), 'icon' => 'fa fa-google-plus', 'link' => '%s'),
-                'youtube' => array('title' => __('Youtube', THEME_LANG), 'icon' => 'fa fa-youtube', 'link' => 'http://www.youtube.com/user/%s'),
-                'pinterest' => array('title' => __('Pinterest', THEME_LANG), 'icon' => 'fa fa-pinterest', 'link' => 'http://www.pinterest.com/%s'),
-                'instagram' => array('title' => __('Instagram', THEME_LANG), 'icon' => 'fa fa-instagram', 'link' => 'http://instagram.com/%s'),
-            );
-            
-            foreach($socials_arr as $k => &$v){
-                $val = kt_option($k);
-                $v['val'] = ($val) ? $val : '';
-            }
-            
-            $margin = ($space_between_item > 0) ? 'style="margin:0 '.$space_between_item.'px;"' : '';
-
-            $tooltiphtml = '';
-            if($tooltip) {
-                $tooltiphtml .= ' data-toggle="tooltip" data-placement="'.esc_attr($tooltip).'" ';
-            }
-            
-            if($value){
-                $social_type = explode(',', $value);
-                foreach ($social_type as $id) {
-                    $val = $socials_arr[$id];
-                    $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                    $social_icons .= '<li '.$margin.'><a class="'.esc_attr($id).'" title="'.esc_attr($val['title']).'" '.$tooltiphtml.' href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
-                }
-            }else{
-                foreach($socials_arr as $key => $val){
-                    $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
-                    $social_icons .= '<li '.$margin.'><a class="'.esc_attr($key).'"  '.$tooltiphtml.' title="'.esc_attr($val['title']).'" href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>'."\n";
-                }
-            }
-
-            $elementClass = array(
-                'base' => 'socials-icon-wrapper',
-                'style' => 'social-style-'.$style,
-                'size' => 'social-icons-'.$size,
-                'shape' => 'social-background-'.$background_style,
-                'clearfix' => 'clearfix'
-            );
-
-
-            if($background_style == 'empty' || $background_style == '' ){
-                $elementClass[] = 'social-background-empty';
-            }elseif ( strpos( $background_style, 'outline' ) !== false ) {
-                $elementClass[] = 'social-background-outline';
-            }else{
-                $elementClass[] = 'social-background-fill';
-            }
-
-            if($align){
-                $elementClass['align'] = 'social-icons-'.$align;
-            }
-
-            $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
-
-            echo '<div class="'.esc_attr($elementClass).'">';
-                echo '<ul class="social-nav clearfix">';
-                    echo $social_icons;
-                echo '</ul>';
-            echo "</div>";
 		echo $args['after_widget'];
 	}
 	
@@ -114,15 +47,15 @@ class WP_Widget_KT_Socials extends WP_Widget {
         $instance['title'] = strip_tags($new_instance['title']);
         
         $instance['value'] = $new_instance['value'];
-        if ( in_array( $new_instance['style'], array( 'accent', 'dark', 'light', 'color' ) ) ) {
+        if ( in_array( $new_instance['style'], array( 'accent', 'dark', 'light', 'color', 'custom' ) ) ) {
             $instance['style'] = $new_instance['style'];
         } else {
             $instance['style'] = 'accent';
         }
-        if ( in_array( $new_instance['background_style'], array( '', 'rounded', 'boxed', 'rounded-less', 'diamond-square', 'rounded-outline', 'boxed-outline', 'rounded-less-outline', 'diamond-square-outline' ) ) ) {
+        if ( in_array( $new_instance['background_style'], array( 'empty', 'rounded', 'boxed', 'rounded-less', 'diamond-square', 'rounded-outline', 'boxed-outline', 'rounded-less-outline', 'diamond-square-outline' ) ) ) {
             $instance['background_style'] = $new_instance['background_style'];
         } else {
-            $instance['background_style'] = '';
+            $instance['background_style'] = 'empty';
         }
         if ( in_array( $new_instance['size'], array( 'standard', 'small' ) ) ) {
             $instance['size'] = $new_instance['size'];
@@ -140,13 +73,14 @@ class WP_Widget_KT_Socials extends WP_Widget {
             $instance['align'] = '';
         }
         $instance['space_between_item'] = (int) $new_instance['space_between_item'];
+        $instance['custom_color'] = $new_instance['custom_color'];
         
 		return $instance;
 	}
 
 	public function form( $instance ) {
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'title' => __('Socials', THEME_LANG), 'target' => '_self', 'value' => '', 'style' => 'accent', 'background_style' => '', 'size' => 'standard', 'tooltip' => '', 'align' => '', 'space_between_item' => 3) );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => __('Socials', THEME_LANG), 'target' => '_self', 'value' => '', 'style' => 'accent', 'background_style' => '', 'size' => 'standard', 'tooltip' => '', 'align' => '', 'space_between_item' => 3, 'custom_color' => '#d0a852' ) );
         $title = strip_tags($instance['title']);
         
         $value = isset( $instance['value'] ) ? $instance['value'] : '';
@@ -156,6 +90,7 @@ class WP_Widget_KT_Socials extends WP_Widget {
         $tooltip = isset( $instance['tooltip'] ) ? $instance['tooltip'] : '';
         $align = isset( $instance['align'] ) ? $instance['align'] : '';
         $space_between_item    = isset( $instance['space_between_item'] ) ? absint( $instance['space_between_item'] ) : 3;
+        $custom_color    = isset( $instance['custom_color'] ) ? $instance['custom_color'] : '#d0a852';
 	?>
         <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
@@ -205,11 +140,14 @@ class WP_Widget_KT_Socials extends WP_Widget {
                 <option <?php selected( $style, 'dark' ); ?> value="dark"><?php _e('Dark',THEME_LANG); ?></option>
                 <option <?php selected( $style, 'light' ); ?> value="light"><?php _e('Light',THEME_LANG); ?></option>
                 <option <?php selected( $style, 'color' ); ?> value="color"><?php _e('Color',THEME_LANG); ?></option>
+                <option <?php selected( $style, 'custom' ); ?> value="custom"><?php _e('Custom Color',THEME_LANG); ?></option>
             </select>
         </p>
+        <p><label for="<?php echo $this->get_field_id( 'custom_color' ); ?>"><?php _e( 'Custom Color:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'custom_color' ); ?>" name="<?php echo $this->get_field_name( 'custom_color' ); ?>" type="text" value="<?php echo $custom_color; ?>" /></p>
         <p><label for="<?php echo $this->get_field_id('background_style'); ?>"><?php _e('Background Style:', THEME_LANG); ?></label>
             <select class="widefat" id="<?php echo $this->get_field_id('background_style'); ?>" name="<?php echo $this->get_field_name('background_style'); ?>">
-                <option <?php selected( $background_style, '' ); ?> value=""><?php _e('None',THEME_LANG); ?></option>
+                <option <?php selected( $background_style, 'empty' ); ?> value=""><?php _e('None',THEME_LANG); ?></option>
                 <option <?php selected( $background_style, 'rounded' ); ?> value="rounded"><?php _e('Circle',THEME_LANG); ?></option>
                 <option <?php selected( $background_style, 'boxed' ); ?> value="boxed"><?php _e('Square',THEME_LANG); ?></option>
                 <option <?php selected( $background_style, 'rounded-less' ); ?> value="rounded-less"><?php _e('Rounded',THEME_LANG); ?></option>
