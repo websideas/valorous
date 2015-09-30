@@ -1,5 +1,6 @@
 <?php
 define( 'TAB_TITLE', __( 'Tab', 'js_composer' ) );
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-column.php' );
 
 class WPBakeryShortCode_VC_Tab extends WPBakeryShortCode_VC_Column {
 	protected $controls_css_settings = 'tc vc_control-container';

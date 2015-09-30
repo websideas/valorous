@@ -268,6 +268,9 @@ HTML;
 	 * @since 4.4
 	 */
 	public function save() {
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+			die();
+		}
 		$template_name = vc_post_param( 'template_name' );
 		$template = vc_post_param( 'template' );
 		if ( ! isset( $template_name ) || trim( $template_name ) === "" || ! isset( $template ) || trim( $template ) === "" ) {
@@ -333,6 +336,9 @@ HTML;
 	 * @since 4.4
 	 */
 	public function delete() {
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+			die();
+		}
 		$template_id = vc_post_param( 'template_id' );
 
 		if ( ! isset( $template_id ) || $template_id === "" ) {

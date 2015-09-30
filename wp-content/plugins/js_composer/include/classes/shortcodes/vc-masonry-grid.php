@@ -1,4 +1,5 @@
 <?php
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-basic-grid.php' );
 
 class WPBakeryShortCode_VC_Masonry_Grid extends WPBakeryShortCode_VC_Basic_Grid {
 	protected function getFileName() {

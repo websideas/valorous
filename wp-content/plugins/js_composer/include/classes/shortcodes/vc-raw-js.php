@@ -1,4 +1,5 @@
 <?php
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-raw-html.php' );
 
 class WPBakeryShortCode_VC_Raw_js extends WPBakeryShortCode_VC_Raw_html {
 	protected function getFileName() {

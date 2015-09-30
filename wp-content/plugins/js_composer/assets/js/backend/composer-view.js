@@ -693,7 +693,7 @@
 		renderPlaceholder: function ( event, element ) {
 			var tag = $( element ).data( 'element_type' );
 			var is_container = _.isObject( vc.map[ tag ] ) && ( ( _.isBoolean( vc.map[ tag ].is_container ) && true === vc.map[ tag ].is_container ) || ! _.isEmpty( vc.map[ tag ].as_parent ) );
-			var $helper = $( '<div class="vc_helper vc_helper-' + tag + '"><i class="vc_element-icon'
+			var $helper = $( '<div class="vc_helper vc_helper-' + tag + '"><i class="vc_general vc_element-icon'
 			+ ( vc.map[ tag ].icon ? ' ' + vc.map[ tag ].icon : '' )
 			+ '"'
 			+ ( is_container ? ' data-is-container="true"' : '' )

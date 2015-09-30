@@ -782,3 +782,32 @@ if ( ! function_exists( 'kt_register_account' ) ) :
 endif;
 
 
+if ( ! function_exists( 'kt_theme_before_main' ) ) :
+    /**
+     * Add <div> overlap before row main
+     *
+     */
+    function kt_theme_before_main(){
+        $overlap = rwmb_meta('_kt_overlap_content');
+        if($overlap == 'yes'){
+            echo "<div class='overlap-maincontent'>";
+        }
+    }
+    add_action('theme_before_main', 'kt_theme_before_main');
+endif;
+
+
+
+if ( ! function_exists( 'kt_theme_after_main' ) ) :
+    /**
+     * Add </div> overlap after row main
+     *
+     */
+    function kt_theme_after_main(){
+        $overlap = rwmb_meta('_kt_overlap_content');
+        if($overlap == 'yes'){
+            echo "</div>";
+        }
+    }
+    add_action('theme_after_main', 'kt_theme_after_main');
+endif;

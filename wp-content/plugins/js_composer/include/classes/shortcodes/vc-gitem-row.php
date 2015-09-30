@@ -1,4 +1,5 @@
 <?php
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-row.php' );
 
 Class WPBakeryShortCode_VC_Gitem_Row extends WPBakeryShortCode_VC_Row {
 	public function getLayoutsControl() {

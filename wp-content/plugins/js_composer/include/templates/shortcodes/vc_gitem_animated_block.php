@@ -4,7 +4,6 @@
  * @var $atts
  * @var $css
  * @var $animation
- * @var $bgimage
  * @var $content - shortcode content
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Gitem_Animated_Block

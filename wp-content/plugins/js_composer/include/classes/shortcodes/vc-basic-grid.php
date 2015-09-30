@@ -1,4 +1,5 @@
 <?php
+require_once vc_path_dir( 'SHORTCODES_DIR', 'paginator/class-vc-pageable.php' );
 
 class WPBakeryShortCode_VC_Basic_Grid extends WPBakeryShortCode_Vc_Pageable {
 	public $pagable_type = 'grid';

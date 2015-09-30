@@ -430,6 +430,9 @@ if ( _.isUndefined( window.vc ) ) {
 		processImages( ids, finishImageProcessing );
 
 		function finishImageProcessing( newAttachments ) {
+			if ( ! window.vc || ! window.vc.active_panel ) {
+				return false; // in case if user cloused the editor panel.
+			}
 			var attachments,
 				objects;
 

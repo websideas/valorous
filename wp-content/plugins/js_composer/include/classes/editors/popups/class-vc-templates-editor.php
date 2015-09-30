@@ -65,6 +65,9 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated 4.4 and will be removed, use Vc_Templates_Panel_Editor::save
 	 */
 	public function save() {
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+			die();
+		}
 		$template_name = vc_post_param( 'template_name' );
 		$template = vc_post_param( 'template' );
 		if ( ! isset( $template_name ) || trim( $template_name ) === "" || ! isset( $template ) || trim( $template ) === "" ) {
@@ -145,6 +148,9 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated 4.4 and will be removed, use Vc_Templates_Panel_Editor::delete
 	 */
 	public function delete() {
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+			die();
+		}
 		$template_id = vc_post_param( 'template_id' );
 
 		if ( ! isset( $template_id ) || $template_id === "" ) {

@@ -61,7 +61,9 @@ window.vc.addTemplateFilter = function ( callback ) {
 					'' );
 				window.tinyMCEPreInit.mceInit[ textfield_id ].wp_autoresize_on = false;
 			}
-			if ( vc.edit_element_block_view.model ) {
+			if ( vc.edit_element_block_view && vc.edit_element_block_view.currentModelParams ) {
+				$element.val( vc.edit_element_block_view.currentModelParams[ $content_holder.attr( 'name' ) ] || '' );
+			} else {
 				$element.val( $content_holder.val() );
 			}
 			quicktags( window.tinyMCEPreInit.qtInit[ textfield_id ] );
@@ -1453,9 +1455,9 @@ window.vc.addTemplateFilter = function ( callback ) {
 				fn( this.$el, this, param );
 			}
 
-			if ( 'content' !== param.param_name ) {
+/*			if ( 'content' !== param.param_name ) {
 				value = vcEscapeHtml( value );
-			}
+			}*/
 
 			return value;
 		},
@@ -1618,7 +1620,7 @@ window.vc.addTemplateFilter = function ( callback ) {
 			return base64_encode( rawurlencode( new_value ) );
 		},
 		render: function ( param, value ) {
-			return $( "<div/>" ).text( rawurldecode( base64_decode( value.trim() ) ) ).html();
+			return value ? $( "<div/>" ).text( rawurldecode( base64_decode( value.trim() ) ) ).html() : '';
 		}
 	};
 

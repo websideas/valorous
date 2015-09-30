@@ -77,6 +77,9 @@ class Vc_License {
 	 *
 	 */
 	public function activate() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			die();
+		}
 		$params = array();
 		$params['username'] = vc_post_param( 'username' );
 		$params['version'] = WPB_VC_VERSION;
@@ -113,6 +116,9 @@ class Vc_License {
 	 *
 	 */
 	public function deactivate() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			die();
+		}
 		$params = array();
 		$params['dkey'] = $this->deactivation();
 		$string = 'deactivatelicense?';

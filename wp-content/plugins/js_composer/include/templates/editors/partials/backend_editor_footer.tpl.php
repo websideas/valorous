@@ -20,11 +20,13 @@ $edit_layout = new Vc_Edit_Layout();
 $edit_layout->renderUITemplate();
 global $current_user;
 get_currentuserinfo();
+
+vc_include_settings_preset_class();
 ?>
 <script type="text/javascript">
 	var vc_user_mapper = <?php echo json_encode(WPBMap::getUserShortCodes()) ?>,
 		vc_mapper = <?php echo json_encode(WPBMap::getShortCodes()) ?>,
-		vc_settings_presets = <?php echo json_encode(vc_list_default_settings_presets()) ?>,
+		vc_settings_presets = <?php echo json_encode(Vc_Settings_Preset::listDefaultSettingsPresets()) ?>,
 		vc_roles = <?php echo json_encode( array_merge( array( 'current_user' => $current_user->roles ), (array) vc_settings()->get( 'groups_access_rules' ) ) ); ?>,
 		vc_frontend_enabled = <?php echo vc_enabled_frontend() ? 'true' : 'false' ?>,
 		vc_mode = '<?php echo vc_mode() ?>';

@@ -513,8 +513,8 @@ class Vc_Settings {
 			'vc_updater_wrong_data' => sprintf( __( 'Invalid data. Check your information or open support ticket at <a href="%s" target="_blank">%s</a>.', 'js_composer' ), 'http://support.wpbakery.com', 'support.wpbakery.com' ),
 			'vc_updater_already_activated' => __( 'License successfully activated.', 'js_composer' ),
 			'vc_updater_already_activated_another_url' => sprintf( __( 'Your License Key is already activated on another site ({site}), you should deactivate it first or <a href="%s" target="_blank">obtain new License Key</a>.', 'js_composer' ), esc_url( "http://bit.ly/vcomposer" ) ),
-			'vc_updater_activate_license' => __( 'Activate License.', 'js_composer' ),
-			'vc_updater_deactivate_license' => __( 'Deactivate License.', 'js_composer' ),
+			'vc_updater_activate_license' => __( 'Activate License', 'js_composer' ),
+			'vc_updater_deactivate_license' => __( 'Deactivate License', 'js_composer' ),
 			'wrong_username_api_key' => sprintf( __( 'Invalid Username and/or API Key. Check your data or read <a href="%s" target="_blank">tutorial</a>.', 'js_composer' ), 'http://go.wpbakery.com/activation' ),
 			'saving' => __( 'Saving...', 'js_composer' ),
 			'save' => __( 'Save Changes', 'js_composer' ),
@@ -1185,6 +1185,9 @@ class Vc_Settings {
 	 * @deprecated
 	 */
 	public static function removeNotification() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			die();
+		}
 		update_option( self::$notification_name, 'false' );
 	}
 

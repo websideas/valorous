@@ -1206,6 +1206,19 @@ vc_map( array(
 		),
 		array(
 			'type' => 'dropdown',
+			'heading' => __( 'Border color', 'js_composer' ),
+			'param_name' => 'external_border_color',
+			'value' => getVcShared( 'colors' ),
+			'std' => 'grey',
+			'dependency' => array(
+				'element' => 'external_style',
+				'value' => array( 'vc_box_border', 'vc_box_border_circle', 'vc_box_outline', 'vc_box_outline_circle' )
+			),
+			'description' => __( 'Border color.', 'js_composer' ),
+			'param_holder_class' => 'vc_colored-dropdown'
+		),
+		array(
+			'type' => 'dropdown',
 			'heading' => __( 'On click action', 'js_composer' ),
 			'param_name' => 'onclick',
 			'value' => array(

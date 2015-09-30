@@ -1,4 +1,5 @@
 <?php
+require_once vc_path_dir( 'SHORTCODES_DIR', 'vc-tab.php' );
 
 class WPBakeryShortCode_VC_Accordion_tab extends WPBakeryShortCode_VC_Tab {
 	protected $controls_css_settings = 'tc vc_control-container';

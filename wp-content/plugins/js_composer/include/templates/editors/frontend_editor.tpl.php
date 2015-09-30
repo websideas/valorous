@@ -12,6 +12,7 @@ $menu = array();
 add_thickbox();
 wp_enqueue_media( array( 'post' => $editor->post_id ) );
 require_once( $editor->adminFile( 'admin-header.php' ) );
+vc_include_settings_preset_class();
 ?>
 	<div id="vc_preloader"></div>
 	<script type="text/javascript">
@@ -55,7 +56,7 @@ vc_include_template( 'editors/partials/frontend_controls.tpl.php' );
 	<script type="text/javascript">
 		var vc_user_mapper = <?php echo json_encode(WPBMap::getUserShortCodes()) ?>,
 			vc_mapper = <?php echo json_encode(WPBMap::getShortCodes()) ?>,
-			vc_settings_presets = <?php echo json_encode(vc_list_default_settings_presets()) ?>,
+			vc_settings_presets = <?php echo json_encode(Vc_Settings_Preset::listDefaultSettingsPresets()) ?>,
 			vc_roles = <?php echo json_encode( array_merge( array( 'current_user' => $editor->current_user->roles ), (array) vc_settings()->get( 'groups_access_rules' ) ) ) ?>;
 	</script>
 

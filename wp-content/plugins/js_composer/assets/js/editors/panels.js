@@ -646,6 +646,7 @@
 		// @deprecated 4.7
 		notRequestTemplate: false,
 		requiredParamsInitialized: false,
+		currentModelParams: false,
 		events: {
 			'click [data-save=true]': 'save',
 			'click [data-dismiss=panel]': 'hide',
@@ -676,6 +677,7 @@
 				this.notRequestTemplate = true;
 			}
 			this.model = model;
+			this.currentModelParams = this.model.get('params');
 			vc.active_panel = this;
 			this.resetMinimize();
 			this.clicked = false;
@@ -716,7 +718,13 @@
 			$panelHeader = this.$el.find( '[data-vc-ui-element="panel-header-content"]' );
 			$tabs.prependTo( $panelHeader );
 			this.$content.html( $data );
-			this.$content.removeData( 'vcParamInitialized' );
+			this.$content.removeAttr( 'data-vc-param-initialized' );
+			this.active_tab_index = 0;
+			this.tabsInit = false;
+			this.panelInit = false;
+			this.dependent_elements = {};
+			this.requiredParamsInitialized = false;
+			this.$content.find( '[data-vc-param-initialized]' ).removeAttr( 'data-vc-param-initialized' );
 			this.init();
 			// In Firefox, scrollTop(0) is buggy, scrolling to non-0 value first fixes it
 			this.$content.parent().scrollTop( 1 ).scrollTop( 0 );
@@ -1172,6 +1180,7 @@
 			var parent_id;
 
 			parent_id = this.model.get( 'parent_id' );
+			this.currentModelParams = params;
 			// @todo update with event
 			// generate new random tab_id if needed
 
@@ -1256,7 +1265,7 @@
 			if ( ! $content.length ) {
 				$content = this.content();
 			}
-			if ( ! $content.data( 'vcParamInitialized' ) ) {
+			if ( ! $content.attr( 'data-vc-param-initialized' ) ) {
 				$( '[data-vc-ui-element="panel-shortcode-param"]', $content ).each( function () {
 					var $field;
 					var param;
@@ -1267,7 +1276,7 @@
 						$field.data( 'vcInitParam', true );
 					}
 				} );
-				$content.data( 'vcParamInitialized', true );
+				$content.attr( 'data-vc-param-initialized', true );
 			}
 			if ( ! this.requiredParamsInitialized && ! _.isUndefined( vc.required_params_to_init ) ) {
 				$( '[data-vc-ui-element="panel-shortcode-param"]', this.content() ).each( function () {
@@ -1460,6 +1469,7 @@
 			this.ajax && this.ajax.abort();
 			this.ajax = false;
 			vc.active_panel = false;
+			this.currentModelParams = false;
 			this._killEditor();
 			this.$el.removeClass( 'vc_active' );
 			this.$el.find( '.vc_properties-list' ).removeClass( 'vc_with-tabs' ).css( 'margin-top', 'auto' );

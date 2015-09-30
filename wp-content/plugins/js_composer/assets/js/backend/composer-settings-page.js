@@ -28,13 +28,15 @@ jQuery( document ).ready( function ( $ ) {
 		var tab_id = $( this ).attr( 'href' );
 		$( '.vc_settings-tabs > .nav-tab-active' ).removeClass( 'nav-tab-active' );
 		$( this ).addClass( 'nav-tab-active' );
+		/*
+		@deprecated since 4.7.1 and will be removed in 4.8. #48381311685558
 		$( '.vc_settings-tab-content' ).hide().removeClass( 'vc_settings-tab-content-active' );
 		$( tab_id ).fadeIn( 400, function () {
 			$( this ).addClass( 'vc_settings-tab-content-active' );
 			if ( window.css_editor ) {
 				window.css_editor.focus();
 			}
-		} );
+		} );*/
 	} );
 	$( '.vc_settings-tab-content' ).submit( function () {
 		return true;

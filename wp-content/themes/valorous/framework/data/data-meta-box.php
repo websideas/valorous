@@ -768,6 +768,18 @@ function kt_register_meta_boxes( $meta_boxes )
                 'tab'  => 'page_layout',
             ),
             array(
+                'name' => __('Overlap Main content', THEME_LANG),
+                'id' => $prefix . 'overlap_content',
+                'desc' => __("Overlap main content to slideshow or page header.", THEME_LANG),
+                'type' => 'select',
+                'options' => array(
+                    '' => __('Select Option', THEME_LANG),
+                    'yes' => __('Yes', THEME_LANG),
+                    'no' => __('No', THEME_LANG),
+                ),
+                'tab'  => 'page_layout',
+            ),
+            array(
                 'name' => __('Sidebar configuration', THEME_LANG),
                 'id' => $prefix . 'sidebar',
                 'desc' => __("Choose the sidebar configuration for the detail page.<br/><b>Note: Cart and checkout, My account page always use no sidebars.</b>", THEME_LANG),
