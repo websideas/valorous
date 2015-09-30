@@ -11,6 +11,7 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
     	   "social" => '',
     	   "size" => 'standard',
     	   "style" => 'accent',
+           'custom_color' => '',
            'align' => '',
            'tooltip' =>'top',
            'el_class' => '',
@@ -79,7 +80,28 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
         }else{
             $elementClass[] = 'social-background-fill';
         }
-
+        
+        $custom_css = '';
+        $rand = 'kt_social_'.rand();
+        if( $style == 'custom' ){
+            $custom_css .= '#'.$rand.'.social-style-custom.social-background-fill a{
+                color:#fff!important;
+                background:'.$custom_color.'!important;
+            }';
+            $custom_css .= '#'.$rand.'.social-style-custom.social-background-outline a{
+                color:'.$custom_color.'!important;
+                border-color:'.$custom_color.'!important;
+                background: none !important;
+            }';
+            $custom_css .= '#'.$rand.'.social-style-custom.social-background-empty a{
+                color:'.$custom_color.'!important;
+                background:none!important;
+                border:!important;
+            }';
+        }
+        if($custom_css){
+            $custom_css = '<div class="kt_custom_css" data-css="'.esc_attr($custom_css).'"></div>';
+        }
 
         if($align){
             $elementClass['align'] = 'social-icons-'.$align;
@@ -87,9 +109,9 @@ class WPBakeryShortCode_Socials extends WPBakeryShortCode {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
 
-    	$output .= '<div class="'.esc_attr( $elementClass ).'"><ul class="social-nav clearfix">';
+    	$output .= '<div id="'.$rand.'" class="'.esc_attr( $elementClass ).'"><ul class="social-nav clearfix">';
     	$output .= $social_icons;
-    	$output .= '</ul></div>';
+    	$output .= '</ul>'.$custom_css.'</div>';
      
     	return $output;
     }
@@ -124,10 +146,21 @@ vc_map( array(
                 __('Dark', THEME_LANG) => 'dark',
                 __('Light', THEME_LANG) => 'light',
                 __('Color', THEME_LANG) => 'color',
+                __('Custom Color', THEME_LANG) => 'custom',
 			),
 			"description" => __("",THEME_LANG),
             "admin_label" => true,
 		),
+        array(
+            'type' => 'colorpicker',
+            'heading' => __( 'Custom Color', 'js_composer' ),
+            'param_name' => 'custom_color',
+            'description' => __( 'Select color socials.', 'js_composer' ),
+            'dependency' => array(
+                'element' => 'style',
+                'value' => 'custom',
+            ),
+        ),
         array(
             'type' => 'dropdown',
             'heading' => __( 'Background shape', 'js_composer' ),

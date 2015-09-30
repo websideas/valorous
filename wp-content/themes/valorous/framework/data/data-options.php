@@ -538,8 +538,17 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'dark'   => __('Dark', THEME_LANG ),
                             'light'  => __('Light', THEME_LANG ),
                             'color'  => __('Color', THEME_LANG ),
+                            'custom'  => __('Custom Color', THEME_LANG ),
                         ),
                         'default'  => 'accent'
+                    ),
+                    array(
+                        'id'       => 'custom_color_social',
+                        'type'     => 'color',
+                        'title'    => __( 'Custom Color', THEME_LANG ),
+                        'default'  => '#d0a852',
+                        'transparent' => false,
+                        'required' => array('footer_socials_style','equals', array( 'custom' ) ),
                     ),
                     array(
                         'id'       => 'footer_socials_background',
