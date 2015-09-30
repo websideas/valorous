@@ -48,6 +48,11 @@ only screen and (min-resolution: 144dpi) {
         width: auto;
     }
 
+    .overlap-maincontent{
+        padding: 0;
+        margin: 0;
+    }
+
 }
 
 /* 5. Styles for devices(>=992px) */

@@ -173,6 +173,7 @@ if(is_admin()){
                 blockquote,
                 .blockquote-reverse,
                 blockquote.pull-right,
+                .fotorama__thumb-border,
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:hover,
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel.vc_active .vc_tta-panel-heading:focus,
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-body,

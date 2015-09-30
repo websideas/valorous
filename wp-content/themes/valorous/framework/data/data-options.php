@@ -2270,6 +2270,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'google'   => true,
                         'text-align'      => false,
                         'line-height'     => false,
+                        'letter-spacing'  => true,
                         'text-transform' => true,
                         'output'      => array( '.page-header h1.page-header-title' ),
                         'default'  => array(
