@@ -6514,7 +6514,6 @@ article.post-item.post-layout-classic {
 .post-navigation .meta-nav a{
     border: 2px solid #b5b8bb;
     height: 56px;
-    opacity: 0.5;
     text-align: center;
     transition: all 0.3s ease-in-out 0s;
     -webkit-transition: all 0.3s ease-in-out 0s;
@@ -6557,7 +6556,7 @@ article.post-item.post-layout-classic {
     content: "";
     height: 2px;
     left: 50%;
-    margin-left: -4px;
+    margin-left: -7px;
     position: absolute;
     top: 50%;
     transform-origin: 50% 50% 0;
@@ -6568,10 +6567,10 @@ article.post-item.post-layout-classic {
     -webkit-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
     -moz-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
     -ms-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
-    width: 10px;
+    width: 16px;
 }
 .post-navigation .meta-nav.nav-next a:after{
-    margin-top: 2px;
+    margin-top: 4px;
     transform: rotate(-45deg);
     -webkir-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
@@ -6584,7 +6583,7 @@ article.post-item.post-layout-classic {
     -ms-transform: rotate(135deg);
 }
 .post-navigation .meta-nav.nav-next a:before{
-    margin-top: -4px;
+    margin-top: -6px;
     transform: rotate(45deg);
     -webkir-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -6597,7 +6596,7 @@ article.post-item.post-layout-classic {
     -ms-transform: rotate(-135deg);
 }
 .post-navigation .meta-nav.nav-previous a:before{
-    margin-top: 2px;
+    margin-top: 4px;
     transform: rotate(45deg);
     -webkir-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -6610,7 +6609,7 @@ article.post-item.post-layout-classic {
     -ms-transform: rotate(-135deg);
 }
 .post-navigation .meta-nav.nav-previous a:after{
-    margin-top: -4px;
+    margin-top: -6px;
     transform: rotate(-45deg);
     -webkir-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
