@@ -478,38 +478,13 @@ add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_produ
 function woo_product_pagination(){ ?>
     <div class="kt_woo_pagination">
         <?php
-            $arg_prev = array(
-                'post_type'      => 'product',
-                'orderby'        => 'date',
-                'order'          => 'ASC',
-                'posts_per_page' => 1
-            );
-            $query_prev = new WP_Query( $arg_prev );
-            if ( $query_prev->have_posts() ){
-                while ( $query_prev->have_posts() ) : $query_prev->the_post();
-                    $id_prev = get_the_ID();
-                endwhile; wp_reset_postdata();
-            }
-            if( $id_prev == get_the_ID() ){
+            if( !get_previous_post_link('%link','<i class="fa fa-angle-left"></i>') ){
                 echo '<span><i class="fa fa-angle-left"></i></span>';
             }else{
                 previous_post_link('%link','<i class="fa fa-angle-left"></i>');
             }
             
-            
-            $arg_next = array(
-                'post_type'      => 'product',
-                'orderby'        => 'date',
-                'order'          => 'DESC',
-                'posts_per_page' => 1
-            );
-            $query_next = new WP_Query( $arg_next );
-            if ( $query_next->have_posts() ){
-                while ( $query_next->have_posts() ) : $query_next->the_post();
-                    $id_next = get_the_ID();
-                endwhile; wp_reset_postdata();
-            }
-            if( $id_next == get_the_ID() ){
+            if( !get_next_post_link('%link','<i class="fa fa-angle-right"></i>') ){
                 echo '<span><i class="fa fa-angle-right"></i></span>';
             }else{
                 next_post_link('%link','<i class="fa fa-angle-right"></i>');
