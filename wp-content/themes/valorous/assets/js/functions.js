@@ -129,7 +129,7 @@
             if($(this).hasClass('equal_height_element')){
                 equal_height_element = $(this).children('.wpb_column').children('.wpb_wrapper').children('*');
             }else{
-                equal_height_element = $(this).children('.wpb_column')
+                equal_height_element = $(this).children();
             }
             equal_height_element.matchHeight({ byRow: true });
         });
