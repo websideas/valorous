@@ -59,13 +59,19 @@ get_header(); ?>
                                 "class" => ''
                             );
 
-                            $path = ($settings['blog_type'] == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
+                            if( $settings['blog_type'] == 'classic' ){
+                                $path = 'templates/blog/classic/content';
+                            }elseif( $settings['blog_type'] == 'zigzag' ){
+                                $path = 'templates/blog/zigzag/content';
+                            }else{
+                                $path = 'templates/blog/layout/content';
+                            }
                             
                             $class_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'animation-effect' : '';
                             $data_animation = ( $page_animation == 1 && $settings['blog_type'] == 'grid' ) ? 'data-animation="fadeInUp"' : '';
                             
+                            echo "<div class='blog-posts-content clearfix' style='text-align: ".$settings['align']."'>";
                             if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
-                                echo "<div class='blog-posts-content clearfix' style='text-align: ".$settings['align']."'>";
                                 echo "<div class='row ".$class_animation."' ".$data_animation.">";
                             }
 
@@ -84,11 +90,13 @@ get_header(); ?>
                                             $classes_extra .= ' col-clearfix-sm';
                                     }
                                     echo "<div class='article-post-item ".$classes." ".$classes_extra." ".$i."'>";
+                                }elseif( $settings['blog_type'] == 'zigzag' && $i%2 == 0 ){
+                                    echo "<div class='article-post-item box-even'>";
                                 }
 
                                 kt_get_template_part( $path, get_post_format(), $blog_atts );
 
-                                if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry'){
+                                if($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry' || ( $settings['blog_type'] == 'zigzag' && $i%2 == 0 )){
                                     echo "</div><!-- .article-post-item -->";
                                 }
 
@@ -98,8 +106,8 @@ get_header(); ?>
 
                             if ($settings['blog_type'] == 'grid' || $settings['blog_type'] == 'masonry') {
                                 echo "</div><!-- .row -->";
-                                echo "</div><!-- .blog-posts-content -->";
                             }
+                            echo "</div><!-- .blog-posts-content -->";
 
 
                             // Previous/next page navigation.

@@ -47,7 +47,14 @@ function wp_ajax_fronted_loadmore_archive_callback(){
     );
 
 
-    $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
+    if( $blog_type == 'classic' ){
+        $path = 'templates/blog/classic/content';
+    }elseif( $blog_type == 'zigzag' ){
+        $path = 'templates/blog/zigzag/content';
+    }else{
+        $path = 'templates/blog/layout/content';
+    }
+    
     ob_start();
 
     $i = ( $query_vars['paged'] - 1 ) * $max_items + 1 ;
@@ -63,11 +70,13 @@ function wp_ajax_fronted_loadmore_archive_callback(){
                     $classes_extra .= ' col-clearfix-sm';
             }
             echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
+        }elseif( $blog_type == 'zigzag' && $i%2 == 0 ){
+            echo "<div class='article-post-item box-even'>";
         }
 
         kt_get_template_part( $path, get_post_format(), $blog_atts);
 
-        if($blog_type == 'grid' || $blog_type == 'masonry'){
+        if($blog_type == 'grid' || $blog_type == 'masonry' || ( $blog_type == 'zigzag' && $i%2 == 0 )){
             echo "</div><!-- .article-post-item -->";
         }
         $i++;

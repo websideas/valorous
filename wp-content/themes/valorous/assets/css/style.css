@@ -6218,6 +6218,11 @@ article.post-item {
     margin-bottom: 16px;
 }
 
+
+.blog-posts-zigzag .article-post-item.box-even .col-first{
+    float:right;
+}
+
 /* Blog Classic */
 article.post-item.post-layout-classic {
     margin-bottom: 90px;

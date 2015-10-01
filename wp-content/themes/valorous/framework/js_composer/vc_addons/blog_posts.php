@@ -132,7 +132,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 $bootstrapTabletColumn = round( 12 / $blog_columns_tablet );
                 $classes = 'col-xs-12 col-sm-'.$bootstrapTabletColumn.' col-md-' . $bootstrapColumn;
             }
-
+            $i = 1 ;
             $blog_atts_posts = array(
                 'image_size' => $image_size,
                 'readmore' => $readmore,
@@ -147,15 +147,20 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 "show_view_number" => apply_filters('sanitize_boolean', $show_view_number),
                 'thumbnail_type' => $thumbnail_type,
                 'sharebox' => apply_filters('sanitize_boolean', $sharebox),
-                "class" => ''
+                "class" => '',
             );
 
-            $i = 1 ;
-            $path = ($blog_type == 'classic') ? 'templates/blog/classic/content' : 'templates/blog/layout/content';
+            if( $blog_type == 'classic' ){
+                $path = 'templates/blog/classic/content';
+            }elseif( $blog_type == 'zigzag' ){
+                $path = 'templates/blog/zigzag/content';
+            }else{
+                $path = 'templates/blog/layout/content';
+            }
 
             while ( have_posts() ) : the_post();
                 $blog_atts = $blog_atts_posts;
-
+                
                 if($blog_type == 'grid' || $blog_type == 'masonry'){
                     $classes_extra = '';
                     if($blog_type == 'grid'){
@@ -166,11 +171,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                             $classes_extra .= ' col-clearfix-sm';
                     }
                     echo "<div class='article-post-item ".$classes." ".$classes_extra."'>";
+                }elseif( $blog_type == 'zigzag' && $i%2 == 0 ){
+                    echo "<div class='article-post-item box-even'>";
                 }
 
                 kt_get_template_part( $path, get_post_format(), $blog_atts);
 
-                if($blog_type == 'grid' || $blog_type == 'masonry'){
+                if($blog_type == 'grid' || $blog_type == 'masonry' || ( $blog_type == 'zigzag' && $i%2 == 0 )){
                     echo "</div><!-- .article-post-item -->";
                 }
                 $i++;
@@ -240,6 +247,7 @@ vc_map( array(
                 __( 'Standand', 'js_composer' ) => 'classic',
                 __( 'Grid', 'js_composer' ) => 'grid',
                 __( 'Masonry', 'js_composer' ) => 'masonry',
+                __( 'Zig Zag', 'js_composer' ) => 'zigzag',
             ),
             'description' => '',
         ),

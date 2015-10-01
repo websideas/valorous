@@ -2454,6 +2454,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
+                            'zigzag' => __( 'Zig Zag', 'js_composer' ),
                         ),
                         'default' => 'classic'
                     ),
@@ -2745,6 +2746,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
+                            'zigzag' => __( 'Zig Zag', 'js_composer' ),
                         ),
                         'default' => 'classic'
                     ),
@@ -3305,6 +3307,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'classic' => __( 'Standand', 'js_composer' ),
                             'grid' => __( 'Grid', 'js_composer' ),
                             'masonry' => __( 'Masonry', 'js_composer' ),
+                            'zigzag' => __( 'Zig Zag', 'js_composer' ),
                         ),
                         'default' => 'classic'
                     ),
