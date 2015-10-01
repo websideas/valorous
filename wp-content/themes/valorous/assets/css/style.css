@@ -4953,8 +4953,9 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
 .kt_dropcap {
     display: block;
     float: left;
-    font-size: 40px;
-    margin-right: 10px;
+    font-size: 45px;
+    line-height: 50px;
+    margin-right: 15px;
     margin-top: 5px;
     text-align: center;
 }
@@ -4964,12 +4965,6 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     line-height: 70px;
     width: 70px;
     font-size: 50px;
-}
-
-.kt_dropcap.dropcap-md {
-    height: 60px;
-    line-height: 60px;
-    width: 60px;
 }
 
 .kt_dropcap.dropcap-sm {
