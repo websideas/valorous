@@ -6507,7 +6507,7 @@ article.post-item.post-layout-classic {
     float: right;
 }
 .post-navigation .meta-nav a{
-    border: 2px solid #b5b8bb;
+    border: 2px solid;
     height: 56px;
     text-align: center;
     transition: all 0.3s ease-in-out 0s;
