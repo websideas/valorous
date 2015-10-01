@@ -183,8 +183,12 @@ only screen and (min-resolution: 144dpi) {
     .woocommerce-page table.shop_table_responsive.customer_details tr:nth-child(2n) td{
         background: none;
     }
-
-
+    .post-navigation .meta-nav.nav-previous > span span,
+    .post-navigation .meta-nav.nav-next > span span,
+    .post-navigation .meta-nav.nav-previous a span,
+    .post-navigation .meta-nav.nav-next a span{
+        display:none!important;
+    }
 }
 
 
@@ -270,17 +274,6 @@ only screen and (min-resolution: 144dpi) {
     }
     .author-info .author-bio{
         margin-top: 25px;
-    }
-
-    .post-navigation .nav-links div{
-        width:100%;
-        max-width: 100%;
-        margin-bottom:15px;
-        padding: 0 0 0 40px;
-        text-align: left;
-    }
-    .post-navigation div.nav-next a::after{
-        left:0;
     }
 
     .comment-item .comment-avatar{

@@ -537,7 +537,6 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
         <nav class="navigation post-navigation clearfix">
             <div class="nav-links">
                 <?php
-                    $link_blog = '';
                     if( get_option( 'page_for_posts' ) ){
                         $link_blog = get_permalink( get_option( 'page_for_posts' ) );
                     }else{
@@ -549,8 +548,18 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
 							<i class="b3 c1"></i><i class="b3 c2"></i><i class="b3 c3"></i>
 						</span></a></div>';
 
-                    previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE);
-                    next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE);
+                    
+                    if(!get_previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE)){
+                        echo '<div class="nav-previous meta-nav"><span><span>Previous Article</span></span></div>';
+                    }else{
+                        previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE);
+                    }
+                    
+                    if(!get_next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE)){
+                        echo '<div class="nav-next meta-nav"><span><span>Next Article</span></span></div>';
+                    }else{
+                        next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE);
+                    }
                 ?>
             </div><!-- .nav-links -->
         </nav><!-- .navigation -->

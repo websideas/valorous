@@ -95,16 +95,12 @@ if(is_admin()){
                 if($styling_link['active']){
                     echo 'a:focus{color: '.$styling_link['active'].';}';
                 }
-                if( $styling_link['regular'] ){ ?>
-                    .post-navigation .meta-nav.nav-blog a span i,
-                    .post-navigation .meta-nav.nav-previous a:before,
-                    .post-navigation .meta-nav.nav-previous a:after,
-                    .post-navigation .meta-nav.nav-next a:before,
-                    .post-navigation .meta-nav.nav-next a:after{
-                        background-color:<?php echo $styling_link['regular']; ?>
-                    }
-                <?php }
                 if( $styling_link['hover'] ){ ?>
+                    .post-navigation .meta-nav a:hover,
+                    .post-navigation .meta-nav a:focus{
+                        border-color:<?php echo $styling_link['hover']; ?>;
+                        color:<?php echo $styling_link['hover']; ?>
+                    }
                     .post-navigation .meta-nav.nav-blog a:hover span i,
                     .post-navigation .meta-nav.nav-blog a:focus span i,
                     .post-navigation .meta-nav.nav-previous a:focus:before,

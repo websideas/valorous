@@ -6508,8 +6508,10 @@ article.post-item.post-layout-classic {
 .post-navigation .nav-next{
     float: right;
 }
+.post-navigation .meta-nav > span,
 .post-navigation .meta-nav a{
-    border: 2px solid;
+    border: 2px solid #8f8f8f;
+    color:#8f8f8f;
     height: 56px;
     text-align: center;
     transition: all 0.3s ease-in-out 0s;
@@ -6520,6 +6522,10 @@ article.post-item.post-layout-classic {
     display: block;
     position: relative;
 }
+.post-navigation .meta-nav > span{
+    opacity: 0.2;
+}
+.post-navigation .meta-nav > span span,
 .post-navigation .meta-nav.nav-previous a span,
 .post-navigation .meta-nav.nav-next a span{
     position: absolute;
@@ -6534,16 +6540,22 @@ article.post-item.post-layout-classic {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+.post-navigation .meta-nav.nav-previous > span span,
 .post-navigation .meta-nav.nav-previous a span{
     left: 60px;
     top: 50%;
     text-align: left;
 }
+.post-navigation .meta-nav.nav-next > span span,
 .post-navigation .meta-nav.nav-next a span{
     right: 60px;
     top: 50%;
     text-align: right;
 }
+.post-navigation .meta-nav.nav-previous > span:before,
+.post-navigation .meta-nav.nav-previous > span:after,
+.post-navigation .meta-nav.nav-next > span:before,
+.post-navigation .meta-nav.nav-next > span:after,
 .post-navigation .meta-nav.nav-previous a:before,
 .post-navigation .meta-nav.nav-previous a:after,
 .post-navigation .meta-nav.nav-next a:before,
@@ -6566,6 +6578,7 @@ article.post-item.post-layout-classic {
     -ms-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
     width: 16px;
 }
+.post-navigation .meta-nav.nav-next > span:after,
 .post-navigation .meta-nav.nav-next a:after{
     margin-top: 4px;
     transform: rotate(-45deg);
@@ -6579,6 +6592,7 @@ article.post-item.post-layout-classic {
     -moz-transform: rotate(135deg);
     -ms-transform: rotate(135deg);
 }
+.post-navigation .meta-nav.nav-next > span:before,
 .post-navigation .meta-nav.nav-next a:before{
     margin-top: -6px;
     transform: rotate(45deg);
@@ -6592,6 +6606,7 @@ article.post-item.post-layout-classic {
     -moz-transform: rotate(-135deg);
     -ms-transform: rotate(-135deg);
 }
+.post-navigation .meta-nav.nav-previous > span:before,
 .post-navigation .meta-nav.nav-previous a:before{
     margin-top: 4px;
     transform: rotate(45deg);
@@ -6605,6 +6620,7 @@ article.post-item.post-layout-classic {
     -moz-transform: rotate(-135deg);
     -ms-transform: rotate(-135deg);
 }
+.post-navigation .meta-nav.nav-previous > span:after,
 .post-navigation .meta-nav.nav-previous a:after{
     margin-top: -6px;
     transform: rotate(-45deg);
@@ -6641,7 +6657,7 @@ article.post-item.post-layout-classic {
 .post-navigation .meta-nav.nav-blog a span i{
     display:block;
 	position:absolute;
-	background-color:#000;
+	background-color:#8f8f8f;
 	width:10px;
 	height:0;
 	-webkit-transition-property: height, -webkit-transform;
