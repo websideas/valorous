@@ -200,6 +200,7 @@ $composer_addons = array(
     'client_gird.php',
     'testimonial_carousel.php',
     'image_banner.php',
+    'product_category_banner.php',
     //'button.php',
     'skill.php',
     'socials.php',
