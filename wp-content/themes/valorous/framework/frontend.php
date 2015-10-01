@@ -549,14 +549,14 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
 						</span></a></div>';
 
                     
-                    if(!get_previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE)){
-                        echo '<div class="nav-previous meta-nav"><span><span>Previous Article</span></span></div>';
+                    if(!get_previous_post_link('&laquo; %link', '', true)){
+                        printf('<div class="nav-previous meta-nav"><span>%s</span></div>', __( '<span>Previous Article</span>', THEME_LANG ));
                     }else{
                         previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE);
                     }
-                    
-                    if(!get_next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE)){
-                        echo '<div class="nav-next meta-nav"><span><span>Next Article</span></span></div>';
+
+                    if(!get_next_post_link('&laquo; %link', '', true)){
+                        printf('<div class="nav-next meta-nav"><span>%s</span></div>', __( '<span>Next Article</span>', THEME_LANG ));
                     }else{
                         next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE);
                     }

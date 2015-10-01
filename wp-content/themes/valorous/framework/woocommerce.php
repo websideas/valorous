@@ -478,13 +478,13 @@ add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_produ
 function woo_product_pagination(){ ?>
     <div class="kt_woo_pagination">
         <?php
-            if( !get_previous_post_link('%link','<i class="fa fa-angle-left"></i>') ){
+            if( !get_previous_post_link('&laquo; %link','<i class="fa fa-angle-left"></i>') ){
                 echo '<span><i class="fa fa-angle-left"></i></span>';
             }else{
                 previous_post_link('%link','<i class="fa fa-angle-left"></i>');
             }
             
-            if( !get_next_post_link('%link','<i class="fa fa-angle-right"></i>') ){
+            if( !get_next_post_link('&laquo; %link','<i class="fa fa-angle-right"></i>') ){
                 echo '<span><i class="fa fa-angle-right"></i></span>';
             }else{
                 next_post_link('%link','<i class="fa fa-angle-right"></i>');

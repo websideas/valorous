@@ -39,15 +39,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="frontend.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="frontend.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/frontend.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6580796">
-              <caret line="556" column="20" selection-start-line="556" selection-start-column="20" selection-end-line="556" selection-end-column="20" />
+            <state vertical-scroll-proportion="-20.291666">
+              <caret line="551" column="56" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="56" />
               <folding>
-                <marker date="1443671521000" expanded="true" signature="22499:22767" placeholder="..." />
-                <marker date="1443671521000" expanded="true" signature="22524:22761" placeholder="..." />
-                <marker date="1443671521000" expanded="true" signature="22530:22757" placeholder="..." />
+                <marker date="1443671819000" expanded="true" signature="22499:22767" placeholder="..." />
+                <marker date="1443671819000" expanded="true" signature="22524:22761" placeholder="..." />
+                <marker date="1443671819000" expanded="true" signature="22530:22757" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -57,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.833333">
-              <caret line="1853" column="9" selection-start-line="1853" selection-start-column="9" selection-end-line="1853" selection-end-column="9" />
+              <caret line="1821" column="50" selection-start-line="1821" selection-start-column="44" selection-end-line="1821" selection-end-column="57" />
               <folding>
                 <marker date="1439950280000" expanded="true" signature="48064:48112" placeholder="SELECT p.ID ..." />
                 <marker date="1439950280000" expanded="true" signature="74888:74975" placeholder="..." />
@@ -66,11 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6246" column="1" selection-start-line="6246" selection-start-column="1" selection-end-line="6246" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.38382688">
+              <caret line="5986" column="23" selection-start-line="5986" selection-start-column="23" selection-end-line="5986" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="woocommerce.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.083334">
+              <caret line="481" column="63" selection-start-line="481" selection-start-column="63" selection-end-line="481" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -113,7 +123,6 @@
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/assets/css/js_composer_bridge.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/js_composer_bridge.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/assets/css/framework-core.css" />
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/js/woocommerce.js" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/woocommerce.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/footer.php" />
@@ -130,8 +139,9 @@
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/scripts.php" />
         <option value="$PROJECT_DIR$/Desc/note.txt" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/style.css" />
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/frontend.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css" />
       </list>
     </option>
   </component>
@@ -758,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="282" column="2" selection-start-line="282" selection-start-column="2" selection-end-line="282" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/yith-woocommerce-compare/templates/compare.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5444965">
@@ -970,18 +973,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6246" column="1" selection-start-line="6246" selection-start-column="1" selection-end-line="6246" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.833333">
-          <caret line="1853" column="9" selection-start-line="1853" selection-start-column="9" selection-end-line="1853" selection-end-column="9" />
+          <caret line="1821" column="50" selection-start-line="1821" selection-start-column="44" selection-end-line="1821" selection-end-column="57" />
           <folding>
             <marker date="1439950280000" expanded="true" signature="48064:48112" placeholder="SELECT p.ID ..." />
             <marker date="1439950280000" expanded="true" signature="74888:74975" placeholder="..." />
@@ -991,13 +986,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/frontend.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6580796">
-          <caret line="556" column="20" selection-start-line="556" selection-start-column="20" selection-end-line="556" selection-end-column="20" />
+        <state vertical-scroll-proportion="-20.291666">
+          <caret line="551" column="56" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="56" />
           <folding>
-            <marker date="1443671521000" expanded="true" signature="22499:22767" placeholder="..." />
-            <marker date="1443671521000" expanded="true" signature="22524:22761" placeholder="..." />
-            <marker date="1443671521000" expanded="true" signature="22530:22757" placeholder="..." />
+            <marker date="1443671819000" expanded="true" signature="22499:22767" placeholder="..." />
+            <marker date="1443671819000" expanded="true" signature="22524:22761" placeholder="..." />
+            <marker date="1443671819000" expanded="true" signature="22530:22757" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/woocommerce.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.083334">
+          <caret line="481" column="63" selection-start-line="481" selection-start-column="63" selection-end-line="481" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38382688">
+          <caret line="5986" column="23" selection-start-line="5986" selection-start-column="23" selection-end-line="5986" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>

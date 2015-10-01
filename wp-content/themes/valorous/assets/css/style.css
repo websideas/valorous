@@ -6560,7 +6560,7 @@ article.post-item.post-layout-classic {
 .post-navigation .meta-nav.nav-previous a:after,
 .post-navigation .meta-nav.nav-next a:before,
 .post-navigation .meta-nav.nav-next a:after{
-    background-color: #171717;
+    background-color: #8f8f8f;
     border-radius: 1px;
     content: "";
     height: 2px;
