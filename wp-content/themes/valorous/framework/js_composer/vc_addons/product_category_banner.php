@@ -20,8 +20,6 @@ class WPBakeryShortCode_Product_Category_Banner extends WPBakeryShortCode {
         extract($atts);
         $output = '';
         
-        global $woocommerce;
-        
         $elementClass = array(
             'extra' => $this->getExtraClass( $el_class ),
             'css_animation' => $this->getCSSAnimation( $css_animation ),
@@ -34,7 +32,7 @@ class WPBakeryShortCode_Product_Category_Banner extends WPBakeryShortCode {
 
         $elementClass = preg_replace( array( '/\s+/', '/^\s|\s$/' ), array( ' ', '' ), implode( ' ', $elementClass ) );
         
-        if( $product_category ){
+        if( $product_category && function_exists( 'get_woocommerce_term_meta' )){
             $term = get_term( $product_category, 'product_cat' );
             $link = get_term_link( $term->slug, 'product_cat' );
             
@@ -44,11 +42,8 @@ class WPBakeryShortCode_Product_Category_Banner extends WPBakeryShortCode {
             if( !$image ){ $image = '<img class="vc_img-placeholder vc_single_image-img img-responsive" src="' . vc_asset_url( 'vc/no_image.png' ) . '" />'; }
             
             $output .= '<div class="kt_image_banner '.esc_attr( $elementClass ).'">'.$image;
-                $output .= '<div class="content_banner_wrapper"><div class="content_banner"><span class="btn btn-light btn-block">'.$term->name.'</span></div></div>';
-                
-                if( $link ){                
-                    $output .= '<a class="banner-link" href="'.esc_attr( $link ).'" title="'.esc_attr( $term->name ).'" alt="'.esc_attr( $term->name ).'"></a>';
-                }
+                $output .= '<div class="content_banner_wrapper"><div class="content_banner"><span class="btn btn-light btn-block">'.$term->name.'</span></div></div>';             
+                $output .= '<a class="banner-link" href="'.esc_attr( $link ).'" title="'.esc_attr( $term->name ).'" alt="'.esc_attr( $term->name ).'"></a>';
             $output .= '</div>';
         }else{
             $output .= '<p>'.__( 'No product category',THEME_LANG ).'</p>';
