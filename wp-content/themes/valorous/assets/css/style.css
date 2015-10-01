@@ -6223,13 +6223,8 @@ article.post-item.post-layout-classic {
     margin-bottom: 90px;
 }
 
-.post-layout-classic .entry-share-box {
-    float: right;
-    margin-bottom: 20px;
-}
-
-.post-layout-classic .entry-excerpt{
-    margin-bottom: 30px;
+.post-layout-classic .entry-title{
+    font-size: 22px;
 }
 
 .post-layout-classic .entry-excerpt a.more-link{
@@ -6240,6 +6235,7 @@ article.post-item.post-layout-classic {
     float: right;
     margin-bottom: 15px;
     margin-top: -15px;
+    display: none;
 }
 
 /*

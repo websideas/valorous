@@ -548,6 +548,7 @@ if ( ! function_exists( 'kt_post_nav' ) ) :
 							<i class="b2 c1"></i><i class="b2 c2"></i><i class="b2 c3"></i>
 							<i class="b3 c1"></i><i class="b3 c2"></i><i class="b3 c3"></i>
 						</span></a></div>';
+
                     previous_post_link('<div class="nav-previous meta-nav">%link</div>', __( '<span>Previous Article</span>', THEME_LANG ), TRUE);
                     next_post_link('<div class="nav-next meta-nav">%link</div>', __( '<span>Next Article</span>', THEME_LANG ), TRUE);
                 ?>
