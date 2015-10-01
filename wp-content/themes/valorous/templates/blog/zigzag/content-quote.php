@@ -1,6 +1,6 @@
 <?php $classes = array('post-item post-layout-zigzag', $blog_atts['class']); ?>
 
-<div <?php post_class($classes); ?>>
+<article <?php post_class($classes); ?>>
     <div class="row">
         <div class="col-ms-6 col-sm-6 col-xs-12 col-first">
             <?php
@@ -64,4 +64,4 @@
         </div>
     </div>
 
-</div>
+</article>
