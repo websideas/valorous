@@ -28,17 +28,43 @@ class WP_Widget_KT_AboutMe extends WP_Widget {
 
         echo "<div class='kt-aboutwidget-content'>";
         $attachment = get_thumbnail_attachment($instance['attachment'], $instance['size']);
+        $value = isset( $instance['value'] ) ? $instance['value'] : '';
+        
         if($attachment){
             echo "<div class='kt-aboutwidget-img'>";
             echo "<img src='".$attachment['url']."' alt='".esc_attr($attachment['alt'])."' class='img-responsive' title='".esc_attr($attachment['title'])."'/>";
+            
+            $socials_arr = array(
+                'facebook' => array('title' => __('Facebook', THEME_LANG), 'icon' => 'fa fa-facebook', 'link' => '%s'),
+                'twitter' => array('title' => __('Twitter', THEME_LANG), 'icon' => 'fa fa-twitter', 'link' => 'http://www.twitter.com/%s'),
+                'dribbble' => array('title' => __('Dribbble', THEME_LANG), 'icon' => 'fa fa-dribbble', 'link' => 'http://www.dribbble.com/%s'),
+                'vimeo' => array('title' => __('Vimeo', THEME_LANG), 'icon' => 'fa fa-vimeo-square', 'link' => 'http://www.vimeo.com/%s'),
+                'tumblr' => array('title' => __('Tumblr', THEME_LANG), 'icon' => 'fa fa-tumblr', 'link' => 'http://%s.tumblr.com/'),
+                'skype' => array('title' => __('Skype', THEME_LANG), 'icon' => 'fa fa-skype', 'link' => 'skype:%s'),
+                'linkedin' => array('title' => __('LinkedIn', THEME_LANG), 'icon' => 'fa fa-linkedin', 'link' => '%s'),
+                'googleplus' => array('title' => __('Google Plus', THEME_LANG), 'icon' => 'fa fa-google-plus', 'link' => '%s'),
+                'youtube' => array('title' => __('Youtube', THEME_LANG), 'icon' => 'fa fa-youtube', 'link' => 'http://www.youtube.com/user/%s'),
+                'pinterest' => array('title' => __('Pinterest', THEME_LANG), 'icon' => 'fa fa-pinterest', 'link' => 'http://www.pinterest.com/%s'),
+                'instagram' => array('title' => __('Instagram', THEME_LANG), 'icon' => 'fa fa-instagram', 'link' => 'http://instagram.com/%s'),
+            );
+    
+            foreach($socials_arr as $k => &$v){
+                $val = kt_option($k);
+                $v['val'] = ($val) ? $val : '';
+            }
             ?>
-            <ul class="kt-aboutwidget-socials">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-            <?php
+            <?php if($value){ 
+                $social_type = explode(',', $value); ?>
+                <ul class="kt-aboutwidget-socials">
+                    <?php 
+                    foreach ($social_type as $id) {
+                        $val = $socials_arr[$id];
+                        $social_text = '<i class="'.esc_attr($val['icon']).'"></i>';
+                        echo '<li><a href="'.esc_url(str_replace('%s', $val['val'], $val['link'])).'" target="_blank">'.$social_text.'</a></li>';
+                    }
+                    ?>
+                </ul>
+            <?php }
             echo "</div>";
         }
         if($instance['name']) {
@@ -65,6 +91,7 @@ class WP_Widget_KT_AboutMe extends WP_Widget {
         }else{
             $instance['description'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['description']) ) );
         }
+        $instance['value'] = $new_instance['value'];
 
         return $instance;
     }
@@ -83,6 +110,7 @@ class WP_Widget_KT_AboutMe extends WP_Widget {
             $preview = true;
             $img_preview = $file['url'];
         }
+        $value = isset( $instance['value'] ) ? $instance['value'] : '';
 
         ?>
         <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -128,8 +156,64 @@ class WP_Widget_KT_AboutMe extends WP_Widget {
             <label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description:', THEME_LANG ); ?></label>
             <textarea class="widefat" rows="5" cols="20" id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>"><?php echo $instance['description'] ?></textarea></p>
 
+        <?php
+            $socials = array(
+                'facebook' => 'fa fa-facebook',
+                'twitter' => 'fa fa-twitter',
+                'pinterest' => 'fa fa-pinterest-p',
+                'dribbble' => 'fa fa-dribbble',
+                'vimeo' => 'fa fa-vimeo-square',
+                'tumblr' => 'fa fa-tumblr',
+                'skype' => 'fa fa-skype',
+                'linkedin' => 'fa fa-linkedin',
+                'googleplus' => 'fa fa-google-plus',
+                'youtube' => 'fa fa-youtube-play',
+                'instagram' => 'fa fa-instagram'
+            );
+            
+            $arr_val = ($value) ? explode(',', $value) : array();
+        ?>
+    
+        <div class="kt-socials-options">
+            <ul class="kt-socials-lists clearfix">
+                <?php foreach($socials as $key => $social){ ?>
+                    <?php $class = (in_array($key, $arr_val)) ? 'selected' : ''; ?>
+                    <li data-type="<?php echo $key; ?>" class="<?php echo $class; ?>"><i class="<?php echo $social; ?>"></i><span></span></li>
+                <?php } ?>
+            </ul><!-- .kt-socials-lists -->
+            <ul class="kt-socials-profiles clearfix">
+            <?php
+                if(count($arr_val)){
+                    foreach($arr_val as $item){ ?>
+                        <li data-type="<?php echo $item; ?>"><i class="<?php echo $socials[$item]; ?>"></i><span></span></li>
+                    <?php }
+                }
+            ?>
+            </ul><!-- .kt-socials-profiles -->
+            <input id="<?php echo $this->get_field_id( 'value' ); ?>" type="hidden" class="wpb_vc_param_value kt-socials-value" name="<?php echo $this->get_field_name( 'value' ); ?>" value="<?php echo esc_attr($value); ?>" />
+        </div><!-- .kt-socials-options -->
+        <?php wp_enqueue_script( 'cosials_js', FW_JS.'kt_socials.js', array('jquery'), FW_VER, true); ?>
+        
+        <script type="text/javascript">
+            (function($){
+                $('document').ready(function() {
+                    $( ".kt-socials-profiles" ).sortable({
+                        placeholder: "ui-socials-highlight",
+                        update: function( event, ui ) {
+                            var $parrent_ui = ui.item.closest('.kt-socials-options'),
+                                $profiles_ui = $parrent_ui.find('.kt-socials-profiles'),
+                                $value_ui = $parrent_ui.find('.kt-socials-value');
 
-
+                            $profiles_val_ui = [];
+                            $profiles_ui.find('li').each(function(){
+                                $profiles_val_ui.push($(this).data('type'));
+                            });
+                            $value_ui.val($profiles_val_ui.join());
+                        }
+                    });
+                });
+            })(jQuery);
+        </script>
 
         <?php
     }
