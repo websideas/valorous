@@ -5908,6 +5908,105 @@ body.layout-boxed #page {
 .pagination .page-numbers.prev {
     position: absolute;
     top: 0;
+    text-indent:-999px;
+    overflow: hidden;
+    font-size:0;
+}
+.woocommerce-pagination .page-numbers.next i,
+.woocommerce-pagination .page-numbers.prev i,
+.pagination .page-numbers.next i,
+.pagination .page-numbers.prev i{
+    opacity: 0;
+}
+.woocommerce-pagination .page-numbers.next:after,
+.woocommerce-pagination .page-numbers.prev:after,
+.pagination .page-numbers.next:after,
+.pagination .page-numbers.prev:after,
+.woocommerce-pagination .page-numbers.next:before,
+.woocommerce-pagination .page-numbers.prev:before,
+.pagination .page-numbers.next:before,
+.pagination .page-numbers.prev:before{
+    background-color: #e3e3e3;
+    border-radius: 1px;
+    content: "";
+    height: 2px;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    top: 50%;
+    transform-origin: 50% 50% 0;
+    -webkit-transform-origin: 50% 50% 0;
+    -moz-transform-origin: 50% 50% 0;
+    -ms-transform-origin: 50% 50% 0;
+    transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -webkit-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -moz-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    -ms-transition: margin-left 0.5s ease-out 0s, transform 0.5s ease-out 0s;
+    width: 8px;
+}
+.woocommerce-pagination .page-numbers.next:after,
+.pagination .page-numbers.next:after{
+    margin-top: 2px;
+    transform: rotate(-45deg);
+    -webkir-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+.woocommerce-pagination .page-numbers.next:hover:after,
+.pagination .page-numbers.next:hover:after{
+    transform: rotate(135deg);
+    -webkir-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    background-color:#fff;
+}
+.woocommerce-pagination .page-numbers.prev:after,
+.pagination .page-numbers.prev:after{
+    margin-top: -3px;
+    transform: rotate(-45deg);
+    -webkir-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+.woocommerce-pagination .page-numbers.prev:hover:after,
+.pagination .page-numbers.prev:hover:after{
+    transform: rotate(135deg);
+    -webkir-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    background-color:#fff;
+}
+.woocommerce-pagination .page-numbers.next:before,
+.pagination .page-numbers.next:before{
+    margin-top: -3px;
+    transform: rotate(45deg);
+    -webkir-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.woocommerce-pagination .page-numbers.next:hover:before,
+.pagination .page-numbers.next:hover:before{
+    transform: rotate(-135deg);
+    -webkir-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    background-color:#fff;
+}
+.woocommerce-pagination .page-numbers.prev:before,
+.pagination .page-numbers.prev:before{
+    margin-top: 2px;
+    transform: rotate(45deg);
+    -webkir-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.woocommerce-pagination .page-numbers.prev:hover:before,
+.pagination .page-numbers.prev:hover:before{
+    transform: rotate(-135deg);
+    -webkir-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    background-color:#fff;
 }
 
 .woocommerce-pagination .page-numbers.next,
