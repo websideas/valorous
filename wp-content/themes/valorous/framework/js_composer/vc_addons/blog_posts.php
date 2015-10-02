@@ -114,11 +114,16 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $class_animation = ( $page_animation == 1 && $blog_type == 'grid' ) ? 'animation-effect' : '';
             $data_animation = ( $page_animation == 1 && $blog_type == 'grid' ) ? 'data-animation="fadeInUp"' : '';
             
-            $animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'animation-effect' : ' ';
-            $data_animate_classic = ( $page_animation == 1 && $blog_type == 'classic' ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
+            $animate_classic = ( $page_animation == 1 && ($blog_type == 'classic' || $blog_type == 'zigzag') ) ? 'animation-effect' : ' ';
+            $data_animate_classic = ( $page_animation == 1 && ($blog_type == 'classic' || $blog_type == 'zigzag') ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
+            
+            $align_zigzag = '';
+            if( $blog_type == 'zigzag' ){
+                $align_zigzag = 'style="text-align:'.$blog_align.'"';
+            }
                         
             echo "<div class='blog-posts blog-posts-".esc_attr($blog_type)." blog-posts-".esc_attr($thumbnail_type)."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-            echo "<div class='blog-posts-content clearfix ".$animate_classic."' ".$data_animate_classic.">";
+            echo "<div class='blog-posts-content clearfix ".$animate_classic."' ".$data_animate_classic." ".$align_zigzag.">";
 
             do_action('before_blog_posts_loop');
 
