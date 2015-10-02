@@ -5698,6 +5698,9 @@ body.layout-boxed #page {
     font-size: 36px;
     line-height: 1.4;
     text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid;
+    padding: 0 20px;
 }
 
 .page-header .page-header-subtitle {

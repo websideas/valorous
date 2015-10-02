@@ -2185,6 +2185,20 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'content'  => '<div class="section-heading">'.__( 'Page header settings', THEME_LANG ).'</div>',
                         'full_width' => true
                     ),
+
+                    array(
+                        'id'       => 'title_layout',
+                        'type'     => 'select',
+                        'title'    => __( 'Page header layout', THEME_LANG ),
+                        'subtitle'     => __( 'Select your preferred Page header layout.', THEME_LANG ),
+                        'options'  => array(
+                            'sides' => __('Sides', THEME_LANG),
+                            'centered' => __('Centered', THEME_LANG ),
+                        ),
+                        'default'  => 'sides',
+                        'clear' => false
+                    ),
+
                     array(
                         'id'       => 'title_align',
                         'type'     => 'select',
@@ -2196,7 +2210,8 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'right' => __('Right', THEME_LANG)
                         ),
                         'default'  => 'left',
-                        'clear' => false
+                        'clear' => false,
+                        'desc' => __('Align don\'t support for layout Sides', THEME_LANG)
                     ),
                     array(
                         'id'       => 'title_breadcrumbs',
