@@ -208,7 +208,7 @@ $composer_addons = array(
     'piechart.php',
     'coming_soon.php',
     'googlemap.php',
-
+    'instagram_carousel.php',
 );
 
 foreach ( $composer_addons as $addon ) {

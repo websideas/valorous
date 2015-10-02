@@ -107,6 +107,28 @@ if ( ! class_exists( 'KT_Instagram' ) ) {
             
             return $output;
         }
+        
+        /**
+         * Show Instagram Carousel
+         *
+         * @param $images
+         * @param string $output
+         * @return string
+         */
+        public function showInstagramCarousel($images, $output = ''){
+			foreach($images as $image){
+                $caption = (!empty($image->caption->text)) ? $image->caption->text : '';
+				$output .= sprintf(
+					'<div class="item-instagram"><a href="%1$s" target="_blank"><img src="%2$s" alt="%3$s" title="%3$s"></a></div>',
+					esc_attr($image->link),
+					esc_attr($image->images->standard_resolution->url),
+					esc_attr($caption)
+				);
+			}
+            
+            return $output;
+        }
+        
 
         public function BgInstagram($images, $output = ''){
             //print_r($images);

@@ -25,7 +25,6 @@ class WPBakeryShortCode_Clients_Carousel extends WPBakeryShortCode {
             'border_radius' => 0,
 
             'margin' => 10,
-            'loop' => 'false',
             'autoheight' => 'true',
             'autoplay' => 'false',
             'mousedrag' => 'true',
@@ -353,15 +352,6 @@ vc_map( array(
 
         array(
             'type' => 'kt_switch',
-            'heading' => __( 'Loop', THEME_LANG ),
-            'param_name' => 'loop',
-            'value' => 'false',
-            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
-            "description" => __("Enable loop.", THEME_LANG),
-            'group' => __( 'Carousel settings', THEME_LANG )
-        ),
-        array(
-            'type' => 'kt_switch',
             'heading' => __( 'Auto Height', THEME_LANG ),
             'param_name' => 'autoheight',
             'value' => 'true',
@@ -384,6 +374,7 @@ vc_map( array(
             'param_name' => 'autoplay',
             'value' => 'false',
             "description" => __("Enable auto play.", THEME_LANG),
+            "edit_field_class" => "vc_col-sm-4 kt_margin_bottom",
             'group' => __( 'Carousel settings', THEME_LANG )
         ),
         array(
