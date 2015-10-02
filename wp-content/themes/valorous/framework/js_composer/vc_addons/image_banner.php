@@ -7,6 +7,7 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
     
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
+            'layout' => 'layout-1',
             'image' => '',
             'image_size' => 'full',
             'position' => 'position-center',
@@ -39,6 +40,7 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
             'shortcode_custom' => vc_shortcode_custom_css_class( $css, ' ' ),
             'position' => $position,
             'align' => $align,
+            'layout' => $layout
         );
         if($hover_effect){
             $elementClass['hover'] = 'hover-effect-'.$hover_effect;
@@ -117,6 +119,17 @@ vc_map( array(
     "category" => __('by Theme', THEME_LANG ),
     "wrapper_class" => "clearfix",
     "params" => array(
+        array(
+            'type' => 'dropdown',
+            'heading' => __( 'Layout', THEME_LANG ),
+            'param_name' => 'layout',
+            'value' => array(
+                __( 'Layout 1', THEME_LANG ) => 'layout-1',
+                __( 'Layout 2', THEME_LANG ) => 'layout-2',
+            ),
+            'std' => 'layout-1',
+            'description' => __( 'Choose layout of banner. Layout 1 no padding left and right.', THEME_LANG ),
+        ),
         array(
 			'type' => 'attach_image',
 			'heading' => __( 'Image Banner', THEME_LANG ),

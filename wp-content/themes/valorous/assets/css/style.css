@@ -5079,6 +5079,11 @@ ul.kt-list-fancy > li > .vc_icon_element-icon {
     padding: 20px 0;
 }
 
+.kt_image_banner.layout-2 .content_banner_wrapper{
+    padding-left:20px;
+    padding-right:20px;
+}
+
 .kt_image_banner.position-top .content_banner_wrapper {
     top: 0;
 }
