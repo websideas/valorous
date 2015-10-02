@@ -2,7 +2,7 @@
 
 <article <?php post_class($classes); ?>>
     <div class="row">
-        <div class="col-ms-6 col-sm-6 col-xs-12 col-first">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-first">
             <?php
                 if($blog_atts['thumbnail_type'] == 'image'){
                     kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive');
