@@ -6849,6 +6849,9 @@ article.post-item.post-layout-classic {
     padding: 0 0 5px;
     text-transform: uppercase;
 }
+.kt_facebook_comment > p{
+    display: none;
+}
 
 .comment-respond .comment-form-fields {
     margin: 0 -7px;
