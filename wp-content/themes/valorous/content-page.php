@@ -25,7 +25,7 @@
     if( kt_option( 'show_page_comment', 0 ) ){
         // If comments are open or we have at least one comment, load up the comment template.
         if ( shortcode_exists( 'fbcomments' ) ) {
-            echo do_shortcode('[fbcomments]');
+            echo '<div class="kt_facebook_comment">'.do_shortcode('[fbcomments]').'</div>';
         }else{
             if ( comments_open() || get_comments_number() ) :
                 comments_template();

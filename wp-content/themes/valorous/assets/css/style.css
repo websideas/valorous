@@ -6839,6 +6839,7 @@ article.post-item.post-layout-classic {
 /*
  * 14.9. Comments
  */
+.kt_facebook_comment > h3,
 .comment-respond .comment-reply-title,
 .comments-area .comments-title {
     border-bottom: 1px solid #e3e3e3;
