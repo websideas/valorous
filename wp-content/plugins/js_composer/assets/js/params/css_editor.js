@@ -123,7 +123,8 @@ if ( _.isUndefined( window.vc ) ) {
 					data: {
 						action: 'wpb_single_image_src',
 						content: value,
-						size: 'full'
+						size: 'full',
+						_vcnonce: window.vcAdminNonce
 					},
 					dataType: 'html',
 					context: this
@@ -471,7 +472,8 @@ if ( _.isUndefined( window.vc ) ) {
 				action: 'vc_media_editor_add_image',
 				filters: window.vc_selectedFilters,
 				ids: ids,
-				vc_inline: true
+				vc_inline: true,
+				_vcnonce: window.vcAdminNonce
 			}
 		} ).done( function ( response ) {
 			var attachments, attachment, promises, i;

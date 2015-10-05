@@ -14,14 +14,15 @@ $edit_layout->render();
 $grid_item = new Vc_Grid_Item();
 $shortcodes = $grid_item->shortcodes();
 
-vc_include_settings_preset_class();
+require_once vc_path_dir( 'AUTOLOAD_DIR', 'class-vc-settings-presets.php' );
 ?>
 	<script type="text/javascript">
 		var vc_user_mapper = <?php echo json_encode(WpbMap_Grid_Item::getGitemUserShortCodes()) ?>,
 			vc_mapper = <?php echo json_encode(WpbMap_Grid_Item::getShortCodes()) ?>,
 			vc_settings_presets = <?php echo json_encode(Vc_Settings_Preset::listDefaultSettingsPresets()) ?>,
 			vc_frontend_enabled = false,
-			vc_mode = '<?php echo vc_mode() ?>';
+			vc_mode = '<?php echo vc_mode() ?>',
+			vcAdminNonce = '<?php echo vc_generate_nonce( 'vc-admin-nonce' ); ?>';
 	</script>
 
 	<script type="text/html" id="vc_settings-image-block">

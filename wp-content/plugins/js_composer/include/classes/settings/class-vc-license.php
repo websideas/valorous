@@ -77,7 +77,7 @@ class Vc_License {
 	 *
 	 */
 	public function activate() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! vc_verify_admin_nonce() || ! current_user_can( 'manage_options' ) ) {
 			die();
 		}
 		$params = array();
@@ -116,7 +116,7 @@ class Vc_License {
 	 *
 	 */
 	public function deactivate() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! vc_verify_admin_nonce() || ! current_user_can( 'manage_options' ) ) {
 			die();
 		}
 		$params = array();

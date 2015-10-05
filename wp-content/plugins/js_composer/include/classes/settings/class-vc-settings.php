@@ -100,10 +100,6 @@ class Vc_Settings {
 				add_action( 'admin_init', array( $this, 'initAdmin' ) );
 			}
 		}
-		add_action( 'wp_ajax_wpb_remove_settings_notification_element_css_class', array(
-			&$this,
-			'removeNotification'
-		) );
 	}
 
 	/**
@@ -1156,7 +1152,7 @@ class Vc_Settings {
 
 	/**
 	 * Process options data from form and add to js_composer option parameters
-	 *
+	 * @deprecated 4.7.4, unused
 	 *
 	 */
 	public function take_action() {
@@ -1179,16 +1175,6 @@ class Vc_Settings {
 	 */
 	public function showNotification() {
 		echo '<div class="error"><p>' . sprintf( __( 'Visual Composer: Your css class names settings are deprecated. <a href="%s">Click here to resolve</a>.', 'js_composer' ), menu_page_url( $this->page, false ) . '&tab=element_css' ) . '</p></div>';
-	}
-
-	/**
-	 * @deprecated
-	 */
-	public static function removeNotification() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			die();
-		}
-		update_option( self::$notification_name, 'false' );
 	}
 
 	/**
@@ -1330,7 +1316,6 @@ EOF;
 						</div>
 						<?php settings_fields( $this->option_group . '_' . $tab ) ?>
 						<?php do_settings_sections( $this->page . '_' . $tab ) ?>
-						<?php wp_nonce_field( 'wpb_js_settings_save_action', 'wpb_js_nonce_field' ); ?>
 						<input type="hidden" name="vc_action" value="<?php echo 'vc_action-' . $tab; ?>"
 						       id="vc_settings-<?php echo $tab ?>-action"/>
 						<a href="#" class="button vc_restore-button"
@@ -1348,7 +1333,6 @@ EOF;
 					      class="vc_settings-tab-content<?php echo ( $this->active_tab == $tab ? ' vc_settings-tab-content-active' : '' ) . $css ?>"<?php echo apply_filters( 'vc_setting-tab-form-' . $tab, '' ) ?>>
 						<?php settings_fields( $this->option_group . '_' . $tab ) ?>
 						<?php do_settings_sections( $this->page . '_' . $tab ) ?>
-						<?php wp_nonce_field( 'wpb_js_settings_save_action', 'wpb_js_nonce_field' ); ?>
 						<?php
 						$submit_button_attributes = array();
 						$license_activation_key = vc_license()->deactivation();

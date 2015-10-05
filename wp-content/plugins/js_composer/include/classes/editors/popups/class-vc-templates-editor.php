@@ -65,7 +65,7 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated 4.4 and will be removed, use Vc_Templates_Panel_Editor::save
 	 */
 	public function save() {
-		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
 			die();
 		}
 		$template_name = vc_post_param( 'template_name' );
@@ -98,6 +98,11 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated 4.4 and will be removed, use Vc_Templates_Panel_Editor::renderBackendTemplate
 	 */
 	public function load() {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
+		}
 		$template_id = vc_post_param( 'template_id' );
 
 		if ( ! isset( $template_id ) || $template_id === "" ) {
@@ -127,6 +132,11 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated and will not used anymore
 	 */
 	public function loadTemplateShortcodes() {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
+		}
 		$template_id = vc_post_param( 'template_id' );
 
 		if ( ! isset( $template_id ) || $template_id === "" ) {
@@ -148,7 +158,7 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @deprecated 4.4 and will be removed, use Vc_Templates_Panel_Editor::delete
 	 */
 	public function delete() {
-		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
 			die();
 		}
 		$template_id = vc_post_param( 'template_id' );
@@ -242,6 +252,11 @@ class Vc_Templates_Editor implements Vc_Render {
 	 * @return string
 	 */
 	public function getBackendDefaultTemplate( $return = false ) {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
+		}
 		return visual_composer()->templatesPanelEditor()->getBackendDefaultTemplate( $return );
 	}
 

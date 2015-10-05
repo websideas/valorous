@@ -30,6 +30,7 @@ $this->enqueueScripts();
 	<div class="<?php echo esc_attr( $css_class ) ?>"
 		 data-vc-<?php echo esc_attr( $this->pagable_type ); ?>-settings="<?php echo esc_attr( json_encode( $this->grid_settings ) ); ?>"
 		 data-vc-request="<?php echo esc_attr( admin_url( 'admin-ajax.php', 'relative' ) ); ?>"
-		 data-vc-post-id="<?php echo esc_attr( get_the_ID() ); ?>">
+		 data-vc-post-id="<?php echo esc_attr( get_the_ID() ); ?>"
+		 data-vc-public-nonce="<?php echo vc_generate_nonce( 'vc-public-nonce' ); ?>">
 	</div>
 </div><!-- vc_grid end -->

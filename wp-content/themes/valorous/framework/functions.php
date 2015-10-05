@@ -143,11 +143,7 @@ function get_page_header( ){
 
         $title = '<h1 class="page-header-title">'.$title.'</h1>';
         if($subtitle != ''){
-
-            //title_separator_color
-
-            $separator = '<div class="page-header-clr clearfix"><div class="page-header-separator"></div></div>';
-            $subtitle = $separator.'<div class="page-header-subtitle">'.$subtitle.'</div>';
+            $subtitle = '<div class="page-header-subtitle">'.$subtitle.'</div>';
         }
 
         $breadcrumb_class = (!kt_option('title_breadcrumbs_mobile', false)) ? 'hidden-xs hidden-sm' : '';

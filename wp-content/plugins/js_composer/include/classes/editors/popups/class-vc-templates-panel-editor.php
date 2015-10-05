@@ -198,6 +198,11 @@ HTML;
 	 * vc_filter: vc_templates_render_frontend_template - called when unknown template received to render in frontend.
 	 */
 	function renderFrontendTemplate() {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
+		}
 		add_filter( 'vc_frontend_template_the_content', array( &$this, 'frontendDoTemplatesShortcodes' ) );
 		$template_id = vc_post_param( 'template_unique_id' );
 		$template_type = vc_post_param( 'template_type' );
@@ -268,8 +273,10 @@ HTML;
 	 * @since 4.4
 	 */
 	public function save() {
-		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
-			die();
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
 		}
 		$template_name = vc_post_param( 'template_name' );
 		$template = vc_post_param( 'template' );
@@ -306,6 +313,11 @@ HTML;
 	 * vc_filter: vc_templates_render_backend_template - called when unknown template requested to render in backend
 	 */
 	public function renderBackendTemplate() {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+			wp_send_json( array(
+				'success' => false
+			) );
+		}
 		$template_id = vc_post_param( 'template_unique_id' );
 		$template_type = vc_post_param( 'template_type' );
 
@@ -336,7 +348,7 @@ HTML;
 	 * @since 4.4
 	 */
 	public function delete() {
-		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+		if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
 			die();
 		}
 		$template_id = vc_post_param( 'template_id' );

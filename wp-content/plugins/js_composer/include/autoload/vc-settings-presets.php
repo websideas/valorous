@@ -16,7 +16,7 @@ add_action( 'wp_ajax_vc_action_render_settings_preset_title_prompt', 'vc_action_
  * @since 4.8
  */
 function vc_include_settings_preset_class() {
-	if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+	if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
 		wp_send_json( array(
 			'success' => false
 		) );
@@ -196,6 +196,11 @@ function vc_action_render_settings_preset_popup() {
  * @return string
  */
 function vc_action_render_settings_preset_title_prompt() {
+	if ( ! vc_verify_admin_nonce() || ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) ) {
+		wp_send_json( array(
+			'success' => false
+		) );
+	}
 	ob_start();
 	vc_include_template( apply_filters( 'vc_render_settings_preset_title_prompt', 'editors/partials/prompt.tpl.php' ) );
 	$html = ob_get_clean();

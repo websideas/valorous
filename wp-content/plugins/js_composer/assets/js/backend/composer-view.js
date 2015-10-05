@@ -164,7 +164,8 @@
 					data: {
 						action: 'wpb_get_element_backend_html',
 						data_element: this.model.get( 'shortcode' ),
-						data_width: _.isUndefined( params.width ) ? '1/1' : params.width
+						data_width: _.isUndefined( params.width ) ? '1/1' : params.width,
+						_vcnonce: window.vcAdminNonce
 					},
 					dataType: 'html',
 					context: this
@@ -273,7 +274,8 @@
 								data: {
 									action: 'wpb_single_image_src',
 									content: value,
-									size: 'thumbnail'
+									size: 'thumbnail',
+									_vcnonce: window.vcAdminNonce
 								},
 								dataType: 'html',
 								context: this

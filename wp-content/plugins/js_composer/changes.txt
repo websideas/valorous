@@ -1,3 +1,7 @@
+2.10.2015 - ver 4.7.4
+   - Fixed: Bug in grid builder presets
+   - Added extra ajax check
+
 29.09.2015 - ver 4.7.3
    - Re: Backwards compatibility for images with custom link
    - Added border for single image with external source

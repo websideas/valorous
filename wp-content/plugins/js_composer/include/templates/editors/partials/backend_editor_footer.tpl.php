@@ -21,7 +21,7 @@ $edit_layout->renderUITemplate();
 global $current_user;
 get_currentuserinfo();
 
-vc_include_settings_preset_class();
+require_once vc_path_dir( 'AUTOLOAD_DIR', 'class-vc-settings-presets.php' );
 ?>
 <script type="text/javascript">
 	var vc_user_mapper = <?php echo json_encode(WPBMap::getUserShortCodes()) ?>,
@@ -29,7 +29,8 @@ vc_include_settings_preset_class();
 		vc_settings_presets = <?php echo json_encode(Vc_Settings_Preset::listDefaultSettingsPresets()) ?>,
 		vc_roles = <?php echo json_encode( array_merge( array( 'current_user' => $current_user->roles ), (array) vc_settings()->get( 'groups_access_rules' ) ) ); ?>,
 		vc_frontend_enabled = <?php echo vc_enabled_frontend() ? 'true' : 'false' ?>,
-		vc_mode = '<?php echo vc_mode() ?>';
+		vc_mode = '<?php echo vc_mode() ?>',
+		vcAdminNonce = '<?php echo vc_generate_nonce( 'vc-admin-nonce' ); ?>';
 </script>
 
 <script type="text/html" id="vc_settings-image-block">

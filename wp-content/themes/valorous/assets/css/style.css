@@ -5699,18 +5699,18 @@ body.layout-boxed #page {
 
 .page-header h1.page-header-title {
     margin: 0;
-    padding: 0;
     font-size: 36px;
     line-height: 1.4;
     text-transform: uppercase;
     display: inline-block;
     border: 2px solid;
-    padding: 0 20px;
+    padding: 5px 20px;
 }
 
 .page-header .page-header-subtitle {
     color: #FFFFFF;
     position: relative;
+    margin-top: 10px;
 }
 
 .page-header .page-header-separator {
@@ -6332,34 +6332,21 @@ article.post-item {
 
 /* Blog Classic */
 article.post-item.post-layout-classic {
-    border-bottom: 1px solid #e3e3e3;
     margin-bottom: 90px;
-    padding-bottom: 30px;
 }
 
-.post-layout-classic .entry-title{
-    font-size: 22px;
+.post-layout-classic .entry-excerpt{
+    margin-bottom: 30px;
 }
 
 .post-layout-classic .entry-excerpt a.more-link{
     margin-top: 10px;
-    float: right;
 }
 
 .post-layout-classic .entry-share-box {
-
-}
-
-.post-layout-classic .entry-meta-data{
-    margin: 0 0 20px;
-}
-
-.post-layout-classic .entry-meta-data span{
-    display: block;
-}
-.post-layout-classic .entry-meta-data > span::after{
-    display: none;
-    content: '';
+    float: right;
+    margin-bottom: 15px;
+    margin-top: -15px;
 }
 
 /*

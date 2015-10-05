@@ -42,15 +42,6 @@ jQuery( document ).ready( function ( $ ) {
 		return true;
 	} );
 
-	$( '#vc_settings-disable-notification-button' ).click( function ( e ) {
-		e.preventDefault();
-		$.ajax( {
-			type: 'POST',
-			url: window.ajaxurl,
-			data: { action: 'wpb_remove_settings_notification_element_css_class' }
-		} );
-		$( this ).remove();
-	} );
 	$( '.vc_show_example' ).click( function ( e ) {
 		e.preventDefault();
 		var $helper = $( '.vc_helper' );
@@ -115,7 +106,8 @@ jQuery( document ).ready( function ( $ ) {
 				action: 'activated' === status ? 'wpb_deactivate_license' : 'wpb_activate_license',
 				username: $username.val(),
 				key: $key.val(),
-				api_key: $api_key.val()
+				api_key: $api_key.val(),
+				_vcnonce: window.vcAdminNonce
 			}
 		} ).done( function ( data ) {
 			var code;
@@ -208,7 +200,8 @@ jQuery( document ).ready( function ( $ ) {
 	$( '#vc_settings-vc-pointers-reset' ).click( function ( e ) {
 		e.preventDefault();
 		$.post( window.ajaxurl, {
-			action: 'vc_pointer_reset'
+			action: 'vc_pointer_reset',
+			_vcnonce: window.vcAdminNonce
 		} );
 		$( this ).text( $( this ).data( 'vcDoneTxt' ) );
 	} );

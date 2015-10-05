@@ -472,11 +472,6 @@ if(is_admin()){
                         echo 'div.page-header{padding-bottom: '.$pageh_bottom.';}';
                     }
 
-                    $pageh_separator_color = rwmb_meta('_kt_page_header_separator_color', array(), $post_id);
-                    if($pageh_separator_color != ''){
-                        echo '.page-header h1.page-header-title + .page-header-tagline:before{background:'.$pageh_separator_color.';}';
-                    }
-
                     $pageh_title_color = rwmb_meta('_kt_page_header_title_color', array(), $post_id);
                     if($pageh_title_color != ''){
                         echo 'div.page-header h1.page-header-title{color:'.$pageh_title_color.';}';
