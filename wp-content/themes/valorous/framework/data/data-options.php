@@ -3324,7 +3324,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                             'masonry' => __( 'Masonry', 'js_composer' ),
                             'zigzag' => __( 'Zig Zag', 'js_composer' ),
                         ),
-                        'default' => 'classic'
+                        'default' => 'masonry'
                     ),
                     array(
                         'id' => 'search_sharebox',

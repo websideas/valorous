@@ -28,7 +28,7 @@ body.login form {
 
 .login #backtoblog {
     background: #ffffff none repeat scroll 0 0;
-    margin: 0;
+    margin: 0!important;
     padding: 40px 24px 25px;
     text-align: center;
     text-transform: uppercase;
@@ -47,7 +47,7 @@ body.login form {
 .login #nav {
     padding: 0 24px;
     background: #FFF;
-    margin: 0;
+    margin: 0!important;
 }
 .login form#loginform .kt_forget label,
 p#reg_passmail,
