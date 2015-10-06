@@ -5,7 +5,6 @@ if ( !defined('ABSPATH')) exit;
 
 
 class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
-    protected $readmore;
 
     protected function content($atts, $content = null) {
         $atts = shortcode_atts( array(
@@ -50,12 +49,9 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
         $output = $settings = '';
 
-        $this->readmore = $readmore;
-
         $excerpt_length =  intval( $excerpt_length );
         $exl_function = create_function('$n', 'return '.$excerpt_length.';');
         add_filter( 'excerpt_length', $exl_function , 999 );
-        add_filter( 'the_content_more_link', array( $this, 'blog_post_button' ), 999, 2 );
 
         $args = array(
             'order' => $order,
@@ -202,7 +198,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
         wp_reset_query();
 
         remove_filter('excerpt_length', $exl_function, 999 );
-        remove_filter( 'the_content_more_link', array( $this, 'blog_post_button' ), 999, 2 );
 
         $output .= ob_get_clean();
 
@@ -218,17 +213,6 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
 
     }
 
-
-    function blog_post_button($link, $more_link_text){
-
-        global $post;
-
-        $moreclass = $this->readmore;
-        $moreclass = ( $moreclass == 'link' || !$moreclass ) ? 'readmore-link' : 'btn '.$moreclass;
-        $output = ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link $moreclass\">$more_link_text</a>";
-
-        return $output;
-    }
 }
 
 // Add your Visual Composer logic here

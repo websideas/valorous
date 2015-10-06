@@ -730,19 +730,7 @@ endif;
 
 add_filter( 'the_content_more_link', 'kt_modify_read_more_link', 10, 2 );
 function kt_modify_read_more_link( $link, $more_link_text ) {
-    global $post;
-
-    $moreclass = '';
-    if(is_author()){
-        $moreclass = kt_option('author_readmore', 'link');
-    }elseif(is_archive()){
-        $moreclass = kt_option('author_readmore', 'link');
-    }
-
-    $moreclass = ( $moreclass == 'link' || !$moreclass ) ? 'readmore-link' : 'btn '.$moreclass;
-    $output = ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link $moreclass\">$more_link_text</a>";
-
-    return $output;
+    return '';
 }
 
 

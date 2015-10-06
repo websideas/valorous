@@ -455,7 +455,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'name' => __('Left sidebar', THEME_LANG),
                 'id' => $prefix . 'left_sidebar',
                 'default' => true,
-                'type' => 'sidebars'
+                'type' => 'sidebars',
             ),
             array(
                 'name' => __('Right sidebar', THEME_LANG),
@@ -752,6 +752,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'revSlider',
                 'tab'  => 'sliders',
                 'desc' => __('Select the Revolution Slider.', THEME_LANG),
+                'required' => array($prefix . 'slideshow_source','=', 'revslider' ),
             ),
             array(
                 'name' => __('Select Layer Slider', THEME_LANG),
@@ -760,6 +761,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'layerslider',
                 'tab'  => 'sliders',
                 'desc' => __('Select the Layer Slider.', THEME_LANG),
+                'required' => array($prefix . 'slideshow_source','=', 'layerslider' ),
             ),
 
             //Page layout
@@ -809,6 +811,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'sidebars',
                 'tab'  => 'page_layout',
                 'desc' => __("Select your sidebar.", THEME_LANG),
+                'required' => array($prefix . 'sidebar','=', 'left' ),
             ),
             array(
                 'name' => __('Right sidebar', THEME_LANG),
@@ -817,6 +820,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'sidebars',
                 'tab'  => 'page_layout',
                 'desc' => __("Select your sidebar.", THEME_LANG),
+                'required' => array($prefix . 'sidebar','=', 'right' ),
             ),
             array(
                 'name' => __('Page top spacing', THEME_LANG),

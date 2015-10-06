@@ -19,6 +19,23 @@ function kt_rwmb_image_advanced_select_string($string, $field){
 }
 
 
+add_filter('rwmb_select_html', 'kt_rwmb_select_html', 10, 3);
+add_filter('rwmb_revSlider_html', 'kt_rwmb_select_html', 10, 3);
+add_filter('rwmb_sidebars_html', 'kt_rwmb_select_html', 10, 3);
+add_filter('rwmb_layerslider_html', 'kt_rwmb_select_html', 10, 3);
+
+
+function kt_rwmb_select_html($input_html, $field, $sub_meta){
+	if($field['required']){
+		$input_html = str_replace('<select', '<select data-id="'.$field['required'][0].'" data-compare="'.$field['required'][1].'" data-value="'.$field['required'][2].'"', $input_html);
+	}
+	return $input_html;
+}
+
+
+
+
+
 if ( ! class_exists( 'RWMB_Sidebars_Field' )){
 	class RWMB_Sidebars_Field extends RWMB_Select_Field{
 
@@ -387,6 +404,10 @@ if ( ! class_exists( 'RWMB_Background_Field' )){
 
 	}
 } // end RWMB_Background_Field
+
+
+
+
 
 
 
