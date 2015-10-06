@@ -50,6 +50,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type'             => 'file_advanced',
                 'max_file_uploads' => 1,
                 'mime_type'        => 'audio', // Leave blank for all file types
+                'required' => array($prefix . 'audio_type','=', 'upload' ),
             ),
             array(
                 'name' => __( 'Soundcloud', THEME_LANG ),
@@ -58,6 +59,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'textarea',
                 'cols' => 20,
                 'rows' => 3,
+                'required' => array($prefix . 'audio_type','=', 'soundcloud' ),
             ),
         ),
     );
@@ -92,12 +94,14 @@ function kt_register_meta_boxes( $meta_boxes )
                     'youtube' => __('Youtube', THEME_LANG),
                     'vimeo' => __('Vimeo', THEME_LANG),
                 ),
+                'required' => array($prefix . 'video_type','=', 'external' ),
             ),
             array(
                 'name' => __( 'Video id', THEME_LANG ),
                 'id' => $prefix . 'video_id',
                 'desc' => sprintf( __( 'Enter id of video .Example: <br />- Link video youtube: https://www.youtube.com/watch?v=nPOO1Coe2DI id of video: nPOO1Coe2DI <br /> -Link vimeo: https://vimeo.com/70296428 id video: 70296428.', THEME_LANG ) ),
                 'type'  => 'text',
+                'required' => array($prefix . 'video_type','=', 'external' ),
             ),
         ),
     );
@@ -130,19 +134,22 @@ function kt_register_meta_boxes( $meta_boxes )
                 'name' => __('Select Revolution Slider', THEME_LANG),
                 'id' => $prefix . 'gallery_rev_slider',
                 'default' => true,
-                'type' => 'revSlider'
+                'type' => 'revSlider',
+                'required' => array($prefix . 'gallery_type','=', 'rev' ),
             ),
             array(
                 'name' => __('Select Layer Slider', THEME_LANG),
                 'id' => $prefix . 'gallery_layerslider',
                 'default' => true,
-                'type' => 'layerslider'
+                'type' => 'layerslider',
+                'required' => array($prefix . 'gallery_type','=', 'layer' ),
             ),
             array(
                 'name' => __( 'Gallery images', 'your-prefix' ),
                 'id'  => "{$prefix}gallery_images",
                 'type' => 'image_advanced',
                 'desc' => __( "You can drag and drop for change order image", THEME_LANG ),
+                'required' => array($prefix . 'gallery_type','=', '' ),
             ),
         ),
     );
@@ -382,28 +389,6 @@ function kt_register_meta_boxes( $meta_boxes )
 
 
     /**
-     * For Testimonial
-     * 
-     */
-    
-    $meta_boxes[] = array(
-        'id' => 'testimonial_meta_boxes',
-        'title' => 'Testimonial Options',
-        'pages' => array( 'testimonial' ),
-        'context' => 'normal',
-        'priority' => 'default',
-        'fields' => array(
-            
-            array(
-                'name' => __( 'Regency', THEME_LANG ),
-                'id' => $prefix . 'testimonial_regency',
-                'desc' => __( "Testimonial Regency.", THEME_LANG ),
-                'type'  => 'text',
-            ),
-
-        )
-    );
-    /**
      * For Client
      * 
      */
@@ -571,6 +556,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Enter cstom Text for page header.", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             array(
@@ -579,6 +565,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'desc' => __( "Enter subtitle for page.", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             array(
@@ -594,6 +581,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 ),
                 'std'  => '',
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             array(
@@ -608,6 +596,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'std'  => -1,
                 'desc' => __( "Show page breadcrumb.", THEME_LANG ),
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             array(
@@ -622,13 +611,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'std'  => -1,
                 'desc' => __( "Show separator bettwen title and subtitle.", THEME_LANG ),
                 'tab'  => 'page_header',
-            ),
-
-
-            array(
-                'id' => 'fakeid_divider',
-                'type'  => 'divider',
-                'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             array(
@@ -637,6 +620,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'desc' => __("(Example: 60px). Emtpy for use default", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __('Page header bottom spacing', THEME_LANG),
@@ -644,11 +628,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'desc' => __("(Example: 60px). Emtpy for use default", THEME_LANG ),
                 'type'  => 'text',
                 'tab'  => 'page_header',
-            ),
-            array(
-                'id' => 'fakeid_divider',
-                'type'  => 'divider',
-                'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __( 'Separator custom color', THEME_LANG ),
@@ -656,6 +636,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'color',
                 'tab'  => 'page_header',
                 'desc' => __( "Choose custom color for separator.", THEME_LANG ),
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __( 'Typography title custom color', THEME_LANG ),
@@ -663,6 +644,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'color',
                 'tab'  => 'page_header',
                 'desc' => __( "Choose custom color for title.", THEME_LANG ),
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __( 'Typography sub title custom color', THEME_LANG ),
@@ -670,6 +652,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'color',
                 'tab'  => 'page_header',
                 'desc' => __( "Choose custom color for sub title.", THEME_LANG ),
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __( 'Typography breadcrumbs custom color', THEME_LANG ),
@@ -677,17 +660,14 @@ function kt_register_meta_boxes( $meta_boxes )
                 'type' => 'color',
                 'tab'  => 'page_header',
                 'desc' => __( "Choose custom color for breadcrumbs.", THEME_LANG ),
-            ),
-            array(
-                'id' => 'fakeid_divider',
-                'type'  => 'divider',
-                'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
             array(
                 'name' => __('Background Options for page header', THEME_LANG),
                 'id' => $prefix.'page_header_bg',
                 'type'  => 'background',
                 'tab'  => 'page_header',
+                'required' => array($prefix . 'page_header','!=', '0' ),
             ),
 
             //Header
@@ -715,6 +695,7 @@ function kt_register_meta_boxes( $meta_boxes )
                 ),
                 'std'  => 'light',
                 'tab'  => 'header',
+                'required' => array($prefix . 'header_position','=', 'transparent' ),
             ),
 
             /*

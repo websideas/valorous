@@ -8,15 +8,13 @@
     		return this.each(function() {
                 var obj = $(this);
                 $('[data-id]').each(function(){
-                    var id = $(this).data('id');
+                    var id = $(this).data('id'),
+                        compare = $(this).data('compare');
+                    if( !compare ) { compare = '=';  }
                     if( $('[name="'+id+'"]').is(':radio') ){
-                        if( $('[name="'+id+'"]:checked').val() != $(this).data('value') ){
-                            $(this).closest(o.parent).hide();
-                        } 
+                        defaultshowhide(compare, $(this).data('value'), $('[name="'+id+'"]:checked').val(), $(this) );
                     }else{
-                        if( $(this).data('value') != $('#'+$(this).data('id')).val() ){
-                            $(this).closest(o.parent).hide();
-                        }
+                        defaultshowhide(compare, $(this).data('value'), $('#'+$(this).data('id')).val(), $(this) );
                     }
                 });
                 
@@ -24,12 +22,10 @@
                     var id = $(this).attr('id'),
                         val = $(this).val();
                     $('[data-id="'+id+'"]').each(function(){
-                        var val_item = $(this).data('value');
-                        if( val == val_item ){
-                            $(this).closest(o.parent).show();
-                        }else{
-                            $(this).closest(o.parent).hide();
-                        }
+                        var val_item = $(this).data('value'),
+                            compare = $(this).data('compare');
+                        if( !compare ) { compare = '=';  }
+                        change_showhide( compare, $(this), val, val_item );
                     });
                 });
                 
@@ -54,14 +50,54 @@
                     var id = $(this).attr('name'),
                         val = $(this).val();
                     $('[data-id="'+id+'"]').each(function(){
-                        var val_item = $(this).data('value');
-                        if( val_item == val ){
-                            $(this).closest(o.parent).show();
-                        }else{
-                            $(this).closest(o.parent).hide();
-                        }
+                        var val_item = $(this).data('value'),
+                            compare = $(this).data('compare');
+                        if( !compare ) { compare = '=';  }
+                        change_showhide( compare, $(this), val, val_item );
                     });
                 });
+                
+                
+                function change_showhide( compare, obj, val, val_item ){
+                    switch (compare){
+                        case "=":
+                            if( val == val_item ){ obj.closest(o.parent).show(); }else{ obj.closest(o.parent).hide(); }
+                        break;
+                        case ">=":
+                            if( val >= val_item ){ obj.closest(o.parent).show(); }else{ obj.closest(o.parent).hide(); }
+                        break;
+                        case "<=":
+                            if( val <= val_item ){ obj.closest(o.parent).show(); }else{ obj.closest(o.parent).hide(); }
+                        break;
+                        case "!=":
+                            if( val != val_item ){ obj.closest(o.parent).show(); }else{ obj.closest(o.parent).hide(); }
+                        break;
+                    }
+                }
+                function defaultshowhide(compare, value1, value2, obj ){
+                    switch (compare) {
+                        case "=":
+                            if( value1 != value2 ){
+                                obj.closest(o.parent).hide();
+                            }
+                        break;
+                        case ">=":
+                            if( value1 < value2 ){
+                                obj.closest(o.parent).hide();
+                            }
+                        break;
+                        case "<=":
+                            if( value1 > value2 ){
+                                obj.closest(o.parent).hide();
+                            }
+                        break;
+                        case "!=":
+                            if( value1 == value2 ){
+                                obj.closest(o.parent).hide();
+                            }
+                        break;
+                    }
+                }
     		});
     	}
 	});
