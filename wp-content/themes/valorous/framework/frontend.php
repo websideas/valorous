@@ -689,10 +689,12 @@ if ( ! function_exists( 'kt_entry_meta_comments' ) ) :
      *
      */
     function kt_entry_meta_comments() {
-        if (! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-            echo '<span class="comments-link">';
-            comments_popup_link( __( 'No Comments', THEME_LANG ), __( '1 Comment', THEME_LANG ), __( '% Comments', THEME_LANG ) );
-            echo '</span>';
+        if ( !shortcode_exists( 'fbcomments' ) ) {
+            if (! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+                echo '<span class="comments-link">';
+                comments_popup_link( __( 'No Comments', THEME_LANG ), __( '1 Comment', THEME_LANG ), __( '% Comments', THEME_LANG ) );
+                echo '</span>';
+            }
         }
     }
 endif;

@@ -974,7 +974,7 @@ if(!function_exists('video_youtube')) {
      */
     function video_youtube($video_id)
     {
-        return '<iframe itemprop="video" src="http://www.youtube.com/embed/' . $video_id . '?wmode=transparent" ></iframe>';
+        return '<iframe src="http://www.youtube.com/embed/' . $video_id . '?wmode=transparent" ></iframe>';
     }
 }
 
@@ -988,7 +988,7 @@ if(!function_exists('video_vimeo')) {
      */
     function video_vimeo($video_id)
     {
-        return '<iframe itemprop="video" src="http://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0?wmode=transparent"></iframe>';
+        return '<iframe src="http://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0?wmode=transparent"></iframe>';
     }
 }
 

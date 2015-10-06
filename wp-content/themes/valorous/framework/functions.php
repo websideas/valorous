@@ -825,3 +825,6 @@ if ( ! function_exists( 'kt_theme_after_main' ) ) :
     }
     add_action('theme_after_main', 'kt_theme_after_main');
 endif;
+
+
+remove_filter ('the_content', 'fbcommentbox', 100);

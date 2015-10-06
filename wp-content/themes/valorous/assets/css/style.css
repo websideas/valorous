@@ -6835,6 +6835,7 @@ article.post-item.post-layout-classic {
 /*
  * 14.9. Comments
  */
+.kt_facebook_comment > h3,
 .comment-respond .comment-reply-title,
 .comments-area .comments-title {
     border-bottom: 1px solid #e3e3e3;
@@ -6843,6 +6844,9 @@ article.post-item.post-layout-classic {
     margin: 0 0 20px;
     padding: 0 0 5px;
     text-transform: uppercase;
+}
+.kt_facebook_comment > p{
+    display: none;
 }
 
 .comment-respond .comment-form-fields {

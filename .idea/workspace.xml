@@ -54,31 +54,31 @@
       <file leaf-file-name="meta-box-custom.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions-custom/meta-box-custom.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.9411764">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state vertical-scroll-proportion="-14.411765">
+              <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
               <folding>
-                <marker date="1444103635000" expanded="true" signature="4023:4129" placeholder="SELECT * FRO..." />
-                <marker date="1444103635000" expanded="true" signature="7420:7432" placeholder="..." />
+                <marker date="1444103775000" expanded="true" signature="4023:4129" placeholder="SELECT * FRO..." />
+                <marker date="1444103775000" expanded="true" signature="7420:7432" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data-meta-box.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data-meta-box.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16042155">
+            <state vertical-scroll-proportion="-5.7083335">
               <caret line="799" column="25" selection-start-line="799" selection-start-column="21" selection-end-line="799" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4583335">
-              <caret line="788" column="40" selection-start-line="788" selection-start-column="40" selection-end-line="788" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.5784543">
+              <caret line="812" column="0" selection-start-line="812" selection-start-column="0" selection-end-line="812" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,10 +136,10 @@
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/assets/css/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/js_composer/vc_addons/blog_posts.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/templates/blog/classic/content.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions/meta-box/inc/field.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions-custom/meta-box-custom.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions-custom/meta-box-custom.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/valorous/framework/functions.php" />
       </list>
     </option>
   </component>
@@ -1343,9 +1343,9 @@
         <state vertical-scroll-proportion="0.8419204">
           <caret line="610" column="23" selection-start-line="610" selection-start-column="23" selection-end-line="610" selection-end-column="23" />
           <folding>
-            <marker date="1443751004000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443751004000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443751004000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1374,10 +1374,10 @@
         <state vertical-scroll-proportion="0.47521162">
           <caret line="2629" column="24" selection-start-line="2629" selection-start-column="24" selection-end-line="2629" selection-end-column="82" />
           <folding>
-            <marker date="1444012804000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1444012804000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1444012804000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1444012804000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1444103776000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1414,14 +1414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4583335">
-          <caret line="788" column="40" selection-start-line="788" selection-start-column="40" selection-end-line="788" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions/meta-box/inc/field.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.882353">
@@ -1440,21 +1432,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.7083335">
+          <caret line="799" column="25" selection-start-line="799" selection-start-column="21" selection-end-line="799" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/extensions-custom/meta-box-custom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.9411764">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state vertical-scroll-proportion="-14.411765">
+          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
           <folding>
-            <marker date="1444103635000" expanded="true" signature="4023:4129" placeholder="SELECT * FRO..." />
-            <marker date="1444103635000" expanded="true" signature="7420:7432" placeholder="..." />
+            <marker date="1444103775000" expanded="true" signature="4023:4129" placeholder="SELECT * FRO..." />
+            <marker date="1444103775000" expanded="true" signature="7420:7432" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/data/data-meta-box.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/valorous/framework/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16042155">
-          <caret line="799" column="25" selection-start-line="799" selection-start-column="21" selection-end-line="799" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.5784543">
+          <caret line="812" column="0" selection-start-line="812" selection-start-column="0" selection-end-line="812" selection-end-column="0" />
           <folding />
         </state>
       </provider>

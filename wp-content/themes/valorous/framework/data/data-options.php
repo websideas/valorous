@@ -3434,7 +3434,7 @@ if ( ! class_exists( 'KT_config' ) ) {
                         'options' => $image_sizes,
                         'title'    => __( 'Image size', THEME_LANG ),
                         'desc' => __("Select image size.", THEME_LANG),
-                        'default' => 'blog_post'
+                        'default' => 'recent_posts'
                     ),
 
                     array(

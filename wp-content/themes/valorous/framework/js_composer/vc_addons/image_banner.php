@@ -63,8 +63,9 @@ class WPBakeryShortCode_Image_Banner extends WPBakeryShortCode {
                 $link = vc_build_link( $link );
                 $a_href = $link['url'];
                 $a_title = $link['title'];
-                $a_target = $link['target'];
-                $button_link = array('href="'.esc_attr( $a_href ).'"', 'title="'.esc_attr( $a_title ).'"', 'target="'.esc_attr( $a_target ).'"' );
+                $a_target = strlen( $link['target'] ) > 0 ? $link['target'] : '_self';
+                if( $a_title ){ $a_title = 'title="'.esc_attr( $a_title ).'"'; }
+                $button_link = array('href="'.esc_attr( $a_href ).'"', $a_title, 'target="'.esc_attr( $a_target ).'"' );
                 
                 $output .= '<a class="banner-link" '.implode(' ', $button_link).'></a>';
             }

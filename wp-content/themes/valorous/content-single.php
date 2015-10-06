@@ -26,7 +26,7 @@
                     kt_entry_meta_time();
                 }
                 if(kt_option('blog_meta_comments', 1)){
-                    kt_entry_meta_comments();
+     			    kt_entry_meta_comments();
                 }
                 if(kt_option('blog_view_number', 0)){
                     echo kt_get_post_views( get_the_ID() );
@@ -97,9 +97,13 @@
     }
 
     // If comments are open or we have at least one comment, load up the comment template.
-    if ( comments_open() || get_comments_number() ) :
-        comments_template();
-    endif;
+    if ( shortcode_exists( 'fbcomments' ) ) {
+        echo '<div class="kt_facebook_comment">'.do_shortcode('[fbcomments]').'</div>';
+    }else{
+        if ( comments_open() || get_comments_number() ) :
+            comments_template();
+        endif;
+    }
 
 ?>
 
