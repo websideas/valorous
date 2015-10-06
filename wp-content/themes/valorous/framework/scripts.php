@@ -27,6 +27,7 @@ if(is_admin()){
             wp_enqueue_script( 'kt_image', FW_JS.'kt_image.js', array('jquery'), FW_VER, true);
             wp_enqueue_script( 'chosen', FW_LIBS.'chosen/chosen.jquery.min.js', array('jquery'), FW_VER, true);
             wp_enqueue_script( 'cookie', FW_JS.'jquery.cookie.js', array('jquery'), FW_VER, true);
+            wp_enqueue_script( 'showhide_metabox', FW_JS.'kt_showhide_metabox.js', array('jquery'), FW_VER, true);
 
             wp_localize_script( 'kt_image', 'kt_image_lange', array(
                 'frameTitle' => __('Select your image', THEME_LANG )
