@@ -344,7 +344,18 @@ function kt_register_meta_boxes( $meta_boxes )
                 'std'  => -1
             ),
 
-
+            array(
+                'name' => __('Select Thumbnail size for Random Layout Packery', THEME_LANG),
+                'id'   => "{$prefix}thumbnail_packery",
+                'type' => 'select',
+                'options' => array(
+                    'small_squared' => __('Small Squared', THEME_LANG),
+                    'big_squared'	=> __('Big Squared', THEME_LANG),
+                    'landscape'		=> __('Landscape', THEME_LANG),
+                    'portrait'		=> __('Portrait', THEME_LANG),
+                ),
+                'std'  => 'small_squared'
+            ),
         )
     );
 

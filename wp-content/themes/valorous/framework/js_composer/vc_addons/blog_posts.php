@@ -15,6 +15,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             'blog_type' => 'classic',
             'blog_columns' => 3,
             'blog_columns_tablet' => 2,
+            'packery_columns' => 3,
             'thumbnail_type' => 'format',
             'show_excerpt' => 'true',
             'blog_align' => 'left',
@@ -117,9 +118,13 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             if( $blog_type == 'zigzag' ){
                 $align_zigzag = 'style="text-align:'.$blog_align.'"';
             }
+            $column_packery = '';
+            if( $blog_type == 'packery' ){
+                $column_packery = 'column'.$packery_columns;
+            }
                         
             echo "<div class='blog-posts blog-posts-".esc_attr($blog_type)." blog-posts-".esc_attr($thumbnail_type)."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-            echo "<div class='blog-posts-content clearfix ".$animate_classic."' ".$data_animate_classic." ".$align_zigzag.">";
+            echo "<div class='blog-posts-content clearfix ".$animate_classic." ".$column_packery."' ".$data_animate_classic." ".$align_zigzag.">";
 
             do_action('before_blog_posts_loop');
 
@@ -155,6 +160,8 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
                 $path = 'templates/blog/classic/content';
             }elseif( $blog_type == 'zigzag' ){
                 $path = 'templates/blog/zigzag/content';
+            }elseif( $blog_type == 'packery' ){
+                $path = 'templates/blog/packery/content';
             }else{
                 $path = 'templates/blog/layout/content';
             }
@@ -237,6 +244,7 @@ vc_map( array(
                 __( 'Grid', 'js_composer' ) => 'grid',
                 __( 'Masonry', 'js_composer' ) => 'masonry',
                 __( 'Zig Zag', 'js_composer' ) => 'zigzag',
+                __( 'Packery', 'js_composer' ) => 'packery',
             ),
             'description' => '',
         ),
@@ -298,6 +306,22 @@ vc_map( array(
             ),
         ),
         array(
+            'type' => 'dropdown',
+            'heading' => __( 'on Desktop Packery', THEME_LANG ),
+            'param_name' => 'packery_columns',
+            'value' => array(
+                __( '3 columns', 'js_composer' ) => '3',
+                __( '4 columns', 'js_composer' ) => '4',
+                __( '5 columns', 'js_composer' ) => '5',
+            ),
+            'std' => '3',
+            "edit_field_class" => "vc_col-sm-6 vc_column",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value' => array( 'packery' )
+            ),
+        ),
+        array(
             "type" => "kt_heading",
             "heading" => __("Extra setting", THEME_LANG),
             "param_name" => "extra_settings",
@@ -336,7 +360,11 @@ vc_map( array(
         array(
             "type" => "kt_image_sizes",
             "heading" => __( "Select image sizes", THEME_LANG ),
-            "param_name" => "image_size"
+            "param_name" => "image_size",
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value_not_equal_to' => array( 'packery' )
+            ),
         ),
         array(
             'type' => 'dropdown',

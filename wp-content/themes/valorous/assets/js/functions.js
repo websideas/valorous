@@ -65,7 +65,7 @@
         kt_popup_gallery();
         kt_sidebar_sticky();
         kt_likepost();
-
+        kt_blog_packery();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -856,6 +856,21 @@
                     .addClass('liked')
                     .attr('title', objPost.data('already'));
             }, 'json');
+        });
+    }
+    
+    /**==============================
+    ***  Blog Packery
+    ===============================**/
+    function kt_blog_packery(){
+        var container = document.querySelector('.blog-posts-packery .blog-posts-content');
+        // init
+        $('.blog-posts-packery .blog-posts-content').waitForImages(function() {
+            var pckry = new Packery( container, {
+              // options
+              itemSelector: '.post-item',
+              gutter: 0
+            });
         });
     }
 

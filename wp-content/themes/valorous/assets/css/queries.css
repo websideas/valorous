@@ -189,6 +189,14 @@ only screen and (min-resolution: 144dpi) {
     .post-navigation .meta-nav.nav-next a span{
         display:none!important;
     }
+    
+    
+    .blog-posts-packery .blog-posts-content.column3 article{
+        width:50%;
+    }
+    .blog-posts-packery .blog-posts-content.column3 article.big_size{
+        width:100%;
+    }
 }
 
 
