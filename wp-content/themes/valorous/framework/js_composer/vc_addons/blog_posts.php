@@ -120,9 +120,9 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             $animate_classic = ( $page_animation == 1 && ($blog_type == 'classic' || $blog_type == 'zigzag') ) ? 'animation-effect' : ' ';
             $data_animate_classic = ( $page_animation == 1 && ($blog_type == 'classic' || $blog_type == 'zigzag') ) ? 'data-animation="fadeInUp" data-timeeffect="0"' : ' ';
             
-            $align_zigzag = '';
-            if( $blog_type == 'zigzag' ){
-                $align_zigzag = 'style="text-align:'.$blog_align.'"';
+            $align = '';
+            if( $blog_type == 'zigzag' || $blog_type == 'packery' || $blog_type == 'justified' ){
+                $align = 'style="text-align:'.$blog_align.'"';
             }
             $class_packery = '';
             if( $blog_type == 'packery' ){
@@ -135,7 +135,7 @@ class WPBakeryShortCode_List_Blog_Posts extends WPBakeryShortCode {
             }
                         
             echo "<div class='blog-posts blog-posts-".esc_attr($blog_type)." blog-posts-".esc_attr($thumbnail_type)."' data-queryvars='".esc_attr(json_encode($args))."' data-settings='".$settings."' data-type='".$blog_type."' data-total='".$wp_query->max_num_pages."' data-current='1'>";
-            echo "<div class='blog-posts-content clearfix ".$animate_classic." ".$class_packery."' ".$data_justified." ".$data_animate_classic." ".$align_zigzag.">";
+            echo "<div class='blog-posts-content clearfix ".$animate_classic." ".$class_packery."' ".$data_justified." ".$data_animate_classic." ".$align.">";
 
             do_action('before_blog_posts_loop');
 
@@ -405,11 +405,11 @@ vc_map( array(
                 __('None', THEME_LANG) => '',
                 __( 'Link', 'js_composer' ) => 'link',
                 __( 'Button Accent', 'js_composer' ) => 'btn-default',
-                __( 'Button White', 'js_composer' ) => 'btn-white',
+                __( 'Button Light', 'js_composer' ) => 'btn-light',
                 __( 'Button Dark', 'js_composer' ) => 'btn-dark',
                 __( 'Button Gray', 'js_composer' ) => 'btn-gray',
                 __( 'Button Accent Border', 'js_composer' ) => 'btn-default-b',
-                __( 'Button White Border', 'js_composer' ) => 'btn-white-b',
+                __( 'Button Light Border', 'js_composer' ) => 'btn-light-b',
                 __( 'Button Dark Border', 'js_composer' ) => 'btn-dark-b',
             ),
             "description" => __("Show or hide the readmore button.", THEME_LANG),
@@ -450,6 +450,10 @@ vc_map( array(
             'heading' => __( 'Excerpt length', 'js_composer' ),
             'value' => 50,
             'param_name' => 'excerpt_length',
+            'dependency' => array(
+                'element' => 'show_excerpt',
+                'value' => 'true'
+            ),
         ),
 
         /*
