@@ -6408,7 +6408,8 @@ article.post-item.post-layout-classic {
     width:40%;
 }
 
-
+.blog-posts-justified .blog-posts-content .entry-meta-data,
+.blog-posts-justified .blog-posts-content .entry-meta-data a,
 .blog-posts-justified .blog-posts-content .entry-title a{
     color:#fff;
 }
