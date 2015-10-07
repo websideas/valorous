@@ -66,6 +66,7 @@
         kt_sidebar_sticky();
         kt_likepost();
         kt_blog_packery();
+        kt_blog_justified();
 
         if($('#wpadminbar').length){
             $('body').addClass('admin-bar');
@@ -870,6 +871,20 @@
               // options
               itemSelector: '.post-item',
               gutter: 0
+            });
+        });
+    }
+    
+    /**==============================
+    ***  Blog Justified
+    ===============================**/
+    function kt_blog_justified(){
+        $('.blog-posts-justified .blog-posts-content').each(function(){
+            $(this).justifiedGallery({
+                rowHeight: $(this).data('height'),
+                margins: $(this).data('margin'),
+                captions: false,
+                lastRow: 'justify'
             });
         });
     }

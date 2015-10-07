@@ -6349,15 +6349,21 @@ article.post-item.post-layout-classic {
 .blog-posts-packery .blog-posts-content{
     margin: 0;
 }
+.blog-posts-packery .blog-posts-content.style2{
+    margin: 0 -15px;
+}
 .blog-posts-packery .blog-posts-content article{
     padding: 0;
     margin:0;
     overflow: hidden;
 }
-.blog-posts-packery .blog-posts-content article .entry-title a{
+.blog-posts-packery .blog-posts-content.style2 article{
+    padding:15px;
+}
+.blog-posts-packery .blog-posts-content.style1 article .entry-title a{
     color:#fff;
 }
-.blog-posts-packery .blog-posts-content article::after{
+.blog-posts-packery .blog-posts-content.style1 article::after{
     background: rgba(0, 0, 0, 0.3);
     content: "";
     height: 100%;
@@ -6367,7 +6373,7 @@ article.post-item.post-layout-classic {
     width: 100%;
     z-index: 1;
 }
-.blog-posts-packery .blog-posts-content article .entry-main-content{
+.blog-posts-packery .blog-posts-content.style1 article .entry-main-content{
     position: absolute;
     bottom:0;
     left:0;
@@ -6376,11 +6382,11 @@ article.post-item.post-layout-classic {
     color:#fff;
     z-index:2;
 }
-.blog-posts-packery .blog-posts-content article .entry-thumb{
+.blog-posts-packery .blog-posts-content.style1 article .entry-thumb{
     margin: 0;
 }
-.blog-posts-packery .blog-posts-content article .entry-thumb:after,
-.blog-posts-packery .blog-posts-content article .entry-thumb:before{
+.blog-posts-packery .blog-posts-content.style1 article .entry-thumb:after,
+.blog-posts-packery .blog-posts-content.style1 article .entry-thumb:before{
     display: none;
 }
 .blog-posts-packery .blog-posts-content.column3 article{
@@ -6400,6 +6406,30 @@ article.post-item.post-layout-classic {
 }
 .blog-posts-packery .blog-posts-content.column5 article.big_size{
     width:40%;
+}
+
+
+.blog-posts-justified .blog-posts-content .entry-title a{
+    color:#fff;
+}
+.blog-posts-justified .blog-posts-content .post-item::after{
+    background: rgba(0, 0, 0, 0.3);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+.blog-posts-justified .blog-posts-content .post-item .entry-main-content{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px 20px 0;
+    color:#fff;
+    z-index:2;
 }
 
 /*
