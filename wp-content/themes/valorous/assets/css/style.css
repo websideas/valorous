@@ -6425,12 +6425,18 @@ article.post-item.post-layout-classic {
 }
 .blog-posts-justified .blog-posts-content .post-item .entry-main-content{
     position: absolute;
-    bottom:0;
+    bottom:-100%;
     left:0;
     width:100%;
     padding:20px 20px 0;
     color:#fff;
-    z-index:2;
+    z-index:2;transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+}
+.blog-posts-justified .blog-posts-content .post-item:hover .entry-main-content{
+    bottom:0;
 }
 
 /*
