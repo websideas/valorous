@@ -434,7 +434,7 @@ vc_map( array(
             'description' => __( 'Select thumbnail type for article.', THEME_LANG ),
             'dependency' => array(
                 'element' => 'blog_type',
-                'value_not_equal_to' => array( 'justified' )
+                'value_not_equal_to' => array( 'justified', 'packery' )
             ),
         ),
         array(

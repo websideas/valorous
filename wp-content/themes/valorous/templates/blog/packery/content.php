@@ -16,11 +16,7 @@
 <article <?php post_class($classes); ?>>
 
     <?php
-        if($blog_atts['thumbnail_type'] == 'image'){
-            kt_post_thumbnail_image( $image_size, 'img-responsive' );
-        }else{
-            kt_post_thumbnail( $image_size, 'img-responsive' );
-        }
+        kt_post_thumbnail_image( $image_size, 'img-responsive' );
     ?>
     <div class="entry-main-content">
         <div class="post-info">
