@@ -343,7 +343,6 @@ vc_map( array(
                 __( '5 columns', 'js_composer' ) => '5',
             ),
             'std' => '3',
-            "edit_field_class" => "vc_col-sm-6 vc_column",
             'dependency' => array(
                 'element' => 'blog_type',
                 'value' => array( 'packery' )
@@ -413,6 +412,10 @@ vc_map( array(
                 __( 'Button Dark Border', 'js_composer' ) => 'btn-dark-b',
             ),
             "description" => __("Show or hide the readmore button.", THEME_LANG),
+            'dependency' => array(
+                'element' => 'blog_type',
+                'value_not_equal_to' => array( 'justified' )
+            ),
         ),
         array(
             "type" => "kt_image_sizes",
@@ -434,7 +437,7 @@ vc_map( array(
             'description' => __( 'Select thumbnail type for article.', THEME_LANG ),
             'dependency' => array(
                 'element' => 'blog_type',
-                'value_not_equal_to' => array( 'justified', 'packery' )
+                'value_not_equal_to' => array( 'justified', 'packery', 'zigzag' )
             ),
         ),
         array(
@@ -443,6 +446,9 @@ vc_map( array(
             'param_name' => 'show_excerpt',
             'value' => 'true',
             "description" => __("Show or hide the Excerpt.", THEME_LANG),
+            'dependency' => array(
+                'callback' => 'kt_excertshow_blog_post'
+            ),
         ),
 
         array(

@@ -10,15 +10,8 @@
     $classes = array('post-item post-layout-1', $blog_atts['class']);
 ?>
 <div <?php post_class($classes); ?>>
-
-    <?php /*
-        if($blog_atts['thumbnail_type'] == 'image'){
-            kt_post_thumbnail_image( $image_size, 'img-responsive', false );
-        }else{
-            kt_post_thumbnail( $image_size, 'img-responsive', false );
-        }*/
-    ?>
     <?php the_post_thumbnail( $image_size, array( 'alt' => get_the_title(), 'class' => 'img-responsive' ) ); ?>
+    <a class="link-post" href="<?php the_permalink(); ?>"></a>
     <div class="entry-main-content">
         <div class="post-info">
             <div class="entry-ci">
@@ -48,24 +41,6 @@
                         }
                         ?>
                     </div><!-- .entry-meta-data -->
-                <?php } ?>
-
-                <?php if($blog_atts['show_excerpt']){ ?>
-                    <div class="entry-excerpt">
-                        <?php the_excerpt(); ?>
-                    </div><!-- .entry-excerpt -->
-                <?php } ?>
-                <?php if($blog_atts['readmore']){ ?>
-                    <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
-                    <div class="entry-more">
-                        <?php
-                            printf( '<a href="%1$s" class="%2$s">%3$s</a>',
-                                esc_url( get_permalink( get_the_ID() ) ),
-                                $moreclass,
-                                sprintf( __( 'Read more %s', THEME_LANG ), '<span class="screen-reader-text">' . get_the_title( get_the_ID() ) . '</span>' )
-                            );
-                        ?>
-                    </div><!-- .entry-more -->
                 <?php } ?>
             </div>
         </div><!-- .post-info -->
