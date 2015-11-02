@@ -248,8 +248,9 @@ if(is_admin()){
 
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:hover,
                 .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a:focus,
-                .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a
-
+                .vc_tta-color-accent.vc_tta-style-outline .vc_tta-tab.vc_active > a,
+                
+                .entry-share-box a:hover
                 {
                     color: <?php echo $accent; ?>;
                 }
@@ -303,7 +304,6 @@ if(is_admin()){
                 .pagination .page-numbers.current,
                 .widget_product_tag_cloud a:hover,
                 .widget_tag_cloud a:hover,
-                .entry-share-box a:hover,
 
                 .wc-single-product .functional-buttons-product .woocommerce.compare-button a:hover:before,
                 .woocommerce .wc-single-product .functional-buttons-product .yith-wcwl-add-button a.add_to_wishlist:hover:before,

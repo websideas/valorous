@@ -530,6 +530,34 @@ select:not([multiple]) {
 
 }
 
+.readmore-link-classic{
+    display: block;
+    padding:18px 20px;
+    font-size:14px;
+    color:#dcb588;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    position: relative;
+    outline: none;
+    line-height: 1;
+    width:150px;
+    margin: 0 auto;
+}
+.readmore-link-classic:before,
+.readmore-link-classic:after{
+    content:"";
+    width:100%;
+    height:1px;
+    background: #dcb588;
+    position: absolute;
+    left:0;
+    bottom:0;
+}
+.readmore-link-classic:before{
+    bottom:3px;
+}
+
+
 /* Border style hover */
 .button:hover,
 .button:focus,
@@ -1391,6 +1419,35 @@ ul.navigation-mobile > li > ul.sub-menu-dropdown .sub-menu-dropdown > li > a {
     padding: 0 0 5px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+.wpb_widgetised_column .widget-title,
+.sidebar .widget-title{
+    border: none;
+    font-size:14px;
+    letter-spacing: 0.2em;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.wpb_widgetised_column .widget-title:before,
+.sidebar .widget-title:before,
+.wpb_widgetised_column .widget-title:after,
+.sidebar .widget-title:after{
+    position: absolute;
+    content:"";
+    height:2px;
+    background: #dcb588;
+    left:0;
+}
+.wpb_widgetised_column .widget-title:after,
+.sidebar .widget-title:after{
+    bottom:0;
+    width:37px;
+}
+.wpb_widgetised_column .widget-title:before,
+.sidebar .widget-title:before{
+    bottom:4px;
+    width:26px;
 }
 
 .searchform {
@@ -6220,15 +6277,11 @@ article.post-item {
 }
 
 .entry-share-box a {
-    vertical-align: top;
-    border: 1px solid #8f8f8f;
     color: #b5b5b5;
     display: inline-block;
-    font-size: 13px;
-    height: 22px;
-    margin-left: 8px;
+    font-size: 14px;
+    margin-left: 15px;
     text-align: center;
-    width: 22px;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -6236,18 +6289,11 @@ article.post-item {
 }
 
 .entry-share-box a:hover {
-    border-color: #d0a852;
-    background: #d0a852;
-    color: #FFFFFF;
+    color: #d0a852;
 }
 
 .entry-share-box a:first-child {
     margin-left: 0;
-}
-
-.entry-share-box a i {
-    line-height: 20px;
-    display: block;
 }
 
 .entry-excerpt,

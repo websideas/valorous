@@ -403,6 +403,7 @@ vc_map( array(
             'value' => array(
                 __('None', THEME_LANG) => '',
                 __( 'Link', 'js_composer' ) => 'link',
+                __( 'Link Classic', 'js_composer' ) => 'link-classic',
                 __( 'Button Accent', 'js_composer' ) => 'btn-default',
                 __( 'Button Light', 'js_composer' ) => 'btn-light',
                 __( 'Button Dark', 'js_composer' ) => 'btn-dark',

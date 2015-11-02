@@ -2,15 +2,6 @@
     $classes = array('post-item post-layout-classic', $blog_atts['class']);
 ?>
 <article <?php post_class($classes); ?>>
-
-
-    <?php
-    if($blog_atts['thumbnail_type'] == 'image'){
-        kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true, false);
-    }else{
-        kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true, false);
-    }
-    ?>
     <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
     <?php
     if($blog_atts['sharebox']){
@@ -42,6 +33,15 @@
         </div>
     <?php } ?>
     <div class="clearfix"></div>
+
+    <?php
+    if($blog_atts['thumbnail_type'] == 'image'){
+        kt_post_thumbnail_image($blog_atts['image_size'], 'img-responsive', true, false);
+    }else{
+        kt_post_thumbnail($blog_atts['image_size'], 'img-responsive', true, false);
+    }
+    ?>
+    
     <div class="entry-main-content">
         <div class="post-info">
             <div class="entry-ci">
@@ -57,7 +57,16 @@
                     </div><!-- .entry-excerpt -->
                 <?php } ?>
                 <?php if($blog_atts['readmore']){ ?>
-                    <?php $moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : 'btn '.$blog_atts['readmore']; ?>
+                    <?php
+                        if( $blog_atts['readmore'] == 'link' ){
+                            $moreclass = 'readmore-link';
+                        }elseif( $blog_atts['readmore'] == 'link-classic' ){
+                            $moreclass = 'readmore-link-classic';
+                        }else{
+                            $moreclass = 'btn '.$blog_atts['readmore'];
+                        }
+                    ?>
+                    <?php //$moreclass = ( $blog_atts['readmore'] == 'link' ) ? 'readmore-link' : ; ?>
                     <div class="entry-more">
                         <?php
                         printf( '<a href="%1$s" class="%2$s">%3$s</a>',
